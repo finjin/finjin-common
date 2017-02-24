@@ -153,7 +153,7 @@ def unwrap_embedded_file(in_file_path, out_file_path):
 if __name__== '__main__':
     if len(sys.argv) < 4:
         print('Usage: python wrap_file.py [wrap | wrap-big | wrap-little | unwrap] in_file out_file')
-        print('Example: python wrap_file.py wrap in-image.jpg out-image.texture')
+        print('Example: python wrap_file.py wrap in-image.png out-image.texture')
         print('Example: python wrap_file.py unwrap in-image.texture out-image (extension will be appended automatically)')
         sys.exit(1)
 
