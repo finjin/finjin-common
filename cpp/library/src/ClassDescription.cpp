@@ -24,7 +24,7 @@ using namespace Finjin::Common;
 
 //Local types------------------------------------------------------------------
 using GlobalClassDescriptions = StaticVector<ClassDescription*, CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES>;
-using GlobalClassDescriptionsByName = StaticUnorderedMap<size_t, ClassDescription*, CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES, FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES)>;
+using GlobalClassDescriptionsByName = StaticUnorderedMap<size_t, ClassDescription*, CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES, FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES), MapPairConstructNone<size_t, ClassDescription*>, PassthroughHash>;
 using ClassDescriptionSearchQueue = StaticQueue<ClassDescription*, CommonConstants::MAX_CLASS_DESCRIPTION_CLASSES * 2>;
 
 static GlobalClassDescriptions& GetAllClasses()
