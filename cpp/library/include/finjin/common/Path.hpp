@@ -525,37 +525,6 @@ namespace Finjin { namespace Common {
         char shortS[STATIC_STRING_LENGTH + 1];        
     };
 
-    class PathGenerator
-    {
-    public:
-        virtual size_t GetCount() const { return 1; }
-        virtual Path& Get(Path& result, const Path& path, size_t index) const = 0;
-    };
-
-    class BasePathGenerator : public PathGenerator
-    {
-    public:
-        Path& Get(Path& result, const Path& path, size_t index) const override
-        {
-            result = this->base;
-            result /= path;
-            return result;
-        }
-
-        const Path& GetBase() const
-        {
-            return this->base;
-        }
-
-        void SetBase(const Path& value)
-        {
-            this->base = value;
-        }
-
-    private:
-        Path base;
-    };
-
 } }
 
 
