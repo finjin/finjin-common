@@ -14,6 +14,7 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/ClassDescription.hpp"
+#include "finjin/common/Hash.hpp"
 #include "finjin/common/IntrusiveList.hpp"
 #include "finjin/common/StaticQueue.hpp"
 #include "finjin/common/StaticUnorderedMap.hpp"
