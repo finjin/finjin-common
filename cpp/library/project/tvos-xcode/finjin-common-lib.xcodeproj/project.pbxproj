@@ -1,0 +1,1512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		650FA3BC1D5B99CD00535D8D /* VirtualFileHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA3BA1D5B99CD00535D8D /* VirtualFileHandle.cpp */; };
+		650FA3BD1D5B99CD00535D8D /* VirtualFileOperationHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA3BB1D5B99CD00535D8D /* VirtualFileOperationHandle.cpp */; };
+		650FA47E1D61412600535D8D /* MemoryArena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA47C1D61412600535D8D /* MemoryArena.cpp */; };
+		650FA47F1D61412600535D8D /* PassthroughSystemAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA47D1D61412600535D8D /* PassthroughSystemAllocator.cpp */; };
+		650FA4E71D64308300535D8D /* UriCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4D51D64308300535D8D /* UriCommon.c */; };
+		650FA4E91D64308300535D8D /* UriCompare.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4D71D64308300535D8D /* UriCompare.c */; };
+		650FA4EA1D64308300535D8D /* UriEscape.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4D81D64308300535D8D /* UriEscape.c */; };
+		650FA4EB1D64308300535D8D /* UriFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4D91D64308300535D8D /* UriFile.c */; };
+		650FA4EC1D64308300535D8D /* UriIp4.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4DA1D64308300535D8D /* UriIp4.c */; };
+		650FA4ED1D64308300535D8D /* UriIp4Base.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4DB1D64308300535D8D /* UriIp4Base.c */; };
+		650FA4EF1D64308300535D8D /* UriNormalize.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4DD1D64308300535D8D /* UriNormalize.c */; };
+		650FA4F01D64308300535D8D /* UriNormalizeBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4DE1D64308300535D8D /* UriNormalizeBase.c */; };
+		650FA4F21D64308300535D8D /* UriParse.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4E01D64308300535D8D /* UriParse.c */; };
+		650FA4F31D64308300535D8D /* UriParseBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4E11D64308300535D8D /* UriParseBase.c */; };
+		650FA4F61D64308300535D8D /* UriRecompose.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4E41D64308300535D8D /* UriRecompose.c */; };
+		650FA4F71D64308300535D8D /* UriResolve.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4E51D64308300535D8D /* UriResolve.c */; };
+		650FA4F81D64308300535D8D /* UriShorten.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4E61D64308300535D8D /* UriShorten.c */; };
+		65127EAE1CFBECE90041C324 /* AllocatedClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E381CFBECE80041C324 /* AllocatedClass.cpp */; };
+		65127EAF1CFBECE90041C324 /* Allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E391CFBECE80041C324 /* Allocator.cpp */; };
+		65127EB21CFBECE90041C324 /* AppleUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65127E3C1CFBECE80041C324 /* AppleUtilities.mm */; };
+		65127EB31CFBECE90041C324 /* Base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E3D1CFBECE80041C324 /* Base64.cpp */; };
+		65127EB61CFBECE90041C324 /* ByteBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E401CFBECE80041C324 /* ByteBuffer.cpp */; };
+		65127EB71CFBECE90041C324 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E411CFBECE80041C324 /* Chrono.cpp */; };
+		65127EB91CFBECE90041C324 /* ChunkName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E431CFBECE80041C324 /* ChunkName.cpp */; };
+		65127EBA1CFBECE90041C324 /* ClassDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E441CFBECE80041C324 /* ClassDescription.cpp */; };
+		65127EBB1CFBECE90041C324 /* CommandLineArgsProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E451CFBECE80041C324 /* CommandLineArgsProcessor.cpp */; };
+		65127EBC1CFBECE90041C324 /* CommandLineSettingsDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E461CFBECE80041C324 /* CommandLineSettingsDescription.cpp */; };
+		65127EBD1CFBECE90041C324 /* FinjinPrecompiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E471CFBECE80041C324 /* FinjinPrecompiled.cpp */; };
+		65127EBF1CFBECE90041C324 /* GeneralAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E491CFBECE80041C324 /* GeneralAllocator.cpp */; };
+		65127EC01CFBECE90041C324 /* ConfigDocumentReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E4A1CFBECE80041C324 /* ConfigDocumentReader.cpp */; };
+		65127EC11CFBECE90041C324 /* ConfigDocumentWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E4B1CFBECE80041C324 /* ConfigDocumentWriter.cpp */; };
+		65127EC31CFBECE90041C324 /* Convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E4D1CFBECE80041C324 /* Convert.cpp */; };
+		65127EC41CFBECE90041C324 /* DataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E4E1CFBECE80041C324 /* DataChunkReader.cpp */; };
+		65127EC51CFBECE90041C324 /* DataChunkReaderController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E4F1CFBECE80041C324 /* DataChunkReaderController.cpp */; };
+		65127EC61CFBECE90041C324 /* DataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E501CFBECE80041C324 /* DataChunkWriter.cpp */; };
+		65127EC71CFBECE90041C324 /* DataChunkWriterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E511CFBECE80041C324 /* DataChunkWriterController.cpp */; };
+		65127EC81CFBECE90041C324 /* DataElementWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E521CFBECE80041C324 /* DataElementWriter.cpp */; };
+		65127ECB1CFBECE90041C324 /* DirectoryVirtualFileSystemRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E551CFBECE80041C324 /* DirectoryVirtualFileSystemRoot.cpp */; };
+		65127ECC1CFBECE90041C324 /* DirEntFileFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E561CFBECE80041C324 /* DirEntFileFinder.cpp */; };
+		65127ECD1CFBECE90041C324 /* DomainInformation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E571CFBECE80041C324 /* DomainInformation.cpp */; };
+		65127ECE1CFBECE90041C324 /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E581CFBECE80041C324 /* Error.cpp */; };
+		65127ECF1CFBECE90041C324 /* FiberCondition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E591CFBECE80041C324 /* FiberCondition.cpp */; };
+		65127ED01CFBECE90041C324 /* FiberJobQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E5A1CFBECE80041C324 /* FiberJobQueue.cpp */; };
+		65127ED21CFBECE90041C324 /* FiberJobScheduler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E5C1CFBECE80041C324 /* FiberJobScheduler.cpp */; };
+		65127ED41CFBECE90041C324 /* FiberMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E5E1CFBECE80041C324 /* FiberMutex.cpp */; };
+		65127ED51CFBECE90041C324 /* FiberSchedulingAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E5F1CFBECE80041C324 /* FiberSchedulingAlgorithm.cpp */; };
+		65127ED71CFBECE90041C324 /* FiberSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E611CFBECE80041C324 /* FiberSpinLock.cpp */; };
+		65127ED91CFBECE90041C324 /* FileSystemEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E631CFBECE80041C324 /* FileSystemEntry.cpp */; };
+		65127EDE1CFBECE90041C324 /* JobFiber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E681CFBECE80041C324 /* JobFiber.cpp */; };
+		65127EE01CFBECE90041C324 /* JobFuture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E6A1CFBECE80041C324 /* JobFuture.cpp */; };
+		65127EE31CFBECE90041C324 /* JobSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E6D1CFBECE80041C324 /* JobSystem.cpp */; };
+		65127EE41CFBECE90041C324 /* JobThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E6E1CFBECE80041C324 /* JobThread.cpp */; };
+		65127EE61CFBECE90041C324 /* JsonDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E701CFBECE80041C324 /* JsonDataChunkReader.cpp */; };
+		65127EE71CFBECE90041C324 /* JsonDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E711CFBECE80041C324 /* JsonDataChunkWriter.cpp */; };
+		65127EE81CFBECE90041C324 /* JsonDataDocumentWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E721CFBECE80041C324 /* JsonDataDocumentWriter.cpp */; };
+		65127EE91CFBECE90041C324 /* JsonDataElementWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E731CFBECE80041C324 /* JsonDataElementWriter.cpp */; };
+		65127EEA1CFBECE90041C324 /* JsonDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E741CFBECE80041C324 /* JsonDocument.cpp */; };
+		65127EF11CFBECE90041C324 /* LogicalCpu_iOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E7B1CFBECE80041C324 /* LogicalCpu_iOS.cpp */; };
+		65127EF61CFBECE90041C324 /* LogLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E801CFBECE80041C324 /* LogLevel.cpp */; };
+		65127EF81CFBECE90041C324 /* VirtualFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E821CFBECE80041C324 /* VirtualFileSystem.cpp */; };
+		65127EF91CFBECE90041C324 /* MemorySize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E831CFBECE80041C324 /* MemorySize.cpp */; };
+		65127EFA1CFBECE90041C324 /* NamePrefix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E841CFBECE80041C324 /* NamePrefix.cpp */; };
+		65127EFD1CFBECE90041C324 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E871CFBECE80041C324 /* Path.cpp */; };
+		65127EFE1CFBECE90041C324 /* PerformanceCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E881CFBECE80041C324 /* PerformanceCounter.cpp */; };
+		65127F021CFBECE90041C324 /* ProcessRuntimeInformation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E8C1CFBECE80041C324 /* ProcessRuntimeInformation.cpp */; };
+		65127F031CFBECE90041C324 /* RangedNameGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E8D1CFBECE80041C324 /* RangedNameGenerator.cpp */; };
+		65127F041CFBECE90041C324 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E8E1CFBECE80041C324 /* Settings.cpp */; };
+		65127F051CFBECE90041C324 /* SingleEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E8F1CFBECE80041C324 /* SingleEvent.cpp */; };
+		65127F081CFBECE90041C324 /* StandardPaths_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65127E921CFBECE80041C324 /* StandardPaths_iOS.mm */; };
+		65127F0D1CFBECE90041C324 /* StringKeyValueMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E971CFBECE80041C324 /* StringKeyValueMap.cpp */; };
+		65127F0F1CFBECE90041C324 /* TextDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E991CFBECE80041C324 /* TextDataChunkReader.cpp */; };
+		65127F101CFBECE90041C324 /* TextDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E9A1CFBECE80041C324 /* TextDataChunkWriter.cpp */; };
+		65127F111CFBECE90041C324 /* ThisThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E9B1CFBECE80041C324 /* ThisThread.cpp */; };
+		65127F121CFBECE90041C324 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E9C1CFBECE80041C324 /* Thread.cpp */; };
+		65127F131CFBECE90041C324 /* Uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E9D1CFBECE80041C324 /* Uri.cpp */; };
+		65127F141CFBECE90041C324 /* UsageFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127E9E1CFBECE80041C324 /* UsageFormatter.cpp */; };
+		65127F161CFBECE90041C324 /* UserInformation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65127EA01CFBECE80041C324 /* UserInformation.mm */; };
+		65127F171CFBECE90041C324 /* Utf8String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EA11CFBECE80041C324 /* Utf8String.cpp */; };
+		65127F181CFBECE90041C324 /* Utf8StringFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EA21CFBECE80041C324 /* Utf8StringFormatter.cpp */; };
+		65127F191CFBECE90041C324 /* Uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EA31CFBECE80041C324 /* Uuid.cpp */; };
+		65127F1F1CFBECE90041C324 /* XmlDataDocumentWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EA91CFBECE90041C324 /* XmlDataDocumentWriter.cpp */; };
+		65127F201CFBECE90041C324 /* XmlDataElementWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAA1CFBECE90041C324 /* XmlDataElementWriter.cpp */; };
+		65127F211CFBECE90041C324 /* XmlDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAB1CFBECE90041C324 /* XmlDocument.cpp */; };
+		65127F221CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAC1CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp */; };
+		65127F231CFBECE90041C324 /* ZipArchiveReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */; };
+		65127FA11CFBFF410041C324 /* BoostContextJumpAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 65127F9F1CFBFF410041C324 /* BoostContextJumpAsm.S */; };
+		65127FA21CFBFF410041C324 /* BoostContextMakeAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 65127FA01CFBFF410041C324 /* BoostContextMakeAsm.S */; };
+		65127FA81CFC00B30041C324 /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127FA71CFC00B30041C324 /* iostream.cpp */; };
+		65127FB91CFC013C0041C324 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127FB71CFC013C0041C324 /* tinyxml2.cpp */; };
+		65127FD51CFC01B30041C324 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FBB1CFC01B30041C324 /* adler32.c */; };
+		65127FD61CFC01B30041C324 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FBC1CFC01B30041C324 /* compress.c */; };
+		65127FD71CFC01B30041C324 /* crc32.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FBD1CFC01B30041C324 /* crc32.c */; };
+		65127FD91CFC01B30041C324 /* deflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FBF1CFC01B30041C324 /* deflate.c */; };
+		65127FDB1CFC01B30041C324 /* gzclose.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC11CFC01B30041C324 /* gzclose.c */; };
+		65127FDD1CFC01B30041C324 /* gzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC31CFC01B30041C324 /* gzlib.c */; };
+		65127FDE1CFC01B30041C324 /* gzread.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC41CFC01B30041C324 /* gzread.c */; };
+		65127FDF1CFC01B30041C324 /* gzwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC51CFC01B30041C324 /* gzwrite.c */; };
+		65127FE01CFC01B30041C324 /* infback.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC61CFC01B30041C324 /* infback.c */; };
+		65127FE11CFC01B30041C324 /* inffast.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FC71CFC01B30041C324 /* inffast.c */; };
+		65127FE41CFC01B30041C324 /* inflate.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FCA1CFC01B30041C324 /* inflate.c */; };
+		65127FE61CFC01B30041C324 /* inftrees.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FCC1CFC01B30041C324 /* inftrees.c */; };
+		65127FE81CFC01B30041C324 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FCE1CFC01B30041C324 /* trees.c */; };
+		65127FEA1CFC01B30041C324 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FD01CFC01B30041C324 /* uncompr.c */; };
+		65127FED1CFC01B30041C324 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FD31CFC01B30041C324 /* zutil.c */; };
+		651280191CFC02380041C324 /* dir.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FF71CFC02380041C324 /* dir.c */; };
+		6512801A1CFC02380041C324 /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FF81CFC02380041C324 /* err.c */; };
+		6512801B1CFC02380041C324 /* fetch.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FF91CFC02380041C324 /* fetch.c */; };
+		6512801D1CFC02380041C324 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FFB1CFC02380041C324 /* file.c */; };
+		651280201CFC02380041C324 /* fseeko.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127FFE1CFC02380041C324 /* fseeko.c */; };
+		651280221CFC02380041C324 /* info.c in Sources */ = {isa = PBXBuildFile; fileRef = 651280001CFC02380041C324 /* info.c */; };
+		651280251CFC02380041C324 /* memdisk.c in Sources */ = {isa = PBXBuildFile; fileRef = 651280031CFC02380041C324 /* memdisk.c */; };
+		651280271CFC02380041C324 /* mmapped.c in Sources */ = {isa = PBXBuildFile; fileRef = 651280051CFC02380041C324 /* mmapped.c */; };
+		651280291CFC02380041C324 /* plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 651280071CFC02380041C324 /* plugin.c */; };
+		6512802B1CFC02380041C324 /* stat.c in Sources */ = {isa = PBXBuildFile; fileRef = 651280091CFC02380041C324 /* stat.c */; };
+		6512802E1CFC02380041C324 /* write.c in Sources */ = {isa = PBXBuildFile; fileRef = 6512800C1CFC02380041C324 /* write.c */; };
+		651280301CFC02380041C324 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6512800E1CFC02380041C324 /* zip.c */; };
+		651281941D07CBBE0041C324 /* Version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 651281931D07CBBE0041C324 /* Version.cpp */; };
+		6512889A1D28E1BE0041C324 /* VirtualFileSystemOperationQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 651288981D28E1BE0041C324 /* VirtualFileSystemOperationQueue.cpp */; };
+		6512889B1D28E1BE0041C324 /* VirtualFileSystemRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 651288991D28E1BE0041C324 /* VirtualFileSystemRoot.cpp */; };
+		65430E1F1DF4694900588409 /* DataChunkReaderCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E1B1DF4694900588409 /* DataChunkReaderCallbacks.cpp */; };
+		65430E201DF4694900588409 /* Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E1C1DF4694900588409 /* Distance.cpp */; };
+		65430E211DF4694900588409 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E1D1DF4694900588409 /* Math.cpp */; };
+		65430E321DF469BC00588409 /* ConfigDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E301DF469BC00588409 /* ConfigDataChunkReader.cpp */; };
+		65430E331DF469BC00588409 /* ConfigDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E311DF469BC00588409 /* ConfigDataChunkWriter.cpp */; };
+		65430E351DF46A3600588409 /* MemoryArchitecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E341DF46A3600588409 /* MemoryArchitecture.cpp */; };
+		65430E381DF46A5A00588409 /* WrappedFileReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E361DF46A5A00588409 /* WrappedFileReader.cpp */; };
+		65430E391DF46A5A00588409 /* WrappedFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E371DF46A5A00588409 /* WrappedFileWriter.cpp */; };
+		65430E3D1DF46AA700588409 /* Angle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E3A1DF46AA700588409 /* Angle.cpp */; };
+		65430E3E1DF46AA700588409 /* BinaryDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E3B1DF46AA700588409 /* BinaryDataChunkReader.cpp */; };
+		65430E3F1DF46AA700588409 /* StreamingFileFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E3C1DF46AA700588409 /* StreamingFileFormat.cpp */; };
+		65430E411DF46B5D00588409 /* BinaryDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E401DF46B5D00588409 /* BinaryDataChunkWriter.cpp */; };
+		65430E591DF46FE300588409 /* FileAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E571DF46FE300588409 /* FileAccessor.cpp */; };
+		657AA10D1E3D9739004ADA22 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0F81E3D9739004ADA22 /* png.c */; };
+		657AA1111E3D9739004ADA22 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0FC1E3D9739004ADA22 /* pngerror.c */; };
+		657AA1121E3D9739004ADA22 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0FD1E3D9739004ADA22 /* pngget.c */; };
+		657AA1141E3D9739004ADA22 /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0FF1E3D9739004ADA22 /* pngmem.c */; };
+		657AA1151E3D9739004ADA22 /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1001E3D9739004ADA22 /* pngpread.c */; };
+		657AA1171E3D9739004ADA22 /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1021E3D9739004ADA22 /* pngread.c */; };
+		657AA1181E3D9739004ADA22 /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1031E3D9739004ADA22 /* pngrio.c */; };
+		657AA1191E3D9739004ADA22 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1041E3D9739004ADA22 /* pngrtran.c */; };
+		657AA11A1E3D9739004ADA22 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1051E3D9739004ADA22 /* pngrutil.c */; };
+		657AA11B1E3D9739004ADA22 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1061E3D9739004ADA22 /* pngset.c */; };
+		657AA11D1E3D9739004ADA22 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1081E3D9739004ADA22 /* pngtrans.c */; };
+		657AA11E1E3D9739004ADA22 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1091E3D9739004ADA22 /* pngwio.c */; };
+		657AA11F1E3D9739004ADA22 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA10A1E3D9739004ADA22 /* pngwrite.c */; };
+		657AA1201E3D9739004ADA22 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA10B1E3D9739004ADA22 /* pngwtran.c */; };
+		657AA1211E3D9739004ADA22 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA10C1E3D9739004ADA22 /* pngwutil.c */; };
+		657AA1261E3D978A004ADA22 /* PNGReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1251E3D978A004ADA22 /* PNGReader.cpp */; };
+		657AA1691E436759004ADA22 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1681E436759004ADA22 /* Hash.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65127E121CFBE48F0041C324 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6508AFE51E35896A00EB826E /* AllocatedQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedQueue.hpp; path = ../../include/finjin/common/AllocatedQueue.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFE61E35896A00EB826E /* AllocatedUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedUnorderedMap.hpp; path = ../../include/finjin/common/AllocatedUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFE71E35896A00EB826E /* AllocatedUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedUnorderedSet.hpp; path = ../../include/finjin/common/AllocatedUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFE81E35896A00EB826E /* AssignOrError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AssignOrError.hpp; path = ../../include/finjin/common/AssignOrError.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFE91E35896A00EB826E /* QueueUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = QueueUtilities.hpp; path = ../../include/finjin/common/QueueUtilities.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFEA1E35896A00EB826E /* SetMapUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SetMapUtilities.hpp; path = ../../include/finjin/common/SetMapUtilities.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFEB1E35896A00EB826E /* StaticQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticQueue.hpp; path = ../../include/finjin/common/StaticQueue.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFEC1E35896A00EB826E /* StaticUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedMap.hpp; path = ../../include/finjin/common/StaticUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFED1E35896A00EB826E /* StaticUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedSet.hpp; path = ../../include/finjin/common/StaticUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
+		6508AFEE1E35896A00EB826E /* ValueOrError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ValueOrError.hpp; path = ../../include/finjin/common/ValueOrError.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3351D32173D00535D8D /* ByteOrder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ByteOrder.hpp; path = ../../include/finjin/common/ByteOrder.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3361D32173D00535D8D /* LayoutDirection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LayoutDirection.hpp; path = ../../include/finjin/common/LayoutDirection.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B11D5B99AC00535D8D /* DataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderInput.hpp; path = ../../include/finjin/common/DataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B21D5B99AC00535D8D /* DocumentWriterOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DocumentWriterOutput.hpp; path = ../../include/finjin/common/DocumentWriterOutput.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B31D5B99AC00535D8D /* EnumValues.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnumValues.hpp; path = ../../include/finjin/common/EnumValues.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B41D5B99AC00535D8D /* RequestedValue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RequestedValue.hpp; path = ../../include/finjin/common/RequestedValue.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B51D5B99AC00535D8D /* UsableStaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsableStaticVector.hpp; path = ../../include/finjin/common/UsableStaticVector.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B61D5B99AC00535D8D /* UsableAllocatedVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsableAllocatedVector.hpp; path = ../../include/finjin/common/UsableAllocatedVector.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B71D5B99AC00535D8D /* VirtualFileHandle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileHandle.hpp; path = ../../include/finjin/common/VirtualFileHandle.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B81D5B99AC00535D8D /* VirtualFileHandleDataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileHandleDataChunkReaderInput.hpp; path = ../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3B91D5B99AC00535D8D /* VirtualFileOperationHandle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileOperationHandle.hpp; path = ../../include/finjin/common/VirtualFileOperationHandle.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3BA1D5B99CD00535D8D /* VirtualFileHandle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileHandle.cpp; path = ../../src/VirtualFileHandle.cpp; sourceTree = SOURCE_ROOT; };
+		650FA3BB1D5B99CD00535D8D /* VirtualFileOperationHandle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileOperationHandle.cpp; path = ../../src/VirtualFileOperationHandle.cpp; sourceTree = SOURCE_ROOT; };
+		650FA47C1D61412600535D8D /* MemoryArena.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryArena.cpp; path = ../../src/MemoryArena.cpp; sourceTree = SOURCE_ROOT; };
+		650FA47D1D61412600535D8D /* PassthroughSystemAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PassthroughSystemAllocator.cpp; path = ../../src/PassthroughSystemAllocator.cpp; sourceTree = SOURCE_ROOT; };
+		650FA4801D61413D00535D8D /* DefaultAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultAllocator.hpp; path = ../../include/finjin/common/DefaultAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4811D61413D00535D8D /* MemoryArena.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArena.hpp; path = ../../include/finjin/common/MemoryArena.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4821D61413D00535D8D /* PassthroughSystemAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PassthroughSystemAllocator.hpp; path = ../../include/finjin/common/PassthroughSystemAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4D51D64308300535D8D /* UriCommon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCommon.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCommon.c"; sourceTree = "<absolute>"; };
+		650FA4D61D64308300535D8D /* UriCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriCommon.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCommon.h"; sourceTree = "<absolute>"; };
+		650FA4D71D64308300535D8D /* UriCompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCompare.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCompare.c"; sourceTree = "<absolute>"; };
+		650FA4D81D64308300535D8D /* UriEscape.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriEscape.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriEscape.c"; sourceTree = "<absolute>"; };
+		650FA4D91D64308300535D8D /* UriFile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriFile.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriFile.c"; sourceTree = "<absolute>"; };
+		650FA4DA1D64308300535D8D /* UriIp4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriIp4.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriIp4.c"; sourceTree = "<absolute>"; };
+		650FA4DB1D64308300535D8D /* UriIp4Base.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriIp4Base.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c"; sourceTree = "<absolute>"; };
+		650FA4DC1D64308300535D8D /* UriIp4Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriIp4Base.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriIp4Base.h"; sourceTree = "<absolute>"; };
+		650FA4DD1D64308300535D8D /* UriNormalize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriNormalize.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriNormalize.c"; sourceTree = "<absolute>"; };
+		650FA4DE1D64308300535D8D /* UriNormalizeBase.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriNormalizeBase.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c"; sourceTree = "<absolute>"; };
+		650FA4DF1D64308300535D8D /* UriNormalizeBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriNormalizeBase.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.h"; sourceTree = "<absolute>"; };
+		650FA4E01D64308300535D8D /* UriParse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriParse.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriParse.c"; sourceTree = "<absolute>"; };
+		650FA4E11D64308300535D8D /* UriParseBase.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriParseBase.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriParseBase.c"; sourceTree = "<absolute>"; };
+		650FA4E21D64308300535D8D /* UriParseBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriParseBase.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriParseBase.h"; sourceTree = "<absolute>"; };
+		650FA4E31D64308300535D8D /* UriQuery.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriQuery.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriQuery.c"; sourceTree = "<absolute>"; };
+		650FA4E41D64308300535D8D /* UriRecompose.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriRecompose.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriRecompose.c"; sourceTree = "<absolute>"; };
+		650FA4E51D64308300535D8D /* UriResolve.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriResolve.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriResolve.c"; sourceTree = "<absolute>"; };
+		650FA4E61D64308300535D8D /* UriShorten.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriShorten.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriShorten.c"; sourceTree = "<absolute>"; };
+		65127E141CFBE48F0041C324 /* libfinjin-common.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libfinjin-common.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65127E381CFBECE80041C324 /* AllocatedClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AllocatedClass.cpp; path = ../../src/AllocatedClass.cpp; sourceTree = SOURCE_ROOT; };
+		65127E391CFBECE80041C324 /* Allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Allocator.cpp; path = ../../src/Allocator.cpp; sourceTree = SOURCE_ROOT; };
+		65127E3C1CFBECE80041C324 /* AppleUtilities.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppleUtilities.mm; path = ../../src/AppleUtilities.mm; sourceTree = SOURCE_ROOT; };
+		65127E3D1CFBECE80041C324 /* Base64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Base64.cpp; path = ../../src/Base64.cpp; sourceTree = SOURCE_ROOT; };
+		65127E401CFBECE80041C324 /* ByteBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ByteBuffer.cpp; path = ../../src/ByteBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		65127E411CFBECE80041C324 /* Chrono.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Chrono.cpp; path = ../../src/Chrono.cpp; sourceTree = SOURCE_ROOT; };
+		65127E421CFBECE80041C324 /* Math.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Math.hpp; path = ../../include/finjin/common/Math.hpp; sourceTree = SOURCE_ROOT; };
+		65127E431CFBECE80041C324 /* ChunkName.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChunkName.cpp; path = ../../src/ChunkName.cpp; sourceTree = SOURCE_ROOT; };
+		65127E441CFBECE80041C324 /* ClassDescription.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ClassDescription.cpp; path = ../../src/ClassDescription.cpp; sourceTree = SOURCE_ROOT; };
+		65127E451CFBECE80041C324 /* CommandLineArgsProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CommandLineArgsProcessor.cpp; path = ../../src/CommandLineArgsProcessor.cpp; sourceTree = SOURCE_ROOT; };
+		65127E461CFBECE80041C324 /* CommandLineSettingsDescription.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CommandLineSettingsDescription.cpp; path = ../../src/CommandLineSettingsDescription.cpp; sourceTree = SOURCE_ROOT; };
+		65127E471CFBECE80041C324 /* FinjinPrecompiled.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FinjinPrecompiled.cpp; path = ../../src/FinjinPrecompiled.cpp; sourceTree = SOURCE_ROOT; };
+		65127E481CFBECE80041C324 /* FinjinPrecompiled.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FinjinPrecompiled.hpp; path = ../../src/FinjinPrecompiled.hpp; sourceTree = SOURCE_ROOT; };
+		65127E491CFBECE80041C324 /* GeneralAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GeneralAllocator.cpp; path = ../../src/GeneralAllocator.cpp; sourceTree = SOURCE_ROOT; };
+		65127E4A1CFBECE80041C324 /* ConfigDocumentReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigDocumentReader.cpp; path = ../../src/ConfigDocumentReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127E4B1CFBECE80041C324 /* ConfigDocumentWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigDocumentWriter.cpp; path = ../../src/ConfigDocumentWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E4D1CFBECE80041C324 /* Convert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Convert.cpp; path = ../../src/Convert.cpp; sourceTree = SOURCE_ROOT; };
+		65127E4E1CFBECE80041C324 /* DataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkReader.cpp; path = ../../src/DataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127E4F1CFBECE80041C324 /* DataChunkReaderController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkReaderController.cpp; path = ../../src/DataChunkReaderController.cpp; sourceTree = SOURCE_ROOT; };
+		65127E501CFBECE80041C324 /* DataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkWriter.cpp; path = ../../src/DataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E511CFBECE80041C324 /* DataChunkWriterController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkWriterController.cpp; path = ../../src/DataChunkWriterController.cpp; sourceTree = SOURCE_ROOT; };
+		65127E521CFBECE80041C324 /* DataElementWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataElementWriter.cpp; path = ../../src/DataElementWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E551CFBECE80041C324 /* DirectoryVirtualFileSystemRoot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DirectoryVirtualFileSystemRoot.cpp; path = ../../src/DirectoryVirtualFileSystemRoot.cpp; sourceTree = SOURCE_ROOT; };
+		65127E561CFBECE80041C324 /* DirEntFileFinder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DirEntFileFinder.cpp; path = ../../src/DirEntFileFinder.cpp; sourceTree = SOURCE_ROOT; };
+		65127E571CFBECE80041C324 /* DomainInformation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DomainInformation.cpp; path = ../../src/DomainInformation.cpp; sourceTree = SOURCE_ROOT; };
+		65127E581CFBECE80041C324 /* Error.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Error.cpp; path = ../../src/Error.cpp; sourceTree = SOURCE_ROOT; };
+		65127E591CFBECE80041C324 /* FiberCondition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberCondition.cpp; path = ../../src/FiberCondition.cpp; sourceTree = SOURCE_ROOT; };
+		65127E5A1CFBECE80041C324 /* FiberJobQueue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberJobQueue.cpp; path = ../../src/FiberJobQueue.cpp; sourceTree = SOURCE_ROOT; };
+		65127E5B1CFBECE80041C324 /* FiberJobQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FiberJobQueue.hpp; path = ../../src/FiberJobQueue.hpp; sourceTree = SOURCE_ROOT; };
+		65127E5C1CFBECE80041C324 /* FiberJobScheduler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberJobScheduler.cpp; path = ../../src/FiberJobScheduler.cpp; sourceTree = SOURCE_ROOT; };
+		65127E5D1CFBECE80041C324 /* FiberJobScheduler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FiberJobScheduler.hpp; path = ../../src/FiberJobScheduler.hpp; sourceTree = SOURCE_ROOT; };
+		65127E5E1CFBECE80041C324 /* FiberMutex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberMutex.cpp; path = ../../src/FiberMutex.cpp; sourceTree = SOURCE_ROOT; };
+		65127E5F1CFBECE80041C324 /* FiberSchedulingAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberSchedulingAlgorithm.cpp; path = ../../src/FiberSchedulingAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
+		65127E601CFBECE80041C324 /* FiberSchedulingAlgorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FiberSchedulingAlgorithm.hpp; path = ../../src/FiberSchedulingAlgorithm.hpp; sourceTree = SOURCE_ROOT; };
+		65127E611CFBECE80041C324 /* FiberSpinLock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FiberSpinLock.cpp; path = ../../src/FiberSpinLock.cpp; sourceTree = SOURCE_ROOT; };
+		65127E631CFBECE80041C324 /* FileSystemEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileSystemEntry.cpp; path = ../../src/FileSystemEntry.cpp; sourceTree = SOURCE_ROOT; };
+		65127E681CFBECE80041C324 /* JobFiber.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JobFiber.cpp; path = ../../src/JobFiber.cpp; sourceTree = SOURCE_ROOT; };
+		65127E691CFBECE80041C324 /* JobFiber.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JobFiber.hpp; path = ../../include/finjin/common/JobFiber.hpp; sourceTree = SOURCE_ROOT; };
+		65127E6A1CFBECE80041C324 /* JobFuture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JobFuture.cpp; path = ../../src/JobFuture.cpp; sourceTree = SOURCE_ROOT; };
+		65127E6B1CFBECE80041C324 /* JobPromise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JobPromise.hpp; path = ../../src/JobPromise.hpp; sourceTree = SOURCE_ROOT; };
+		65127E6C1CFBECE80041C324 /* JobSharedStateObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JobSharedStateObject.hpp; path = ../../src/JobSharedStateObject.hpp; sourceTree = SOURCE_ROOT; };
+		65127E6D1CFBECE80041C324 /* JobSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JobSystem.cpp; path = ../../src/JobSystem.cpp; sourceTree = SOURCE_ROOT; };
+		65127E6E1CFBECE80041C324 /* JobThread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JobThread.cpp; path = ../../src/JobThread.cpp; sourceTree = SOURCE_ROOT; };
+		65127E6F1CFBECE80041C324 /* JobThread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JobThread.hpp; path = ../../include/finjin/common/JobThread.hpp; sourceTree = SOURCE_ROOT; };
+		65127E701CFBECE80041C324 /* JsonDataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JsonDataChunkReader.cpp; path = ../../src/JsonDataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127E711CFBECE80041C324 /* JsonDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JsonDataChunkWriter.cpp; path = ../../src/JsonDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E721CFBECE80041C324 /* JsonDataDocumentWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JsonDataDocumentWriter.cpp; path = ../../src/JsonDataDocumentWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E731CFBECE80041C324 /* JsonDataElementWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JsonDataElementWriter.cpp; path = ../../src/JsonDataElementWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E741CFBECE80041C324 /* JsonDocument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JsonDocument.cpp; path = ../../src/JsonDocument.cpp; sourceTree = SOURCE_ROOT; };
+		65127E7B1CFBECE80041C324 /* LogicalCpu_iOS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LogicalCpu_iOS.cpp; path = ../../src/LogicalCpu_iOS.cpp; sourceTree = SOURCE_ROOT; };
+		65127E801CFBECE80041C324 /* LogLevel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LogLevel.cpp; path = ../../src/LogLevel.cpp; sourceTree = SOURCE_ROOT; };
+		65127E821CFBECE80041C324 /* VirtualFileSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystem.cpp; path = ../../src/VirtualFileSystem.cpp; sourceTree = SOURCE_ROOT; };
+		65127E831CFBECE80041C324 /* MemorySize.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemorySize.cpp; path = ../../src/MemorySize.cpp; sourceTree = SOURCE_ROOT; };
+		65127E841CFBECE80041C324 /* NamePrefix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NamePrefix.cpp; path = ../../src/NamePrefix.cpp; sourceTree = SOURCE_ROOT; };
+		65127E871CFBECE80041C324 /* Path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Path.cpp; path = ../../src/Path.cpp; sourceTree = SOURCE_ROOT; };
+		65127E881CFBECE80041C324 /* PerformanceCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PerformanceCounter.cpp; path = ../../src/PerformanceCounter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E8C1CFBECE80041C324 /* ProcessRuntimeInformation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ProcessRuntimeInformation.cpp; path = ../../src/ProcessRuntimeInformation.cpp; sourceTree = SOURCE_ROOT; };
+		65127E8D1CFBECE80041C324 /* RangedNameGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RangedNameGenerator.cpp; path = ../../src/RangedNameGenerator.cpp; sourceTree = SOURCE_ROOT; };
+		65127E8E1CFBECE80041C324 /* Settings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Settings.cpp; path = ../../src/Settings.cpp; sourceTree = SOURCE_ROOT; };
+		65127E8F1CFBECE80041C324 /* SingleEvent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SingleEvent.cpp; path = ../../src/SingleEvent.cpp; sourceTree = SOURCE_ROOT; };
+		65127E921CFBECE80041C324 /* StandardPaths_iOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = StandardPaths_iOS.mm; path = ../../src/StandardPaths_iOS.mm; sourceTree = SOURCE_ROOT; };
+		65127E971CFBECE80041C324 /* StringKeyValueMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StringKeyValueMap.cpp; path = ../../src/StringKeyValueMap.cpp; sourceTree = SOURCE_ROOT; };
+		65127E991CFBECE80041C324 /* TextDataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextDataChunkReader.cpp; path = ../../src/TextDataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9A1CFBECE80041C324 /* TextDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextDataChunkWriter.cpp; path = ../../src/TextDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9B1CFBECE80041C324 /* ThisThread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ThisThread.cpp; path = ../../src/ThisThread.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9C1CFBECE80041C324 /* Thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Thread.cpp; path = ../../src/Thread.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9D1CFBECE80041C324 /* Uri.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Uri.cpp; path = ../../src/Uri.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9E1CFBECE80041C324 /* UsageFormatter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UsageFormatter.cpp; path = ../../src/UsageFormatter.cpp; sourceTree = SOURCE_ROOT; };
+		65127E9F1CFBECE80041C324 /* UserInformation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UserInformation.cpp; path = ../../src/UserInformation.cpp; sourceTree = SOURCE_ROOT; };
+		65127EA01CFBECE80041C324 /* UserInformation.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = UserInformation.mm; path = ../../src/UserInformation.mm; sourceTree = SOURCE_ROOT; };
+		65127EA11CFBECE80041C324 /* Utf8String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8String.cpp; path = ../../src/Utf8String.cpp; sourceTree = SOURCE_ROOT; };
+		65127EA21CFBECE80041C324 /* Utf8StringFormatter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8StringFormatter.cpp; path = ../../src/Utf8StringFormatter.cpp; sourceTree = SOURCE_ROOT; };
+		65127EA31CFBECE80041C324 /* Uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Uuid.cpp; path = ../../src/Uuid.cpp; sourceTree = SOURCE_ROOT; };
+		65127EA91CFBECE90041C324 /* XmlDataDocumentWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = XmlDataDocumentWriter.cpp; path = ../../src/XmlDataDocumentWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127EAA1CFBECE90041C324 /* XmlDataElementWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = XmlDataElementWriter.cpp; path = ../../src/XmlDataElementWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65127EAB1CFBECE90041C324 /* XmlDocument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = XmlDocument.cpp; path = ../../src/XmlDocument.cpp; sourceTree = SOURCE_ROOT; };
+		65127EAC1CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZipArchiveVirtualFileSystemRoot.cpp; path = ../../src/ZipArchiveVirtualFileSystemRoot.cpp; sourceTree = SOURCE_ROOT; };
+		65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZipArchiveReader.cpp; path = ../../src/ZipArchiveReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127F241CFBED080041C324 /* AllocatedClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedClass.hpp; path = ../../include/finjin/common/AllocatedClass.hpp; sourceTree = SOURCE_ROOT; };
+		65127F251CFBED080041C324 /* Allocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Allocator.hpp; path = ../../include/finjin/common/Allocator.hpp; sourceTree = SOURCE_ROOT; };
+		65127F281CFBED080041C324 /* AppleUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AppleUtilities.hpp; path = ../../include/finjin/common/AppleUtilities.hpp; sourceTree = SOURCE_ROOT; };
+		65127F291CFBED080041C324 /* Base64.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Base64.hpp; path = ../../include/finjin/common/Base64.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2A1CFBED080041C324 /* BitArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BitArray.hpp; path = ../../include/finjin/common/BitArray.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2B1CFBED080041C324 /* ByteBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ByteBuffer.hpp; path = ../../include/finjin/common/ByteBuffer.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2C1CFBED080041C324 /* Chrono.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Chrono.hpp; path = ../../include/finjin/common/Chrono.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2D1CFBED080041C324 /* ChunkName.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ChunkName.hpp; path = ../../include/finjin/common/ChunkName.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2E1CFBED080041C324 /* ClassDescription.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ClassDescription.hpp; path = ../../include/finjin/common/ClassDescription.hpp; sourceTree = SOURCE_ROOT; };
+		65127F2F1CFBED080041C324 /* CommandLineArgsProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CommandLineArgsProcessor.hpp; path = ../../include/finjin/common/CommandLineArgsProcessor.hpp; sourceTree = SOURCE_ROOT; };
+		65127F301CFBED080041C324 /* CommandLineSettingsDescription.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CommandLineSettingsDescription.hpp; path = ../../include/finjin/common/CommandLineSettingsDescription.hpp; sourceTree = SOURCE_ROOT; };
+		65127F311CFBED080041C324 /* GeneralAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GeneralAllocator.hpp; path = ../../include/finjin/common/GeneralAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		65127F321CFBED080041C324 /* ConfigDocumentReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ConfigDocumentReader.hpp; path = ../../include/finjin/common/ConfigDocumentReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F331CFBED080041C324 /* ConfigDocumentWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ConfigDocumentWriter.hpp; path = ../../include/finjin/common/ConfigDocumentWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F351CFBED080041C324 /* Convert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Convert.hpp; path = ../../include/finjin/common/Convert.hpp; sourceTree = SOURCE_ROOT; };
+		65127F361CFBED080041C324 /* DataChunkReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReader.hpp; path = ../../include/finjin/common/DataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F371CFBED080041C324 /* DataChunkReaderController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderController.hpp; path = ../../include/finjin/common/DataChunkReaderController.hpp; sourceTree = SOURCE_ROOT; };
+		65127F381CFBED080041C324 /* DataChunkWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkWriter.hpp; path = ../../include/finjin/common/DataChunkWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F391CFBED080041C324 /* DataChunkWriterController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkWriterController.hpp; path = ../../include/finjin/common/DataChunkWriterController.hpp; sourceTree = SOURCE_ROOT; };
+		65127F3A1CFBED080041C324 /* DataDocumentWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataDocumentWriter.hpp; path = ../../include/finjin/common/DataDocumentWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F3B1CFBED080041C324 /* DataElementWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataElementWriter.hpp; path = ../../include/finjin/common/DataElementWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F3E1CFBED080041C324 /* DebugLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DebugLog.hpp; path = ../../include/finjin/common/DebugLog.hpp; sourceTree = SOURCE_ROOT; };
+		65127F401CFBED080041C324 /* DirectoryVirtualFileSystemRoot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DirectoryVirtualFileSystemRoot.hpp; path = ../../include/finjin/common/DirectoryVirtualFileSystemRoot.hpp; sourceTree = SOURCE_ROOT; };
+		65127F411CFBED080041C324 /* DirEntFileFinder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DirEntFileFinder.hpp; path = ../../include/finjin/common/DirEntFileFinder.hpp; sourceTree = SOURCE_ROOT; };
+		65127F421CFBED080041C324 /* DomainInformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DomainInformation.hpp; path = ../../include/finjin/common/DomainInformation.hpp; sourceTree = SOURCE_ROOT; };
+		65127F431CFBED080041C324 /* EnumBitwise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnumBitwise.hpp; path = ../../include/finjin/common/EnumBitwise.hpp; sourceTree = SOURCE_ROOT; };
+		65127F441CFBED080041C324 /* Error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Error.hpp; path = ../../include/finjin/common/Error.hpp; sourceTree = SOURCE_ROOT; };
+		65127F451CFBED080041C324 /* FiberCondition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberCondition.hpp; path = ../../include/finjin/common/FiberCondition.hpp; sourceTree = SOURCE_ROOT; };
+		65127F461CFBED080041C324 /* FiberException.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberException.hpp; path = ../../include/finjin/common/FiberException.hpp; sourceTree = SOURCE_ROOT; };
+		65127F471CFBED080041C324 /* FiberJob.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberJob.hpp; path = ../../include/finjin/common/FiberJob.hpp; sourceTree = SOURCE_ROOT; };
+		65127F481CFBED080041C324 /* FiberMutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberMutex.hpp; path = ../../include/finjin/common/FiberMutex.hpp; sourceTree = SOURCE_ROOT; };
+		65127F491CFBED080041C324 /* FiberSpinLock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberSpinLock.hpp; path = ../../include/finjin/common/FiberSpinLock.hpp; sourceTree = SOURCE_ROOT; };
+		65127F4A1CFBED080041C324 /* FiberWaitingQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FiberWaitingQueue.hpp; path = ../../include/finjin/common/FiberWaitingQueue.hpp; sourceTree = SOURCE_ROOT; };
+		65127F4B1CFBED080041C324 /* FileFinder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FileFinder.hpp; path = ../../include/finjin/common/FileFinder.hpp; sourceTree = SOURCE_ROOT; };
+		65127F4D1CFBED080041C324 /* FileSystemEntry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FileSystemEntry.hpp; path = ../../include/finjin/common/FileSystemEntry.hpp; sourceTree = SOURCE_ROOT; };
+		65127F4F1CFBED080041C324 /* FinjinCommonLibrary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FinjinCommonLibrary.hpp; path = ../../include/finjin/common/FinjinCommonLibrary.hpp; sourceTree = SOURCE_ROOT; };
+		65127F501CFBED080041C324 /* ForwardAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ForwardAllocator.hpp; path = ../../include/finjin/common/ForwardAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		65127F521CFBED080041C324 /* IntrusiveList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IntrusiveList.hpp; path = ../../include/finjin/common/IntrusiveList.hpp; sourceTree = SOURCE_ROOT; };
+		65127F541CFBED080041C324 /* JobFuture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobFuture.hpp; path = ../../include/finjin/common/JobFuture.hpp; sourceTree = SOURCE_ROOT; };
+		65127F551CFBED080041C324 /* JobInvokeHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobInvokeHelper.hpp; path = ../../include/finjin/common/JobInvokeHelper.hpp; sourceTree = SOURCE_ROOT; };
+		65127F561CFBED080041C324 /* JobPackagedTask.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobPackagedTask.hpp; path = ../../include/finjin/common/JobPackagedTask.hpp; sourceTree = SOURCE_ROOT; };
+		65127F571CFBED080041C324 /* JobSharedState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobSharedState.hpp; path = ../../include/finjin/common/JobSharedState.hpp; sourceTree = SOURCE_ROOT; };
+		65127F581CFBED080041C324 /* JobSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobSystem.hpp; path = ../../include/finjin/common/JobSystem.hpp; sourceTree = SOURCE_ROOT; };
+		65127F591CFBED080041C324 /* JobTaskBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobTaskBase.hpp; path = ../../include/finjin/common/JobTaskBase.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5A1CFBED080041C324 /* JobTaskObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobTaskObject.hpp; path = ../../include/finjin/common/JobTaskObject.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5B1CFBED080041C324 /* JobThreadType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JobThreadType.hpp; path = ../../include/finjin/common/JobThreadType.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5C1CFBED080041C324 /* JsonDataChunkReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDataChunkReader.hpp; path = ../../include/finjin/common/JsonDataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5D1CFBED080041C324 /* JsonDataChunkWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDataChunkWriter.hpp; path = ../../include/finjin/common/JsonDataChunkWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5E1CFBED080041C324 /* JsonDataDocumentWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDataDocumentWriter.hpp; path = ../../include/finjin/common/JsonDataDocumentWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F5F1CFBED080041C324 /* JsonDataElementWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDataElementWriter.hpp; path = ../../include/finjin/common/JsonDataElementWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F601CFBED080041C324 /* JsonDocument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDocument.hpp; path = ../../include/finjin/common/JsonDocument.hpp; sourceTree = SOURCE_ROOT; };
+		65127F611CFBED080041C324 /* JsonDocumentImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonDocumentImpl.hpp; path = ../../include/finjin/common/JsonDocumentImpl.hpp; sourceTree = SOURCE_ROOT; };
+		65127F671CFBED080041C324 /* LogicalCpu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LogicalCpu.hpp; path = ../../include/finjin/common/LogicalCpu.hpp; sourceTree = SOURCE_ROOT; };
+		65127F681CFBED080041C324 /* LogLevel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LogLevel.hpp; path = ../../include/finjin/common/LogLevel.hpp; sourceTree = SOURCE_ROOT; };
+		65127F6A1CFBED080041C324 /* LruCache.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LruCache.hpp; path = ../../include/finjin/common/LruCache.hpp; sourceTree = SOURCE_ROOT; };
+		65127F6B1CFBED080041C324 /* VirtualFileSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileSystem.hpp; path = ../../include/finjin/common/VirtualFileSystem.hpp; sourceTree = SOURCE_ROOT; };
+		65127F6C1CFBED080041C324 /* VirtualFileSystemRoot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileSystemRoot.hpp; path = ../../include/finjin/common/VirtualFileSystemRoot.hpp; sourceTree = SOURCE_ROOT; };
+		65127F6D1CFBED080041C324 /* MemorySize.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemorySize.hpp; path = ../../include/finjin/common/MemorySize.hpp; sourceTree = SOURCE_ROOT; };
+		65127F6E1CFBED080041C324 /* NamePrefix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NamePrefix.hpp; path = ../../include/finjin/common/NamePrefix.hpp; sourceTree = SOURCE_ROOT; };
+		65127F711CFBED080041C324 /* Path.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Path.hpp; path = ../../include/finjin/common/Path.hpp; sourceTree = SOURCE_ROOT; };
+		65127F721CFBED080041C324 /* PerformanceCounter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PerformanceCounter.hpp; path = ../../include/finjin/common/PerformanceCounter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F731CFBED080041C324 /* RealTimeLruCache.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RealTimeLruCache.hpp; path = ../../include/finjin/common/RealTimeLruCache.hpp; sourceTree = SOURCE_ROOT; };
+		65127F771CFBED080041C324 /* ProcessID.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ProcessID.hpp; path = ../../include/finjin/common/ProcessID.hpp; sourceTree = SOURCE_ROOT; };
+		65127F781CFBED080041C324 /* ProcessRuntimeInformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ProcessRuntimeInformation.hpp; path = ../../include/finjin/common/ProcessRuntimeInformation.hpp; sourceTree = SOURCE_ROOT; };
+		65127F791CFBED080041C324 /* RangedNameGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RangedNameGenerator.hpp; path = ../../include/finjin/common/RangedNameGenerator.hpp; sourceTree = SOURCE_ROOT; };
+		65127F7A1CFBED080041C324 /* ScreenOrientation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ScreenOrientation.hpp; path = ../../include/finjin/common/ScreenOrientation.hpp; sourceTree = SOURCE_ROOT; };
+		65127F7B1CFBED080041C324 /* Setting.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Setting.hpp; path = ../../include/finjin/common/Setting.hpp; sourceTree = SOURCE_ROOT; };
+		65127F7C1CFBED080041C324 /* Settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Settings.hpp; path = ../../include/finjin/common/Settings.hpp; sourceTree = SOURCE_ROOT; };
+		65127F801CFBED080041C324 /* SimpleSpinLockMutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SimpleSpinLockMutex.hpp; path = ../../include/finjin/common/SimpleSpinLockMutex.hpp; sourceTree = SOURCE_ROOT; };
+		65127F811CFBED080041C324 /* SingleEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SingleEvent.hpp; path = ../../include/finjin/common/SingleEvent.hpp; sourceTree = SOURCE_ROOT; };
+		65127F831CFBED080041C324 /* StandardPaths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StandardPaths.hpp; path = ../../include/finjin/common/StandardPaths.hpp; sourceTree = SOURCE_ROOT; };
+		65127F841CFBED080041C324 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Vector.hpp; path = ../../include/finjin/common/Vector.hpp; sourceTree = SOURCE_ROOT; };
+		65127F851CFBED080041C324 /* StringKeyValueMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StringKeyValueMap.hpp; path = ../../include/finjin/common/StringKeyValueMap.hpp; sourceTree = SOURCE_ROOT; };
+		65127F861CFBED080041C324 /* TaggedMemoryBlockAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TaggedMemoryBlockAllocator.hpp; path = ../../include/finjin/common/TaggedMemoryBlockAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		65127F881CFBED080041C324 /* TextDataChunkReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TextDataChunkReader.hpp; path = ../../include/finjin/common/TextDataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F891CFBED080041C324 /* TextDataChunkWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TextDataChunkWriter.hpp; path = ../../include/finjin/common/TextDataChunkWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F8A1CFBED080041C324 /* ThisThread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ThisThread.hpp; path = ../../include/finjin/common/ThisThread.hpp; sourceTree = SOURCE_ROOT; };
+		65127F8B1CFBED080041C324 /* Thread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Thread.hpp; path = ../../include/finjin/common/Thread.hpp; sourceTree = SOURCE_ROOT; };
+		65127F8C1CFBED080041C324 /* ThreadID.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ThreadID.hpp; path = ../../include/finjin/common/ThreadID.hpp; sourceTree = SOURCE_ROOT; };
+		65127F8D1CFBED080041C324 /* Throttle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Throttle.hpp; path = ../../include/finjin/common/Throttle.hpp; sourceTree = SOURCE_ROOT; };
+		65127F8F1CFBED080041C324 /* Uri.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Uri.hpp; path = ../../include/finjin/common/Uri.hpp; sourceTree = SOURCE_ROOT; };
+		65127F901CFBED080041C324 /* UsageFormatter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsageFormatter.hpp; path = ../../include/finjin/common/UsageFormatter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F911CFBED080041C324 /* UserInformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UserInformation.hpp; path = ../../include/finjin/common/UserInformation.hpp; sourceTree = SOURCE_ROOT; };
+		65127F921CFBED080041C324 /* Utf8String.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Utf8String.hpp; path = ../../include/finjin/common/Utf8String.hpp; sourceTree = SOURCE_ROOT; };
+		65127F931CFBED080041C324 /* Utf8StringFormatter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Utf8StringFormatter.hpp; path = ../../include/finjin/common/Utf8StringFormatter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F941CFBED080041C324 /* Uuid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Uuid.hpp; path = ../../include/finjin/common/Uuid.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9A1CFBED080041C324 /* XmlDataDocumentWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = XmlDataDocumentWriter.hpp; path = ../../include/finjin/common/XmlDataDocumentWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9B1CFBED080041C324 /* XmlDataElementWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = XmlDataElementWriter.hpp; path = ../../include/finjin/common/XmlDataElementWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9C1CFBED080041C324 /* XmlDocument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = XmlDocument.hpp; path = ../../include/finjin/common/XmlDocument.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9D1CFBED080041C324 /* ZipArchiveVirtualFileSystemRoot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ZipArchiveVirtualFileSystemRoot.hpp; path = ../../include/finjin/common/ZipArchiveVirtualFileSystemRoot.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9E1CFBED080041C324 /* ZipArchiveReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ZipArchiveReader.hpp; path = ../../include/finjin/common/ZipArchiveReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9F1CFBFF410041C324 /* BoostContextJumpAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextJumpAsm.S; path = ../../src/BoostContextJumpAsm.S; sourceTree = SOURCE_ROOT; };
+		65127FA01CFBFF410041C324 /* BoostContextMakeAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextMakeAsm.S; path = ../../src/BoostContextMakeAsm.S; sourceTree = SOURCE_ROOT; };
+		65127FA71CFC00B30041C324 /* iostream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = iostream.cpp; path = "../../../../../../../finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp"; sourceTree = SOURCE_ROOT; };
+		65127FA91CFC01070041C324 /* allocators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = allocators.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/allocators.h"; sourceTree = SOURCE_ROOT; };
+		65127FAA1CFC01070041C324 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = document.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/document.h"; sourceTree = SOURCE_ROOT; };
+		65127FAB1CFC01070041C324 /* encodedstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = encodedstream.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/encodedstream.h"; sourceTree = SOURCE_ROOT; };
+		65127FAC1CFC01070041C324 /* encodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = encodings.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/encodings.h"; sourceTree = SOURCE_ROOT; };
+		65127FAD1CFC01070041C324 /* filereadstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = filereadstream.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/filereadstream.h"; sourceTree = SOURCE_ROOT; };
+		65127FAE1CFC01070041C324 /* filestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = filestream.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/filestream.h"; sourceTree = SOURCE_ROOT; };
+		65127FAF1CFC01070041C324 /* filewritestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = filewritestream.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/filewritestream.h"; sourceTree = SOURCE_ROOT; };
+		65127FB01CFC01070041C324 /* memorybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memorybuffer.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/memorybuffer.h"; sourceTree = SOURCE_ROOT; };
+		65127FB11CFC01070041C324 /* memorystream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memorystream.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/memorystream.h"; sourceTree = SOURCE_ROOT; };
+		65127FB21CFC01070041C324 /* prettywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prettywriter.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/prettywriter.h"; sourceTree = SOURCE_ROOT; };
+		65127FB31CFC01070041C324 /* rapidjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rapidjson.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/rapidjson.h"; sourceTree = SOURCE_ROOT; };
+		65127FB41CFC01070041C324 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/reader.h"; sourceTree = SOURCE_ROOT; };
+		65127FB51CFC01070041C324 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stringbuffer.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/stringbuffer.h"; sourceTree = SOURCE_ROOT; };
+		65127FB61CFC01070041C324 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = "../../../../../../../finjin-3rd-party/cpp/rapidjson/writer.h"; sourceTree = SOURCE_ROOT; };
+		65127FB71CFC013C0041C324 /* tinyxml2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = "../../../../../../../finjin-3rd-party/cpp/tinyxml/tinyxml2.cpp"; sourceTree = SOURCE_ROOT; };
+		65127FB81CFC013C0041C324 /* tinyxml2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = "../../../../../../../finjin-3rd-party/cpp/tinyxml/tinyxml2.h"; sourceTree = SOURCE_ROOT; };
+		65127FBB1CFC01B30041C324 /* adler32.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = adler32.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/adler32.c"; sourceTree = SOURCE_ROOT; };
+		65127FBC1CFC01B30041C324 /* compress.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = compress.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/compress.c"; sourceTree = SOURCE_ROOT; };
+		65127FBD1CFC01B30041C324 /* crc32.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = crc32.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/crc32.c"; sourceTree = SOURCE_ROOT; };
+		65127FBE1CFC01B30041C324 /* crc32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crc32.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/crc32.h"; sourceTree = SOURCE_ROOT; };
+		65127FBF1CFC01B30041C324 /* deflate.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = deflate.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/deflate.c"; sourceTree = SOURCE_ROOT; };
+		65127FC01CFC01B30041C324 /* deflate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deflate.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/deflate.h"; sourceTree = SOURCE_ROOT; };
+		65127FC11CFC01B30041C324 /* gzclose.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzclose.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/gzclose.c"; sourceTree = SOURCE_ROOT; };
+		65127FC21CFC01B30041C324 /* gzguts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gzguts.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/gzguts.h"; sourceTree = SOURCE_ROOT; };
+		65127FC31CFC01B30041C324 /* gzlib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzlib.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/gzlib.c"; sourceTree = SOURCE_ROOT; };
+		65127FC41CFC01B30041C324 /* gzread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzread.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/gzread.c"; sourceTree = SOURCE_ROOT; };
+		65127FC51CFC01B30041C324 /* gzwrite.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = gzwrite.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/gzwrite.c"; sourceTree = SOURCE_ROOT; };
+		65127FC61CFC01B30041C324 /* infback.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = infback.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/infback.c"; sourceTree = SOURCE_ROOT; };
+		65127FC71CFC01B30041C324 /* inffast.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = inffast.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inffast.c"; sourceTree = SOURCE_ROOT; };
+		65127FC81CFC01B30041C324 /* inffast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inffast.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inffast.h"; sourceTree = SOURCE_ROOT; };
+		65127FC91CFC01B30041C324 /* inffixed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inffixed.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inffixed.h"; sourceTree = SOURCE_ROOT; };
+		65127FCA1CFC01B30041C324 /* inflate.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = inflate.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inflate.c"; sourceTree = SOURCE_ROOT; };
+		65127FCB1CFC01B30041C324 /* inflate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inflate.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inflate.h"; sourceTree = SOURCE_ROOT; };
+		65127FCC1CFC01B30041C324 /* inftrees.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = inftrees.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inftrees.c"; sourceTree = SOURCE_ROOT; };
+		65127FCD1CFC01B30041C324 /* inftrees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = inftrees.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/inftrees.h"; sourceTree = SOURCE_ROOT; };
+		65127FCE1CFC01B30041C324 /* trees.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = trees.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/trees.c"; sourceTree = SOURCE_ROOT; };
+		65127FCF1CFC01B30041C324 /* trees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = trees.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/trees.h"; sourceTree = SOURCE_ROOT; };
+		65127FD01CFC01B30041C324 /* uncompr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uncompr.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/uncompr.c"; sourceTree = SOURCE_ROOT; };
+		65127FD11CFC01B30041C324 /* zconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zconf.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/zconf.h"; sourceTree = SOURCE_ROOT; };
+		65127FD21CFC01B30041C324 /* zlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/zlib.h"; sourceTree = SOURCE_ROOT; };
+		65127FD31CFC01B30041C324 /* zutil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = zutil.c; path = "../../../../../../../finjin-3rd-party/cpp/zlib/zutil.c"; sourceTree = SOURCE_ROOT; };
+		65127FD41CFC01B30041C324 /* zutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zutil.h; path = "../../../../../../../finjin-3rd-party/cpp/zlib/zutil.h"; sourceTree = SOURCE_ROOT; };
+		65127FEF1CFC02380041C324 /* __debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = __debug.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/__debug.h"; sourceTree = SOURCE_ROOT; };
+		65127FF01CFC02380041C324 /* __dirent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = __dirent.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/__dirent.h"; sourceTree = SOURCE_ROOT; };
+		65127FF11CFC02380041C324 /* __fnmatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = __fnmatch.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/__fnmatch.h"; sourceTree = SOURCE_ROOT; };
+		65127FF21CFC02380041C324 /* __hints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = __hints.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/__hints.h"; sourceTree = SOURCE_ROOT; };
+		65127FF31CFC02380041C324 /* __mmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = __mmap.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/__mmap.h"; sourceTree = SOURCE_ROOT; };
+		65127FF41CFC02380041C324 /* _config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _config.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/_config.h"; sourceTree = SOURCE_ROOT; };
+		65127FF51CFC02380041C324 /* autoconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = autoconf.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/autoconf.h"; sourceTree = SOURCE_ROOT; };
+		65127FF61CFC02380041C324 /* conf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = conf.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/conf.h"; sourceTree = SOURCE_ROOT; };
+		65127FF71CFC02380041C324 /* dir.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dir.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/dir.c"; sourceTree = SOURCE_ROOT; };
+		65127FF81CFC02380041C324 /* err.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = err.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/err.c"; sourceTree = SOURCE_ROOT; };
+		65127FF91CFC02380041C324 /* fetch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = fetch.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/fetch.c"; sourceTree = SOURCE_ROOT; };
+		65127FFA1CFC02380041C324 /* fetch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fetch.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/fetch.h"; sourceTree = SOURCE_ROOT; };
+		65127FFB1CFC02380041C324 /* file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = file.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/file.c"; sourceTree = SOURCE_ROOT; };
+		65127FFC1CFC02380041C324 /* file.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = file.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/file.h"; sourceTree = SOURCE_ROOT; };
+		65127FFD1CFC02380041C324 /* format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = format.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/format.h"; sourceTree = SOURCE_ROOT; };
+		65127FFE1CFC02380041C324 /* fseeko.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = fseeko.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/fseeko.c"; sourceTree = SOURCE_ROOT; };
+		65127FFF1CFC02380041C324 /* fseeko.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fseeko.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/fseeko.h"; sourceTree = SOURCE_ROOT; };
+		651280001CFC02380041C324 /* info.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = info.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/info.c"; sourceTree = SOURCE_ROOT; };
+		651280011CFC02380041C324 /* info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = info.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/info.h"; sourceTree = SOURCE_ROOT; };
+		651280021CFC02380041C324 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lib.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/lib.h"; sourceTree = SOURCE_ROOT; };
+		651280031CFC02380041C324 /* memdisk.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = memdisk.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/memdisk.c"; sourceTree = SOURCE_ROOT; };
+		651280041CFC02380041C324 /* memdisk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = memdisk.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/memdisk.h"; sourceTree = SOURCE_ROOT; };
+		651280051CFC02380041C324 /* mmapped.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mmapped.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/mmapped.c"; sourceTree = SOURCE_ROOT; };
+		651280061CFC02380041C324 /* mmapped.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mmapped.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/mmapped.h"; sourceTree = SOURCE_ROOT; };
+		651280071CFC02380041C324 /* plugin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = plugin.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/plugin.c"; sourceTree = SOURCE_ROOT; };
+		651280081CFC02380041C324 /* plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = plugin.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/plugin.h"; sourceTree = SOURCE_ROOT; };
+		651280091CFC02380041C324 /* stat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stat.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/stat.c"; sourceTree = SOURCE_ROOT; };
+		6512800A1CFC02380041C324 /* stdint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stdint.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/stdint.h"; sourceTree = SOURCE_ROOT; };
+		6512800B1CFC02380041C324 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = types.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/types.h"; sourceTree = SOURCE_ROOT; };
+		6512800C1CFC02380041C324 /* write.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = write.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/write.c"; sourceTree = SOURCE_ROOT; };
+		6512800D1CFC02380041C324 /* write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = write.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/write.h"; sourceTree = SOURCE_ROOT; };
+		6512800E1CFC02380041C324 /* zip.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = zip.c; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/zip.c"; sourceTree = SOURCE_ROOT; };
+		6512800F1CFC02380041C324 /* zzip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zzip.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/zzip.h"; sourceTree = SOURCE_ROOT; };
+		651280101CFC02380041C324 /* zzip32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zzip32.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/zzip32.h"; sourceTree = SOURCE_ROOT; };
+		651281931D07CBBE0041C324 /* Version.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Version.cpp; path = ../../src/Version.cpp; sourceTree = SOURCE_ROOT; };
+		651281951D07CBD50041C324 /* Version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Version.hpp; path = ../../include/finjin/common/Version.hpp; sourceTree = SOURCE_ROOT; };
+		651288711D13BCDE0041C324 /* FileOperationTypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = FileOperationTypes.hpp; path = ../../include/finjin/common/FileOperationTypes.hpp; sourceTree = SOURCE_ROOT; };
+		651288781D220D6C0041C324 /* NumericStruct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NumericStruct.hpp; path = ../../include/finjin/common/NumericStruct.hpp; sourceTree = SOURCE_ROOT; };
+		651288791D220D6C0041C324 /* OperationStatus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = OperationStatus.hpp; path = ../../include/finjin/common/OperationStatus.hpp; sourceTree = SOURCE_ROOT; };
+		651288981D28E1BE0041C324 /* VirtualFileSystemOperationQueue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystemOperationQueue.cpp; path = ../../src/VirtualFileSystemOperationQueue.cpp; sourceTree = SOURCE_ROOT; };
+		651288991D28E1BE0041C324 /* VirtualFileSystemRoot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystemRoot.cpp; path = ../../src/VirtualFileSystemRoot.cpp; sourceTree = SOURCE_ROOT; };
+		6512889C1D28E1E20041C324 /* VirtualFileSystemOperationQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileSystemOperationQueue.hpp; path = ../../include/finjin/common/VirtualFileSystemOperationQueue.hpp; sourceTree = SOURCE_ROOT; };
+		65430E1A1DF4694900588409 /* DataChunkCommon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = DataChunkCommon.hpp; path = ../../src/DataChunkCommon.hpp; sourceTree = SOURCE_ROOT; };
+		65430E1B1DF4694900588409 /* DataChunkReaderCallbacks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkReaderCallbacks.cpp; path = ../../src/DataChunkReaderCallbacks.cpp; sourceTree = SOURCE_ROOT; };
+		65430E1C1DF4694900588409 /* Distance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Distance.cpp; path = ../../src/Distance.cpp; sourceTree = SOURCE_ROOT; };
+		65430E1D1DF4694900588409 /* Math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Math.cpp; path = ../../src/Math.cpp; sourceTree = SOURCE_ROOT; };
+		65430E221DF4698800588409 /* AlignedElementStaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AlignedElementStaticVector.hpp; path = ../../include/finjin/common/AlignedElementStaticVector.hpp; sourceTree = SOURCE_ROOT; };
+		65430E231DF4698800588409 /* AllocatedVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedVector.hpp; path = ../../include/finjin/common/AllocatedVector.hpp; sourceTree = SOURCE_ROOT; };
+		65430E241DF4698800588409 /* Angle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Angle.hpp; path = ../../include/finjin/common/Angle.hpp; sourceTree = SOURCE_ROOT; };
+		65430E251DF4698800588409 /* BinaryDataChunkReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BinaryDataChunkReader.hpp; path = ../../include/finjin/common/BinaryDataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
+		65430E261DF4698800588409 /* BinaryDataChunkWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BinaryDataChunkWriter.hpp; path = ../../include/finjin/common/BinaryDataChunkWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65430E271DF4698800588409 /* ConfigDataChunkReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ConfigDataChunkReader.hpp; path = ../../include/finjin/common/ConfigDataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
+		65430E281DF4698800588409 /* ConfigDataChunkWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ConfigDataChunkWriter.hpp; path = ../../include/finjin/common/ConfigDataChunkWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65430E291DF4698800588409 /* DataChunkReaderCallbacks.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderCallbacks.hpp; path = ../../include/finjin/common/DataChunkReaderCallbacks.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2A1DF4698800588409 /* Distance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Distance.hpp; path = ../../include/finjin/common/Distance.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2B1DF4698800588409 /* MemoryArchitecture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArchitecture.hpp; path = ../../include/finjin/common/MemoryArchitecture.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2C1DF4698800588409 /* StaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticVector.hpp; path = ../../include/finjin/common/StaticVector.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2D1DF4698800588409 /* StreamingFileFormat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StreamingFileFormat.hpp; path = ../../include/finjin/common/StreamingFileFormat.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2E1DF4698800588409 /* WrappedFileReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WrappedFileReader.hpp; path = ../../include/finjin/common/WrappedFileReader.hpp; sourceTree = SOURCE_ROOT; };
+		65430E2F1DF4698800588409 /* WrappedFileWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = WrappedFileWriter.hpp; path = ../../include/finjin/common/WrappedFileWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65430E301DF469BC00588409 /* ConfigDataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigDataChunkReader.cpp; path = ../../src/ConfigDataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
+		65430E311DF469BC00588409 /* ConfigDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigDataChunkWriter.cpp; path = ../../src/ConfigDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65430E341DF46A3600588409 /* MemoryArchitecture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryArchitecture.cpp; path = ../../src/MemoryArchitecture.cpp; sourceTree = SOURCE_ROOT; };
+		65430E361DF46A5A00588409 /* WrappedFileReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WrappedFileReader.cpp; path = ../../src/WrappedFileReader.cpp; sourceTree = SOURCE_ROOT; };
+		65430E371DF46A5A00588409 /* WrappedFileWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WrappedFileWriter.cpp; path = ../../src/WrappedFileWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65430E3A1DF46AA700588409 /* Angle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Angle.cpp; path = ../../src/Angle.cpp; sourceTree = SOURCE_ROOT; };
+		65430E3B1DF46AA700588409 /* BinaryDataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryDataChunkReader.cpp; path = ../../src/BinaryDataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
+		65430E3C1DF46AA700588409 /* StreamingFileFormat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StreamingFileFormat.cpp; path = ../../src/StreamingFileFormat.cpp; sourceTree = SOURCE_ROOT; };
+		65430E401DF46B5D00588409 /* BinaryDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryDataChunkWriter.cpp; path = ../../src/BinaryDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
+		65430E531DF46FCE00588409 /* FileAccessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileAccessor.cpp; path = ../../src/FileAccessor.cpp; sourceTree = "<group>"; };
+		65430E541DF46FCE00588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = "<group>"; };
+		65430E571DF46FE300588409 /* FileAccessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileAccessor.cpp; path = ../../src/FileAccessor.cpp; sourceTree = SOURCE_ROOT; };
+		65430E581DF46FE300588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
+		657AA0F81E3D9739004ADA22 /* png.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = png.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/png.c"; sourceTree = "<absolute>"; };
+		657AA0F91E3D9739004ADA22 /* png.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = png.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/png.h"; sourceTree = "<absolute>"; };
+		657AA0FA1E3D9739004ADA22 /* pngconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngconf.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngconf.h"; sourceTree = "<absolute>"; };
+		657AA0FB1E3D9739004ADA22 /* pngdebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngdebug.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngdebug.h"; sourceTree = "<absolute>"; };
+		657AA0FC1E3D9739004ADA22 /* pngerror.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngerror.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngerror.c"; sourceTree = "<absolute>"; };
+		657AA0FD1E3D9739004ADA22 /* pngget.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngget.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngget.c"; sourceTree = "<absolute>"; };
+		657AA0FE1E3D9739004ADA22 /* pnginfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pnginfo.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pnginfo.h"; sourceTree = "<absolute>"; };
+		657AA0FF1E3D9739004ADA22 /* pngmem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngmem.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngmem.c"; sourceTree = "<absolute>"; };
+		657AA1001E3D9739004ADA22 /* pngpread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngpread.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngpread.c"; sourceTree = "<absolute>"; };
+		657AA1011E3D9739004ADA22 /* pngpriv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngpriv.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngpriv.h"; sourceTree = "<absolute>"; };
+		657AA1021E3D9739004ADA22 /* pngread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngread.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngread.c"; sourceTree = "<absolute>"; };
+		657AA1031E3D9739004ADA22 /* pngrio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngrio.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngrio.c"; sourceTree = "<absolute>"; };
+		657AA1041E3D9739004ADA22 /* pngrtran.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngrtran.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngrtran.c"; sourceTree = "<absolute>"; };
+		657AA1051E3D9739004ADA22 /* pngrutil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngrutil.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngrutil.c"; sourceTree = "<absolute>"; };
+		657AA1061E3D9739004ADA22 /* pngset.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngset.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngset.c"; sourceTree = "<absolute>"; };
+		657AA1071E3D9739004ADA22 /* pngstruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngstruct.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngstruct.h"; sourceTree = "<absolute>"; };
+		657AA1081E3D9739004ADA22 /* pngtrans.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngtrans.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngtrans.c"; sourceTree = "<absolute>"; };
+		657AA1091E3D9739004ADA22 /* pngwio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngwio.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngwio.c"; sourceTree = "<absolute>"; };
+		657AA10A1E3D9739004ADA22 /* pngwrite.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngwrite.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngwrite.c"; sourceTree = "<absolute>"; };
+		657AA10B1E3D9739004ADA22 /* pngwtran.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngwtran.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngwtran.c"; sourceTree = "<absolute>"; };
+		657AA10C1E3D9739004ADA22 /* pngwutil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = pngwutil.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/tvos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngwutil.c"; sourceTree = "<absolute>"; };
+		657AA1231E3D9777004ADA22 /* PNGReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PNGReader.hpp; path = ../../include/finjin/common/PNGReader.hpp; sourceTree = SOURCE_ROOT; };
+		657AA1251E3D978A004ADA22 /* PNGReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PNGReader.cpp; path = ../../src/PNGReader.cpp; sourceTree = SOURCE_ROOT; };
+		657AA1581E420DF9004ADA22 /* Hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; name = Hash.hpp; path = ../../include/finjin/common/Hash.hpp; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		657AA1681E436759004ADA22 /* Hash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Hash.cpp; path = ../../src/Hash.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65127E111CFBE48F0041C324 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65127E0B1CFBE48F0041C324 = {
+			isa = PBXGroup;
+			children = (
+				65127E201CFBEA140041C324 /* Source Files */,
+				65127E471CFBECE80041C324 /* FinjinPrecompiled.cpp */,
+				65127E481CFBECE80041C324 /* FinjinPrecompiled.hpp */,
+				65127F4F1CFBED080041C324 /* FinjinCommonLibrary.hpp */,
+				65127E151CFBE48F0041C324 /* Products */,
+				65430E521DF46FCD00588409 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		65127E151CFBE48F0041C324 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65127E141CFBE48F0041C324 /* libfinjin-common.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65127E201CFBEA140041C324 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				65127E211CFBEA490041C324 /* 3rd-party */,
+				65127E231CFBEA690041C324 /* documents */,
+				657AA0C71E3D944D004ADA22 /* file-formats */,
+				65127E241CFBEA710041C324 /* file-system */,
+				65127E251CFBEA930041C324 /* job-system */,
+				65127E261CFBEA9D0041C324 /* logging */,
+				65127E271CFBEAB00041C324 /* memory */,
+				65127E281CFBEAB60041C324 /* thread */,
+				65127E221CFBEA500041C324 /* utilities */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		65127E211CFBEA490041C324 /* 3rd-party */ = {
+			isa = PBXGroup;
+			children = (
+				657AA1221E3D9743004ADA22 /* lpng */,
+				65127E2A1CFBEB3C0041C324 /* nowide */,
+				65127E2B1CFBEB420041C324 /* rapidjson */,
+				65127E2C1CFBEB5E0041C324 /* tinyxml2 */,
+				65127E291CFBEB2B0041C324 /* uriparser */,
+				65127E2D1CFBEB630041C324 /* zlib */,
+				65127E2E1CFBEB690041C324 /* zziplib */,
+			);
+			name = "3rd-party";
+			sourceTree = "<group>";
+		};
+		65127E221CFBEA500041C324 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				65430E221DF4698800588409 /* AlignedElementStaticVector.hpp */,
+				65430E231DF4698800588409 /* AllocatedVector.hpp */,
+				6508AFE51E35896A00EB826E /* AllocatedQueue.hpp */,
+				6508AFE61E35896A00EB826E /* AllocatedUnorderedMap.hpp */,
+				6508AFE71E35896A00EB826E /* AllocatedUnorderedSet.hpp */,
+				65430E3A1DF46AA700588409 /* Angle.cpp */,
+				65430E241DF4698800588409 /* Angle.hpp */,
+				65127F281CFBED080041C324 /* AppleUtilities.hpp */,
+				65127E3C1CFBECE80041C324 /* AppleUtilities.mm */,
+				6508AFE81E35896A00EB826E /* AssignOrError.hpp */,
+				65127E3D1CFBECE80041C324 /* Base64.cpp */,
+				65127F291CFBED080041C324 /* Base64.hpp */,
+				65127F2A1CFBED080041C324 /* BitArray.hpp */,
+				65127F9F1CFBFF410041C324 /* BoostContextJumpAsm.S */,
+				65127FA01CFBFF410041C324 /* BoostContextMakeAsm.S */,
+				65127E401CFBECE80041C324 /* ByteBuffer.cpp */,
+				65127F2B1CFBED080041C324 /* ByteBuffer.hpp */,
+				650FA3351D32173D00535D8D /* ByteOrder.hpp */,
+				65127E411CFBECE80041C324 /* Chrono.cpp */,
+				65127F2C1CFBED080041C324 /* Chrono.hpp */,
+				65127E431CFBECE80041C324 /* ChunkName.cpp */,
+				65127F2D1CFBED080041C324 /* ChunkName.hpp */,
+				65127E441CFBECE80041C324 /* ClassDescription.cpp */,
+				65127F2E1CFBED080041C324 /* ClassDescription.hpp */,
+				65127E451CFBECE80041C324 /* CommandLineArgsProcessor.cpp */,
+				65127F2F1CFBED080041C324 /* CommandLineArgsProcessor.hpp */,
+				65127E461CFBECE80041C324 /* CommandLineSettingsDescription.cpp */,
+				65127F301CFBED080041C324 /* CommandLineSettingsDescription.hpp */,
+				65127E4D1CFBECE80041C324 /* Convert.cpp */,
+				65127F351CFBED080041C324 /* Convert.hpp */,
+				65430E1C1DF4694900588409 /* Distance.cpp */,
+				65430E2A1DF4698800588409 /* Distance.hpp */,
+				65127E571CFBECE80041C324 /* DomainInformation.cpp */,
+				65127F421CFBED080041C324 /* DomainInformation.hpp */,
+				65127F431CFBED080041C324 /* EnumBitwise.hpp */,
+				650FA3B31D5B99AC00535D8D /* EnumValues.hpp */,
+				65127E581CFBECE80041C324 /* Error.cpp */,
+				65127F441CFBED080041C324 /* Error.hpp */,
+				657AA1681E436759004ADA22 /* Hash.cpp */,
+				657AA1581E420DF9004ADA22 /* Hash.hpp */,
+				65127F521CFBED080041C324 /* IntrusiveList.hpp */,
+				650FA3361D32173D00535D8D /* LayoutDirection.hpp */,
+				65127F671CFBED080041C324 /* LogicalCpu.hpp */,
+				65127E7B1CFBECE80041C324 /* LogicalCpu_iOS.cpp */,
+				65127F6A1CFBED080041C324 /* LruCache.hpp */,
+				65430E1D1DF4694900588409 /* Math.cpp */,
+				65127E421CFBECE80041C324 /* Math.hpp */,
+				65127E841CFBECE80041C324 /* NamePrefix.cpp */,
+				65127F6E1CFBED080041C324 /* NamePrefix.hpp */,
+				651288781D220D6C0041C324 /* NumericStruct.hpp */,
+				651288791D220D6C0041C324 /* OperationStatus.hpp */,
+				65127E881CFBECE80041C324 /* PerformanceCounter.cpp */,
+				65127F721CFBED080041C324 /* PerformanceCounter.hpp */,
+				65127F771CFBED080041C324 /* ProcessID.hpp */,
+				65127F781CFBED080041C324 /* ProcessRuntimeInformation.hpp */,
+				65127E8C1CFBECE80041C324 /* ProcessRuntimeInformation.cpp */,
+				6508AFE91E35896A00EB826E /* QueueUtilities.hpp */,
+				65127E8D1CFBECE80041C324 /* RangedNameGenerator.cpp */,
+				65127F791CFBED080041C324 /* RangedNameGenerator.hpp */,
+				65127F731CFBED080041C324 /* RealTimeLruCache.hpp */,
+				650FA3B41D5B99AC00535D8D /* RequestedValue.hpp */,
+				65127E8E1CFBECE80041C324 /* Settings.cpp */,
+				65127F7A1CFBED080041C324 /* ScreenOrientation.hpp */,
+				6508AFEA1E35896A00EB826E /* SetMapUtilities.hpp */,
+				6508AFEB1E35896A00EB826E /* StaticQueue.hpp */,
+				6508AFEC1E35896A00EB826E /* StaticUnorderedMap.hpp */,
+				6508AFED1E35896A00EB826E /* StaticUnorderedSet.hpp */,
+				65127F801CFBED080041C324 /* SimpleSpinLockMutex.hpp */,
+				65127E8F1CFBECE80041C324 /* SingleEvent.cpp */,
+				65127F811CFBED080041C324 /* SingleEvent.hpp */,
+				65127F7B1CFBED080041C324 /* Setting.hpp */,
+				65127F7C1CFBED080041C324 /* Settings.hpp */,
+				65430E2C1DF4698800588409 /* StaticVector.hpp */,
+				65127E971CFBECE80041C324 /* StringKeyValueMap.cpp */,
+				65127F851CFBED080041C324 /* StringKeyValueMap.hpp */,
+				65127F8D1CFBED080041C324 /* Throttle.hpp */,
+				65127E9D1CFBECE80041C324 /* Uri.cpp */,
+				65127F8F1CFBED080041C324 /* Uri.hpp */,
+				650FA3B51D5B99AC00535D8D /* UsableStaticVector.hpp */,
+				650FA3B61D5B99AC00535D8D /* UsableAllocatedVector.hpp */,
+				65127EA11CFBECE80041C324 /* Utf8String.cpp */,
+				65127F921CFBED080041C324 /* Utf8String.hpp */,
+				65127EA21CFBECE80041C324 /* Utf8StringFormatter.cpp */,
+				65127F931CFBED080041C324 /* Utf8StringFormatter.hpp */,
+				65127EA31CFBECE80041C324 /* Uuid.cpp */,
+				65127F941CFBED080041C324 /* Uuid.hpp */,
+				65127E9E1CFBECE80041C324 /* UsageFormatter.cpp */,
+				65127F901CFBED080041C324 /* UsageFormatter.hpp */,
+				65127E9F1CFBECE80041C324 /* UserInformation.cpp */,
+				65127F911CFBED080041C324 /* UserInformation.hpp */,
+				65127EA01CFBECE80041C324 /* UserInformation.mm */,
+				6508AFEE1E35896A00EB826E /* ValueOrError.hpp */,
+				65127F841CFBED080041C324 /* Vector.hpp */,
+				651281931D07CBBE0041C324 /* Version.cpp */,
+				651281951D07CBD50041C324 /* Version.hpp */,
+				65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */,
+				65127F9E1CFBED080041C324 /* ZipArchiveReader.hpp */,
+			);
+			name = utilities;
+			sourceTree = "<group>";
+		};
+		65127E231CFBEA690041C324 /* documents */ = {
+			isa = PBXGroup;
+			children = (
+				65127E2F1CFBEBA70041C324 /* config */,
+				65127E301CFBEBB40041C324 /* json/xml writer */,
+				65127E311CFBEBC20041C324 /* streaming */,
+				65127E741CFBECE80041C324 /* JsonDocument.cpp */,
+				65127F601CFBED080041C324 /* JsonDocument.hpp */,
+				65127F611CFBED080041C324 /* JsonDocumentImpl.hpp */,
+				65127EAB1CFBECE90041C324 /* XmlDocument.cpp */,
+				65127F9C1CFBED080041C324 /* XmlDocument.hpp */,
+			);
+			name = documents;
+			sourceTree = "<group>";
+		};
+		65127E241CFBEA710041C324 /* file-system */ = {
+			isa = PBXGroup;
+			children = (
+				65127E561CFBECE80041C324 /* DirEntFileFinder.cpp */,
+				65127F411CFBED080041C324 /* DirEntFileFinder.hpp */,
+				65127E551CFBECE80041C324 /* DirectoryVirtualFileSystemRoot.cpp */,
+				65127F401CFBED080041C324 /* DirectoryVirtualFileSystemRoot.hpp */,
+				65430E571DF46FE300588409 /* FileAccessor.cpp */,
+				65430E581DF46FE300588409 /* FileAccessor.hpp */,
+				65127F4B1CFBED080041C324 /* FileFinder.hpp */,
+				651288711D13BCDE0041C324 /* FileOperationTypes.hpp */,
+				65127E631CFBECE80041C324 /* FileSystemEntry.cpp */,
+				65127F4D1CFBED080041C324 /* FileSystemEntry.hpp */,
+				65127E871CFBECE80041C324 /* Path.cpp */,
+				65127F711CFBED080041C324 /* Path.hpp */,
+				65127F831CFBED080041C324 /* StandardPaths.hpp */,
+				65127E921CFBECE80041C324 /* StandardPaths_iOS.mm */,
+				650FA3BA1D5B99CD00535D8D /* VirtualFileHandle.cpp */,
+				650FA3B71D5B99AC00535D8D /* VirtualFileHandle.hpp */,
+				650FA3B81D5B99AC00535D8D /* VirtualFileHandleDataChunkReaderInput.hpp */,
+				650FA3BB1D5B99CD00535D8D /* VirtualFileOperationHandle.cpp */,
+				650FA3B91D5B99AC00535D8D /* VirtualFileOperationHandle.hpp */,
+				65127E821CFBECE80041C324 /* VirtualFileSystem.cpp */,
+				65127F6B1CFBED080041C324 /* VirtualFileSystem.hpp */,
+				651288981D28E1BE0041C324 /* VirtualFileSystemOperationQueue.cpp */,
+				6512889C1D28E1E20041C324 /* VirtualFileSystemOperationQueue.hpp */,
+				651288991D28E1BE0041C324 /* VirtualFileSystemRoot.cpp */,
+				65127F6C1CFBED080041C324 /* VirtualFileSystemRoot.hpp */,
+				65430E361DF46A5A00588409 /* WrappedFileReader.cpp */,
+				65430E2E1DF4698800588409 /* WrappedFileReader.hpp */,
+				65430E371DF46A5A00588409 /* WrappedFileWriter.cpp */,
+				65430E2F1DF4698800588409 /* WrappedFileWriter.hpp */,
+				65127EAC1CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp */,
+				65127F9D1CFBED080041C324 /* ZipArchiveVirtualFileSystemRoot.hpp */,
+			);
+			name = "file-system";
+			sourceTree = "<group>";
+		};
+		65127E251CFBEA930041C324 /* job-system */ = {
+			isa = PBXGroup;
+			children = (
+				65127E361CFBEC040041C324 /* fiber */,
+				65127E681CFBECE80041C324 /* JobFiber.cpp */,
+				65127E691CFBECE80041C324 /* JobFiber.hpp */,
+				65127F581CFBED080041C324 /* JobSystem.hpp */,
+				65127E6D1CFBECE80041C324 /* JobSystem.cpp */,
+				65127E6E1CFBECE80041C324 /* JobThread.cpp */,
+				65127E6F1CFBECE80041C324 /* JobThread.hpp */,
+				65127F5B1CFBED080041C324 /* JobThreadType.hpp */,
+			);
+			name = "job-system";
+			sourceTree = "<group>";
+		};
+		65127E261CFBEA9D0041C324 /* logging */ = {
+			isa = PBXGroup;
+			children = (
+				65127F3E1CFBED080041C324 /* DebugLog.hpp */,
+				65127E801CFBECE80041C324 /* LogLevel.cpp */,
+				65127F681CFBED080041C324 /* LogLevel.hpp */,
+			);
+			name = logging;
+			sourceTree = "<group>";
+		};
+		65127E271CFBEAB00041C324 /* memory */ = {
+			isa = PBXGroup;
+			children = (
+				65127F251CFBED080041C324 /* Allocator.hpp */,
+				65127E391CFBECE80041C324 /* Allocator.cpp */,
+				65127E381CFBECE80041C324 /* AllocatedClass.cpp */,
+				65127F241CFBED080041C324 /* AllocatedClass.hpp */,
+				650FA4801D61413D00535D8D /* DefaultAllocator.hpp */,
+				65127F501CFBED080041C324 /* ForwardAllocator.hpp */,
+				65127E491CFBECE80041C324 /* GeneralAllocator.cpp */,
+				65127F311CFBED080041C324 /* GeneralAllocator.hpp */,
+				65430E341DF46A3600588409 /* MemoryArchitecture.cpp */,
+				65430E2B1DF4698800588409 /* MemoryArchitecture.hpp */,
+				650FA47C1D61412600535D8D /* MemoryArena.cpp */,
+				650FA4811D61413D00535D8D /* MemoryArena.hpp */,
+				65127E831CFBECE80041C324 /* MemorySize.cpp */,
+				65127F6D1CFBED080041C324 /* MemorySize.hpp */,
+				650FA47D1D61412600535D8D /* PassthroughSystemAllocator.cpp */,
+				650FA4821D61413D00535D8D /* PassthroughSystemAllocator.hpp */,
+				65127F861CFBED080041C324 /* TaggedMemoryBlockAllocator.hpp */,
+			);
+			name = memory;
+			sourceTree = "<group>";
+		};
+		65127E281CFBEAB60041C324 /* thread */ = {
+			isa = PBXGroup;
+			children = (
+				65127E9B1CFBECE80041C324 /* ThisThread.cpp */,
+				65127F8A1CFBED080041C324 /* ThisThread.hpp */,
+				65127E9C1CFBECE80041C324 /* Thread.cpp */,
+				65127F8B1CFBED080041C324 /* Thread.hpp */,
+				65127F8C1CFBED080041C324 /* ThreadID.hpp */,
+			);
+			name = thread;
+			sourceTree = "<group>";
+		};
+		65127E291CFBEB2B0041C324 /* uriparser */ = {
+			isa = PBXGroup;
+			children = (
+				650FA4D51D64308300535D8D /* UriCommon.c */,
+				650FA4D61D64308300535D8D /* UriCommon.h */,
+				650FA4D71D64308300535D8D /* UriCompare.c */,
+				650FA4D81D64308300535D8D /* UriEscape.c */,
+				650FA4D91D64308300535D8D /* UriFile.c */,
+				650FA4DA1D64308300535D8D /* UriIp4.c */,
+				650FA4DB1D64308300535D8D /* UriIp4Base.c */,
+				650FA4DC1D64308300535D8D /* UriIp4Base.h */,
+				650FA4DD1D64308300535D8D /* UriNormalize.c */,
+				650FA4DE1D64308300535D8D /* UriNormalizeBase.c */,
+				650FA4DF1D64308300535D8D /* UriNormalizeBase.h */,
+				650FA4E01D64308300535D8D /* UriParse.c */,
+				650FA4E11D64308300535D8D /* UriParseBase.c */,
+				650FA4E21D64308300535D8D /* UriParseBase.h */,
+				650FA4E31D64308300535D8D /* UriQuery.c */,
+				650FA4E41D64308300535D8D /* UriRecompose.c */,
+				650FA4E51D64308300535D8D /* UriResolve.c */,
+				650FA4E61D64308300535D8D /* UriShorten.c */,
+			);
+			name = uriparser;
+			sourceTree = "<group>";
+		};
+		65127E2A1CFBEB3C0041C324 /* nowide */ = {
+			isa = PBXGroup;
+			children = (
+				65127FA71CFC00B30041C324 /* iostream.cpp */,
+			);
+			name = nowide;
+			sourceTree = "<group>";
+		};
+		65127E2B1CFBEB420041C324 /* rapidjson */ = {
+			isa = PBXGroup;
+			children = (
+				65127FA91CFC01070041C324 /* allocators.h */,
+				65127FAA1CFC01070041C324 /* document.h */,
+				65127FAB1CFC01070041C324 /* encodedstream.h */,
+				65127FAC1CFC01070041C324 /* encodings.h */,
+				65127FAD1CFC01070041C324 /* filereadstream.h */,
+				65127FAE1CFC01070041C324 /* filestream.h */,
+				65127FAF1CFC01070041C324 /* filewritestream.h */,
+				65127FB01CFC01070041C324 /* memorybuffer.h */,
+				65127FB11CFC01070041C324 /* memorystream.h */,
+				65127FB21CFC01070041C324 /* prettywriter.h */,
+				65127FB31CFC01070041C324 /* rapidjson.h */,
+				65127FB41CFC01070041C324 /* reader.h */,
+				65127FB51CFC01070041C324 /* stringbuffer.h */,
+				65127FB61CFC01070041C324 /* writer.h */,
+			);
+			name = rapidjson;
+			sourceTree = "<group>";
+		};
+		65127E2C1CFBEB5E0041C324 /* tinyxml2 */ = {
+			isa = PBXGroup;
+			children = (
+				65127FB71CFC013C0041C324 /* tinyxml2.cpp */,
+				65127FB81CFC013C0041C324 /* tinyxml2.h */,
+			);
+			name = tinyxml2;
+			sourceTree = "<group>";
+		};
+		65127E2D1CFBEB630041C324 /* zlib */ = {
+			isa = PBXGroup;
+			children = (
+				65127FBB1CFC01B30041C324 /* adler32.c */,
+				65127FBC1CFC01B30041C324 /* compress.c */,
+				65127FBD1CFC01B30041C324 /* crc32.c */,
+				65127FBE1CFC01B30041C324 /* crc32.h */,
+				65127FBF1CFC01B30041C324 /* deflate.c */,
+				65127FC01CFC01B30041C324 /* deflate.h */,
+				65127FC11CFC01B30041C324 /* gzclose.c */,
+				65127FC21CFC01B30041C324 /* gzguts.h */,
+				65127FC31CFC01B30041C324 /* gzlib.c */,
+				65127FC41CFC01B30041C324 /* gzread.c */,
+				65127FC51CFC01B30041C324 /* gzwrite.c */,
+				65127FC61CFC01B30041C324 /* infback.c */,
+				65127FC71CFC01B30041C324 /* inffast.c */,
+				65127FC81CFC01B30041C324 /* inffast.h */,
+				65127FC91CFC01B30041C324 /* inffixed.h */,
+				65127FCA1CFC01B30041C324 /* inflate.c */,
+				65127FCB1CFC01B30041C324 /* inflate.h */,
+				65127FCC1CFC01B30041C324 /* inftrees.c */,
+				65127FCD1CFC01B30041C324 /* inftrees.h */,
+				65127FCE1CFC01B30041C324 /* trees.c */,
+				65127FCF1CFC01B30041C324 /* trees.h */,
+				65127FD01CFC01B30041C324 /* uncompr.c */,
+				65127FD11CFC01B30041C324 /* zconf.h */,
+				65127FD21CFC01B30041C324 /* zlib.h */,
+				65127FD31CFC01B30041C324 /* zutil.c */,
+				65127FD41CFC01B30041C324 /* zutil.h */,
+			);
+			name = zlib;
+			sourceTree = "<group>";
+		};
+		65127E2E1CFBEB690041C324 /* zziplib */ = {
+			isa = PBXGroup;
+			children = (
+				65127FEF1CFC02380041C324 /* __debug.h */,
+				65127FF01CFC02380041C324 /* __dirent.h */,
+				65127FF11CFC02380041C324 /* __fnmatch.h */,
+				65127FF21CFC02380041C324 /* __hints.h */,
+				65127FF31CFC02380041C324 /* __mmap.h */,
+				65127FF41CFC02380041C324 /* _config.h */,
+				65127FF51CFC02380041C324 /* autoconf.h */,
+				65127FF61CFC02380041C324 /* conf.h */,
+				65127FF71CFC02380041C324 /* dir.c */,
+				65127FF81CFC02380041C324 /* err.c */,
+				65127FF91CFC02380041C324 /* fetch.c */,
+				65127FFA1CFC02380041C324 /* fetch.h */,
+				65127FFB1CFC02380041C324 /* file.c */,
+				65127FFC1CFC02380041C324 /* file.h */,
+				65127FFD1CFC02380041C324 /* format.h */,
+				65127FFE1CFC02380041C324 /* fseeko.c */,
+				65127FFF1CFC02380041C324 /* fseeko.h */,
+				651280001CFC02380041C324 /* info.c */,
+				651280011CFC02380041C324 /* info.h */,
+				651280021CFC02380041C324 /* lib.h */,
+				651280031CFC02380041C324 /* memdisk.c */,
+				651280041CFC02380041C324 /* memdisk.h */,
+				651280051CFC02380041C324 /* mmapped.c */,
+				651280061CFC02380041C324 /* mmapped.h */,
+				651280071CFC02380041C324 /* plugin.c */,
+				651280081CFC02380041C324 /* plugin.h */,
+				651280091CFC02380041C324 /* stat.c */,
+				6512800A1CFC02380041C324 /* stdint.h */,
+				6512800B1CFC02380041C324 /* types.h */,
+				6512800C1CFC02380041C324 /* write.c */,
+				6512800D1CFC02380041C324 /* write.h */,
+				6512800E1CFC02380041C324 /* zip.c */,
+				6512800F1CFC02380041C324 /* zzip.h */,
+				651280101CFC02380041C324 /* zzip32.h */,
+			);
+			name = zziplib;
+			sourceTree = "<group>";
+		};
+		65127E2F1CFBEBA70041C324 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				65127E321CFBEBDC0041C324 /* reader */,
+				65127E331CFBEBE10041C324 /* writer */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		65127E301CFBEBB40041C324 /* json/xml writer */ = {
+			isa = PBXGroup;
+			children = (
+				65127F3A1CFBED080041C324 /* DataDocumentWriter.hpp */,
+				65127E521CFBECE80041C324 /* DataElementWriter.cpp */,
+				65127F3B1CFBED080041C324 /* DataElementWriter.hpp */,
+				65127E721CFBECE80041C324 /* JsonDataDocumentWriter.cpp */,
+				65127F5E1CFBED080041C324 /* JsonDataDocumentWriter.hpp */,
+				65127E731CFBECE80041C324 /* JsonDataElementWriter.cpp */,
+				65127F5F1CFBED080041C324 /* JsonDataElementWriter.hpp */,
+				65127EAA1CFBECE90041C324 /* XmlDataElementWriter.cpp */,
+				65127F9B1CFBED080041C324 /* XmlDataElementWriter.hpp */,
+				65127EA91CFBECE90041C324 /* XmlDataDocumentWriter.cpp */,
+				65127F9A1CFBED080041C324 /* XmlDataDocumentWriter.hpp */,
+			);
+			name = "json/xml writer";
+			sourceTree = "<group>";
+		};
+		65127E311CFBEBC20041C324 /* streaming */ = {
+			isa = PBXGroup;
+			children = (
+				65127E351CFBEBEF0041C324 /* reader */,
+				65127E341CFBEBE90041C324 /* writer */,
+				65430E1A1DF4694900588409 /* DataChunkCommon.hpp */,
+				65430E3C1DF46AA700588409 /* StreamingFileFormat.cpp */,
+				65430E2D1DF4698800588409 /* StreamingFileFormat.hpp */,
+			);
+			name = streaming;
+			sourceTree = "<group>";
+		};
+		65127E321CFBEBDC0041C324 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				65127E4A1CFBECE80041C324 /* ConfigDocumentReader.cpp */,
+				65127F321CFBED080041C324 /* ConfigDocumentReader.hpp */,
+			);
+			name = reader;
+			sourceTree = "<group>";
+		};
+		65127E331CFBEBE10041C324 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				65127E4B1CFBECE80041C324 /* ConfigDocumentWriter.cpp */,
+				65127F331CFBED080041C324 /* ConfigDocumentWriter.hpp */,
+			);
+			name = writer;
+			sourceTree = "<group>";
+		};
+		65127E341CFBEBE90041C324 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				65430E401DF46B5D00588409 /* BinaryDataChunkWriter.cpp */,
+				65430E261DF4698800588409 /* BinaryDataChunkWriter.hpp */,
+				65430E281DF4698800588409 /* ConfigDataChunkWriter.hpp */,
+				65430E311DF469BC00588409 /* ConfigDataChunkWriter.cpp */,
+				65127E501CFBECE80041C324 /* DataChunkWriter.cpp */,
+				65127F381CFBED080041C324 /* DataChunkWriter.hpp */,
+				65127E511CFBECE80041C324 /* DataChunkWriterController.cpp */,
+				65127F391CFBED080041C324 /* DataChunkWriterController.hpp */,
+				650FA3B21D5B99AC00535D8D /* DocumentWriterOutput.hpp */,
+				65127F5D1CFBED080041C324 /* JsonDataChunkWriter.hpp */,
+				65127E711CFBECE80041C324 /* JsonDataChunkWriter.cpp */,
+				65127E9A1CFBECE80041C324 /* TextDataChunkWriter.cpp */,
+				65127F891CFBED080041C324 /* TextDataChunkWriter.hpp */,
+			);
+			name = writer;
+			sourceTree = "<group>";
+		};
+		65127E351CFBEBEF0041C324 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				65430E3B1DF46AA700588409 /* BinaryDataChunkReader.cpp */,
+				65430E251DF4698800588409 /* BinaryDataChunkReader.hpp */,
+				65430E301DF469BC00588409 /* ConfigDataChunkReader.cpp */,
+				65430E271DF4698800588409 /* ConfigDataChunkReader.hpp */,
+				65127E4E1CFBECE80041C324 /* DataChunkReader.cpp */,
+				65127F361CFBED080041C324 /* DataChunkReader.hpp */,
+				65430E1B1DF4694900588409 /* DataChunkReaderCallbacks.cpp */,
+				65430E291DF4698800588409 /* DataChunkReaderCallbacks.hpp */,
+				65127E4F1CFBECE80041C324 /* DataChunkReaderController.cpp */,
+				65127F371CFBED080041C324 /* DataChunkReaderController.hpp */,
+				650FA3B11D5B99AC00535D8D /* DataChunkReaderInput.hpp */,
+				65127F5C1CFBED080041C324 /* JsonDataChunkReader.hpp */,
+				65127E701CFBECE80041C324 /* JsonDataChunkReader.cpp */,
+				65127E991CFBECE80041C324 /* TextDataChunkReader.cpp */,
+				65127F881CFBED080041C324 /* TextDataChunkReader.hpp */,
+			);
+			name = reader;
+			sourceTree = "<group>";
+		};
+		65127E361CFBEC040041C324 /* fiber */ = {
+			isa = PBXGroup;
+			children = (
+				65127E371CFBEC090041C324 /* future */,
+				65127E591CFBECE80041C324 /* FiberCondition.cpp */,
+				65127F451CFBED080041C324 /* FiberCondition.hpp */,
+				65127F461CFBED080041C324 /* FiberException.hpp */,
+				65127F471CFBED080041C324 /* FiberJob.hpp */,
+				65127E5A1CFBECE80041C324 /* FiberJobQueue.cpp */,
+				65127E5B1CFBECE80041C324 /* FiberJobQueue.hpp */,
+				65127E5C1CFBECE80041C324 /* FiberJobScheduler.cpp */,
+				65127E5D1CFBECE80041C324 /* FiberJobScheduler.hpp */,
+				65127E5E1CFBECE80041C324 /* FiberMutex.cpp */,
+				65127F481CFBED080041C324 /* FiberMutex.hpp */,
+				65127E5F1CFBECE80041C324 /* FiberSchedulingAlgorithm.cpp */,
+				65127E601CFBECE80041C324 /* FiberSchedulingAlgorithm.hpp */,
+				65127E611CFBECE80041C324 /* FiberSpinLock.cpp */,
+				65127F491CFBED080041C324 /* FiberSpinLock.hpp */,
+				65127F4A1CFBED080041C324 /* FiberWaitingQueue.hpp */,
+				65127F551CFBED080041C324 /* JobInvokeHelper.hpp */,
+			);
+			name = fiber;
+			sourceTree = "<group>";
+		};
+		65127E371CFBEC090041C324 /* future */ = {
+			isa = PBXGroup;
+			children = (
+				65127E6A1CFBECE80041C324 /* JobFuture.cpp */,
+				65127F541CFBED080041C324 /* JobFuture.hpp */,
+				65127F561CFBED080041C324 /* JobPackagedTask.hpp */,
+				65127E6B1CFBECE80041C324 /* JobPromise.hpp */,
+				65127F571CFBED080041C324 /* JobSharedState.hpp */,
+				65127E6C1CFBECE80041C324 /* JobSharedStateObject.hpp */,
+				65127F591CFBED080041C324 /* JobTaskBase.hpp */,
+				65127F5A1CFBED080041C324 /* JobTaskObject.hpp */,
+			);
+			name = future;
+			sourceTree = "<group>";
+		};
+		65430E521DF46FCD00588409 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65430E531DF46FCE00588409 /* FileAccessor.cpp */,
+				65430E541DF46FCE00588409 /* FileAccessor.hpp */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		657AA0C71E3D944D004ADA22 /* file-formats */ = {
+			isa = PBXGroup;
+			children = (
+				657AA1251E3D978A004ADA22 /* PNGReader.cpp */,
+				657AA1231E3D9777004ADA22 /* PNGReader.hpp */,
+			);
+			name = "file-formats";
+			sourceTree = "<group>";
+		};
+		657AA1221E3D9743004ADA22 /* lpng */ = {
+			isa = PBXGroup;
+			children = (
+				657AA0F81E3D9739004ADA22 /* png.c */,
+				657AA0F91E3D9739004ADA22 /* png.h */,
+				657AA0FA1E3D9739004ADA22 /* pngconf.h */,
+				657AA0FB1E3D9739004ADA22 /* pngdebug.h */,
+				657AA0FC1E3D9739004ADA22 /* pngerror.c */,
+				657AA0FD1E3D9739004ADA22 /* pngget.c */,
+				657AA0FE1E3D9739004ADA22 /* pnginfo.h */,
+				657AA0FF1E3D9739004ADA22 /* pngmem.c */,
+				657AA1001E3D9739004ADA22 /* pngpread.c */,
+				657AA1011E3D9739004ADA22 /* pngpriv.h */,
+				657AA1021E3D9739004ADA22 /* pngread.c */,
+				657AA1031E3D9739004ADA22 /* pngrio.c */,
+				657AA1041E3D9739004ADA22 /* pngrtran.c */,
+				657AA1051E3D9739004ADA22 /* pngrutil.c */,
+				657AA1061E3D9739004ADA22 /* pngset.c */,
+				657AA1071E3D9739004ADA22 /* pngstruct.h */,
+				657AA1081E3D9739004ADA22 /* pngtrans.c */,
+				657AA1091E3D9739004ADA22 /* pngwio.c */,
+				657AA10A1E3D9739004ADA22 /* pngwrite.c */,
+				657AA10B1E3D9739004ADA22 /* pngwtran.c */,
+				657AA10C1E3D9739004ADA22 /* pngwutil.c */,
+			);
+			name = lpng;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65127E131CFBE48F0041C324 /* finjin-common */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65127E1D1CFBE48F0041C324 /* Build configuration list for PBXNativeTarget "finjin-common" */;
+			buildPhases = (
+				65127E101CFBE48F0041C324 /* Sources */,
+				65127E111CFBE48F0041C324 /* Frameworks */,
+				65127E121CFBE48F0041C324 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "finjin-common";
+			productName = "finjin-common-lib";
+			productReference = 65127E141CFBE48F0041C324 /* libfinjin-common.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65127E0C1CFBE48F0041C324 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Finjin;
+				TargetAttributes = {
+					65127E131CFBE48F0041C324 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 65127E0F1CFBE48F0041C324 /* Build configuration list for PBXProject "finjin-common-lib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 65127E0B1CFBE48F0041C324;
+			productRefGroup = 65127E151CFBE48F0041C324 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65127E131CFBE48F0041C324 /* finjin-common */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65127E101CFBE48F0041C324 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				657AA1691E436759004ADA22 /* Hash.cpp in Sources */,
+				657AA1261E3D978A004ADA22 /* PNGReader.cpp in Sources */,
+				657AA10D1E3D9739004ADA22 /* png.c in Sources */,
+				657AA1111E3D9739004ADA22 /* pngerror.c in Sources */,
+				657AA1121E3D9739004ADA22 /* pngget.c in Sources */,
+				657AA1141E3D9739004ADA22 /* pngmem.c in Sources */,
+				657AA1151E3D9739004ADA22 /* pngpread.c in Sources */,
+				657AA1171E3D9739004ADA22 /* pngread.c in Sources */,
+				657AA1181E3D9739004ADA22 /* pngrio.c in Sources */,
+				657AA1191E3D9739004ADA22 /* pngrtran.c in Sources */,
+				657AA11A1E3D9739004ADA22 /* pngrutil.c in Sources */,
+				657AA11B1E3D9739004ADA22 /* pngset.c in Sources */,
+				657AA11D1E3D9739004ADA22 /* pngtrans.c in Sources */,
+				657AA11E1E3D9739004ADA22 /* pngwio.c in Sources */,
+				657AA11F1E3D9739004ADA22 /* pngwrite.c in Sources */,
+				657AA1201E3D9739004ADA22 /* pngwtran.c in Sources */,
+				657AA1211E3D9739004ADA22 /* pngwutil.c in Sources */,
+				65430E591DF46FE300588409 /* FileAccessor.cpp in Sources */,
+				65430E411DF46B5D00588409 /* BinaryDataChunkWriter.cpp in Sources */,
+				65430E3D1DF46AA700588409 /* Angle.cpp in Sources */,
+				65430E3E1DF46AA700588409 /* BinaryDataChunkReader.cpp in Sources */,
+				65430E3F1DF46AA700588409 /* StreamingFileFormat.cpp in Sources */,
+				65430E381DF46A5A00588409 /* WrappedFileReader.cpp in Sources */,
+				65430E391DF46A5A00588409 /* WrappedFileWriter.cpp in Sources */,
+				65430E351DF46A3600588409 /* MemoryArchitecture.cpp in Sources */,
+				65430E321DF469BC00588409 /* ConfigDataChunkReader.cpp in Sources */,
+				65430E331DF469BC00588409 /* ConfigDataChunkWriter.cpp in Sources */,
+				65430E1F1DF4694900588409 /* DataChunkReaderCallbacks.cpp in Sources */,
+				65430E201DF4694900588409 /* Distance.cpp in Sources */,
+				65430E211DF4694900588409 /* Math.cpp in Sources */,
+				650FA4E71D64308300535D8D /* UriCommon.c in Sources */,
+				650FA4E91D64308300535D8D /* UriCompare.c in Sources */,
+				650FA4EA1D64308300535D8D /* UriEscape.c in Sources */,
+				650FA4EB1D64308300535D8D /* UriFile.c in Sources */,
+				650FA4EC1D64308300535D8D /* UriIp4.c in Sources */,
+				650FA4ED1D64308300535D8D /* UriIp4Base.c in Sources */,
+				650FA4EF1D64308300535D8D /* UriNormalize.c in Sources */,
+				650FA4F01D64308300535D8D /* UriNormalizeBase.c in Sources */,
+				650FA4F21D64308300535D8D /* UriParse.c in Sources */,
+				650FA4F31D64308300535D8D /* UriParseBase.c in Sources */,
+				650FA4F61D64308300535D8D /* UriRecompose.c in Sources */,
+				650FA4F71D64308300535D8D /* UriResolve.c in Sources */,
+				650FA4F81D64308300535D8D /* UriShorten.c in Sources */,
+				650FA47E1D61412600535D8D /* MemoryArena.cpp in Sources */,
+				650FA47F1D61412600535D8D /* PassthroughSystemAllocator.cpp in Sources */,
+				650FA3BC1D5B99CD00535D8D /* VirtualFileHandle.cpp in Sources */,
+				650FA3BD1D5B99CD00535D8D /* VirtualFileOperationHandle.cpp in Sources */,
+				6512889A1D28E1BE0041C324 /* VirtualFileSystemOperationQueue.cpp in Sources */,
+				6512889B1D28E1BE0041C324 /* VirtualFileSystemRoot.cpp in Sources */,
+				651281941D07CBBE0041C324 /* Version.cpp in Sources */,
+				651280191CFC02380041C324 /* dir.c in Sources */,
+				6512801A1CFC02380041C324 /* err.c in Sources */,
+				6512801B1CFC02380041C324 /* fetch.c in Sources */,
+				6512801D1CFC02380041C324 /* file.c in Sources */,
+				651280201CFC02380041C324 /* fseeko.c in Sources */,
+				651280221CFC02380041C324 /* info.c in Sources */,
+				651280251CFC02380041C324 /* memdisk.c in Sources */,
+				651280271CFC02380041C324 /* mmapped.c in Sources */,
+				651280291CFC02380041C324 /* plugin.c in Sources */,
+				6512802B1CFC02380041C324 /* stat.c in Sources */,
+				6512802E1CFC02380041C324 /* write.c in Sources */,
+				651280301CFC02380041C324 /* zip.c in Sources */,
+				65127FD51CFC01B30041C324 /* adler32.c in Sources */,
+				65127FD61CFC01B30041C324 /* compress.c in Sources */,
+				65127FD71CFC01B30041C324 /* crc32.c in Sources */,
+				65127FD91CFC01B30041C324 /* deflate.c in Sources */,
+				65127FDB1CFC01B30041C324 /* gzclose.c in Sources */,
+				65127FDD1CFC01B30041C324 /* gzlib.c in Sources */,
+				65127FDE1CFC01B30041C324 /* gzread.c in Sources */,
+				65127FDF1CFC01B30041C324 /* gzwrite.c in Sources */,
+				65127FE01CFC01B30041C324 /* infback.c in Sources */,
+				65127FE11CFC01B30041C324 /* inffast.c in Sources */,
+				65127FE41CFC01B30041C324 /* inflate.c in Sources */,
+				65127FE61CFC01B30041C324 /* inftrees.c in Sources */,
+				65127FE81CFC01B30041C324 /* trees.c in Sources */,
+				65127FEA1CFC01B30041C324 /* uncompr.c in Sources */,
+				65127FED1CFC01B30041C324 /* zutil.c in Sources */,
+				65127FB91CFC013C0041C324 /* tinyxml2.cpp in Sources */,
+				65127FA81CFC00B30041C324 /* iostream.cpp in Sources */,
+				65127FA11CFBFF410041C324 /* BoostContextJumpAsm.S in Sources */,
+				65127FA21CFBFF410041C324 /* BoostContextMakeAsm.S in Sources */,
+				65127EAE1CFBECE90041C324 /* AllocatedClass.cpp in Sources */,
+				65127EAF1CFBECE90041C324 /* Allocator.cpp in Sources */,
+				65127EB21CFBECE90041C324 /* AppleUtilities.mm in Sources */,
+				65127EB31CFBECE90041C324 /* Base64.cpp in Sources */,
+				65127EB61CFBECE90041C324 /* ByteBuffer.cpp in Sources */,
+				65127EB71CFBECE90041C324 /* Chrono.cpp in Sources */,
+				65127EB91CFBECE90041C324 /* ChunkName.cpp in Sources */,
+				65127EBA1CFBECE90041C324 /* ClassDescription.cpp in Sources */,
+				65127EBB1CFBECE90041C324 /* CommandLineArgsProcessor.cpp in Sources */,
+				65127EBC1CFBECE90041C324 /* CommandLineSettingsDescription.cpp in Sources */,
+				65127EBD1CFBECE90041C324 /* FinjinPrecompiled.cpp in Sources */,
+				65127EBF1CFBECE90041C324 /* GeneralAllocator.cpp in Sources */,
+				65127EC01CFBECE90041C324 /* ConfigDocumentReader.cpp in Sources */,
+				65127EC11CFBECE90041C324 /* ConfigDocumentWriter.cpp in Sources */,
+				65127EC31CFBECE90041C324 /* Convert.cpp in Sources */,
+				65127EC41CFBECE90041C324 /* DataChunkReader.cpp in Sources */,
+				65127EC51CFBECE90041C324 /* DataChunkReaderController.cpp in Sources */,
+				65127EC61CFBECE90041C324 /* DataChunkWriter.cpp in Sources */,
+				65127EC71CFBECE90041C324 /* DataChunkWriterController.cpp in Sources */,
+				65127EC81CFBECE90041C324 /* DataElementWriter.cpp in Sources */,
+				65127ECB1CFBECE90041C324 /* DirectoryVirtualFileSystemRoot.cpp in Sources */,
+				65127ECC1CFBECE90041C324 /* DirEntFileFinder.cpp in Sources */,
+				65127ECD1CFBECE90041C324 /* DomainInformation.cpp in Sources */,
+				65127ECE1CFBECE90041C324 /* Error.cpp in Sources */,
+				65127ECF1CFBECE90041C324 /* FiberCondition.cpp in Sources */,
+				65127ED01CFBECE90041C324 /* FiberJobQueue.cpp in Sources */,
+				65127ED21CFBECE90041C324 /* FiberJobScheduler.cpp in Sources */,
+				65127ED41CFBECE90041C324 /* FiberMutex.cpp in Sources */,
+				65127ED51CFBECE90041C324 /* FiberSchedulingAlgorithm.cpp in Sources */,
+				65127ED71CFBECE90041C324 /* FiberSpinLock.cpp in Sources */,
+				65127ED91CFBECE90041C324 /* FileSystemEntry.cpp in Sources */,
+				65127EDE1CFBECE90041C324 /* JobFiber.cpp in Sources */,
+				65127EE01CFBECE90041C324 /* JobFuture.cpp in Sources */,
+				65127EE31CFBECE90041C324 /* JobSystem.cpp in Sources */,
+				65127EE41CFBECE90041C324 /* JobThread.cpp in Sources */,
+				65127EE61CFBECE90041C324 /* JsonDataChunkReader.cpp in Sources */,
+				65127EE71CFBECE90041C324 /* JsonDataChunkWriter.cpp in Sources */,
+				65127EE81CFBECE90041C324 /* JsonDataDocumentWriter.cpp in Sources */,
+				65127EE91CFBECE90041C324 /* JsonDataElementWriter.cpp in Sources */,
+				65127EEA1CFBECE90041C324 /* JsonDocument.cpp in Sources */,
+				65127EF11CFBECE90041C324 /* LogicalCpu_iOS.cpp in Sources */,
+				65127EF61CFBECE90041C324 /* LogLevel.cpp in Sources */,
+				65127EF81CFBECE90041C324 /* VirtualFileSystem.cpp in Sources */,
+				65127EF91CFBECE90041C324 /* MemorySize.cpp in Sources */,
+				65127EFA1CFBECE90041C324 /* NamePrefix.cpp in Sources */,
+				65127EFD1CFBECE90041C324 /* Path.cpp in Sources */,
+				65127EFE1CFBECE90041C324 /* PerformanceCounter.cpp in Sources */,
+				65127F021CFBECE90041C324 /* ProcessRuntimeInformation.cpp in Sources */,
+				65127F031CFBECE90041C324 /* RangedNameGenerator.cpp in Sources */,
+				65127F041CFBECE90041C324 /* Settings.cpp in Sources */,
+				65127F051CFBECE90041C324 /* SingleEvent.cpp in Sources */,
+				65127F081CFBECE90041C324 /* StandardPaths_iOS.mm in Sources */,
+				65127F0D1CFBECE90041C324 /* StringKeyValueMap.cpp in Sources */,
+				65127F0F1CFBECE90041C324 /* TextDataChunkReader.cpp in Sources */,
+				65127F101CFBECE90041C324 /* TextDataChunkWriter.cpp in Sources */,
+				65127F111CFBECE90041C324 /* ThisThread.cpp in Sources */,
+				65127F121CFBECE90041C324 /* Thread.cpp in Sources */,
+				65127F131CFBECE90041C324 /* Uri.cpp in Sources */,
+				65127F141CFBECE90041C324 /* UsageFormatter.cpp in Sources */,
+				65127F161CFBECE90041C324 /* UserInformation.mm in Sources */,
+				65127F171CFBECE90041C324 /* Utf8String.cpp in Sources */,
+				65127F181CFBECE90041C324 /* Utf8StringFormatter.cpp in Sources */,
+				65127F191CFBECE90041C324 /* Uuid.cpp in Sources */,
+				65127F1F1CFBECE90041C324 /* XmlDataDocumentWriter.cpp in Sources */,
+				65127F201CFBECE90041C324 /* XmlDataElementWriter.cpp in Sources */,
+				65127F211CFBECE90041C324 /* XmlDocument.cpp in Sources */,
+				65127F221CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp in Sources */,
+				65127F231CFBECE90041C324 /* ZipArchiveReader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		65127E1B1CFBE48F0041C324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		65127E1C1CFBE48F0041C324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65127E1E1CFBE48F0041C324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					Z_HAVE_UNISTD_H,
+					BOOST_SYSTEM_NO_DEPRECATED,
+				);
+				HEADER_SEARCH_PATHS = (
+					.,
+					../../include,
+					../../../include,
+					"/Users/derek/finjin-3rd-party/cpp",
+					"/Users/derek/finjin-3rd-party/cpp/eigen",
+					"/Users/derek/finjin-3rd-party/cpp/boost",
+					"/Users/derek/finjin-3rd-party/cpp/nowide_standalone",
+					"/Users/derek/finjin-3rd-party/cpp/zziplib",
+					"/Users/derek/finjin-3rd-party/cpp/zlib",
+					"/Users/derek/finjin-3rd-party/cpp/lpng",
+					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		65127E1F1CFBE48F0041C324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					Z_HAVE_UNISTD_H,
+					BOOST_SYSTEM_NO_DEPRECATED,
+				);
+				HEADER_SEARCH_PATHS = (
+					.,
+					../../include,
+					../../../include,
+					"/Users/derek/finjin-3rd-party/cpp",
+					"/Users/derek/finjin-3rd-party/cpp/eigen",
+					"/Users/derek/finjin-3rd-party/cpp/boost",
+					"/Users/derek/finjin-3rd-party/cpp/nowide_standalone",
+					"/Users/derek/finjin-3rd-party/cpp/zziplib",
+					"/Users/derek/finjin-3rd-party/cpp/zlib",
+					"/Users/derek/finjin-3rd-party/cpp/lpng",
+					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65127E0F1CFBE48F0041C324 /* Build configuration list for PBXProject "finjin-common-lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65127E1B1CFBE48F0041C324 /* Debug */,
+				65127E1C1CFBE48F0041C324 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65127E1D1CFBE48F0041C324 /* Build configuration list for PBXNativeTarget "finjin-common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65127E1E1CFBE48F0041C324 /* Debug */,
+				65127E1F1CFBE48F0041C324 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65127E0C1CFBE48F0041C324 /* Project object */;
+}

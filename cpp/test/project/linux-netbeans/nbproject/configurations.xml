@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>../../src/Base64Test.hpp</itemPath>
+      <itemPath>../../src/ByteBufferTest.hpp</itemPath>
+      <itemPath>../../src/ClassDescriptionTest.hpp</itemPath>
+      <itemPath>../../src/CollectionTest.hpp</itemPath>
+      <itemPath>../../src/DateTimeTest.hpp</itemPath>
+      <itemPath>../../src/JobSystemTest.hpp</itemPath>
+      <itemPath>../../src/LruTest.hpp</itemPath>
+      <itemPath>../../src/MemoryTest.hpp</itemPath>
+      <itemPath>../../src/PathTest.hpp</itemPath>
+      <itemPath>../../src/SettingsTest.hpp</itemPath>
+      <itemPath>../../src/StreamingDataDocumentTest.hpp</itemPath>
+      <itemPath>../../src/StringFormatTest.hpp</itemPath>
+      <itemPath>../../src/StringTest.hpp</itemPath>
+      <itemPath>../../src/TimeDurationParseTest.hpp</itemPath>
+      <itemPath>../../src/UriTest.hpp</itemPath>
+      <itemPath>../../src/UuidTest.hpp</itemPath>
+      <itemPath>../../src/main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <architecture>2</architecture>
+          <standard>11</standard>
+          <incDir>
+            <pElem>../../../../../finjin-common/cpp/library/include</pElem>
+            <pElem>../../../library/include</pElem>
+            <pElem>../../../library/src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>FINJIN_COMMON_STATIC_LIBRARY</Elem>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <output>./bin/linux64-gcc-debug/finjin-common-test</output>
+          <linkerAddLib>
+            <pElem>..//dist/Debug/GNU-Linux-x86</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost/stage/lib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/curl/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerOptionItem>-Wl,--whole-archive</linkerOptionItem>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../../../library/project/linux-netbeans"
+                            CT="3"
+                            CN="Debug"
+                            AC="true"
+                            BL="true"
+                            WD="../../../library/project/linux-netbeans"
+                            BC="${MAKE}  -f Makefile CONF=Debug"
+                            CC="${MAKE}  -f Makefile CONF=Debug clean"
+                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libfinjin-common.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
+            <linkerOptionItem>-Wl,--no-whole-archive</linkerOptionItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerOptionItem>-lboost_system</linkerOptionItem>
+            <linkerOptionItem>-lboost_filesystem</linkerOptionItem>
+            <linkerOptionItem>-lboost_thread</linkerOptionItem>
+            <linkerOptionItem>-lboost_regex</linkerOptionItem>
+            <linkerOptionItem>-lboost_chrono</linkerOptionItem>
+            <linkerOptionItem>-lboost_timer</linkerOptionItem>
+            <linkerOptionItem>-lboost_locale</linkerOptionItem>
+            <linkerOptionItem>-lboost_program_options</linkerOptionItem>
+            <linkerOptionItem>-lboost_log</linkerOptionItem>
+            <linkerOptionItem>-lcurl</linkerOptionItem>
+            <linkerOptionItem>-lrt</linkerOptionItem>
+            <linkerOptionItem>-ldl</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="../../src/Base64Test.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/ByteBufferTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/ClassDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/CollectionTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/DateTimeTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSystemTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/LruTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/MemoryTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/PathTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/SettingsTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/StreamingDataDocumentTest.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/StringFormatTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/StringTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/TimeDurationParseTest.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/UriTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/UuidTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>11</standard>
+          <incDir>
+            <pElem>../../../../../finjin-common/cpp/library/include</pElem>
+            <pElem>../../../library/include</pElem>
+            <pElem>../../../library/src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>FINJIN_COMMON_STATIC_LIBRARY</Elem>
+          </preprocessorList>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <output>./bin/linux64-gcc-release/finjin-common-test</output>
+          <linkerAddLib>
+            <pElem>..//dist/Release/GNU-Linux-x86</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost/stage/lib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/curl/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerOptionItem>-Wl,--whole-archive</linkerOptionItem>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../../../library/project/linux-netbeans"
+                            CT="3"
+                            CN="Release"
+                            AC="false"
+                            BL="true"
+                            WD="../../../library/project/linux-netbeans"
+                            BC="${MAKE}  -f Makefile CONF=Release"
+                            CC="${MAKE}  -f Makefile CONF=Release clean"
+                            OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libfinjin-common.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
+            <linkerOptionItem>-Wl,--no-whole-archive</linkerOptionItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerOptionItem>-lboost_system</linkerOptionItem>
+            <linkerOptionItem>-lboost_filesystem</linkerOptionItem>
+            <linkerOptionItem>-lboost_thread</linkerOptionItem>
+            <linkerOptionItem>-lboost_regex</linkerOptionItem>
+            <linkerOptionItem>-lboost_chrono</linkerOptionItem>
+            <linkerOptionItem>-lboost_timer</linkerOptionItem>
+            <linkerOptionItem>-lboost_locale</linkerOptionItem>
+            <linkerOptionItem>-lboost_program_options</linkerOptionItem>
+            <linkerOptionItem>-lboost_log</linkerOptionItem>
+            <linkerOptionItem>-lcurl</linkerOptionItem>
+            <linkerOptionItem>-lrt</linkerOptionItem>
+            <linkerOptionItem>-ldl</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="../../src/Base64Test.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/ByteBufferTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/ClassDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/CollectionTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/DateTimeTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSystemTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/LruTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/MemoryTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/PathTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/SettingsTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/StreamingDataDocumentTest.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/StringFormatTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/StringTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/TimeDurationParseTest.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/UriTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/UuidTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

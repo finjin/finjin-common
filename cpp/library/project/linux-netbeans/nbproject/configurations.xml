@@ -1,0 +1,3668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f10" displayName="3rd-party" projectFiles="true">
+        <logicalFolder name="f5" displayName="lpng" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/png.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/png.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngconf.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngdebug.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngerror.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngget.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pnginfo.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngmem.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngpread.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngpriv.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngread.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngrio.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngrtran.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngrutil.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngset.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngstruct.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngtrans.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngwio.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngwrite.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngwtran.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/lpng/pngwutil.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="nowide" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="rapidjson" projectFiles="true">
+          <logicalFolder name="f2" displayName="error" projectFiles="true">
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/error/en.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/error/error.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f1" displayName="internal" projectFiles="true">
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/biginteger.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/diyfp.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/dtoa.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/ieee754.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/itoa.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/meta.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/pow10.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/stack.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/strfunc.h</itemPath>
+            <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/internal/strtod.h</itemPath>
+          </logicalFolder>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/allocators.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/document.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/encodedstream.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/encodings.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/filereadstream.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/filestream.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/filewritestream.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/memorybuffer.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/memorystream.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/prettywriter.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/rapidjson.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/reader.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/stringbuffer.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/rapidjson/writer.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="tinyxml2" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.cpp</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="uriparser" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="zlib" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/adler32.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/compress.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/crc32.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/crc32.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/deflate.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/deflate.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/gzclose.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/gzguts.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/gzlib.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/gzread.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/gzwrite.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/infback.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inffast.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inffast.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inffixed.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inflate.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inflate.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inftrees.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/inftrees.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/trees.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/trees.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/uncompr.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/zconf.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/zlib.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/zutil.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zlib/zutil.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f7" displayName="zziplib" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/Makefile.in</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/__debug.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/__dirent.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/__fnmatch.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/__hints.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/__mmap.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/_config.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/_msvc.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/autoconf.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/conf.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/format.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/lib.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/stdint.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/types.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip.h</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip32.h</itemPath>
+        </logicalFolder>
+        <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/iostreams/src/mapped_file.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="documents" projectFiles="true">
+        <logicalFolder name="f3" displayName="config" projectFiles="true">
+          <logicalFolder name="f1" displayName="reader" projectFiles="true">
+            <itemPath>../../src/ConfigDocumentReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/ConfigDocumentReader.hpp</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="writer" projectFiles="true">
+            <itemPath>../../src/ConfigDocumentWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/ConfigDocumentWriter.hpp</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="json/xml writer" projectFiles="true">
+          <itemPath>../../include/finjin/common/DataDocumentWriter.hpp</itemPath>
+          <itemPath>../../src/DataElementWriter.cpp</itemPath>
+          <itemPath>../../include/finjin/common/DataElementWriter.hpp</itemPath>
+          <itemPath>../../src/JsonDataDocumentWriter.cpp</itemPath>
+          <itemPath>../../include/finjin/common/JsonDataDocumentWriter.hpp</itemPath>
+          <itemPath>../../src/JsonDataElementWriter.cpp</itemPath>
+          <itemPath>../../include/finjin/common/JsonDataElementWriter.hpp</itemPath>
+          <itemPath>../../src/XmlDataDocumentWriter.cpp</itemPath>
+          <itemPath>../../include/finjin/common/XmlDataDocumentWriter.hpp</itemPath>
+          <itemPath>../../src/XmlDataElementWriter.cpp</itemPath>
+          <itemPath>../../include/finjin/common/XmlDataElementWriter.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="streaming" projectFiles="true">
+          <logicalFolder name="f1" displayName="reader" projectFiles="true">
+            <itemPath>../../src/BinaryDataChunkReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/BinaryDataChunkReader.hpp</itemPath>
+            <itemPath>../../src/ConfigDataChunkReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/ConfigDataChunkReader.hpp</itemPath>
+            <itemPath>../../src/DataChunkReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkReader.hpp</itemPath>
+            <itemPath>../../src/DataChunkReaderCallbacks.cpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkReaderCallbacks.hpp</itemPath>
+            <itemPath>../../src/DataChunkReaderController.cpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkReaderController.hpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkReaderInput.hpp</itemPath>
+            <itemPath>../../src/JsonDataChunkReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/JsonDataChunkReader.hpp</itemPath>
+            <itemPath>../../src/TextDataChunkReader.cpp</itemPath>
+            <itemPath>../../include/finjin/common/TextDataChunkReader.hpp</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="writer" projectFiles="true">
+            <itemPath>../../src/BinaryDataChunkWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/BinaryDataChunkWriter.hpp</itemPath>
+            <itemPath>../../src/ChunkName.cpp</itemPath>
+            <itemPath>../../include/finjin/common/ChunkName.hpp</itemPath>
+            <itemPath>../../src/ConfigDataChunkWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/ConfigDataChunkWriter.hpp</itemPath>
+            <itemPath>../../src/DataChunkWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkWriter.hpp</itemPath>
+            <itemPath>../../src/DataChunkWriterController.cpp</itemPath>
+            <itemPath>../../include/finjin/common/DataChunkWriterController.hpp</itemPath>
+            <itemPath>../../include/finjin/common/DocumentWriterOutput.hpp</itemPath>
+            <itemPath>../../src/JsonDataChunkWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/JsonDataChunkWriter.hpp</itemPath>
+            <itemPath>../../src/TextDataChunkWriter.cpp</itemPath>
+            <itemPath>../../include/finjin/common/TextDataChunkWriter.hpp</itemPath>
+          </logicalFolder>
+          <itemPath>../../src/DataChunkCommon.hpp</itemPath>
+          <itemPath>../../src/StreamingFileFormat.cpp</itemPath>
+          <itemPath>../../include/finjin/common/StreamingFileFormat.hpp</itemPath>
+        </logicalFolder>
+        <itemPath>../../src/JsonDocument.cpp</itemPath>
+        <itemPath>../../include/finjin/common/JsonDocument.hpp</itemPath>
+        <itemPath>../../include/finjin/common/JsonDocumentImpl.hpp</itemPath>
+        <itemPath>../../src/XmlDocument.cpp</itemPath>
+        <itemPath>../../include/finjin/common/XmlDocument.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f6" displayName="file-formats" projectFiles="true">
+        <itemPath>../../src/PNGReader.cpp</itemPath>
+        <itemPath>../../include/finjin/common/PNGReader.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="file-system" projectFiles="true">
+        <itemPath>../../src/DirEntFileFinder.cpp</itemPath>
+        <itemPath>../../include/finjin/common/DirEntFileFinder.hpp</itemPath>
+        <itemPath>../../src/DirectoryVirtualFileSystemRoot.cpp</itemPath>
+        <itemPath>../../include/finjin/common/DirectoryVirtualFileSystemRoot.hpp</itemPath>
+        <itemPath>../../src/FileAccessor.cpp</itemPath>
+        <itemPath>../../src/FileAccessor.hpp</itemPath>
+        <itemPath>../../include/finjin/common/FileFinder.hpp</itemPath>
+        <itemPath>../../include/finjin/common/FileOperationTypes.hpp</itemPath>
+        <itemPath>../../src/FileSystemEntry.cpp</itemPath>
+        <itemPath>../../include/finjin/common/FileSystemEntry.hpp</itemPath>
+        <itemPath>../../src/Path.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Path.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StandardPaths.hpp</itemPath>
+        <itemPath>../../src/StandardPaths_Linux.cpp</itemPath>
+        <itemPath>../../src/VirtualFileHandle.cpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileHandle.hpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp</itemPath>
+        <itemPath>../../src/VirtualFileOperationHandle.cpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileOperationHandle.hpp</itemPath>
+        <itemPath>../../src/VirtualFileSystem.cpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileSystem.hpp</itemPath>
+        <itemPath>../../src/VirtualFileSystemOperationQueue.cpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileSystemOperationQueue.hpp</itemPath>
+        <itemPath>../../src/VirtualFileSystemRoot.cpp</itemPath>
+        <itemPath>../../include/finjin/common/VirtualFileSystemRoot.hpp</itemPath>
+        <itemPath>../../src/WrappedFileReader.cpp</itemPath>
+        <itemPath>../../include/finjin/common/WrappedFileReader.hpp</itemPath>
+        <itemPath>../../src/WrappedFileWriter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/WrappedFileWriter.hpp</itemPath>
+        <itemPath>../../src/ZipArchiveVirtualFileSystemRoot.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ZipArchiveVirtualFileSystemRoot.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="job-system" projectFiles="true">
+        <logicalFolder name="f1" displayName="fiber" projectFiles="true">
+          <logicalFolder name="f1" displayName="future" projectFiles="true">
+            <itemPath>../../src/JobFuture.cpp</itemPath>
+            <itemPath>../../include/finjin/common/JobFuture.hpp</itemPath>
+            <itemPath>../../include/finjin/common/JobPackagedTask.hpp</itemPath>
+            <itemPath>../../src/JobPromise.hpp</itemPath>
+            <itemPath>../../include/finjin/common/JobSharedState.hpp</itemPath>
+            <itemPath>../../src/JobSharedStateObject.hpp</itemPath>
+            <itemPath>../../include/finjin/common/JobTaskBase.hpp</itemPath>
+            <itemPath>../../include/finjin/common/JobTaskObject.hpp</itemPath>
+          </logicalFolder>
+          <itemPath>../../src/FiberCondition.cpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberCondition.hpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberException.hpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberJob.hpp</itemPath>
+          <itemPath>../../src/FiberJobQueue.cpp</itemPath>
+          <itemPath>../../src/FiberJobQueue.hpp</itemPath>
+          <itemPath>../../src/FiberJobScheduler.cpp</itemPath>
+          <itemPath>../../src/FiberJobScheduler.hpp</itemPath>
+          <itemPath>../../src/FiberMutex.cpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberMutex.hpp</itemPath>
+          <itemPath>../../src/FiberSchedulingAlgorithm.cpp</itemPath>
+          <itemPath>../../src/FiberSchedulingAlgorithm.hpp</itemPath>
+          <itemPath>../../src/FiberSpinLock.cpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberSpinLock.hpp</itemPath>
+          <itemPath>../../include/finjin/common/FiberWaitingQueue.hpp</itemPath>
+          <itemPath>../../include/finjin/common/JobInvokeHelper.hpp</itemPath>
+        </logicalFolder>
+        <itemPath>../../src/JobFiber.cpp</itemPath>
+        <itemPath>../../include/finjin/common/JobFiber.hpp</itemPath>
+        <itemPath>../../src/JobSystem.cpp</itemPath>
+        <itemPath>../../include/finjin/common/JobSystem.hpp</itemPath>
+        <itemPath>../../src/JobThread.cpp</itemPath>
+        <itemPath>../../include/finjin/common/JobThread.hpp</itemPath>
+        <itemPath>../../include/finjin/common/JobThreadType.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="logging" projectFiles="true">
+        <itemPath>../../src/DebugLog.cpp</itemPath>
+        <itemPath>../../include/finjin/common/DebugLog.hpp</itemPath>
+        <itemPath>../../src/LogLevel.cpp</itemPath>
+        <itemPath>../../include/finjin/common/LogLevel.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="memory" projectFiles="true">
+        <itemPath>../../src/AllocatedClass.cpp</itemPath>
+        <itemPath>../../include/finjin/common/AllocatedClass.hpp</itemPath>
+        <itemPath>../../src/Allocator.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Allocator.hpp</itemPath>
+        <itemPath>../../include/finjin/common/DefaultAllocator.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ForwardAllocator.hpp</itemPath>
+        <itemPath>../../src/GeneralAllocator.cpp</itemPath>
+        <itemPath>../../include/finjin/common/GeneralAllocator.hpp</itemPath>
+        <itemPath>../../src/MemoryArchitecture.cpp</itemPath>
+        <itemPath>../../include/finjin/common/MemoryArchitecture.hpp</itemPath>
+        <itemPath>../../src/MemoryArena.cpp</itemPath>
+        <itemPath>../../include/finjin/common/MemoryArena.hpp</itemPath>
+        <itemPath>../../src/MemorySize.cpp</itemPath>
+        <itemPath>../../include/finjin/common/MemorySize.hpp</itemPath>
+        <itemPath>../../src/PassthroughSystemAllocator.cpp</itemPath>
+        <itemPath>../../include/finjin/common/PassthroughSystemAllocator.hpp</itemPath>
+        <itemPath>../../include/finjin/common/TaggedMemoryBlockAllocator.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f5" displayName="thread" projectFiles="true">
+        <itemPath>../../src/ThisThread.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ThisThread.hpp</itemPath>
+        <itemPath>../../src/Thread.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Thread.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ThreadID.hpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="utilities" projectFiles="true">
+        <itemPath>../../include/finjin/common/AlignedElementStaticVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/AllocatedQueue.hpp</itemPath>
+        <itemPath>../../include/finjin/common/AllocatedUnorderedMap.hpp</itemPath>
+        <itemPath>../../include/finjin/common/AllocatedUnorderedSet.hpp</itemPath>
+        <itemPath>../../include/finjin/common/AllocatedVector.hpp</itemPath>
+        <itemPath>../../src/Angle.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Angle.hpp</itemPath>
+        <itemPath>../../include/finjin/common/AssignOrError.hpp</itemPath>
+        <itemPath>../../src/Base64.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Base64.hpp</itemPath>
+        <itemPath>../../include/finjin/common/BitArray.hpp</itemPath>
+        <itemPath>../../src/ByteBuffer.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ByteBuffer.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ByteOrder.hpp</itemPath>
+        <itemPath>../../src/Chrono.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Chrono.hpp</itemPath>
+        <itemPath>../../src/ClassDescription.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ClassDescription.hpp</itemPath>
+        <itemPath>../../src/CommandLineArgsProcessor.cpp</itemPath>
+        <itemPath>../../include/finjin/common/CommandLineArgsProcessor.hpp</itemPath>
+        <itemPath>../../src/CommandLineSettingsDescription.cpp</itemPath>
+        <itemPath>../../include/finjin/common/CommandLineSettingsDescription.hpp</itemPath>
+        <itemPath>../../src/Convert.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Convert.hpp</itemPath>
+        <itemPath>../../src/CpuFeatures.cpp</itemPath>
+        <itemPath>../../include/finjin/common/CpuFeatures.hpp</itemPath>
+        <itemPath>../../src/Distance.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Distance.hpp</itemPath>
+        <itemPath>../../src/DomainInformation.cpp</itemPath>
+        <itemPath>../../include/finjin/common/DomainInformation.hpp</itemPath>
+        <itemPath>../../include/finjin/common/EnumBitwise.hpp</itemPath>
+        <itemPath>../../include/finjin/common/EnumValues.hpp</itemPath>
+        <itemPath>../../src/Error.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Error.hpp</itemPath>
+        <itemPath>../../src/Hash.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Hash.hpp</itemPath>
+        <itemPath>../../include/finjin/common/IntrusiveList.hpp</itemPath>
+        <itemPath>../../include/finjin/common/LayoutDirection.hpp</itemPath>
+        <itemPath>../../src/LibraryLoader.cpp</itemPath>
+        <itemPath>../../include/finjin/common/LibraryLoader.hpp</itemPath>
+        <itemPath>../../src/LinuxUtilities.cpp</itemPath>
+        <itemPath>../../include/finjin/common/LinuxUtilities.hpp</itemPath>
+        <itemPath>../../include/finjin/common/LogicalCpu.hpp</itemPath>
+        <itemPath>../../src/LogicalCpu_Linux.cpp</itemPath>
+        <itemPath>../../include/finjin/common/LruCache.hpp</itemPath>
+        <itemPath>../../src/Math.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Math.hpp</itemPath>
+        <itemPath>../../src/NamePrefix.cpp</itemPath>
+        <itemPath>../../include/finjin/common/NamePrefix.hpp</itemPath>
+        <itemPath>../../include/finjin/common/NumericStruct.hpp</itemPath>
+        <itemPath>../../include/finjin/common/OperationStatus.hpp</itemPath>
+        <itemPath>../../src/PerformanceCounter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/PerformanceCounter.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ProcessID.hpp</itemPath>
+        <itemPath>../../src/ProcessRuntimeInformation.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ProcessRuntimeInformation.hpp</itemPath>
+        <itemPath>../../include/finjin/common/QueueUtilities.hpp</itemPath>
+        <itemPath>../../src/RangedNameGenerator.cpp</itemPath>
+        <itemPath>../../include/finjin/common/RangedNameGenerator.hpp</itemPath>
+        <itemPath>../../include/finjin/common/RealTimeLruCache.hpp</itemPath>
+        <itemPath>../../include/finjin/common/RequestedValue.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ScreenOrientation.hpp</itemPath>
+        <itemPath>../../include/finjin/common/SetMapUtilities.hpp</itemPath>
+        <itemPath>../../src/Settings.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Settings.hpp</itemPath>
+        <itemPath>../../include/finjin/common/SimpleSpinLockMutex.hpp</itemPath>
+        <itemPath>../../src/SingleEvent.cpp</itemPath>
+        <itemPath>../../include/finjin/common/SingleEvent.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticQueue.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticUnorderedMap.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticUnorderedSet.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticVector.hpp</itemPath>
+        <itemPath>../../src/StringKeyValueMap.cpp</itemPath>
+        <itemPath>../../include/finjin/common/StringKeyValueMap.hpp</itemPath>
+        <itemPath>../../include/finjin/common/Throttle.hpp</itemPath>
+        <itemPath>../../src/Uri.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Uri.hpp</itemPath>
+        <itemPath>../../include/finjin/common/UsableStaticVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/UsableAllocatedVector.hpp</itemPath>
+        <itemPath>../../src/UsageFormatter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/UsageFormatter.hpp</itemPath>
+        <itemPath>../../src/UserInformation.cpp</itemPath>
+        <itemPath>../../include/finjin/common/UserInformation.hpp</itemPath>
+        <itemPath>../../src/Utf8String.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Utf8String.hpp</itemPath>
+        <itemPath>../../src/Utf8StringFormatter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Utf8StringFormatter.hpp</itemPath>
+        <itemPath>../../src/Uuid.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Uuid.hpp</itemPath>
+        <itemPath>../../include/finjin/common/ValueOrError.hpp</itemPath>
+        <itemPath>../../include/finjin/common/Vector.hpp</itemPath>
+        <itemPath>../../src/Version.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Version.hpp</itemPath>
+        <itemPath>../../src/ZipArchiveReader.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ZipArchiveReader.hpp</itemPath>
+      </logicalFolder>
+      <itemPath>../../include/finjin/common/FinjinCommonLibrary.hpp</itemPath>
+      <itemPath>../../src/FinjinPrecompiled.cpp</itemPath>
+      <itemPath>../../src/FinjinPrecompiled.hpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>/home/build/finjin-3rd-party/cpp/uriparser/src</Elem>
+    <Elem>/home/build/finjin-3rd-party/cpp/lpng</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <architecture>2</architecture>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>../../include</pElem>
+            <pElem>../../src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/cpp-netlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/curl/include</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/civetweb</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/lpng</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/uriparser/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+            <Elem>_ZZIP_NO_INLINE</Elem>
+            <Elem>_zzip_inline</Elem>
+          </preprocessorList>
+        </cTool>
+        <ccTool>
+          <architecture>2</architecture>
+          <standard>11</standard>
+          <commandlineTool>g++</commandlineTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>../../include</pElem>
+            <pElem>../../src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/eigen</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/lpng</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/uriparser/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+            <Elem>_ZZIP_NO_INLINE</Elem>
+            <Elem>_zzip_inline</Elem>
+          </preprocessorList>
+        </ccTool>
+        <archiverTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libfinjin-common.a</output>
+        </archiverTool>
+      </compileType>
+      <item path="../../include/finjin/common/AlignedElementStaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedClass.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Allocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Angle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AssignOrError.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Base64.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BinaryDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BinaryDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BitArray.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ByteBuffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ByteOrder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Chrono.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ChunkName.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ClassDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CommandLineArgsProcessor.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CommandLineSettingsDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDocumentReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Convert.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CpuFeatures.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderCallbacks.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderController.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderInput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkWriterController.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DebugLog.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DefaultAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DirEntFileFinder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DirectoryVirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Distance.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DocumentWriterOutput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DomainInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumBitwise.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumValues.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Error.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileFinder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileOperationTypes.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileSystemEntry.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FinjinCommonLibrary.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ForwardAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/GeneralAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Hash.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/IntrusiveList.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobFiber.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobThread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobThreadType.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDocument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDocumentImpl.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LayoutDirection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LibraryLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LinuxUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LogLevel.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LogicalCpu.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LruCache.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Math.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemoryArchitecture.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemoryArena.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemorySize.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/NamePrefix.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/NumericStruct.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/OperationStatus.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PNGReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Path.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PerformanceCounter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ProcessID.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ProcessRuntimeInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/QueueUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RangedNameGenerator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RealTimeLruCache.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RequestedValue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ScreenOrientation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SetMapUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Settings.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SingleEvent.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StandardPaths.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StreamingFileFormat.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StringKeyValueMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TaggedMemoryBlockAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TextDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TextDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ThisThread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Thread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ThreadID.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Throttle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Uri.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsableStaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsableAllocatedVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsageFormatter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UserInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Utf8String.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Utf8StringFormatter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Uuid.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ValueOrError.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Vector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Version.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileHandle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileOperationHandle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystem.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystemOperationQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/WrappedFileReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/WrappedFileWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDocument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ZipArchiveReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ZipArchiveVirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/AllocatedClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Allocator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Angle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Base64.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/BinaryDataChunkReader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/BinaryDataChunkWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ByteBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Chrono.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ChunkName.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ClassDescription.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/CommandLineArgsProcessor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/CommandLineSettingsDescription.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDataChunkReader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDataChunkWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDocumentReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ConfigDocumentWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Convert.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/CpuFeatures.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkCommon.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReaderCallbacks.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReaderController.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkWriterController.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataElementWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DebugLog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DirEntFileFinder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DirectoryVirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/Distance.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DomainInformation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Error.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberCondition.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobQueue.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobScheduler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobScheduler.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FiberMutex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberSchedulingAlgorithm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/FiberSchedulingAlgorithm.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/FiberSpinLock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FinjinPrecompiled.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FinjinPrecompiled.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/GeneralAllocator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Hash.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobFiber.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobFuture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobPromise.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSharedStateObject.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataDocumentWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/JsonDataElementWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/JsonDocument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LibraryLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LinuxUtilities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LogLevel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LogicalCpu_Linux.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Math.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemoryArchitecture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemoryArena.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemorySize.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/NamePrefix.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PNGReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PassthroughSystemAllocator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/Path.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PerformanceCounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ProcessRuntimeInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/RangedNameGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StandardPaths_Linux.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StringKeyValueMap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TextDataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ThisThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Uri.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/UsageFormatter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/UserInformation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Utf8String.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Utf8StringFormatter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Uuid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Version.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileHandle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileOperationHandle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystemOperationQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/WrappedFileReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/WrappedFileWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/XmlDataDocumentWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/XmlDataElementWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/XmlDocument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ZipArchiveReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ZipArchiveVirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/png.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngdebug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngerror.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngget.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pnginfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngmem.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngpread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngpriv.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrio.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrtran.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngset.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngstruct.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngtrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwio.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwrite.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwtran.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/allocators.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/document.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/encodedstream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/encodings.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/error/en.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/error/error.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filereadstream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filestream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filewritestream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/biginteger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/diyfp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/dtoa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/ieee754.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/itoa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/meta.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/pow10.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/stack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/strfunc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/strtod.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/memorybuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/memorystream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/prettywriter.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/rapidjson.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/reader.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/stringbuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/writer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/adler32.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/compress.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/crc32.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/crc32.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/deflate.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/deflate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzclose.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzguts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzlib.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzwrite.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/infback.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffast.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffast.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffixed.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inflate.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inflate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inftrees.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inftrees.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/trees.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/trees.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/uncompr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zlib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zutil.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/Makefile.in"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__debug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__dirent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__fnmatch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__hints.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__mmap.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/_config.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/_msvc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/autoconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/conf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/format.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/lib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/stdint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/types.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip32.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>../../include</pElem>
+            <pElem>../../src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/cpp-netlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/curl/include</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/civetweb</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/lpng</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/uriparser/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_ZZIP_NO_INLINE</Elem>
+            <Elem>_zzip_inline</Elem>
+          </preprocessorList>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <architecture>2</architecture>
+          <standard>11</standard>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>../../include</pElem>
+            <pElem>../../src</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/eigen</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/zlib</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/lpng</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/uriparser/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>_ZZIP_NO_INLINE</Elem>
+            <Elem>_zzip_inline</Elem>
+          </preprocessorList>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <archiverTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libfinjin-common.a</output>
+        </archiverTool>
+      </compileType>
+      <item path="../../include/finjin/common/AlignedElementStaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedClass.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AllocatedVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Allocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Angle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/AssignOrError.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Base64.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BinaryDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BinaryDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/BitArray.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ByteBuffer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ByteOrder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Chrono.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ChunkName.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ClassDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CommandLineArgsProcessor.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CommandLineSettingsDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDocumentReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ConfigDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Convert.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/CpuFeatures.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderCallbacks.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderController.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkReaderInput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataChunkWriterController.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DebugLog.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DefaultAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DirEntFileFinder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DirectoryVirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Distance.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DocumentWriterOutput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DomainInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumBitwise.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumValues.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Error.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileFinder.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileOperationTypes.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FileSystemEntry.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/FinjinCommonLibrary.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ForwardAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/GeneralAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Hash.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/IntrusiveList.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobFiber.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobThread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JobThreadType.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDocument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JsonDocumentImpl.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LayoutDirection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LibraryLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LinuxUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LogLevel.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LogicalCpu.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/LruCache.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Math.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemoryArchitecture.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemoryArena.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/MemorySize.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/NamePrefix.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/NumericStruct.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/OperationStatus.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PNGReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Path.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/PerformanceCounter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ProcessID.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ProcessRuntimeInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/QueueUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RangedNameGenerator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RealTimeLruCache.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/RequestedValue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ScreenOrientation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SetMapUtilities.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Settings.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SingleEvent.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StandardPaths.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StreamingFileFormat.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/StringKeyValueMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TaggedMemoryBlockAllocator.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TextDataChunkReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/TextDataChunkWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ThisThread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Thread.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ThreadID.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Throttle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Uri.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsableStaticVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsableAllocatedVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UsageFormatter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/UserInformation.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Utf8String.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Utf8StringFormatter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Uuid.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ValueOrError.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Vector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Version.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileHandle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileOperationHandle.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystem.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystemOperationQueue.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/VirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/WrappedFileReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/WrappedFileWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDataDocumentWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDataElementWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/XmlDocument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ZipArchiveReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/ZipArchiveVirtualFileSystemRoot.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/AllocatedClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Allocator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Angle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Base64.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/BinaryDataChunkReader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/BinaryDataChunkWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ByteBuffer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Chrono.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ChunkName.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ClassDescription.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/CommandLineArgsProcessor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/CommandLineSettingsDescription.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDataChunkReader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDataChunkWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/ConfigDocumentReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ConfigDocumentWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Convert.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/CpuFeatures.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkCommon.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReaderCallbacks.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataChunkReaderController.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DataChunkWriterController.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/DataElementWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DebugLog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DirEntFileFinder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DirectoryVirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/Distance.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/DomainInformation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Error.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberCondition.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobQueue.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobScheduler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberJobScheduler.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FiberMutex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FiberSchedulingAlgorithm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/FiberSchedulingAlgorithm.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../src/FiberSpinLock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FinjinPrecompiled.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/FinjinPrecompiled.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/GeneralAllocator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Hash.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobFiber.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobFuture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobPromise.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSharedStateObject.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/JobSystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JobThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JsonDataDocumentWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/JsonDataElementWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/JsonDocument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LibraryLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LinuxUtilities.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LogLevel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/LogicalCpu_Linux.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Math.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemoryArchitecture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemoryArena.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/MemorySize.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/NamePrefix.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PNGReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PassthroughSystemAllocator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/Path.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/PerformanceCounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ProcessRuntimeInformation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/RangedNameGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StandardPaths_Linux.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StringKeyValueMap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TextDataChunkWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ThisThread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Uri.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/UsageFormatter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/UserInformation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Utf8String.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Utf8StringFormatter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Uuid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/Version.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileHandle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileOperationHandle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystemOperationQueue.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/VirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/WrappedFileReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/WrappedFileWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/XmlDataDocumentWriter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../../src/XmlDataElementWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/XmlDocument.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ZipArchiveReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/ZipArchiveVirtualFileSystemRoot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/png.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngdebug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngerror.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngget.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pnginfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngmem.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngpread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngpriv.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrio.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrtran.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngrutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngset.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngstruct.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngtrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwio.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwrite.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwtran.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/lpng/pngwutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/allocators.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/document.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/encodedstream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/encodings.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/error/en.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/error/error.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filereadstream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filestream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/filewritestream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/biginteger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/diyfp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/dtoa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/ieee754.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/itoa.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/meta.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/pow10.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/stack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/strfunc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/internal/strtod.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/memorybuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/memorystream.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/prettywriter.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/rapidjson.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/reader.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/stringbuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/rapidjson/writer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/tinyxml/tinyxml2.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/adler32.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/compress.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/crc32.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/crc32.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/deflate.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/deflate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzclose.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzguts.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzlib.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/gzwrite.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/infback.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffast.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffast.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inffixed.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inflate.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inflate.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inftrees.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/inftrees.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/trees.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/trees.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/uncompr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zlib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zutil.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zlib/zutil.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/Makefile.in"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__debug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__dirent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__fnmatch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__hints.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/__mmap.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/_config.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/_msvc.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/autoconf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/conf.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/file.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/format.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/info.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/lib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/stdint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/types.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/write.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip32.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

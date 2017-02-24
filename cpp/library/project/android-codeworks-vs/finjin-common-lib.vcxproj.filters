@@ -1,0 +1,1209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8d94b649-7b21-4f8f-bdec-51b28b01b91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party">
+      <UniqueIdentifier>{bd288cc4-38da-4ba4-944a-22e5dfed0d0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\nowide">
+      <UniqueIdentifier>{f33f813d-56fc-46ed-8a1c-2b951bbc8b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\rapidjson">
+      <UniqueIdentifier>{7fa3b034-fcb3-49a1-bb62-3627997d37f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\tinyxml2">
+      <UniqueIdentifier>{b83767bb-b861-4a0a-84a8-109dcd167f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\zlib">
+      <UniqueIdentifier>{a430fab0-5f5a-4821-9f43-6f8cdfb13fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\zziplib">
+      <UniqueIdentifier>{b9113864-2006-409c-81d7-a0a4019ecd2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents">
+      <UniqueIdentifier>{03337df3-1501-4592-b45a-d8feed3ba29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\config">
+      <UniqueIdentifier>{0403b76e-3d42-4820-862c-b05607d54665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\config\Reader">
+      <UniqueIdentifier>{f3f46174-80aa-4267-9b7e-3ee7a1df932d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\config\Writer">
+      <UniqueIdentifier>{1b57ae67-941f-4b23-9e91-572ce5fbf38d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\json/xml writer">
+      <UniqueIdentifier>{e3baa04c-68ae-4621-9266-5e6a3e7cf899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\streaming">
+      <UniqueIdentifier>{93d5b2e0-7296-436e-8a95-38a5742f7b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\streaming\reader">
+      <UniqueIdentifier>{3848f397-6b11-47d9-bfb9-f817d0887aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\documents\streaming\writer">
+      <UniqueIdentifier>{188ebfbc-cfb7-4ccb-a06e-747b7d3df457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file-system">
+      <UniqueIdentifier>{06494b8e-1bc1-4cc3-8f44-d9eab750a9d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\job-system">
+      <UniqueIdentifier>{8259b450-f854-4d75-8b94-61fa8fd852f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logging">
+      <UniqueIdentifier>{5ce8f7ef-52cb-46bf-8ea5-0532ee9e6bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory">
+      <UniqueIdentifier>{cc45fd8a-06a8-44ee-8655-5f5dec02227a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread">
+      <UniqueIdentifier>{57b35bff-4cf3-4895-9718-4b6459adfef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{b52e30fe-0f5e-4ebc-89b6-acc4beae3a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\job-system\fiber">
+      <UniqueIdentifier>{07131261-6447-45f3-a566-5a5b1eb5e98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\job-system\fiber\future">
+      <UniqueIdentifier>{ab60d9e8-7c93-4d66-9a49-cf0152e6ece6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\uriparser">
+      <UniqueIdentifier>{57b30fd6-2135-44b9-a2c7-466891caba60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\file-formats">
+      <UniqueIdentifier>{eff22aae-4d8e-4ee5-a598-9885d7556879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd-party\lpng">
+      <UniqueIdentifier>{1f8579b4-925b-4e1d-b827-4edcc21bcdf8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\tinyxml\tinyxml2.cpp">
+      <Filter>Source Files\3rd-party\tinyxml2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\nowide_standalone\src\iostream.cpp">
+      <Filter>Source Files\3rd-party\nowide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UserInformation.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Uri.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UsageFormatter.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utf8String.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utf8StringFormatter.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Uuid.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Base64.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ByteBuffer.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Chrono.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ChunkName.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ClassDescription.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\CommandLineArgsProcessor.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\CommandLineSettingsDescription.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Convert.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Error.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\LibraryLoader.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\LogicalCpu_Linux.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NamePrefix.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PerformanceCounter.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\RangedNameGenerator.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Settings.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SingleEvent.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\StringKeyValueMap.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AllocatedClass.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Allocator.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FinjinPrecompiled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GeneralAllocator.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataChunkReader.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataChunkReaderController.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataChunkWriter.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataChunkWriterController.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JsonDataChunkWriter.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TextDataChunkWriter.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JsonDataChunkReader.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TextDataChunkReader.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataElementWriter.cpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XmlDataDocumentWriter.cpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XmlDataElementWriter.cpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JsonDataElementWriter.cpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JsonDataDocumentWriter.cpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberCondition.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberJobQueue.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberJobScheduler.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberMutex.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberSchedulingAlgorithm.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FiberSpinLock.cpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JobFiber.cpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JobSystem.cpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JobThread.cpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\LogLevel.cpp">
+      <Filter>Source Files\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MemorySize.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JobFuture.cpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzlib.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzread.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzwrite.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\infback.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\uncompr.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\adler32.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\compress.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzclose.c">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stat.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zip.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\dir.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\err.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.c">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ZipArchiveReader.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FileSystemEntry.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DirEntFileFinder.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\VirtualFileSystem.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Path.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JsonDocument.cpp">
+      <Filter>Source Files\documents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XmlDocument.cpp">
+      <Filter>Source Files\documents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ThisThread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Thread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\StandardPaths_Android.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JniUtilities.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NvAndroidNativeAppGlue.c">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DirectoryVirtualFileSystemRoot.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ZipArchiveVirtualFileSystemRoot.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AndroidJniUtilities.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\LinuxUtilities.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ProcessRuntimeInformation.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ConfigDocumentReader.cpp">
+      <Filter>Source Files\documents\config\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ConfigDocumentWriter.cpp">
+      <Filter>Source Files\documents\config\Writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DomainInformation.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AndroidUtilities.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DebugLog.cpp">
+      <Filter>Source Files\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Version.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\VirtualFileSystemOperationQueue.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\VirtualFileSystemRoot.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\VirtualFileHandle.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\VirtualFileOperationHandle.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PassthroughSystemAllocator.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MemoryArena.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriFile.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalize.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParse.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriQuery.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriRecompose.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriResolve.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriShorten.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCompare.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Distance.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Angle.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\BinaryDataChunkReader.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\BinaryDataChunkWriter.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DataChunkReaderCallbacks.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ConfigDataChunkWriter.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ConfigDataChunkReader.cpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FileAccessor.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WrappedFileReader.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WrappedFileWriter.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\StreamingFileFormat.cpp">
+      <Filter>Source Files\documents\streaming</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngerror.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngget.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngmem.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpread.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngread.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrio.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrtran.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrutil.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngset.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngtrans.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwio.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwrite.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwtran.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwutil.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PNGReader.cpp">
+      <Filter>Source Files\file-formats</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\CpuFeatures.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Hash.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\memorybuffer.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\memorystream.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\prettywriter.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\rapidjson.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\reader.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\stringbuffer.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\writer.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\allocators.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\document.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\encodedstream.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\encodings.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filereadstream.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filestream.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filewritestream.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\meta.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\pow10.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\stack.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\strfunc.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\strtod.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\biginteger.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\diyfp.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\dtoa.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\ieee754.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\itoa.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\error\en.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\error\error.h">
+      <Filter>Source Files\3rd-party\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Math.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Base64.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ByteBuffer.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Chrono.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ChunkName.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ClassDescription.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\CommandLineArgsProcessor.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\CommandLineSettingsDescription.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Convert.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Error.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LibraryLoader.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LogicalCpu.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LruCache.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\NamePrefix.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\PerformanceCounter.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\RealTimeLruCache.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ProcessID.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\RangedNameGenerator.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Settings.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\SimpleSpinLockMutex.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\SingleEvent.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StringKeyValueMap.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UserInformation.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Uri.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UsageFormatter.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Utf8String.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Utf8StringFormatter.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Uuid.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AllocatedClass.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Allocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FinjinPrecompiled.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\GeneralAllocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkReader.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkReaderController.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkWriterController.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkWriter.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDataChunkWriter.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\TextDataChunkWriter.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDataChunkReader.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\TextDataChunkReader.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataDocumentWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataElementWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\XmlDataElementWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\XmlDataDocumentWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDataElementWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDataDocumentWriter.hpp">
+      <Filter>Source Files\documents\json/xml writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberCondition.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberException.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberJob.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FiberJobQueue.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FiberJobScheduler.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberMutex.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FiberSchedulingAlgorithm.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberSpinLock.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FiberWaitingQueue.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobThreadType.hpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobFiber.hpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobSystem.hpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobThread.hpp">
+      <Filter>Source Files\job-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LogLevel.hpp">
+      <Filter>Source Files\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\TaggedMemoryBlockAllocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ForwardAllocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FinjinCommonLibrary.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\MemorySize.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobFuture.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\JobPromise.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobPackagedTask.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobSharedState.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\JobSharedStateObject.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobTaskBase.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobTaskObject.hpp">
+      <Filter>Source Files\job-system\fiber\future</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JobInvokeHelper.hpp">
+      <Filter>Source Files\job-system\fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffixed.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zconf.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zlib.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzguts.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.h">
+      <Filter>Source Files\3rd-party\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__debug.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__dirent.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__fnmatch.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__hints.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_config.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_msvc.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\autoconf.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\conf.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\format.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\lib.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stdint.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\types.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h">
+      <Filter>Source Files\3rd-party\zziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ZipArchiveReader.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FileFinder.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FileSystemEntry.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DirEntFileFinder.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileSystem.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileSystemRoot.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Path.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDocument.hpp">
+      <Filter>Source Files\documents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JsonDocumentImpl.hpp">
+      <Filter>Source Files\documents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\XmlDocument.hpp">
+      <Filter>Source Files\documents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ThisThread.hpp">
+      <Filter>Source Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Thread.hpp">
+      <Filter>Source Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ThreadID.hpp">
+      <Filter>Source Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StandardPaths.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AndroidJniUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JniUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\NvAndroidNativeAppGlue.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DirectoryVirtualFileSystemRoot.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ZipArchiveVirtualFileSystemRoot.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Setting.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LinuxUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ProcessRuntimeInformation.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\EnumBitwise.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ConfigDocumentReader.hpp">
+      <Filter>Source Files\documents\config\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ConfigDocumentWriter.hpp">
+      <Filter>Source Files\documents\config\Writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DomainInformation.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\BitArray.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AndroidUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ScreenOrientation.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DebugLog.hpp">
+      <Filter>Source Files\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Version.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\FileOperationTypes.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\OperationStatus.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\NumericStruct.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileSystemOperationQueue.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LayoutDirection.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ByteOrder.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\EnumValues.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileHandle.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileHandleDataChunkReaderInput.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\VirtualFileOperationHandle.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkReaderInput.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DocumentWriterOutput.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\RequestedValue.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DefaultAllocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\PassthroughSystemAllocator.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.h">
+      <Filter>Source Files\3rd-party\uriparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Angle.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Distance.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\BinaryDataChunkReader.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\BinaryDataChunkWriter.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\DataChunkCommon.hpp">
+      <Filter>Source Files\documents\streaming</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DataChunkReaderCallbacks.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ConfigDataChunkWriter.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ConfigDataChunkReader.hpp">
+      <Filter>Source Files\documents\streaming\reader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\WrappedFileWriter.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\WrappedFileReader.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FileAccessor.hpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StreamingFileFormat.hpp">
+      <Filter>Source Files\documents\streaming</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ValueOrError.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedSet.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AlignedElementStaticVector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticVector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UsableStaticVector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UsableAllocatedVector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Vector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AllocatedVector.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedMap.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AssignOrError.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\SetMapUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedMap.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedSet.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticQueue.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\QueueUtilities.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AllocatedQueue.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngconf.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngdebug.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pnginfo.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpriv.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngstruct.h">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\PNGReader.hpp">
+      <Filter>Source Files\file-formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Hash.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\CpuFeatures.hpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
