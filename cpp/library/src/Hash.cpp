@@ -14,7 +14,6 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Hash.hpp"
-#include "finjin/common/Allocator.hpp"
 
 using namespace Finjin::Common;
 
@@ -25,13 +24,11 @@ size_t Hash::Bytes(const void* vbegin, const void* vend)
     if (vbegin == vend)
         return 0;
 
-    size_t initialHash = 0;
-
     auto begin8 = (const uint8_t*)vbegin;
     auto end8 = (const uint8_t*)vend;
     
     //djb2: http://eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx (Bernstein hash)
-    auto hash = initialHash;
+    size_t hash = 0;
     for (auto iter = begin8; iter != end8; iter++)
         hash = 33 * hash + *iter;
     
