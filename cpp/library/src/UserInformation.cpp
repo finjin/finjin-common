@@ -76,7 +76,7 @@ UserInformation::UserInformation()
     if (GetUserNameW(userName, &userNameLength))
         this->name = userName;
     else
-        this->name = ""; //Need this for value to be "set"
+        this->name = Utf8String::Empty(); //Need this for value to be "set"
 
     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
 #else

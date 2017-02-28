@@ -18,7 +18,7 @@
 #include "finjin/common/FileSystemEntry.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/VirtualFileSystemRoot.hpp"
-#include "finjin/common/ZipArchiveReader.hpp"
+#include "finjin/common/ZIPReader.hpp"
 
 
 //Classes-----------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace Finjin { namespace Common {
     private:
         Utf8String volumeID;
         Path zipFilePath;
-        ZipArchiveReader zipArchive;
+        ZIPReader zipArchive;
         FileSystemEntry workingFileSystemEntry;
     };
 

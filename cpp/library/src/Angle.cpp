@@ -14,8 +14,9 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Angle.hpp"
+#include "finjin/common/Math.hpp"
 
-#define RADIANS_PER_DEGREE 0.01745329252f //PI / 360
+#define RADIANS_PER_DEGREE (FINJIN_PI / 180.0f)
 
 using namespace Finjin::Common;
 

@@ -73,7 +73,7 @@
     <Filter Include="Source Files\3rd-party\uriparser">
       <UniqueIdentifier>{57b30fd6-2135-44b9-a2c7-466891caba60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\file-formats">
+    <Filter Include="Source Files\external-file-formats">
       <UniqueIdentifier>{eff22aae-4d8e-4ee5-a598-9885d7556879}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\3rd-party\lpng">
@@ -324,9 +324,6 @@
     <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ZipArchiveReader.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\FileSystemEntry.cpp">
       <Filter>Source Files\file-system</Filter>
     </ClCompile>
@@ -535,13 +532,16 @@
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\PNGReader.cpp">
-      <Filter>Source Files\file-formats</Filter>
+      <Filter>Source Files\external-file-formats</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\CpuFeatures.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Hash.cpp">
       <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ZIPReader.cpp">
+      <Filter>Source Files\external-file-formats</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -941,9 +941,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\ZipArchiveReader.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\FileFinder.hpp">
       <Filter>Source Files\file-system</Filter>
     </ClInclude>
@@ -1197,13 +1194,16 @@
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\PNGReader.hpp">
-      <Filter>Source Files\file-formats</Filter>
+      <Filter>Source Files\external-file-formats</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Hash.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\CpuFeatures.hpp">
       <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp">
+      <Filter>Source Files\external-file-formats</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

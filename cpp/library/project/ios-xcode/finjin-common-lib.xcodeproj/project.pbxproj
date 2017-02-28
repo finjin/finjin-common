@@ -38,7 +38,7 @@
 		65127BD21CB0DACF0041C324 /* write.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127BAF1CB0DACF0041C324 /* write.c */; };
 		65127BD41CB0DACF0041C324 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 65127BB11CB0DACF0041C324 /* zip.c */; };
 		65127BE91CB0DC650041C324 /* DirEntFileFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BE71CB0DC650041C324 /* DirEntFileFinder.cpp */; };
-		65127BEA1CB0DC650041C324 /* ZipArchiveReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BE81CB0DC650041C324 /* ZipArchiveReader.cpp */; };
+		65127BEA1CB0DC650041C324 /* ZIPReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BE81CB0DC650041C324 /* ZIPReader.cpp */; };
 		65127BF31CB0FD8A0041C324 /* VirtualFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BF21CB0FD8A0041C324 /* VirtualFileSystem.cpp */; };
 		65127BF91CB1A3740041C324 /* FileSystemEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BF61CB1A3740041C324 /* FileSystemEntry.cpp */; };
 		65127BFA1CB1A3740041C324 /* DirectoryVirtualFileSystemRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127BF71CB1A3740041C324 /* DirectoryVirtualFileSystemRoot.cpp */; };
@@ -255,9 +255,9 @@
 		65127BB31CB0DACF0041C324 /* zzip32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zzip32.h; path = "../../../../../../../finjin-3rd-party/cpp/zziplib/zzip/zzip32.h"; sourceTree = SOURCE_ROOT; };
 		65127BE11CB0DC4A0041C324 /* DirEntFileFinder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = DirEntFileFinder.hpp; path = ../../include/finjin/common/DirEntFileFinder.hpp; sourceTree = SOURCE_ROOT; };
 		65127BE21CB0DC4A0041C324 /* FileFinder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileFinder.hpp; path = ../../include/finjin/common/FileFinder.hpp; sourceTree = SOURCE_ROOT; };
-		65127BE31CB0DC4A0041C324 /* ZipArchiveReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ZipArchiveReader.hpp; path = ../../include/finjin/common/ZipArchiveReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127BE31CB0DC4A0041C324 /* ZIPReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ZIPReader.hpp; path = ../../include/finjin/common/ZIPReader.hpp; sourceTree = SOURCE_ROOT; };
 		65127BE71CB0DC650041C324 /* DirEntFileFinder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DirEntFileFinder.cpp; path = ../../src/DirEntFileFinder.cpp; sourceTree = SOURCE_ROOT; };
-		65127BE81CB0DC650041C324 /* ZipArchiveReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZipArchiveReader.cpp; path = ../../src/ZipArchiveReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127BE81CB0DC650041C324 /* ZIPReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZIPReader.cpp; path = ../../src/ZIPReader.cpp; sourceTree = SOURCE_ROOT; };
 		65127BF21CB0FD8A0041C324 /* VirtualFileSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileSystem.cpp; path = ../../src/VirtualFileSystem.cpp; sourceTree = SOURCE_ROOT; };
 		65127BF41CB0FDA80041C324 /* VirtualFileSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileSystem.hpp; path = ../../include/finjin/common/VirtualFileSystem.hpp; sourceTree = SOURCE_ROOT; };
 		65127BF61CB1A3740041C324 /* FileSystemEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileSystemEntry.cpp; path = ../../src/FileSystemEntry.cpp; sourceTree = SOURCE_ROOT; };
@@ -708,13 +708,15 @@
 			name = documents;
 			sourceTree = "<group>";
 		};
-		657AA0C81E3D9461004ADA22 /* file-formats */ = {
+		657AA0C81E3D9461004ADA22 /* external-file-formats */ = {
 			isa = PBXGroup;
 			children = (
 				657AA1541E3D9812004ADA22 /* PNGReader.hpp */,
 				657AA1521E3D97FF004ADA22 /* PNGReader.cpp */,
+				65127BE81CB0DC650041C324 /* ZIPReader.cpp */,
+				65127BE31CB0DC4A0041C324 /* ZIPReader.hpp */,
 			);
-			name = "file-formats";
+			name = "external-file-formats";
 			sourceTree = "<group>";
 		};
 		657AA1271E3D97B0004ADA22 /* lpng */ = {
@@ -766,7 +768,7 @@
 			children = (
 				65E477801C4F712A00A1501F /* 3rd-party */,
 				656D8ACC1C51C4B9008D024F /* documents */,
-				657AA0C81E3D9461004ADA22 /* file-formats */,
+				657AA0C81E3D9461004ADA22 /* external-file-formats */,
 				65127C101CB1BEBD0041C324 /* file-system */,
 				65E478C91C4F71BB00A1501F /* job-system */,
 				65E477811C4F713100A1501F /* logging */,
@@ -902,8 +904,6 @@
 				65E479C81C4F914600A1501F /* Vector.hpp */,
 				651281901D07CB6B0041C324 /* Version.cpp */,
 				651281921D07CB7F0041C324 /* Version.hpp */,
-				65127BE81CB0DC650041C324 /* ZipArchiveReader.cpp */,
-				65127BE31CB0DC4A0041C324 /* ZipArchiveReader.hpp */,
 			);
 			name = utilities;
 			sourceTree = "<group>";
@@ -1255,7 +1255,7 @@
 				65127BFB1CB1A3740041C324 /* ZipArchiveVirtualFileSystemRoot.cpp in Sources */,
 				65127BF31CB0FD8A0041C324 /* VirtualFileSystem.cpp in Sources */,
 				65127BE91CB0DC650041C324 /* DirEntFileFinder.cpp in Sources */,
-				65127BEA1CB0DC650041C324 /* ZipArchiveReader.cpp in Sources */,
+				65127BEA1CB0DC650041C324 /* ZIPReader.cpp in Sources */,
 				65127BBD1CB0DACF0041C324 /* dir.c in Sources */,
 				65127BBE1CB0DACF0041C324 /* err.c in Sources */,
 				65127BBF1CB0DACF0041C324 /* fetch.c in Sources */,

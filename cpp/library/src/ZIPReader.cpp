@@ -13,7 +13,7 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
-#include "finjin/common/ZipArchiveReader.hpp"
+#include "finjin/common/ZIPReader.hpp"
 #include "finjin/common/Utf8StringFormatter.hpp"
 #include <zzip/zzip.h>
 
@@ -87,7 +87,7 @@ struct WorkingZipFile
     }
 };
 
-struct ZipArchiveReader::Impl
+struct ZIPReader::Impl
 {
     Impl()
     {
@@ -190,16 +190,16 @@ static Utf8String ZipErrorToString(zzip_error_t e)
 
 
 //Implementation----------------------------------------------------------------
-ZipArchiveReader::ZipArchiveReader() : impl(new Impl)
+ZIPReader::ZIPReader() : impl(new Impl)
 {    
 }
 
-ZipArchiveReader::ZipArchiveReader(ZipArchiveReader&& other) : impl(std::move(other.impl))
+ZIPReader::ZIPReader(ZIPReader&& other) : impl(std::move(other.impl))
 {
     other.impl.reset(new Impl);
 }
 
-ZipArchiveReader& ZipArchiveReader::operator = (ZipArchiveReader&& other)
+ZIPReader& ZIPReader::operator = (ZIPReader&& other)
 {
     impl = std::move(other.impl);
 
@@ -208,12 +208,12 @@ ZipArchiveReader& ZipArchiveReader::operator = (ZipArchiveReader&& other)
     return *this;
 }
 
-ZipArchiveReader::~ZipArchiveReader()
+ZIPReader::~ZIPReader()
 {
     Close();
 }
 
-void ZipArchiveReader::Open(const Path& path, Error& error)
+void ZIPReader::Open(const Path& path, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -228,7 +228,7 @@ void ZipArchiveReader::Open(const Path& path, Error& error)
     }
 }
 
-void ZipArchiveReader::Rewind(Error& error)
+void ZIPReader::Rewind(Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -244,12 +244,12 @@ void ZipArchiveReader::Rewind(Error& error)
     zzip_rewinddir(impl->zzipDir);
 }
 
-void ZipArchiveReader::Close()
+void ZIPReader::Close()
 {
     impl->Close();
 }
 
-bool ZipArchiveReader::Next(Entry& entry)
+bool ZIPReader::Next(Entry& entry)
 {
     ZZIP_DIRENT dirent;
 
@@ -267,7 +267,7 @@ bool ZipArchiveReader::Next(Entry& entry)
     return true;
 }
 
-FileOperationResult ZipArchiveReader::Inflate(ByteBuffer& buffer, const Entry& entry)
+FileOperationResult ZIPReader::Inflate(ByteBuffer& buffer, const Entry& entry)
 {
     if (buffer.resize(entry.decompressedSize) < entry.decompressedSize)
         return FileOperationResult::NOT_ENOUGH_MEMORY;
@@ -276,7 +276,7 @@ FileOperationResult ZipArchiveReader::Inflate(ByteBuffer& buffer, const Entry& e
     return Inflate(buffer.data(), bytesDecompressed, entry);
 }
 
-FileOperationResult ZipArchiveReader::Inflate(ByteBuffer& buffer, const Path& path)
+FileOperationResult ZIPReader::Inflate(ByteBuffer& buffer, const Path& path)
 {
     WorkingZipFile workingFile;
     auto openResult = impl->StartInflate(workingFile, path);
@@ -290,7 +290,7 @@ FileOperationResult ZipArchiveReader::Inflate(ByteBuffer& buffer, const Path& pa
     return impl->PartialInflate(workingFile, buffer.data(), bytesRead, (size_t)-1);
 }
 
-FileOperationResult ZipArchiveReader::Inflate(void* buffer, size_t& bytesDecompressed, const Entry& entry)
+FileOperationResult ZIPReader::Inflate(void* buffer, size_t& bytesDecompressed, const Entry& entry)
 {
     WorkingZipFile workingFile;
     auto openResult = impl->StartInflate(workingFile, entry.path);
@@ -300,13 +300,13 @@ FileOperationResult ZipArchiveReader::Inflate(void* buffer, size_t& bytesDecompr
     return impl->PartialInflate(workingFile, buffer, bytesDecompressed, entry.decompressedSize);
 }
 
-FileOperationResult ZipArchiveReader::TestStartInflate(const Path& path)
+FileOperationResult ZIPReader::TestStartInflate(const Path& path)
 {
     size_t decompressedSize;
     return TestStartInflate(path, decompressedSize);
 }
 
-FileOperationResult ZipArchiveReader::TestStartInflate(const Path& path, size_t& decompressedSize)
+FileOperationResult ZIPReader::TestStartInflate(const Path& path, size_t& decompressedSize)
 {
     decompressedSize = 0;
 
@@ -330,7 +330,7 @@ FileOperationResult ZipArchiveReader::TestStartInflate(const Path& path, size_t&
     return result;
 }
 
-FileOperationResult ZipArchiveReader::StartInflate(const Path& path, size_t& decompressedSize)
+FileOperationResult ZIPReader::StartInflate(const Path& path, size_t& decompressedSize)
 {
     decompressedSize = 0;
     
@@ -368,7 +368,7 @@ FileOperationResult ZipArchiveReader::StartInflate(const Path& path, size_t& dec
     return result;
 }
 
-FileOperationResult ZipArchiveReader::PartialInflate(ByteBuffer& buffer, size_t byteCount)
+FileOperationResult ZIPReader::PartialInflate(ByteBuffer& buffer, size_t byteCount)
 {
     auto& workingFile = impl->workingFiles[impl->currentFileIndex];
     byteCount = std::min(byteCount, workingFile.GetBytesLeft());
@@ -380,21 +380,21 @@ FileOperationResult ZipArchiveReader::PartialInflate(ByteBuffer& buffer, size_t 
     return impl->PartialInflate(workingFile, buffer.data(), bytesRead, byteCount);
 }
 
-FileOperationResult ZipArchiveReader::PartialInflate(void* buffer, size_t& bytesDecompressed, size_t byteCount)
+FileOperationResult ZIPReader::PartialInflate(void* buffer, size_t& bytesDecompressed, size_t byteCount)
 {
     auto& workingFile = impl->workingFiles[impl->currentFileIndex];
     byteCount = std::min(byteCount, workingFile.GetBytesLeft());
     return impl->PartialInflate(workingFile, buffer, bytesDecompressed, byteCount);
 }
 
-FileOperationResult ZipArchiveReader::Skip(size_t& bytesSkipped, size_t byteCount)
+FileOperationResult ZIPReader::Skip(size_t& bytesSkipped, size_t byteCount)
 {
     auto& workingFile = impl->workingFiles[impl->currentFileIndex];
     byteCount = std::min(byteCount, workingFile.GetBytesLeft());
     return impl->Skip(workingFile, bytesSkipped, byteCount);
 }
 
-void ZipArchiveReader::StopInflate()
+void ZIPReader::StopInflate()
 {
     impl->workingFiles[impl->currentFileIndex].Close();
 }

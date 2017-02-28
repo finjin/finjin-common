@@ -171,7 +171,7 @@
     <ClCompile Include="..\..\src\XmlDataDocumentWriter.cpp" />
     <ClCompile Include="..\..\src\XmlDataElementWriter.cpp" />
     <ClCompile Include="..\..\src\XmlDocument.cpp" />
-    <ClCompile Include="..\..\src\ZipArchiveReader.cpp" />
+    <ClCompile Include="..\..\src\ZIPReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.h" />
@@ -382,7 +382,7 @@
     <ClInclude Include="..\..\include\finjin\common\XmlDataDocumentWriter.hpp" />
     <ClInclude Include="..\..\include\finjin\common\XmlDataElementWriter.hpp" />
     <ClInclude Include="..\..\include\finjin\common\XmlDocument.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\ZipArchiveReader.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Math.hpp" />
     <ClInclude Include="..\..\src\FileAccessor.hpp" />
     <ClInclude Include="..\..\src\FinjinPrecompiled.hpp" />

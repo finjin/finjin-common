@@ -427,7 +427,7 @@
     <ClCompile Include="..\..\src\UsageFormatter.cpp" />
     <ClCompile Include="..\..\src\Utf8StringFormatter.cpp" />
     <ClCompile Include="..\..\src\Uuid.cpp" />
-    <ClCompile Include="..\..\src\ZipArchiveReader.cpp" />
+    <ClCompile Include="..\..\src\ZIPReader.cpp" />
     <ClCompile Include="c:\finjin-3rd-party\cpp\nowide_standalone\src\iostream.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -623,7 +623,7 @@
     <ClInclude Include="..\..\include\finjin\common\JobFuture.hpp" />
     <ClInclude Include="..\..\include\finjin\common\JobInvokeHelper.hpp" />
     <ClInclude Include="..\..\include\finjin\common\FiberMutex.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\ZipArchiveReader.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp" />
     <ClInclude Include="..\..\src\FiberSchedulingAlgorithm.hpp" />
     <ClInclude Include="..\..\include\finjin\common\FiberSpinLock.hpp" />
     <ClInclude Include="..\..\include\finjin\common\JobFiber.hpp" />

@@ -126,7 +126,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/XmlDataDocumentWriter.o \
 	${OBJECTDIR}/_ext/56252444/XmlDataElementWriter.o \
 	${OBJECTDIR}/_ext/56252444/XmlDocument.o \
-	${OBJECTDIR}/_ext/56252444/ZipArchiveReader.o \
+	${OBJECTDIR}/_ext/56252444/ZIPReader.o \
 	${OBJECTDIR}/_ext/56252444/ZipArchiveVirtualFileSystemRoot.o \
 	${OBJECTDIR}/_ext/f9f8f9c1/png.o \
 	${OBJECTDIR}/_ext/f9f8f9c1/pngerror.o \
@@ -669,10 +669,10 @@ ${OBJECTDIR}/_ext/56252444/XmlDocument.o: ../../src/XmlDocument.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/XmlDocument.o ../../src/XmlDocument.cpp
 
-${OBJECTDIR}/_ext/56252444/ZipArchiveReader.o: ../../src/ZipArchiveReader.cpp 
+${OBJECTDIR}/_ext/56252444/ZIPReader.o: ../../src/ZIPReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/ZipArchiveReader.o ../../src/ZipArchiveReader.cpp
+	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/ZIPReader.o ../../src/ZIPReader.cpp
 
 ${OBJECTDIR}/_ext/56252444/ZipArchiveVirtualFileSystemRoot.o: ../../src/ZipArchiveVirtualFileSystemRoot.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444

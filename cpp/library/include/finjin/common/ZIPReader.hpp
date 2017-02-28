@@ -24,17 +24,17 @@
 //Classes----------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    class FINJIN_COMMON_LIBRARY_API ZipArchiveReader
+    class FINJIN_COMMON_LIBRARY_API ZIPReader
     {
     public:
-        ZipArchiveReader(const ZipArchiveReader& other) = delete;
-        ZipArchiveReader& operator = (const ZipArchiveReader& other) = delete;
+        ZIPReader(const ZIPReader& other) = delete;
+        ZIPReader& operator = (const ZIPReader& other) = delete;
 
     public:
-        ZipArchiveReader();
-        ZipArchiveReader(ZipArchiveReader&& other);
-        ZipArchiveReader& operator = (ZipArchiveReader&& other);
-        ~ZipArchiveReader();
+        ZIPReader();
+        ZIPReader(ZIPReader&& other);
+        ZIPReader& operator = (ZIPReader&& other);
+        ~ZIPReader();
 
         void Open(const Path& path, Error& error);
         void Rewind(Error& error);

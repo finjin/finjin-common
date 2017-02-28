@@ -73,7 +73,7 @@ VirtualFileSystemRoot::EnumerationResult ZipArchiveVirtualFileSystemRoot::Enumer
         return EnumerationResult::INCOMPLETE;
     }
 
-    ZipArchiveReader::Entry zipEntry;
+    ZIPReader::Entry zipEntry;
     while (this->zipArchive.Next(zipEntry))
     {
         if (this->workingFileSystemEntry.relativePath.assign(zipEntry.path).HasError())

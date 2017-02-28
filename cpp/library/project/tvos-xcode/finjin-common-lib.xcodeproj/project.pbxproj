@@ -91,7 +91,7 @@
 		65127F201CFBECE90041C324 /* XmlDataElementWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAA1CFBECE90041C324 /* XmlDataElementWriter.cpp */; };
 		65127F211CFBECE90041C324 /* XmlDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAB1CFBECE90041C324 /* XmlDocument.cpp */; };
 		65127F221CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAC1CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp */; };
-		65127F231CFBECE90041C324 /* ZipArchiveReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */; };
+		65127F231CFBECE90041C324 /* ZIPReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127EAD1CFBECE90041C324 /* ZIPReader.cpp */; };
 		65127FA11CFBFF410041C324 /* BoostContextJumpAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 65127F9F1CFBFF410041C324 /* BoostContextJumpAsm.S */; };
 		65127FA21CFBFF410041C324 /* BoostContextMakeAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 65127FA01CFBFF410041C324 /* BoostContextMakeAsm.S */; };
 		65127FA81CFC00B30041C324 /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65127FA71CFC00B30041C324 /* iostream.cpp */; };
@@ -295,7 +295,7 @@
 		65127EAA1CFBECE90041C324 /* XmlDataElementWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = XmlDataElementWriter.cpp; path = ../../src/XmlDataElementWriter.cpp; sourceTree = SOURCE_ROOT; };
 		65127EAB1CFBECE90041C324 /* XmlDocument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = XmlDocument.cpp; path = ../../src/XmlDocument.cpp; sourceTree = SOURCE_ROOT; };
 		65127EAC1CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZipArchiveVirtualFileSystemRoot.cpp; path = ../../src/ZipArchiveVirtualFileSystemRoot.cpp; sourceTree = SOURCE_ROOT; };
-		65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZipArchiveReader.cpp; path = ../../src/ZipArchiveReader.cpp; sourceTree = SOURCE_ROOT; };
+		65127EAD1CFBECE90041C324 /* ZIPReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZIPReader.cpp; path = ../../src/ZIPReader.cpp; sourceTree = SOURCE_ROOT; };
 		65127F241CFBED080041C324 /* AllocatedClass.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedClass.hpp; path = ../../include/finjin/common/AllocatedClass.hpp; sourceTree = SOURCE_ROOT; };
 		65127F251CFBED080041C324 /* Allocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Allocator.hpp; path = ../../include/finjin/common/Allocator.hpp; sourceTree = SOURCE_ROOT; };
 		65127F281CFBED080041C324 /* AppleUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AppleUtilities.hpp; path = ../../include/finjin/common/AppleUtilities.hpp; sourceTree = SOURCE_ROOT; };
@@ -386,7 +386,7 @@
 		65127F9B1CFBED080041C324 /* XmlDataElementWriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = XmlDataElementWriter.hpp; path = ../../include/finjin/common/XmlDataElementWriter.hpp; sourceTree = SOURCE_ROOT; };
 		65127F9C1CFBED080041C324 /* XmlDocument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = XmlDocument.hpp; path = ../../include/finjin/common/XmlDocument.hpp; sourceTree = SOURCE_ROOT; };
 		65127F9D1CFBED080041C324 /* ZipArchiveVirtualFileSystemRoot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ZipArchiveVirtualFileSystemRoot.hpp; path = ../../include/finjin/common/ZipArchiveVirtualFileSystemRoot.hpp; sourceTree = SOURCE_ROOT; };
-		65127F9E1CFBED080041C324 /* ZipArchiveReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ZipArchiveReader.hpp; path = ../../include/finjin/common/ZipArchiveReader.hpp; sourceTree = SOURCE_ROOT; };
+		65127F9E1CFBED080041C324 /* ZIPReader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ZIPReader.hpp; path = ../../include/finjin/common/ZIPReader.hpp; sourceTree = SOURCE_ROOT; };
 		65127F9F1CFBFF410041C324 /* BoostContextJumpAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextJumpAsm.S; path = ../../src/BoostContextJumpAsm.S; sourceTree = SOURCE_ROOT; };
 		65127FA01CFBFF410041C324 /* BoostContextMakeAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextMakeAsm.S; path = ../../src/BoostContextMakeAsm.S; sourceTree = SOURCE_ROOT; };
 		65127FA71CFC00B30041C324 /* iostream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = iostream.cpp; path = "../../../../../../../finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp"; sourceTree = SOURCE_ROOT; };
@@ -568,7 +568,7 @@
 			children = (
 				65127E211CFBEA490041C324 /* 3rd-party */,
 				65127E231CFBEA690041C324 /* documents */,
-				657AA0C71E3D944D004ADA22 /* file-formats */,
+				657AA0C71E3D944D004ADA22 /* external-file-formats */,
 				65127E241CFBEA710041C324 /* file-system */,
 				65127E251CFBEA930041C324 /* job-system */,
 				65127E261CFBEA9D0041C324 /* logging */,
@@ -691,8 +691,6 @@
 				65127F841CFBED080041C324 /* Vector.hpp */,
 				651281931D07CBBE0041C324 /* Version.cpp */,
 				651281951D07CBD50041C324 /* Version.hpp */,
-				65127EAD1CFBECE90041C324 /* ZipArchiveReader.cpp */,
-				65127F9E1CFBED080041C324 /* ZipArchiveReader.hpp */,
 			);
 			name = utilities;
 			sourceTree = "<group>";
@@ -1095,13 +1093,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		657AA0C71E3D944D004ADA22 /* file-formats */ = {
+		657AA0C71E3D944D004ADA22 /* external-file-formats */ = {
 			isa = PBXGroup;
 			children = (
 				657AA1251E3D978A004ADA22 /* PNGReader.cpp */,
 				657AA1231E3D9777004ADA22 /* PNGReader.hpp */,
+				65127EAD1CFBECE90041C324 /* ZIPReader.cpp */,
+				65127F9E1CFBED080041C324 /* ZIPReader.hpp */,
 			);
-			name = "file-formats";
+			name = "external-file-formats";
 			sourceTree = "<group>";
 		};
 		657AA1221E3D9743004ADA22 /* lpng */ = {
@@ -1336,7 +1336,7 @@
 				65127F201CFBECE90041C324 /* XmlDataElementWriter.cpp in Sources */,
 				65127F211CFBECE90041C324 /* XmlDocument.cpp in Sources */,
 				65127F221CFBECE90041C324 /* ZipArchiveVirtualFileSystemRoot.cpp in Sources */,
-				65127F231CFBECE90041C324 /* ZipArchiveReader.cpp in Sources */,
+				65127F231CFBECE90041C324 /* ZIPReader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
