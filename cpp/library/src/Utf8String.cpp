@@ -68,7 +68,7 @@ static int strncmp32(const char32_t* a, const char32_t* b)
 {
     while (*a && *b)
     {
-        auto result = static_cast<int>(*a++) - static_cast<int>(*b++);
+        auto result = static_cast<int32_t>(*a++) - static_cast<int32_t>(*b++);
         if (result != 0)
             return result;
     }
