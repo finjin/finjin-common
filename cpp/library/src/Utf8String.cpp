@@ -1365,6 +1365,11 @@ size_t Utf8String::Hash(const char* s, size_t len)
     return Hash::Bytes(s, len);
 }
 
+size_t Utf8String::Hash(const char* s)
+{
+    return Hash::Bytes(s, strlen(s));
+}
+
 const Utf8String& Utf8String::ToString() const
 {
     return *this;
