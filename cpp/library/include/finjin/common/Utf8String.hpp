@@ -260,6 +260,7 @@ namespace Finjin { namespace Common {
 
         static size_t Hash(const Utf8String& s);
         static size_t Hash(const char* s, size_t len);
+        static size_t Hash(const char* s);
 
         const Utf8String& ToString() const;
         ValueOrError<void> ToString(Utf8String& result) const;
