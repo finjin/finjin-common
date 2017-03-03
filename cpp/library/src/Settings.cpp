@@ -88,15 +88,15 @@ Path Settings::CompletePath(const Path& _path, RelativeTo relativeTo, const Stan
         }
         else if (relativeTo == RelativeTo::APPLICATION)
         {
-            standardPaths.applicationExecutableFile.path.GetParentPath(combinedPath);
+            standardPaths.applicationExecutableFile.path.GetParent(combinedPath);
             combinedPath /= path;
         }
         else if (!GetThisFileName().empty())
         {
             Path thisFileNamePath(GetThisFileName());
-            if (thisFileNamePath.HasParentPath())
+            if (thisFileNamePath.HasParent())
             {
-                thisFileNamePath.GetParentPath(combinedPath);
+                thisFileNamePath.GetParent(combinedPath);
                 combinedPath /= path;
             }
             else

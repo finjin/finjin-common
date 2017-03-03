@@ -60,12 +60,12 @@ BOOST_AUTO_TEST_CASE(PathTest_parent)
 #if FINJIN_TARGET_OS_IS_WINDOWS
     Path path("c:/users/someone/somefile.txt");
     Path parentPath;
-    BOOST_CHECK(!path.GetParentPath(parentPath).HasError());
+    BOOST_CHECK(!path.GetParent(parentPath).HasError());
     BOOST_CHECK(parentPath == "c:/users/someone");
 #else
     Path path("/users/someone/somefile.txt");
     Path parentPath;
-    BOOST_CHECK(!path.GetParentPath(parentPath).HasError() && parentPath == "/users/someone");
+    BOOST_CHECK(!path.GetParent(parentPath).HasError() && parentPath == "/users/someone");
 #endif
 }
 
@@ -107,22 +107,22 @@ BOOST_AUTO_TEST_CASE(PathTest_goto_parent)
     //Windows-style
     path = "c:/root/file.txt";
     
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path == "c:/root");
 
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path == "c:");
 
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path.empty());
 
     //Linux-style
     path = "/root/file.txt";
 
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path == "/root");
 
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path.empty());
 }
 
@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE(PathTest_unc_test)
 
     BOOST_CHECK(path.IsAbsolute() == true);
 
-    path.GoToParentPath();
+    path.GoToParent();
     BOOST_CHECK(path == "\\\\?\\c:/somedir/a/b");
 }
 

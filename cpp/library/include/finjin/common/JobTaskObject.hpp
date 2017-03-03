@@ -43,11 +43,11 @@ namespace Finjin { namespace Common { namespace detail {
         {
             try 
             {
-                set_value(invoke_helper(std::move(fn_), std::make_tuple(std::forward<Args>(args)...)));
+                this->set_value(invoke_helper(std::move(fn_), std::make_tuple(std::forward<Args>(args)...)));
             } 
             catch (...)
             {
-                set_exception(std::current_exception());
+                this->set_exception(std::current_exception());
             }
         }
 
@@ -83,11 +83,11 @@ namespace Finjin { namespace Common { namespace detail {
             try 
             {
                 invoke_helper(std::move(fn_), std::make_tuple(std::forward<Args>(args)...));
-                set_value();
+                this->set_value();
             } 
             catch (...)
             {
-                set_exception(std::current_exception());
+                this->set_exception(std::current_exception());
             }
         }
 

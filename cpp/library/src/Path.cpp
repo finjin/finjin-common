@@ -210,7 +210,7 @@ ValueOrError<void> AppendPath(Path& path, const T* otherBegin)
                 if (Path::IsSeparator(*(i + 2)))
                 {
                     //Found "../"
-                    path.GoToParentPath();
+                    path.GoToParent();
                     otherBegin += 3;
                     i += 3;
                 }
@@ -220,7 +220,7 @@ ValueOrError<void> AppendPath(Path& path, const T* otherBegin)
             else if (i == otherCopy && *(i + 2) == 0)
             {
                 //Special case where other is just ".."
-                path.GoToParentPath();
+                path.GoToParent();
                 otherBegin += 2;
                 i += 2;
                 break;
@@ -287,7 +287,7 @@ ValueOrError<void> AppendPath(Path& path, const T* otherBegin, const T* otherEnd
                 if (Path::IsSeparator(*(i + 2)))
                 {
                     //Found "../"
-                    path.GoToParentPath();
+                    path.GoToParent();
                     otherBegin += 3;
                     i += 3;
                 }
@@ -297,7 +297,7 @@ ValueOrError<void> AppendPath(Path& path, const T* otherBegin, const T* otherEnd
             else if (i == otherCopy && (i + 2) == otherEnd)
             {
                 //Special case where other is just ".."
-                path.GoToParentPath();
+                path.GoToParent();
                 otherBegin += 2;
                 i += 2;
                 break;
@@ -1752,7 +1752,7 @@ ValueOrError<void> Path::NormalizeRelativeComponents(Path& result) const
             else if (component == "..")
             {
                 //Navigate up
-                result.GoToParentPath();
+                result.GoToParent();
             }
             else
             {
@@ -1869,12 +1869,12 @@ size_t Path::GetParentOffset() const
     return (size_t)-1;
 }
 
-bool Path::HasParentPath() const
+bool Path::HasParent() const
 {
     return GetParentOffset() != (size_t)-1;
 }
 
-ValueOrError<bool> Path::GetParentPath(Path& result) const
+ValueOrError<bool> Path::GetParent(Path& result) const
 {
     result.clear();
 
@@ -1904,7 +1904,7 @@ ValueOrError<bool> Path::GetParentPath(Path& result) const
     return false;
 }
 
-bool Path::GoToParentPath()
+bool Path::GoToParent()
 {
     if (empty())
         return false;
@@ -1935,7 +1935,7 @@ bool Path::GoToParentPath()
     return false;
 }
 
-bool Path::RemoveParentPath()
+bool Path::RemoveParent()
 {
     auto parentOffset = GetParentOffset();
     if (parentOffset != (size_t)-1)
@@ -2164,7 +2164,7 @@ ValueOrError<bool> Path::ContainsDirectory(const Path& other) const
         if (parentDirectory == otherDirectory)
             return true;
 
-        if (otherDirectory.GetParentPath(tempParent).HasError())
+        if (otherDirectory.GetParent(tempParent).HasError())
             return ValueOrError<bool>::CreateError();
         otherDirectory = tempParent;
     }
@@ -2190,7 +2190,7 @@ ValueOrError<bool> Path::ContainsFile(const Path& other) const
         if (parentDirectory == otherDirectory)
             return true;
 
-        if (otherDirectory.GetParentPath(tempParent).HasError())
+        if (otherDirectory.GetParent(tempParent).HasError())
             return ValueOrError<bool>::CreateError();
         otherDirectory = tempParent;
     }

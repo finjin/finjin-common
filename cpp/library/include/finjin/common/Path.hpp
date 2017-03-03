@@ -16,8 +16,8 @@
 
 //Includes---------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
-#include "finjin/common/ValueOrError.hpp"
 #include "finjin/common/Utf8String.hpp"
+#include "finjin/common/ValueOrError.hpp"
 #include <iostream>
 
 
@@ -407,16 +407,16 @@ namespace Finjin { namespace Common {
          * Indicates whether the path has a parent path. 
          * @return If the path has a parent path, true is returned. Otherwise, false is returned.
          */
-        bool HasParentPath() const;
+        bool HasParent() const;
 
         /**
          * Gets the path's parent.
          * @return The path's parent.
          */
-        ValueOrError<bool> GetParentPath(Path& result) const;
+        ValueOrError<bool> GetParent(Path& result) const;
 
-        bool GoToParentPath();
-        bool RemoveParentPath();
+        bool GoToParent();
+        bool RemoveParent();
 
         ValueOrError<bool> GetRoot(Path& result) const;
 

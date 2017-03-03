@@ -675,6 +675,7 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
         if (name.index != (ChunkName::Index)-1)
         {
             WRITE_CHUNK_START_LINE(this, static_cast<ChunkName::Index>(name.index), BINARY_LINE_FLAG_INDEXED);
+            
             BinaryDataChunkWriter chunkWriter;
             chunkWriter.Create(this->settings, DataChunkWriterStyle::NESTED, this, error);
             chunkWriter.InheritContextStrings(*this);
@@ -690,6 +691,8 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
                 FINJIN_SET_ERROR(error, "Failed to write chunk.");
                 return;
             }
+            
+            //No need to write chunk end since the chunkWriter does it in its destructor
         }
         else
         {
