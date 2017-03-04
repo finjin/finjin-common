@@ -922,17 +922,14 @@ void Utf8String::ToUpperAscii()
     if (empty())
         return;
 
-    Utf8String ascii(this->allocator);
-    if (!ascii.reserve(this->l).HasError())
+    size_t outCount = 0;
+    for (size_t inIndex = 0; inIndex < this->l; inIndex++)
     {
-        for (size_t i = 0; i < this->l; i++)
-        {
-            if (isascii(this->s[i]))
-                ascii.append(static_cast<char>(toupper(this->s[i])));
-        }
-
-        *this = std::move(ascii);
+        if (isascii(this->s[inIndex]))
+            this->s[outCount++] = static_cast<char>(toupper(this->s[inIndex]));
     }
+    this->l = outCount;
+    this->s[this->l] = 0;
 }
 
 void Utf8String::ToLowerAscii()
@@ -940,17 +937,14 @@ void Utf8String::ToLowerAscii()
     if (empty())
         return;
     
-    Utf8String ascii(this->allocator);
-    if (!ascii.reserve(this->l).HasError())
+    size_t outCount = 0;
+    for (size_t inIndex = 0; inIndex < this->l; inIndex++)
     {
-        for (size_t i = 0; i < this->l; i++)
-        {
-            if (isascii(this->s[i]))
-                ascii.append(static_cast<char>(tolower(this->s[i])));
-        }
-
-        *this = std::move(ascii);
+        if (isascii(this->s[inIndex]))
+            this->s[outCount++] = static_cast<char>(tolower(this->s[inIndex]));
     }
+    this->l = outCount;
+    this->s[this->l] = 0;
 }
 
 void Utf8String::ToLowerAlphaNumeric()
@@ -958,17 +952,14 @@ void Utf8String::ToLowerAlphaNumeric()
     if (empty())
         return;
 
-    Utf8String alnum(this->allocator);
-    if (!alnum.reserve(this->l).HasError())
+    size_t outCount = 0;
+    for (size_t inIndex = 0; inIndex < this->l; inIndex++)
     {
-        for (size_t i = 0; i < this->l; i++)
-        {
-            if (isalnum(this->s[i]))
-                alnum.append(static_cast<char>(tolower(this->s[i])));
-        }
-
-        *this = std::move(alnum);
+        if (isalnum(this->s[inIndex]))
+            this->s[outCount++] = static_cast<char>(tolower(this->s[inIndex]));
     }
+    this->l = outCount;
+    this->s[this->l] = 0;
 }
 
 bool Utf8String::IsStatic() const
