@@ -108,7 +108,7 @@ namespace Finjin { namespace Common {
             //If necessary, aligns memory location downwards toward nearest aligned location
             static_assert(sizeof(T) <= sizeof(uintptr_t), "Unsupported memory type.");
             
-            return (T)((uintptr_t)location & ~(alignment - 1));
+            return T((uintptr_t)location & ~(alignment - 1));
         }
 
         template <typename T>
@@ -117,7 +117,7 @@ namespace Finjin { namespace Common {
             //If necessary, aligns memory location upwards toward nearest aligned location
             static_assert(sizeof(T) <= sizeof(uintptr_t), "Unsupported memory type.");
 
-            return (T)AlignSizeUp((uintptr_t)location, alignment);
+            return T(AlignSizeUp((uintptr_t)location, alignment));
         }
 
         template <typename T>
@@ -133,11 +133,11 @@ namespace Finjin { namespace Common {
             //If necessary, aligns size upwards toward nearest aligned size
             assert(alignment != 0);
             assert((alignment & (alignment - 1)) == 0);
-            return (size + (alignment - 1)) & ~(alignment - 1);
+            return T((size + (alignment - 1)) & ~(alignment - 1));
         }
 
         template <typename T>
-        static T IsSizeAligned(T size, size_t alignment)
+        static bool IsSizeAligned(T size, size_t alignment)
         {
             assert(alignment != 0);
             assert((alignment & (alignment - 1)) == 0);
@@ -153,7 +153,7 @@ namespace Finjin { namespace Common {
             assert(alignment != 0);
             assert((alignment & (alignment - 1)) == 0);
 
-            return size + alignment - 1;
+            return T(size + alignment - 1);
         }
 
         template <typename T>
