@@ -18,12 +18,14 @@
 namespace Finjin { namespace Common {
     
     template <typename EnumType, EnumType count, typename ValueType>
-    struct EnumValues
+    class EnumValues
     {
-        std::array<ValueType, (size_t)count> items;
-
-        size_t size() const { return this->items.size(); }
-        size_t max_size() const { return this->items.max_size(); }
+    public:
+        typedef ValueType* iterator;
+        typedef const ValueType* const_iterator;
+        
+        size_t size() const { return (size_t)count; }
+        size_t max_size() const { return (size_t)count; }
 
         const ValueType& operator [] (EnumType enumValue) const { return this->items[(size_t)enumValue]; }
         ValueType& operator [] (EnumType enumValue) { return this->items[(size_t)enumValue]; }
@@ -34,20 +36,14 @@ namespace Finjin { namespace Common {
         const ValueType& operator [] (size_t i) const { return this->items[i]; }
         ValueType& operator [] (size_t i) { return this->items[i]; }
 
-        const ValueType& Get(EnumType enumValue) const { return this->items[(size_t)enumValue]; }
-        ValueType& Get(EnumType enumValue) { return this->items[(size_t)enumValue]; }
+        iterator begin() { return &this->items[0]; }
+        iterator end() { return &this->items[(size_t)count]; }
 
-        const ValueType& Get(int i) const { return this->items[i]; }
-        ValueType& Get(int i) { return this->items[i]; }
-
-        const ValueType& Get(size_t i) const { return this->items[i]; }
-        ValueType& Get(size_t i) { return this->items[i]; }
-
-        ValueType* begin() { return this->items.data(); }
-        ValueType* end() { return this->items.data() + (size_t)count; }
-
-        const ValueType* begin() const { return this->items.data(); }
-        const ValueType* end() const { return this->items.data() + (size_t)count; }
+        const_iterator begin() const { return &this->items[0]; }
+        const_iterator end() const { return &this->items[(size_t)count]; }
+        
+    private:
+        ValueType items[(size_t)count];
     };
 
 } }
