@@ -262,7 +262,8 @@ PNGReader::DecompressResult PNGReader::DecompressImage(ByteBufferReader& reader,
     auto bytesPerRow = this->width * this->channelCount * this->bytesPerChannel;
     assert(bytesPerRow == png_get_rowbytes(png, info));
     auto decompressedImageSize = bytesPerRow * this->height;
-    auto totalAllocationSize = decompressedImageSize + sizeof(png_bytep) * height; //Row pointers at end
+    auto alignedDecompressedImageSize = Allocator::AlignSizeUp(decompressedImageSize, Allocator::GetDefaultAlignment()); //Size aligned so that row pointers at end start on a proper boundary
+    auto totalAllocationSize = alignedDecompressedImageSize + sizeof(png_bytep) * height; //Row pointers at end
     if (decompressedBuffer.max_size() - tempAllocatorSize < totalAllocationSize)
     {
         png_destroy_read_struct(&png, &info, nullptr);
@@ -271,7 +272,7 @@ PNGReader::DecompressResult PNGReader::DecompressImage(ByteBufferReader& reader,
 
     decompressedBuffer.resize(totalAllocationSize);
 
-    auto rowPointers = (png_bytep*)(decompressedBuffer.data() + decompressedImageSize);
+    auto rowPointers = (png_bytep*)(&decompressedBuffer[alignedDecompressedImageSize]);
     for (uint32_t rowIndex = 0; rowIndex < this->height; rowIndex++)
         rowPointers[rowIndex] = (png_byte*)(decompressedBuffer.data() + bytesPerRow * rowIndex);
     
