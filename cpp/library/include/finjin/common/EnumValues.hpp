@@ -27,14 +27,8 @@ namespace Finjin { namespace Common {
         size_t size() const { return (size_t)count; }
         size_t max_size() const { return (size_t)count; }
 
-        const ValueType& operator [] (EnumType enumValue) const { return this->items[(size_t)enumValue]; }
-        ValueType& operator [] (EnumType enumValue) { return this->items[(size_t)enumValue]; }
-
-        const ValueType& operator [] (int i) const { return this->items[i]; }
-        ValueType& operator [] (int i) { return this->items[i]; }
-
-        const ValueType& operator [] (size_t i) const { return this->items[i]; }
-        ValueType& operator [] (size_t i) { return this->items[i]; }
+        template <typename Index> const ValueType& operator [] (Index index) const { return this->items[(size_t)index]; }
+        template <typename Index> ValueType& operator [] (Index index) { return this->items[(size_t)index]; }
 
         iterator begin() { return &this->items[0]; }
         iterator end() { return &this->items[(size_t)count]; }
