@@ -276,9 +276,9 @@ namespace Finjin { namespace Common {
 
             if (!this->valueEntries.empty())
             {
-                this->valueEntries[0].next = nullptr;
                 for (size_t i = 0; i < this->valueEntries.size() - 1; i++)
                     this->valueEntries[i].next = &this->valueEntries[i + 1];
+                this->valueEntries[this->valueEntries.size() - 1].next = nullptr;
 
                 this->unusedValueEntries = &this->valueEntries[0];
             }
