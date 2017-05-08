@@ -11,16 +11,16 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API CpuFeatures
     {
     public:
         static bool SupportsSSE42();
-    };     
+    };
 
 } }

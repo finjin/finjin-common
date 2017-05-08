@@ -13,20 +13,22 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
+#include "finjin/common/GeneralAllocator.hpp"
 #include "finjin/common/ConfigDocumentReader.hpp"
 #include "finjin/common/Convert.hpp"
 #include "finjin/common/MemorySize.hpp"
-#include "finjin/common/GeneralAllocator.hpp"
 
+using namespace Finjin::Common;
+
+
+//Macros------------------------------------------------------------------------
 #define ALLOCATED_PADDING_VALUE 11111
 #define FREED_PADDING_VALUE 22222
 #define EXTENDED_PADDING_VALUE 99999
 #define ADD_FREED_TO_END_OF_FREE_LIST 0
 
-using namespace Finjin::Common;
 
-
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //GeneralAllocator::Settings
 GeneralAllocator::Settings::Settings()
@@ -34,7 +36,7 @@ GeneralAllocator::Settings::Settings()
 }
 
 void GeneralAllocator::Settings::ParseSettings(const ByteBufferReader& configFileBuffer, Error& error)
-{   
+{
 }
 
 //GeneralAllocator
@@ -43,7 +45,7 @@ GeneralAllocator::GeneralAllocator()
 }
 
 GeneralAllocator::~GeneralAllocator()
-{   
+{
 }
 
 void GeneralAllocator::Create(const Settings& settings, ByteMemoryArena&& arena)
@@ -51,15 +53,15 @@ void GeneralAllocator::Create(const Settings& settings, ByteMemoryArena&& arena)
     //Validate settings
     if (arena.IsNull())
         return;
-    
+
     //Initialize
     std::lock_guard<MutexType> lock(this->mutex);
 
     this->arena.Destroy();
     _Init();
-    
+
     this->arena = std::move(arena);
-    
+
     _FreeAllBlocks();
 }
 
@@ -81,7 +83,7 @@ void GeneralAllocator::Create(const Settings& settings, ByteMemoryArena&& arena,
     _Init();
 
     this->arena = std::move(arena);
-    
+
     _FreeAllBlocks();
 }
 
@@ -91,7 +93,7 @@ void* GeneralAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECL
 
     if (this->arena.IsNull())
         return nullptr;
-    
+
     //_DebugCheck();
 
     //Add to the requested number of bytes the number of bytes required by the memory block data structure plus any bytes for alignment
@@ -102,16 +104,16 @@ void* GeneralAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECL
         return nullptr;
 
     //Found a block of memory that will fit the requested number of bytes plus the size of the allocation structure.
-    //If the found block is big enough to hold an additional allocation structure plus a little bit of data, we'll split the block in two, 
+    //If the found block is big enough to hold an additional allocation structure plus a little bit of data, we'll split the block in two,
     //placing one  block in the free list and the other in the allocated list.
     //Otherwise we remove the block from the free list and move it into the allocated list
     if (foundFreeBlockHeader->size >= byteCount + GetAlignedMemberBlockHeaderSize() + 32)
     {
         //Split
-        
+
         //The memory on the left side of the split is put into the allocation list,
-        //and the memory on the right side of the split is put into the free list.  
-        //Actually, the memory on the right side STAYS in the free list.  
+        //and the memory on the right side of the split is put into the free list.
+        //Actually, the memory on the right side STAYS in the free list.
         //In other words, its relative location in the free list does not change
 
         auto right = reinterpret_cast<MemoryBlockHeader*>(reinterpret_cast<uint8_t*>(foundFreeBlockHeader) + byteCount);
@@ -123,7 +125,7 @@ void* GeneralAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECL
         right->previous = previous;
         right->next = next;
         right->padding = FREED_PADDING_VALUE;
-            
+
         if (previous != nullptr)
             previous->next = right;
         if (next != nullptr)
@@ -144,7 +146,7 @@ void* GeneralAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECL
         {
             this->allocList.tail->next = foundFreeBlockHeader;
             foundFreeBlockHeader->previous = this->allocList.tail;
-            
+
             this->allocList.tail = foundFreeBlockHeader;
         }
         else
@@ -189,11 +191,11 @@ void* GeneralAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECL
     foundFreeBlockHeader->line = line;
     foundFreeBlockHeader->padding2 = EXTENDED_PADDING_VALUE;
 #endif
-    
+
     //_DebugCheck();
-    
+
     return GetMemory(foundFreeBlockHeader);
-}        
+}
 
 bool GeneralAllocator::CanDeallocateBlock() const
 {
@@ -208,9 +210,9 @@ void GeneralAllocator::Deallocate(void* mem)
     std::lock_guard<MutexType> lock(this->mutex);
 
     //_DebugCheck();
-    
+
     auto blockHeader = GetHeader(mem);
-    
+
     assert(blockHeader->padding == ALLOCATED_PADDING_VALUE);
 #if FINJIN_DEBUG
     //std::cout << "GeneralAllocator::Deallocate(): Freeing block (" <<   blockHeader->size << " bytes) allocated @ " << blockHeader->fileName << " (" << blockHeader->line << "): " << blockHeader->functionName << std::endl;
@@ -231,7 +233,7 @@ void GeneralAllocator::Deallocate(void* mem)
         this->allocList.head = next;
     if (blockHeader == this->allocList.tail)
         this->allocList.tail = previous;
-        
+
     //Put freed memory into the freed list
     blockHeader->previous = blockHeader->next = nullptr;
     blockHeader->padding = FREED_PADDING_VALUE;
@@ -316,9 +318,9 @@ void GeneralAllocator::Deallocate(void* mem)
 
                         blockHeader->previous = previous;
                         blockHeader->next = node->next;
-                        
+
                         previous->next = blockHeader;
-                        
+
                         if (blockHeader->next == nullptr)
                             this->freeList.tail = blockHeader;
                         else
@@ -340,7 +342,7 @@ void GeneralAllocator::Deallocate(void* mem)
         }
     }
 #endif
-    
+
     //_DebugCheck();
 }
 
@@ -373,14 +375,14 @@ size_t GeneralAllocator::GetBytesFree() const
 void GeneralAllocator::DebugCheck()
 {
     std::lock_guard<MutexType> lock(this->mutex);
-    
+
     _DebugCheck();
 }
 
 void GeneralAllocator::Output(std::ostream& out, bool forward)
 {
     std::lock_guard<MutexType> lock(this->mutex);
-    
+
     out << "Free:" << std::endl;
     for (auto node = forward ? this->freeList.head : this->freeList.tail; node != nullptr; node = forward ? node->next : node->previous)
     {
@@ -408,7 +410,7 @@ void GeneralAllocator::_DebugCheck()
         assert(node->padding == FREED_PADDING_VALUE);
         index++;
     }
-    
+
     index = 0;
     for (auto node = this->allocList.head; node != nullptr; node = node->next)
     {
@@ -416,7 +418,7 @@ void GeneralAllocator::_DebugCheck()
         assert(node->padding2 == EXTENDED_PADDING_VALUE); //This is only set on allocated blocks
         index++;
     }
-    
+
     auto calculatedBytesUsed = this->allocList.GetTotal();
     auto calculatedBytesFree = this->freeList.GetTotal();
     auto total = calculatedBytesUsed + calculatedBytesFree;
@@ -436,16 +438,16 @@ size_t GeneralAllocator::GetAlignedMemberBlockHeaderSize() const
 }
 
 GeneralAllocator::MemoryBlockHeader* GeneralAllocator::FindFirstFreeFit(size_t byteCount)
-{        
+{
     for (auto blockHeader = this->freeList.head; blockHeader != nullptr; blockHeader = blockHeader->next)
     {
         assert(blockHeader->padding == FREED_PADDING_VALUE);
         if (blockHeader->size >= byteCount)
             return blockHeader;
-    }        
+    }
 
     return nullptr;
-}    
+}
 
 void GeneralAllocator::_Init()
 {

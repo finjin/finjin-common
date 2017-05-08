@@ -14,20 +14,20 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "WxChunkName.hpp"
 #include "WxUuid.hpp"
 #include "WxTimeDuration.hpp"
 //#include "Logger.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WxDocumentWriterOutput;
     class WxDataChunkWriter;
     class WxDataChunkWriterController;
-        
+
     enum class DataChunkWriterStyle
     {
         ROOT = 1 << 0,
@@ -56,7 +56,7 @@ namespace Finjin { namespace Common {
 
     class WxDataChunkWriter
     {
-    public:        
+    public:
         struct Settings
         {
             enum {MIN_BYTES_PER_LINE = 128 };
@@ -88,7 +88,7 @@ namespace Finjin { namespace Common {
         virtual WxDataChunkWriterController& GetWriterController() = 0;
 
         virtual void WriteWriterHeader(WxError& error) = 0;
-        virtual void WriteChunk(const WxChunkName& name, std::function<void(WxDataChunkWriter&, WxError&)> chunkFunc, WxError& error) = 0;        
+        virtual void WriteChunk(const WxChunkName& name, std::function<void(WxDataChunkWriter&, WxError&)> chunkFunc, WxError& error) = 0;
         virtual void WriteFooter() = 0;
 
         virtual bool IsBinaryFormat() const = 0;
@@ -114,7 +114,7 @@ namespace Finjin { namespace Common {
         virtual void WriteUInt64(const WxChunkPropertyName& propertyName, uint64_t value, WxError& error) = 0;
         virtual void WriteFloat(const WxChunkPropertyName& propertyName, float value, WxError& error) = 0;
         virtual void WriteDouble(const WxChunkPropertyName& propertyName, double value, WxError& error) = 0;
-        
+
         virtual void WriteStridedStrings(const WxChunkPropertyName& propertyName, const wxString* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) = 0;
         virtual void WriteStridedTimeDurations(const WxChunkPropertyName& propertyName, const WxTimeDuration* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) = 0;
         virtual void WriteStridedBools(const WxChunkPropertyName& propertyName, const bool* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) = 0;
@@ -150,19 +150,19 @@ namespace Finjin { namespace Common {
             OBJECT_NAME,
             EMBED_OBJECT,
             LINK_TO_MAIN_OBJECT,
-            
+
             COUNT
         };
 
         const wxString& GetContextString(ContextIndex index) const;
         void SetContextString(ContextIndex index, const wxString& value);
         void SetContextStringProcessor(ContextIndex index, std::function<void(wxString&)> value);
-        
+
         void InheritContextStrings(WxDataChunkWriter& other);
 
     protected:
-        EnumValues<ContextIndex, ContextIndex::COUNT, wxString> contextStrings;
-        EnumValues<ContextIndex, ContextIndex::COUNT, std::function<void(wxString&)> > contextStringProcessors;
+        EnumArray<ContextIndex, ContextIndex::COUNT, wxString> contextStrings;
+        EnumArray<ContextIndex, ContextIndex::COUNT, std::function<void(wxString&)> > contextStringProcessors;
     };
 
     template <typename T>

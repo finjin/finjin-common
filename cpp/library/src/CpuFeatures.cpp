@@ -19,35 +19,35 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-#if FINJIN_SSE
+#if FINJIN_ENABLE_SSE
     #if defined(__INTEL_COMPILER)
         //https://software.intel.com/en-us/articles/using-cpuid-to-detect-the-presence-of-sse-41-and-sse-42-instruction-sets
-        /*	Copyright 2009 Intel Corporation
-        *	sse41andsse42detection.cpp
-        *	This file uses code first published by Intel as part of the processor enumeration
-        *	article available on the internet at:
-        *	http://software.intel.com/en-us/articles/intel-64-architecture-processor-topology-enumeration/
-        *	Some of the original code from cpu_topo.c
-        *	has been removed, while other code has been added to illustrate the CPUID usage
-        * 	to determine if the processor supports the SSE 4.1 and SSE 4.2 instruction sets.
-        *	The reference code provided in this file is for demonstration purpose only. It assumes
-        *	the hardware topology configuration within a coherent domain does not change during
-        *	the life of an OS session. If an OS support advanced features that can change
-        *	hardware topology configurations, more sophisticated adaptation may be necessary
-        *	to account for the hardware configuration change that might have added and reduced
-        *  	the number of logical processors being managed by the OS.
+        /*    Copyright 2009 Intel Corporation
+        *    sse41andsse42detection.cpp
+        *    This file uses code first published by Intel as part of the processor enumeration
+        *    article available on the internet at:
+        *    http://software.intel.com/en-us/articles/intel-64-architecture-processor-topology-enumeration/
+        *    Some of the original code from cpu_topo.c
+        *    has been removed, while other code has been added to illustrate the CPUID usage
+        *     to determine if the processor supports the SSE 4.1 and SSE 4.2 instruction sets.
+        *    The reference code provided in this file is for demonstration purpose only. It assumes
+        *    the hardware topology configuration within a coherent domain does not change during
+        *    the life of an OS session. If an OS support advanced features that can change
+        *    hardware topology configurations, more sophisticated adaptation may be necessary
+        *    to account for the hardware configuration change that might have added and reduced
+        *      the number of logical processors being managed by the OS.
         *
-        *	Users of this code should be aware that the provided code
-        *	relies on CPUID instruction providing raw data reflecting the native hardware
-        *	configuration. When an application runs inside a virtual machine hosted by a
-        *	Virtual Machine Monitor (VMM), any CPUID instructions issued by an app (or a guest OS)
-        *	are trapped by the VMM and it is the VMM's responsibility and decision to emulate
-        *	CPUID return data to the virtual machines. When deploying topology enumeration code based
-        *	on CPUID inside a VM environment, the user must consult with the VMM vendor on how an VMM
-        *	will emulate CPUID instruction relating to topology enumeration.
+        *    Users of this code should be aware that the provided code
+        *    relies on CPUID instruction providing raw data reflecting the native hardware
+        *    configuration. When an application runs inside a virtual machine hosted by a
+        *    Virtual Machine Monitor (VMM), any CPUID instructions issued by an app (or a guest OS)
+        *    are trapped by the VMM and it is the VMM's responsibility and decision to emulate
+        *    CPUID return data to the virtual machines. When deploying topology enumeration code based
+        *    on CPUID inside a VM environment, the user must consult with the VMM vendor on how an VMM
+        *    will emulate CPUID instruction relating to topology enumeration.
         *
-        *	Original code written by Patrick Fay, Ronen Zohar and Shihjong Kuo .
-        * 	Modified by Garrett Drysdale for current application note.
+        *    Original code written by Patrick Fay, Ronen Zohar and Shihjong Kuo .
+        *     Modified by Garrett Drysdale for current application note.
         */
 
         typedef struct
@@ -57,8 +57,8 @@ using namespace Finjin::Common;
 
         #if (defined(__x86_64__) || defined(_M_X64))
             // This code is assembly for 64 bit target OS.
-            // Assembly code must be compiled with the use-msasm switch for Linux targets with the 
-            // Intel compiler. 
+            // Assembly code must be compiled with the use-msasm switch for Linux targets with the
+            // Intel compiler.
             int isCPUIDsupported(void)
             {
                 // returns 1 if CPUID instruction supported on this processor, zero otherwise
@@ -84,10 +84,10 @@ using namespace Finjin::Common;
                     mov eax, r9d
                     mov ecx, r10d
                     cpuid
-                    mov	DWORD PTR[r8], eax
-                    mov	DWORD PTR[r8 + 4], ebx
-                    mov	DWORD PTR[r8 + 8], ecx
-                    mov	DWORD PTR[r8 + 12], edx
+                    mov DWORD PTR[r8], eax
+                    mov DWORD PTR[r8 + 4], ebx
+                    mov DWORD PTR[r8 + 8], ecx
+                    mov DWORD PTR[r8 + 12], edx
                     pop rdx
                     pop rcx
                     pop rbx
@@ -95,7 +95,7 @@ using namespace Finjin::Common;
                 }
             }
 
-        #else	
+        #else
             // 32 bit
             //Note need to make sure -use-msasm switch is used with Intel compiler for Linux to get the
             // ASM code to compile for both windows and linux with one version source
@@ -133,17 +133,17 @@ using namespace Finjin::Common;
                 // when using -use-msasm
                 __asm
                 {
-                    mov	edx, Info; addr of start of output array
-                    mov	eax, leaf; leaf
-                    mov	ecx, subleaf; subleaf
+                    mov edx, Info; addr of start of output array
+                    mov eax, leaf; leaf
+                    mov ecx, subleaf; subleaf
                     push edi
                     push ebx
                     mov  edi, edx; edi has output addr
                     cpuid
-                    mov	DWORD PTR[edi], eax
-                    mov	DWORD PTR[edi + 4], ebx
-                    mov	DWORD PTR[edi + 8], ecx
-                    mov	DWORD PTR[edi + 12], edx
+                    mov DWORD PTR[edi], eax
+                    mov DWORD PTR[edi + 4], ebx
+                    mov DWORD PTR[edi + 8], ecx
+                    mov DWORD PTR[edi + 12], edx
                     pop ebx
                     pop edi
                     ret
@@ -178,18 +178,18 @@ using namespace Finjin::Common;
 
             CPUIDinfo Info;
             int rVal = 0;
-            // The code first determines if the processor is an Intel Processor.  If it is, then 
+            // The code first determines if the processor is an Intel Processor.  If it is, then
             // feature flags bit 19 (SSE 4.1) and 20 (SSE 4.2) in ECX after CPUID call with EAX = 0x1
             // are checked.
-            // If both bits are 1 (indicating both SSE 4.1 and SSE 4.2 exist) then 
-            // the function returns 1 
+            // If both bits are 1 (indicating both SSE 4.1 and SSE 4.2 exist) then
+            // the function returns 1
             const int SSE4_1_FLAG = 0x080000;
             const int SSE4_2_FLAG = 0x100000;
             const int CHECKBITS = SSE4_1_FLAG | SSE4_2_FLAG;
 
             if (isGenuineIntel() >= 1)
             {
-                // execute CPUID with eax (leaf) = 1 to get feature bits, 
+                // execute CPUID with eax (leaf) = 1 to get feature bits,
                 // subleaf doesn't matter so set it to zero
                 get_cpuid_info(&Info, 0x1, 0x0);
                 if ((Info.ECX & CHECKBITS) == CHECKBITS)
@@ -198,7 +198,7 @@ using namespace Finjin::Common;
                 }
             }
             return rVal == 1;
-        }    
+        }
     #elif defined(_MSC_VER)
         static bool DetectSSE42Supported()
         {
@@ -206,16 +206,16 @@ using namespace Finjin::Common;
             auto bSSE42Extensions = false;
 
             int cpuInfo[4] = { -1 };
-            
+
             //Get count
             __cpuid(cpuInfo, 0);
-            auto idCount = cpuInfo[0];            
+            auto idCount = cpuInfo[0];
 
             //Get info
             if (idCount >= 1)
             {
                 __cpuid(cpuInfo, 1);
-                bSSE42Extensions = (cpuInfo[2] & 0x100000) || false;                
+                bSSE42Extensions = (cpuInfo[2] & 0x100000) ? true : false;
             }
 
             return bSSE42Extensions;
@@ -227,7 +227,7 @@ using namespace Finjin::Common;
 //Implementation----------------------------------------------------------------
 bool CpuFeatures::SupportsSSE42()
 {
-#if FINJIN_SSE
+#if FINJIN_ENABLE_SSE
     static bool supported = DetectSSE42Supported();
     return supported;
 #else

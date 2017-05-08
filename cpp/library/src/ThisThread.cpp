@@ -14,7 +14,7 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/ThisThread.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     //From https://msdn.microsoft.com/en-us/library/xcb2z8hs.aspx
     #include <Windows.h>
 
@@ -36,16 +36,16 @@ using namespace Finjin::Common;
 
 //Implementation----------------------------------------------------------------
 void ThisThread::SetName(const Utf8String& name)
-{    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     const DWORD MS_VC_EXCEPTION = 0x406D1388;
-    
+
     THREADNAME_INFO info;
     info.dwType = 0x1000;
     info.szName = name.c_str();
     info.dwThreadID = GetCurrentThreadId();
     info.dwFlags = 0;
-    
+
     #pragma warning(push)
     #pragma warning(disable: 6320 6322)
     __try
@@ -56,9 +56,9 @@ void ThisThread::SetName(const Utf8String& name)
     {
     }
     #pragma warning(pop)
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     pthread_setname_np(name.c_str());
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     pthread_setname_np(pthread_self(), name.c_str());
 #else
     #error Implement this!
@@ -67,13 +67,13 @@ void ThisThread::SetName(const Utf8String& name)
 
 ThreadID ThisThread::GetID()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     return GetCurrentThreadId();
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     uint64_t tid;
     pthread_threadid_np(nullptr, &tid);
     return tid;
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     return pthread_self();
 #else
     #error Implement this!
@@ -82,18 +82,18 @@ ThreadID ThisThread::GetID()
 
 void ThisThread::SleepFor(TimeDuration duration)
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Sleep(std::max((DWORD)1, static_cast<DWORD>(duration.ToMilliseconds())));
-#elif FINJIN_TARGET_OS_IS_APPLE || FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE || FINJIN_TARGET_PLATFORM_IS_LINUX
     auto nanos = duration.ToNanoseconds();
     auto seconds = nanos / 1000000000ll;
     nanos %= 1000000000ll;
-    
+
     timespec ts;
     ts.tv_sec = static_cast<time_t>(seconds);
     if (ts.tv_sec == 0)
         ts.tv_nsec = std::max((long)1, static_cast<long>(nanos));
-    else 
+    else
         ts.tv_nsec = static_cast<long>(nanos);
     nanosleep(&ts, nullptr);
 #else

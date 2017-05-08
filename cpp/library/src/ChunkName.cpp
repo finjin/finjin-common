@@ -19,15 +19,15 @@
 using namespace Finjin::Common;
 
 
-//Static initialization--------------------------------------------------------
-const ChunkPropertyName StandardChunkPropertyNames::MAGIC("magic");
+//Static initialization---------------------------------------------------------
+const ChunkPropertyName StandardChunkPropertyNames::SIGNATURE("magic");
 const ChunkPropertyName StandardChunkPropertyNames::FORMAT("format");
 const ChunkPropertyName StandardChunkPropertyNames::FORMAT_VERSION("format-version");
 const ChunkPropertyName StandardChunkPropertyNames::MAX_BYTES_PER_LINE("max-bytes-per-line");
 const ChunkPropertyName StandardChunkPropertyNames::BLOB_TEXT_FORMAT("blob-text-format");
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 template <typename T>
 T ChunkPropertyHash(const char* s)
 {
@@ -66,14 +66,14 @@ ChunkName::ChunkName(const ChunkName& other, size_t _index) : name(other.name), 
 
 bool ChunkName::IsValid() const
 {
-    return 
+    return
         (this->index != (Index)-1) ||
         !this->id.IsZero() ||
         (this->name != nullptr && strlen(this->name) <= NAME_MAX_LENGTH)
         ;
 }
 
-bool ChunkName::operator == (const ChunkName& other) const 
+bool ChunkName::operator == (const ChunkName& other) const
 {
     if (!this->id.IsZero() && !other.id.IsZero())
         return this->id == other.id;
@@ -89,12 +89,12 @@ bool ChunkName::operator == (const ChunkName& other) const
         return false;
 }
 
-bool ChunkName::operator == (const Utf8String& other) const 
+bool ChunkName::operator == (const Utf8String& other) const
 {
     return other == this->name;
 }
 
-bool ChunkName::operator == (const Uuid& other) const 
+bool ChunkName::operator == (const Uuid& other) const
 {
     return other == this->id;
 }
@@ -264,7 +264,7 @@ ChunkPropertyName::ChunkPropertyName(size_t _index) : name(nullptr), id((ID)-1),
 
 bool ChunkPropertyName::IsValid() const
 {
-    return 
+    return
         (this->index != (Index)-1) ||
         (this->name != nullptr && this->id != 0)
         ;
@@ -341,7 +341,7 @@ ParsedChunkPropertyName::ParsedChunkPropertyName(const Utf8String& s)
 }
 
 ParsedChunkPropertyName::ParsedChunkPropertyName(size_t _index) : id((ID)-1), index(static_cast<Index>(_index))
-{   
+{
 }
 
 void ParsedChunkPropertyName::Parse(const Utf8String& s)
@@ -364,7 +364,7 @@ bool ParsedChunkPropertyName::operator == (const ChunkPropertyName& other) const
     if (this->id != (ID)-1)
         return this->id == other.id;
     else
-        return this->name == other.name;    
+        return this->name == other.name;
 }
 
 bool ParsedChunkPropertyName::operator != (const ChunkPropertyName& other) const
@@ -377,9 +377,9 @@ bool ParsedChunkPropertyName::operator != (const ChunkPropertyName& other) const
 
 bool ParsedChunkPropertyName::IsValid() const
 {
-    return 
+    return
         this->index != (Index)-1 ||
-        !this->name.empty() || 
+        !this->name.empty() ||
         this->id != (ID)-1
         ;
 }
@@ -400,4 +400,25 @@ Utf8String ParsedChunkPropertyName::ToString() const
         s += Convert::ToString(this->index);
     }
     return s;
+}
+
+//DataChunkBlobTextFormatUtilities
+Utf8String DataChunkBlobTextFormatUtilities::ToString(DataChunkBlobTextFormat value)
+{
+    switch (value)
+    {
+        case DataChunkBlobTextFormat::BYTE_ARRAY: return "byte-array";
+        case DataChunkBlobTextFormat::BASE64: return "base64";
+        default: return "byte-array";
+    }
+}
+
+DataChunkBlobTextFormat DataChunkBlobTextFormatUtilities::Parse(const Utf8String& value)
+{
+    if (value == "byte-array")
+        return DataChunkBlobTextFormat::BYTE_ARRAY;
+    else if (value == "base64")
+        return DataChunkBlobTextFormat::BASE64;
+    else
+        return DataChunkBlobTextFormat::BYTE_ARRAY;
 }

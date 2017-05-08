@@ -11,49 +11,49 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
 //Includes----------------------------------------------------------------------
-#include "finjin/common/LogLevel.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include <boost/timer/timer.hpp>
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     using CpuTimes = boost::timer::cpu_times;
     using CpuTimer = boost::timer::cpu_timer;
 
-    //Use PERFORMANCE_COUNTER when you want to create an instance of this class
+    //Use FINJIN_DECLARE_PERFORMANCE_COUNTER when you want to create an instance of this class. This makes it easier to find instances in code later
     class PerformanceCounter
     {
     public:
-        PerformanceCounter(const Utf8String& descriptionPrefix = "");
-                
+        PerformanceCounter();
+        PerformanceCounter(const Utf8String& descriptionPrefix);
+        PerformanceCounter(PerformanceCounter&& other) = delete;
+        PerformanceCounter(const PerformanceCounter& other) = delete;
+
+        void operator = (PerformanceCounter&& other) = delete;
+        void operator = (const PerformanceCounter& other) = delete;
+
         CpuTimer& GetTimer();
         CpuTimes GetElapsedTime() const;
-        
-        Utf8String FormatElapsedTime() const;
-        
+
+        Utf8String ToString() const;
+
     private:
-        Utf8String descriptionPrefix;
         Utf8String formatString;
-        
+
         CpuTimer timer;
-    };    
-    
-    //Use AUTO_PERFORMANCE_COUNTER_LOGGED when you want to create an instance of this class
+    };
+
+    //Use FINJIN_AUTO_PERFORMANCE_COUNTER_LOGGED when you want to create an instance of this class. This makes it easier to find instances in code later
     class AutoPerformanceCounterLogged : public PerformanceCounter
-    {        
+    {
     public:
-        AutoPerformanceCounterLogged(const Utf8String& logChannel, LogLevel logLevel, const Utf8String& descriptionPrefix);
+        AutoPerformanceCounterLogged(const Utf8String& descriptionPrefix);
         ~AutoPerformanceCounterLogged();
-        
-    private:
-        Utf8String logChannel;
-        LogLevel logLevel;
     };
 
 } }
@@ -63,11 +63,11 @@ namespace Finjin { namespace Common {
 #define FINJIN_ENABLE_PERFORMACE_COUNTERS 1
 
 #if FINJIN_ENABLE_PERFORMACE_COUNTERS
-    #define FINJIN_PERFORMANCE_COUNTER(name) Finjin::Common::PerformanceCounter name
+    #define FINJIN_DECLARE_PERFORMANCE_COUNTER(name) Finjin::Common::PerformanceCounter name
 
-    #define FINJIN_AUTO_PERFORMANCE_COUNTER_LOGGED(name, logLevel, descriptionPrefix) Finjin::Common::AutoPerformanceCounterLogged name(logLevel, descriptionPrefix)        
+    #define FINJIN_AUTO_PERFORMANCE_COUNTER_LOGGED(name, descriptionPrefix) Finjin::Common::AutoPerformanceCounterLogged name(descriptionPrefix)
 #else
-    #define FINJIN_PERFORMANCE_COUNTER(name)
-    
-    #define FINJIN_AUTO_PERFORMANCE_COUNTER_LOGGED(name, logLevel, descriptionPrefix)
+    #define FINJIN_DECLARE_PERFORMANCE_COUNTER(name)
+
+    #define FINJIN_AUTO_PERFORMANCE_COUNTER_LOGGED(name, descriptionPrefix)
 #endif

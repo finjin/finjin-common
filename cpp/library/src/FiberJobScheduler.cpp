@@ -21,7 +21,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 //FiberJobScheduler::WaitingQueue
 FiberJobScheduler::WaitingQueue::WaitingQueue()
 {
@@ -121,7 +121,7 @@ void FiberJobScheduler::WaitingQueue::MoveReadyToScheduler(FiberSchedulingAlgori
         }
         else
         {
-            //Skip 
+            //Skip
             prev = f;
             f = f->next;
         }
@@ -147,7 +147,7 @@ size_t FiberJobScheduler::WaitingQueue::size() const
 }
 
 //FiberJobScheduler
-FiberJobScheduler::FiberJobScheduler() : 
+FiberJobScheduler::FiberJobScheduler() :
     defaultSchedulingAlgorithm(),
     schedulingAlgorithm(&defaultSchedulingAlgorithm),
     waitInterval(TimeDuration::Microseconds(1))
@@ -163,14 +163,14 @@ FiberJobScheduler::~FiberJobScheduler()
 void FiberJobScheduler::ResumeFiber(JobFiber* f)
 {
     assert(f != nullptr);
-    
+
     if (!f->IsInterrupted())
     {
         //Restore running state for everything except interrupted fibers
         //Leaving the fiber in its interrupted state allows FiberCondition to break out of a loop on a formerly waiting fiber that became interrupted
         f->SetRunning();
     }
-    
+
     auto old = JobFiber::GetActiveFiber();
     if (f != old)
     {
@@ -199,7 +199,7 @@ void FiberJobScheduler::RunFiber()
         ResumeFiber(this->mainFiber);
         return;
     }
-    
+
     //Loop until a fiber is resumed or the scheduler is stopped
     while (HasMoreFibersToRun())
     {
@@ -304,7 +304,7 @@ void FiberJobScheduler::JoinIntoActiveFiber(JobFiber* f)
     //Switch to another fiber
     RunFiber();
 
-    //Fiber has been resumed    
+    //Fiber has been resumed
     JobFiber::GetActiveFiber()->ThrowIfIsInterrupted();
 
     //Check that fiber f has terminated

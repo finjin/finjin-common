@@ -178,7 +178,8 @@
     <ClInclude Include="..\..\src\Base64Test.hpp" />
     <ClInclude Include="..\..\src\BitArrayTest.hpp" />
     <ClInclude Include="..\..\src\ByteBufferTest.hpp" />
-    <ClInclude Include="..\..\src\ClassDescriptionTest.hpp" />
+    <ClInclude Include="..\..\src\PNGTest.hpp" />
+    <ClInclude Include="..\..\src\TypeDescriptionTest.hpp" />
     <ClInclude Include="..\..\src\CollectionTest.hpp" />
     <ClInclude Include="..\..\src\ConfigTest.hpp" />
     <ClInclude Include="..\..\src\DateTimeTest.hpp" />

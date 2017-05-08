@@ -15,12 +15,12 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/PassthroughSystemAllocator.hpp"
 #include "finjin/common/MemorySize.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     #include <malloc.h>
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     #import <mach/mach.h>
     #import <mach/mach_host.h>
 #endif
@@ -28,9 +28,9 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 PassthroughSystemAllocator::PassthroughSystemAllocator()
-{    
+{
 }
 
 PassthroughSystemAllocator::~PassthroughSystemAllocator()
@@ -63,19 +63,19 @@ void PassthroughSystemAllocator::DeallocateAll()
 
 size_t PassthroughSystemAllocator::GetBytesUsed() const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     return Windows::System::MemoryManager::AppMemoryUsage;
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     MEMORYSTATUSEX memoryStatus;
     memoryStatus.dwLength = sizeof(memoryStatus);
     GlobalMemoryStatusEx(&memoryStatus);
     return memoryStatus.ullTotalPhys - memoryStatus.ullAvailPhys;
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     struct mallinfo info = mallinfo();
     return info.uordblks;
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     mach_port_t hostPort = mach_host_self();
-    
+
     vm_size_t pageSize;
     host_page_size(hostPort, &pageSize);
 
@@ -92,12 +92,12 @@ size_t PassthroughSystemAllocator::GetBytesUsed() const
 
 size_t PassthroughSystemAllocator::GetBytesFree() const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     auto family = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
     if (family == L"Windows.Desktop")
     {
         //Note: On Windows 10 desktop AppMemoryUsageLimit is system's total system virtual memory, not physical memory
-        //For example: On my laptop with 8GB RAM (2GB free), AppMemoryUsageLimit reports that 14GB is available 
+        //For example: On my laptop with 8GB RAM (2GB free), AppMemoryUsageLimit reports that 14GB is available
         return MemorySize::GIBIBYTE - Windows::System::MemoryManager::AppMemoryUsage; //Impose an artificial limit
     }
     else
@@ -105,17 +105,17 @@ size_t PassthroughSystemAllocator::GetBytesFree() const
         //TODO: Verify that this works as expected on other devices such as phone and Xbox
         return Windows::System::MemoryManager::AppMemoryUsageLimit - Windows::System::MemoryManager::AppMemoryUsage;
     }
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     MEMORYSTATUSEX memoryStatus;
     memoryStatus.dwLength = sizeof(memoryStatus);
     GlobalMemoryStatusEx(&memoryStatus);
     return memoryStatus.ullAvailPhys;
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     struct mallinfo info = mallinfo();
     return info.fordblks;
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     mach_port_t hostPort = mach_host_self();
-    
+
     vm_size_t pageSize;
     host_page_size(hostPort, &pageSize);
 

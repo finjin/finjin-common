@@ -19,9 +19,9 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
-//LogicalCpu---------------
+//LogicalCpu
 uint64_t LogicalCpu::GetGroup() const
 {
     return 0;
@@ -52,7 +52,7 @@ void LogicalCpu::AssociateThread(ThreadHandle threadHandle, Error& error) const
     //Do nothing
 }
 
-//LogicalCpus------------------------
+//LogicalCpus
 void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 {
     //Just use the first cpu
@@ -62,10 +62,10 @@ void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
         //Found it
         if (removed != nullptr)
             *removed = *cpuFoundAt;
-        
+
         //Associate with current thread
         cpuFoundAt->AssociateCurrentThread();
-        
+
         //Remove the found CPU
         remove(cpuFoundAt);
     }
@@ -74,17 +74,17 @@ void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 void LogicalCpus::Enumerate()
 {
     clear();
-    
+
     unsigned int cpuCount;
     size_t cpuCountSize = sizeof(cpuCount);
     sysctlbyname("hw.ncpu", &cpuCount, &cpuCountSize, nullptr, 0); //hw.physicalcpu
-    
+
     LogicalCpu logicalCpu;
     for (size_t i = 0; i < cpuCount; i++)
     {
         logicalCpu.processorID = i;
         logicalCpu.nodeID = 0;
-        
+
         push_back(logicalCpu);
     }
 }

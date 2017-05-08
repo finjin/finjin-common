@@ -74,7 +74,7 @@ void VirtualFileSystem::AddDirectory(const Path& path, Error& error)
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to allocate directory root for '%1%'.", path));
         return;
     }
-    
+
     root->OpenRoot(path, error);
     if (error)
     {
@@ -134,7 +134,7 @@ void VirtualFileSystem::AddRoot(std::unique_ptr<VirtualFileSystemRoot>&& root, E
 
     this->roots.push_back();
     auto& rootEntry = this->roots.back();
-    
+
     auto volumeID = root->GetInternalVolumeID();
     auto rootVolume = this->volumes.find(volumeID);
     if (rootVolume == this->volumes.end())
@@ -169,7 +169,7 @@ void VirtualFileSystem::RebuildDatabase(Error& error)
     FINJIN_ERROR_METHOD_START(error);
 
     this->database.StartRebuild();
-    
+
     if (!this->roots.empty())
     {
         this->isDatabaseComplete = true; //Assume the database is complete
@@ -190,11 +190,11 @@ void VirtualFileSystem::RebuildDatabase(Error& error)
             if (result != VirtualFileSystemRoot::EnumerationResult::COMPLETE)
                 this->isDatabaseComplete = false; //Database is not complete
         }
-    }    
+    }
     else
         this->isDatabaseComplete = false;
 
-    this->database.FinishRebuild();    
+    this->database.FinishRebuild();
 }
 
 void VirtualFileSystem::UpdateDatabase(Error& error)
@@ -345,7 +345,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
                     FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("An error was encountered while reading '%1%' from file system database.", relativeFilePath));
                     return readResult;
                 }
-                
+
                 entry = this->database.FindNextEntry(entry);
             } while (entry != nullptr);
 
@@ -359,7 +359,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
             return FileOperationResult::NOT_FOUND;
         }
     }
-    
+
     //Database has not been built or is incomplete. Just try to read it and see what happens
     for (auto& root : this->roots)
     {
@@ -372,7 +372,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
             return readResult;
         }
     }
-    
+
     return FileOperationResult::NOT_FOUND;
 }
 
@@ -399,7 +399,7 @@ FileOperationResult VirtualFileSystem::Open(const Path& relativeFilePath, FileOp
                 return openResult;
         }
     }
-    
+
     return FileOperationResult::NOT_FOUND;
 }
 
@@ -416,7 +416,7 @@ void VirtualFileSystem::Close(VirtualFileHandle& fileHandle)
 
             //Close the file using the root
             volume.fileHandle.fileSystemRoot->Close(volume.fileHandle);
-            
+
             //Reset volume and caller file handles (they are the same)
             volume.fileHandle.Clear();
             fileHandle.Clear();

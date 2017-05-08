@@ -21,7 +21,7 @@
 #include "finjin/common/StaticVector.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class DataChunkReaderCallbacksState
@@ -144,13 +144,13 @@ namespace Finjin { namespace Common {
         std::function<void(bool, const ChunkName*, const ParsedChunkName&, DataChunkReader&, StateType&, Error&)> chunkCallback;
         std::function<void(const ChunkName*, const ParsedChunkName*, ParsedChunkPropertyName&, DataChunkReader&, DataHeader&, StateType&, Error&)> propertyCallback;
     };
-    
+
     template <typename StateType, size_t mappingCount>
     class DataChunkReaderCallbacks
     {
     public:
         using State = StateType;
-        
+
         DataChunkReaderCallbacks() {}
         ~DataChunkReaderCallbacks() {}
 
@@ -167,9 +167,9 @@ namespace Finjin { namespace Common {
             this->mappings.push_back(mapping);
         }
 
-        const StaticVector<DataChunkReaderCallbacksChunkMapping<StateType>, mappingCount>& GetMappings() const 
-        { 
-            return this->mappings; 
+        const StaticVector<DataChunkReaderCallbacksChunkMapping<StateType>, mappingCount>& GetMappings() const
+        {
+            return this->mappings;
         }
 
         bool HandleItem(DataChunkReader& reader, DataHeader& dataHeader, StateType& state, Error& error) const
@@ -246,7 +246,7 @@ namespace Finjin { namespace Common {
 
             return continueReading;
         }
-        
+
         void ReadDocument(std::ostream* debugOutput, DataChunkReader& reader, StateType& state, Error& error) const
         {
             FINJIN_ERROR_METHOD_START(error);
@@ -400,7 +400,7 @@ namespace Finjin { namespace Common {
                 return;
             }
         }
-        
+
         void UpdateCurrentMapping(StateType& state) const
         {
             state.currentMapping = nullptr;

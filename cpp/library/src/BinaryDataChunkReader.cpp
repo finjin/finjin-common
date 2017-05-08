@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 template <typename T>
 void ReadNumber(DataChunkReaderInput* readerInput, bool swapBytes, DataHeader& dataHeader, T& value, const char* typeName, Error& error)
 {
@@ -76,7 +76,7 @@ size_t ReadNumbers(DataChunkReaderInput* readerInput, bool swapBytes, DataHeader
         if (amountRead < sizeof(T) * length)
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to read value for %1%.", typeName));
     }
-    
+
     return static_cast<size_t>(length);
 }
 
@@ -127,13 +127,13 @@ static size_t ReadCounts(DataChunkReaderInput* readerInput, bool swapBytes, Data
     return static_cast<size_t>(length);
 }
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 BinaryDataChunkReader::BinaryDataChunkReader()
 {
 }
 
 BinaryDataChunkReader::~BinaryDataChunkReader()
-{   
+{
 }
 
 void BinaryDataChunkReader::Create(const Settings& settings, BinaryDataChunkReader* parentSection, Error& error)
@@ -145,7 +145,7 @@ void BinaryDataChunkReader::Create(const Settings& settings, BinaryDataChunkRead
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Max bytes per line '%1%' must be %2% or greater.", settings.maxBytesPerLine, Settings::MIN_BYTES_PER_LINE));
         return;
     }
-    
+
     this->settings = settings;
     if (parentSection != nullptr)
     {
@@ -170,50 +170,50 @@ void BinaryDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& erro
 
     ParsedChunkPropertyName key;
 
-    //Read magic number---------------------------
+    //Read signature---------------------------
     ReadDataHeader(dataHeader, error);
     if (error)
     {
-        FINJIN_SET_ERROR(error, "Failed to read magic number header.");
+        FINJIN_SET_ERROR(error, "Failed to read header.");
         return;
     }
     if (dataHeader.type != DataHeaderType::PROPERTY)
     {
-        FINJIN_SET_ERROR(error, "Magic number header was in an unexpected format.");
+        FINJIN_SET_ERROR(error, "Header was in an unexpected format.");
         return;
     }
 
     ReadPropertyName(dataHeader, key, error);
     if (error)
     {
-        FINJIN_SET_ERROR(error, "Failed to read magic number header key.");
+        FINJIN_SET_ERROR(error, "Failed to read signature header key.");
         return;
     }
-    if (key != StandardChunkPropertyNames::MAGIC)
+    if (key != StandardChunkPropertyNames::SIGNATURE)
     {
-        auto swappedID = key.id;
-        SwapBytes(swappedID);
-        if (StandardChunkPropertyNames::MAGIC != swappedID)
+        auto signatureKey = key.id;
+        SwapBytes(signatureKey);
+        if (StandardChunkPropertyNames::SIGNATURE != signatureKey)
         {
-            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Expected 'magic' key, read '%1%' instead.", key.ToString()));
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Expected 'signature' key, read '%1%' instead.", key.ToString()));
             return;
         }
         else
         {
-            //The magic value is byte swapped
+            //The signature is byte swapped
             this->swapBytes = !this->swapBytes;
         }
     }
 
-    ReadUInt32(dataHeader, this->readerHeader.magic, error);
+    ReadUInt32(dataHeader, this->readerHeader.signature, error);
     if (error)
     {
-        FINJIN_SET_ERROR(error, "Failed to read magic number header value.");
+        FINJIN_SET_ERROR(error, "Failed to read signature value.");
         return;
     }
-    if (this->readerHeader.magic != FINJIN_MAGIC_FOURCC)
+    if (this->readerHeader.signature != FINJIN_SIGNATURE_FOURCC)
     {
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Unsupported magic number '%1%'.", this->readerHeader.magic));
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Unsupported signature '%1%'.", this->readerHeader.signature));
         return;
     }
 
@@ -241,7 +241,7 @@ void BinaryDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& erro
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Expected 'format' key, read '%1%' instead.", key.ToString()));
         return;
     }
-    
+
     ReadString(dataHeader, this->readerHeader.format, error);
     if (error)
     {
@@ -350,7 +350,7 @@ void BinaryDataChunkReader::ReadDataHeader(DataHeader& dataHeader, Error& error)
                 SwapBytes(lineLength);
 
             dataHeader.length = lineLength;
-            
+
             if (dataHeader.headerByte & BINARY_LINE_FLAG_INDEXED)
             {
                 //Chunk start has an index
@@ -437,7 +437,7 @@ void BinaryDataChunkReader::ReadPropertyName(DataHeader& dataHeader, ParsedChunk
 
     result.id = (ParsedChunkPropertyName::ID)-1;
     result.index = (ParsedChunkPropertyName::Index)-1;
-    
+
     if (dataHeader.headerByte & BINARY_LINE_FLAG_INDEXED)
     {
         auto amountRead = this->settings.input->Read(&result.index, sizeof(result.index));
@@ -578,7 +578,7 @@ void BinaryDataChunkReader::ReadUuid(DataHeader& dataHeader, Uuid& value, Error&
         FINJIN_SET_ERROR(error, "Failed to read time UUID bytes.");
         return;
     }
-    
+
     value = Uuid(valueBytes.data());
 }
 

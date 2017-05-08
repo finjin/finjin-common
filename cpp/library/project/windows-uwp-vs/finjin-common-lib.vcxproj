@@ -270,6 +270,7 @@
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h" />
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h" />
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h" />
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.h" />
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.h" />
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.h" />
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzguts.h" />
@@ -306,10 +307,10 @@
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h" />
     <ClInclude Include="..\..\include\finjin\common\AlignedElementStaticVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\AllocatedClass.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\AllocatedQueue.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedMap.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedSet.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\AllocatedVector.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\DynamicQueue.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\DynamicUnorderedMap.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\DynamicUnorderedSet.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\DynamicVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Allocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Angle.hpp" />
     <ClInclude Include="..\..\include\finjin\common\AssignOrError.hpp" />
@@ -327,8 +328,9 @@
     <ClInclude Include="..\..\include\finjin\common\Distance.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Hash.hpp" />
     <ClInclude Include="..\..\include\finjin\common\PNGReader.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\QueueUtilities.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\SetMapUtilities.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\PNGWriter.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\QueueImpl.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\SetMapImpl.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StaticQueue.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StaticUnorderedMap.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StaticUnorderedSet.hpp" />
@@ -339,14 +341,14 @@
     <ClInclude Include="..\..\include\finjin\common\ValueOrError.hpp" />
     <ClInclude Include="..\..\include\finjin\common\WrappedFileReader.hpp" />
     <ClInclude Include="..\..\include\finjin\common\WrappedFileWriter.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\EnumValues.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\EnumArray.hpp" />
     <ClInclude Include="..\..\include\finjin\common\LayoutDirection.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Math.hpp" />
     <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp" />
     <ClInclude Include="..\..\include\finjin\common\PassthroughSystemAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StaticVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\UsableStaticVector.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\UsableAllocatedVector.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\UsableDynamicVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\VirtualFileHandle.hpp" />
     <ClInclude Include="..\..\include\finjin\common\VirtualFileHandleDataChunkReaderInput.hpp" />
     <ClInclude Include="..\..\include\finjin\common\VirtualFileOperationHandle.hpp" />
@@ -357,7 +359,7 @@
     <ClInclude Include="..\..\include\finjin\common\ByteBuffer.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Chrono.hpp" />
     <ClInclude Include="..\..\include\finjin\common\ChunkName.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\ClassDescription.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\TypeDescription.hpp" />
     <ClInclude Include="..\..\include\finjin\common\CommandLineArgsProcessor.hpp" />
     <ClInclude Include="..\..\include\finjin\common\CommandLineSettingsDescription.hpp" />
     <ClInclude Include="..\..\include\finjin\common\GeneralAllocator.hpp" />
@@ -420,13 +422,10 @@
     <ClInclude Include="..\..\include\finjin\common\PerformanceCounter.hpp" />
     <ClInclude Include="..\..\include\finjin\common\RealTimeLruCache.hpp" />
     <ClInclude Include="..\..\include\finjin\common\ProcessID.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\RangedNameGenerator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Settings.hpp" />
     <ClInclude Include="..\..\include\finjin\common\SimpleSpinLockMutex.hpp" />
     <ClInclude Include="..\..\include\finjin\common\SingleEvent.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StandardPaths.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\Vector.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\StringKeyValueMap.hpp" />
     <ClInclude Include="..\..\include\finjin\common\UserInformation.hpp" />
     <ClInclude Include="..\..\include\finjin\common\TaggedMemoryBlockAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\TextDataChunkReader.hpp" />
@@ -868,6 +867,20 @@
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsWinRT>
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsWinRT>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsWinRT>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\adler32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -1255,7 +1268,8 @@
     <ClCompile Include="..\..\src\ByteBuffer.cpp" />
     <ClCompile Include="..\..\src\Chrono.cpp" />
     <ClCompile Include="..\..\src\ChunkName.cpp" />
-    <ClCompile Include="..\..\src\ClassDescription.cpp" />
+    <ClCompile Include="..\..\src\PNGWriter.cpp" />
+    <ClCompile Include="..\..\src\TypeDescription.cpp" />
     <ClCompile Include="..\..\src\CommandLineArgsProcessor.cpp" />
     <ClCompile Include="..\..\src\CommandLineSettingsDescription.cpp" />
     <ClCompile Include="..\..\src\ConfigDataChunkReader.cpp" />
@@ -1328,11 +1342,9 @@
     <ClCompile Include="..\..\src\NamePrefix.cpp" />
     <ClCompile Include="..\..\src\Path.cpp" />
     <ClCompile Include="..\..\src\PerformanceCounter.cpp" />
-    <ClCompile Include="..\..\src\RangedNameGenerator.cpp" />
     <ClCompile Include="..\..\src\Settings.cpp" />
     <ClCompile Include="..\..\src\SingleEvent.cpp" />
     <ClCompile Include="..\..\src\StandardPaths_UWP.cpp" />
-    <ClCompile Include="..\..\src\StringKeyValueMap.cpp" />
     <ClCompile Include="..\..\src\UserInformation.cpp" />
     <ClCompile Include="..\..\src\TextDataChunkReader.cpp" />
     <ClCompile Include="..\..\src\TextDataChunkWriter.cpp" />

@@ -14,24 +14,24 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Convert.hpp"
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class DocumentWriterOutput
     {
     public:
         virtual ~DocumentWriterOutput() {}
-        
+
         virtual bool IsValid() const = 0;
-        
+
         virtual void Write(const char* s) = 0;
         virtual void Write(const void* s, size_t byteCount) = 0;
-        
+
         virtual uint64_t GetTotalBytesWritten() const = 0;
 
         virtual float GetMinFloat() const
@@ -77,10 +77,10 @@ namespace Finjin { namespace Common {
             Init();
         }
 
-        ~StreamDataChunkWriterOutput() 
+        ~StreamDataChunkWriterOutput()
         {
         }
-        
+
         bool IsValid() const override
         {
             return this->outStream != nullptr && *this->outStream;

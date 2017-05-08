@@ -11,21 +11,21 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API Base64
     {
-    public:        
+    public:
         /**
         * Gets the number of '=' characters that pad the end of the Base64 string.
         * @param base64 [in] - The Base64 string being checked for padding characters.
@@ -80,7 +80,7 @@ namespace Finjin { namespace Common {
         static void ToBase64(const void* bytes, size_t byteCount, Utf8String& base64, Error& error);
 
         static size_t ToBase64(const void* bytes, size_t byteCount, uint8_t* output);
-        
+
         /**
         * Converts a Base64 string to an array of bytes.
         * @throws ArgumentExceptionException is thrown if the Base64 string's

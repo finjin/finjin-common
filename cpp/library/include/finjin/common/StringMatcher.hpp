@@ -20,17 +20,17 @@
 #include <locale>
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API StringMatcher
     {
     public:
         static bool WildcardMatch(const Utf8String& src, const Utf8String& wildcardPattern, bool caseSensitive = true);
         static bool WildcardSearch(Utf8String& found, const Utf8String& src, const Utf8String& wildcardPattern, bool caseSensitive = true);
-        
+
         static bool WildcardMatch(const Path& src, const Utf8String& wildcardPattern, bool caseSensitive = true);
         static bool WildcardSearch(Utf8String& found, const Path& src, const Utf8String& wildcardPattern, bool caseSensitive = true);
     };
-    
+
 } }

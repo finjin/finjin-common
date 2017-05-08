@@ -19,20 +19,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "JobSharedState.hpp"
 #include <boost/intrusive_ptr.hpp>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common { namespace detail {
 
     template <typename R, typename ... Args>
-    struct task_base : public shared_state<R> 
+    struct task_base : public shared_state<R>
     {
         typedef boost::intrusive_ptr<task_base> ptr_t;
 
-        virtual ~task_base() noexcept 
+        virtual ~task_base() noexcept
         {
         }
 

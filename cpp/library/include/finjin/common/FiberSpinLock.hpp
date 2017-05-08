@@ -14,9 +14,9 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FiberSpinLock
     {
     public:
@@ -37,5 +37,5 @@ namespace Finjin { namespace Common {
         };
         std::atomic<Status> state;
     };
-    
+
 } }

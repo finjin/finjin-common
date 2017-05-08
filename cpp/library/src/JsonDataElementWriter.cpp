@@ -19,13 +19,13 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 JsonDataElementWriter::JsonDataElementWriter(void* _writer) : writer(_writer)
-{   
+{
 }
 
 JsonDataElementWriter::~JsonDataElementWriter()
-{    
+{
 }
 
 void JsonDataElementWriter::SetAttribute(const Utf8String& name, const Utf8String& value)
@@ -155,11 +155,11 @@ void JsonDataElementWriter::EndObject()
 void JsonDataElementWriter::AddChildText(const Utf8String& name, const Utf8String& value)
 {
     static_cast<JsonStringWriter*>(this->writer)->Key(name.c_str());
-    static_cast<JsonStringWriter*>(this->writer)->String(value.c_str());    
+    static_cast<JsonStringWriter*>(this->writer)->String(value.c_str());
 }
 
 void JsonDataElementWriter::AddSimpleChildText(const Utf8String& name, const Utf8String& value)
 {
     static_cast<JsonStringWriter*>(this->writer)->Key(name.c_str());
-    static_cast<JsonStringWriter*>(this->writer)->String(value.c_str());    
+    static_cast<JsonStringWriter*>(this->writer)->String(value.c_str());
 }

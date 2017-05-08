@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API WrappedFileReader
@@ -41,11 +41,27 @@ namespace Finjin { namespace Common {
 
             Header();
 
-            static FileFormatClass GetFileFormatClass(const Utf8String& ext);
+            template <typename T>
+            static FileFormatClass GetFileFormatClass(const T& ext)
+            {
+                if (ext == "astc" || ext == "bmp" || ext == "dds" || ext == "jpg" || ext == "jpeg" || ext == "ktx" || ext == "pkm" || ext == "png" || ext == "pvr" || ext == "tga")
+                    return Header::FileFormatClass::IMAGE;
+                else if (ext == "mp3" || ext == "ogg" || ext == "wav")
+                    return Header::FileFormatClass::SOUND;
+                else
+                    return Header::FileFormatClass::GENERIC;
+            }
+
+            static FileFormatClass GetFileFormatClass(const char* ext)
+            {
+                Utf8StringView extStringView(ext);
+                return GetFileFormatClass(extStringView);
+            }
+
             static bool IsValidFormatClass(FileFormatClass formatClass);
             static bool IsValidFormat(FileFormat format);
 
-            uint32_t magic;
+            uint32_t signature;
             FileFormat fileFormat;
             uint32_t fileFormatVersion;
             FileFormatClass fileFormatClass;
@@ -60,8 +76,8 @@ namespace Finjin { namespace Common {
         enum class ReadHeaderResult
         {
             SUCCESS,
-            FAILED_TO_READ_MAGIC_VALUE,
-            INVALID_MAGIC_VALUE,
+            FAILED_TO_READ_SIGNATURE_VALUE,
+            INVALID_SIGNATURE_VALUE,
             FAILED_TO_READ_FILE_FORMAT,
             INVALID_FILE_FORMAT,
             FAILED_TO_READ_FILE_FORMAT_VERSION,
@@ -74,16 +90,16 @@ namespace Finjin { namespace Common {
             INVALID_FILE_EXTENSION_LENGTH,
             FAILED_TO_READ_FILE_EXTENSION,
             FAILED_TO_READ_FILE_LENGTH
-        };        
+        };
         ReadHeaderResult ReadHeader(ByteBufferReader& byteReader);
         Utf8String GetReadHeaderResultString(ReadHeaderResult result) const;
-        
+
         void ReadHeader(ByteBufferReader& byteReader, Error& error);
 
         const Header& GetHeader() const;
 
         size_t GetHeaderSize() const;
-        
+
         static void Unwrap(const Path& inFilePath, const Path& outFilePath, Error& error);
 
     private:

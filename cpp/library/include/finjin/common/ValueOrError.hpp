@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /**
@@ -67,7 +67,7 @@ namespace Finjin { namespace Common {
         }
 
         T value;
-    
+
     private:
         enum Type
         {

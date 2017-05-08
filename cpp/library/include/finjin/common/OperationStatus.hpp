@@ -11,16 +11,16 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/OperationStatus.hpp"
 #include "finjin/common/StaticVector.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API OperationStatus
@@ -29,10 +29,10 @@ namespace Finjin { namespace Common {
         enum Status
         {
             NONE, //Initial status
-            
+
             STARTED, //Operation has started and is in progress
             SUCCESS, //Operation was successfully finished
-           
+
             FAILURE //Something went critically wrong while the operation was in progress
         };
 
@@ -59,7 +59,7 @@ namespace Finjin { namespace Common {
         Status status;
         float progress; //Range [0-1] = known progress. < 0 = unknown progress
     };
-    
+
     template <size_t MaxItems>
     class OperationStatuses : public StaticVector<const OperationStatus*, MaxItems>
     {
@@ -76,13 +76,13 @@ namespace Finjin { namespace Common {
         }
 
         OperationStatus::Status GetStatus() const
-        { 
+        {
             if (this->status == OperationStatus::NONE)
                 this->status = _GetStatus();
 
-            return this->status; 
+            return this->status;
         }
-        
+
     private:
         OperationStatus::Status _GetStatus() const
         {
@@ -95,7 +95,7 @@ namespace Finjin { namespace Common {
                 {
                     switch (item->GetStatus())
                     {
-                        case OperationStatus::STARTED: 
+                        case OperationStatus::STARTED:
                         {
                             allSuccess = false;
                             anyStarted = true;

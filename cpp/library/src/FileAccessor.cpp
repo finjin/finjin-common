@@ -15,12 +15,14 @@
 #include "FinjinPrecompiled.hpp"
 #include "FileAccessor.hpp"
 #include <nowide/stackstring.hpp>
-#if !FINJIN_TARGET_OS_IS_WINDOWS
+#if !FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <sys/stat.h>
 #endif
 
 using namespace Finjin::Common;
 
+
+//Local types-------------------------------------------------------------------
 using WideningToUtf16Converter = nowide::basic_stackstring<wchar_t, char, Path::STATIC_STRING_LENGTH + 1>;
 
 
@@ -37,14 +39,14 @@ FileAccessor::~FileAccessor()
 bool FileAccessor::OpenForRead(const Path& path, uint64_t* fileSize)
 {
     Close();
-        
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter fileNameW;
     if (!fileNameW.convert(path.begin(), path.end()))
         return false;
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
-        this->fileHandle = CreateFile2(fileNameW.c_str(), GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, nullptr); 
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+        this->fileHandle = CreateFile2(fileNameW.c_str(), GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, nullptr);
     #else
         this->fileHandle = CreateFileW(fileNameW.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);
     #endif
@@ -77,12 +79,12 @@ bool FileAccessor::OpenForWrite(const Path& path)
 {
     Close();
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter fileNameW;
     if (!fileNameW.convert(path.begin(), path.end()))
         return false;
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         this->fileHandle = CreateFile2(fileNameW.c_str(), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, CREATE_ALWAYS, nullptr);
     #else
         this->fileHandle = CreateFileW(fileNameW.c_str(), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS, 0, nullptr);
@@ -98,7 +100,7 @@ bool FileAccessor::OpenForWrite(const Path& path)
 
 bool FileAccessor::IsOpen() const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     return this->fileHandle != INVALID_HANDLE_VALUE;
 #else
     return this->fileStream.is_open();
@@ -107,7 +109,7 @@ bool FileAccessor::IsOpen() const
 
 void FileAccessor::Close()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     if (this->fileHandle != INVALID_HANDLE_VALUE)
     {
         CloseHandle(this->fileHandle);
@@ -120,7 +122,7 @@ void FileAccessor::Close()
 
 size_t FileAccessor::Read(void* bytes, size_t byteCount)
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     DWORD bytesRead = 0;
     ReadFile(this->fileHandle, bytes, static_cast<DWORD>(byteCount), &bytesRead, nullptr);
     return static_cast<size_t>(bytesRead);
@@ -135,7 +137,7 @@ size_t FileAccessor::Read(void* bytes, size_t byteCount)
 
 size_t FileAccessor::Write(const void* bytes, size_t byteCount)
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     DWORD bytesWritten = 0;
     WriteFile(this->fileHandle, bytes, static_cast<DWORD>(byteCount), &bytesWritten, nullptr);
     return static_cast<size_t>(bytesWritten);
@@ -156,16 +158,39 @@ void FileAccessor::WriteRemaining(FileAccessor& inFile)
         Write(tempBuffer, readCount);
 }
 
+uint64_t FileAccessor::GetOffset()
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    LARGE_INTEGER zeroOffset = {0};
+    LARGE_INTEGER result;
+    SetFilePointerEx(this->fileHandle, zeroOffset, &result, FILE_CURRENT);
+    return result.QuadPart;
+#else
+    return this->fileStream.tellg();
+#endif
+}
+
+void FileAccessor::SetOffset(uint64_t offsetFromStart)
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    LARGE_INTEGER offsetFromStartLI;
+    offsetFromStartLI.QuadPart = offsetFromStart;
+    SetFilePointerEx(this->fileHandle, offsetFromStartLI, nullptr, FILE_BEGIN);
+#else
+    this->fileStream.seekg(offsetFromStart, nowide::ifstream::beg);
+#endif
+}
+
 bool FileAccessor::GetFileLength(const Path& path, uint64_t& fileLength)
 {
     fileLength = 0;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter pathW;
     if (!pathW.convert(path.begin(), path.end()))
         return false;
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         auto fileHandle = CreateFile2(pathW.c_str(), GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, nullptr);
     #else
         auto fileHandle = CreateFileW(pathW.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, 0, nullptr);

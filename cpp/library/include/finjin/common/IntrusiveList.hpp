@@ -14,21 +14,21 @@
 #pragma once
 
 
-//Macros-----------------------------------------------------------------------
-#define FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, Accessor, value) \
-    for (auto value = head; value != nullptr; value = value->Accessor)
+//Macros------------------------------------------------------------------------
+#define FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, next, value) \
+    for (auto value = head; value != nullptr; value = value->next)
 
-#define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, Accessor, value) \
+#define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, next, value) \
     { \
         auto _headTemp = head;\
         head = value;\
-        head->Accessor = _headTemp; \
+        head->next = _headTemp; \
     }
 
-#define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_UNIQUE_ITEM(head, Accessor, value) \
+#define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_UNIQUE_ITEM(head, next, value) \
     {\
         auto found = false;\
-        FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, Accessor, innerValue)\
+        FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, next, innerValue)\
         {\
             if (value == innerValue)\
             {\
@@ -38,27 +38,27 @@
         }\
         if (!found)\
         {\
-            FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, Accessor, value)\
+            FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, next, value)\
         }\
     }
-    
-#define FINJIN_INTRUSIVE_SINGLE_LIST_REMOVE_ITEM(head, Accessor, value) \
+
+#define FINJIN_INTRUSIVE_SINGLE_LIST_REMOVE_ITEM(head, next, value) \
     if (head == nullptr)\
     {\
     }\
     else if (value == head)\
     {\
-        head = head->Accessor;\
+        head = head->next;\
     }\
     else\
     {\
         auto previousIter = head;\
-        for (auto currentIter = head->Accessor; currentIter != nullptr; currentIter = currentIter->Accessor)\
+        for (auto currentIter = head->next; currentIter != nullptr; currentIter = currentIter->next)\
         {\
             if (value == currentIter)\
             {\
-                previousIter->Accessor = currentIter->Accessor;\
-                currentIter->Accessor = nullptr;\
+                previousIter->next = currentIter->next;\
+                currentIter->next = nullptr;\
                 break;\
             }\
             previousIter = currentIter;\
@@ -66,15 +66,15 @@
     }
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     template <typename T>
     class NextAccessor
     {
     public:
         using value_type = T;
-        
+
         static inline T* GetNext(T* item) { return item ? item->next : nullptr; }
         static inline const T* GetNext(const T* item) { return item ? item->next : nullptr; }
 
@@ -87,7 +87,7 @@ namespace Finjin { namespace Common {
         static inline const value_type* GetConstPointer(const T* item) { return item; }
     };
 
-    /** 
+    /**
      * Wraps access to a class's 'next' pointer, creating a more convenient list interface
      * T is to be the class itself, though nodes in list are stored as pointers, and then exposed through the iterator interface as a reference type (& not *)
      * For example, for a struct defined as:
@@ -115,28 +115,28 @@ namespace Finjin { namespace Common {
         IntrusiveSingleList(T* head, bool deleteOnClear) { this->head = this->tail = head; this->deleteOnClear = deleteOnClear; }
         IntrusiveSingleList(T* head, T* tail, bool deleteOnClear) { this->head = head; this->tail = tail; this->deleteOnClear = deleteOnClear; }
         IntrusiveSingleList(IntrusiveSingleList&& other)
-        { 
+        {
             this->head = other.head;
             this->tail = other.tail;
-            
+
             this->deleteOnClear = other.deleteOnClear;
-            
+
             other.head = nullptr;
             other.tail = nullptr;
         }
-        
+
         IntrusiveSingleList& operator = (IntrusiveSingleList&& other)
         {
             clear();
 
             this->head = other.head;
             this->tail = other.tail;
-            
+
             this->deleteOnClear = other.deleteOnClear;
-            
+
             other.head = nullptr;
             other.tail = nullptr;
-            
+
             return *this;
         }
 
@@ -209,7 +209,7 @@ namespace Finjin { namespace Common {
 
         const_iterator begin() const { return this->head; }
         const_iterator end() const { return const_iterator(); }
-            
+
         size_t size() const
         {
             size_t count = 0;
@@ -341,7 +341,7 @@ namespace Finjin { namespace Common {
                         break;
                     resultTail = Accessor::GetNext(resultTail);
                 }
-                
+
                 if (outputCount != nullptr)
                     *outputCount = count;
 
@@ -382,7 +382,7 @@ namespace Finjin { namespace Common {
     /**
      * Contains an intrusive list and a element count. It is intended to be used as the result of some type of query, where the query itself
      * calculates the element count, saving the caller the trouble of having to count up the elements in the list.
-     */ 
+     */
     template <typename ListType>
     class IntrusiveSingleListResult
     {

@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class Path;
@@ -26,7 +26,7 @@ namespace Finjin { namespace Common {
     class Uuid;
 
     class FINJIN_COMMON_LIBRARY_API Utf8StringFormatter
-    {    
+    {
     public:
         Utf8StringFormatter(const Utf8StringFormatter& other) = delete;
         Utf8StringFormatter& operator = (const Utf8StringFormatter& other) = delete;
@@ -43,13 +43,13 @@ namespace Finjin { namespace Common {
         Utf8StringFormatter& operator % (int16_t value);
         Utf8StringFormatter& operator % (int32_t value);
         Utf8StringFormatter& operator % (int64_t value);
-        
+
         Utf8StringFormatter& operator % (uint8_t value);
         Utf8StringFormatter& operator % (uint16_t value);
         Utf8StringFormatter& operator % (uint32_t value);
         Utf8StringFormatter& operator % (uint64_t value);
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS || FINJIN_TARGET_OS_IS_APPLE
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS || FINJIN_TARGET_PLATFORM_IS_APPLE
         Utf8StringFormatter& operator % (long value);
         Utf8StringFormatter& operator % (unsigned long value);
     #endif
@@ -81,8 +81,8 @@ namespace Finjin { namespace Common {
         }
 
     private:
-        template <typename ARG>
-        static Utf8StringFormatter& _Format(Utf8StringFormatter& formatter, const ARG& arg)
+        template <typename Arg>
+        static Utf8StringFormatter& _Format(Utf8StringFormatter& formatter, const Arg& arg)
         {
             return formatter % arg;
         }

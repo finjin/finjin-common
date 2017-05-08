@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataDocumentWriter.hpp"
 
 
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common { 
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API XmlDataDocumentWriter : public DataDocumentWriter
     {
@@ -40,10 +40,10 @@ namespace Finjin { namespace Common {
         void SaveFile(const Path& fileName, Error& error) override;
 
         void GetString(Utf8String& result, Error& error) override;
-        
+
     private:
         struct Impl;
-        Impl* impl;        
+        Impl* impl;
     };
 
 } }

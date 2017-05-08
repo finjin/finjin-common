@@ -11,14 +11,14 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8StringFormatter.hpp"
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #if !defined(FINJIN_ENABLE_DEBUG_LOG)
     #if FINJIN_DEBUG
         #define FINJIN_ENABLE_DEBUG_LOG 1
@@ -27,7 +27,7 @@
     #endif
 #endif
 
-#if FINJIN_ENABLE_DEBUG_LOG && FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_ENABLE_DEBUG_LOG && FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
     #define FINJIN_DEBUG_LOG_ERROR(...) \
     { \
@@ -55,16 +55,16 @@
         OutputDebugStringW(__sWide.c_str()); \
         OutputDebugStringW(L"\n"); \
         std::cout << __s << std::endl; \
-    }        
-#elif FINJIN_ENABLE_DEBUG_LOG && FINJIN_TARGET_OS_IS_ANDROID
+    }
+#elif FINJIN_ENABLE_DEBUG_LOG && FINJIN_TARGET_PLATFORM_IS_ANDROID
     #include <android/log.h>
     #define FINJIN_DEBUG_LOG_ERROR(...) (__android_log_print(ANDROID_LOG_ERROR, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))
     #define FINJIN_DEBUG_LOG_WARNING(...) (__android_log_print(ANDROID_LOG_WARN, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))
-    #define FINJIN_DEBUG_LOG_INFO(...) (__android_log_print(ANDROID_LOG_INFO, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))        
-#elif FINJIN_ENABLE_DEBUG_LOG && (FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE)
+    #define FINJIN_DEBUG_LOG_INFO(...) (__android_log_print(ANDROID_LOG_INFO, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))
+#elif FINJIN_ENABLE_DEBUG_LOG && (FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE)
     #define FINJIN_DEBUG_LOG_ERROR(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
     #define FINJIN_DEBUG_LOG_WARNING(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
-    #define FINJIN_DEBUG_LOG_INFO(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }        
+    #define FINJIN_DEBUG_LOG_INFO(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
 #else
     #define FINJIN_DEBUG_LOG_ERROR(...) Finjin::Common::DoesNothingToAvoidCompilerWarning();
     #define FINJIN_DEBUG_LOG_WARNING(...) Finjin::Common::DoesNothingToAvoidCompilerWarning();

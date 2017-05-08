@@ -14,19 +14,23 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API Win32PnpDeviceEnumerator
     {
     public:
         void Enumerate();
-        
+
         virtual bool HandleDevice(wchar_t* bstrVal) = 0;
     };
 
 } }
+
+#endif

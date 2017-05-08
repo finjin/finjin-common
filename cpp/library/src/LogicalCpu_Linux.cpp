@@ -15,123 +15,37 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/LogicalCpu.hpp"
 #include "finjin/common/Convert.hpp"
+#include "finjin/common/DirEntFileFinder.hpp"
 #include "finjin/common/Path.hpp"
-#include <regex>
-#include <set>
-#include <string>
-#include <utility>
-#include <boost/algorithm/string.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/fstream.hpp>
+#include "finjin/common/StaticVector.hpp"
 #include <sched.h>
 
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
-class DirectoryIterator : public std::iterator<std::input_iterator_tag, const std::pair<uint32_t, boost::filesystem::path> > 
-{
-public:
-    DirectoryIterator() : i_(), e_(), exp_(), idx_()
-    {
-    }
-
-    DirectoryIterator(const boost::filesystem::path& dir, const std::string& exp) : i_(dir), e_(), exp_(exp), idx_()
-    {
-        while (i_ != e_ && ! eval_(*i_))
-        {
-            ++i_;
-        }
-    }
-
-    bool operator == (const DirectoryIterator& other)
-    {
-        return i_ == other.i_;
-    }
-
-    bool operator != (const DirectoryIterator& other)
-    {
-        return i_ != other.i_;
-    }
-
-    DirectoryIterator& operator ++ ()
-    {
-        do 
-        {
-            ++i_;
-        } while (i_ != e_ && ! eval_(*i_));
-        
-        return * this;
-    }
-
-    DirectoryIterator operator ++ (int)
-    {
-        DirectoryIterator tmp(*this);
-        ++*this;
-        return tmp;
-    }
-
-    reference operator * () const 
-    {
-        return idx_;
-    }
-
-    pointer operator -> () const 
-    {
-        return &idx_;
-    }
-
-private:
-    bool eval_(const boost::filesystem::directory_entry& entry) 
-    {
-        std::string filename(entry.path().filename().string());
-        std::smatch what;
-        if (!std::regex_search(filename, what, exp_)) 
-            return false;
-        
-        FINJIN_DECLARE_ERROR(error);
-        uint32_t id;
-        Convert::ToInteger(id, what[1].str().c_str(), error);
-        if (error)
-            return false;
-
-        idx_ = std::make_pair(id, entry.path());
-        return true;
-    }
-
-    boost::filesystem::directory_iterator i_;
-    boost::filesystem::directory_iterator e_;
-    std::regex exp_;
-    std::pair<uint32_t, boost::filesystem::path> idx_;
-};
-
-
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 template <typename T>
-static Utf8String GetFirstLine(const T& buffer)
+static void GetFirstLine(Utf8StringView& result, const T& buffer)
 {
-    Utf8String result;
-    
+    result.clear();
+
     for (size_t i = 0; i < buffer.size(); i++)
     {
         if (buffer[i] == '\r' || buffer[i] == '\n')
         {
             result.assign(&buffer[0], i);
-            return result;
+            return;
         }
     }
-    
+
     if (!buffer.empty())
         result.assign(&buffer[0], buffer.size());
-    
-    return result;
 }
 
-static std::set<uint32_t> ParseIDsFromLine(const Utf8String& content) 
+static StaticVector<uint32_t, CommonConstants::MAX_CPUS> ParseIDsFromLine(const Utf8StringView& content)
 {
-    std::set<uint32_t> ids;
-    std::vector<Utf8StringView> range;
-    
+    StaticVector<uint32_t, CommonConstants::MAX_CPUS> ids;
+    StaticVector<Utf8StringView, 2> range;
     Split(content, ',', [&ids, &range](Utf8StringView& entry)
     {
         entry.TrimTrailingWhitespace();
@@ -145,28 +59,33 @@ static std::set<uint32_t> ParseIDsFromLine(const Utf8String& content)
 
         if (!range.empty())
         {
-            FINJIN_DECLARE_ERROR(error);
             if (range.size() == 1)
             {
                 //Only one ID
-                uint32_t id;
-                Convert::ToInteger(id, range[0].ToString(), error);
-                if (!error)
-                    ids.insert(static_cast<unsigned int>(id));
+                if (Utf8String::IsDigits(range[0].begin(), range[0].end()))
+                {
+                    uint32_t id = 0;
+                    id = Convert::ToInteger(range[0].ToString(), id);
+                    if (!ids.contains(id))
+                        ids.push_back(id);
+                }
             }
             else
             {
                 //Range of IDs
-                uint32_t first;
-                Convert::ToInteger(first, range.front().ToString(), error);
-                if (!error)
+                if (Utf8String::IsDigits(range[0].begin(), range[0].end()) &&
+                    Utf8String::IsDigits(range[1].begin(), range[1].end()))
                 {
-                    uint32_t last;
-                    Convert::ToInteger(last, range.back().ToString(), error);
-                    if (!error)
+                    uint32_t first = 0;
+                    first = Convert::ToInteger(range[0].ToString(), first);
+
+                    uint32_t last = 0;
+                    last = Convert::ToInteger(range[1].ToString(), last);
+
+                    for (auto i = first; i <= last; ++i)
                     {
-                        for (auto i = first; i <= last; ++i)
-                            ids.insert(i);
+                        if (!ids.contains(i))
+                            ids.push_back(i);
                     }
                 }
             }
@@ -174,7 +93,8 @@ static std::set<uint32_t> ParseIDsFromLine(const Utf8String& content)
 
         return ValueOrError<bool>(true);
     });
-    
+
+    std::sort(ids.begin(), ids.end());
     return ids;
 }
 
@@ -187,9 +107,9 @@ static bool AssociateThreadWithProcessor(ThreadHandle threadHandle, uint64_t pro
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
-//LogicalCpu---------------
+//LogicalCpu
 uint64_t LogicalCpu::GetGroup() const
 {
     return 0;
@@ -206,9 +126,9 @@ bool LogicalCpu::AssociateCurrentThread() const
 }
 
 void LogicalCpu::AssociateCurrentThread(Error& error) const
-{    
+{
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (!AssociateThreadWithProcessor(pthread_self(), this->processorID))
     {
         FINJIN_SET_ERROR(error, "Failed to set thread affinity.");
@@ -232,9 +152,9 @@ void LogicalCpu::AssociateThread(ThreadHandle threadHandle, Error& error) const
     }
 }
 
-//LogicalCpus------------------------
+//LogicalCpus
 void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
-{    
+{
     //Just use the first cpu
     auto cpuFoundAt = begin();
     if (cpuFoundAt != end())
@@ -252,47 +172,59 @@ void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 }
 
 void LogicalCpus::Enumerate()
-{    
+{
     clear();
-    
+
     //Info on these file paths can be found at: https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-devices-system-cpu
-    
-    StaticVector<uint8_t, 1024> tempFileBuffer;
-    
+
+    StaticVector<uint8_t, 1024> tempFileBuffer; //This is way more space than is necessary for the file
+
     //Parse list of CPUs
     Path possiblePath;
-#if FINJIN_TARGET_OS_IS_ANDROID
+#if FINJIN_TARGET_PLATFORM_IS_ANDROID
     possiblePath = "/sys/devices/system/cpu/possible";
 #else
     possiblePath = "/sys/devices/system/cpu/present";
 #endif
     if (!possiblePath.ReadBinaryFile(tempFileBuffer))
         return;
-    
-    auto firstLine = GetFirstLine(tempFileBuffer);
+
+    Utf8StringView firstLine;
+    GetFirstLine(firstLine, tempFileBuffer);
+
     auto onlineProcessorIDs = ParseIDsFromLine(firstLine);
-    if (onlineProcessorIDs.empty()) 
+    if (onlineProcessorIDs.empty())
         return;
-    
+
     //Iterate list of CPU IDs
     LogicalCpu logicalCpu;
     Path cpuPath, cachePath, fullCachePath;
-    for (auto processorID : onlineProcessorIDs) 
+    for (auto processorID : onlineProcessorIDs)
     {
         logicalCpu.Reset();
-       
+
         logicalCpu.processorID = processorID;
-        
+
         //Determine which NUMA node the CPU belongs to
         cpuPath = "/sys/devices/system/cpu/cpu";
         cpuPath += Convert::ToString(processorID);
         cpuPath += "/";
         if (cpuPath.IsDirectory())
         {
-            DirectoryIterator numaNodeIterator(cpuPath.c_str(), "^node([0-9]+)$");
-            DirectoryIterator numaNodeIteratorEnd;
-            if (numaNodeIterator != numaNodeIteratorEnd)
-                logicalCpu.nodeID = numaNodeIterator->first;
+            DirEntFileFinder fileFinder;
+            if (fileFinder.Start(cpuPath))
+            {
+                Path maybeNodePath;
+                do
+                {
+                    if (!fileFinder.GetCurrentName(maybeNodePath).HasError() && maybeNodePath.StartsWith("node"))
+                    {
+                        //It's a file starting with 'node'
+                        logicalCpu.nodeID = Convert::ToInteger(&maybeNodePath[4], logicalCpu.nodeID);
+                        break;
+                    }
+                } while (fileFinder.Next());
+            }
 
             //Determine which CPUs this CPU shares its caches with
             for (size_t cacheIndex = 0; cacheIndex < LogicalCpu::MAX_CACHES; cacheIndex++)
@@ -304,15 +236,15 @@ void LogicalCpus::Enumerate()
                 fullCachePath = cpuPath;
                 fullCachePath /= cachePath;
                 if (fullCachePath.ReadBinaryFile(tempFileBuffer))
-                {               
-                    firstLine = GetFirstLine(tempFileBuffer);
-                    
+                {
+                    GetFirstLine(firstLine, tempFileBuffer);
+
                     logicalCpu.cacheProcessorSharing[cacheIndex] = ParseIDsFromLine(firstLine);
-                    logicalCpu.cacheProcessorSharing[cacheIndex].remove(processorID); // remove itself from shared L1 list
-                }                
+                    logicalCpu.cacheProcessorSharing[cacheIndex].remove(processorID); //Remove itself from shared L1 list
+                }
             }
-        }    
-        
+        }
+
         //Store parsed logical CPU
         push_back(logicalCpu);
     }

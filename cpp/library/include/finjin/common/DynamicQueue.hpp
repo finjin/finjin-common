@@ -14,23 +14,23 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
-#include "finjin/common/QueueUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
+#include "finjin/common/QueueImpl.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T>
-    class AllocatedQueue
+    class DynamicQueue
     {
     public:
         using value_type = T;
 
-        using ValueCollection = AllocatedVector<value_type>;
+        using ValueCollection = DynamicVector<value_type>;
 
-        using This = AllocatedQueue<T>;
+        using This = DynamicQueue<T>;
         using Impl = QueueImpl<This, ValueCollection>;
 
         using iterator = typename Impl::iterator;

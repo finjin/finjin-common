@@ -19,16 +19,19 @@
 using namespace Finjin::Common;
 
 
-//Implementation----------------------------------------------------------------
+//Local data--------------------------------------------------------------------
 static const char* BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
+
+//Local functions---------------------------------------------------------------
 static bool IsBase64(char character)
 {
-    return 
+    return
         (character >= 'A' && character <= 'Z') ||
         (character >= 'a' && character <= 'z') ||
         (character >= '/' && character <= '9') ||
-        (character == '+');
+        (character == '+')
+        ;
 }
 
 static char Base64ToIndex(char character)
@@ -42,6 +45,8 @@ static char Base64ToIndex(char character)
         return -1;
 }
 
+
+//Implementation----------------------------------------------------------------
 size_t Base64::GetPaddingCount(const Utf8String& base64)
 {
     return GetPaddingCount(base64.c_str(), base64.length());
@@ -228,7 +233,7 @@ size_t Base64::ToBytes(const char* base64, size_t base64Length, void* vbytes, si
     while (base64Length-- && (base64[base64Offset] != '=') && IsBase64(base64[base64Offset]))
     {
         tempArray4[i++] = base64[base64Offset]; base64Offset++;
-        if (i == 4) 
+        if (i == 4)
         {
             for (i = 0; i < 4; i++)
                 tempArray4[i] = Base64ToIndex(tempArray4[i]);
@@ -239,12 +244,12 @@ size_t Base64::ToBytes(const char* base64, size_t base64Length, void* vbytes, si
 
             for (i = 0; i < 3; i++)
                 bytes[byteOffset++] = tempArray3[i];
-            
+
             i = 0;
         }
     }
 
-    if (i > 0) 
+    if (i > 0)
     {
         for (size_t j = i; j < 4; j++)
             tempArray4[j] = 0;

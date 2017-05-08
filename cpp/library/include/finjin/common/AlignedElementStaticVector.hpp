@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/MemorySize.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     template <typename T, size_t MaxItems, size_t SizeAlignment = std::alignment_of<max_align_t>::value>
     class AlignedElementStaticVector
     {

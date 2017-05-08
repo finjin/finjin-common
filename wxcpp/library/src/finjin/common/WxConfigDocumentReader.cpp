@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static void TrimTrailingWhitespace(wxString& s)
 {
     while (!s.empty() && isspace(s.Last()))
@@ -47,7 +47,7 @@ static bool IsWhitespace(const char* begin, const char* end)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //WxConfigDocumentLine
 WxConfigDocumentLine::WxConfigDocumentLine()
@@ -56,7 +56,7 @@ WxConfigDocumentLine::WxConfigDocumentLine()
     this->depth = 0;
     this->lineBegin = this->lineEnd = nullptr;
     this->keyBegin = this->keyEnd = nullptr;
-    this->valueBegin = this->valueEnd = nullptr;    
+    this->valueBegin = this->valueEnd = nullptr;
 }
 
 WxConfigDocumentLine::Type WxConfigDocumentLine::GetType() const
@@ -111,7 +111,7 @@ wxString WxConfigDocumentLine::GetValue() const
 {
     wxString value;
     if (this->type == Type::KEY_AND_VALUE)
-        value = wxString::FromUTF8(this->valueBegin, this->valueEnd - this->valueBegin);        
+        value = wxString::FromUTF8(this->valueBegin, this->valueEnd - this->valueBegin);
     TrimTrailingWhitespace(value);
     return value;
 }
@@ -121,7 +121,7 @@ void WxConfigDocumentLine::GetKeyAndValue(wxString& key, wxString& value) const
     if (this->type == Type::KEY_AND_VALUE)
     {
         key = wxString::FromUTF8(this->keyBegin, this->keyEnd - this->keyBegin);
-        value = wxString::FromUTF8(this->valueBegin, this->valueEnd - this->valueBegin);        
+        value = wxString::FromUTF8(this->valueBegin, this->valueEnd - this->valueBegin);
         TrimTrailingWhitespace(value);
     }
     else
@@ -214,7 +214,7 @@ WxConfigDocumentLine* WxConfigDocumentReader::Next()
     this->line.lineBegin = this->line.lineEnd;
     if (this->line.lineBegin != this->textEnd)
         this->line.lineBegin = SkipWhitespace(this->line.lineBegin, this->textEnd);
-    
+
     return ProcessLine();
 }
 
@@ -409,7 +409,7 @@ WxConfigDocumentLine* WxConfigDocumentReader::ProcessLine()
             {
                 this->line.type = WxConfigDocumentLine::Type::PLAIN_LINE;
                 this->line.keyBegin = this->line.lineBegin;
-                this->line.keyEnd = this->line.lineEnd;                
+                this->line.keyEnd = this->line.lineEnd;
             }
 
             return &this->line;

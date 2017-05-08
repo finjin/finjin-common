@@ -11,17 +11,17 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/FileOperationTypes.hpp"
 #include "finjin/common/Path.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API ZIPReader
@@ -68,7 +68,7 @@ namespace Finjin { namespace Common {
         FileOperationResult Inflate(ByteBuffer& buffer, const Entry& entry); //Decompresses entire file/entry
         FileOperationResult Inflate(ByteBuffer& buffer, const Path& path); //Decompresses entire file/entry
         FileOperationResult Inflate(void* buffer, size_t& bytesDecompressed, const Entry& entry); //Decompresses entire file/entry, treating 'buffer' as if it's large enough
-        
+
         FileOperationResult TestStartInflate(const Path& path);
         FileOperationResult TestStartInflate(const Path& path, size_t& decompressedSize);
         FileOperationResult StartInflate(const Path& path, size_t& decompressedSize); //Starts a partial inflate.

@@ -14,12 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_ANDROID
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/NvAndroidNativeAppGlue.h"
 #include "finjin/common/ScreenOrientation.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API AndroidUtilities
@@ -34,3 +36,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

@@ -16,10 +16,10 @@
 #include "finjin/common/FiberException.hpp"
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    class FutureErrorCategory : public std::error_category 
+    class FutureErrorCategory : public std::error_category
     {
     public:
         const char* name() const noexcept override
@@ -29,7 +29,7 @@ namespace Finjin { namespace Common {
 
         std::error_condition default_error_condition(int ev) const noexcept override
         {
-            switch (ev) 
+            switch (ev)
             {
                 case 1: return std::error_condition(static_cast<int>(FutureErrorCode::BROKEN_PROMISE), FutureCategory());
                 case 2: return std::error_condition(static_cast<int>(FutureErrorCode::FUTURE_ALREADY_RETRIEVED), FutureCategory());
@@ -46,7 +46,7 @@ namespace Finjin { namespace Common {
 
         std::string message(int ev) const override
         {
-            switch (static_cast<FutureErrorCode>(ev)) 
+            switch (static_cast<FutureErrorCode>(ev))
             {
                 case FutureErrorCode::UNKNOWN: return std::string("Unknown error");
                 case FutureErrorCode::BROKEN_PROMISE: return std::string("The associated promise has been destructed prior to the associated state becoming ready.");

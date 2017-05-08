@@ -32,7 +32,7 @@ typedef rapidjson::Value JsonValue;
 typedef rapidjson::Value JsonElement;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_QUOTED_LINE(_this, propertyName, stringValue) WriteQuotedLine(*_this->impl->settings.output, _this->impl->escaper, propertyName, stringValue)
 
 #define WRITE_VALUE_LINE(_this, propertyName, value) WriteValueLine(*_this->impl->settings.output, _this->impl->escaper, propertyName, value)
@@ -45,7 +45,7 @@ typedef rapidjson::Value JsonElement;
 #define WRITE_CHUNK_END_LINE(_this) *_this->impl->settings.output << "},\n";
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 inline WxDocumentWriterOutput& operator << (WxDocumentWriterOutput& out, const char* value)
 {
     out.Write(value);
@@ -74,7 +74,7 @@ public:
     const JsonStringBuffer::Ch* Escape(const char* s)
     {
         this->buffer.Clear();
-        
+
         WriteString(s, static_cast<rapidjson::SizeType>(strlen(s)));
         return this->buffer.GetString();
     }
@@ -82,7 +82,7 @@ public:
     const JsonStringBuffer::Ch* Escape(const wxString& s)
     {
         this->buffer.Clear();
-        
+
         auto sBuffer = s.ToUTF8();
         WriteString(sBuffer.data(), static_cast<rapidjson::SizeType>(strlen(sBuffer.data())));
         return this->buffer.GetString();
@@ -311,23 +311,23 @@ static void WriteChunkStartLineWithIndexOrString(WxDocumentWriterOutput& out, Js
 }
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct WxJsonDataChunkWriter::Impl
 {
     Settings settings;
-    DataChunkWriterStyle style;    
+    DataChunkWriterStyle style;
     JsonStringEscaper escaper;
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 WxJsonDataChunkWriter::WxJsonDataChunkWriter()
 {
     impl = nullptr;
 }
 
 WxJsonDataChunkWriter::~WxJsonDataChunkWriter()
-{        
+{
     if (impl == nullptr)
         return;
 
@@ -336,7 +336,7 @@ WxJsonDataChunkWriter::~WxJsonDataChunkWriter()
 
     if (AnySet(impl->style & DataChunkWriterStyle::ROOT))
         WriteFooter();
-    
+
     delete impl;
 }
 
@@ -414,15 +414,15 @@ void WxJsonDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
 
     if (impl->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<WxDocumentWriterOutput> sharedNewOutput = impl->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to create new output for chunk '%s'."), name.ToString().wx_str()));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto jsonChunkWriter = new WxJsonDataChunkWriter();
         auto newSettings = impl->settings;
         newSettings.Create(sharedNewOutput, *impl->settings.controller);
@@ -445,7 +445,7 @@ void WxJsonDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
             FINJIN_WX_SET_ERROR(error, wxT("Failed to write writer header."));
             return;
         }
-        
+
         WRITE_CHUNK_START_LINE_STRING(jsonChunkWriter, name);
 
         auto scheduled = impl->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
@@ -453,7 +453,7 @@ void WxJsonDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
         {
             FINJIN_WX_SET_ERROR(error, wxT("Failed to schedule/execute chunk writer."));
             return;
-        }        
+        }
 
         if (!scheduled)
         {
@@ -465,12 +465,12 @@ void WxJsonDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
         WRITE_CHUNK_START_LINE_INDEX_OR_STRING(this, name);
-        
+
         chunkFunc(*this, error);
         if (error)
         {
@@ -501,9 +501,9 @@ void WxJsonDataChunkWriter::WriteFooter()
     *impl->settings.output << "}\n";
 }
 
-ByteOrder WxJsonDataChunkWriter::GetByteOrder() const 
+ByteOrder WxJsonDataChunkWriter::GetByteOrder() const
 {
-    return impl->settings.byteOrder; 
+    return impl->settings.byteOrder;
 }
 
 void WxJsonDataChunkWriter::WriteBlob(const WxChunkPropertyName& propertyName, const void* values, size_t count, WxError& error)

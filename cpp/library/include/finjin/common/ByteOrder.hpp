@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Types/functions--------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class ByteOrder
@@ -22,11 +22,17 @@ namespace Finjin { namespace Common {
         LITTLE,
         BIG
     };
-    
+
+} }
+
+
+//Functions---------------------------------------------------------------------
+namespace Finjin { namespace Common {
+
     inline ByteOrder GetByteOrder()
     {
         uint16_t lowByteSet = 0x00ff;
-        uint8_t* someByte = (uint8_t*)&lowByteSet;
+        auto someByte = reinterpret_cast<uint8_t*>(&lowByteSet);
         return *someByte != 0 ? ByteOrder::LITTLE : ByteOrder::BIG;
     }
 
@@ -41,7 +47,7 @@ namespace Finjin { namespace Common {
     }
 
     template <typename T>
-    void SwapBytes(T& value)
+    inline void SwapBytes(T& value)
     {
         auto copy = value;
 

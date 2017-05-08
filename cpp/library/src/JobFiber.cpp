@@ -21,27 +21,27 @@
 #include "finjin/common/TaggedMemoryBlockAllocator.hpp"
 #include "FiberJobQueue.hpp"
 #include "FiberJobScheduler.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
-#elif FINJIN_TARGET_OS_IS_ANDROID || FINJIN_TARGET_OS == FINJIN_TARGET_OS_IOS || FINJIN_TARGET_OS == FINJIN_TARGET_OS_APPLE_TV
+#elif FINJIN_TARGET_PLATFORM_IS_ANDROID || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_IOS || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_TVOS
     #include <boost/context/all.hpp>
 
     #define FINJIN_USE_BOOST_CONTEXT 1
-#elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS == FINJIN_TARGET_OS_MAC
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
     //TODO: In the future, make changes to the development/build environment so that boost is used instead
     #include <sys/mman.h>
     #if !defined(_XOPEN_SOURCE)
         #define _XOPEN_SOURCE 600
     #endif
-    #include <ucontext.h>    
-    
+    #include <ucontext.h>
+
     #define FINJIN_USE_POSIX_CONTEXT 1
 #endif
 
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JobFiber::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator);
@@ -72,7 +72,7 @@ struct JobFiber::Impl : public AllocatedClass
 
     void FiberFunc();
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     void* fiberHandle; //Operating system handle to fiber
 #elif FINJIN_USE_POSIX_CONTEXT
     uint8_t* stack;
@@ -95,13 +95,13 @@ struct JobFiber::Impl : public AllocatedClass
 };
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static size_t CalculateStackSize(size_t requestedSize)
 {
     auto finalSize = requestedSize;
-    
+
     //Round up to nearest page boundary. Note: Probably not needed.
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     SYSTEM_INFO systemInfo = {};
     GetNativeSystemInfo(&systemInfo);
     if (systemInfo.dwPageSize > 0)
@@ -117,11 +117,11 @@ static size_t CalculateStackSize(size_t requestedSize)
             finalSize += (pageSize - (requestedSize % (size_t)pageSize));
     }
 #endif
-    
+
     return finalSize;
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     static void WINAPI FiberFuncWin32(void* parameter)
     {
         auto impl = static_cast<JobFiber::Impl*>(parameter);
@@ -137,7 +137,7 @@ static size_t CalculateStackSize(size_t requestedSize)
     {
         if (buffer == nullptr)
             return;
-    
+
         allocator->Deallocate(buffer);
     }
 
@@ -145,7 +145,7 @@ static size_t CalculateStackSize(size_t requestedSize)
         static void ContextFunction32(int a0)
         {
             assert(sizeof(int) == 4);
-  
+
             auto impl = reinterpret_cast<JobFiber::Impl*>(a0);
             assert(impl != nullptr);
             impl->FiberFunc();
@@ -154,7 +154,7 @@ static size_t CalculateStackSize(size_t requestedSize)
         static void ContextFunction64(int a0, int a1)
         {
             assert(sizeof(int) == 4);
-  
+
             auto impl = reinterpret_cast<JobFiber::Impl*>(((uint64_t)a0 << 32) | (uint64_t)(uint32_t)a1);
             assert(impl != nullptr);
             impl->FiberFunc();
@@ -170,11 +170,11 @@ static size_t CalculateStackSize(size_t requestedSize)
 #endif
 
 
-//Static initialization--------------------------------------------------------
+//Static initialization---------------------------------------------------------
 static FINJIN_THREAD_LOCAL JobFiber* activeFiber = nullptr; //Per-thread variable indicating which fiber is active in a thread
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 //JobFiber::Impl
 JobFiber::Impl::Impl(Allocator* allocator) : AllocatedClass(allocator)
 {
@@ -186,7 +186,7 @@ JobFiber::Impl::Impl(Allocator* allocator) : AllocatedClass(allocator)
     this->jobQueue = nullptr;
     this->scheduler = nullptr;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     this->fiberHandle = nullptr;
 #elif FINJIN_USE_POSIX_CONTEXT
     this->stack = nullptr;
@@ -200,7 +200,7 @@ JobFiber::Impl::~Impl()
 {
     if (!IsMainFiber())
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         if (this->fiberHandle != nullptr)
             DeleteFiber(this->fiberHandle);
         this->fiberHandle = nullptr;
@@ -212,7 +212,7 @@ JobFiber::Impl::~Impl()
         this->stack = nullptr;
     #else
         #error Implement this!
-    #endif        
+    #endif
     }
 }
 
@@ -228,7 +228,7 @@ void JobFiber::Impl::FiberFunc()
     while (!IsInterrupted() && !isQueueInterrupted)
     {
         inUseMutex = nullptr;
-        
+
         {
             FiberJob::ptr_t jobToExecute;
             switch (this->jobQueue->Pop(jobToExecute, this->scheduler->GetMaxJobGroupID()))
@@ -236,13 +236,13 @@ void JobFiber::Impl::FiberFunc()
                 case FiberJobQueue::PushPopResult::SUCCESS:
                 {
                     this->activeJob = jobToExecute.get();
-                    
+
                     jobToExecute->Execute();
-                    
+
                     this->activeJob = nullptr;
-                    
+
                     inUseMutex = jobToExecute->GetInUseMutex();
-                    
+
                     break;
                 }
                 case FiberJobQueue::PushPopResult::GROUP_CHECK_FAILED:
@@ -257,7 +257,7 @@ void JobFiber::Impl::FiberFunc()
                 }
             }
         }
-        
+
         if (inUseMutex != nullptr)
             inUseMutex->unlock();
     }
@@ -277,7 +277,7 @@ JobFiber::JobFiber(JobFiber&& other)
 {
     impl = other.impl;
     next = other.next;
-    
+
     other.impl = nullptr;
     other.next = nullptr;
 }
@@ -303,12 +303,12 @@ JobFiber::~JobFiber()
 void JobFiber::Create
     (
     size_t fiberIndex,
-    const Utf8String& name, 
-    Allocator* allocator, 
-    JobFiber* mainFiber, 
-    FiberJobScheduler& scheduler, 
+    const Utf8String& name,
+    Allocator* allocator,
+    JobFiber* mainFiber,
+    FiberJobScheduler& scheduler,
     FiberJobQueue& jobQueue,
-    size_t stackCommitSize, 
+    size_t stackCommitSize,
     size_t stackReserveSize
     )
 {
@@ -316,31 +316,31 @@ void JobFiber::Create
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
 
     impl->name = name;
-    
+
     impl->mainFiber = mainFiber;
-    
+
     impl->scheduler = &scheduler;
-    
-    impl->jobQueue = &jobQueue;    
-    
+
+    impl->jobQueue = &jobQueue;
+
     impl->stackSize = CalculateStackSize(stackCommitSize);
     impl->stackReserveSize = CalculateStackSize(stackReserveSize);
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     impl->fiberHandle = CreateFiberEx(impl->stackSize, impl->stackReserveSize, FIBER_FLAG_FLOAT_SWITCH, FiberFuncWin32, impl);
     assert(impl->fiberHandle != nullptr);
 #elif FINJIN_USE_POSIX_CONTEXT
     auto totalStackSize = impl->stackSize + impl->stackReserveSize;
     impl->stack = AllocateStack(allocator, totalStackSize);
     assert(impl->stack != nullptr);
-    
+
     auto getContextSupported = getcontext(&impl->context);
     assert(getContextSupported != -1); //If this fails, it's because getcontext() is not supported on this platform
-    
+
     impl->context.uc_stack.ss_sp = impl->stack;
     impl->context.uc_stack.ss_size = totalStackSize;
     impl->context.uc_link = nullptr;
-    
+
     #if __WORDSIZE == 32
         makecontext(&impl->context, (void(*)())ContextFunction32, 1, (uint32_t)impl);
     #elif __WORDSIZE == 64
@@ -350,7 +350,7 @@ void JobFiber::Create
     auto totalStackSize = impl->stackSize + impl->stackReserveSize;
     impl->stack = AllocateStack(allocator, totalStackSize);
     assert(impl->stack != nullptr);
-    
+
     impl->context = boost::context::make_fcontext(impl->stack + totalStackSize, totalStackSize, BoostContextFunction);
 #else
     #error Implement this!
@@ -370,13 +370,13 @@ void JobFiber::InitializeDefaultFiber(Allocator* allocator, const Utf8String& na
 
     if (impl == nullptr)
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
-    
+
     impl->name = name;
     impl->state = State::RUNNING; //The calling thread is already running
     impl->scheduler = scheduler;
-    
-    scheduler->SetMainFiber(this);    
-    SetActiveFiber(this); 
+
+    scheduler->SetMainFiber(this);
+    SetActiveFiber(this);
 }
 
 void JobFiber::ShutdownDefaultFiber()
@@ -384,7 +384,7 @@ void JobFiber::ShutdownDefaultFiber()
     if (impl != nullptr)
     {
         SetActiveFiber(nullptr);
-        
+
         delete impl;
         impl = nullptr;
     }
@@ -400,24 +400,24 @@ void JobFiber::InitializeMainFiber(Allocator* allocator, const Utf8String& name,
     impl->name = name;
     impl->state = State::RUNNING; //The calling thread is already running
     impl->scheduler = scheduler;
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     impl->fiberHandle = ConvertThreadToFiberEx(nullptr, 0);
 #elif FINJIN_USE_POSIX_CONTEXT || FINJIN_USE_BOOST_CONTEXT
     //Do nothing
 #else
     #error Implement this!
 #endif
-    
-    scheduler->SetMainFiber(this);    
+
+    scheduler->SetMainFiber(this);
     SetActiveFiber(this);
 }
 
 void JobFiber::ShutdownMainFiber()
-{    
+{
     if (impl != nullptr)
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         ConvertFiberToThread();
     #elif FINJIN_USE_POSIX_CONTEXT || FINJIN_USE_BOOST_CONTEXT
         //Do nothing
@@ -516,7 +516,7 @@ void JobFiber::ScheduleYield()
 }
 
 void JobFiber::ScheduleWait(std::unique_lock<FiberSpinLock>& callerLock)
-{    
+{
     assert(impl != nullptr);
     assert(impl->scheduler != nullptr);
     assert(this == GetActiveFiber());
@@ -552,10 +552,10 @@ void JobFiber::SwitchTo()
 
     auto previous = GetActiveFiber();
     assert(previous != nullptr);
-    
+
     SetActiveFiber(this);
-        
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     SwitchToFiber(impl->fiberHandle);
 #elif FINJIN_USE_POSIX_CONTEXT
     swapcontext(&previous->impl->context, &impl->context);

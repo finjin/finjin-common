@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 DataChunkReaderController::~DataChunkReaderController()
 {
 }
@@ -43,7 +43,7 @@ std::unique_ptr<DataChunkReaderInput> DataChunkReaderController::CreateInputFile
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to open file '%1%'.", resolvedFilePath));
     else
         result.reset(new StreamDataChunkReaderInput(std::move(openedFile)));
-    
+
     return result;
 }
 
@@ -65,7 +65,7 @@ void DataChunkReaderController::ReadInputFile(const Path& filePath, std::functio
         FINJIN_SET_ERROR(error, "Failed to create new reader instance.");
         return;
     }
-    
+
     ScheduleReadChunk(chunkFunc, std::move(newReader), error);
     if (error)
     {
@@ -78,7 +78,7 @@ void DataChunkReaderController::ScheduleReadChunk(std::function<void(DataChunkRe
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    chunkFunc(*reader, error); 
+    chunkFunc(*reader, error);
     if (error)
     {
         FINJIN_SET_ERROR(error, "Failed to read chunk.");

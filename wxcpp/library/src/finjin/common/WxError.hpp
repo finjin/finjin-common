@@ -14,16 +14,16 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     #define FINJIN_WX_DECLARE_ERROR(error) WxError error
     #define FINJIN_WX_ERROR_METHOD_START(error)
 
-    #define FINJIN_WX_ERROR_METHOD_START(error) 
+    #define FINJIN_WX_ERROR_METHOD_START(error)
     #define FINJIN_WX_SET_ERROR(error, msg) error.Set(msg)
     #define FINJIN_WX_SET_ERROR_NO_MESSAGE(error) error.Set()
     #define FINJIN_WX_DEFAULT_ERROR_CHECK(error) \

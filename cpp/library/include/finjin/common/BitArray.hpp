@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Hash.hpp"
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <size_t bitCount>
@@ -28,7 +28,7 @@ namespace Finjin { namespace Common {
     public:
         using value_type = uint8_t;
         static const size_t arraySize = (bitCount + sizeof(value_type) * 8 - 1) / (sizeof(value_type) * 8);
-        
+
         template <size_t _bitCount>
         class Accessor
         {
@@ -62,7 +62,7 @@ namespace Finjin { namespace Common {
                     bitArray->SetBit(bitIndex);
                 else
                     bitArray->ClearBit(bitIndex);
-            
+
                 return *this;
             }
 
@@ -92,7 +92,7 @@ namespace Finjin { namespace Common {
             {
                 return value ^ bitArray->IsBitSet(bitIndex);
             }
-        
+
             bool operator & (bool value) const
             {
                 return value & bitArray->IsBitSet(bitIndex);
@@ -139,10 +139,10 @@ namespace Finjin { namespace Common {
         BitArray operator ~ () const
         {
             BitArray result;
-    
+
             for (size_t i = 0; i < arraySize; i++)
                 result.bits[i] = ~bits[i];
-    
+
             return result;
         }
 
@@ -150,7 +150,7 @@ namespace Finjin { namespace Common {
         {
             for (size_t i = 0; i < arraySize; i++)
                 bits[i] ^= b.bits[i];
-            
+
             return *this;
         }
 
@@ -173,30 +173,30 @@ namespace Finjin { namespace Common {
         BitArray operator ^ (const BitArray& b) const
         {
             BitArray result;
-    
+
             for (size_t i = 0; i < arraySize; i++)
                 result.bits[i] = bits[i] ^ b.bits[i];
-            
+
             return result;
         }
-        
+
         BitArray operator & (const BitArray& b) const
         {
             BitArray result;
-    
+
             for (size_t i = 0; i < arraySize; i++)
                 result.bits[i] = bits[i] & b.bits[i];
-            
+
             return result;
         }
 
         BitArray operator | (const BitArray& b) const
         {
             BitArray result;
-    
+
             for (size_t i = 0; i < arraySize; i++)
                 result.bits[i] = bits[i] | b.bits[i];
-            
+
             return result;
         }
 
@@ -224,7 +224,7 @@ namespace Finjin { namespace Common {
         {
             return bits[index / (sizeof(value_type) * 8)] >> (index & (sizeof(value_type) * 8 - 1)) & 1;
         }
-        
+
         void SetBit(size_t index)
         {
             bits[index / (sizeof(value_type) * 8)] |= (value_type)1 << (index & (sizeof(value_type) * 8 - 1));
@@ -234,7 +234,7 @@ namespace Finjin { namespace Common {
         {
             bits[index / (sizeof(value_type) * 8)] &= ~((value_type)1 << (index & (sizeof(value_type) * 8 - 1)));
         }
-        
+
         void FlipBit(size_t index)
         {
             bits[index / (sizeof(value_type) * 8)] ^= (value_type)1 << (index & (sizeof(value_type) * 8 - 1));
@@ -284,15 +284,13 @@ namespace Finjin { namespace Common {
 
             return maxBytes;
         }
-        
+
     private:
         value_type bits[arraySize];
     };
 
 } }
 
-
-//Functions--------------------------------------------------------------------
 namespace std
 {
     template <size_t bitCount>

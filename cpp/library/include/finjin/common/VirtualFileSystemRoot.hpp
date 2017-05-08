@@ -24,12 +24,12 @@
 #include "finjin/common/VirtualFileHandle.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class VirtualFileSystem;
     class VirtualFileSystemRoot;
-    
+
     class FINJIN_COMMON_LIBRARY_API VirtualFileSystemRoot : public AllocatedClass
     {
     public:
@@ -57,7 +57,7 @@ namespace Finjin { namespace Common {
         virtual void Close(VirtualFileHandle& fileHandle) = 0;
 
         const Utf8String& GetDescription() const { return this->description; }
-        
+
     protected:
         Utf8String description;
     };

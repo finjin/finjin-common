@@ -14,16 +14,16 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataChunkReader.hpp"
 #include "finjin/common/DataChunkReaderController.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include <istream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API JsonDataChunkReader : public DataChunkReader
     {
     public:
@@ -38,7 +38,7 @@ namespace Finjin { namespace Common {
         ~JsonDataChunkReader();
 
         void Create(const Settings& settings, JsonDataChunkReader* parentSection, Error& error);
-        
+
         DataChunkReaderController& GetReaderController() override;
 
         DataChunkReaderInput* GetReaderInput() override;
@@ -49,7 +49,7 @@ namespace Finjin { namespace Common {
         void Skip(DataHeader& dataHeader, Error& error) override;
 
         const DataChunkReaderHeader& GetHeader() const override;
-        
+
         bool IsBinaryFormat() const override { return false; }
 
         void ReadPropertyName(DataHeader& dataHeader, ParsedChunkPropertyName& result, Error& error) override;
@@ -89,8 +89,8 @@ namespace Finjin { namespace Common {
 
         struct Impl;
 
-    private:        
-        std::unique_ptr<Impl> impl;        
+    private:
+        std::unique_ptr<Impl> impl;
     };
 
 } }

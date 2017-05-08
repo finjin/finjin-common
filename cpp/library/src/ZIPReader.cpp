@@ -20,10 +20,10 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
-#if FINJIN_TARGET_OS_IS_ANDROID
+//Local functions---------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_ANDROID
     //Hack: The Android NDK doesn't define these but zziplib calls them.
-    //The trick is that this library doesn't do anything that requires these functions to be called. 
+    //The trick is that this library doesn't do anything that requires these functions to be called.
     //They just need to exist in order for the application to link.
     #include <dirent.h>
     extern "C" {
@@ -39,7 +39,7 @@ using namespace Finjin::Common;
 #endif
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct WorkingZipFile
 {
     ZZIP_FILE* zzipFile;
@@ -106,14 +106,14 @@ struct ZIPReader::Impl
     {
         for (auto& workingFile : this->workingFiles)
             workingFile.Close();
-        
+
         if (this->zzipDir != nullptr)
         {
             zzip_dir_close(this->zzipDir);
             this->zzipDir = nullptr;
         }
     }
-    
+
     FileOperationResult StartInflate(WorkingZipFile& workingFile, const Path& path)
     {
         workingFile.Close();
@@ -165,7 +165,7 @@ struct ZIPReader::Impl
             if (bytesDecompressed < sizeof(buffer))
                 break;
         }
-        
+
         return FileOperationResult::SUCCESS;
     }
 
@@ -183,15 +183,10 @@ static Utf8String ZipErrorToString(zzip_error_t e)
     return zzip_strerror((int)e);
 }
 
-/*static Utf8String ZipErrorToString(ZZIP_DIR* zzipDir)
-{
-    return zzip_strerror_of(zzipDir);
-}*/
-
 
 //Implementation----------------------------------------------------------------
 ZIPReader::ZIPReader() : impl(new Impl)
-{    
+{
 }
 
 ZIPReader::ZIPReader(ZIPReader&& other) : impl(std::move(other.impl))
@@ -258,7 +253,7 @@ bool ZIPReader::Next(Entry& entry)
         //Not an error. There's nothing left to read
         return false;
     }
-    
+
     entry.compressionMethod = dirent.d_compr;
     entry.compressedSize = static_cast<size_t>(dirent.d_csize);
     entry.decompressedSize = static_cast<size_t>(dirent.st_size);
@@ -333,7 +328,7 @@ FileOperationResult ZIPReader::TestStartInflate(const Path& path, size_t& decomp
 FileOperationResult ZIPReader::StartInflate(const Path& path, size_t& decompressedSize)
 {
     decompressedSize = 0;
-    
+
     if (impl->workingFiles[impl->currentFileIndex].zzipFilePath == path)
     {
         if (impl->workingFiles[impl->currentFileIndex].zzipFileBytesRead != 0)

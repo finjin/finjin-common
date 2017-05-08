@@ -14,18 +14,18 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/SetMapUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/SetMapImpl.hpp"
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 /**
  * Helps to define a bucket count for static maps that are likely to be full.
  */
 #define FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count) (size_t(count) * 3 | (size_t)1)
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /**
@@ -35,20 +35,20 @@ namespace Finjin { namespace Common {
      */
     template <typename KeyType, typename ValueType, size_t ValueCount, size_t BucketCount, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType> >
     class StaticUnorderedMap
-    {   
+    {
     public:
         using value_type = MapPairType;
         using hash_value_type = size_t;
 
         using ValueEntry = SetMapValueEntryImpl<hash_value_type, value_type>;
         using BucketEntry = SetMapBucketEntryImpl<hash_value_type, value_type>;
-        
+
         using ValueCollection = std::array<ValueEntry, ValueCount>;
         using BucketCollection = std::array<BucketEntry, BucketCount>;
 
         using This = StaticUnorderedMap<KeyType, ValueType, ValueCount, BucketCount, MapPairType, Hash>;
         using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType>;
-        
+
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
 
@@ -62,10 +62,10 @@ namespace Finjin { namespace Common {
 
         ValueOrError<void> operator = (const StaticUnorderedMap& other) { return impl.assign(other); }
         ValueOrError<void> operator = (StaticUnorderedMap&& other) { return impl.assign(std::move(other)); }
-        
+
         ValueOrError<bool> insert(const KeyType& key, const ValueType& value, bool allowOverwrite) { return impl.insert(key, value, allowOverwrite); }
         ValueOrError<bool> insert(KeyType&& key, ValueType&& value, bool allowOverwrite) { return impl.insert(std::move(key), std::move(value), allowOverwrite); }
-        
+
         ValueOrError<bool> insert_or_assign(const KeyType& key, const ValueType& value, bool allowOverwrite) { return impl.insert(key, value, true); }
         ValueOrError<bool> insert_or_assign(KeyType&& key, ValueType&& value, bool allowOverwrite) { return impl.insert(std::move(key), std::move(value), true); }
 
@@ -96,7 +96,7 @@ namespace Finjin { namespace Common {
         ValueCollection& GetValueEntries() { return impl.valueEntries; }
 
         ValueOrError<ValueType*> GetOrAdd(const KeyType& key) { return impl.GetOrAdd(key); }
-        
+
         size_t GetCollisionCount() const { return impl.GetCollisionCount(); }
         float GetCollisionRatio() const { return impl.GetCollisionRatio(); }
 
@@ -119,7 +119,7 @@ namespace Finjin { namespace Common {
         {
             //Do nothing
         }
-                
+
     private:
         Impl impl;
     };

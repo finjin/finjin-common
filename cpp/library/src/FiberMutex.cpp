@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 FiberMutex::FiberMutex()
 {
     this->state = Status::UNLOCKED;
@@ -89,10 +89,10 @@ bool FiberMutex::LockIfUnlocked()
     else
     {
         //Unlocked
-        
+
         //Change state
         this->state = Status::LOCKED;
-        
+
         return true;
     }
 }

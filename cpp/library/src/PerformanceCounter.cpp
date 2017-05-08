@@ -14,22 +14,27 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/PerformanceCounter.hpp"
+#include "finjin/common/DebugLog.hpp"
 
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define PERFORMANCE_FORMAT "%ws wall, %us user + %ss system = %ts CPU (%p%)"
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //PerformanceCounter
-PerformanceCounter::PerformanceCounter(const Utf8String& _descriptionPrefix) : descriptionPrefix(_descriptionPrefix)
-{   
-    if (!this->descriptionPrefix.empty())
+PerformanceCounter::PerformanceCounter()
+{
+}
+
+PerformanceCounter::PerformanceCounter(const Utf8String& descriptionPrefix)
+{
+    if (!descriptionPrefix.empty())
     {
-        this->formatString = this->descriptionPrefix;
+        this->formatString = descriptionPrefix;
         this->formatString += " performance: " PERFORMANCE_FORMAT;
     }
 }
@@ -44,22 +49,20 @@ CpuTimes PerformanceCounter::GetElapsedTime() const
     return this->timer.elapsed();
 }
 
-Utf8String PerformanceCounter::FormatElapsedTime() const
+Utf8String PerformanceCounter::ToString() const
 {
     if (!this->formatString.empty())
-        return boost::timer::format(this->timer.elapsed(), boost::timer::default_places, this->formatString.c_str()).c_str();     
+        return boost::timer::format(this->timer.elapsed(), boost::timer::default_places, this->formatString.c_str()).c_str();
     else
-        return boost::timer::format(this->timer.elapsed(), boost::timer::default_places, PERFORMANCE_FORMAT).c_str();     
+        return boost::timer::format(this->timer.elapsed(), boost::timer::default_places, PERFORMANCE_FORMAT).c_str();
 }
 
 //AutoPerformanceCounterLogged
-AutoPerformanceCounterLogged::AutoPerformanceCounterLogged(const Utf8String& logChannel, LogLevel logLevel, const Utf8String& descriptionPrefix) : PerformanceCounter(descriptionPrefix)
+AutoPerformanceCounterLogged::AutoPerformanceCounterLogged(const Utf8String& descriptionPrefix) : PerformanceCounter(descriptionPrefix)
 {
-    this->logChannel = logChannel;
-    this->logLevel = logLevel;    
 }
 
 AutoPerformanceCounterLogged::~AutoPerformanceCounterLogged()
 {
-    //FINJIN_LOGGER_WRITE(this->logLevel, this->logChannel, FormatElapsedTime());
+    FINJIN_DEBUG_LOG_INFO("%1%", ToString());
 }

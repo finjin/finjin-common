@@ -19,18 +19,20 @@
 #include <nowide/stackstring.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/range/adaptor/reversed.hpp>
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/WindowsUtilities.hpp"
 #endif
 
 using namespace Finjin::Common;
 
+
+//Local types-------------------------------------------------------------------
 using NarrowingConverter = nowide::basic_stackstring<char, wchar_t, Utf8String::STATIC_STRING_LENGTH + 1>;
 using WideningToUtf16Converter = nowide::basic_stackstring<wchar_t, char, Utf8String::STATIC_STRING_LENGTH + 1>;
 using WideningToUtf32Converter = nowide::basic_stackstring<char32_t, char, Utf8String::STATIC_STRING_LENGTH + 1>;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static size_t EstimateNewAllocatedLength(size_t requestedLength, size_t allocatedLength, bool oversize)
 {
     if (oversize)
@@ -85,7 +87,7 @@ static int strncmp32(const char32_t* a, const char32_t* b)
 }*/
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //Utf8String
 const Utf8String& Utf8String::Empty()
@@ -102,9 +104,9 @@ Utf8String::Utf8String(Allocator* allocator)
 
 Utf8String::Utf8String(const char* other, Allocator* allocator)
 {
-    Init();    
+    Init();
     this->allocator = allocator;
-    assign(other);    
+    assign(other);
 }
 
 Utf8String::Utf8String(const wchar_t* other, Allocator* allocator)
@@ -116,9 +118,9 @@ Utf8String::Utf8String(const wchar_t* other, Allocator* allocator)
 
 Utf8String::Utf8String(const char* other, size_t len, Allocator* allocator)
 {
-    Init();        
+    Init();
     this->allocator = allocator;
-    assign(other, len);    
+    assign(other, len);
 }
 
 Utf8String::Utf8String(const wchar_t* other, size_t len, Allocator* allocator)
@@ -174,7 +176,7 @@ Utf8String::Utf8String(const Utf8String& other, Allocator* allocator)
 {
     Init();
     this->allocator = allocator;
-    assign(other);    
+    assign(other);
 }
 
 Utf8String::Utf8String(Utf8String&& other)
@@ -249,6 +251,11 @@ ValueOrError<void> Utf8String::operator = (const Utf8String& other)
     return assign(other);
 }
 
+ValueOrError<void> Utf8String::operator = (const Utf8StringView& other)
+{
+    return assign(other);
+}
+
 ValueOrError<void> Utf8String::operator = (Utf8String&& other)
 {
     return assign(std::move(other));
@@ -302,7 +309,7 @@ ValueOrError<void> Utf8String::assign(const char* other, size_t len)
     {
         if (EnsureLengthAllocated(len, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         strncpy(this->s, other, len);
         this->s[len] = 0;
         this->l = len;
@@ -322,7 +329,7 @@ ValueOrError<void> Utf8String::assign(const wchar_t* other, size_t len)
     {
         if (EnsureLengthAllocated(len, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         NarrowingConverter narrowed;
         if (!narrowed.convert(other, other + len))
             return ValueOrError<void>::CreateError();
@@ -354,12 +361,12 @@ ValueOrError<void> Utf8String::assign(const wchar_t* first, const wchar_t* last)
 
 ValueOrError<void> Utf8String::assign(const uint8_t* first, const uint8_t* last)
 {
-    return assign((const char*)first, (const char*)last);
+    return assign(reinterpret_cast<const char*>(first), reinterpret_cast<const char*>(last));
 }
 
 ValueOrError<void> Utf8String::assign(const uint8_t* other, size_t len)
 {
-    return assign((const char*)other, len);
+    return assign(reinterpret_cast<const char*>(other), len);
 }
 
 ValueOrError<void> Utf8String::assign(size_t count, char c)
@@ -372,10 +379,10 @@ ValueOrError<void> Utf8String::assign(size_t count, char c)
     {
         if (EnsureLengthAllocated(count, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         for (size_t i = 0; i < count; i++)
             this->s[i] = c;
-        this->s[count] = 0;        
+        this->s[count] = 0;
         this->l = count;
     }
     return ValueOrError<void>();
@@ -388,10 +395,15 @@ ValueOrError<void> Utf8String::assign(const Utf8String& other)
 
     if (EnsureLengthAllocated(other.length(), false).HasError())
         return ValueOrError<void>::CreateError();
-        
+
     strcpy(this->s, other.s);
     this->l = other.length();
     return ValueOrError<void>();
+}
+
+ValueOrError<void> Utf8String::assign(const Utf8StringView& other)
+{
+    return assign(other.begin(), other.length());
 }
 
 ValueOrError<void> Utf8String::assign(Utf8String&& other)
@@ -412,7 +424,7 @@ ValueOrError<void> Utf8String::assign(Utf8String&& other)
         this->s = other.s;
         this->l = other.length();
         this->allocatedLength = other.allocatedLength;
-            
+
         other.allocator = nullptr;
         other.s = other.shortS;
         other.shortS[0] = 0;
@@ -474,7 +486,7 @@ ValueOrError<void> Utf8String::resize(size_t len)
         if (len > STATIC_STRING_LENGTH && len > this->allocatedLength)
         {
             this->allocatedLength = len;
-            
+
             if (!IsStatic())
                 _Deallocate(this->s);
             this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
@@ -593,6 +605,11 @@ ValueOrError<void> Utf8String::operator += (const Utf8String& other)
     return append(other.s);
 }
 
+ValueOrError<void> Utf8String::operator += (const Utf8StringView& other)
+{
+    return append(other.begin(), other.length());
+}
+
 ValueOrError<void> Utf8String::operator += (const char* other)
 {
     return append(other);
@@ -619,6 +636,11 @@ ValueOrError<void> Utf8String::append(Utf8String&& other)
 ValueOrError<void> Utf8String::append(const Utf8String& other)
 {
     return append(other.s, other.l);
+}
+
+ValueOrError<void> Utf8String::append(const Utf8StringView& other)
+{
+    return append(other.begin(), other.length());
 }
 
 ValueOrError<void> Utf8String::append(const char* other)
@@ -651,7 +673,7 @@ ValueOrError<void> Utf8String::append(const char* other, size_t len)
                 return ValueOrError<void>::CreateError();
 
             return assign(std::move(newString));
-        }                
+        }
     }
 
     return ValueOrError<void>();
@@ -730,25 +752,25 @@ char Utf8String::back() const
 }
 
 void Utf8String::pop_front()
-{    
+{
     if (!empty())
         erase(begin());
 }
 
 void Utf8String::pop_front(size_t count)
-{   
+{
     count = std::min(count, this->l);
     for (size_t i = 0; i < count; i++)
         pop_front();
 }
 
 void Utf8String::pop_back()
-{    
+{
     pop_back(1);
 }
 
 void Utf8String::pop_back(size_t count)
-{    
+{
     this->l -= std::min(count, this->l);
     this->s[this->l] = 0;
 }
@@ -766,10 +788,10 @@ size_t Utf8String::find(char c, size_t pos) const
 size_t Utf8String::find(const char* other, size_t pos) const
 {
     auto range = boost::make_iterator_range(this->s + pos, this->s + this->l);
-    
+
     auto safeOther = GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
-    
+
     auto foundAt = boost::algorithm::find_first(range, otherRange);
     if (foundAt)
         return foundAt.begin() - s;
@@ -780,7 +802,7 @@ size_t Utf8String::find(const char* other, size_t pos) const
 size_t Utf8String::find(const Utf8String& other, size_t pos) const
 {
     auto range = boost::make_iterator_range(this->s + pos, this->s + this->l);
-    
+
     //auto otherRange = boost::make_iterator_range(other.begin(), other.end());
 
     auto foundAt = boost::algorithm::find_first(range, boost::make_iterator_range(other));
@@ -809,10 +831,10 @@ size_t Utf8String::rfind(const char* other, size_t pos) const
         pos = this->l;
 
     auto range = boost::make_iterator_range(this->s, this->s + pos);
-    
+
     const char* safeOther = GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
-    
+
     auto foundAt = boost::algorithm::find_last(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
@@ -828,7 +850,7 @@ size_t Utf8String::rfind(const Utf8String& other, size_t pos) const
     auto range = boost::make_iterator_range(this->s, this->s + pos);
 
     auto otherRange = boost::make_iterator_range(other.begin(), other.end());
-    
+
     auto foundAt = boost::algorithm::find_last(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
@@ -868,7 +890,7 @@ char* Utf8String::erase(char* from, char* to)
             to = from; //We assume from/to is non-decreasing
         else if (to > last)
             to = last;
-        
+
         if (from == to)
         {
             //Empty range specified. Done
@@ -905,16 +927,7 @@ char& Utf8String::operator [] (size_t i)
 
 bool Utf8String::IsDigits() const
 {
-    if (empty())
-        return false;
-
-    for (size_t i = 0; i < this->l; i++)
-    {
-        if (!isdigit(this->s[i]))
-            return false;
-    }
-
-    return true;
+    return Utf8String::IsDigits(begin(), end());
 }
 
 void Utf8String::ToUpperAscii()
@@ -936,7 +949,7 @@ void Utf8String::ToLowerAscii()
 {
     if (empty())
         return;
-    
+
     size_t outCount = 0;
     for (size_t inIndex = 0; inIndex < this->l; inIndex++)
     {
@@ -1003,7 +1016,7 @@ ValueOrError<void> Utf8String::EnsureLengthAllocated(size_t len, bool oversize)
     if (len > STATIC_STRING_LENGTH && len > this->allocatedLength)
     {
         this->allocatedLength = EstimateNewAllocatedLength(len, this->allocatedLength, oversize);
-        
+
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
@@ -1060,7 +1073,7 @@ void Utf8String::ReplaceFirst(char find, char replace)
             this->s[i] = replace;
             break;
         }
-    }    
+    }
 }
 
 void Utf8String::ReplaceAll(char find, char replace)
@@ -1123,7 +1136,7 @@ int Utf8String::Compare(const char* other) const
     return strcmp(this->s, GetNonNull(other));
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
 
 int Utf8String::CompareNoCaseAscii(const Utf8String& other) const
 {
@@ -1134,7 +1147,7 @@ int Utf8String::CompareNoCaseAscii(const char* other) const
 {
     WideningToUtf16Converter aWide;
     aWide.convert(begin(), end());
-    
+
     WideningToUtf16Converter bWide;
     bWide.convert(GetNonNull(other));
 
@@ -1158,7 +1171,7 @@ int Utf8String::CompareNoCaseAscii(const char* other) const
     return strcasecmp(this->s, GetNonNull(other));
 }
 
-#endif 
+#endif
 
 bool Utf8String::Equals(const Utf8String& other) const
 {
@@ -1186,15 +1199,15 @@ bool Utf8String::StartsWith(const Utf8String& other) const
         return false;
     else if (this->l < other.l)
         return false;
-    
+
     const char* thisS = this->s;
-    const char* otherS = other.s;        
+    const char* otherS = other.s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
         ++otherS;
     }
-    
+
     //Was end reached?
     return *otherS == 0;
 }
@@ -1256,7 +1269,7 @@ void Utf8String::TrimTrailingWhitespace()
             this->l--;
         else
             break;
-    }    
+    }
 }
 
 void Utf8String::RemoveWhitespace(size_t offset)
@@ -1276,21 +1289,21 @@ bool Utf8String::IterateCodepoint(size_t& iter, uint32_t& codepoint) const
 {
     if (iter >= this->l)
         return false;
-    
+
     int remainingUnits = 0;
     uint8_t mask = 0;
-    
+
     uint8_t next = this->s[iter++];
-    if (next & 0x80) 
+    if (next & 0x80)
     {
         mask = 0xe0;
         for (remainingUnits = 1; (next & mask) != (mask << 1); ++remainingUnits)
             mask = (mask >> 1) | 0x80;
     }
-    
+
     codepoint = next ^ mask;
-    
-    while (remainingUnits-- > 0) 
+
+    while (remainingUnits-- > 0)
     {
         codepoint <<= 6;
         if (iter >= this->l)
@@ -1319,7 +1332,7 @@ bool Utf8String::GetCodepoints(uint32_t* output, size_t& outputLength) const
     //Output is UTF-32
 
     const size_t maxLength = outputLength;
-    
+
     size_t iter = 0;
     for (outputLength = 0; iter < this->l && outputLength < maxLength; outputLength++)
     {
@@ -1382,18 +1395,6 @@ const char* Utf8String::SkipWhitespace(const char* begin, const char* end)
 bool Utf8String::IsWhitespace() const
 {
     return IsWhitespace(begin(), end());
-}
-
-bool Utf8String::IsWhitespace(const char* begin, const char* end)
-{
-    while (begin != end)
-    {
-        if (!isspace(*begin))
-            return false;
-        begin++;
-    }
-
-    return true;
 }
 
 const char* Utf8String::GetNonNull(const char* c)
@@ -1575,7 +1576,7 @@ ValueOrError<void> Utf8StringToWideString::EnsureLengthAllocated(size_t len)
     if (len > Utf8String::STATIC_STRING_LENGTH && len > this->allocatedLength)
     {
         this->allocatedLength = len;
-        
+
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
@@ -1875,10 +1876,23 @@ Utf8StringView::Utf8StringView()
     clear();
 }
 
+Utf8StringView::Utf8StringView(const char* first)
+{
+    this->s = first;
+    this->l = first != nullptr ? strlen(first) : 0;
+}
+
 Utf8StringView::Utf8StringView(const char* first, size_t len)
 {
     this->s = first;
     this->l = len;
+}
+
+ValueOrError<void> Utf8StringView::assign(const char* first)
+{
+    this->s = first;
+    this->l = first != nullptr ? strlen(first) : 0;
+    return ValueOrError<void>();
 }
 
 ValueOrError<void> Utf8StringView::assign(const char* first, size_t len)

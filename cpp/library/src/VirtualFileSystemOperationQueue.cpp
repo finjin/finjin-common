@@ -119,7 +119,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                         this->createReadBuffer = Convert::ToBool(value.ToString());
                     }
                 }
-                
+
                 break;
             }
             default: break;
@@ -172,7 +172,7 @@ void VirtualFileSystemOperationQueue::Create(const Settings& settings, Error& er
         FINJIN_SET_ERROR(error, "Read and/or write byte count per second must be greater than 0.");
         return;
     }
-    
+
     if (settings.createReadBuffer && settings.readBufferSize == 0)
     {
         FINJIN_SET_ERROR(error, "Read buffer size must be greater than 0 when the creation of this buffer is enabled.");
@@ -210,7 +210,7 @@ void VirtualFileSystemOperationQueue::Destroy()
     this->readBuffer.Destroy();
 
     this->workingPath.Destroy();
-    
+
     this->operations.Destroy();
 }
 
@@ -239,8 +239,8 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
 
     uint64_t totalBytesReadForThisUpdate = 0;
     uint64_t totalBytesWrittenForThisUpdate = 0;
-    
-    while (HasPendingOperations() && 
+
+    while (HasPendingOperations() &&
         totalBytesReadForThisUpdate < requestedReadByteCountForThisUpdate &&
         totalBytesWrittenForThisUpdate < requestedWriteByteCountForThisUpdate &&
         !error)
@@ -300,16 +300,16 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
                     auto requestedReadByteCountForThisRead = requestedReadByteCountForThisUpdate - totalBytesReadForThisUpdate;
 
                     //Ensure byte count is at least minByteCountPerRead
-                    requestedReadByteCountForThisRead = std::max(requestedReadByteCountForThisRead, minByteCountPerRead); 
-                    
+                    requestedReadByteCountForThisRead = std::max(requestedReadByteCountForThisRead, minByteCountPerRead);
+
                     if (currentOperation.readCallback != nullptr)
                     {
                         //Use read callback
                         bytesProcessed = currentOperation.readCallback
                             (
-                            currentOperation.operationHandle, 
-                            currentOperation.fileHandle, 
-                            this->readBuffer.data(), 
+                            currentOperation.operationHandle,
+                            currentOperation.fileHandle,
+                            this->readBuffer.data(),
                             requestedReadByteCountForThisRead,
                             error
                             );
@@ -319,14 +319,14 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
                     else
                     {
                         //Read into internal read buffer
-                        
+
                         //Ensure no larger than internal read buffer
                         requestedReadByteCountForThisRead = std::min(requestedReadByteCountForThisRead, static_cast<decltype(requestedReadByteCountForThisRead)>(this->readBuffer.size()));
                         if (requestedReadByteCountForThisRead > 0)
                         {
                             bytesProcessed = currentOperation.fileHandle.Read
                                 (
-                                this->readBuffer.data(), 
+                                this->readBuffer.data(),
                                 requestedReadByteCountForThisRead
                                 );
                         }
@@ -367,8 +367,8 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
                         //Use write callback
                         bytesProcessed = currentOperation.writeCallback
                             (
-                            currentOperation.operationHandle, 
-                            currentOperation.fileHandle, 
+                            currentOperation.operationHandle,
+                            currentOperation.fileHandle,
                             requestedWriteByteCountForThisUpdate,
                             error
                             );
@@ -382,17 +382,17 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
                         {
                             currentOperation.postWriteCallback
                                 (
-                                currentOperation.operationHandle, 
-                                nullptr, 
+                                currentOperation.operationHandle,
                                 nullptr,
-                                bytesProcessed, 
+                                nullptr,
+                                bytesProcessed,
                                 isFinished,
                                 error
                                 );
                             if (error)
                                 FINJIN_SET_ERROR(error, "Error calling asset post write callback.");
                         }
-                    
+
                         //Update total
                         currentOperation.totalBytesProcessed += bytesProcessed;
                         totalBytesWrittenForThisUpdate += bytesProcessed;
@@ -421,17 +421,17 @@ void VirtualFileSystemOperationQueue::Update(const UpdateSettings& updateSetting
                         {
                             currentOperation.postWriteCallback
                                 (
-                                currentOperation.operationHandle, 
-                                currentOperation.writeBuffer, 
-                                currentWriteBuffer, 
-                                bytesProcessed, 
+                                currentOperation.operationHandle,
+                                currentOperation.writeBuffer,
+                                currentWriteBuffer,
+                                bytesProcessed,
                                 isFinished,
                                 error
                                 );
                             if (error)
                                 FINJIN_SET_ERROR(error, "Error calling asset post write callback.");
                         }
-                    
+
                         //Update total
                         currentOperation.totalBytesProcessed += bytesProcessed;
                         totalBytesWrittenForThisUpdate += bytesProcessed;
@@ -471,7 +471,7 @@ void VirtualFileSystemOperationQueue::AddRequest(VirtualFileOperationHandle& ope
         FINJIN_SET_ERROR(error, "No file system was specified.");
         return;
     }
-    
+
     if (request.mode == FileOpenMode::READ)
     {
         if (!request.fileUri.IsValid())
@@ -514,11 +514,11 @@ void VirtualFileSystemOperationQueue::AddRequest(VirtualFileOperationHandle& ope
         FINJIN_SET_ERROR(error, "The operations queue is full.");
         return;
     }
-    
+
     //Set up queue entry
     this->operations.push();
     auto& internalReadRequest = this->operations.back();
-    
+
     //Fill in result
     operationHandle.operationQueue = this;
     operationHandle.operationIndex = this->operations.GetIndex(internalReadRequest);

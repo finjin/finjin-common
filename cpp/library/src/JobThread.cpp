@@ -28,7 +28,7 @@ using namespace Finjin::Common;
 using JobObjectAllocatorPool = TaggedMemoryBlockPool<ByteMemoryArena, uint64_t, (uint64_t)-1, SimpleSpinLockMutex>;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JobThread::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator, JobThread* owner) : AllocatedClass(allocator)
@@ -93,7 +93,7 @@ struct JobThread::Impl : public AllocatedClass
         TaggedMemoryBlockAllocator<JobObjectAllocatorPool> objectAllocator;
         SimpleSpinLockMutex inUseMutex;
     };
-    AllocatedVector<JobSlot> jobSlots;
+    DynamicVector<JobSlot> jobSlots;
     FiberJobQueue jobQueue;
     FiberJobScheduler scheduler;
 };
@@ -107,7 +107,7 @@ void JobThread::Impl::ThreadFunc()
     //Convert this thread to main fiber
     this->owner->InitializeMainFiber(GetAllocator(), this->thread.GetName(), &this->scheduler);
 
-    //Create other fibers    
+    //Create other fibers
     Utf8String fiberName;
     for (size_t fiberIndex = 0; fiberIndex < this->fiberCount; fiberIndex++)
     {
@@ -123,12 +123,12 @@ void JobThread::Impl::ThreadFunc()
         jobFiber.Create
             (
             fiberIndex,
-            fiberName, 
-            GetAllocator(), 
-            this->owner, 
-            this->scheduler, 
-            this->jobQueue, 
-            this->stackCommitSize, 
+            fiberName,
+            GetAllocator(),
+            this->owner,
+            this->scheduler,
+            this->jobQueue,
+            this->stackCommitSize,
             this->stackReserveSize
             );
 
@@ -142,7 +142,7 @@ void JobThread::Impl::ThreadFunc()
 
     this->runningFibers = true;
 
-    //Run until the scheduler stops    
+    //Run until the scheduler stops
     while (this->scheduler.HasMoreFibersToRun())
         this->scheduler.RunFiber();
 
@@ -168,7 +168,7 @@ void JobThread::Impl::ThreadFunc()
 
 //JobThread
 JobThread::JobThread()
-{    
+{
     impl = nullptr;
 }
 
@@ -177,20 +177,20 @@ JobThread::JobThread(JobThread&& other)
     impl = other.impl;
     if (impl != nullptr)
         impl->owner = this;
-    
+
     other.impl = nullptr;
 }
 
 JobThread& JobThread::operator = (JobThread&& other)
 {
     delete impl;
-    
+
     impl = other.impl;
     if (impl != nullptr)
         impl->owner = this;
 
     other.impl = nullptr;
-    
+
     return *this;
 }
 
@@ -202,20 +202,20 @@ JobThread::~JobThread()
 void JobThread::Create
     (
     size_t fiberIndex,
-    const Utf8String& name, 
-    Allocator* allocator, 
-    JobThreadType type, 
+    const Utf8String& name,
+    Allocator* allocator,
+    JobThreadType type,
     const LogicalCpu& logicalCpu,
     size_t maxJobCount,
-    size_t jobObjectHeapSize, 
-    size_t fiberCount, 
-    size_t stackCommitSize, 
+    size_t jobObjectHeapSize,
+    size_t fiberCount,
+    size_t stackCommitSize,
     size_t stackReserveSize,
     Error& error
     )
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (impl == nullptr)
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS, this);
 
@@ -227,7 +227,7 @@ void JobThread::Create
     impl->jobSlotIndex = 0;
 
     auto jobObjectArena = allocator->AllocateArena(jobObjectHeapSize, 0, FINJIN_CALLER_ARGUMENTS);
-    
+
     JobObjectAllocatorPool::Settings jobObjectAllocatorPoolSettings;
     jobObjectAllocatorPoolSettings.blockCount = jobObjectHeapSize / 4096; //Job data seems to go over 2k so 4k blocks should be fine
     jobObjectAllocatorPoolSettings.tagCount = maxJobCount; //One for each job
@@ -242,7 +242,7 @@ void JobThread::Create
     impl->jobSlots.Create(maxJobCount, allocator);
     for (size_t jobTag = 0; jobTag < impl->jobSlots.size(); jobTag++)
         impl->jobSlots[jobTag].objectAllocator.Create(jobTag, &impl->jobObjectAllocatorPool);
-    
+
     impl->thread.Create(allocator, name, logicalCpu, std::bind(&JobThread::Impl::ThreadFunc, impl));
 }
 
@@ -261,7 +261,7 @@ void JobThread::Start(Error& error)
         FINJIN_SET_ERROR(error, "Job thread has not yet been initialized.");
         return;
     }
-    
+
     impl->thread.Start(error);
     if (error)
     {
@@ -274,11 +274,11 @@ void JobThread::Stop()
 {
     if (impl == nullptr)
         return;
-    
+
     assert(impl->jobQueue.empty());
 
     impl->thread.Stop();
-    
+
     impl->scheduler.SetMaxJobGroupID(0);
 }
 
@@ -303,20 +303,20 @@ void JobThread::SetMaxJobGroupID(size_t value)
 {
     if (impl == nullptr)
         return;
-    
+
     impl->scheduler.SetMaxJobGroupID(value);
 }
 
 void JobThread::AcquireJobObjectState(Allocator*& allocator, SimpleSpinLockMutex*& inUseMutex)
 {
     auto jobIndex = impl->jobSlotIndex++ % impl->jobSlots.size();
-    
+
     allocator = &impl->jobSlots[jobIndex].objectAllocator;
     inUseMutex = &impl->jobSlots[jobIndex].inUseMutex;
-    
+
     //Wait for the job slot to no longer be in use
     inUseMutex->lock();
-    
+
     //Deallocate the objects related to the job slot
     allocator->DeallocateAll();
 }

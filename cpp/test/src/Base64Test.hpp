@@ -11,14 +11,14 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/Base64.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/ByteBuffer.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(Base64Test_empty)
 {
     BOOST_TEST_MESSAGE("Base64Test_empty:");
@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(Base64Test_one_two_three)
     BOOST_TEST_MESSAGE("Base64Test_one_two_three:");
 
     ByteBuffer bytes;
-    
+
     bytes.Create(1, FINJIN_ALLOCATOR_NULL);
     BOOST_CHECK(Base64::ToBase64Count(bytes.size()) == 4);
 
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(Base64Test_decode)
     FINJIN_DECLARE_ERROR(error);
 
     Utf8String base64 = "AQID";
-    ByteBuffer bytes;    
+    ByteBuffer bytes;
     bytes.CreateEmpty(100, FINJIN_ALLOCATOR_NULL);
     Base64::ToBytes(base64, bytes, error);
     if (error)

@@ -14,21 +14,23 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Path.hpp"
 #include <Windows.h>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API Win32FileFinder
     {
     public:
         Win32FileFinder(Allocator* allocator = nullptr);
         ~Win32FileFinder();
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         bool Start(Windows::Storage::StorageFolder^ storageFolder);
     #endif
         bool Start(const Path& path);
@@ -51,3 +53,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

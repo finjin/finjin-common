@@ -18,13 +18,13 @@
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
-#define GET_CHARS(env, jniText) env->GetStringUTFChars(jniText, 0);    
-#define RELEASE_CHARS(env, jniText, chars) env->ReleaseStringUTFChars(jniText, chars);    
+//Macros------------------------------------------------------------------------
+#define GET_CHARS(env, jniText) env->GetStringUTFChars(jniText, 0);
+#define RELEASE_CHARS(env, jniText, chars) env->ReleaseStringUTFChars(jniText, chars);
 #define NEW_STRING(env, chars) env->NewStringUTF(chars);
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //JniUtilities
 JniUtilities::JniUtilities(JNIEnv* env, jobject thiz)
@@ -88,7 +88,7 @@ bool JniUtilities::GetIntArrayFieldElement(int32_t& value, const char* name, int
 
     env->GetIntArrayRegion((jintArray)fieldObjArray, index, 1, &value);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    
+
     return true;
 }
 
@@ -145,7 +145,7 @@ bool JniUtilities::GetStringField(Utf8String& value, const char* name, const cha
     jfieldID fieldId = env->GetFieldID(thizClass, name, "Ljava/lang/String;");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
 
-    jobject fieldObj = env->GetObjectField(thiz, fieldId);    
+    jobject fieldObj = env->GetObjectField(thiz, fieldId);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring fieldString = (jstring)fieldObj;
     if (fieldString == 0)
@@ -197,7 +197,7 @@ bool JniUtilities::GetStringArrayFieldElement(Utf8String& value, const char* nam
     jfieldID fieldId = env->GetFieldID(thizClass, name, "[Ljava/lang/String;");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
 
-    jobject fieldObj = env->GetObjectField(thiz, fieldId);    
+    jobject fieldObj = env->GetObjectField(thiz, fieldId);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
     jobjectArray fieldObjArray = (jobjectArray)fieldObj;
     if (fieldObjArray == 0)
@@ -205,18 +205,18 @@ bool JniUtilities::GetStringArrayFieldElement(Utf8String& value, const char* nam
 
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
-    jobject elementObj = env->GetObjectArrayElement(fieldObjArray, index);  
+    jobject elementObj = env->GetObjectArrayElement(fieldObjArray, index);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring elementString = (jstring)elementObj;
     if (elementString != 0)
-    {        
+    {
         JNIAutoDeleteLocalObjectRef autoDeleteLocal_elementObj(env, elementObj);
 
         const char* elementValueChars = GET_CHARS(env, elementString);
         value = elementValueChars;
         RELEASE_CHARS(env, elementString, elementValueChars);
     }
-    
+
     return true;
 }
 
@@ -273,11 +273,11 @@ bool JniUtilities::GetIntArrayField(int32_t* arr, int& arrayLength, int arrayMax
 
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
-    arrayLength = env->GetArrayLength(arrayObj);    
+    arrayLength = env->GetArrayLength(arrayObj);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (arrayLength > arrayMaxLength)
         arrayLength = arrayMaxLength;
-    
+
     env->GetIntArrayRegion(arrayObj, 0, arrayLength, arr);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
 
@@ -307,7 +307,7 @@ bool JniUtilities::GetFloatArrayField(float* arr, int& arrayLength, int arrayMax
     JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (arrayLength > arrayMaxLength)
         arrayLength = arrayMaxLength;
-    
+
     env->GetFloatArrayRegion(arrayObj, 0, arrayLength, arr);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
 
@@ -322,7 +322,7 @@ bool JniUtilities::CallVoidMethod(const char* name)
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "()V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     env->CallVoidMethod(thiz, methodID);
@@ -339,12 +339,12 @@ bool JniUtilities::CallVoidMethod_String(const char* name, const char* v0)
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v0 = NEW_STRING(env, v0 ? v0 : "");
     env->CallVoidMethod(thiz, methodID, jni_v0);
-    env->DeleteLocalRef(jni_v0);    
+    env->DeleteLocalRef(jni_v0);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
@@ -358,7 +358,7 @@ bool JniUtilities::CallVoidMethod_String_String(const char* name, const char* v0
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;Ljava/lang/String;)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v0 = NEW_STRING(env, v0 ? v0 : "");
@@ -379,7 +379,7 @@ bool JniUtilities::CallVoidMethod_String_String_String_String(const char* name, 
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v0 = NEW_STRING(env, v0 ? v0 : "");
@@ -404,7 +404,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String(const char* na
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v1 = NEW_STRING(env, v1 ? v1 : "");
@@ -429,7 +429,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIFF)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v1 = NEW_STRING(env, v1 ? v1 : "");
@@ -454,7 +454,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIFFI)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v1 = NEW_STRING(env, v1 ? v1 : "");
@@ -479,7 +479,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_int_Int_Fl
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIFF)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jstring jni_v1 = NEW_STRING(env, v1 ? v1 : "");
@@ -504,7 +504,7 @@ bool JniUtilities::CallVoidMethod_Int(const char* name, int v0)
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(I)V");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     env->CallVoidMethod(thiz, methodID, v0);
@@ -519,14 +519,14 @@ bool JniUtilities::CallBoolMethod(bool& result, const char* name)
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "()Z");
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    if (methodID == 0) 
+    if (methodID == 0)
         return false;
 
     jboolean jniResult = env->CallBooleanMethod(thiz, methodID);
     JNI_EXCEPTION_RETURN_VALUE(env, false);
-    
+
     result = jniResult == JNI_TRUE;
-    
+
     return true;
 }
 
@@ -581,12 +581,12 @@ bool JniUtilities::CallClassStringMethod_Int(Utf8String& result, const char* nam
 }
 
 //JniAutoReleaseStringChars
-JniAutoReleaseStringChars::JniAutoReleaseStringChars(JNIEnv* e, jstring& t) : env(e), jniText(t) 
+JniAutoReleaseStringChars::JniAutoReleaseStringChars(JNIEnv* e, jstring& t) : env(e), jniText(t)
 {
     textChars = GET_CHARS(env, jniText);
 }
 
-JniAutoReleaseStringChars::~JniAutoReleaseStringChars() 
+JniAutoReleaseStringChars::~JniAutoReleaseStringChars()
 {
     RELEASE_CHARS(env, jniText, textChars);
 }

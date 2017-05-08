@@ -26,7 +26,7 @@ using namespace Finjin::Common;
 static void CleanArg(Utf8String& cleanedArg, const Utf8String& arg)
 {
     cleanedArg.clear();
-    
+
     //Keep leading '-' characters
     auto argString = arg.c_str();
     while (*argString && *argString == '-')
@@ -48,7 +48,7 @@ static void CleanArg(Utf8String& cleanedArg, const Utf8String& arg)
 
 //Implementation----------------------------------------------------------------
 Settings::Settings()
-{    
+{
 }
 
 Settings::~Settings()
@@ -80,7 +80,7 @@ Path Settings::CompletePath(const Path& _path, RelativeTo relativeTo, const Stan
     else
     {
         Path combinedPath;
-        
+
         if (relativeTo == RelativeTo::CURRENT_WORKING_DIRECTORY)
         {
             combinedPath = standardPaths.workingDirectory.path;
@@ -104,7 +104,7 @@ Path Settings::CompletePath(const Path& _path, RelativeTo relativeTo, const Stan
         }
         else
             combinedPath = path;
-            
+
         return combinedPath;
     }
 }
@@ -118,19 +118,19 @@ bool Settings::IsOption(const Utf8String& arg, const Utf8String& name, const Nam
 
     Utf8String prefixString;
     CleanArg(prefixString, prefix.ToCommandLineString());
-    
+
     //Looks like '-arg'
     Utf8String shortName(FINJIN_SHORT_COMMAND_LINE_ARG_PREFIX);
     shortName += prefixString;
-    shortName += cleanedName; 
+    shortName += cleanedName;
 
     //Looks like '--arg'
     Utf8String longName(FINJIN_LONG_COMMAND_LINE_ARG_PREFIX);
     longName += prefixString;
-    longName += cleanedName; 
-    
-    return 
-        cleanedArg.EqualsNoCaseAscii(shortName.c_str()) || 
+    longName += cleanedName;
+
+    return
+        cleanedArg.EqualsNoCaseAscii(shortName.c_str()) ||
         cleanedArg.EqualsNoCaseAscii(longName.c_str());
 }
 
@@ -170,7 +170,7 @@ bool Settings::ParseOptionalString(Setting<Utf8String>& setting, const Utf8Strin
 void Settings::ParseRequiredString(Setting<Utf8String>& setting, const std::shared_ptr<XmlNode> element, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     Utf8String stringValue;
     GetElementText(stringValue, element);
     if (stringValue.empty())
@@ -178,20 +178,20 @@ void Settings::ParseRequiredString(Setting<Utf8String>& setting, const std::shar
         FINJIN_SET_ERROR(error, "XML element is empty or has non-text content. You must specify a non-empty text-only value.");
         return;
     }
-    
+
     setting = stringValue;
 }
 
 void Settings::ParseRequiredString(Setting<Utf8String>& setting, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (stringValue.empty())
     {
         FINJIN_SET_ERROR(error, "Value is empty. You must specify a value.");
         return;
     }
-    
+
     setting = stringValue;
 }
 
@@ -226,7 +226,7 @@ void Settings::ParseRequiredString(Setting<Path>& setting, const Utf8String& str
 void Settings::ParseRequiredUuid(Setting<Uuid>& setting, const std::shared_ptr<XmlNode> element, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     Utf8String stringValue;
     GetElementText(stringValue, element);
     if (stringValue.empty())
@@ -234,7 +234,7 @@ void Settings::ParseRequiredUuid(Setting<Uuid>& setting, const std::shared_ptr<X
         FINJIN_SET_ERROR(error, "XML element is empty or has non-text content. You must specify a non-empty text-only value.");
         return;
     }
-    
+
     ParseRequiredUuid(setting, stringValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -243,18 +243,18 @@ void Settings::ParseRequiredUuid(Setting<Uuid>& setting, const std::shared_ptr<X
 void Settings::ParseRequiredUuid(Setting<Uuid>& setting, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     Uuid value;
     Uuid::Parse(value, stringValue, error);
-    if (error)    
+    if (error)
     {
         FINJIN_SET_ERROR(error, "Failed to parse the UUID.");
         return;
-    }  
-    
+    }
+
     setting = value;
 }
-        
+
 void Settings::ParseOptionalUuidAttribute(Setting<Uuid>& setting, const std::shared_ptr<XmlNode> element, const Utf8String& attributeName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -286,7 +286,7 @@ bool Settings::ParseOptionalUuidAttribute(Setting<Uuid>& setting, const std::sha
 void Settings::ParseRequiredLogLevel(Setting<LogLevel>& setting, const std::shared_ptr<XmlNode> element, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     Utf8String stringValue;
     GetElementText(stringValue, element);
     if (stringValue.empty())
@@ -294,20 +294,20 @@ void Settings::ParseRequiredLogLevel(Setting<LogLevel>& setting, const std::shar
         FINJIN_SET_ERROR(error, "XML element is empty or has non-text content. You must specify a non-empty text-only value.");
         return;
     }
-    
+
     ParseRequiredLogLevel(setting, stringValue, error);
 }
 
 void Settings::ParseRequiredLogLevel(Setting<LogLevel>& setting, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (stringValue.empty())
     {
         FINJIN_SET_ERROR(error, "Value is empty. You must specify a value.");
         return;
     }
-    
+
     LogLevel logLevel;
     LogLevelUtilities::Parse(logLevel, stringValue, error);
     if (error)
@@ -315,7 +315,7 @@ void Settings::ParseRequiredLogLevel(Setting<LogLevel>& setting, const Utf8Strin
     else
         setting = logLevel;
 }
-        
+
 void Settings::ParseOptionalLogLevelAttribute(Setting<LogLevel>& setting, const std::shared_ptr<XmlNode> element, const Utf8String& attributeName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -347,13 +347,13 @@ bool Settings::ParseOptionalLogLevelAttribute(Setting<LogLevel>& setting, const 
 void Settings::ParseRequiredStringAttribute(Setting<Utf8String>& setting, const std::shared_ptr<XmlNode> element, const Utf8String& attributeName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
-    if (!ParseOptionalStringAttribute(setting, element, attributeName))    
+
+    if (!ParseOptionalStringAttribute(setting, element, attributeName))
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Required attribute '%1%' is missing.", attributeName));
 }
 
 bool Settings::ParseOptionalStringAttribute(Setting<Utf8String>& setting, const std::shared_ptr<XmlNode> element, const Utf8String& attributeName)
-{   
+{
     Utf8String value;
     if (element->GetAttributeNoCase(attributeName, value))
     {
@@ -413,7 +413,7 @@ bool Settings::ParseOptionalBoolAttribute(Setting<bool>& setting, const std::sha
         setting = Convert::ToBool(value);
         return true;
     }
-    
+
     return false;
 }
 

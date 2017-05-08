@@ -14,7 +14,11 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
+#include "finjin/common/ValueOrError.hpp"
+
+
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename Owner, typename ValueCollectionType>
@@ -167,7 +171,7 @@ namespace Finjin { namespace Common {
 
             return pop_front(value);
         }
-        
+
         value_type& current() { return front(); }
 
         value_type& front() { assert(this->count > 0); return this->valueEntries[this->headIndex]; }
@@ -194,7 +198,7 @@ namespace Finjin { namespace Common {
             if (this->count < this->valueEntries.size())
             {
                 auto index = (this->headIndex + this->valueEntries.size() - 1) % this->valueEntries.size();
-                
+
                 auto setResult = this->valueEntries.Set(index, value);
                 if (setResult.HasError())
                     return ValueOrError<bool>::CreateError();
@@ -213,7 +217,7 @@ namespace Finjin { namespace Common {
             if (this->count < this->valueEntries.size())
             {
                 auto index = (this->headIndex + this->valueEntries.size() - 1) % this->valueEntries.size();
-                
+
                 auto setResult = this->valueEntries.Set(index, std::move(value));
                 if (setResult.HasError())
                     return ValueOrError<bool>::CreateError();
@@ -294,7 +298,7 @@ namespace Finjin { namespace Common {
 
                 this->headIndex = (this->headIndex + 1) % this->valueEntries.size();
                 this->count--;
-                
+
                 if (getResult.HasError())
                     return ValueOrError<bool>::CreateError();
 
@@ -321,12 +325,12 @@ namespace Finjin { namespace Common {
             if (this->count > 0)
             {
                 auto index = (this->tailIndex + this->valueEntries.size() - 1) % this->valueEntries.size();
-                
+
                 auto getResult = this->valueEntries.Get(index, value);
-                
+
                 this->tailIndex = index;
                 this->count--;
-                
+
                 if (getResult.HasError())
                     return ValueOrError<bool>::CreateError();
 

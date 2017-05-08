@@ -42,14 +42,14 @@ void WxBase64::ToBase64(const void* voidBytes, size_t byteCount, wxString& base6
     else
     {
         auto base64Count = ToBase64Count(byteCount);
-        
+
         std::vector<char> base64Utf8;
         base64Utf8.resize(base64Count);
 
         ToBase64(voidBytes, byteCount, (uint8_t*)&base64Utf8[0]);
 
         base64 = wxString::FromUTF8(&base64Utf8[0], base64Utf8.size());
-    }   
+    }
 }
 
 size_t WxBase64::ToBase64(const void* vbytes, size_t byteCount, uint8_t* base64)
@@ -63,10 +63,10 @@ size_t WxBase64::ToBase64(const void* vbytes, size_t byteCount, uint8_t* base64)
     uint8_t charArray3[3];
     uint8_t charArray4[4];
 
-    while (byteCount-- != 0) 
+    while (byteCount-- != 0)
     {
         charArray3[i++] = *(bytes++);
-        if (i == 3) 
+        if (i == 3)
         {
             charArray4[0] = (charArray3[0] & 0xfc) >> 2;
             charArray4[1] = ((charArray3[0] & 0x03) << 4) + ((charArray3[1] & 0xf0) >> 4);

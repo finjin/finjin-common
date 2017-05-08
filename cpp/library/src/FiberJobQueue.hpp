@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/FiberJob.hpp"
 #include "finjin/common/FiberCondition.hpp"
 #include "finjin/common/FiberMutex.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FiberJobQueue
@@ -37,9 +37,9 @@ namespace Finjin { namespace Common {
 
         PushPopResult Push(FiberJob::ptr_t&& newJob);
         PushPopResult Pop(FiberJob::ptr_t& oldHead, size_t maxGroupID);
-        
+
         bool empty() const;
-        
+
         void clear();
 
     private:

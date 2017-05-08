@@ -14,14 +14,14 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/TextDataChunkWriter.hpp"
-#include "finjin/common/Convert.hpp"
 #include "finjin/common/Base64.hpp"
+#include "finjin/common/Convert.hpp"
 #include "DataChunkCommon.hpp"
 
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_LINE(_this, propertyName, value) \
     WriteValueLine(*_this->settings.output, _this->lineBuffer, propertyName, value, _this->settings.maxBytesPerLine, error); \
     if (error) \
@@ -49,7 +49,7 @@ using namespace Finjin::Common;
 #define WRITE_CHUNK_END_LINE(_this) _this->settings.output->Write("2 }\n")
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 
 //SizeOfValue
 template <typename T>
@@ -120,7 +120,7 @@ static ByteBuffer& WritePropertyName(ByteBuffer& out, const ChunkPropertyName& p
         out.Write(Convert::ToString(propertyName.index));
     else
         out.Write(propertyName.name);
-    
+
     return out;
 }
 
@@ -139,7 +139,7 @@ static void WriteTextValue(ByteBuffer& out, bool value, DocumentWriterOutput* wr
 }
 
 static void WriteTextValue(ByteBuffer& out, TextDataChunkBlobWrapper<const uint8_t*>& value, DocumentWriterOutput* writerOutput, size_t outputByteOffset, size_t maxBytesToWrite)
-{   
+{
     auto bytesProcessed = out.WriteBase64(value.bytes, value.count, maxBytesToWrite);
     value.bytes += bytesProcessed;
     value.count -= bytesProcessed;
@@ -159,7 +159,7 @@ static void WriteTextValue(ByteBuffer& out, const Utf8String& value, DocumentWri
     auto length = value.length() - outputByteOffset;
     if (length > maxBytesToWrite)
         length = maxBytesToWrite;
-    
+
     out.Write(value.c_str() + outputByteOffset, length);
 }
 
@@ -207,9 +207,9 @@ static void WriteTextValues(ByteBuffer& out, const bool* values, size_t count, D
     for (; startIndex < count; startIndex++)
     {
         auto& value = GetStridedValue(values, startIndex, valueStride);
-        
+
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -237,9 +237,9 @@ static void WriteTextValues(ByteBuffer& out, const Utf8String* values, size_t co
     for (; startIndex < count; startIndex++)
     {
         auto& value = GetStridedValue(values, startIndex, valueStride);
-        
+
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -298,9 +298,9 @@ void WriteTextValues(ByteBuffer& out, const T* values, size_t count, DataChunkWr
     for (; startIndex < count; startIndex++)
     {
         auto& value = GetStridedValue(values, startIndex, valueStride);
-        
+
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -328,12 +328,12 @@ static void WriteTextValues(ByteBuffer& out, const float* values, size_t count, 
     for (; startIndex < count; startIndex++)
     {
         auto value = GetStridedValue(values, startIndex, valueStride);
-        
+
         if (std::abs(value) < writerOutput->GetMinFloat())
             value = 0;
-        
+
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -361,12 +361,12 @@ static void WriteTextValues(ByteBuffer& out, const double* values, size_t count,
     for (; startIndex < count; startIndex++)
     {
         auto value = GetStridedValue(values, startIndex, valueStride);
-        
+
         if (std::abs(value) < writerOutput->GetMinDouble())
             value = 0;
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -400,7 +400,7 @@ void WriteValueLine(DocumentWriterOutput& out, ByteBuffer& lineBuffer, const Pro
         FINJIN_SET_ERROR(error, "Unable to write value line length for property. The line buffer is too small.");
         return;
     }
-    
+
     //Subtract worst case scenario of line length header being the maximum bytes, plus the following ' '
     auto maxNonHeaderSizeBytes = maxBytesPerLine - maxBytesPerLineString.length() - 1;
 
@@ -414,7 +414,7 @@ void WriteValueLine(DocumentWriterOutput& out, ByteBuffer& lineBuffer, const Pro
         //Write propertyName to line buffer
         WritePropertyName(lineBuffer, propertyName);
         auto maxValueBytes = maxNonHeaderSizeBytes - lineBuffer.size() - 1 - 1; //Subtract one for next ' ' and one for the trailing newline
-        lineBuffer.Write(" "); 
+        lineBuffer.Write(" ");
 
         //Write as much of value as possible to line buffer
         char occurrenceChar = ' '; //' ' indicates a single occurrence. This may be overwritten later
@@ -469,7 +469,7 @@ void WriteValuesLine(DocumentWriterOutput& out, ByteBuffer& lineBuffer, const Pr
         FINJIN_SET_ERROR(error, "Unable to write value line length for property. The line buffer is too small.");
         return;
     }
-    
+
     //Subtract worst case scenario of line length header being the maximum bytes, plus the following ' '
     auto maxNonHeaderSizeBytes = maxBytesPerLine - maxBytesPerLineString.length() - 1;
 
@@ -569,13 +569,13 @@ static Utf8String EscapeStringValue(const Utf8String& value)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 TextDataChunkWriter::TextDataChunkWriter()
-{    
+{
 }
 
 TextDataChunkWriter::~TextDataChunkWriter()
-{        
+{
     if (AnySet(this->style & DataChunkWriterStyle::NESTED))
         WRITE_CHUNK_END_LINE(this);
 
@@ -594,13 +594,18 @@ void TextDataChunkWriter::Create(const Settings& settings, DataChunkWriterStyle 
     }
 
     this->settings = settings;
-    this->style = style;    
+    this->style = style;
     this->lineBuffer.Create(this->settings.maxBytesPerLine, FINJIN_ALLOCATOR_NULL);
 }
 
 DataChunkWriterController& TextDataChunkWriter::GetWriterController()
 {
     return *this->settings.controller;
+}
+
+DocumentWriterOutput* TextDataChunkWriter::GetWriterOutput()
+{
+    return this->settings.output;
 }
 
 void TextDataChunkWriter::WriteWriterHeader(Error& error)
@@ -652,15 +657,15 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
 
     if (this->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<DocumentWriterOutput> sharedNewOutput = this->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create new output for chunk '%1%'.", name.name));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto textChunkWriter = new TextDataChunkWriter();
         auto newSettings = this->settings;
         newSettings.Create(sharedNewOutput, *this->settings.controller);
@@ -668,7 +673,7 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
         if (error)
         {
             delete textChunkWriter;
-            
+
             FINJIN_SET_ERROR(error, "Failed to create new writer.");
             return;
         }
@@ -686,7 +691,7 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
 
         auto nameString = name.ToString();
         WRITE_CHUNK_START_LINE(textChunkWriter, nameString);
-        
+
         auto scheduled = this->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
         if (error)
         {
@@ -696,7 +701,7 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
 
         if (!scheduled)
         {
-            //Write chunk to the new writer's output            
+            //Write chunk to the new writer's output
             chunkFunc(*chunkWriter, error);
             if (error)
             {
@@ -704,13 +709,13 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
         auto nameString = (name.index != (ChunkName::Index)-1) ? Convert::ToString(name.index) : name.ToString();
         WRITE_CHUNK_START_LINE(this, nameString);
-        
+
         chunkFunc(*this, error);
         if (error)
         {
@@ -720,6 +725,21 @@ void TextDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
 
         WRITE_CHUNK_END_LINE(this);
     }
+}
+
+void TextDataChunkWriter::WriteChunkStart(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    auto nameString = (name.index != (ChunkName::Index)-1) ? Convert::ToString(name.index) : name.ToString();
+    WRITE_CHUNK_START_LINE(this, nameString);
+}
+
+void TextDataChunkWriter::WriteChunkEnd(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    WRITE_CHUNK_END_LINE(this);
 }
 
 void TextDataChunkWriter::WriteFooter()
@@ -755,7 +775,7 @@ bool TextDataChunkWriter::WillSplitBlob(const ChunkPropertyName& propertyName, c
             {
                 if (i > 0)
                     valueLength += 1; //strlen(" ")
-                
+
                 if (bytes[i] <= 9)
                     valueLength += 1; //1 digit
                 else if (bytes[i] <= 99)
@@ -766,7 +786,7 @@ bool TextDataChunkWriter::WillSplitBlob(const ChunkPropertyName& propertyName, c
                 if (valueLength > this->settings.maxBytesPerLine)
                     return true;
             }
-            
+
             break;
         }
         case DataChunkBlobTextFormat::BASE64:
@@ -789,7 +809,7 @@ bool TextDataChunkWriter::WillSplitString(const ChunkPropertyName& propertyName,
         valueLength = EscapeStringValue(value).length();
     else
         valueLength = value.length();
-    
+
     auto nonSizeHeaderLength = SizeOfValue(propertyName) + 1 + valueLength + 1; //Trailing +1 is for newline
     auto sizeHeaderLength = Convert::ToString(nonSizeHeaderLength).length() + 1;
     auto proposedLength = sizeHeaderLength + nonSizeHeaderLength;
@@ -799,7 +819,7 @@ bool TextDataChunkWriter::WillSplitString(const ChunkPropertyName& propertyName,
 void TextDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const void* values, size_t count, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (this->settings.lengthHintPropertyName.IsValid() && WillSplitBlob(propertyName, values, count))
     {
         WriteCount(this->settings.lengthHintPropertyName, count, error);
@@ -830,7 +850,7 @@ void TextDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const
 
             break;
         }
-    }    
+    }
 }
 
 void TextDataChunkWriter::WriteString(const ChunkPropertyName& propertyName, const Utf8String& value, Error& error)
@@ -870,7 +890,7 @@ void TextDataChunkWriter::WriteString(const ChunkPropertyName& propertyName, con
     else
     {
         WRITE_VALUE_LINE(this, propertyName, value);
-    }    
+    }
 }
 
 void TextDataChunkWriter::WriteDateTime(const ChunkPropertyName& propertyName, const DateTime& value, Error& error)

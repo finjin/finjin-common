@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AssignOrError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class Allocator;
 
     template <typename T, size_t MaxItems>
@@ -145,7 +145,7 @@ namespace Finjin { namespace Common {
 
         const T& middle() const { assert(this->count > 0); return this->items[this->count / 2 + this->count % 2]; }
         T& middle() { assert(this->count > 0); return this->items[this->count / 2 + this->count % 2]; }
-        
+
         ValueOrError<bool> push_front()
         {
             if (this->count < MaxItems)
@@ -221,7 +221,7 @@ namespace Finjin { namespace Common {
         }
 
         ValueOrError<bool> push_back(const T& item)
-        { 
+        {
             if (this->count < MaxItems)
             {
                 if (assignValue(this->items[this->count++], item).HasError())
@@ -249,7 +249,7 @@ namespace Finjin { namespace Common {
             if (this->count > 0)
                 this->count--;
         }
-        
+
         ValueOrError<void> erase(const T* iter)
         {
             assert(iter >= begin());
@@ -270,8 +270,8 @@ namespace Finjin { namespace Common {
         const T* data() const { return this->count > 0 ? &this->items[0] : nullptr; }
         T* data() { return this->count > 0 ? &this->items[0] : nullptr; }
 
-        const T* data_left() const { return this->count < this->maxCount ? &this->items[this->count] : nullptr; }
-        T* data_left() { return this->count < this->maxCount ? &this->items[this->count] : nullptr; }
+        const T* data_left() const { return this->count <= this->maxCount ? &this->items[this->count] : nullptr; } //Use <= to allow getting end
+        T* data_left() { return this->count <= this->maxCount ? &this->items[this->count] : nullptr; } //Use <= to allow getting end
 
         const T* begin() const { return &this->items[0]; }
         T* begin() { return &this->items[0]; }
@@ -305,9 +305,9 @@ namespace Finjin { namespace Common {
         }
 
     protected:
-        AssignOrError<T> assignValue;
         T items[MaxItems];
         size_t count;
+        AssignOrError<T> assignValue;
     };
 
 } }

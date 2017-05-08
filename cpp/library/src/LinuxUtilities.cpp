@@ -14,16 +14,16 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/LinuxUtilities.hpp"
-#include <unistd.h>    
-#include <pwd.h>    
+#include <unistd.h>
+#include <pwd.h>
 #include <stdlib.h>
 
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 Path LinuxUtilities::GetProcessFilePath()
 {
     Path result;

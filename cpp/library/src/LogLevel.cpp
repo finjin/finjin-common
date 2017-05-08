@@ -24,16 +24,16 @@ using namespace Finjin::Common;
 void LogLevelUtilities::Parse(LogLevel& result, const Utf8String& value, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
-    if (value.EqualsNoCaseAscii("info"))
+
+    if (value == "info")
         result = LogLevel::INFO_LEVEL;
-    else if (value.EqualsNoCaseAscii("warning"))
+    else if (value == "warning")
         result = LogLevel::WARNING_LEVEL;
-    else if (value.EqualsNoCaseAscii("error"))
-        result = LogLevel::ERROR_LEVEL;    
-    else if (value.EqualsNoCaseAscii("debug"))
+    else if (value == "error")
+        result = LogLevel::ERROR_LEVEL;
+    else if (value == "debug")
         result = LogLevel::DEBUG_LEVEL;
-    else if (value.EqualsNoCaseAscii("trace"))
+    else if (value == "trace")
         result = LogLevel::TRACE_LEVEL;
     else
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse log level '%1%'.", value));
@@ -41,35 +41,29 @@ void LogLevelUtilities::Parse(LogLevel& result, const Utf8String& value, Error& 
 
 LogLevel LogLevelUtilities::Parse(const Utf8String& value, LogLevel defaultValue)
 {
-    LogLevel result = defaultValue;
-
-    if (value.EqualsNoCaseAscii("info"))
-        result = LogLevel::INFO_LEVEL;
-    else if (value.EqualsNoCaseAscii("warning"))
-        result = LogLevel::WARNING_LEVEL;
-    else if (value.EqualsNoCaseAscii("error"))
-        result = LogLevel::ERROR_LEVEL;
-    else if (value.EqualsNoCaseAscii("debug"))
-        result = LogLevel::DEBUG_LEVEL;
-    else if (value.EqualsNoCaseAscii("trace"))
-        result = LogLevel::TRACE_LEVEL;
-    
-    return result;
+    if (value == "info")
+        return LogLevel::INFO_LEVEL;
+    else if (value == "warning")
+        return LogLevel::WARNING_LEVEL;
+    else if (value == "error")
+        return LogLevel::ERROR_LEVEL;
+    else if (value == "debug")
+        return LogLevel::DEBUG_LEVEL;
+    else if (value == "trace")
+        return LogLevel::TRACE_LEVEL;
+    else
+        return defaultValue;
 }
 
 Utf8String LogLevelUtilities::ToString(LogLevel value)
 {
-    Utf8String result;
-
     switch (value)
     {
-        case LogLevel::INFO_LEVEL: result = "info"; break;
-        case LogLevel::WARNING_LEVEL: result = "warning"; break;
-        case LogLevel::ERROR_LEVEL: result = "error"; break;
-        case LogLevel::DEBUG_LEVEL: result = "debug"; break;
-        case LogLevel::TRACE_LEVEL: result = "trace"; break;
-        default: result = "<Unknown log level>"; break;
+        case LogLevel::INFO_LEVEL: return "info";
+        case LogLevel::WARNING_LEVEL: return "warning";
+        case LogLevel::ERROR_LEVEL: return "error";
+        case LogLevel::DEBUG_LEVEL: return "debug";
+        case LogLevel::TRACE_LEVEL: return "trace";
+        default: return "<Unknown log level>";
     }
-
-    return result;
 }

@@ -31,9 +31,9 @@ VirtualFileHandle::~VirtualFileHandle()
     Close();
 }
 
-bool VirtualFileHandle::operator == (const VirtualFileHandle& other) const 
-{ 
-    return this->ptr == other.ptr; 
+bool VirtualFileHandle::operator == (const VirtualFileHandle& other) const
+{
+    return this->ptr == other.ptr;
 }
 
 void VirtualFileHandle::Clear()
@@ -61,7 +61,7 @@ size_t VirtualFileHandle::Read(void* bytes, size_t byteCount)
 {
     if (this->fileSystemRoot != nullptr)
         return this->fileSystemRoot->Read(*this, bytes, byteCount);
-    
+
     return 0;
 }
 

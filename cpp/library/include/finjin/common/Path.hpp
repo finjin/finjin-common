@@ -14,17 +14,17 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/ValueOrError.hpp"
 #include <iostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    //Note: This class borrows a lot of functionality from Utf8String. 
+    //Note: This class borrows a lot of functionality from Utf8String.
     //If you make any changes there, you should probably make similar changes here
     class FINJIN_COMMON_LIBRARY_API Path
     {
@@ -47,7 +47,7 @@ namespace Finjin { namespace Common {
         using const_reverse_iterator = const char*;
 
         static const size_t npos = (size_t)-1;
-        
+
         Path(Allocator* allocator = nullptr);
         Path(const char* other, Allocator* allocator = nullptr);
         Path(const wchar_t* other, Allocator* allocator = nullptr);
@@ -57,7 +57,7 @@ namespace Finjin { namespace Common {
         Path(const wchar_t* first, const wchar_t* last, Allocator* allocator = nullptr);
         Path(const uint8_t* first, const uint8_t* last, Allocator* allocator = nullptr);
         Path(size_t count, char c, Allocator* allocator = nullptr);
-        explicit Path(size_t count, Allocator* allocator = nullptr);
+        Path(size_t count, Allocator* allocator);
         Path(const Utf8String& other, Allocator* allocator = nullptr);
         Path(Utf8String&& other);
         Path(const Utf8StringView& other, Allocator* allocator = nullptr);
@@ -67,7 +67,7 @@ namespace Finjin { namespace Common {
 
         bool Create(Allocator* allocator);
         void Destroy();
-        
+
         Allocator* GetAllocator();
         bool SetAllocator(Allocator* allocator);
 
@@ -78,7 +78,7 @@ namespace Finjin { namespace Common {
         ValueOrError<void> operator = (const Utf8StringView& other);
         ValueOrError<void> operator = (const Path& other);
         ValueOrError<void> operator = (Path&& other);
-        
+
         ValueOrError<void> assign(const char* other);
         ValueOrError<void> assign(const wchar_t* other);
         ValueOrError<void> assign(const char* other, size_t len);
@@ -92,9 +92,9 @@ namespace Finjin { namespace Common {
         ValueOrError<void> assign(const Utf8StringView& other);
         ValueOrError<void> assign(const Path& other);
         ValueOrError<void> assign(Path&& other);
-        
-        const char* c_str() const;        
-    
+
+        const char* c_str() const;
+
         bool empty() const;
         void clear();
 
@@ -103,9 +103,9 @@ namespace Finjin { namespace Common {
 
         ValueOrError<void> reserve(size_t len);
         size_t GetCharactersLeft() const;
-        
+
         ValueOrError<void> resize(size_t len);
-        
+
         iterator begin();
         iterator end();
 
@@ -131,19 +131,19 @@ namespace Finjin { namespace Common {
         bool operator == (const Utf8String& other) const;
         bool operator != (const Utf8String& other) const;
         bool operator < (const Utf8String& other) const;
-        bool operator > (const Utf8String& other) const;        
+        bool operator > (const Utf8String& other) const;
 
         bool operator == (const char* other) const;
         bool operator != (const char* other) const;
         bool operator < (const char* other) const;
-        bool operator > (const char* other) const;        
+        bool operator > (const char* other) const;
 
         ValueOrError<void> operator += (Utf8String&& other);
         ValueOrError<void> operator += (const Utf8String& other);
         ValueOrError<void> operator += (const char* other);
         ValueOrError<void> operator += (const wchar_t* other);
         ValueOrError<void> operator += (char other);
-    
+
         ValueOrError<void> append(Utf8String&& other);
         ValueOrError<void> append(const Utf8String& other);
         ValueOrError<void> append(const char* other);
@@ -154,9 +154,9 @@ namespace Finjin { namespace Common {
         ValueOrError<void> append(wchar_t other);
         ValueOrError<void> append(size_t len, char c);
 
-        ValueOrError<void> push_back(char c);        
+        ValueOrError<void> push_back(char c);
         char back() const;
-        
+
         void pop_front();
         void pop_front(size_t count);
         void pop_back();
@@ -165,14 +165,14 @@ namespace Finjin { namespace Common {
         size_t find(char c, size_t pos = 0) const;
         size_t find(const char* other, size_t pos = 0) const;
         size_t find(const Utf8String& other, size_t pos = 0) const;
-    
+
         size_t rfind(char c, size_t pos = npos) const;
         size_t rfind(const char* other, size_t pos = npos) const;
         size_t rfind(const Utf8String& other, size_t pos = npos) const;
-    
+
         char* erase(char* at);
         char* erase(char* from, char* to);
-        
+
         template <typename BeginIter, typename EndIter>
         ValueOrError<void> insert(char* at, BeginIter beginIt, EndIter endIt)
         {
@@ -206,10 +206,10 @@ namespace Finjin { namespace Common {
 
         void ReplaceFirst(char find, char replace);
         void ReplaceAll(char find, char replace);
-        
+
         void ReplaceFirst(const Utf8String& find, const Utf8String& replace);
         void ReplaceAll(const Utf8String& find, const Utf8String& replace);
-        
+
         void RemoveAllChars(const char* chars);
         void ReplaceAllChars(const char* chars, char replacement);
 
@@ -220,7 +220,7 @@ namespace Finjin { namespace Common {
         bool Equals(const Path& other) const;
         bool Equals(const Utf8String& other) const;
         bool Equals(const char* other) const;
-        
+
         bool StartsWith(const Path& other) const;
         bool StartsWith(const Utf8String& other) const;
         bool StartsWith(const char* other) const;
@@ -241,14 +241,14 @@ namespace Finjin { namespace Common {
         bool IsStatic() const;
 
         size_t RepairLength(size_t newLength = (size_t)-1);
-        
+
         bool IterateCodepoint(size_t& iter, uint32_t& codepoint) const;
         bool GetCodepointCount(size_t& count) const;
 
         /**
          * Converts the UTF8 string to UTF32.
          * @param output [out] - The output codepoints. This should point to an array at least length() + 1.
-         * @param outputLength [in/out] - On input, the number of elements pointed to by 'output'. On output, the length of the output string, not counting the terminating character. 
+         * @param outputLength [in/out] - On input, the number of elements pointed to by 'output'. On output, the length of the output string, not counting the terminating character.
          * If this value is the same as the input length, it indicates that the 'output' array was not long enough and contains a truncated result.
          */
         bool GetCodepoints(uint32_t* output, size_t& outputLength) const;
@@ -263,10 +263,10 @@ namespace Finjin { namespace Common {
         ValueOrError<void> operator /= (const Utf8StringView& other);
         ValueOrError<void> operator /= (const char* other);
         ValueOrError<void> operator /= (const wchar_t* other);
-        
+
         size_t GetHash() const;
 
-        /** 
+        /**
          * Converts the path to a string.
          * @return The path as a string.
          */
@@ -274,9 +274,9 @@ namespace Finjin { namespace Common {
         ValueOrError<void> ToString(Utf8String& result) const;
 
         Path& UniversalNormalize();
-        
+
         Path& PlatformNormalize();
-        
+
         ValueOrError<void> NormalizeRelativeComponents(Path& result) const;
 
         /**
@@ -296,7 +296,7 @@ namespace Finjin { namespace Common {
         size_t GetExtensionOffset(bool includeDot) const;
 
         /**
-         * Gets the path's file extension. 
+         * Gets the path's file extension.
          * @return The path's file extension.
          */
         template <typename T>
@@ -345,7 +345,7 @@ namespace Finjin { namespace Common {
         }
 
         size_t GetFileNameLength() const;
-        
+
         /**
          * Gets the path's file name without extension.
          * @return The path's file name without extension.
@@ -404,7 +404,7 @@ namespace Finjin { namespace Common {
         size_t GetParentOffset() const;
 
         /**
-         * Indicates whether the path has a parent path. 
+         * Indicates whether the path has a parent path.
          * @return If the path has a parent path, true is returned. Otherwise, false is returned.
          */
         bool HasParent() const;
@@ -434,7 +434,7 @@ namespace Finjin { namespace Common {
          * @return If this path contains the specified directory, true is returned. Otherwise, false is returned.
          */
         ValueOrError<bool> ContainsDirectory(const Path& other) const;
-                
+
         /**
          * Determines whether this path contains the specified file.
          * Note that the containment check is only done logically - no checking of the file system occurs.
@@ -449,6 +449,8 @@ namespace Finjin { namespace Common {
         }
 
         //File system methods--------------------------------------------------
+
+        ValueOrError<bool> ExpandUserHomeDirectory();
 
         static ValueOrError<bool> GetUserHomeDirectory(Path& directory);
 
@@ -480,7 +482,7 @@ namespace Finjin { namespace Common {
         //Deletes the file from the file system
         bool RemoveFile() const;
 
-        //Renames the file to the new name. 
+        //Renames the file to the new name.
         bool RenameFile(const Path& destPath) const;
 
         /**
@@ -489,22 +491,26 @@ namespace Finjin { namespace Common {
          */
         bool IsFile() const;
 
+        static bool IsFile(const char* path);
+
         /**
          * Indicates whether the path is a directory.
          * @return If the path is a directory, true is returned. Otherwise, false is returned.
          */
         bool IsDirectory() const;
 
-        /** 
+        static bool IsDirectory(const char* path);
+
+        /**
          * Indicates whether the path exists in the file system.
          * @return If the path exists in the file system, true is returned. Otherwise, false is returned.
          */
         bool Exists() const;
 
-        bool CreateDirectories() const;        
+        bool CreateDirectories() const;
 
         static void InitializeUtf8FileSystemAccess();
-        
+
         enum { STATIC_STRING_LENGTH = 479 };
 
     private:
@@ -516,13 +522,13 @@ namespace Finjin { namespace Common {
 
         char* _Allocate(size_t charCount, FINJIN_CALLER_PARAMETERS_DECLARATION);
         void _Deallocate(void* mem);
-        
+
     protected:
         Allocator* allocator;
         size_t l;
         size_t allocatedLength;
-        char* s;        
-        char shortS[STATIC_STRING_LENGTH + 1];        
+        char* s;
+        char shortS[STATIC_STRING_LENGTH + 1];
     };
 
 } }
@@ -538,13 +544,18 @@ namespace std
             return s.GetHash();
         }
     };
+}
 
+
+//Functions---------------------------------------------------------------------
+namespace std
+{
     inline bool empty(const Finjin::Common::Path& v)
     {
         return v.empty();
     }
-    
-    inline istream& operator >> (istream& is, Finjin::Common::Path& v) 
+
+    inline istream& operator >> (istream& is, Finjin::Common::Path& v)
     {
          char c;
          while (is)
@@ -561,7 +572,7 @@ namespace std
         return os;
     }
 
-    inline wistream& operator >> (wistream& is, Finjin::Common::Path& v) 
+    inline wistream& operator >> (wistream& is, Finjin::Common::Path& v)
     {
          wchar_t c;
          while (is)
@@ -576,5 +587,5 @@ namespace std
     {
         os << v.c_str();
         return os;
-    }    
+    }
 }

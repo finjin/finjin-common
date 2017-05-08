@@ -11,11 +11,11 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Path.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(PathTest_extension)
 {
     BOOST_TEST_MESSAGE("PathTest_extension:");
@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(PathTest_extension)
 
     BOOST_CHECK(p.GetExtension(ext, false).HasValue(true));
     BOOST_CHECK(ext == "txt");
-    
+
     BOOST_CHECK(p.GetExtension(ext, true).HasValue(true));
     BOOST_CHECK(ext == ".txt");
 }
@@ -34,12 +34,12 @@ BOOST_AUTO_TEST_CASE(PathTest_absolute)
 {
     BOOST_TEST_MESSAGE("PathTest_absolute:");
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Path path("c:\\somefile.txt");
 #else
     Path path("/somefile.txt");
 #endif
-    
+
     BOOST_CHECK(path.IsAbsolute() == true);
     BOOST_CHECK(path.IsRelative() == false);
 }
@@ -50,14 +50,14 @@ BOOST_AUTO_TEST_CASE(PathTest_relative)
 
     Path path("./somefile.txt");
     BOOST_CHECK(path.IsRelative() == true);
-    BOOST_CHECK(path.IsAbsolute() == false);    
+    BOOST_CHECK(path.IsAbsolute() == false);
 }
 
 BOOST_AUTO_TEST_CASE(PathTest_parent)
 {
     BOOST_TEST_MESSAGE("PathTest_parent:");
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Path path("c:/users/someone/somefile.txt");
     Path parentPath;
     BOOST_CHECK(!path.GetParent(parentPath).HasError());
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(PathTest_contains_directory)
 {
     BOOST_TEST_MESSAGE("PathTest_contains_directory:");
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Path path("c:/users/someone");
     Path goodSubpath("c:/users/someone/subdir/somefile.txt");
 #else
@@ -101,12 +101,12 @@ BOOST_AUTO_TEST_CASE(PathTest_just_file_name)
 BOOST_AUTO_TEST_CASE(PathTest_goto_parent)
 {
     BOOST_TEST_MESSAGE("PathTest_goto_parent:");
-        
+
     Path path;
 
     //Windows-style
     path = "c:/root/file.txt";
-    
+
     path.GoToParent();
     BOOST_CHECK(path == "c:/root");
 
@@ -141,15 +141,16 @@ BOOST_AUTO_TEST_CASE(PathTest_append_path)
 BOOST_AUTO_TEST_CASE(PathTest_absolute_append_test)
 {
     BOOST_TEST_MESSAGE("PathTest_absolute_append_test:");
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Path path("c:/somedir/a/b/c");
     Path newPath = path;
     newPath /= "d:/d";
     BOOST_CHECK(newPath == "d:/d");
 #else
     Path path("/somedir/a/b/c");
-    Path newPath = path / "/d";
+    Path newPath = path;
+    newPath /= "/d";
     BOOST_CHECK(newPath == "/d");
 #endif
 }
@@ -169,7 +170,7 @@ BOOST_AUTO_TEST_CASE(PathTest_unc_test)
 BOOST_AUTO_TEST_CASE(PathTest_ensure_extension_test)
 {
     BOOST_TEST_MESSAGE("PathTest_ensure_extension_test:");
-        
+
     {
         Path path("/somefile");
         path.EnsureExtension("txt");

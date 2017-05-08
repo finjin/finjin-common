@@ -14,22 +14,22 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/MemoryArena.hpp"
 #include "finjin/common/MemorySize.hpp"
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    /** 
+    /**
      * Base class for type that allocates and frees memory.
      */
     class FINJIN_COMMON_LIBRARY_API Allocator
     {
     public:
-        virtual ~Allocator()    {}
+        virtual ~Allocator() {}
 
         const Utf8String& GetName() const;
         ValueOrError<void> SetName(const Utf8String& name);
@@ -45,7 +45,7 @@ namespace Finjin { namespace Common {
                 alignment = GetAlignment();
 
             ByteMemoryArena arena;
-            
+
             if (alignment > GetAlignment())
                 arena.rawMemory.size = UpgradeSizeForOffsetAlignment(byteCount, alignment);
             else
@@ -53,16 +53,16 @@ namespace Finjin { namespace Common {
             arena.rawMemory.ptr = static_cast<uint8_t*>(Allocate(arena.rawMemory.size, FINJIN_CALLER_PARAMETERS));
             assert(arena.rawMemory.ptr != nullptr);
             arena.rawMemory.alignment = GetAlignment();
-            
+
             arena.alignedMemory.ptr = AlignMemoryUp(arena.rawMemory.ptr, alignment);
             arena.alignedMemory.size = GetByteCountAfterMemoryAlignment(arena.rawMemory.size, arena.rawMemory.ptr, alignment);
             arena.alignedMemory.alignment = alignment;
-            
+
             arena.deallocateMemory = [this](void* mem)
             {
                 Deallocate(mem);
             };
-            
+
             return arena;
         }
 
@@ -78,7 +78,7 @@ namespace Finjin { namespace Common {
 
         /**
          * Frees the memory that was previously allocated by the allocator.
-         * @param mem [in] - Pointer to memory that was previously allocated by the 
+         * @param mem [in] - Pointer to memory that was previously allocated by the
          * allocator.
          */
         virtual void Deallocate(void* mem) = 0;
@@ -88,7 +88,7 @@ namespace Finjin { namespace Common {
         /**
          * Frees all the memory allocated by the allocator.
          */
-        virtual void DeallocateAll() = 0;    
+        virtual void DeallocateAll() = 0;
 
         /** Gets the number of bytes allocated. */
         virtual size_t GetBytesUsed() const = 0;
@@ -107,7 +107,7 @@ namespace Finjin { namespace Common {
         {
             //If necessary, aligns memory location downwards toward nearest aligned location
             static_assert(sizeof(T) <= sizeof(uintptr_t), "Unsupported memory type.");
-            
+
             return T((uintptr_t)location & ~(alignment - 1));
         }
 
@@ -289,6 +289,12 @@ namespace Finjin { namespace Common {
         Allocator* allocator;
     };
 
+} }
+
+
+//Functions---------------------------------------------------------------------
+namespace Finjin { namespace Common {
+
     template <typename T1, class T2>
     bool operator == (const AllocatorWrapper<T1>& a, const AllocatorWrapper<T2>& b) throw()
     {
@@ -304,5 +310,5 @@ namespace Finjin { namespace Common {
 } }
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define FINJIN_ALLOCATOR_NULL (Finjin::Common::Allocator*)0 //For readability/search-ability, prefer passing this into methods as a null pointer instead of 'nullptr'

@@ -23,7 +23,7 @@ using namespace Finjin::Common;
 static void EscapeWildcardPattern(Utf8String& wildcardPattern)
 {
     //Escapes a string such as "*.html" so that the the "*" part can be treated as a matcher in a Boost regular expression
-    
+
     //Escape all regex special characters
     wildcardPattern.ReplaceAll("\\", "\\\\");
     wildcardPattern.ReplaceAll("^", "\\^");
@@ -38,7 +38,7 @@ static void EscapeWildcardPattern(Utf8String& wildcardPattern)
     wildcardPattern.ReplaceAll("+", "\\+");
     wildcardPattern.ReplaceAll("?", "\\?");
     wildcardPattern.ReplaceAll("/", "\\/");
-    
+
     //Convert * back to regex equivalent
     wildcardPattern.ReplaceAll("\\*", ".*");
 }
@@ -48,7 +48,7 @@ bool DoWildcardMatch(const T& src, const Utf8String& _wildcardPattern, bool case
 {
     auto wildcardPattern = _wildcardPattern;
     EscapeWildcardPattern(wildcardPattern);
-    
+
     boost::regex pattern(wildcardPattern.c_str(), caseSensitive ? boost::regex::normal : boost::regex::icase);
     return boost::regex_match(src.c_str(), pattern);
 }
@@ -58,7 +58,7 @@ bool DoWildcardSearch(Utf8String& found, const T& src, const Utf8String& _wildca
 {
     auto wildcardPattern = _wildcardPattern;
     EscapeWildcardPattern(wildcardPattern);
-    
+
     boost::match_results<typename T::const_iterator> match;
     boost::regex pattern(wildcardPattern.c_str(), caseSensitive ? boost::regex::normal : boost::regex::icase);
     if (boost::regex_search(src.begin(), src.end(), match, pattern))

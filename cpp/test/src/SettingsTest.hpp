@@ -11,11 +11,11 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Settings.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(SettingsTest_verify_set)
 {
     BOOST_TEST_MESSAGE("SettingsTest_verify_set:");

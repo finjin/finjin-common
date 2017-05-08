@@ -11,7 +11,7 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
 //Includes----------------------------------------------------------------------
@@ -19,7 +19,7 @@
 #include "finjin/common/Error.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API PNGReader
@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
 
         PNGReader();
         ~PNGReader();
-        
+
         bool GetConvert16bitTo8bit() const;
         void SetConvert16bitTo8bit(bool value);
 
@@ -53,16 +53,18 @@ namespace Finjin { namespace Common {
         void SetSwapAlpha(bool value);
 
         uint32_t GetPixelFormat() const;
-        
+
         uint32_t GetWidth() const;
         uint32_t GetHeight() const;
-        
+
         bool IsSRGB() const;
 
         uint32_t GetChannelCount() const;
         uint32_t GetBytesPerChannel() const;
+        uint32_t GetBytesPerPixel() const;
+        uint32_t GetBytesPerRow() const;
 
-        enum class DecompressResult
+        enum class ReadResult
         {
             SUCCESS,
             FAILED_TO_READ_SIGNATURE,
@@ -72,10 +74,10 @@ namespace Finjin { namespace Common {
             NOT_ENOUGH_MEMORY_FOR_IMAGE,
             FAILED_TO_FINISH_IMAGE_READ
         };
-        DecompressResult DecompressImage(ByteBufferReader& reader, ByteBuffer& decompressedBuffer);
-        Utf8String GetDecompressResultString(DecompressResult result) const;
+        ReadResult ReadImage(ByteBufferReader& reader, ByteBuffer& imageOutputBuffer);
+        Utf8String GetReadResultString(ReadResult result) const;
 
-        void DecompressImage(ByteBufferReader& reader, ByteBuffer& decompressedBuffer, Error& error);
+        void ReadImage(ByteBufferReader& reader, ByteBuffer& imageOutputBuffer, Error& error);
 
     private:
         uint32_t width, height;
@@ -83,7 +85,7 @@ namespace Finjin { namespace Common {
         uint32_t bytesPerChannel;
         uint32_t format;
         uint32_t flags;
-        
+
         bool convert16bitTo8bit;
         bool addAlpha;
         bool swapAlpha;

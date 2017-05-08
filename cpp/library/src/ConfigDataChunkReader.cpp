@@ -21,7 +21,7 @@
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define CHECK_DATA_LINE_NOT_NULL() \
     if (this->documentLine == nullptr) \
     { \
@@ -30,7 +30,7 @@ using namespace Finjin::Common;
     }
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 template <typename T>
 void ReadNumber(ConfigDataChunkReader* reader, ByteBuffer& lineBuffer, DataHeader& dataHeader, T& value, const char* typeName, Error& error)
 {
@@ -69,7 +69,7 @@ size_t ReadNumbers(ConfigDataChunkReader* reader, ByteBuffer& lineBuffer, DataHe
             }
 
             tempValueString.assign(&lineBuffer[previousCharIndex + 1], &lineBuffer[charIndex]);
-            
+
             T value;
             Convert::ToNumber(value, tempValueString, error);
             if (error)
@@ -144,7 +144,7 @@ size_t ReadIntegers(ConfigDataChunkReader* reader, ByteBuffer& lineBuffer, DataH
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 ConfigDataChunkReader::ConfigDataChunkReader()
 {
     this->settings.input = nullptr;
@@ -153,7 +153,7 @@ ConfigDataChunkReader::ConfigDataChunkReader()
 }
 
 ConfigDataChunkReader::~ConfigDataChunkReader()
-{   
+{
 }
 
 void ConfigDataChunkReader::Create(const Settings& settings, ConfigDataChunkReader* parentSection, Error& error)
@@ -210,7 +210,7 @@ void ConfigDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& erro
         FINJIN_SET_ERROR(error, "Failed to read blob text format header.");
         return;
     }
-    
+
     ReadPropertyName(dataHeader, key, error);
     if (error)
     {
@@ -368,7 +368,7 @@ size_t ConfigDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, siz
 
             break;
         }
-    }    
+    }
 
     return result;
 }
@@ -426,7 +426,7 @@ void ConfigDataChunkReader::ReadUuid(DataHeader& dataHeader, Uuid& value, Error&
         FINJIN_SET_ERROR(error, "Failed to read value for UUID.");
     else
     {
-        Uuid::Parse(value, tempValueString, error);        
+        Uuid::Parse(value, tempValueString, error);
         if (error)
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse UUID value for %1%.", tempValueString));
     }
@@ -559,7 +559,7 @@ size_t ConfigDataChunkReader::ReadStridedStrings(DataHeader& dataHeader, Utf8Str
                 FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("There are more than %1% strings to be parsed.", maxCount));
                 return 0;
             }
-            
+
             auto& value = GetStridedValue(values, count++, valueStride);
             if (value.assign(&this->lineBuffer[previousCharIndex + 1], &this->lineBuffer[charIndex]).HasError())
             {
@@ -627,7 +627,7 @@ size_t ConfigDataChunkReader::ReadStridedBools(DataHeader& dataHeader, bool* val
                 return 0;
             }
 
-            tempValueString.assign(&this->lineBuffer[previousCharIndex + 1], &this->lineBuffer[charIndex]);            
+            tempValueString.assign(&this->lineBuffer[previousCharIndex + 1], &this->lineBuffer[charIndex]);
             GetStridedValue(values, count++, valueStride) = Convert::ToBool(tempValueString);
 
             previousCharIndex = charIndex;

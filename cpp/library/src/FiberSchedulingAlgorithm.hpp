@@ -11,15 +11,15 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/FiberSpinLock.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class JobFiber;
@@ -35,7 +35,7 @@ namespace Finjin { namespace Common {
         virtual JobFiber* PickNext() = 0;
 
         virtual size_t GetScheduledCount() const = 0;
-        
+
         virtual void Clear() = 0;
     };
 
@@ -49,7 +49,7 @@ namespace Finjin { namespace Common {
         JobFiber* PickNext() override;
 
         size_t GetScheduledCount() const override;
-        
+
         void Clear() override;
 
     private:
@@ -65,9 +65,9 @@ namespace Finjin { namespace Common {
             bool empty() const;
 
             void clear();
-            
+
             size_t size() const;
-            
+
             void push(JobFiber* item);
 
             JobFiber* pop();

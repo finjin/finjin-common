@@ -11,12 +11,12 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include <vector>
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(StringTest_replace_all)
 {
     BOOST_TEST_MESSAGE("StringTest_replace_all:");
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(StringTest_ensure_shortness)
     BOOST_TEST_MESSAGE("StringTest_ensure_shortness:");
 
     Utf8String s;
-    
+
     BOOST_CHECK(s.IsStatic() == true); //It's empty, so it should be short
 
     for (int i = 0; i < 1000; i++) //This should be WAY MORE than enough to make it not-short
@@ -259,5 +259,5 @@ BOOST_AUTO_TEST_CASE(StringTest_replacechars)
     Utf8String s("abcdefg");
     s.ReplaceAllChars("ad", 'z');
 
-    BOOST_CHECK(s == "zbczefg");   
+    BOOST_CHECK(s == "zbczefg");
 }

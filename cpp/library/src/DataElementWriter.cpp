@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void DataElementWriter::SetAttribute(const Utf8String& name, const char* value)
 {
     Utf8String stringValue;
@@ -42,7 +42,7 @@ void DataElementWriter::SetAttribute(const Utf8String& name, int64_t value)
 {
     SetAttribute(name, Convert::ToString(value));
 }
- 
+
 void DataElementWriter::SetAttribute(const Utf8String& name, uint64_t value)
 {
     SetAttribute(name, Convert::ToString(value));
@@ -56,7 +56,7 @@ void DataElementWriter::SetAttribute(const Utf8String& name, double value)
 void DataElementWriter::SetAttribute(const Utf8String& name, bool value)
 {
     static const Utf8String trueString("true");
-    static const Utf8String falseString("false");    
+    static const Utf8String falseString("false");
     SetAttribute(name, value ? trueString : falseString);
 }
 
@@ -82,7 +82,7 @@ void DataElementWriter::AddValue(const Utf8String& name, int64_t value)
 {
     AddValue(name, Convert::ToString(value));
 }
- 
+
 void DataElementWriter::AddValue(const Utf8String& name, uint64_t value)
 {
     AddValue(name, Convert::ToString(value));
@@ -96,6 +96,6 @@ void DataElementWriter::AddValue(const Utf8String& name, double value)
 void DataElementWriter::AddValue(const Utf8String& name, bool value)
 {
     static const Utf8String trueString("true");
-    static const Utf8String falseString("false");    
+    static const Utf8String falseString("false");
     AddValue(name, value ? trueString : falseString);
 }

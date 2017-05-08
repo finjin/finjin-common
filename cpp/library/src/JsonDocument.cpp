@@ -22,7 +22,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JsonDocumentMember::Impl
 {
     JsonElement* member;
@@ -61,16 +61,16 @@ bool JsonDocumentMember::IsArray() const
     return impl->member->IsArray();
 }
 
-int JsonDocumentMember::GetSize() const
+size_t JsonDocumentMember::GetSize() const
 {
-    return (int)impl->member->Size();
+    return impl->member->Size();
 }
 
-std::shared_ptr<JsonDocumentMember> JsonDocumentMember::GetItem(int index) const
+std::shared_ptr<JsonDocumentMember> JsonDocumentMember::GetItem(size_t index) const
 {
     std::shared_ptr<JsonDocumentMember> member;
 
-    if (index < (int)impl->member->Size())
+    if (index < impl->member->Size())
     {
         member.reset(new JsonDocumentMember);
         member->impl->member = &(*impl->member)[rapidjson::SizeType(index)];
@@ -190,7 +190,7 @@ bool JsonDocument::HasMember(const Utf8String& name) const
 JsonDocument& JsonDocument::AddMember(const Utf8String& name, const Utf8String& value)
 {
     rapidjson::Document::AllocatorType& allocator = impl->doc.GetAllocator();
-    
+
     JsonValue jsonName(name.c_str(), allocator);
     JsonValue jsonValue(value.c_str(), allocator);
     impl->doc.AddMember(jsonName, jsonValue, allocator);

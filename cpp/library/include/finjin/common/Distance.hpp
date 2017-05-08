@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class DistanceUnitType
@@ -37,7 +37,7 @@ namespace Finjin { namespace Common {
             switch (type)
             {
                 case DistanceUnitType::CENTIMETERS: return ToCentimeters();
-                case DistanceUnitType::METERS: return ToMeters(); 
+                case DistanceUnitType::METERS: return ToMeters();
                 case DistanceUnitType::KILOMETERS: return ToKilometers();
                 default: return this->value;
             }

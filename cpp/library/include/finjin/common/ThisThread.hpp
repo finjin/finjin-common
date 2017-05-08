@@ -20,9 +20,9 @@
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class ThisThread
     {
     public:
@@ -32,5 +32,5 @@ namespace Finjin { namespace Common {
 
         static void SleepFor(TimeDuration duration);
     };
-    
+
 } }

@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxDocumentWriterOutput.hpp"
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class ConfigDocumentLine;
@@ -28,9 +28,9 @@ namespace Finjin { namespace Common {
     {
     public:
         WxConfigDocumentWriter();
-        
+
         void Create(WxDocumentWriterOutput& output, int depth = 0);
-        
+
         WxConfigDocumentWriter& WriteComment(const wxString& comment);
         WxConfigDocumentWriter& WriteCommentedSection(const wxString& comment, const wxString& name);
         WxConfigDocumentWriter& WriteSection(const wxString& name);
@@ -39,7 +39,7 @@ namespace Finjin { namespace Common {
         WxConfigDocumentWriter& WriteKeyAndValue(const wxString& key, const wxString& value);
         WxConfigDocumentWriter& WriteLine(const char* line, size_t length);
         WxConfigDocumentWriter& WriteLine(const wxString& line);
-                        
+
         WxConfigDocumentWriter& WriteNewline();
 
         int GetDepth() const;
@@ -49,7 +49,7 @@ namespace Finjin { namespace Common {
         void Indent(int depth);
 
     private:
-        WxDocumentWriterOutput* output;        
+        WxDocumentWriterOutput* output;
         int depth;
     };
 

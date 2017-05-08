@@ -15,20 +15,22 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Utf8StringCaseConverter.hpp"
 #include <nowide/stackstring.hpp>
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/WindowsUtilities.hpp"
 #endif
 #include <boost/locale.hpp>
 
 using namespace Finjin::Common;
 
+
+//Local types-------------------------------------------------------------------
 using WideningToUtf16Converter = nowide::basic_stackstring<wchar_t, char, Utf8String::STATIC_STRING_LENGTH + 1>;
 
 
 //Implementation----------------------------------------------------------------
 Utf8StringCaseConverter::Utf8StringCaseConverter()
 {
-#if !FINJIN_TARGET_OS_IS_WINDOWS
+#if !FINJIN_TARGET_PLATFORM_IS_WINDOWS
     boost::locale::generator gen;
     this->genericUtf8Locale = gen("UTF-8");
 #endif
@@ -40,12 +42,12 @@ ValueOrError<void> Utf8StringCaseConverter::ToLower(Utf8String& result, const ch
 
     if (s == nullptr || s[0] == 0)
         return ValueOrError<void>();
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter widened;
     if (!widened.convert(s))
         return ValueOrError<void>::CreateError();
-    
+
     if (!WindowsUtilities::ConvertString(result, LCMAP_LOWERCASE, widened.c_str(), static_cast<int>(wcslen(widened.c_str()))))
         return ValueOrError<void>::CreateError();
 
@@ -61,12 +63,12 @@ ValueOrError<void> Utf8StringCaseConverter::ToLower(Utf8String& result, const Ut
 
     if (s.empty())
         return ValueOrError<void>();
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter widened;
     if (!widened.convert(s.begin(), s.end()))
         return ValueOrError<void>::CreateError();
-    
+
     if (!WindowsUtilities::ConvertString(result, LCMAP_LOWERCASE, widened.c_str(), static_cast<int>(wcslen(widened.c_str()))))
         return ValueOrError<void>::CreateError();
 
@@ -82,12 +84,12 @@ ValueOrError<void> Utf8StringCaseConverter::ToUpper(Utf8String& result, const ch
 
     if (s == nullptr || s[0] == 0)
         return ValueOrError<void>();
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter widened;
     if (!widened.convert(s))
         return ValueOrError<void>::CreateError();
-    
+
     if (!WindowsUtilities::ConvertString(result, LCMAP_UPPERCASE, widened.c_str(), static_cast<int>(wcslen(widened.c_str()))))
         return ValueOrError<void>::CreateError();
 
@@ -103,12 +105,12 @@ ValueOrError<void> Utf8StringCaseConverter::ToUpper(Utf8String& result, const Ut
 
     if (s.empty())
         return ValueOrError<void>();
-    
-#if FINJIN_TARGET_OS_IS_WINDOWS
+
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter widened;
     if (!widened.convert(s.begin(), s.end()))
         return ValueOrError<void>::CreateError();
-    
+
     if (!WindowsUtilities::ConvertString(result, LCMAP_UPPERCASE, widened.c_str(), static_cast<int>(wcslen(widened.c_str()))))
         return ValueOrError<void>::CreateError();
 
@@ -120,7 +122,7 @@ ValueOrError<void> Utf8StringCaseConverter::ToUpper(Utf8String& result, const Ut
 
 int Utf8StringCaseConverter::CompareNoCase(const char* a, const char* b) const
 {
-    Utf8String aLower, bLower;    
+    Utf8String aLower, bLower;
     ToLower(aLower, a);
     ToLower(bLower, b);
     return aLower.Compare(bLower);

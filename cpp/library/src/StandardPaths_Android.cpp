@@ -14,6 +14,7 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/StandardPaths.hpp"
+#include "finjin/common/DebugLog.hpp"
 #include "finjin/common/NvAndroidNativeAppGlue.h"
 #include "finjin/common/AndroidJniUtilities.hpp"
 #include "finjin/common/LinuxUtilities.hpp"
@@ -21,7 +22,24 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Local functions---------------------------------------------------------------
+static void VerifyStandardPath(StandardPath& standardPath)
+{
+    if (!standardPath.path.empty())
+    {
+        if (!standardPath.path.IsDirectory())
+        {
+            if (!standardPath.path.CreateDirectories())
+            {
+                standardPath.path.clear();
+                standardPath.isSystemCreated = false;
+            }
+        }
+    }
+}
+
+
+//Implementation----------------------------------------------------------------
 void StandardPaths::Create(const Utf8String& applicationName, void* applicationHandle, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -38,40 +56,49 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 
     jniUtils.GetStringField(this->userDocumentsDirectory.path, "userDocumentsDirectory");
     this->userDocumentsDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userDocumentsDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userDocumentsDirectory: %1%", this->userDocumentsDirectory.path);
 
     jniUtils.GetStringField(this->userMusicDirectory.path, "userMusicDirectory");
     this->userMusicDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userMusicDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userMusicDirectory: %1%", this->userMusicDirectory.path);
 
     jniUtils.GetStringField(this->userVideosDirectory.path, "userVideosDirectory");
     this->userVideosDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userVideosDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userVideosDirectory: %1%", this->userVideosDirectory.path);
 
     jniUtils.GetStringField(this->userPicturesDirectory.path, "userPicturesDirectory");
     this->userPicturesDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userPicturesDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userPicturesDirectory: %1%", this->userPicturesDirectory.path);
 
     jniUtils.GetStringField(this->userCameraRollDirectory.path, "userCameraRollDirectory");
     this->userCameraRollDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userCameraRollDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userCameraRollDirectory: %1%", this->userCameraRollDirectory.path);
 
     jniUtils.GetStringField(this->userDownloadsDirectory.path, "userDownloadsDirectory");
     this->userDownloadsDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userDownloadsDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userDownloadsDirectory: %1%", this->userDownloadsDirectory.path);
-        
+
     this->userApplicationSettingsDirectory.path = androidApp->activity->internalDataPath;
     if (this->userApplicationSettingsDirectory.path.empty())
         this->userApplicationSettingsDirectory.path = androidApp->activity->externalDataPath;
     this->userApplicationSettingsDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->userApplicationSettingsDirectory);
     //FINJIN_DEBUG_LOG_INFO("this->userApplicationSettingsDirectory: %1%", this->userApplicationSettingsDirectory.path);
 
     jniUtils.GetStringField(this->userApplicationTemporaryDirectory.path, "userApplicationTemporaryDirectory");
     this->userApplicationTemporaryDirectory.isSystemCreated = true;
-    //FINJIN_DEBUG_LOG_INFO("this->userApplicationTemporaryDirectory: %1%", this->userApplicationTemporaryDirectory.path);    
-    
+    VerifyStandardPath(this->userApplicationTemporaryDirectory);
+    //FINJIN_DEBUG_LOG_INFO("this->userApplicationTemporaryDirectory: %1%", this->userApplicationTemporaryDirectory.path);
+
     this->workingDirectory.path = LinuxUtilities::GetWorkingDirectory();
     this->workingDirectory.isSystemCreated = true;
+    VerifyStandardPath(this->workingDirectory);
 
     //Fallback behavior for missing locations--------------------
     //Utf8String applicationPackageName;
@@ -79,17 +106,17 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 
     //Path systemDataDirectory;
     //jniUtils.GetStringField(systemDataDirectory, "systemDataDirectory"); ////On Android 6 (Nexus 6): /data
-    ////FINJIN_DEBUG_LOG_INFO("systemDataDirectory: %1%", systemDataDirectory);
+    //FINJIN_DEBUG_LOG_INFO("systemDataDirectory: %1%", systemDataDirectory);
 
     //Path systemExternalStorageDirectory;
     //jniUtils.GetStringField(systemExternalStorageDirectory, "systemExternalStorageDirectory"); ////On Android 6 (Nexus 6): /storage/emulated/0
-    ////FINJIN_DEBUG_LOG_INFO("systemExternalStorageDirectory: %1%", systemExternalStorageDirectory);
+    //FINJIN_DEBUG_LOG_INFO("systemExternalStorageDirectory: %1%", systemExternalStorageDirectory);
 
     //bool isExternalStorageReadyForRead;
     //jniUtils.CallBoolMethod(isExternalStorageReadyForRead, "isExternalStorageReadyForRead");
-    ////FINJIN_DEBUG_LOG_INFO("isExternalStorageReadyForRead: %1%", isExternalStorageReadyForRead);
+    //FINJIN_DEBUG_LOG_INFO("isExternalStorageReadyForRead: %1%", isExternalStorageReadyForRead);
 
     //bool isExternalStorageReadyForWrite;
     //jniUtils.CallBoolMethod(isExternalStorageReadyForWrite, "isExternalStorageReadyForWrite");
-    ////FINJIN_DEBUG_LOG_INFO("isExternalStorageReadyForWrite: %1%", isExternalStorageReadyForWrite);
+    //FINJIN_DEBUG_LOG_INFO("isExternalStorageReadyForWrite: %1%", isExternalStorageReadyForWrite);
 }

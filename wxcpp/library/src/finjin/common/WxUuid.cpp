@@ -19,15 +19,15 @@
 using namespace Finjin::Common;
 
 
-//Static initialization--------------------------------------------------------
+//Static initialization---------------------------------------------------------
 const WxUuid WxUuid::NIL;
 
 
-//Local values-----------------------------------------------------------------
+//Local values------------------------------------------------------------------
 static WxRandomUuidCreator* randomUuidGenerator = nullptr;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static void ReorderBytesIfCpuLittleEndian(uint8_t* bytes)
 {
     if (IsLittleEndian())
@@ -61,7 +61,7 @@ WxRandomUuidCreator::~WxRandomUuidCreator()
 WxUuid WxRandomUuidCreator::NewUuid()
 {
     WxUuid result;
-    for (int i = 0; i < 4; i++)        
+    for (int i = 0; i < 4; i++)
         result.data32[i] = this->randomGenerator();
 
     //See version 4 UUID format https://en.wikipedia.org/wiki/Universally_unique_identifier
@@ -80,16 +80,16 @@ WxUuid WxRandomUuidCreator::NewUuid()
 WxUuid WxUuid::CreateRandom()
 {
     WxUuid result;
-    
+
     if (randomUuidGenerator != nullptr)
         result = randomUuidGenerator->NewUuid();
-    
+
     return result;
 }
 
 WxUuid::WxUuid()
 {
-    memset(&this->data, 0, sizeof(this->data));    
+    memset(&this->data, 0, sizeof(this->data));
 }
 
 WxUuid::WxUuid(const wxString& stringValue)
@@ -104,7 +104,7 @@ WxUuid::WxUuid(const char* stringValue)
 
 WxUuid::WxUuid(const uint8_t* bytes)
 {
-    FINJIN_COPY_MEMORY(&this->data, bytes, sizeof(this->data));    
+    FINJIN_COPY_MEMORY(&this->data, bytes, sizeof(this->data));
 }
 
 WxUuid::WxUuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, uint8_t data4_1, uint8_t data4_2, uint8_t data4_3, uint8_t data4_4, uint8_t data4_5, uint8_t data4_6, uint8_t data4_7)
@@ -120,11 +120,11 @@ WxUuid::WxUuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, 
     this->cpuOrderedParts.data4[5] = data4_5;
     this->cpuOrderedParts.data4[6] = data4_6;
     this->cpuOrderedParts.data4[7] = data4_7;
-    
+
     ReorderBytesIfCpuLittleEndian(this->data);
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
 WxUuid::WxUuid(const GUID& guid)
 {
     FINJIN_COPY_MEMORY(&this->data, &guid, sizeof(GUID));
@@ -148,7 +148,7 @@ bool WxUuid::IsZero() const
         if (this->data[i] != 0)
             return false;
     }
-    
+
     return true;
 }
 
@@ -164,8 +164,8 @@ size_t WxUuid::GetHash() const
 
 std::array<uint8_t, 16> WxUuid::GetBytes() const
 {
-    std::array<uint8_t, 16> bytes;    
-    FINJIN_COPY_MEMORY(bytes.data(), this->data, sizeof(this->data));    
+    std::array<uint8_t, 16> bytes;
+    FINJIN_COPY_MEMORY(bytes.data(), this->data, sizeof(this->data));
     return bytes;
 }
 
@@ -173,7 +173,7 @@ wxString WxUuid::ToString() const
 {
     return wxString::Format
         (
-        wxT("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x"), 
+        wxT("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x"),
         this->data[0], this->data[1], this->data[2], this->data[3],
         this->data[4], this->data[5],
         this->data[6], this->data[7],
@@ -202,7 +202,7 @@ bool WxUuid::Parse(WxUuid& value, const wxString& stringValue)
 
     if (stringValue.empty())
         return false;
-    
+
     //Split string
     StaticVector<wxString, 5> stringParts;
     wxStringTokenizer partsParser(stringValue, wxT("-"));
@@ -254,11 +254,11 @@ bool WxUuid::Parse(WxUuid& value, const wxString& stringValue)
 WxUuid WxUuid::Parse(const wxString& stringValue)
 {
     WxUuid value;
-        
+
     if (!stringValue.empty())
     {
         Parse(value, stringValue);
     }
-    
+
     return value;
 }

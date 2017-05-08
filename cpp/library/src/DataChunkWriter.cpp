@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //DataChunkWriter::Settings
 DataChunkWriter::Settings::Settings()

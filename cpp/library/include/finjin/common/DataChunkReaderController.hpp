@@ -14,15 +14,15 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataChunkReaderInput.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class DataChunkReader;
 
     class FINJIN_COMMON_LIBRARY_API DataChunkReaderController

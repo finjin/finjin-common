@@ -20,9 +20,9 @@
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-   
+
     class FINJIN_COMMON_LIBRARY_API DomainInformation
     {
     public:

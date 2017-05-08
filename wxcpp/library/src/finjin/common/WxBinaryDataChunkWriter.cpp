@@ -51,7 +51,7 @@ struct BinaryDataChunkBlobWrapper
 };
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_LINE(_this, propertyName, value) \
     WriteValueLine(*_this->settings.output, _this->swapBytes, propertyName, value, _this->settings.maxBytesPerLine, error); \
     if (error) \
@@ -72,14 +72,14 @@ struct BinaryDataChunkBlobWrapper
 #define WRITE_CHUNK_END_LINE(_this) WriteByte(*_this->settings.output, BINARY_LINE_TYPE_CHUNK_END << BINARY_LINE_TYPE_SHIFT);
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 struct BinaryDataChunkSizeTWrapper
 {
     BinaryDataChunkSizeTWrapper(const size_t* _values) : values(_values)
     {
     }
 
-    const size_t* values;   
+    const size_t* values;
     BinaryMultiValueSize tempValue;
 };
 
@@ -340,7 +340,7 @@ static void WriteBinaryValue(WxDocumentWriterOutput& out, double value, bool swa
         value = 0;
     if (swapBytes)
         SwapBytes(value);
-    
+
     out.Write(&value, sizeof(value));
 }
 
@@ -435,11 +435,11 @@ void WriteValueLine(WxDocumentWriterOutput& out, bool swapBytes, const WxChunkPr
     size_t elementOffset = 0;
     auto elementCount = GetElementCount(value);
     while (elementOffset < elementCount)
-    {   
+    {
         uint8_t headerByte = BINARY_LINE_TYPE_SINGLE_VALUE << BINARY_LINE_TYPE_SHIFT;
         if (propertyName.index != (WxChunkPropertyName::Index)-1)
             headerByte |= BINARY_LINE_FLAG_INDEXED;
-        
+
         auto maxValueBytes = maxBytesPerLine - 1 - sizeof(BinaryLineLength) - SizeOfValue(propertyName); //Subtract one for header byte, for total length and propertyName length
 
         auto fitElements = FitValueIntoBytes(value, elementOffset, maxValueBytes);
@@ -457,7 +457,7 @@ void WriteValueLine(WxDocumentWriterOutput& out, bool swapBytes, const WxChunkPr
             headerByte |= BINARY_LINE_OCCURRENCE_MORE << BINARY_LINE_OCCURRENCE_SHIFT;
         else
             headerByte |= BINARY_LINE_OCCURRENCE_LAST << BINARY_LINE_OCCURRENCE_SHIFT;
-        
+
         WriteByte(out, headerByte);
 
         WriteLength(out, SizeOfValue(propertyName) + SizeOfValue(value, elementOffset, fitElements), swapBytes);
@@ -529,13 +529,13 @@ void WriteChunkStartLine(WxDocumentWriterOutput& out, bool swapBytes, IDOrIndex 
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 WxBinaryDataChunkWriter::WxBinaryDataChunkWriter()
-{    
+{
 }
 
 WxBinaryDataChunkWriter::~WxBinaryDataChunkWriter()
-{    
+{
     if (AnySet(this->style & DataChunkWriterStyle::NESTED))
         WRITE_CHUNK_END_LINE(this);
 
@@ -567,10 +567,10 @@ void WxBinaryDataChunkWriter::WriteWriterHeader(WxError& error)
 {
     FINJIN_WX_ERROR_METHOD_START(error);
 
-    WriteUInt32(WxStandardChunkPropertyNames::MAGIC, FINJIN_MAGIC_FOURCC, error);
+    WriteUInt32(WxStandardChunkPropertyNames::SIGNATURE, FINJIN_SIGNATURE_FOURCC, error);
     if (error)
     {
-        FINJIN_WX_SET_ERROR(error, wxT("Failed to write header magic value."));
+        FINJIN_WX_SET_ERROR(error, wxT("Failed to write header signature."));
         return;
     }
 
@@ -612,15 +612,15 @@ void WxBinaryDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<
 
     if (this->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<WxDocumentWriterOutput> sharedNewOutput = this->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to create new output for chunk '%s'."), name.ToString().wx_str()));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto binaryChunkWriter = new WxBinaryDataChunkWriter();
         auto newSettings = this->settings;
         newSettings.Create(sharedNewOutput, *this->settings.controller);
@@ -645,7 +645,7 @@ void WxBinaryDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<
         }
 
         WRITE_CHUNK_START_LINE(binaryChunkWriter, name.id, 0);
-        
+
         auto scheduled = this->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
         if (error)
         {
@@ -655,7 +655,7 @@ void WxBinaryDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<
 
         if (!scheduled)
         {
-            //Write chunk to the new writer's output            
+            //Write chunk to the new writer's output
             chunkFunc(*chunkWriter, error);
             if (error)
             {
@@ -663,7 +663,7 @@ void WxBinaryDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
@@ -689,7 +689,7 @@ void WxBinaryDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<
         else
         {
             WRITE_CHUNK_START_LINE(this, name.id, 0);
-            
+
             chunkFunc(*this, error);
             if (error)
             {

@@ -11,14 +11,14 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/ConfigDocumentReader.hpp"
 #include "finjin/common/ConfigDocumentWriter.hpp"
 #include <sstream>
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(ConfigTest_write)
 {
     BOOST_TEST_MESSAGE("ConfigTest_write:");
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(ConfigTest_write)
         "#This is a comment\n"
         "[b]\n"
         ;
-    BOOST_CHECK(result == expected); 
+    BOOST_CHECK(result == expected);
 }
 
 BOOST_AUTO_TEST_CASE(ConfigTest_read)
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(ConfigTest_read)
     BOOST_CHECK(line != nullptr);
     BOOST_CHECK(line->GetType() == ConfigDocumentLine::Type::SECTION);
     BOOST_CHECK(line->GetSectionName() == "section");
-    
+
     line = reader.Next();
     BOOST_CHECK(line != nullptr);
     BOOST_CHECK(line->GetType() == ConfigDocumentLine::Type::PLAIN_LINE);
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(ConfigTest_read)
     line = reader.Next();
     BOOST_CHECK(line != nullptr);
     BOOST_CHECK(line->GetType() == ConfigDocumentLine::Type::KEY_AND_VALUE);
-    BOOST_CHECK(line->GetKey() == "key");    
+    BOOST_CHECK(line->GetKey() == "key");
     BOOST_CHECK(line->GetValue() == "value");
 
     line = reader.Next();

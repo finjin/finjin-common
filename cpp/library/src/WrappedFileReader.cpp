@@ -25,18 +25,26 @@ using namespace Finjin::Common;
 template <typename Reader>
 WrappedFileReader::ReadHeaderResult ReadHeader(Reader& inFile, WrappedFileReader::Header& header)
 {
-    //uint32_t: Finjin magic number
-    if (inFile.Read(&header.magic, sizeof(header.magic)) < sizeof(header.magic))
-        return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_MAGIC_VALUE;
-    
-    auto swapBytes = false;
-    if (header.magic != FINJIN_MAGIC_FOURCC)
+    auto startOffset = inFile.GetOffset();
+
+    //uint32_t: Finjin signature
+    if (inFile.Read(&header.signature, sizeof(header.signature)) < sizeof(header.signature))
     {
-        SwapBytes(header.magic);
-        if (header.magic == FINJIN_MAGIC_FOURCC)
+        inFile.SetOffset(startOffset);
+        return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_SIGNATURE_VALUE;
+    }
+
+    auto swapBytes = false;
+    if (header.signature != FINJIN_SIGNATURE_FOURCC)
+    {
+        SwapBytes(header.signature);
+        if (header.signature == FINJIN_SIGNATURE_FOURCC)
             swapBytes = true;
         else
-            return WrappedFileReader::ReadHeaderResult::INVALID_MAGIC_VALUE;        
+        {
+            inFile.SetOffset(startOffset);
+            return WrappedFileReader::ReadHeaderResult::INVALID_SIGNATURE_VALUE;
+        }
     }
 
     //uint32_t: Format
@@ -46,15 +54,15 @@ WrappedFileReader::ReadHeaderResult ReadHeader(Reader& inFile, WrappedFileReader
         SwapBytes(header.fileFormat);
     if (!WrappedFileReader::Header::IsValidFormat(header.fileFormat))
         return WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT;
-    
+
     //uint32_t: Format version
     if (inFile.Read(&header.fileFormatVersion, sizeof(header.fileFormatVersion)) < sizeof(header.fileFormatVersion))
-        return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT_VERSION;    
+        return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT_VERSION;
     if (swapBytes)
         SwapBytes(header.fileFormatVersion);
     if (header.fileFormatVersion == 0)
         return WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT_VERSION;
-    
+
     //uint32_t: File format class
     if (inFile.Read(&header.fileFormatClass, sizeof(header.fileFormatClass)) < sizeof(header.fileFormatClass))
         return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT_CLASS;
@@ -62,7 +70,7 @@ WrappedFileReader::ReadHeaderResult ReadHeader(Reader& inFile, WrappedFileReader
         SwapBytes(header.fileFormatClass);
     if (!WrappedFileReader::Header::IsValidFormatClass(header.fileFormatClass))
         return WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT_CLASS;
-    
+
     //uint32_t: File format class version
     if (inFile.Read(&header.fileFormatClassVersion, sizeof(header.fileFormatClassVersion)) < sizeof(header.fileFormatClassVersion))
         return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT_CLASS_VERSION;
@@ -70,7 +78,7 @@ WrappedFileReader::ReadHeaderResult ReadHeader(Reader& inFile, WrappedFileReader
         SwapBytes(header.fileFormatClassVersion);
     if (header.fileFormatClassVersion == 0)
         return WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT_CLASS_VERSION;
-    
+
     //uint32_t: File extension length
     if (inFile.Read(&header.fileExtensionLength, sizeof(header.fileExtensionLength)) < sizeof(header.fileExtensionLength))
         return WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_EXTENSION_LENGTH;
@@ -78,7 +86,7 @@ WrappedFileReader::ReadHeaderResult ReadHeader(Reader& inFile, WrappedFileReader
         SwapBytes(header.fileExtensionLength);
     if (header.fileExtensionLength == 0)
         return WrappedFileReader::ReadHeaderResult::INVALID_FILE_EXTENSION_LENGTH;
-    
+
     //UTF-8[File extension length]: File extension (without leading dot)
     header.fileExtension.resize(header.fileExtensionLength);
     if (inFile.Read(&header.fileExtension[0], header.fileExtensionLength) < header.fileExtensionLength)
@@ -97,9 +105,9 @@ static Utf8String GetReadHeaderResultString(const WrappedFileReader::Header& hea
 {
     switch (result)
     {
-        case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_MAGIC_VALUE: return "Failed to read magic value.";
-        case WrappedFileReader::ReadHeaderResult::INVALID_MAGIC_VALUE: return "Invalid magic number."; 
-        case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT: return "Failed to read file format."; 
+        case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_SIGNATURE_VALUE: return "Failed to read signature.";
+        case WrappedFileReader::ReadHeaderResult::INVALID_SIGNATURE_VALUE: return "Invalid signature.";
+        case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT: return "Failed to read file format.";
         case WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT: return Utf8StringFormatter::Format("Invalid file format '%1%'", (uint32_t)header.fileFormat);
         case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_FORMAT_VERSION: return "Failed to read file format version.";
         case WrappedFileReader::ReadHeaderResult::INVALID_FILE_FORMAT_VERSION: return Utf8StringFormatter::Format("Invalid file format version '%1%'", header.fileFormatVersion);
@@ -112,7 +120,7 @@ static Utf8String GetReadHeaderResultString(const WrappedFileReader::Header& hea
         case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_EXTENSION: return "Failed to read file extension.";
         case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_LENGTH: return "Failed to read file length.";
         default: return Utf8String::Empty();
-    }    
+    }
 }
 
 template <typename Reader>
@@ -131,23 +139,13 @@ void ReadHeader(Reader& inFile, WrappedFileReader::Header& header, Error& error)
 //WrappedFileReader::Header
 WrappedFileReader::Header::Header()
 {
-    this->magic = 0;
+    this->signature = 0;
     this->fileFormat = FileFormat::EMBEDDED;
     this->fileFormatVersion = 0;
     this->fileFormatClass = FileFormatClass::GENERIC;
     this->fileFormatClassVersion = 0;
     this->fileExtensionLength = 0;
     this->fileLength = 0;
-}
-
-WrappedFileReader::Header::FileFormatClass WrappedFileReader::Header::GetFileFormatClass(const Utf8String& ext)
-{
-    if (ext == "bmp" || ext == "dxt" || ext == "jpg" || ext == "jpeg" || ext == "ktx" || ext == "pkm" || ext == "png" || ext == "pvr" || ext == "tga")
-        return Header::FileFormatClass::IMAGE;
-    else if (ext == "mp3" || ext == "ogg" || ext == "wav")
-        return Header::FileFormatClass::SOUND;
-    else
-        return Header::FileFormatClass::GENERIC;
 }
 
 bool WrappedFileReader::Header::IsValidFormat(FileFormat format)
@@ -157,7 +155,7 @@ bool WrappedFileReader::Header::IsValidFormat(FileFormat format)
 
 bool WrappedFileReader::Header::IsValidFormatClass(FileFormatClass formatClass)
 {
-    return 
+    return
         formatClass == Header::FileFormatClass::GENERIC ||
         formatClass == Header::FileFormatClass::IMAGE ||
         formatClass == Header::FileFormatClass::SOUND
@@ -232,7 +230,7 @@ void WrappedFileReader::Unwrap(const Path& inFilePath, const Path& outFilePath, 
         FINJIN_SET_ERROR(error, "Failed to reader header.");
         return;
     }
-    
+
     //Validate file format
     if (header.fileFormat != Header::FileFormat::EMBEDDED)
     {

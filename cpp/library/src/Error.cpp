@@ -20,11 +20,11 @@
 using namespace Finjin::Common;
 
 
-//Local values-----------------------------------------------------------------
+//Local values------------------------------------------------------------------
 static const Utf8String DISABLED_ERROR_MESSAGE("<error messages disabled>");
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static Utf8String FormatCallStackRecordMetadataParts(bool isUnexpected, FINJIN_CALLER_PARAMETERS_DECLARATION)
 {
     Utf8String result;
@@ -191,9 +191,9 @@ void Error::SetError(bool hasErrorMessage, int code, FINJIN_CALLER_PARAMETERS_DE
 void Error::SetError(const Utf8String& message, int code, FINJIN_CALLER_PARAMETERS_DECLARATION)
 #endif
 {
-    //Note: The error parameters such as line number, file name, are not used here since 
+    //Note: The error parameters such as line number, file name, are not used here since
     //it's assumed the values captured during EnterMethod() were good enough.
-    
+
     if (IsCallerOwnerThread() && this->depth >= 0)
     {
         this->hasError = true;

@@ -14,18 +14,18 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#if FINJIN_TARGET_OS_IS_WINDOWS
+//Includes----------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/Win32FileFinder.hpp"
 #else
     #include "finjin/common/DirEntFileFinder.hpp"
 #endif
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     using FileFinder = Win32FileFinder;
 #else
     using FileFinder = DirEntFileFinder;

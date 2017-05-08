@@ -11,7 +11,7 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/ForwardAllocator.hpp"
@@ -21,6 +21,8 @@
 #include <memory>
 #include <boost/thread/null_mutex.hpp>
 
+
+//Types-------------------------------------------------------------------------
 class MemoryPerson : public AllocatedClass
 {
 public:
@@ -33,7 +35,7 @@ public:
 };
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(MemoryTest_allocated_class)
 {
     BOOST_TEST_MESSAGE("MemoryTest_allocated_class:");
@@ -43,9 +45,9 @@ BOOST_AUTO_TEST_CASE(MemoryTest_allocated_class)
     PassthroughSystemAllocator systemAllocator;
 
     auto arena = systemAllocator.AllocateArena(10000, 0, FINJIN_CALLER_ARGUMENTS);
-    
+
     GeneralAllocator::Settings settings;
-    
+
     GeneralAllocator generalAllocator;
     generalAllocator.Create(settings, std::move(arena));
 
@@ -57,19 +59,17 @@ BOOST_AUTO_TEST_CASE(MemoryTest_allocated_class)
 BOOST_AUTO_TEST_CASE(MemoryTest_forward)
 {
     BOOST_TEST_MESSAGE("MemoryTest_forward:");
-    
+
     using TestAllocator = ForwardAllocator<boost::null_mutex>;
-    
+
     FINJIN_DECLARE_ERROR(error);
-    
-    TestAllocator::Settings allocatorSettings;
-    
+
     PassthroughSystemAllocator systemAllocator;
 
     auto arena = systemAllocator.AllocateArena(10000, 0, FINJIN_CALLER_ARGUMENTS);
-    
+
     TestAllocator allocator;
-    allocator.Create(allocatorSettings, std::move(arena), error);
+    allocator.Create(std::move(arena), error);
     assert(!error);
 
     BOOST_CHECK(allocator.GetBytesUsed() == 0);

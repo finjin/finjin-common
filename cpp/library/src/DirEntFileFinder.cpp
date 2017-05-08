@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static bool IsDots(const char* s)
 {
     if (s[0] != 0)
@@ -33,7 +33,7 @@ static bool IsDots(const char* s)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 DirEntFileFinder::DirEntFileFinder(Allocator* allocator) : path(allocator), testPath(allocator)
 {
     this->dir = nullptr;
@@ -54,10 +54,10 @@ bool DirEntFileFinder::Start(const Path& path)
 
     this->dir = opendir(path.c_str());
     this->ent = this->dir != nullptr ? readdir(this->dir) : nullptr;
-    
+
     if (this->ent != nullptr && ::IsDots(this->ent->d_name))
         Next();
-    
+
     return this->ent != nullptr;
 }
 
@@ -66,8 +66,8 @@ bool DirEntFileFinder::Next()
     do
     {
         this->ent = readdir(this->dir);
-    } while (this->ent != nullptr && ::IsDots(this->ent->d_name));    
-    
+    } while (this->ent != nullptr && ::IsDots(this->ent->d_name));
+
     return this->ent != nullptr;
 }
 
@@ -95,12 +95,8 @@ ValueOrError<bool> DirEntFileFinder::IsCurrentFile() const
             return ValueOrError<bool>::CreateError();
         if ((this->testPath /= this->ent->d_name).HasError())
             return ValueOrError<bool>::CreateError();
-        
-        struct stat statBuf;
-        if (stat(this->testPath.c_str(), &statBuf) == -1)
-            return false;
 
-        return S_ISREG(statBuf.st_mode) != 0;
+        return Path::IsFile(this->testPath.c_str());
     }
     else
         return false;
@@ -115,11 +111,7 @@ ValueOrError<bool> DirEntFileFinder::IsCurrentDirectory() const
         if ((this->testPath /= this->ent->d_name).HasError())
             return ValueOrError<bool>::CreateError();
 
-        struct stat statBuf;
-        if (stat(this->testPath.c_str(), &statBuf) == -1)
-            return false;
-
-        return S_ISDIR(statBuf.st_mode) != 0;
+        return Path::IsDirectory(this->testPath.c_str());
     }
     else
         return false;
@@ -135,7 +127,7 @@ void DirEntFileFinder::Stop()
     }
 }
 
-const Path& DirEntFileFinder::GetStartPath() const 
-{ 
-    return this->path; 
+const Path& DirEntFileFinder::GetStartPath() const
+{
+    return this->path;
 }

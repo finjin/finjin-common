@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxByteBuffer.hpp"
 #include "finjin/common/WxConfigDocumentWriter.hpp"
 #include "WxDataChunkWriter.hpp"
@@ -22,7 +22,7 @@
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WxConfigDataChunkWriter : public WxDataChunkWriter
@@ -34,13 +34,13 @@ namespace Finjin { namespace Common {
         ~WxConfigDataChunkWriter();
 
         void Create(const Settings& settings, DataChunkWriterStyle style, WxDataChunkWriter* parentSection, WxError& error) override;
-        
+
         WxDataChunkWriterController& GetWriterController() override;
 
         void WriteWriterHeader(WxError& error) override;
         void WriteChunk(const WxChunkName& name, std::function<void(WxDataChunkWriter&, WxError&)> chunkFunc, WxError& error) override;
         void WriteFooter() override;
-        
+
         bool IsBinaryFormat() const override { return false; }
         ByteOrder GetByteOrder() const override { return this->settings.byteOrder; }
 
@@ -61,7 +61,7 @@ namespace Finjin { namespace Common {
         void WriteUInt64(const WxChunkPropertyName& propertyName, uint64_t value, WxError& error) override;
         void WriteFloat(const WxChunkPropertyName& propertyName, float value, WxError& error) override;
         void WriteDouble(const WxChunkPropertyName& propertyName, double value, WxError& error) override;
-        
+
         void WriteStridedStrings(const WxChunkPropertyName& propertyName, const wxString* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
         void WriteStridedTimeDurations(const WxChunkPropertyName& propertyName, const WxTimeDuration* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
         void WriteStridedBools(const WxChunkPropertyName& propertyName, const bool* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
@@ -79,7 +79,7 @@ namespace Finjin { namespace Common {
 
     private:
         Settings settings;
-        DataChunkWriterStyle style;        
+        DataChunkWriterStyle style;
         WxConfigDocumentWriter documentWriter;
         WxByteBuffer lineBuffer;
     };

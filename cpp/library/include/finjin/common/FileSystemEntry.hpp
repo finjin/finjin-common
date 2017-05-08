@@ -15,15 +15,15 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
-#include "finjin/common/AllocatedVector.hpp"
 #include <ostream>
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class VirtualFileSystemRoot;
 
     class FINJIN_COMMON_LIBRARY_API FileSystemEntry
@@ -96,7 +96,7 @@ namespace Finjin { namespace Common {
 
     private:
         Settings settings;
-        AllocatedVector<FileSystemEntry> items;
+        DynamicVector<FileSystemEntry> items;
     };
 
 } }

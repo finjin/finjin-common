@@ -23,19 +23,19 @@
 #include <ostream>
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-        
+
     class FINJIN_COMMON_LIBRARY_API VirtualFileSystem
     {
-    public:        
+    public:
         VirtualFileSystem();
 
         using Settings = FileSystemEntries::Settings;
-        
+
         void Create(const Settings& settings, Error& error);
 
-        void AddDirectory(const Path& path, Error& error);    
+        void AddDirectory(const Path& path, Error& error);
         void AddZipArchive(const Path& path, Error& error);
         void AddRoot(std::unique_ptr<VirtualFileSystemRoot>&& root, Error& error);
         size_t GetRootCount() const;
@@ -54,13 +54,13 @@ namespace Finjin { namespace Common {
 
         bool IsDatabaseComplete() const;
 
-        bool IsDatabasePopulated() const;        
-        
+        bool IsDatabasePopulated() const;
+
         template <typename Paths>
         void GetDirectoriesStartingWith(const Path& relativePath, Paths& paths)
         {
-            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath); 
-                entry != nullptr; 
+            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath);
+                entry != nullptr;
                 entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntry::Type::DIRECTORY, relativePath))
             {
                 if (!paths.push_back(entry->GetRelativePath()))
@@ -70,8 +70,8 @@ namespace Finjin { namespace Common {
 
         void ForDirectoriesStartingWith(const Path& relativePath, std::function<bool(const Path&)> func)
         {
-            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath); 
-                entry != nullptr; 
+            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath);
+                entry != nullptr;
                 entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntry::Type::DIRECTORY, relativePath))
             {
                 if (!func(entry->GetRelativePath()))
@@ -88,7 +88,7 @@ namespace Finjin { namespace Common {
 
             VirtualFileHandle fileHandle;
         };
-        
+
         struct RootEntry
         {
             RootEntry()
@@ -108,13 +108,13 @@ namespace Finjin { namespace Common {
 
             std::unique_ptr<VirtualFileSystemRoot> fileSystemRoot;
         };
-        
+
         Settings settings;
 
         StaticVector<VolumeEntry, CommonConstants::MAX_ROOT_FILE_SYSTEM_ENTRIES> volumes;
-        
+
         StaticVector<RootEntry, CommonConstants::MAX_ROOT_FILE_SYSTEM_ENTRIES> roots;
-        
+
         FileSystemEntries database;
         bool isDatabaseComplete;
     };

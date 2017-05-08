@@ -19,18 +19,18 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "JobInvokeHelper.hpp"
 #include "JobTaskBase.hpp"
 #include <exception>
 #include <utility>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common { namespace detail {
 
     template <typename Fn, typename Allocator, typename R, typename... Args>
-    class task_object : public task_base<R, Args...> 
+    class task_object : public task_base<R, Args...>
     {
     public:
         typedef typename Allocator::template rebind<task_object<Fn, Allocator, R, Args...>>::other allocator_t;
@@ -41,10 +41,10 @@ namespace Finjin { namespace Common { namespace detail {
 
         void run(Args&&... args)
         {
-            try 
+            try
             {
                 this->set_value(invoke_helper(std::move(fn_), std::make_tuple(std::forward<Args>(args)...)));
-            } 
+            }
             catch (...)
             {
                 this->set_exception(std::current_exception());
@@ -69,7 +69,7 @@ namespace Finjin { namespace Common { namespace detail {
     };
 
     template <typename Fn, typename Allocator, typename... Args>
-    class task_object<Fn, Allocator, void, Args...> : public task_base<void, Args...> 
+    class task_object<Fn, Allocator, void, Args...> : public task_base<void, Args...>
     {
     public:
         typedef typename Allocator::template rebind<task_object<Fn, Allocator, void, Args...> >::other allocator_t;
@@ -80,11 +80,11 @@ namespace Finjin { namespace Common { namespace detail {
 
         void run(Args&&... args)
         {
-            try 
+            try
             {
                 invoke_helper(std::move(fn_), std::make_tuple(std::forward<Args>(args)...));
                 this->set_value();
-            } 
+            }
             catch (...)
             {
                 this->set_exception(std::current_exception());

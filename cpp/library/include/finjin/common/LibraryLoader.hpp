@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API LibraryLoader
     {
     public:
@@ -37,8 +37,18 @@ namespace Finjin { namespace Common {
         {
             return reinterpret_cast<T>(GetProcPointer(procName));
         }
-        
+
         void* GetProcPointer(const char* procName);
+
+    private:
+        enum class LoadResult
+        {
+            SUCCESS,
+            FAILED_TO_WIDEN_FILE_NAME,
+            FAILED_TO_LOAD_LIBRARY
+        };
+
+        LoadResult _Load(const Path& fileName);
 
     private:
         void* module;

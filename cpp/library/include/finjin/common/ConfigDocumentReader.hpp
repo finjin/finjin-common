@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class ConfigDocumentReader;
@@ -72,7 +72,7 @@ namespace Finjin { namespace Common {
         const char* GetSectionName(size_t& length) const;
         const char* GetScope(size_t& length) const;
         const char* GetKey(size_t& length) const;
-        const char* GetValue(size_t& length) const;        
+        const char* GetValue(size_t& length) const;
         const char* GetLine(size_t& length) const;
 
     private:
@@ -96,7 +96,7 @@ namespace Finjin { namespace Common {
     {
     public:
         ConfigDocumentReader();
-        
+
         void Reset();
 
         ConfigDocumentLine* Start(const ByteBufferReader& buffer);
@@ -104,10 +104,10 @@ namespace Finjin { namespace Common {
         ConfigDocumentLine* Start(const char* text, size_t length);
         ConfigDocumentLine* Start(const char* begin, const char* end);
         ConfigDocumentLine* Restart(const ConfigDocumentLine& line);
-        
+
         ConfigDocumentLine* Current();
         ConfigDocumentLine* Next();
-        
+
         void SkipScope();
 
         template <typename T>
@@ -132,7 +132,7 @@ namespace Finjin { namespace Common {
             return false;
         }
 
-        /** 
+        /**
          * Gets the number of sections with the specified name, starting from the current item. All depths at or anywhere beneath the current item are considered.
          * @param name [in] - The name of the section to match. If empty, all sections are matched.
          */
@@ -140,11 +140,11 @@ namespace Finjin { namespace Common {
         size_t GetSectionCount(const T& name)
         {
             size_t count = 0;
-            
+
             auto startLine = this->line;
-            
+
             auto depth = this->line.depth;
-            
+
             for (auto line = Current(); line != nullptr; line = Next())
             {
                 switch (line->GetType())
@@ -180,12 +180,12 @@ namespace Finjin { namespace Common {
                     default: break;
                 }
             }
-            
+
             Reinitialize(startLine);
             return count;
         }
 
-        /** 
+        /**
          * Gets the number of sections with the specified name, starting from the current item and going only one level beneath the current item.
          * This is generally called directly after encountering a particular section in order to calculate the number of subsections directly beneath it.
          * @param name [in] - The name of the section to match. If empty, all sections are matched.
@@ -194,11 +194,11 @@ namespace Finjin { namespace Common {
         size_t GetSectionCountBeneathCurrent(const T& name)
         {
             size_t count = 0;
-            
+
             auto startLine = this->line;
-            
+
             auto depth = this->line.depth;
-            
+
             for (auto line = Current(); line != nullptr; line = Next())
             {
                 switch (line->GetType())
@@ -207,13 +207,13 @@ namespace Finjin { namespace Common {
                     {
                         Utf8StringView sectionName;
                         line->GetSectionName(sectionName);
-                        
+
                         if (depth == startLine.depth + 1)
                         {
                             if (name.empty())
                                 count++;
                             else
-                            {                                
+                            {
                                 if (sectionName == name)
                                     count++;
                             }
@@ -238,7 +238,7 @@ namespace Finjin { namespace Common {
                     default: break;
                 }
             }
-            
+
             Reinitialize(startLine);
             return count;
         }
@@ -248,12 +248,12 @@ namespace Finjin { namespace Common {
         ConfigDocumentLine* Reinitialize(const ConfigDocumentLine& line);
 
         ConfigDocumentLine* ProcessLine();
-        
+
     private:
         ConfigDocumentLine line;
 
         const char* textBegin;
-        const char* textEnd;        
+        const char* textEnd;
     };
 
 } }

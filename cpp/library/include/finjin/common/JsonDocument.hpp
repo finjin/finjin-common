@@ -18,7 +18,7 @@
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /** A single member/element within an XmlDocument. */
@@ -31,23 +31,23 @@ namespace Finjin { namespace Common {
         JsonDocumentMember(JsonDocumentMember&& other) = delete;
         JsonDocumentMember& operator = (JsonDocumentMember&& other) = delete;
 
-    public:        
+    public:
         JsonDocumentMember();
         virtual ~JsonDocumentMember();
 
         bool IsObject() const;
-        
+
         bool IsString() const;
         Utf8String GetString() const;
 
         bool IsArray() const;
-        int GetSize() const;
-        std::shared_ptr<JsonDocumentMember> GetItem(int index) const;
-        
+        size_t GetSize() const;
+        std::shared_ptr<JsonDocumentMember> GetItem(size_t index) const;
+
         bool IsNumber() const;
         double GetDouble() const;
         int GetInt() const;
-                
+
         bool IsBool() const;
         bool GetBool() const;
 
@@ -56,7 +56,7 @@ namespace Finjin { namespace Common {
         std::shared_ptr<JsonDocumentMember> GetMember(const Utf8String& name) const;
 
         int GetMemberCount() const;
-        
+
     private:
         friend class JsonDocument;
 
@@ -86,16 +86,16 @@ namespace Finjin { namespace Common {
         bool HasMember(const Utf8String& name) const;
         JsonDocument& AddMember(const Utf8String& name, const Utf8String& value);
         JsonDocument& RemoveMember(const Utf8String& name);
-        
+
         std::shared_ptr<JsonDocumentMember> GetMember(const Utf8String& name) const;
 
         std::shared_ptr<JsonDocumentMember> FindMemberWithChildMemberNameAndValue(const Utf8String& name, const Utf8String& value) const;
 
         int GetMemberCount() const;
-        
+
         //Utilities
         Utf8String GetStringMember(const Utf8String& name) const;
-        
+
         //Parsing
         void Parse(const Utf8String& text, Error& error);
 

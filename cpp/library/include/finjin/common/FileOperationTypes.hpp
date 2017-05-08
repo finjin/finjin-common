@@ -14,9 +14,9 @@
 #pragma once
 
 
-//Types------------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     enum class FileOpenMode
     {
         READ,
@@ -28,19 +28,9 @@ namespace Finjin { namespace Common {
         SUCCESS, //File was successfully read or opened
         NOT_INITIALIZED, //File system is in an uninitialized state
         TOO_MANY_OPEN_FILES, //There are too many files already open. Occurs during an open
-        NOT_ENOUGH_MEMORY, //Not enough memory to read 
+        NOT_ENOUGH_MEMORY, //Not enough memory to read
         FAILURE, //File was found but could not be accessed for whatever reason
         NOT_FOUND //File was not found
     };
-
-    /*class FINJIN_COMMON_LIBRARY_API FileHandle
-    {
-    public:
-        virtual ~FileHandle() {}
-
-        virtual bool IsOpen() const = 0;
-        virtual size_t Read(void* bytes, size_t byteCount) = 0;
-        virtual size_t Write(const void* bytes, size_t byteCount) = 0;
-    };*/
 
 } }

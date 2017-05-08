@@ -18,11 +18,11 @@
 using namespace Finjin::Common;
 
 
-//Locals-----------------------------------------------------------------------
+//Locals------------------------------------------------------------------------
 static Allocator* defaultAllocator = nullptr;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 const Utf8String& Allocator::GetName() const
 {
     return this->name;

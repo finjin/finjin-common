@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //AllocatedClass
 AllocatedClass::AllocatedClass(Allocator* allocator)

@@ -14,14 +14,14 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/TextDataChunkReader.hpp"
-#include "finjin/common/Convert.hpp"
 #include "finjin/common/Base64.hpp"
+#include "finjin/common/Convert.hpp"
 #include "DataChunkCommon.hpp"
 
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static bool StringValueRequiresUnescape(const char* value, size_t length = (size_t)-1)
 {
     //Need to unescape:
@@ -50,10 +50,10 @@ static bool StringValueRequiresUnescape(const char* value, size_t length = (size
 static size_t UnescapeStringValue(char* value, size_t length)
 {
     auto c = value[0];
-    
+
     for (size_t i = 0; i < length / 2; i++)
         value[i] = c;
-    
+
     return length / 2;
 }
 
@@ -96,7 +96,7 @@ size_t ReadNumbers(TextDataChunkReader* reader, ByteBuffer& lineBuffer, DataHead
             }
 
             tempValueString.assign(&lineBuffer[previousCharIndex + 1], &lineBuffer[charIndex]);
-            
+
             T value;
             Convert::ToNumber(value, tempValueString, error);
             if (error)
@@ -106,7 +106,7 @@ size_t ReadNumbers(TextDataChunkReader* reader, ByteBuffer& lineBuffer, DataHead
             }
             else
                 GetStridedValue(values, count++, valueStride) = value;
-            
+
             previousCharIndex = charIndex;
         }
     }
@@ -172,7 +172,7 @@ size_t ReadIntegers(TextDataChunkReader* reader, ByteBuffer& lineBuffer, DataHea
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 TextDataChunkReader::TextDataChunkReader()
 {
     this->settings.input = nullptr;
@@ -180,7 +180,7 @@ TextDataChunkReader::TextDataChunkReader()
 }
 
 TextDataChunkReader::~TextDataChunkReader()
-{   
+{
 }
 
 void TextDataChunkReader::Create(const Settings& settings, TextDataChunkReader* parentSection, Error& error)
@@ -239,7 +239,7 @@ void TextDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& error)
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Expected 'format' key, read '%1%' instead.", key.ToString()));
         return;
     }
-    
+
     ReadString(dataHeader, this->readerHeader.format, error);
     if (error)
     {
@@ -384,7 +384,7 @@ void TextDataChunkReader::ReadDataHeader(DataHeader& dataHeader, Error& error)
         FINJIN_SET_ERROR(error, "Failed to read data header. Reached end of line buffer while reading size.");
         return;
     }
-    
+
     if (c == '-')
     {
         //The end
@@ -465,20 +465,20 @@ void TextDataChunkReader::ReadPropertyName(DataHeader& dataHeader, ParsedChunkPr
     while (dataHeader.currentOffset < dataHeader.length)
     {
         c = this->lineBuffer[dataHeader.currentOffset++];
-        
+
         if (c == ' ')
             break;
-        
+
         readString += c;
     }
-    
+
     if (dataHeader.currentOffset >= dataHeader.length)
     {
         FINJIN_SET_ERROR(error, "Failed to read key.");
         return;
     }
 
-    result.Parse(readString);    
+    result.Parse(readString);
 }
 
 size_t TextDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, size_t count, Error& error)
@@ -512,7 +512,7 @@ size_t TextDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, size_
 
             break;
         }
-    }    
+    }
 
     return result;
 }
@@ -522,7 +522,7 @@ void TextDataChunkReader::ReadString(DataHeader& dataHeader, Utf8String& value, 
     FINJIN_ERROR_METHOD_START(error);
 
     auto length = dataHeader.length - dataHeader.currentOffset - 1; //Leave off the trailing newline
-    
+
     if (dataHeader.IsOnlyOrFirstOccurrence())
         value.clear();
 
@@ -583,7 +583,7 @@ void TextDataChunkReader::ReadUuid(DataHeader& dataHeader, Uuid& value, Error& e
         FINJIN_SET_ERROR(error, "Failed to read value for UUID.");
     else
     {
-        Uuid::Parse(value, tempValueString, error);        
+        Uuid::Parse(value, tempValueString, error);
         if (error)
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse UUID value for %1%.", tempValueString));
     }
@@ -717,7 +717,7 @@ size_t TextDataChunkReader::ReadStridedStrings(DataHeader& dataHeader, Utf8Strin
                 FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("There are more than %1% strings to be parsed.", maxCount));
                 return 0;
             }
-            
+
             auto& value = GetStridedValue(values, count++, valueStride);
             if (value.assign(&this->lineBuffer[previousCharIndex + 1], &this->lineBuffer[charIndex]).HasError())
             {

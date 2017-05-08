@@ -16,18 +16,18 @@
 
 //Includes----------------------------------------------------------------------
 #include "finjin/common/AllocatedClass.hpp"
-#include "finjin/common/AllocatedQueue.hpp"
+#include "finjin/common/DynamicQueue.hpp"
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Uri.hpp"
 #include "finjin/common/VirtualFileOperationHandle.hpp"
 #include "finjin/common/VirtualFileSystem.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-     
+
     class VirtualFileSystemOperationQueue;
-    
+
     /**
      * Passed as an input to VirtualFileSystemOperationQueue::AddRequest(). Use one of the factory methods to create a request.
      */
@@ -46,7 +46,7 @@ namespace Finjin { namespace Common {
         using CancelCallback = std::function<void(VirtualFileOperationHandle& operationHandle)>;
 
         //Read requests----------------------------------
-        
+
         //In this mode, the queue iteratively reads into an internal buffer and passes a pointer to the data that was read.
         VirtualFileOperationRequest& ReadRequest(PostReadCallback postReadCallback)
         {
@@ -74,7 +74,7 @@ namespace Finjin { namespace Common {
         }
 
         //Write requests----------------------------------
-        
+
         //In this mode, the queue iteratively writes from 'writeBuffer'.
         VirtualFileOperationRequest& WriteRequest(const void* writeBuffer, size_t writeBufferByteCount, PostWriteCallback postWriteCallback = nullptr)
         {
@@ -134,7 +134,7 @@ namespace Finjin { namespace Common {
         size_t writeBufferByteCount;
         uint64_t estimatedFileSize;
         SimpleUri fileUri;
-        
+
         ReadCallback readCallback; //Optionally called to perform a read, in place of the default read behavior
         PostReadCallback postReadCallback; //Called after a read takes place
         WriteCallback writeCallback; //Called to perform a write
@@ -192,7 +192,7 @@ namespace Finjin { namespace Common {
 
     private:
         Settings settings;
-        
+
         struct InternalFileOperationRequest : VirtualFileOperationRequest
         {
             InternalFileOperationRequest(Allocator* allocator);
@@ -207,9 +207,9 @@ namespace Finjin { namespace Common {
             VirtualFileOperationHandle operationHandle;
             VirtualFileHandle fileHandle;
         };
-        
-        AllocatedQueue<InternalFileOperationRequest> operations;
-        
+
+        DynamicQueue<InternalFileOperationRequest> operations;
+
         size_t sequenceID;
 
         Path workingPath;

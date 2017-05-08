@@ -11,16 +11,16 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/LogicalCpu.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API Thread
@@ -28,16 +28,16 @@ namespace Finjin { namespace Common {
     public:
         Thread(const Thread& other) = delete;
         Thread& operator = (const Thread& other) = delete;
-        
+
     public:
         Thread();
         Thread(Thread&& other);
         Thread& operator = (Thread&& other);
         ~Thread();
-        
+
         void Create(Allocator* allocator, const Utf8String& name, std::function<void()> threadProc);
         void Create(Allocator* allocator, const Utf8String& name, const LogicalCpu& logicalCpu, std::function<void()> threadProc);
-        
+
         void Start(Error& error);
         void Stop();
 
@@ -46,12 +46,12 @@ namespace Finjin { namespace Common {
         const LogicalCpu* GetLogicalCpu() const;
 
         ThreadHandle GetNativeHandle();
-        
+
         struct Impl;
         Impl* GetImpl();
-        
-    private:        
-        Impl* impl;        
+
+    private:
+        Impl* impl;
     };
 
 } }

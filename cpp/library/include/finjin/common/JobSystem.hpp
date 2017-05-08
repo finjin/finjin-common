@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AllocatedClass.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/FiberJob.hpp"
@@ -27,27 +27,27 @@
 #include "finjin/common/RequestedValue.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     struct FINJIN_COMMON_LIBRARY_API JobThreadIndex
     {
         JobThreadType type;
         size_t index;
-        
+
         JobThreadIndex(JobThreadType type, size_t index)
         {
             this->type = type;
             this->index = index;
         }
-        
+
         static JobThreadIndex AnyPublic() {return JobThreadIndex(JobThreadType::PUBLIC, -1);}
         static JobThreadIndex AnyReserved() {return JobThreadIndex(JobThreadType::RESERVED, -1);}
-        
+
         static JobThreadIndex Public(size_t index) {return JobThreadIndex(JobThreadType::PUBLIC, index);}
         static JobThreadIndex Reserved(size_t index) {return JobThreadIndex(JobThreadType::RESERVED, index);}
     };
-    
+
     class FINJIN_COMMON_LIBRARY_API JobSystem
     {
     public:
@@ -74,7 +74,7 @@ namespace Finjin { namespace Common {
             RequestedValue<size_t> fiberCount; //Total # of fibers. Will be clamped to global max and divided up for use in JobThreadSetup
             size_t threadStackByteCount; //Per thread and per fiber thread stack size. Will be copied into JobThreadSetup
             size_t threadStackReserveByteCount; //Per thread and per fiber thread stack reserve size. Will be copied into JobThreadSetup
-            
+
             struct JobThreadSetup
             {
                 LogicalCpu logicalCpu;
@@ -90,14 +90,14 @@ namespace Finjin { namespace Common {
 
         void Create(const Settings& settings, Error& error);
         void Destroy();
-        
+
         void Start(Error& error);
         void Stop();
 
         size_t GetCurrentGroupID() const;
         size_t StartGroupFromMainThread();
         void FinishGroupFromNonMainThread();
-        
+
         Allocator* GetActiveJobAllocator(); //Must be called from within the closure of a job function
 
         template <typename Fn, typename... Args>
@@ -127,14 +127,14 @@ namespace Finjin { namespace Common {
 
     private:
         JobThread* SelectJobThread(JobThreadIndex index);
-        
-        template <typename Fn> 
+
+        template <typename Fn>
         FiberJob* CreateWrappedFiberJob(Allocator* allocator, size_t groupID, SimpleSpinLockMutex* inUseMutex, Fn&& fn)
         {
             return AllocatedClass::New<WrappedFiberJob<Fn> >(allocator, FINJIN_CALLER_ARGUMENTS, groupID, inUseMutex, std::forward<Fn>(fn));
         }
 
-        template <typename Fn, typename... Args> 
+        template <typename Fn, typename... Args>
         FiberJob::ptr_t CreateFiberJob(Allocator* allocator, size_t groupID, SimpleSpinLockMutex* inUseMutex, Fn&& fn, Args&&... args)
         {
             return FiberJob::ptr_t
@@ -144,14 +144,14 @@ namespace Finjin { namespace Common {
                     allocator,
                     groupID,
                     inUseMutex,
-                    [fn = std::forward<Fn>(fn), tpl = std::make_tuple(std::forward<Args>(args)...)]() mutable -> decltype(auto) 
+                    [fn = std::forward<Fn>(fn), tpl = std::make_tuple(std::forward<Args>(args)...)]() mutable -> decltype(auto)
                     {
                         invoke_helper(std::move(fn), std::move(tpl));
                     }
                     )
                 );
         }
-    
+
     private:
         struct Impl;
         std::unique_ptr<Impl> impl;

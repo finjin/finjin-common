@@ -79,6 +79,18 @@
     <Filter Include="Source Files\3rd-party\lpng">
       <UniqueIdentifier>{1f8579b4-925b-4e1d-b827-4edcc21bcdf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\3rd-party\xxhash">
+      <UniqueIdentifier>{bf9a2b0b-088d-469f-a71f-21e91a3c968d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\collections">
+      <UniqueIdentifier>{e16d6fb8-d0f9-44eb-bdab-49d22cf35059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{e060af05-85c7-4771-a345-d0f0584ec9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\string">
+      <UniqueIdentifier>{c0575c52-f538-4da0-93b0-770e565ef7d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\tinyxml\tinyxml2.cpp">
@@ -96,28 +108,16 @@
     <ClCompile Include="..\..\src\UsageFormatter.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Utf8String.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Utf8StringFormatter.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Uuid.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Base64.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ByteBuffer.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Chrono.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ChunkName.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\ClassDescription.cpp">
+    <ClCompile Include="..\..\src\TypeDescription.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\CommandLineArgsProcessor.cpp">
@@ -144,16 +144,10 @@
     <ClCompile Include="..\..\src\PerformanceCounter.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\RangedNameGenerator.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Settings.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\SingleEvent.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\StringKeyValueMap.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\AllocatedClass.cpp">
@@ -450,12 +444,6 @@
     <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Distance.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Angle.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\BinaryDataChunkReader.cpp">
       <Filter>Source Files\documents\streaming\reader</Filter>
     </ClCompile>
@@ -482,9 +470,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\StreamingFileFormat.cpp">
       <Filter>Source Files\documents\streaming</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\Math.cpp">
-      <Filter>Source Files\utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
@@ -542,6 +527,42 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ZIPReader.cpp">
       <Filter>Source Files\external-file-formats</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.c">
+      <Filter>Source Files\3rd-party\xxhash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Angle.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Distance.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utf8String.cpp">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utf8StringFormatter.cpp">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MemoryArchitecture.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ByteBuffer.cpp">
+      <Filter>Source Files\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ChunkName.cpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PNGWriter.cpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\arm\arm_init.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\arm\filter_neon_intrinsics.c">
+      <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -623,22 +644,13 @@
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\error\error.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Math.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Base64.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\ByteBuffer.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Chrono.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\ChunkName.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\ClassDescription.hpp">
+    <ClInclude Include="..\..\include\finjin\common\TypeDescription.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\CommandLineArgsProcessor.hpp">
@@ -659,22 +671,13 @@
     <ClInclude Include="..\..\include\finjin\common\LogicalCpu.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\LruCache.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\NamePrefix.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\PerformanceCounter.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\RealTimeLruCache.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\ProcessID.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\RangedNameGenerator.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Settings.hpp">
@@ -686,9 +689,6 @@
     <ClInclude Include="..\..\include\finjin\common\SingleEvent.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\StringKeyValueMap.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\UserInformation.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
@@ -696,12 +696,6 @@
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\UsageFormatter.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Utf8String.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Utf8StringFormatter.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Uuid.hpp">
@@ -1016,9 +1010,6 @@
     <ClInclude Include="..\..\include\finjin\common\DomainInformation.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\BitArray.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\AndroidUtilities.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
@@ -1047,9 +1038,6 @@
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\ByteOrder.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\EnumValues.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\VirtualFileHandle.hpp">
@@ -1091,12 +1079,6 @@
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.h">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Angle.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Distance.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\BinaryDataChunkReader.hpp">
       <Filter>Source Files\documents\streaming\reader</Filter>
     </ClInclude>
@@ -1130,49 +1112,7 @@
     <ClInclude Include="..\..\include\finjin\common\ValueOrError.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedSet.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\AlignedElementStaticVector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\StaticVector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\UsableStaticVector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\UsableAllocatedVector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\Vector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\AllocatedVector.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedMap.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\AssignOrError.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\SetMapUtilities.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedMap.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\AllocatedUnorderedSet.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\StaticQueue.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\QueueUtilities.hpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\AllocatedQueue.hpp">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.h">
@@ -1203,6 +1143,90 @@
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.h">
+      <Filter>Source Files\3rd-party\xxhash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Angle.hpp">
+      <Filter>Source Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Distance.hpp">
+      <Filter>Source Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Math.hpp">
+      <Filter>Source Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\AlignedElementStaticVector.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DynamicQueue.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DynamicUnorderedMap.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DynamicUnorderedSet.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\EnumArray.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\DynamicVector.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\IntrusiveList.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\LruCache.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\QueueImpl.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\RealTimeLruCache.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\SetMapImpl.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticQueue.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedMap.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticUnorderedSet.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\StaticVector.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Utf8String.hpp">
+      <Filter>Source Files\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Utf8StringFormatter.hpp">
+      <Filter>Source Files\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\MemoryArchitecture.hpp">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ByteBuffer.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\BitArray.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\ChunkName.hpp">
+      <Filter>Source Files\documents\streaming\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UsableDynamicVector.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\UsableStaticVector.hpp">
+      <Filter>Source Files\collections</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\PNGWriter.hpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,17 +23,17 @@
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct Utf8StringFormatter::Impl
 {
     Impl(const char* format) : boostFormat(format) {}
     Impl(const Utf8String& format) : boostFormat(format.c_str()) {}
-    
+
     boost::format boostFormat;
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 Utf8StringFormatter::Utf8StringFormatter(const char* format) : impl(new Impl(format))
 {
 }
@@ -103,7 +103,7 @@ Utf8StringFormatter& Utf8StringFormatter::operator % (uint64_t value)
     return *this;
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS || FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS || FINJIN_TARGET_PLATFORM_IS_APPLE
 
 Utf8StringFormatter& Utf8StringFormatter::operator % (long value)
 {

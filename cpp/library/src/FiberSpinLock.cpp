@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 FiberSpinLock::FiberSpinLock() : state(Status::UNLOCKED)
 {
 }

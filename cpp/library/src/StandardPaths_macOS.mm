@@ -14,37 +14,27 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/StandardPaths.hpp"
+#define FINJIN_APPLE_OBJCPP_UTILITIES 1
 #include "finjin/common/AppleUtilities.hpp"
+#import <Foundation/NSBundle.h>
 #import <Foundation/NSString.h>
 #import <Foundation/NSPathUtilities.h>
-#import <Foundation/NSBundle.h>
 
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
-static ValueOrError<void> GetSystemCreatedDirectory(StandardPath& standardPath, NSSearchPathDirectory which)
+//Local functions---------------------------------------------------------------
+static ValueOrError<void> GetSystemDirectory(StandardPath& standardPath, NSSearchPathDirectory which,bool tryCreateIfNotPresent = true)
 {
-    auto foundAt = [NSSearchPathForDirectoriesInDomains(which, NSUserDomainMask, YES) lastObject];
-    if (foundAt != nil)
-    {
-        if (standardPath.path.assign(foundAt.UTF8String).HasError())
-            return ValueOrError<void>::CreateError();
-        standardPath.path.PlatformNormalize();
-        standardPath.isSystemCreated = true;
-    }
-    else
-        standardPath.path.clear();
-    
-    return ValueOrError<void>();
+    return AppleUtilities::GetSystemDirectory(standardPath.path, standardPath.isSystemCreated, which, tryCreateIfNotPresent);
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void StandardPaths::Create(const Utf8String& _applicationName, void* applicationHandle, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     auto mainBundle = [NSBundle mainBundle];
     Utf8String applicationName;
     NSString* bundleID = [mainBundle objectForInfoDictionaryKey:@"CFBundleIdentifier"];
@@ -64,8 +54,8 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
             return;
         }
     }
-    
-    if (this->applicationExecutableFile.path.assign(AppleUtilities::GetProcessFilePath()).HasError())
+
+    if (AppleUtilities::GetProcessFilePath(this->applicationExecutableFile.path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to assign process file path to application executable file path.");
         return;
@@ -84,36 +74,36 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
     }
     this->applicationBundleDirectory.isSystemCreated = true;
 
-    if (GetSystemCreatedDirectory(this->userDocumentsDirectory, NSDocumentDirectory).HasError())
+    if (GetSystemDirectory(this->userDocumentsDirectory, NSDocumentDirectory).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
         return;
     }
-    
-    if (GetSystemCreatedDirectory(this->userMusicDirectory, NSMusicDirectory).HasError())
+
+    if (GetSystemDirectory(this->userMusicDirectory, NSMusicDirectory).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user music directory.");
         return;
     }
-    
-    if (GetSystemCreatedDirectory(this->userVideosDirectory, NSMoviesDirectory).HasError())
+
+    if (GetSystemDirectory(this->userVideosDirectory, NSMoviesDirectory).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user movies directory.");
         return;
     }
-    
-    if (GetSystemCreatedDirectory(this->userPicturesDirectory, NSPicturesDirectory).HasError())
+
+    if (GetSystemDirectory(this->userPicturesDirectory, NSPicturesDirectory).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user pictures directory.");
         return;
     }
-    
-    if (GetSystemCreatedDirectory(this->userDownloadsDirectory, NSDownloadsDirectory).HasError())
+
+    if (GetSystemDirectory(this->userDownloadsDirectory, NSDownloadsDirectory).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user downloads directory.");
         return;
     }
-    
+
     Path bestApplicationName;
     if (!applicationName.empty())
     {
@@ -131,8 +121,8 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
             return;
         }
     }
-    
-    if (GetSystemCreatedDirectory(this->userApplicationSettingsDirectory, NSApplicationSupportDirectory).HasError())
+
+    if (GetSystemDirectory(this->userApplicationSettingsDirectory, NSApplicationSupportDirectory, false).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user application support directory.");
         return;
@@ -142,10 +132,9 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
         FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
         return;
     }
-    this->userApplicationSettingsDirectory.isSystemCreated = false;
-    
+
     auto tempDirectory = NSTemporaryDirectory();
-    if (tempDirectory != nil)
+    if (tempDirectory != nullptr)
     {
         if (this->userApplicationTemporaryDirectory.path.assign(tempDirectory.UTF8String).HasError())
         {
@@ -158,8 +147,8 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
             return;
         }
     }
-    
-    if (this->workingDirectory.path.assign(AppleUtilities::GetWorkingDirectory()).HasError())
+
+    if (AppleUtilities::GetWorkingDirectory(this->workingDirectory.path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to assign working directory.");
         return;

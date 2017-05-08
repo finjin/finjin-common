@@ -14,15 +14,15 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/JsonDataChunkWriter.hpp"
-#include "finjin/common/JsonDocumentImpl.hpp"
 #include "finjin/common/Base64.hpp"
 #include "finjin/common/Convert.hpp"
+#include "finjin/common/JsonDocumentImpl.hpp"
 #include "DataChunkCommon.hpp"
 
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_QUOTED_LINE(_this, propertyName, stringValue) WriteQuotedLine(*_this->impl->settings.output, _this->impl->escaper, propertyName, stringValue)
 
 #define WRITE_VALUE_LINE(_this, propertyName, value) WriteValueLine(*_this->impl->settings.output, _this->impl->escaper, propertyName, value)
@@ -35,7 +35,7 @@ using namespace Finjin::Common;
 #define WRITE_CHUNK_END_LINE(_this) *_this->impl->settings.output << "},\n";
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 inline DocumentWriterOutput& operator << (DocumentWriterOutput& out, const char* value)
 {
     out.Write(value);
@@ -150,7 +150,7 @@ void WriteJsonValues(DocumentWriterOutput& out, JsonStringEscaper& escaper, cons
     {
         if (i > 0)
             out << ",";
-        
+
         auto& value = GetStridedValue(values, i, valueStride);
         out << Convert::ToString(value);
     }
@@ -178,7 +178,7 @@ static void WriteJsonValues(DocumentWriterOutput& out, JsonStringEscaper& escape
     {
         if (i > 0)
             out << ",";
-        
+
         auto& value = GetStridedValue(values, i, valueStride);
         out << escaper.Escape(value);
     }
@@ -281,22 +281,22 @@ static void WriteChunkStartLineWithIndexOrString(DocumentWriterOutput& out, Json
 }
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JsonDataChunkWriter::Impl
 {
     Settings settings;
-    DataChunkWriterStyle style;    
+    DataChunkWriterStyle style;
     JsonStringEscaper escaper;
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 JsonDataChunkWriter::JsonDataChunkWriter()
 {
 }
 
 JsonDataChunkWriter::~JsonDataChunkWriter()
-{        
+{
     if (impl == nullptr)
         return;
 
@@ -319,12 +319,17 @@ void JsonDataChunkWriter::Create(const Settings& settings, DataChunkWriterStyle 
 
     impl.reset(new Impl);
     impl->settings = settings;
-    impl->style = style;    
+    impl->style = style;
 }
 
 DataChunkWriterController& JsonDataChunkWriter::GetWriterController()
 {
     return *impl->settings.controller;
+}
+
+DocumentWriterOutput* JsonDataChunkWriter::GetWriterOutput()
+{
+    return impl->settings.output;
 }
 
 void JsonDataChunkWriter::WriteWriterHeader(Error& error)
@@ -378,15 +383,15 @@ void JsonDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
 
     if (impl->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<DocumentWriterOutput> sharedNewOutput = impl->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create new output for chunk '%1%'.", name.name));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto jsonChunkWriter = new JsonDataChunkWriter();
         auto newSettings = impl->settings;
         newSettings.Create(sharedNewOutput, *impl->settings.controller);
@@ -409,7 +414,7 @@ void JsonDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
             FINJIN_SET_ERROR(error, "Failed to write writer header.");
             return;
         }
-        
+
         WRITE_CHUNK_START_LINE_STRING(jsonChunkWriter, name);
 
         auto scheduled = impl->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
@@ -417,7 +422,7 @@ void JsonDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
         {
             FINJIN_SET_ERROR(error, "Failed to schedule/execute chunk writer.");
             return;
-        }        
+        }
 
         if (!scheduled)
         {
@@ -429,12 +434,12 @@ void JsonDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
         WRITE_CHUNK_START_LINE_INDEX_OR_STRING(this, name);
-        
+
         chunkFunc(*this, error);
         if (error)
         {
@@ -446,10 +451,24 @@ void JsonDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void(D
     }
 }
 
+void JsonDataChunkWriter::WriteChunkStart(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    WRITE_CHUNK_START_LINE_INDEX_OR_STRING(this, name);
+}
+
+void JsonDataChunkWriter::WriteChunkEnd(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    WRITE_CHUNK_END_LINE(this);
+}
+
 void JsonDataChunkWriter::WriteFooter()
 {
     {
-        FINJIN_DECLARE_ERROR(error);
+        FINJIN_DECLARE_ERROR(error); //Any error that occurs never leaves this method
 
         if (impl->settings.customFooter != nullptr)
         {
@@ -465,9 +484,9 @@ void JsonDataChunkWriter::WriteFooter()
     *impl->settings.output << "}\n";
 }
 
-ByteOrder JsonDataChunkWriter::GetByteOrder() const 
+ByteOrder JsonDataChunkWriter::GetByteOrder() const
 {
-    return impl->settings.byteOrder; 
+    return impl->settings.byteOrder;
 }
 
 void JsonDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const void* values, size_t count, Error& error)
@@ -501,7 +520,7 @@ void JsonDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const
 
             break;
         }
-    }    
+    }
 }
 
 void JsonDataChunkWriter::WriteString(const ChunkPropertyName& propertyName, const Utf8String& value, Error& error)
@@ -515,7 +534,7 @@ void JsonDataChunkWriter::WriteString(const ChunkPropertyName& propertyName, con
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    WRITE_VALUE_QUOTED_LINE(this, propertyName, value);    
+    WRITE_VALUE_QUOTED_LINE(this, propertyName, value);
 }
 
 void JsonDataChunkWriter::WriteDateTime(const ChunkPropertyName& propertyName, const DateTime& value, Error& error)

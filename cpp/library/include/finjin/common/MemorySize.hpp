@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     struct FINJIN_COMMON_LIBRARY_API MemorySize
@@ -33,13 +33,13 @@ namespace Finjin { namespace Common {
         enum { MEBIBYTE = KIBIBYTE * KIBIBYTE };
         enum { GIBIBYTE = KIBIBYTE * KIBIBYTE * KIBIBYTE };
 
-    #if FINJIN_TARGET_OS_IS_APPLE
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static void Parse(size_t& value, const Utf8String& stringValue, Error& error);
     #endif
 
         static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);
         static uint32_t Parse32(const Utf8String& stringValue, uint32_t defaultValue = 0);
-      
+
         static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error);
         static uint64_t Parse64(const Utf8String& stringValue, uint64_t defaultValue = 0);
 
@@ -49,7 +49,7 @@ namespace Finjin { namespace Common {
 } }
 
 
-//Functions--------------------------------------------------------------------
+//Functions---------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     //Prefer using Allocator::AlignSizeUp() where possible

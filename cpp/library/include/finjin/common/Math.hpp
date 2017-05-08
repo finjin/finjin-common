@@ -14,48 +14,152 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Angle.hpp"
 #include "finjin/common/ValueOrError.hpp"
 #include <Eigen/Eigen>
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define FINJIN_PI 3.1415926535f
+#define FINJIN_INTERNAL_MATRIX_STORAGE_ORDER Finjin::Common::MatrixStorageOrder::COLUMNS //Matrix types use Eigen column storage order
 
 
-//Classes/functions------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    typedef Eigen::Matrix2f MathMatrix22;
-    typedef Eigen::Matrix3f MathMatrix33;
-    typedef Eigen::Matrix4f MathMatrix44;
+    //Ordering of values within a 1D array representing a 2D matrix
+    enum class MatrixStorageOrder
+    {
+        COLUMNS,
+        ROWS
+    };
+
+    typedef Eigen::Matrix2f MathMatrix2;
+    typedef Eigen::Matrix3f MathMatrix3;
+    typedef Eigen::Matrix4f MathMatrix4;
 
     typedef Eigen::Vector2f MathVector2;
     typedef Eigen::Vector3f MathVector3;
     typedef Eigen::Vector4f MathVector4;
-    
+
     typedef Eigen::Quaternionf MathQuaternion;
-    
+
     typedef Eigen::Affine3f MathAffineTransform;
-    
+
     typedef Eigen::Translation3f MathTranslation;
     typedef Eigen::AlignedScaling3f MathScaling;
 
     typedef Eigen::AngleAxisf MathAngleAxis;
+
+    struct MathMatrix2Values
+    {
+        MathMatrix2Values() {}
+
+        MathMatrix2Values
+            (
+            float _00, float _01,
+            float _10, float _11
+            ) :
+            m00(_00), m01(_01),
+            m10(_10), m11(_11)
+        {
+        }
+
+        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
+        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
+
+        union
+        {
+            struct
+            {
+                float m00, m01;
+                float m10, m11;
+            };
+            float m[2][2];
+            float a[2 * 2];
+        };
+    };
+
+    struct MathMatrix3Values
+    {
+        MathMatrix3Values() {}
+
+        MathMatrix3Values
+            (
+            float _00, float _01, float _02,
+            float _10, float _11, float _12,
+            float _20, float _21, float _22
+            ) :
+            m00(_00), m01(_01), m02(_02),
+            m10(_10), m11(_11), m12(_12),
+            m20(_20), m21(_21), m22(_22)
+        {
+        }
+
+        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
+        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
+
+        union
+        {
+            struct
+            {
+                float m00, m01, m02;
+                float m10, m11, m12;
+                float m20, m21, m22;
+            };
+            float m[3][3];
+            float a[3 * 3];
+        };
+    };
+
+    struct MathMatrix4Values
+    {
+        MathMatrix4Values() {}
+
+        MathMatrix4Values
+            (
+            float _00, float _01, float _02, float _03,
+            float _10, float _11, float _12, float _13,
+            float _20, float _21, float _22, float _23,
+            float _30, float _31, float _32, float _33
+            ) :
+            m00(_00), m01(_01), m02(_02), m03(_03),
+            m10(_10), m11(_11), m12(_12), m13(_13),
+            m20(_20), m21(_21), m22(_22), m23(_23),
+            m30(_30), m31(_31), m32(_32), m33(_33)
+        {
+        }
+
+        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
+        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
+
+        union
+        {
+            struct
+            {
+                float m00, m01, m02, m03;
+                float m10, m11, m12, m13;
+                float m20, m21, m22, m23;
+                float m30, m31, m32, m33;
+            };
+            float m[4][4];
+            float a[4 * 4];
+        };
+    };
 
     class MathDecomposedAffineTransform
     {
     public:
         MathDecomposedAffineTransform();
         MathDecomposedAffineTransform(const MathAffineTransform& af);
-        MathDecomposedAffineTransform(const MathMatrix44& m);
+        MathDecomposedAffineTransform(const MathMatrix4& m);
 
         void SetIdentity();
         void Set(const MathAffineTransform& af);
-        void SetMatrix(const MathMatrix44& m);
-        
-        ValueOrError<void> GetMatrix(MathMatrix44& m) const;
+        void SetMatrix(const MathMatrix4& m);
+
+        ValueOrError<void> GetMatrix(MathMatrix4& m) const;
         ValueOrError<void> GetInverse(MathDecomposedAffineTransform& inverse) const;
 
         struct Float4
@@ -69,86 +173,123 @@ namespace Finjin { namespace Common {
         struct Parts
         {
             VectorPart t; //Translation components
-            QuatPart q;	//Essential rotation
-            QuatPart u;	//Stretch rotation
+            QuatPart q; //Essential rotation
+            QuatPart u; //Stretch rotation
             VectorPart k; //Stretch factors
             float f; //Sign of determinant
         };
 
         const Parts& GetParts() const;
 
-        static ValueOrError<void> Interpolate(MathDecomposedAffineTransform& result, float t, const MathDecomposedAffineTransform& a, const MathDecomposedAffineTransform& b);        
+        static ValueOrError<void> Interpolate
+            (
+            MathDecomposedAffineTransform& result,
+            float t,
+            const MathDecomposedAffineTransform& a,
+            const MathDecomposedAffineTransform& b
+            );
 
     private:
         Parts parts;
     };
 
-    template <typename T>
-    void GetRowMajorSquareMatrixData(typename T::Scalar result[T::RowsAtCompileTime][T::ColsAtCompileTime], const T& value)
-    {
-        //Destination is row major 2D array
+} }
 
-        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename T::Scalar) * value.size());
+
+//Functions---------------------------------------------------------------------
+namespace Finjin { namespace Common {
+
+    template <typename Matrix>
+    void GetColumnsInCRowsMatrixData
+        (
+        typename Matrix::Scalar result[Matrix::RowsAtCompileTime][Matrix::ColsAtCompileTime],
+        const Matrix& value
+        )
+    {
+        //Destination will have the matrix columns in each of its rows
+
+        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename Matrix::Scalar) * value.size());
     }
 
-    template <typename T, typename Matrix>
-    void GetRowMajorSquareMatrixData(T& result, const Matrix& value)
+    template <typename Matrix>
+    void GetRowsInCRowsMatrixData
+        (
+        typename Matrix::Scalar result[Matrix::RowsAtCompileTime][Matrix::ColsAtCompileTime],
+        const Matrix& value
+        )
     {
-        //Destination is row major
+        //Destination will have the matrix rows in each of its rows
+
+        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename Matrix::Scalar) * value.size());
+
+        for (int row = 0; row < Matrix::RowsAtCompileTime; row++)
+            for (int column = 0; column < row; column++)
+                std::swap(result[row][column], result[column][row]);
+    }
+
+    template <typename Struct, typename Matrix> //Struct will usually be MathMatrix4Values
+    void GetColumnOrderMatrixData(Struct& result, const Matrix& value)
+    {
+        //Destination will have column 0 in its first set of values, column 1 in its second set, and so on
+        //Same as calling GetMatrixAsArray((float*)&result, value, MatrixStorageOrder::COLUMNS);
 
         FINJIN_COPY_MEMORY(&result, value.data(), sizeof(typename Matrix::Scalar) * value.size());
     }
 
-    template <typename T>
-    void SetRowMajorSquareMatrixData(T& value, const typename T::Scalar data[T::RowsAtCompileTime][T::ColsAtCompileTime])
+    template <typename Struct, typename Matrix> //Struct will usually be MathMatrix4Values
+    void GetRowOrderMatrixData(Struct& result, const Matrix& value)
     {
-        //Source is row major
-        
-        FINJIN_COPY_MEMORY(value.data(), data, sizeof(typename T::Scalar) * value.size());
-    }
+        //Destination will have row 0 in its first set of values, row 1 in its second set, and so on
+        //Same as calling GetMatrixAsArray((float*)&result, value, MatrixStorageOrder::ROWS);
 
-    template <typename T>
-    void GetColumnMajorSquareMatrixData(typename T::Scalar result[T::RowsAtCompileTime][T::ColsAtCompileTime], const T& value)
-    {
-        //Destination is column major 2D array
-
-        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename T::Scalar) * value.size());
-        
-        for (int row = 0; row < T::RowsAtCompileTime; row++)
-            for (int col = 0; col < row; col++)
-                std::swap(result[row][col], result[col][row]);
-    }
-
-    template <typename T, typename Matrix>
-    void GetColumnMajorSquareMatrixData(T& result, const Matrix& value)
-    {
-        //Destination is column major
         auto temp = value;
         temp.transposeInPlace();
 
         FINJIN_COPY_MEMORY(&result, temp.data(), sizeof(typename Matrix::Scalar) * temp.size());
     }
 
-    template <typename T>
-    void SetColumnMajorSquareMatrixData(T& value, const typename T::Scalar data[T::RowsAtCompileTime][T::ColsAtCompileTime])
+    template <typename Matrix>
+    void GetMatrixAsArray
+        (
+        typename Matrix::Scalar* result,
+        const Matrix& value,
+        MatrixStorageOrder arrayStorageOrder = MatrixStorageOrder::COLUMNS
+        )
     {
-        //Source is column major
+        if (arrayStorageOrder == MatrixStorageOrder::COLUMNS)
+            FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename Matrix::Scalar) * value.size());
+        else
+        {
+            auto temp = value;
+            temp.transposeInPlace();
 
-        FINJIN_COPY_MEMORY(value.data(), data, sizeof(typename T::Scalar) * value.size());
-        
-        value.transposeInPlace();
+            FINJIN_COPY_MEMORY(result, temp.data(), sizeof(typename Matrix::Scalar) * value.size());
+        }
     }
 
-    template <typename T>
-    void GetMathData(typename T::Scalar* result, const T& value)
+    template <typename Matrix>
+    void SetMatrixFromArray
+        (
+        Matrix& result,
+        const typename Matrix::Scalar* value,
+        MatrixStorageOrder arrayStorageOrder = MatrixStorageOrder::COLUMNS
+        )
     {
-        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename T::Scalar) * value.size());
+        FINJIN_COPY_MEMORY(result.data(), value, sizeof(typename Matrix::Scalar) * result.size());
+        if (arrayStorageOrder == MatrixStorageOrder::ROWS)
+            result.transposeInPlace();
     }
 
-    template <typename T>
-    void SetMathData(const T& value, const typename T::Scalar* data)
+    template <typename Vector>
+    void GetVectorAsArray(typename Vector::Scalar* result, const Vector& value)
     {
-        FINJIN_COPY_MEMORY(value.data(), data, sizeof(typename T::Scalar) * value.size());
+        FINJIN_COPY_MEMORY(result, value.data(), sizeof(typename Vector::Scalar) * value.size());
+    }
+
+    template <typename Vector>
+    void SetVectorFromArray(Vector& result, const typename Vector::Scalar* value)
+    {
+        FINJIN_COPY_MEMORY(result.data(), value, sizeof(typename Vector::Scalar) * result.size());
     }
 
     inline MathVector3 SphericalToCartesian(float radius, Angle thetaAngle, Angle phiAngle)
@@ -194,7 +335,7 @@ namespace Finjin { namespace Common {
         if (x >= 0.0f)
         {
             //Quadrant I or IV
-        
+
             //If x = 0, then atanf(y/x) = +pi/2 if y > 0
             //               atanf(y/x) = -pi/2 if y < 0
             theta = atanf(y / x); //in [-pi/2, +pi/2]
@@ -207,7 +348,7 @@ namespace Finjin { namespace Common {
             //Quadrant II or III
             theta = atanf(y / x) + FINJIN_PI; //in [0, 2*pi).
         }
-        
+
         return Radians(theta);
     }
 
@@ -230,7 +371,7 @@ namespace Finjin { namespace Common {
     {
         for (size_t i = 0; i < (size_t)-1; i++)
         {
-            auto v = RandUnitVector3();            
+            auto v = RandUnitVector3();
             if (n.dot(v) >= 0.0f)
             {
                 if (iterationCount != nullptr)
@@ -238,7 +379,7 @@ namespace Finjin { namespace Common {
                 return v;
             }
         }
-        
+
         return MathVector3(1.0f, 0.0f, 0.0f);
     }
 

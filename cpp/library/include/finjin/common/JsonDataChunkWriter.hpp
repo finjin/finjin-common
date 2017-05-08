@@ -14,15 +14,15 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataChunkWriter.hpp"
 #include "finjin/common/DataChunkWriterController.hpp"
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API JsonDataChunkWriter : public DataChunkWriter
     {
     public:
@@ -37,13 +37,17 @@ namespace Finjin { namespace Common {
         ~JsonDataChunkWriter();
 
         void Create(const Settings& settings, DataChunkWriterStyle style, DataChunkWriter* parentSection, Error& error) override;
-        
+
         DataChunkWriterController& GetWriterController() override;
+
+        DocumentWriterOutput* GetWriterOutput() override;
 
         void WriteWriterHeader(Error& error) override;
         void WriteChunk(const ChunkName& name, std::function<void(DataChunkWriter&, Error&)> chunkFunc, Error& error) override;
+        void WriteChunkStart(const ChunkName& name, Error& error) override;
+        void WriteChunkEnd(const ChunkName& name, Error& error) override;
         void WriteFooter() override;
-        
+
         bool IsBinaryFormat() const override { return false; }
         ByteOrder GetByteOrder() const override;
 
@@ -65,7 +69,7 @@ namespace Finjin { namespace Common {
         void WriteUInt64(const ChunkPropertyName& propertyName, uint64_t value, Error& error) override;
         void WriteFloat(const ChunkPropertyName& propertyName, float value, Error& error) override;
         void WriteDouble(const ChunkPropertyName& propertyName, double value, Error& error) override;
-        
+
         void WriteStridedStrings(const ChunkPropertyName& propertyName, const Utf8String* values, size_t count, DataChunkWriteStride valueStride, Error& error) override;
         void WriteStridedTimeDurations(const ChunkPropertyName& propertyName, const TimeDuration* values, size_t count, DataChunkWriteStride valueStride, Error& error) override;
         void WriteStridedBools(const ChunkPropertyName& propertyName, const bool* values, size_t count, DataChunkWriteStride valueStride, Error& error) override;
@@ -83,7 +87,7 @@ namespace Finjin { namespace Common {
 
     private:
         struct Impl;
-        std::unique_ptr<Impl> impl;        
+        std::unique_ptr<Impl> impl;
     };
 
 } }

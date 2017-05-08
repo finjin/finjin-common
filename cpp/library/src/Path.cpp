@@ -24,38 +24,29 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem/detail/utf8_codecvt_facet.hpp>
 #include <boost/regex.hpp>
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/WindowsUtilities.hpp"
-    
-    #if !FINJIN_TARGET_OS_IS_WINDOWS_UWP        
+
+    #if !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         #include <Shlobj.h>
     #endif
-
-    #define PLATFORM_SEPARATOR_CHAR '\\'
-    #define PLATFORM_SEPARATOR_STRING "\\"
 #else
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <unistd.h>
     #include <fstream>
-
-    #define PLATFORM_SEPARATOR_CHAR '/'
-    #define PLATFORM_SEPARATOR_STRING "/"
 #endif
 
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
     #include "AppleUtilities.hpp"
 #endif
-
-#define PLATFORM_INDEPENDENT_SEPARATOR_CHAR '/'
-#define PLATFORM_INDEPENDENT_SEPARATOR_STRING "/"
 
 #include <nowide/stackstring.hpp>
 #include <nowide/fstream.hpp>
 
-#if (!FINJIN_TARGET_OS_IS_ANDROID && FINJIN_TARGET_OS_IS_LINUX) || FINJIN_TARGET_OS == FINJIN_TARGET_OS_MAC
+#if (!FINJIN_TARGET_PLATFORM_IS_ANDROID && FINJIN_TARGET_PLATFORM_IS_LINUX) || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
     //Non-Android Linux or MacOS
-    
+
     #define USE_BOOST_MAPPED_FILE 0 //Disabled for now since I ran into an issue on Linux
 
     #if USE_BOOST_MAPPED_FILE
@@ -67,17 +58,32 @@
     #endif
 #endif
 
+using namespace Finjin::Common;
+
+
+//Macros------------------------------------------------------------------------
 #define LONG_PATH_PREFIX "\\\\?\\"
 #define LONG_PATH_PREFIX_LENGTH 4
 
-using namespace Finjin::Common;
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    #define PLATFORM_SEPARATOR_CHAR '\\'
+    #define PLATFORM_SEPARATOR_STRING "\\"
+#else
+    #define PLATFORM_SEPARATOR_CHAR '/'
+    #define PLATFORM_SEPARATOR_STRING "/"
+#endif
 
+#define PLATFORM_INDEPENDENT_SEPARATOR_CHAR '/'
+#define PLATFORM_INDEPENDENT_SEPARATOR_STRING "/"
+
+
+//Local types-------------------------------------------------------------------
 using NarrowingConverter = nowide::basic_stackstring<char, wchar_t, Path::STATIC_STRING_LENGTH + 1>;
 using WideningToUtf16Converter = nowide::basic_stackstring<wchar_t, char, Path::STATIC_STRING_LENGTH + 1>;
 using WideningToUtf32Converter = nowide::basic_stackstring<char32_t, char, Path::STATIC_STRING_LENGTH + 1>;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static size_t EstimateNewAllocatedLength(size_t requestedLength, size_t allocatedLength, bool oversize)
 {
     if (oversize)
@@ -111,7 +117,7 @@ bool HasLongPathPrefix(const T* begin)
 template <typename T>
 bool HasLongPathPrefix(const T* begin, const T* end)
 {
-    const char* longPathPrefix = LONG_PATH_PREFIX;    
+    const char* longPathPrefix = LONG_PATH_PREFIX;
     for (size_t i = 0; i < longPathPrefix[i] != 0; i++)
     {
         if (begin == end || *begin != longPathPrefix[i])
@@ -125,11 +131,11 @@ bool HasLongPathPrefix(const T* begin, const T* end)
 
 template <typename T>
 bool IsAbsolute(const T* begin)
-{   
+{
     if (*begin == 0)
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     const T* index = begin;
     if (HasLongPathPrefix(begin))
     {
@@ -149,7 +155,7 @@ bool IsAbsolute(const T* begin)
     if (Path::IsSeparator(*begin))
         return true;
 #endif
-    
+
     return false;
 }
 
@@ -159,7 +165,7 @@ bool IsAbsolute(const T* begin, const T* end)
     if (begin == end)
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     const T* index = begin;
     if (HasLongPathPrefix(begin, end))
     {
@@ -347,7 +353,7 @@ static bool IsValidCodepoint(uint32_t ch)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 const Path& Path::Empty()
 {
     static const Path value;
@@ -362,9 +368,9 @@ Path::Path(Allocator* allocator)
 
 Path::Path(const char* other, Allocator* allocator)
 {
-    Init();    
+    Init();
     this->allocator = allocator;
-    assign(other);    
+    assign(other);
 }
 
 Path::Path(const wchar_t* other, Allocator* allocator)
@@ -376,9 +382,9 @@ Path::Path(const wchar_t* other, Allocator* allocator)
 
 Path::Path(const char* other, size_t len, Allocator* allocator)
 {
-    Init();        
+    Init();
     this->allocator = allocator;
-    assign(other, len);    
+    assign(other, len);
 }
 
 Path::Path(const wchar_t* other, size_t len, Allocator* allocator)
@@ -427,7 +433,7 @@ Path::Path(const Utf8String& other, Allocator* allocator)
 {
     Init();
     this->allocator = allocator;
-    assign(other);    
+    assign(other);
 }
 
 Path::Path(Utf8String&& other)
@@ -591,7 +597,7 @@ ValueOrError<void> Path::assign(const char* other, size_t len)
     {
         if (EnsureLengthAllocated(len, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         strncpy(this->s, other, len);
         this->s[len] = 0;
         this->l = len;
@@ -611,7 +617,7 @@ ValueOrError<void> Path::assign(const wchar_t* other, size_t len)
     {
         if (EnsureLengthAllocated(len, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         NarrowingConverter narrowed;
         if (!narrowed.convert(other, other + len))
             return ValueOrError<void>::CreateError();
@@ -656,10 +662,10 @@ ValueOrError<void> Path::assign(size_t count, char c)
     {
         if (EnsureLengthAllocated(count, false).HasError())
             return ValueOrError<void>::CreateError();
-        
+
         for (size_t i = 0; i < count; i++)
             this->s[i] = c;
-        this->s[count] = 0;        
+        this->s[count] = 0;
         this->l = count;
     }
     return ValueOrError<void>();
@@ -669,7 +675,7 @@ ValueOrError<void> Path::assign(const Utf8String& other)
 {
     if (EnsureLengthAllocated(other.length(), false).HasError())
         return ValueOrError<void>::CreateError();
-        
+
     strcpy(this->s, other.s);
     this->l = other.length();
     return ValueOrError<void>();
@@ -693,7 +699,7 @@ ValueOrError<void> Path::assign(Utf8String&& other)
         this->s = other.s;
         this->l = other.length();
         this->allocatedLength = other.allocatedLength;
-            
+
         other.allocator = nullptr;
         other.s = other.shortS;
         other.shortS[0] = 0;
@@ -708,7 +714,7 @@ ValueOrError<void> Path::assign(const Utf8StringView& other)
 {
     if (EnsureLengthAllocated(other.length(), false).HasError())
         return ValueOrError<void>::CreateError();
-        
+
     strncpy(this->s, other.s, other.length());
     this->l = other.length();
     return ValueOrError<void>();
@@ -721,7 +727,7 @@ ValueOrError<void> Path::assign(const Path& other)
 
     if (EnsureLengthAllocated(other.length(), false).HasError())
         return ValueOrError<void>::CreateError();
-        
+
     strcpy(this->s, other.s);
     this->l = other.length();
     return ValueOrError<void>();
@@ -806,7 +812,7 @@ ValueOrError<void> Path::resize(size_t len)
         if (len > STATIC_STRING_LENGTH && len > this->allocatedLength)
         {
             this->allocatedLength = len;
-            
+
             if (!IsStatic())
                 _Deallocate(this->s);
             this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
@@ -973,7 +979,7 @@ ValueOrError<void> Path::append(const char* other, size_t len)
                 return ValueOrError<void>::CreateError();
 
             return assign(std::move(newString));
-        }                
+        }
     }
 
     return ValueOrError<void>();
@@ -1052,25 +1058,25 @@ char Path::back() const
 }
 
 void Path::pop_front()
-{    
+{
     if (!empty())
         erase(begin());
 }
 
 void Path::pop_front(size_t count)
-{    
+{
     count = std::min(count, this->l);
     for (size_t i = 0; i < count; i++)
         pop_front();
 }
 
 void Path::pop_back()
-{    
+{
     pop_back(1);
 }
 
 void Path::pop_back(size_t count)
-{    
+{
     this->l -= std::min(count, this->l);
     this->s[this->l] = 0;
 }
@@ -1088,10 +1094,10 @@ size_t Path::find(char c, size_t pos) const
 size_t Path::find(const char* other, size_t pos) const
 {
     auto range = boost::make_iterator_range(this->s + pos, this->s + this->l);
-    
+
     auto safeOther = Utf8String::GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
-    
+
     auto foundAt = boost::algorithm::find_first(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
@@ -1131,10 +1137,10 @@ size_t Path::rfind(const char* other, size_t pos) const
         pos = this->l;
 
     auto range = boost::make_iterator_range(this->s, this->s + pos);
-    
+
     const char* safeOther = Utf8String::GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
-    
+
     auto foundAt = boost::algorithm::find_last(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
@@ -1150,7 +1156,7 @@ size_t Path::rfind(const Utf8String& other, size_t pos) const
     auto range = boost::make_iterator_range(this->s, this->s + pos);
 
     auto otherRange = boost::make_iterator_range(other.begin(), other.end());
-    
+
     auto foundAt = boost::algorithm::find_last(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
@@ -1190,7 +1196,7 @@ char* Path::erase(char* from, char* to)
             to = from; //We assume from/to is non-decreasing
         else if (to > last)
             to = last;
-        
+
         if (from == to)
         {
             //Empty range specified. Done
@@ -1300,7 +1306,7 @@ ValueOrError<void> Path::EnsureLengthAllocated(size_t len, bool oversize)
     if (len > STATIC_STRING_LENGTH && len > this->allocatedLength)
     {
         this->allocatedLength = EstimateNewAllocatedLength(len, this->allocatedLength, oversize);
-        
+
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
@@ -1466,15 +1472,15 @@ bool Path::StartsWith(const Utf8String& other) const
         return false;
     else if (this->l < other.l)
         return false;
-    
+
     const char* thisS = this->s;
-    const char* otherS = other.s;        
+    const char* otherS = other.s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
         ++otherS;
     }
-    
+
     //Was end reached?
     return *otherS == 0;
 }
@@ -1568,21 +1574,21 @@ bool Path::IterateCodepoint(size_t& iter, uint32_t& codepoint) const
 {
     if (iter >= this->l)
         return false;
-    
+
     int remainingUnits = 0;
     uint8_t mask = 0;
-    
+
     uint8_t next = this->s[iter++];
-    if (next & 0x80) 
+    if (next & 0x80)
     {
         mask = 0xe0;
         for (remainingUnits = 1; (next & mask) != (mask << 1); ++remainingUnits)
             mask = (mask >> 1) | 0x80;
     }
-    
+
     codepoint = next ^ mask;
-    
-    while (remainingUnits-- > 0) 
+
+    while (remainingUnits-- > 0)
     {
         codepoint <<= 6;
         if (iter >= this->l)
@@ -1611,7 +1617,7 @@ bool Path::GetCodepoints(uint32_t* output, size_t& outputLength) const
     //Output is UTF-32
 
     const size_t maxLength = outputLength;
-    
+
     size_t iter = 0;
     for (outputLength = 0; iter < this->l && outputLength < maxLength; outputLength++)
     {
@@ -1637,7 +1643,7 @@ ValueOrError<void> Path::operator /= (const Path& other)
 {
     if (!other.empty())
         return AppendPath(*this, other.begin(), other.end());
-    
+
     return ValueOrError<void>();
 }
 
@@ -1645,7 +1651,7 @@ ValueOrError<void> Path::operator /= (const Utf8String& other)
 {
     if (!other.empty())
         return AppendPath(*this, other.begin(), other.end());
-    
+
     return ValueOrError<void>();
 }
 
@@ -1661,7 +1667,7 @@ ValueOrError<void> Path::operator /= (const char* other)
 {
     if (other != nullptr && other[0] != 0)
         return AppendPath(*this, other);
-    
+
     return ValueOrError<void>();
 }
 
@@ -1669,7 +1675,7 @@ ValueOrError<void> Path::operator /= (const wchar_t* other)
 {
     if (other != nullptr && other[0] != 0)
         return AppendPath(*this, other);
-    
+
     return ValueOrError<void>();
 }
 
@@ -1705,7 +1711,7 @@ Path& Path::UniversalNormalize()
         }
     }
 
-    return *this;    
+    return *this;
 }
 
 Path& Path::PlatformNormalize()
@@ -1734,7 +1740,7 @@ ValueOrError<void> Path::NormalizeRelativeComponents(Path& result) const
 
     if (result.assign(*this).HasError())
         return ValueOrError<void>::CreateError();
-    
+
     size_t previousIndex = npos;
     auto directoryLength = FindFirstDirectoryLength();
     if (directoryLength != npos)
@@ -1759,11 +1765,11 @@ ValueOrError<void> Path::NormalizeRelativeComponents(Path& result) const
                 if ((result /= component).HasError())
                     return ValueOrError<void>::CreateError();
             }
-        
+
             previousIndex = directoryLength;
             directoryLength = FindNextDirectoryLength(directoryLength);
         } while (directoryLength != npos);
-    }    
+    }
 
     return ValueOrError<void>();
 }
@@ -1772,7 +1778,7 @@ bool Path::IsAbsolute() const
 {
     if (empty())
         return false;
-    
+
     return ::IsAbsolute(this->s, this->s + this->l);
 }
 
@@ -1841,7 +1847,7 @@ void Path::RemoveFileName()
             this->s[i] = 0;
             break;
         }
-    }    
+    }
 }
 
 size_t Path::GetParentOffset() const
@@ -1908,7 +1914,7 @@ bool Path::GoToParent()
 {
     if (empty())
         return false;
-    
+
     size_t endIndex = npos;
     if (HasLongPathPrefix(this->s))
         endIndex = LONG_PATH_PREFIX_LENGTH - 1;
@@ -1951,7 +1957,7 @@ ValueOrError<bool> Path::GetRoot(Path& result) const
 {
     result.clear();
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     size_t index = 0;
     if (HasLongPathPrefix(this->s))
         index += LONG_PATH_PREFIX_LENGTH;
@@ -1967,7 +1973,7 @@ ValueOrError<bool> Path::GetRoot(Path& result) const
 
             if (substr(result, startIndex, index - startIndex).HasError())
                 return ValueOrError<bool>::CreateError();
-            
+
             return !result.empty();
         }
         else if (this->s[index + 1] == ':')
@@ -1993,11 +1999,11 @@ ValueOrError<bool> Path::GetRoot(Path& result) const
 
 ValueOrError<bool> Path::GetInternalVolumeID(Utf8String& result) const
 {
-    //Callers should assume this method is slow, so it should be called as seldom as possible    
+    //Callers should assume this method is slow, so it should be called as seldom as possible
 
     result.clear();
 
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     //For Windows UWP use the root as the ID
     if (!empty())
     {
@@ -2010,7 +2016,7 @@ ValueOrError<bool> Path::GetInternalVolumeID(Utf8String& result) const
 
         return !result.empty();
     }
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     //For Win32 use the volume serial number as the ID
     Path root;
     if (GetRoot(root).HasError())
@@ -2035,7 +2041,7 @@ ValueOrError<bool> Path::GetInternalVolumeID(Utf8String& result) const
         return !result.empty();
     }
 
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     //For Apple platforms use the volume ID hash as the ID
     auto hash = AppleUtilities::GetVolumeIDHash(*this);
     if (hash != 0)
@@ -2055,7 +2061,7 @@ ValueOrError<bool> Path::GetInternalVolumeID(Utf8String& result) const
         return !result.empty();
     }
 #endif
-    
+
     return false;
 }
 
@@ -2081,18 +2087,18 @@ ValueOrError<bool> Path::EnsureExtension(const Utf8String& defaultExtension)
                 return ValueOrError<bool>::CreateError();
 
             return true;
-        }        
+        }
     }
     return false;
 }
 
 ValueOrError<bool> Path::EnsureExecutableExtension()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     return EnsureExtension(".exe");
 #else
     return true;
-#endif    
+#endif
 }
 
 size_t Path::FindFirstDirectoryLength() const
@@ -2104,7 +2110,7 @@ size_t Path::FindFirstDirectoryLength() const
 
     if (::IsAbsolute(begin() + index, end()))
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         index += 3; //Skip drive letter and ":\"
     #else
         index += 1; //Skip leading '/'
@@ -2156,7 +2162,7 @@ ValueOrError<bool> Path::ContainsDirectory(const Path& other) const
     //Get the other directory
     auto otherDirectory = other;
     otherDirectory.PlatformNormalize();
-    
+
     //Keep moving up the 'other' hierarchy until a match is found
     Path tempParent;
     while (!otherDirectory.empty() && otherDirectory.length() >= parentDirectory.length())
@@ -2168,7 +2174,7 @@ ValueOrError<bool> Path::ContainsDirectory(const Path& other) const
             return ValueOrError<bool>::CreateError();
         otherDirectory = tempParent;
     }
-    
+
     return false;
 }
 
@@ -2182,7 +2188,7 @@ ValueOrError<bool> Path::ContainsFile(const Path& other) const
     auto otherDirectory = other;
     otherDirectory.PlatformNormalize();
     otherDirectory.RemoveFileName();
-    
+
     //Keep moving up the 'other' hierarchy until a match is found
     Path tempParent;
     while (!otherDirectory.empty() && otherDirectory.length() >= parentDirectory.length())
@@ -2198,14 +2204,55 @@ ValueOrError<bool> Path::ContainsFile(const Path& other) const
     return false;
 }
 
+ValueOrError<bool> Path::ExpandUserHomeDirectory()
+{
+    if (this->l > 0 && this->s[0] == '~')
+    {
+        Path userHome;
+        auto getUserHomeResult = GetUserHomeDirectory(userHome);
+        if (getUserHomeResult.HasError())
+        {
+            //There was an error getting the home directory
+            return ValueOrError<bool>::CreateError();
+        }
+        else if (getUserHomeResult.HasValue(true))
+        {
+            //The home directory was retrieved successfully
+
+            auto newLength = this->l + userHome.l - 1;
+            if (newLength <= STATIC_STRING_LENGTH || newLength <= this->allocatedLength)
+            {
+                boost::algorithm::replace_first(*this, "~", userHome.c_str());
+            }
+            else
+            {
+                Path newString(this->allocator);
+                if (newString.EnsureLengthAllocated(newLength, false).HasError())
+                    return ValueOrError<bool>::CreateError();
+                if (newString.assign(this->s, this->l).HasError())
+                    return ValueOrError<bool>::CreateError();
+
+                boost::algorithm::replace_first(newString, "~", userHome.c_str());
+
+                assign(std::move(newString));
+            }
+
+            return true;
+        }
+    }
+
+    //No leading '~' or the home directory could not be obtained
+    return false;
+}
+
 ValueOrError<bool> Path::GetUserHomeDirectory(Path& directory)
 {
     directory.clear();
 
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     if (directory.assign(Windows::Storage::KnownFolders::DocumentsLibrary->Path->Data()).HasError())
         return ValueOrError<bool>::CreateError();
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     Utf8String homeDrive, homePath;
     if (WindowsUtilities::GetEnv(homeDrive, "HOMEDRIVE").HasError())
         return ValueOrError<bool>::CreateError();
@@ -2225,7 +2272,7 @@ ValueOrError<bool> Path::GetUserHomeDirectory(Path& directory)
 
     directory.PlatformNormalize();
 
-    return true;
+    return !directory.empty();
 }
 
 bool Path::GetFileLength(uint64_t& fileLength) const
@@ -2238,7 +2285,7 @@ uint64_t Path::GetFileLength() const
     uint64_t fileLength;
     if (GetFileLength(fileLength))
         return fileLength;
-    
+
     return 0;
 }
 
@@ -2254,8 +2301,8 @@ bool Path::WriteBinaryFile(const void* bytes, size_t byteCount) const
 }
 
 bool Path::ReadBinaryFile(uint8_t* buffer, size_t maxByteCount, size_t& readByteCount) const
-{   
-#if FINJIN_TARGET_OS_IS_WINDOWS || !USE_BOOST_MAPPED_FILE
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS || !USE_BOOST_MAPPED_FILE
     FileAccessor file;
     if (!file.OpenForRead(*this))
         return false;
@@ -2281,7 +2328,7 @@ bool Path::ReadBinaryFile(uint8_t* buffer, size_t maxByteCount, size_t& readByte
 
 bool Path::ReadBinaryFile(ByteBuffer& buffer) const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS || !USE_BOOST_MAPPED_FILE
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS || !USE_BOOST_MAPPED_FILE
     uint64_t fileSize;
     FileAccessor file;
     if (!file.OpenForRead(*this, &fileSize))
@@ -2290,7 +2337,7 @@ bool Path::ReadBinaryFile(ByteBuffer& buffer) const
     if (buffer.resize(fileSize) < fileSize)
         return false;
     file.Read(buffer.data(), buffer.size());
-    
+
     return true;
 #elif USE_BOOST_MAPPED_FILE
     if (IsFile())
@@ -2316,7 +2363,7 @@ bool Path::RemoveFile() const
     if (empty())
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter pathW;
     if (!pathW.convert(begin(), end()))
         return false;
@@ -2332,7 +2379,7 @@ bool Path::RenameFile(const Path& destPath) const
     if (destPath.empty())
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     WideningToUtf16Converter sourcePathW;
     if (!sourcePathW.convert(begin(), end()))
         return false;
@@ -2349,30 +2396,72 @@ bool Path::RenameFile(const Path& destPath) const
 
 bool Path::IsFile() const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
-    auto attributes = WindowsUtilities::GetPathAttributes(*this);
+    return IsFile(this->s);
+}
+
+bool Path::IsFile(const char* path)
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    auto attributes = WindowsUtilities::GetPathAttributes(path);
     return WindowsUtilities::IsFileAttribute(attributes);
 #else
     struct stat statBuf;
-    if (stat(this->s, &statBuf) == -1)
+    if (stat(path, &statBuf) == -1)
         return false;
 
-    return S_ISREG(statBuf.st_mode);
-#endif    
+    if (S_ISLNK(statBuf.st_mode) != 0)
+    {
+        //Follow symbolic link
+        auto result = false;
+        auto absPath = realpath(path, nullptr);
+        if (absPath != nullptr)
+        {
+            result = IsFile(absPath);
+            free(absPath);
+        }
+        return result;
+    }
+    else
+    {
+        //Not a symbolic link
+        return S_ISREG(statBuf.st_mode) != 0;
+    }
+#endif
 }
 
 bool Path::IsDirectory() const
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
-    auto attributes = WindowsUtilities::GetPathAttributes(*this);
+    return IsDirectory(this->s);
+}
+
+bool Path::IsDirectory(const char* path)
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    auto attributes = WindowsUtilities::GetPathAttributes(path);
     return WindowsUtilities::IsDirectoryAttribute(attributes);
 #else
     struct stat statBuf;
-    if (stat(this->s, &statBuf) == -1)
+    if (stat(path, &statBuf) == -1)
         return false;
 
-    return S_ISDIR(statBuf.st_mode);
-#endif    
+    if (S_ISLNK(statBuf.st_mode) != 0)
+    {
+        //Follow symbolic link
+        auto result = false;
+        auto absPath = realpath(path, nullptr);
+        if (absPath != nullptr)
+        {
+            result = IsDirectory(absPath);
+            free(absPath);
+        }
+        return result;
+    }
+    else
+    {
+        //Not a symbolic link
+        return S_ISDIR(statBuf.st_mode) != 0;
+    }
+#endif
 }
 
 bool Path::Exists() const
@@ -2380,13 +2469,13 @@ bool Path::Exists() const
     if (empty())
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     auto attributes = WindowsUtilities::GetPathAttributes(*this);
     return attributes != INVALID_FILE_ATTRIBUTES;
 #else
     struct stat statBuf;
     return stat(this->s, &statBuf) != -1;
-#endif    
+#endif
 }
 
 bool Path::CreateDirectories() const
@@ -2394,7 +2483,7 @@ bool Path::CreateDirectories() const
     if (empty())
         return false;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS && !FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     WideningToUtf16Converter pathW;
     if (!pathW.convert(begin(), end()))
         return false;
@@ -2411,12 +2500,12 @@ bool Path::CreateDirectories() const
         {
             Path path;
             substr(path, 0, directoryLength);
-        #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+        #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
             if (!pathW.convert(path.begin(), path.end()))
                 return false;
 
             auto res = _wmkdir(pathW.c_str());
-        #else            
+        #else
             auto res = mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         #endif
             if (res != 0 && errno != EEXIST)
@@ -2429,14 +2518,14 @@ bool Path::CreateDirectories() const
         } while (directoryLength != npos);
 
         return true;
-    }    
+    }
     return false;
-#endif    
+#endif
 }
 
 void Path::InitializeUtf8FileSystemAccess()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS && !FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     std::locale newLocale(std::locale(), new boost::filesystem::detail::utf8_codecvt_facet);
     boost::filesystem::path::imbue(newLocale);
 #endif

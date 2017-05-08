@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 Version::Version()
 {
     for (size_t index = 0; index < MAX_COMPONENTS; index++)
@@ -127,10 +127,23 @@ int Version::ToInt() const
     int multiplier = 1;
     for (size_t index = 0; index < MAX_COMPONENTS; index++)
     {
-        version += this->components[index] * multiplier;
+        version += std::max(this->components[index], 0) * multiplier;
         multiplier *= 100;
     }
     return version;
+}
+
+bool Version::AtLeast(int major, int minor, int patch) const
+{
+    int otherComponents[MAX_COMPONENTS] = { major, minor, patch };
+
+    for (size_t index = 0; index < MAX_COMPONENTS; index++)
+    {
+        if (this->components[index] < otherComponents[index])
+            return false;
+    }
+
+    return true;
 }
 
 int Version::Compare(const Version& version1, const Version& version2)

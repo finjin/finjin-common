@@ -19,10 +19,10 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-ZipArchiveVirtualFileSystemRoot::ZipArchiveVirtualFileSystemRoot(Allocator* allocator) : 
-    VirtualFileSystemRoot(allocator), 
-    volumeID(allocator), 
-    zipFilePath(allocator), 
+ZipArchiveVirtualFileSystemRoot::ZipArchiveVirtualFileSystemRoot(Allocator* allocator) :
+    VirtualFileSystemRoot(allocator),
+    volumeID(allocator),
+    zipFilePath(allocator),
     workingFileSystemEntry(this, allocator)
 {
 }
@@ -133,12 +133,12 @@ bool ZipArchiveVirtualFileSystemRoot::CanOpen(const Path& relativeFilePath, File
 FileOperationResult ZipArchiveVirtualFileSystemRoot::Open(const Path& relativeFilePath, FileOpenMode mode, VirtualFileHandle& fileHandle)
 {
     assert(!fileHandle.IsOpen());
-    
+
     size_t inflatedSize;
     auto openResult = this->zipArchive.StartInflate(relativeFilePath, inflatedSize);
     if (openResult != FileOperationResult::SUCCESS)
         return openResult;
-    
+
     fileHandle.fileSize = inflatedSize;
 
     fileHandle.ptr = &this->zipArchive;
@@ -179,7 +179,7 @@ size_t ZipArchiveVirtualFileSystemRoot::Write(VirtualFileHandle& fileHandle, con
 void ZipArchiveVirtualFileSystemRoot::Close(VirtualFileHandle& fileHandle)
 {
     assert(fileHandle.ptr == &this->zipArchive);
-    
+
     if (fileHandle.ptr == &this->zipArchive)
         this->zipArchive.StopInflate();
 

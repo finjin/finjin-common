@@ -14,24 +14,24 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include <rapidjson/rapidjson.h>
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/error/en.h>
 
-using JsonStringBuffer = rapidjson::StringBuffer;
-using JsonReader = rapidjson::Reader;
-using JsonStringWriter = rapidjson::Writer<JsonStringBuffer>;
-using JsonStringPrettyWriter = rapidjson::PrettyWriter<JsonStringBuffer>;
-using JsonValue = rapidjson::Value;
-using JsonElement = rapidjson::Value;
 
-
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
+    using JsonStringBuffer = rapidjson::StringBuffer;
+    using JsonReader = rapidjson::Reader;
+    using JsonStringWriter = rapidjson::Writer<JsonStringBuffer>;
+    using JsonStringPrettyWriter = rapidjson::PrettyWriter<JsonStringBuffer>;
+    using JsonValue = rapidjson::Value;
+    using JsonElement = rapidjson::Value;
+
     struct JsonDocumentImpl
     {
         rapidjson::Document doc;

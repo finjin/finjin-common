@@ -14,12 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_ANDROID
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/JniUtilities.hpp"
 #include "finjin/common/NvAndroidNativeAppGlue.h"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API AndroidJniUtilities : public JniUtilities
@@ -30,3 +32,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

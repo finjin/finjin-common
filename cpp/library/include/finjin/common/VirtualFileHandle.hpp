@@ -14,9 +14,9 @@
 #pragma once
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class VirtualFileSystem;
     class VirtualFileSystemRoot;
 
@@ -42,5 +42,5 @@ namespace Finjin { namespace Common {
         uint64_t fileSize; //When reading: For a real file system, the size of the file in bytes. For an archived file system, the size of the unarchived file
         void* ptr;
     };
-    
+
 } }

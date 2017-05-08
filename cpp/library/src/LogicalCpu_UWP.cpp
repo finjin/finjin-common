@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static bool AssociateThreadWithProcessor(ThreadHandle threadHandle, uint64_t groupID, uint64_t processorID)
 {
     PROCESSOR_NUMBER processorNumber = { static_cast<WORD>(groupID), static_cast<BYTE>(processorID), 0 };
@@ -27,9 +27,9 @@ static bool AssociateThreadWithProcessor(ThreadHandle threadHandle, uint64_t gro
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
-//LogicalCpu---------------
+//LogicalCpu
 uint64_t LogicalCpu::GetGroup() const
 {
     return this->processorID / MAXIMUM_PROC_PER_GROUP;
@@ -57,7 +57,7 @@ void LogicalCpu::AssociateCurrentThread(Error& error) const
 }
 
 bool LogicalCpu::AssociateThread(ThreadHandle threadHandle) const
-{    
+{
     return AssociateThreadWithProcessor(threadHandle, GetGroup(), GetID());
 }
 
@@ -72,9 +72,9 @@ void LogicalCpu::AssociateThread(ThreadHandle threadHandle, Error& error) const
     }
 }
 
-//LogicalCpus------------------------
+//LogicalCpus
 void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
-{   
+{
     auto cpuFoundAt = end();
 
     //Getting the current thread's ideal processor is a little hacky. You have to first set a new one, getting the old one in the process
@@ -87,8 +87,8 @@ void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 
         //Restore old processor association
         SetThreadIdealProcessorEx(GetCurrentThread(), &oldProcessorNumber, nullptr);
-    }    
-    
+    }
+
     if (cpuFoundAt != end())
     {
         //Found it
@@ -104,7 +104,7 @@ void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 }
 
 void LogicalCpus::Enumerate()
-{    
+{
     LogicalCpu logicalCpu;
 
     SYSTEM_INFO systemInfo = {};

@@ -14,17 +14,17 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "WxDataChunkWriter.hpp"
 #include "WxDataChunkWriterController.hpp"
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API WxJsonDataChunkWriter : public WxDataChunkWriter
-    {    
+    {
         FINJIN_EXPORTER_NO_COPY_OR_MOVE(WxJsonDataChunkWriter)
 
     public:
@@ -38,12 +38,12 @@ namespace Finjin { namespace Common {
         void WriteWriterHeader(WxError& error) override;
         void WriteChunk(const WxChunkName& name, std::function<void(WxDataChunkWriter&, WxError&)> chunkFunc, WxError& error) override;
         void WriteFooter() override;
-        
+
         bool IsBinaryFormat() const override { return false; }
         ByteOrder GetByteOrder() const override;
 
         void WriteBlob(const WxChunkPropertyName& propertyName, const void* values, size_t count, WxError& error) override;
-        void WriteString(const WxChunkPropertyName& propertyName, const wxString& value, WxError& error) override;        
+        void WriteString(const WxChunkPropertyName& propertyName, const wxString& value, WxError& error) override;
         void WriteDateTime(const WxChunkPropertyName& propertyName, const wxDateTime& value, WxError& error) override;
         void WriteTimeDuration(const WxChunkPropertyName& propertyName, const WxTimeDuration& value, WxError& error) override;
         void WriteUuid(const WxChunkPropertyName& propertyName, const WxUuid& value, WxError& error) override;
@@ -59,7 +59,7 @@ namespace Finjin { namespace Common {
         void WriteUInt64(const WxChunkPropertyName& propertyName, uint64_t value, WxError& error) override;
         void WriteFloat(const WxChunkPropertyName& propertyName, float value, WxError& error) override;
         void WriteDouble(const WxChunkPropertyName& propertyName, double value, WxError& error) override;
-        
+
         void WriteStridedStrings(const WxChunkPropertyName& propertyName, const wxString* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
         void WriteStridedTimeDurations(const WxChunkPropertyName& propertyName, const WxTimeDuration* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
         void WriteStridedBools(const WxChunkPropertyName& propertyName, const bool* values, size_t count, WxDataChunkWriteStride valueStride, WxError& error) override;
@@ -77,7 +77,7 @@ namespace Finjin { namespace Common {
 
     private:
         struct Impl;
-        Impl* impl;        
+        Impl* impl;
     };
 
 } }

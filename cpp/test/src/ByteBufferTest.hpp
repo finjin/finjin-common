@@ -11,20 +11,20 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Utf8String.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(ByteBufferTest_unused)
 {
     BOOST_TEST_MESSAGE("ByteBufferTest_unused:");
 
     ByteBuffer buffer;
     buffer.Create(100, FINJIN_ALLOCATOR_NULL);
-    
+
     buffer.Truncate(40);
     BOOST_CHECK(buffer.size_left() == 60);
 

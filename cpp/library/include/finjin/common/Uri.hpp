@@ -11,19 +11,16 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Path.hpp"
-#include "finjin/common/StringKeyValueMap.hpp"
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
-    class SimpleUri;
 
     /**
      * Utility methods for dealing with URIs.
@@ -87,7 +84,7 @@ namespace Finjin { namespace Common {
                 return result.assign(formattedHost.begin(), formattedHost.end());
         }
 
-        /** 
+        /**
          * Formats a URI based on the specified components.
          * @param scheme [in] The URI scheme. It should not include the trailing "://"
          * @param host [in] The host. Can be a FQDN, IPv4 address, IPv6 address, or an IPv6 address enclosed in square brackets.
@@ -99,7 +96,7 @@ namespace Finjin { namespace Common {
 
         /**
          * Rewrites the specified URI according to the appropriate pattern.
-         * A pattern that rewrites a URI to its  original form is as follows: {URI_SCHEME}://{URI_HOST}:{URI_PORT}{URI_PATH_QUERY_FRAGMENT}. 
+         * A pattern that rewrites a URI to its  original form is as follows: {URI_SCHEME}://{URI_HOST}:{URI_PORT}{URI_PATH_QUERY_FRAGMENT}.
          * Definitions:
          * {URI_SCHEME}: The scheme.
          * {URI_HOST}: The host.
@@ -109,11 +106,82 @@ namespace Finjin { namespace Common {
          * {URI_FRAGMENT}: The fragment, if there is one. If there is one, it will include the leading "#". For example: "#fragment"
          * {URI_PATH_QUERY_FRAGMENT}: The path and query string. Equivalent to using {URI_PATH}{URI_QUERY}{URI_FRAGMENT}
          * @param uri [in/out] The URI to rewrite. If there wasn't an appropriate entry in the table for the URI's scheme, the input is not modified.
-         * @param rewritePatterns [in] A lookup table of patterns. Patterns are keyed by URI scheme, so the scheme specified by 'uri' 
+         * @param rewritePatterns [in] A lookup table of patterns. Patterns are keyed by URI scheme, so the scheme specified by 'uri'
          * will decide which entry is used. If the table contains an entry with an empty key, that entry is used as a default in the
-         * event that the scheme of 'uri' doesn't have a corresponding entry in the table. 
+         * event that the scheme of 'uri' doesn't have a corresponding entry in the table.
          */
-        static ValueOrError<void> Rewrite(Utf8String& uri, const StringKeyValueMap& rewritePatterns);
+        template <typename KeyValueMap>
+        static ValueOrError<void> Rewrite(Utf8String& uriToRewrite, const KeyValueMap& rewritePatterns)
+        {
+            if (rewritePatterns.empty())
+            {
+                //No rewrite patterns specified
+                return ValueOrError<void>();
+            }
+
+            //Parse the specified URI
+            Uri parsedUri(uriToRewrite);
+            if (!parsedUri.isValid)
+                return ValueOrError<void>::CreateError();
+
+            //Prime the new URI with the rewrite pattern
+            if (!GetBestRewritePattern(uriToRewrite, parsedUri.scheme, rewritePatterns))
+            {
+                //No rewrite pattern for the scheme and no default pattern
+                return ValueOrError<void>();
+            }
+
+            //Perform a sequence of replacements on the URI--------------------------------------
+
+            //Scheme
+            uriToRewrite.ReplaceFirst("{URI_SCHEME}", parsedUri.scheme);
+
+            //Host
+            Utf8String formattedHost;
+            if (FormatHost(formattedHost, parsedUri.host).HasError())
+                return ValueOrError<void>::CreateError();
+            uriToRewrite.ReplaceFirst("{URI_HOST}", formattedHost);
+
+            //Port
+            auto port = parsedUri.port;
+            if (port.empty())
+            {
+                if (parsedUri.scheme == "http" || parsedUri.scheme == "ws")
+                    port = "80";
+                else if (parsedUri.scheme == "https" || parsedUri.scheme == "wss")
+                    port = "443";
+            }
+            uriToRewrite.ReplaceFirst("{URI_PORT}", port);
+
+            //Path
+            uriToRewrite.ReplaceFirst("{URI_PATH}", parsedUri.path);
+
+            //Query string
+            uriToRewrite.ReplaceFirst("{URI_QUERY}", parsedUri.query);
+
+            //Fragment
+            uriToRewrite.ReplaceFirst("{URI_FRAGMENT}", parsedUri.fragment);
+
+            //Path + query string + fragment
+            auto pathQueryFragment = parsedUri.path;
+            if (!parsedUri.query.empty())
+            {
+                if (pathQueryFragment.append("?").HasError())
+                    return ValueOrError<void>::CreateError();
+                if (pathQueryFragment.append(parsedUri.query).HasError())
+                    return ValueOrError<void>::CreateError();
+            }
+            if (!parsedUri.fragment.empty())
+            {
+                if (pathQueryFragment.append("#").HasError())
+                    return ValueOrError<void>::CreateError();
+                if (pathQueryFragment.append(parsedUri.fragment).HasError())
+                    return ValueOrError<void>::CreateError();
+            }
+            uriToRewrite.ReplaceFirst("{URI_PATH_QUERY_FRAGMENT}", pathQueryFragment);
+
+            return ValueOrError<void>();
+        }
 
         /**
         * Escapes the specified text so that it can be safely inserted into HTML as a URI component.
@@ -123,6 +191,29 @@ namespace Finjin { namespace Common {
         static ValueOrError<void> EscapeUriComponent(Utf8String& result, const Utf8String& text);
 
         static ValueOrError<void> UnescapeUriComponent(Utf8String& result, const Utf8String& text);
+
+    private:
+        template <typename KeyValueMap>
+        static bool GetBestRewritePattern(Utf8String& rewritePattern, const Utf8String& scheme, const KeyValueMap& rewritePatterns)
+        {
+            if (rewritePatterns.contains(scheme))
+            {
+                //Found the exact pattern (or the default if scheme was empty)
+                rewritePattern = rewritePatterns[scheme];
+                return true;
+            }
+            else if (!scheme.empty() && rewritePatterns.HasKey(Utf8String::Empty()))
+            {
+                //scheme was specified, and a default was found
+                rewritePattern = rewritePatterns[Utf8String::Empty()];
+                return true;
+            }
+            else
+            {
+                //Nothing found
+                return false;
+            }
+        }
 
     public:
         bool isValid;

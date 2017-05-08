@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxByteBuffer.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WxConfigDocumentReader;
@@ -56,10 +56,10 @@ namespace Finjin { namespace Common {
         wxString GetKey() const;
         wxString GetValue() const;
         void GetKeyAndValue(wxString& key, wxString& value) const;
-        
+
         void GetLine(wxString& line) const;
         wxString GetLine() const;
-        
+
     private:
         WxConfigDocumentReader* reader;
 
@@ -81,18 +81,18 @@ namespace Finjin { namespace Common {
     {
     public:
         WxConfigDocumentReader();
-        
+
         void Reset();
 
-        WxConfigDocumentLine* Start(const WxByteBuffer& buffer);        
+        WxConfigDocumentLine* Start(const WxByteBuffer& buffer);
         WxConfigDocumentLine* Start(const std::vector<uint8_t>& buffer);
         WxConfigDocumentLine* Start(const char* text, size_t length);
         WxConfigDocumentLine* Start(const char* begin, const char* end);
         WxConfigDocumentLine* Restart(const WxConfigDocumentLine& line);
-        
+
         WxConfigDocumentLine* Current();
         WxConfigDocumentLine* Next();
-        
+
         void SkipScope();
 
         size_t GetSectionCount(const wxString& name);
@@ -103,12 +103,12 @@ namespace Finjin { namespace Common {
         WxConfigDocumentLine* Reinitialize(const WxConfigDocumentLine& line);
 
         WxConfigDocumentLine* ProcessLine();
-        
+
     private:
         WxConfigDocumentLine line;
 
         const char* textBegin;
-        const char* textEnd;        
+        const char* textEnd;
     };
 
 } }

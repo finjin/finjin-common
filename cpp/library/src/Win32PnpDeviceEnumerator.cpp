@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void Win32PnpDeviceEnumerator::Enumerate()
 {
     IWbemLocator* pIWbemLocator = nullptr;
@@ -53,12 +53,12 @@ void Win32PnpDeviceEnumerator::Enumerate()
     if (bstrDeviceID == nullptr)
         goto LCleanup;
 
-    //Connect to WMI 
+    //Connect to WMI
     hr = pIWbemLocator->ConnectServer(bstrNamespace, nullptr, nullptr, 0, 0, nullptr, nullptr, &pIWbemServices);
     if (FAILED(hr) || pIWbemServices == nullptr)
         goto LCleanup;
 
-    //Switch security level to IMPERSONATE. 
+    //Switch security level to IMPERSONATE.
     CoSetProxyBlanket(pIWbemServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, nullptr, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, nullptr, EOAC_NONE);
 
     hr = pIWbemServices->CreateInstanceEnum(bstrClassName, 0, nullptr, &pEnumDevices);

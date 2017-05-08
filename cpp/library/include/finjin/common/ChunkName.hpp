@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Uuid.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     struct ParsedChunkName;
     struct ParsedChunkPropertyName;
 
@@ -39,7 +39,7 @@ namespace Finjin { namespace Common {
         ChunkName(const char* name, const Uuid& id);
         ChunkName(size_t index);
         ChunkName(const ChunkName& other, size_t index);
-        
+
         bool IsValid() const;
 
         bool operator == (const ChunkName& other) const;
@@ -58,7 +58,7 @@ namespace Finjin { namespace Common {
         Uuid id;
         Index index;
     };
-    
+
     struct FINJIN_COMMON_LIBRARY_API ParsedChunkName
     {
         using Index = ChunkName::Index;
@@ -91,10 +91,10 @@ namespace Finjin { namespace Common {
         using Index = ChunkName::Index;
 
         ChunkPropertyName();
-        explicit ChunkPropertyName(const char* name);        
+        explicit ChunkPropertyName(const char* name);
         ChunkPropertyName(const char* name, ID id);
         ChunkPropertyName(size_t index);
-        
+
         bool IsValid() const;
 
         bool operator == (const ChunkPropertyName& other) const;
@@ -118,11 +118,11 @@ namespace Finjin { namespace Common {
     {
         using ID = ChunkPropertyName::ID;
         using Index = ChunkPropertyName::Index;
-        
+
         ParsedChunkPropertyName();
         ParsedChunkPropertyName(const Utf8String& s);
         ParsedChunkPropertyName(size_t index);
-        
+
         void Parse(const Utf8String& s);
 
         bool operator == (const ChunkPropertyName& other) const;
@@ -141,12 +141,12 @@ namespace Finjin { namespace Common {
     //Standard names-------------------------------
     struct StandardChunkPropertyNames
     {
-        static const ChunkPropertyName MAGIC;
+        static const ChunkPropertyName SIGNATURE;
         static const ChunkPropertyName FORMAT;
         static const ChunkPropertyName FORMAT_VERSION;
         static const ChunkPropertyName MAX_BYTES_PER_LINE;
         static const ChunkPropertyName BLOB_TEXT_FORMAT;
-    };    
+    };
 
     enum class DataChunkBlobTextFormat
     {
@@ -156,25 +156,9 @@ namespace Finjin { namespace Common {
 
     struct DataChunkBlobTextFormatUtilities
     {
-        static Utf8String ToString(DataChunkBlobTextFormat value)
-        {
-            switch (value)
-            {
-                case DataChunkBlobTextFormat::BYTE_ARRAY: return "byte-array";
-                case DataChunkBlobTextFormat::BASE64: return "base64";
-                default: return "byte-array";
-            }
-        }
+        static Utf8String ToString(DataChunkBlobTextFormat value);
 
-        static DataChunkBlobTextFormat Parse(const Utf8String& value)
-        {
-            if (value == "byte-array")
-                return DataChunkBlobTextFormat::BYTE_ARRAY;
-            else if (value == "base64")
-                return DataChunkBlobTextFormat::BASE64;
-            else
-                return DataChunkBlobTextFormat::BYTE_ARRAY;
-        }
+        static DataChunkBlobTextFormat Parse(const Utf8String& value);
     };
 
 } }

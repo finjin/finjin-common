@@ -12,6 +12,7 @@
             <sourceRootList>
                 <sourceRootElem>/home/build/finjin-3rd-party/cpp/uriparser/src</sourceRootElem>
                 <sourceRootElem>/home/build/finjin-3rd-party/cpp/lpng</sourceRootElem>
+                <sourceRootElem>/home/build/finjin-3rd-party/cpp/xxHash</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

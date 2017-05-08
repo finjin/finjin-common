@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6508AF9D1E34C59800EB826E /* AllocatedQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF931E34C59800EB826E /* AllocatedQueue.hpp */; };
-		6508AF9E1E34C59800EB826E /* AllocatedUnorderedMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF941E34C59800EB826E /* AllocatedUnorderedMap.hpp */; };
-		6508AF9F1E34C59800EB826E /* AllocatedUnorderedSet.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF951E34C59800EB826E /* AllocatedUnorderedSet.hpp */; };
-		6508AFA01E34C59800EB826E /* AssignOrError.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF961E34C59800EB826E /* AssignOrError.hpp */; };
-		6508AFA11E34C59800EB826E /* QueueUtilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF971E34C59800EB826E /* QueueUtilities.hpp */; };
-		6508AFA21E34C59800EB826E /* SetMapUtilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF981E34C59800EB826E /* SetMapUtilities.hpp */; };
-		6508AFA31E34C59800EB826E /* StaticQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF991E34C59800EB826E /* StaticQueue.hpp */; };
-		6508AFA41E34C59800EB826E /* StaticUnorderedMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF9A1E34C59800EB826E /* StaticUnorderedMap.hpp */; };
-		6508AFA51E34C59800EB826E /* StaticUnorderedSet.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF9B1E34C59800EB826E /* StaticUnorderedSet.hpp */; };
-		6508AFA61E34C59800EB826E /* ValueOrError.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 6508AF9C1E34C59800EB826E /* ValueOrError.hpp */; };
 		650FA38F1D5B964E00535D8D /* VirtualFileHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA38D1D5B964E00535D8D /* VirtualFileHandle.cpp */; };
 		650FA3901D5B964E00535D8D /* VirtualFileOperationHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA38E1D5B964E00535D8D /* VirtualFileOperationHandle.cpp */; };
 		650FA4851D61419800535D8D /* MemoryArena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4831D61419800535D8D /* MemoryArena.cpp */; };
@@ -92,8 +82,7 @@
 		65430DC91DF1ADE500588409 /* DebugLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430DC71DF1ADE500588409 /* DebugLog.cpp */; };
 		65430E141DF32A3800588409 /* StringMatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E121DF32A3800588409 /* StringMatcher.cpp */; };
 		65430E151DF32A3800588409 /* Utf8StringCaseConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E131DF32A3800588409 /* Utf8StringCaseConverter.cpp */; };
-		65430E181DF32A5500588409 /* StringMatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65430E161DF32A5500588409 /* StringMatcher.hpp */; };
-		65430E191DF32A5500588409 /* Utf8StringCaseConverter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 65430E171DF32A5500588409 /* Utf8StringCaseConverter.hpp */; };
+		655216991EACC664006AEB40 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 655216961EACC664006AEB40 /* xxhash.c */; };
 		657AA0DE1E3D94F3004ADA22 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0C91E3D94F3004ADA22 /* png.c */; };
 		657AA0E21E3D94F3004ADA22 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0CD1E3D94F3004ADA22 /* pngerror.c */; };
 		657AA0E31E3D94F3004ADA22 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0CE1E3D94F3004ADA22 /* pngget.c */; };
@@ -110,7 +99,6 @@
 		657AA0F11E3D94F3004ADA22 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0DC1E3D94F3004ADA22 /* pngwtran.c */; };
 		657AA0F21E3D94F3004ADA22 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0DD1E3D94F3004ADA22 /* pngwutil.c */; };
 		657AA0F71E3D9549004ADA22 /* PNGReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0F61E3D9549004ADA22 /* PNGReader.cpp */; };
-		657AA1571E420DCF004ADA22 /* Hash.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 657AA1561E420DCE004ADA22 /* Hash.hpp */; };
 		657AA1671E43663E004ADA22 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1661E43663E004ADA22 /* Hash.cpp */; };
 		65C85FF91D90F09200348F9E /* BinaryDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65C85FF61D90F09100348F9E /* BinaryDataChunkReader.cpp */; };
 		65C85FFA1D90F09200348F9E /* BinaryDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65C85FF71D90F09200348F9E /* BinaryDataChunkWriter.cpp */; };
@@ -122,7 +110,7 @@
 		65E6F4F41C526245005F5DF2 /* ByteBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F49F1C526245005F5DF2 /* ByteBuffer.cpp */; };
 		65E6F4F51C526245005F5DF2 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A01C526245005F5DF2 /* Chrono.cpp */; };
 		65E6F4F71C526245005F5DF2 /* ChunkName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A21C526245005F5DF2 /* ChunkName.cpp */; };
-		65E6F4F81C526245005F5DF2 /* ClassDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A31C526245005F5DF2 /* ClassDescription.cpp */; };
+		65E6F4F81C526245005F5DF2 /* TypeDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A31C526245005F5DF2 /* TypeDescription.cpp */; };
 		65E6F4F91C526245005F5DF2 /* CommandLineArgsProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A41C526245005F5DF2 /* CommandLineArgsProcessor.cpp */; };
 		65E6F4FA1C526245005F5DF2 /* CommandLineSettingsDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A51C526245005F5DF2 /* CommandLineSettingsDescription.cpp */; };
 		65E6F4FB1C526245005F5DF2 /* FinjinPrecompiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4A61C526245005F5DF2 /* FinjinPrecompiled.cpp */; };
@@ -154,10 +142,8 @@
 		65E6F52B1C526245005F5DF2 /* NamePrefix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4D61C526245005F5DF2 /* NamePrefix.cpp */; };
 		65E6F52D1C526245005F5DF2 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4D81C526245005F5DF2 /* Path.cpp */; };
 		65E6F52E1C526245005F5DF2 /* PerformanceCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4D91C526245005F5DF2 /* PerformanceCounter.cpp */; };
-		65E6F5321C526245005F5DF2 /* RangedNameGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4DD1C526245005F5DF2 /* RangedNameGenerator.cpp */; };
 		65E6F5331C526245005F5DF2 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4DE1C526245005F5DF2 /* Settings.cpp */; };
 		65E6F5341C526245005F5DF2 /* SingleEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4DF1C526245005F5DF2 /* SingleEvent.cpp */; };
-		65E6F5361C526245005F5DF2 /* StringKeyValueMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4E11C526245005F5DF2 /* StringKeyValueMap.cpp */; };
 		65E6F5391C526245005F5DF2 /* TextDataChunkReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4E41C526245005F5DF2 /* TextDataChunkReader.cpp */; };
 		65E6F53A1C526245005F5DF2 /* TextDataChunkWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4E51C526245005F5DF2 /* TextDataChunkWriter.cpp */; };
 		65E6F53C1C526245005F5DF2 /* Uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4E71C526245005F5DF2 /* Uri.cpp */; };
@@ -171,15 +157,17 @@
 		65E6F6031C52682D005F5DF2 /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F6021C52682D005F5DF2 /* iostream.cpp */; };
 		65E6F6221C526869005F5DF2 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F6201C526869005F5DF2 /* tinyxml2.cpp */; };
 		65E6F65D1C527573005F5DF2 /* LogicalCpu_macOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F65C1C527573005F5DF2 /* LogicalCpu_macOS.cpp */; };
+		65F7C1761EADC4E70084EC43 /* CpuFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C1751EADC4E70084EC43 /* CpuFeatures.cpp */; };
+		65F7C17C1EADD9270084EC43 /* PNGWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65F7C17B1EADD9270084EC43 /* PNGWriter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6508AF931E34C59800EB826E /* AllocatedQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedQueue.hpp; path = ../../include/finjin/common/AllocatedQueue.hpp; sourceTree = SOURCE_ROOT; };
-		6508AF941E34C59800EB826E /* AllocatedUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedUnorderedMap.hpp; path = ../../include/finjin/common/AllocatedUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
-		6508AF951E34C59800EB826E /* AllocatedUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedUnorderedSet.hpp; path = ../../include/finjin/common/AllocatedUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
+		6508AF931E34C59800EB826E /* DynamicQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DynamicQueue.hpp; path = ../../include/finjin/common/DynamicQueue.hpp; sourceTree = SOURCE_ROOT; };
+		6508AF941E34C59800EB826E /* DynamicUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DynamicUnorderedMap.hpp; path = ../../include/finjin/common/DynamicUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
+		6508AF951E34C59800EB826E /* DynamicUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DynamicUnorderedSet.hpp; path = ../../include/finjin/common/DynamicUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
 		6508AF961E34C59800EB826E /* AssignOrError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AssignOrError.hpp; path = ../../include/finjin/common/AssignOrError.hpp; sourceTree = SOURCE_ROOT; };
-		6508AF971E34C59800EB826E /* QueueUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = QueueUtilities.hpp; path = ../../include/finjin/common/QueueUtilities.hpp; sourceTree = SOURCE_ROOT; };
-		6508AF981E34C59800EB826E /* SetMapUtilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SetMapUtilities.hpp; path = ../../include/finjin/common/SetMapUtilities.hpp; sourceTree = SOURCE_ROOT; };
+		6508AF971E34C59800EB826E /* QueueImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = QueueImpl.hpp; path = ../../include/finjin/common/QueueImpl.hpp; sourceTree = SOURCE_ROOT; };
+		6508AF981E34C59800EB826E /* SetMapImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SetMapImpl.hpp; path = ../../include/finjin/common/SetMapImpl.hpp; sourceTree = SOURCE_ROOT; };
 		6508AF991E34C59800EB826E /* StaticQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticQueue.hpp; path = ../../include/finjin/common/StaticQueue.hpp; sourceTree = SOURCE_ROOT; };
 		6508AF9A1E34C59800EB826E /* StaticUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedMap.hpp; path = ../../include/finjin/common/StaticUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
 		6508AF9B1E34C59800EB826E /* StaticUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedSet.hpp; path = ../../include/finjin/common/StaticUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
@@ -190,18 +178,18 @@
 		650FA38E1D5B964E00535D8D /* VirtualFileOperationHandle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = VirtualFileOperationHandle.cpp; path = ../../src/VirtualFileOperationHandle.cpp; sourceTree = SOURCE_ROOT; };
 		650FA3911D5B968000535D8D /* DataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderInput.hpp; path = ../../include/finjin/common/DataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3921D5B968000535D8D /* DocumentWriterOutput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DocumentWriterOutput.hpp; path = ../../include/finjin/common/DocumentWriterOutput.hpp; sourceTree = SOURCE_ROOT; };
-		650FA3931D5B968000535D8D /* EnumValues.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnumValues.hpp; path = ../../include/finjin/common/EnumValues.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3931D5B968000535D8D /* EnumArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnumArray.hpp; path = ../../include/finjin/common/EnumArray.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3941D5B968000535D8D /* RequestedValue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RequestedValue.hpp; path = ../../include/finjin/common/RequestedValue.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3951D5B968000535D8D /* UsableStaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsableStaticVector.hpp; path = ../../include/finjin/common/UsableStaticVector.hpp; sourceTree = SOURCE_ROOT; };
-		650FA3961D5B968000535D8D /* UsableAllocatedVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsableAllocatedVector.hpp; path = ../../include/finjin/common/UsableAllocatedVector.hpp; sourceTree = SOURCE_ROOT; };
+		650FA3961D5B968000535D8D /* UsableDynamicVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = UsableDynamicVector.hpp; path = ../../include/finjin/common/UsableDynamicVector.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3971D5B968000535D8D /* VirtualFileHandle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileHandle.hpp; path = ../../include/finjin/common/VirtualFileHandle.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3981D5B968000535D8D /* VirtualFileHandleDataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileHandleDataChunkReaderInput.hpp; path = ../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3991D5B968000535D8D /* VirtualFileOperationHandle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileOperationHandle.hpp; path = ../../include/finjin/common/VirtualFileOperationHandle.hpp; sourceTree = SOURCE_ROOT; };
-		650FA4831D61419800535D8D /* MemoryArena.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryArena.cpp; path = ../../src/MemoryArena.cpp; sourceTree = "<group>"; };
-		650FA4841D61419800535D8D /* PassthroughSystemAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PassthroughSystemAllocator.cpp; path = ../../src/PassthroughSystemAllocator.cpp; sourceTree = "<group>"; };
-		650FA4871D6141BC00535D8D /* DefaultAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultAllocator.hpp; path = ../../include/finjin/common/DefaultAllocator.hpp; sourceTree = "<group>"; };
-		650FA4881D6141BC00535D8D /* MemoryArena.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArena.hpp; path = ../../include/finjin/common/MemoryArena.hpp; sourceTree = "<group>"; };
-		650FA4891D6141BC00535D8D /* PassthroughSystemAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PassthroughSystemAllocator.hpp; path = ../../include/finjin/common/PassthroughSystemAllocator.hpp; sourceTree = "<group>"; };
+		650FA4831D61419800535D8D /* MemoryArena.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryArena.cpp; path = ../../src/MemoryArena.cpp; sourceTree = SOURCE_ROOT; };
+		650FA4841D61419800535D8D /* PassthroughSystemAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PassthroughSystemAllocator.cpp; path = ../../src/PassthroughSystemAllocator.cpp; sourceTree = SOURCE_ROOT; };
+		650FA4871D6141BC00535D8D /* DefaultAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultAllocator.hpp; path = ../../include/finjin/common/DefaultAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4881D6141BC00535D8D /* MemoryArena.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArena.hpp; path = ../../include/finjin/common/MemoryArena.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4891D6141BC00535D8D /* PassthroughSystemAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PassthroughSystemAllocator.hpp; path = ../../include/finjin/common/PassthroughSystemAllocator.hpp; sourceTree = SOURCE_ROOT; };
 		650FA48D1D64288300535D8D /* UriCommon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCommon.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCommon.c"; sourceTree = "<absolute>"; };
 		650FA48E1D64288300535D8D /* UriCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriCommon.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCommon.h"; sourceTree = "<absolute>"; };
 		650FA48F1D64288300535D8D /* UriCompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCompare.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/uriparser/src/UriCompare.c"; sourceTree = "<absolute>"; };
@@ -298,8 +286,8 @@
 		65127C9E1CBA33540041C324 /* ConfigDocumentWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigDocumentWriter.cpp; path = ../../src/ConfigDocumentWriter.cpp; sourceTree = SOURCE_ROOT; };
 		65127CB91CBB0D380041C324 /* DomainInformation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DomainInformation.cpp; path = ../../src/DomainInformation.cpp; sourceTree = SOURCE_ROOT; };
 		65127CBE1CBB0D740041C324 /* DomainInformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DomainInformation.hpp; path = ../../include/finjin/common/DomainInformation.hpp; sourceTree = SOURCE_ROOT; };
-		65127CC01CC1E6130041C324 /* BitArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BitArray.hpp; path = ../../include/finjin/common/BitArray.hpp; sourceTree = "<group>"; };
-		65127CC11CC1E6130041C324 /* ScreenOrientation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ScreenOrientation.hpp; path = ../../include/finjin/common/ScreenOrientation.hpp; sourceTree = "<group>"; };
+		65127CC01CC1E6130041C324 /* BitArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BitArray.hpp; path = ../../include/finjin/common/BitArray.hpp; sourceTree = SOURCE_ROOT; };
+		65127CC11CC1E6130041C324 /* ScreenOrientation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ScreenOrientation.hpp; path = ../../include/finjin/common/ScreenOrientation.hpp; sourceTree = SOURCE_ROOT; };
 		65127D531CF4F73E0041C324 /* DebugLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DebugLog.hpp; path = ../../include/finjin/common/DebugLog.hpp; sourceTree = SOURCE_ROOT; };
 		65127D541CF4F73E0041C324 /* IntrusiveList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = IntrusiveList.hpp; path = ../../include/finjin/common/IntrusiveList.hpp; sourceTree = SOURCE_ROOT; };
 		65127D551CF4F73E0041C324 /* Throttle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Throttle.hpp; path = ../../include/finjin/common/Throttle.hpp; sourceTree = SOURCE_ROOT; };
@@ -324,7 +312,7 @@
 		65430DA31DF1AA9F00588409 /* DataChunkReaderCallbacks.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderCallbacks.hpp; path = ../../include/finjin/common/DataChunkReaderCallbacks.hpp; sourceTree = SOURCE_ROOT; };
 		65430DA51DF1AAB600588409 /* DataChunkReaderCallbacks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataChunkReaderCallbacks.cpp; path = ../../src/DataChunkReaderCallbacks.cpp; sourceTree = SOURCE_ROOT; };
 		65430DA71DF1AB6500588409 /* AlignedElementStaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AlignedElementStaticVector.hpp; path = ../../include/finjin/common/AlignedElementStaticVector.hpp; sourceTree = SOURCE_ROOT; };
-		65430DA81DF1AB6500588409 /* AllocatedVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AllocatedVector.hpp; path = ../../include/finjin/common/AllocatedVector.hpp; sourceTree = SOURCE_ROOT; };
+		65430DA81DF1AB6500588409 /* DynamicVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DynamicVector.hpp; path = ../../include/finjin/common/DynamicVector.hpp; sourceTree = SOURCE_ROOT; };
 		65430DA91DF1AB6500588409 /* MemoryArchitecture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArchitecture.hpp; path = ../../include/finjin/common/MemoryArchitecture.hpp; sourceTree = SOURCE_ROOT; };
 		65430DAA1DF1AB6500588409 /* StaticVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticVector.hpp; path = ../../include/finjin/common/StaticVector.hpp; sourceTree = SOURCE_ROOT; };
 		65430DAB1DF1AB6500588409 /* StreamingFileFormat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StreamingFileFormat.hpp; path = ../../include/finjin/common/StreamingFileFormat.hpp; sourceTree = SOURCE_ROOT; };
@@ -343,6 +331,8 @@
 		65430E131DF32A3800588409 /* Utf8StringCaseConverter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utf8StringCaseConverter.cpp; path = ../../src/Utf8StringCaseConverter.cpp; sourceTree = SOURCE_ROOT; };
 		65430E161DF32A5500588409 /* StringMatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StringMatcher.hpp; path = ../../include/finjin/common/StringMatcher.hpp; sourceTree = SOURCE_ROOT; };
 		65430E171DF32A5500588409 /* Utf8StringCaseConverter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Utf8StringCaseConverter.hpp; path = ../../include/finjin/common/Utf8StringCaseConverter.hpp; sourceTree = SOURCE_ROOT; };
+		655216961EACC664006AEB40 /* xxhash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = ../../../../../../other/xxHash/xxhash.c; sourceTree = SOURCE_ROOT; };
+		655216971EACC664006AEB40 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = ../../../../../../other/xxHash/xxhash.h; sourceTree = SOURCE_ROOT; };
 		657AA0C91E3D94F3004ADA22 /* png.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = png.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/png.c"; sourceTree = "<absolute>"; };
 		657AA0CA1E3D94F3004ADA22 /* png.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = png.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/png.h"; sourceTree = "<absolute>"; };
 		657AA0CB1E3D94F3004ADA22 /* pngconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngconf.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/macos-xcode/../../../../../../../finjin-3rd-party/cpp/lpng/pngconf.h"; sourceTree = "<absolute>"; };
@@ -384,7 +374,7 @@
 		65E6F4A01C526245005F5DF2 /* Chrono.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Chrono.cpp; path = ../../src/Chrono.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4A11C526245005F5DF2 /* Math.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Math.hpp; path = ../../include/finjin/common/Math.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F4A21C526245005F5DF2 /* ChunkName.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChunkName.cpp; path = ../../src/ChunkName.cpp; sourceTree = SOURCE_ROOT; };
-		65E6F4A31C526245005F5DF2 /* ClassDescription.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ClassDescription.cpp; path = ../../src/ClassDescription.cpp; sourceTree = SOURCE_ROOT; };
+		65E6F4A31C526245005F5DF2 /* TypeDescription.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TypeDescription.cpp; path = ../../src/TypeDescription.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4A41C526245005F5DF2 /* CommandLineArgsProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CommandLineArgsProcessor.cpp; path = ../../src/CommandLineArgsProcessor.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4A51C526245005F5DF2 /* CommandLineSettingsDescription.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CommandLineSettingsDescription.cpp; path = ../../src/CommandLineSettingsDescription.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4A61C526245005F5DF2 /* FinjinPrecompiled.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FinjinPrecompiled.cpp; path = ../../src/FinjinPrecompiled.cpp; sourceTree = SOURCE_ROOT; };
@@ -424,10 +414,8 @@
 		65E6F4D61C526245005F5DF2 /* NamePrefix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NamePrefix.cpp; path = ../../src/NamePrefix.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4D81C526245005F5DF2 /* Path.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Path.cpp; path = ../../src/Path.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4D91C526245005F5DF2 /* PerformanceCounter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PerformanceCounter.cpp; path = ../../src/PerformanceCounter.cpp; sourceTree = SOURCE_ROOT; };
-		65E6F4DD1C526245005F5DF2 /* RangedNameGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RangedNameGenerator.cpp; path = ../../src/RangedNameGenerator.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4DE1C526245005F5DF2 /* Settings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Settings.cpp; path = ../../src/Settings.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4DF1C526245005F5DF2 /* SingleEvent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SingleEvent.cpp; path = ../../src/SingleEvent.cpp; sourceTree = SOURCE_ROOT; };
-		65E6F4E11C526245005F5DF2 /* StringKeyValueMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StringKeyValueMap.cpp; path = ../../src/StringKeyValueMap.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4E21C526245005F5DF2 /* UserInformation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UserInformation.cpp; path = ../../src/UserInformation.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4E41C526245005F5DF2 /* TextDataChunkReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextDataChunkReader.cpp; path = ../../src/TextDataChunkReader.cpp; sourceTree = SOURCE_ROOT; };
 		65E6F4E51C526245005F5DF2 /* TextDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextDataChunkWriter.cpp; path = ../../src/TextDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
@@ -445,7 +433,7 @@
 		65E6F5491C52625E005F5DF2 /* ByteBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ByteBuffer.hpp; path = ../../include/finjin/common/ByteBuffer.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F54A1C52625E005F5DF2 /* Chrono.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Chrono.hpp; path = ../../include/finjin/common/Chrono.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F54B1C52625E005F5DF2 /* ChunkName.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ChunkName.hpp; path = ../../include/finjin/common/ChunkName.hpp; sourceTree = SOURCE_ROOT; };
-		65E6F54C1C52625E005F5DF2 /* ClassDescription.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ClassDescription.hpp; path = ../../include/finjin/common/ClassDescription.hpp; sourceTree = SOURCE_ROOT; };
+		65E6F54C1C52625E005F5DF2 /* TypeDescription.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = TypeDescription.hpp; path = ../../include/finjin/common/TypeDescription.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F54D1C52625E005F5DF2 /* CommandLineArgsProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CommandLineArgsProcessor.hpp; path = ../../include/finjin/common/CommandLineArgsProcessor.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F54E1C52625E005F5DF2 /* CommandLineSettingsDescription.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CommandLineSettingsDescription.hpp; path = ../../include/finjin/common/CommandLineSettingsDescription.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F54F1C52625E005F5DF2 /* GeneralAllocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = GeneralAllocator.hpp; path = ../../include/finjin/common/GeneralAllocator.hpp; sourceTree = SOURCE_ROOT; };
@@ -487,12 +475,9 @@
 		65E6F57F1C52625E005F5DF2 /* Path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Path.hpp; path = ../../include/finjin/common/Path.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5801C52625E005F5DF2 /* PerformanceCounter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerformanceCounter.hpp; path = ../../include/finjin/common/PerformanceCounter.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5811C52625E005F5DF2 /* RealTimeLruCache.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = RealTimeLruCache.hpp; path = ../../include/finjin/common/RealTimeLruCache.hpp; sourceTree = SOURCE_ROOT; };
-		65E6F5861C52625E005F5DF2 /* RangedNameGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = RangedNameGenerator.hpp; path = ../../include/finjin/common/RangedNameGenerator.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5871C52625E005F5DF2 /* Settings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Settings.hpp; path = ../../include/finjin/common/Settings.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F58B1C52625E005F5DF2 /* SimpleSpinLockMutex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = SimpleSpinLockMutex.hpp; path = ../../include/finjin/common/SimpleSpinLockMutex.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F58C1C52625E005F5DF2 /* SingleEvent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = SingleEvent.hpp; path = ../../include/finjin/common/SingleEvent.hpp; sourceTree = SOURCE_ROOT; };
-		65E6F58E1C52625E005F5DF2 /* Vector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Vector.hpp; path = ../../include/finjin/common/Vector.hpp; sourceTree = SOURCE_ROOT; };
-		65E6F58F1C52625E005F5DF2 /* StringKeyValueMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = StringKeyValueMap.hpp; path = ../../include/finjin/common/StringKeyValueMap.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5901C52625E005F5DF2 /* UserInformation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = UserInformation.hpp; path = ../../include/finjin/common/UserInformation.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5911C52625E005F5DF2 /* TaggedMemoryBlockAllocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = TaggedMemoryBlockAllocator.hpp; path = ../../include/finjin/common/TaggedMemoryBlockAllocator.hpp; sourceTree = SOURCE_ROOT; };
 		65E6F5931C52625E005F5DF2 /* TextDataChunkReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = TextDataChunkReader.hpp; path = ../../include/finjin/common/TextDataChunkReader.hpp; sourceTree = SOURCE_ROOT; };
@@ -523,6 +508,10 @@
 		65E6F6201C526869005F5DF2 /* tinyxml2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = "../../../../../../../finjin-3rd-party/cpp/tinyxml/tinyxml2.cpp"; sourceTree = SOURCE_ROOT; };
 		65E6F6211C526869005F5DF2 /* tinyxml2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = "../../../../../../../finjin-3rd-party/cpp/tinyxml/tinyxml2.h"; sourceTree = SOURCE_ROOT; };
 		65E6F65C1C527573005F5DF2 /* LogicalCpu_macOS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LogicalCpu_macOS.cpp; path = ../../src/LogicalCpu_macOS.cpp; sourceTree = SOURCE_ROOT; };
+		65F7C1751EADC4E70084EC43 /* CpuFeatures.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CpuFeatures.cpp; path = ../../src/CpuFeatures.cpp; sourceTree = SOURCE_ROOT; };
+		65F7C1771EADC4F30084EC43 /* CpuFeatures.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CpuFeatures.hpp; path = ../../include/finjin/common/CpuFeatures.hpp; sourceTree = SOURCE_ROOT; };
+		65F7C1791EADD9190084EC43 /* PNGWriter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PNGWriter.hpp; path = ../../include/finjin/common/PNGWriter.hpp; sourceTree = SOURCE_ROOT; };
+		65F7C17B1EADD9270084EC43 /* PNGWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PNGWriter.cpp; path = ../../src/PNGWriter.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -588,8 +577,8 @@
 				65430DB91DF1AC2000588409 /* FileAccessor.hpp */,
 				65127BDC1CB0DBD10041C324 /* FileFinder.hpp */,
 				6512886E1D13BC730041C324 /* FileOperationTypes.hpp */,
-				65127C061CB1A4060041C324 /* FileSystemEntry.hpp */,
 				65127C001CB1A3F60041C324 /* FileSystemEntry.cpp */,
+				65127C061CB1A4060041C324 /* FileSystemEntry.hpp */,
 				65E6F4D81C526245005F5DF2 /* Path.cpp */,
 				65E6F57F1C52625E005F5DF2 /* Path.hpp */,
 				65127C161CB3A4A70041C324 /* StandardPaths.hpp */,
@@ -676,11 +665,22 @@
 			name = writer;
 			sourceTree = "<group>";
 		};
+		655216951EACC5F2006AEB40 /* xxhash */ = {
+			isa = PBXGroup;
+			children = (
+				655216961EACC664006AEB40 /* xxhash.c */,
+				655216971EACC664006AEB40 /* xxhash.h */,
+			);
+			name = xxhash;
+			sourceTree = "<group>";
+		};
 		657AA0C61E3D943D004ADA22 /* external-file-formats */ = {
 			isa = PBXGroup;
 			children = (
 				657AA0F61E3D9549004ADA22 /* PNGReader.cpp */,
 				657AA0F41E3D9537004ADA22 /* PNGReader.hpp */,
+				65F7C17B1EADD9270084EC43 /* PNGWriter.cpp */,
+				65F7C1791EADD9190084EC43 /* PNGWriter.hpp */,
 				65127BD81CB0DBB20041C324 /* ZIPReader.cpp */,
 				65127BDD1CB0DBD10041C324 /* ZIPReader.hpp */,
 			);
@@ -735,12 +735,15 @@
 			isa = PBXGroup;
 			children = (
 				65E6F48C1C526126005F5DF2 /* 3rd-party */,
+				65F7C1641EADB96C0084EC43 /* collections */,
 				65E6F48D1C52612D005F5DF2 /* documents */,
 				657AA0C61E3D943D004ADA22 /* external-file-formats */,
 				65127C0E1CB1BE5B0041C324 /* file-system */,
 				65E6F48E1C52613A005F5DF2 /* job-system */,
 				65E6F48F1C526141005F5DF2 /* logging */,
+				65F7C1651EADB9750084EC43 /* math */,
 				65E6F4901C526146005F5DF2 /* memory */,
+				65F7C1661EADB97C0084EC43 /* string */,
 				65127C121CB1CD730041C324 /* thread */,
 				65E6F4911C52614B005F5DF2 /* utilities */,
 				65E6F5641C52625E005F5DF2 /* FinjinCommonLibrary.hpp */,
@@ -758,6 +761,7 @@
 				65E6F4941C5261BA005F5DF2 /* rapidjson */,
 				65E6F4931C5261B4005F5DF2 /* tinyxml2 */,
 				65E6F4921C5261AE005F5DF2 /* uriparser */,
+				655216951EACC5F2006AEB40 /* xxhash */,
 				65127C441CB51A280041C324 /* zlib */,
 				65127B151CB0D1A40041C324 /* zziplib */,
 			);
@@ -832,49 +836,32 @@
 		65E6F4911C52614B005F5DF2 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
-				65430DA71DF1AB6500588409 /* AlignedElementStaticVector.hpp */,
-				6508AF931E34C59800EB826E /* AllocatedQueue.hpp */,
-				6508AF941E34C59800EB826E /* AllocatedUnorderedMap.hpp */,
-				6508AF951E34C59800EB826E /* AllocatedUnorderedSet.hpp */,
-				65430DA81DF1AB6500588409 /* AllocatedVector.hpp */,
-				65C860071D90F45700348F9E /* Angle.cpp */,
-				65C8600B1D90F46C00348F9E /* Angle.hpp */,
-				65127C651CB855040041C324 /* AppleUtilities.mm */,
 				65127C631CB854D60041C324 /* AppleUtilities.hpp */,
+				65127C651CB855040041C324 /* AppleUtilities.mm */,
 				6508AF961E34C59800EB826E /* AssignOrError.hpp */,
 				65E6F49E1C526245005F5DF2 /* Base64.cpp */,
 				65E6F5481C52625E005F5DF2 /* Base64.hpp */,
-				65127CC01CC1E6130041C324 /* BitArray.hpp */,
-				65E6F49F1C526245005F5DF2 /* ByteBuffer.cpp */,
-				65E6F5491C52625E005F5DF2 /* ByteBuffer.hpp */,
 				650FA3311D32170400535D8D /* ByteOrder.hpp */,
 				65E6F4A01C526245005F5DF2 /* Chrono.cpp */,
 				65E6F54A1C52625E005F5DF2 /* Chrono.hpp */,
-				65E6F4A31C526245005F5DF2 /* ClassDescription.cpp */,
-				65E6F54C1C52625E005F5DF2 /* ClassDescription.hpp */,
 				65E6F4A41C526245005F5DF2 /* CommandLineArgsProcessor.cpp */,
 				65E6F54D1C52625E005F5DF2 /* CommandLineArgsProcessor.hpp */,
 				65E6F4A51C526245005F5DF2 /* CommandLineSettingsDescription.cpp */,
 				65E6F54E1C52625E005F5DF2 /* CommandLineSettingsDescription.hpp */,
 				65E6F4AA1C526245005F5DF2 /* Convert.cpp */,
 				65E6F5511C52625E005F5DF2 /* Convert.hpp */,
-				65C860081D90F45700348F9E /* Distance.cpp */,
-				65C8600C1D90F46C00348F9E /* Distance.hpp */,
+				65F7C1751EADC4E70084EC43 /* CpuFeatures.cpp */,
+				65F7C1771EADC4F30084EC43 /* CpuFeatures.hpp */,
 				65127CB91CBB0D380041C324 /* DomainInformation.cpp */,
 				65127CBE1CBB0D740041C324 /* DomainInformation.hpp */,
 				65127C971CBA33230041C324 /* EnumBitwise.hpp */,
-				650FA3931D5B968000535D8D /* EnumValues.hpp */,
 				65E6F4B11C526245005F5DF2 /* Error.cpp */,
 				65E6F55B1C52625E005F5DF2 /* Error.hpp */,
 				657AA1661E43663E004ADA22 /* Hash.cpp */,
 				657AA1561E420DCE004ADA22 /* Hash.hpp */,
-				65127D541CF4F73E0041C324 /* IntrusiveList.hpp */,
 				650FA3321D32170400535D8D /* LayoutDirection.hpp */,
 				65E6F65C1C527573005F5DF2 /* LogicalCpu_macOS.cpp */,
 				65E6F5781C52625E005F5DF2 /* LogicalCpu.hpp */,
-				65E6F57B1C52625E005F5DF2 /* LruCache.hpp */,
-				65430DBA1DF1AC2000588409 /* Math.cpp */,
-				65E6F4A11C526245005F5DF2 /* Math.hpp */,
 				65E6F4D61C526245005F5DF2 /* NamePrefix.cpp */,
 				65E6F57D1C52625E005F5DF2 /* NamePrefix.hpp */,
 				651288721D220D110041C324 /* NumericStruct.hpp */,
@@ -884,30 +871,17 @@
 				651288131D0C87580041C324 /* ProcessID.hpp */,
 				65127C6F1CB8E2030041C324 /* ProcessRuntimeInformation.cpp */,
 				65127C6D1CB8E1EE0041C324 /* ProcessRuntimeInformation.hpp */,
-				6508AF971E34C59800EB826E /* QueueUtilities.hpp */,
-				65E6F4DD1C526245005F5DF2 /* RangedNameGenerator.cpp */,
-				65E6F5861C52625E005F5DF2 /* RangedNameGenerator.hpp */,
-				65E6F5811C52625E005F5DF2 /* RealTimeLruCache.hpp */,
 				650FA3941D5B968000535D8D /* RequestedValue.hpp */,
 				65127CC11CC1E6130041C324 /* ScreenOrientation.hpp */,
-				6508AF981E34C59800EB826E /* SetMapUtilities.hpp */,
 				65127C981CBA33230041C324 /* Setting.hpp */,
 				65E6F4DE1C526245005F5DF2 /* Settings.cpp */,
 				65E6F5871C52625E005F5DF2 /* Settings.hpp */,
 				65E6F58B1C52625E005F5DF2 /* SimpleSpinLockMutex.hpp */,
 				65E6F4DF1C526245005F5DF2 /* SingleEvent.cpp */,
 				65E6F58C1C52625E005F5DF2 /* SingleEvent.hpp */,
-				6508AF991E34C59800EB826E /* StaticQueue.hpp */,
-				6508AF9A1E34C59800EB826E /* StaticUnorderedMap.hpp */,
-				6508AF9B1E34C59800EB826E /* StaticUnorderedSet.hpp */,
-				65430DAA1DF1AB6500588409 /* StaticVector.hpp */,
-				65E6F4E11C526245005F5DF2 /* StringKeyValueMap.cpp */,
-				65E6F58F1C52625E005F5DF2 /* StringKeyValueMap.hpp */,
-				65430E121DF32A3800588409 /* StringMatcher.cpp */,
-				65430E161DF32A5500588409 /* StringMatcher.hpp */,
 				65127D551CF4F73E0041C324 /* Throttle.hpp */,
-				650FA3951D5B968000535D8D /* UsableStaticVector.hpp */,
-				650FA3961D5B968000535D8D /* UsableAllocatedVector.hpp */,
+				65E6F4A31C526245005F5DF2 /* TypeDescription.cpp */,
+				65E6F54C1C52625E005F5DF2 /* TypeDescription.hpp */,
 				65E6F4E21C526245005F5DF2 /* UserInformation.cpp */,
 				65E6F5901C52625E005F5DF2 /* UserInformation.hpp */,
 				65127C1B1CB3AA2A0041C324 /* UserInformation.mm */,
@@ -915,16 +889,9 @@
 				65E6F5971C52625E005F5DF2 /* Uri.hpp */,
 				65E6F4E81C526245005F5DF2 /* UsageFormatter.cpp */,
 				65E6F5981C52625E005F5DF2 /* UsageFormatter.hpp */,
-				65E6F4E91C526245005F5DF2 /* Utf8String.cpp */,
-				65E6F5991C52625E005F5DF2 /* Utf8String.hpp */,
-				65430E131DF32A3800588409 /* Utf8StringCaseConverter.cpp */,
-				65430E171DF32A5500588409 /* Utf8StringCaseConverter.hpp */,
-				65E6F4EA1C526245005F5DF2 /* Utf8StringFormatter.cpp */,
-				65E6F59A1C52625E005F5DF2 /* Utf8StringFormatter.hpp */,
 				65E6F4EB1C526245005F5DF2 /* Uuid.cpp */,
 				65E6F59B1C52625E005F5DF2 /* Uuid.hpp */,
 				6508AF9C1E34C59800EB826E /* ValueOrError.hpp */,
-				65E6F58E1C52625E005F5DF2 /* Vector.hpp */,
 				6512818E1D07CB1E0041C324 /* Version.cpp */,
 				6512818C1D07CB070041C324 /* Version.hpp */,
 			);
@@ -1107,6 +1074,61 @@
 			name = future;
 			sourceTree = "<group>";
 		};
+		65F7C1641EADB96C0084EC43 /* collections */ = {
+			isa = PBXGroup;
+			children = (
+				65430DA71DF1AB6500588409 /* AlignedElementStaticVector.hpp */,
+				65127CC01CC1E6130041C324 /* BitArray.hpp */,
+				65E6F49F1C526245005F5DF2 /* ByteBuffer.cpp */,
+				65E6F5491C52625E005F5DF2 /* ByteBuffer.hpp */,
+				6508AF931E34C59800EB826E /* DynamicQueue.hpp */,
+				6508AF941E34C59800EB826E /* DynamicUnorderedMap.hpp */,
+				6508AF951E34C59800EB826E /* DynamicUnorderedSet.hpp */,
+				65430DA81DF1AB6500588409 /* DynamicVector.hpp */,
+				650FA3931D5B968000535D8D /* EnumArray.hpp */,
+				65127D541CF4F73E0041C324 /* IntrusiveList.hpp */,
+				65E6F57B1C52625E005F5DF2 /* LruCache.hpp */,
+				6508AF971E34C59800EB826E /* QueueImpl.hpp */,
+				65E6F5811C52625E005F5DF2 /* RealTimeLruCache.hpp */,
+				6508AF981E34C59800EB826E /* SetMapImpl.hpp */,
+				6508AF991E34C59800EB826E /* StaticQueue.hpp */,
+				6508AF9A1E34C59800EB826E /* StaticUnorderedMap.hpp */,
+				6508AF9B1E34C59800EB826E /* StaticUnorderedSet.hpp */,
+				65430DAA1DF1AB6500588409 /* StaticVector.hpp */,
+				650FA3961D5B968000535D8D /* UsableDynamicVector.hpp */,
+				650FA3951D5B968000535D8D /* UsableStaticVector.hpp */,
+			);
+			name = collections;
+			sourceTree = "<group>";
+		};
+		65F7C1651EADB9750084EC43 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				65C860071D90F45700348F9E /* Angle.cpp */,
+				65C8600B1D90F46C00348F9E /* Angle.hpp */,
+				65C860081D90F45700348F9E /* Distance.cpp */,
+				65C8600C1D90F46C00348F9E /* Distance.hpp */,
+				65430DBA1DF1AC2000588409 /* Math.cpp */,
+				65E6F4A11C526245005F5DF2 /* Math.hpp */,
+			);
+			name = math;
+			sourceTree = "<group>";
+		};
+		65F7C1661EADB97C0084EC43 /* string */ = {
+			isa = PBXGroup;
+			children = (
+				65430E121DF32A3800588409 /* StringMatcher.cpp */,
+				65430E161DF32A5500588409 /* StringMatcher.hpp */,
+				65E6F4E91C526245005F5DF2 /* Utf8String.cpp */,
+				65E6F5991C52625E005F5DF2 /* Utf8String.hpp */,
+				65430E131DF32A3800588409 /* Utf8StringCaseConverter.cpp */,
+				65430E171DF32A5500588409 /* Utf8StringCaseConverter.hpp */,
+				65E6F4EA1C526245005F5DF2 /* Utf8StringFormatter.cpp */,
+				65E6F59A1C52625E005F5DF2 /* Utf8StringFormatter.hpp */,
+			);
+			name = string;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1114,19 +1136,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				657AA1571E420DCF004ADA22 /* Hash.hpp in Headers */,
-				6508AF9F1E34C59800EB826E /* AllocatedUnorderedSet.hpp in Headers */,
-				6508AFA11E34C59800EB826E /* QueueUtilities.hpp in Headers */,
-				6508AFA41E34C59800EB826E /* StaticUnorderedMap.hpp in Headers */,
-				6508AF9D1E34C59800EB826E /* AllocatedQueue.hpp in Headers */,
-				6508AFA31E34C59800EB826E /* StaticQueue.hpp in Headers */,
-				65430E181DF32A5500588409 /* StringMatcher.hpp in Headers */,
-				6508AFA51E34C59800EB826E /* StaticUnorderedSet.hpp in Headers */,
-				6508AF9E1E34C59800EB826E /* AllocatedUnorderedMap.hpp in Headers */,
-				65430E191DF32A5500588409 /* Utf8StringCaseConverter.hpp in Headers */,
-				6508AFA01E34C59800EB826E /* AssignOrError.hpp in Headers */,
-				6508AFA61E34C59800EB826E /* ValueOrError.hpp in Headers */,
-				6508AFA21E34C59800EB826E /* SetMapUtilities.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1195,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F7C17C1EADD9270084EC43 /* PNGWriter.cpp in Sources */,
+				65F7C1761EADC4E70084EC43 /* CpuFeatures.cpp in Sources */,
+				655216991EACC664006AEB40 /* xxhash.c in Sources */,
 				657AA1671E43663E004ADA22 /* Hash.cpp in Sources */,
 				657AA0F71E3D9549004ADA22 /* PNGReader.cpp in Sources */,
 				657AA0DE1E3D94F3004ADA22 /* png.c in Sources */,
@@ -1291,7 +1303,7 @@
 				65E6F4F41C526245005F5DF2 /* ByteBuffer.cpp in Sources */,
 				65E6F4F51C526245005F5DF2 /* Chrono.cpp in Sources */,
 				65E6F4F71C526245005F5DF2 /* ChunkName.cpp in Sources */,
-				65E6F4F81C526245005F5DF2 /* ClassDescription.cpp in Sources */,
+				65E6F4F81C526245005F5DF2 /* TypeDescription.cpp in Sources */,
 				65E6F4F91C526245005F5DF2 /* CommandLineArgsProcessor.cpp in Sources */,
 				65E6F4FA1C526245005F5DF2 /* CommandLineSettingsDescription.cpp in Sources */,
 				65E6F4FB1C526245005F5DF2 /* FinjinPrecompiled.cpp in Sources */,
@@ -1323,10 +1335,8 @@
 				65E6F52B1C526245005F5DF2 /* NamePrefix.cpp in Sources */,
 				65E6F52D1C526245005F5DF2 /* Path.cpp in Sources */,
 				65E6F52E1C526245005F5DF2 /* PerformanceCounter.cpp in Sources */,
-				65E6F5321C526245005F5DF2 /* RangedNameGenerator.cpp in Sources */,
 				65E6F5331C526245005F5DF2 /* Settings.cpp in Sources */,
 				65E6F5341C526245005F5DF2 /* SingleEvent.cpp in Sources */,
-				65E6F5361C526245005F5DF2 /* StringKeyValueMap.cpp in Sources */,
 				65E6F5391C526245005F5DF2 /* TextDataChunkReader.cpp in Sources */,
 				65E6F53A1C526245005F5DF2 /* TextDataChunkWriter.cpp in Sources */,
 				65E6F53C1C526245005F5DF2 /* Uri.cpp in Sources */,

@@ -11,28 +11,41 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/CommandLineArgsProcessor.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
+#if FINJIN_APPLE_OBJCPP_UTILITIES //Define this before including AppleUtilites.hpp
+    #import <Foundation/NSPathUtilities.h>
+#endif
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API AppleUtilities
     {
     public:
-        static Path GetProcessFilePath();
-        
-        static Path GetWorkingDirectory();
-        
+        static ValueOrError<void> GetProcessFilePath(Path& path);
+
+        static ValueOrError<void> GetWorkingDirectory(Path& path);
+
+    #if FINJIN_APPLE_OBJCPP_UTILITIES
+        static ValueOrError<void> GetSystemDirectory(Path& path, bool& isSystemCreated, NSSearchPathDirectory which, bool tryCreateIfNotPresent = true);
+    #endif
+
         static size_t GetVolumeIDHash(const Path& path);
-        
+
         static void GetCommandLineArgs(CommandLineArgsProcessor& argsProcessor);
+
+        static void SetApplicationMultithreaded();
     };
 
 } }
+
+#endif

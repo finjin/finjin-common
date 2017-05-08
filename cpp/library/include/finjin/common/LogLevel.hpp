@@ -11,14 +11,21 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "Utf8String.hpp"
 
 
-//Types------------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
+#define FINJIN_MIN_LOG_LEVEL Finjin::Common::LogLevel::INFO_LEVEL
+#define FINJIN_MAX_LOG_LEVEL Finjin::Common::LogLevel::TRACE_LEVEL
+
+#define FINJIN_DEFAULT_LOG_LEVEL Finjin::Common::LogLevel::ERROR_LEVEL
+
+
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     //Ordered from least to most informative
@@ -31,32 +38,19 @@ namespace Finjin { namespace Common {
         TRACE_LEVEL
     };
 
-} }
-
-
-//Macros-----------------------------------------------------------------------
-#define FINJIN_MIN_LOG_LEVEL Finjin::Common::LogLevel::INFO_LEVEL
-#define FINJIN_MAX_LOG_LEVEL Finjin::Common::LogLevel::TRACE_LEVEL
-
-#define FINJIN_DEFAULT_LOG_LEVEL Finjin::Common::LogLevel::ERROR_LEVEL
-
-
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common {
-
     class FINJIN_COMMON_LIBRARY_API LogLevelUtilities
     {
     public:
         static void Parse(LogLevel& result, const Utf8String& value, Error& error);
         static LogLevel Parse(const Utf8String& value, LogLevel defaultValue = FINJIN_DEFAULT_LOG_LEVEL);
-    
+
         static Utf8String ToString(LogLevel value);
     };
 
 } }
 
 
-//Functions--------------------------------------------------------------------
+//Functions---------------------------------------------------------------------
 namespace std
 {
     inline ostream& operator << (ostream& out, Finjin::Common::LogLevel value)

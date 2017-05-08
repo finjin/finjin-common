@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Chrono.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class Throttle
     {
     public:
@@ -90,12 +90,12 @@ namespace Finjin { namespace Common {
         {
             return this->pressing && (this->triggered || this->updateInterval == 0);
         }
-        
+
     private:
         SimpleTimeCounter timeAccumulator;
         SimpleTimeDelta updateInterval;
         bool triggered;
         bool pressing;
     };
-    
+
 } }

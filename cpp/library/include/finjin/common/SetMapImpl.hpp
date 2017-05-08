@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AssignOrError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename HashValueType, typename ValueType>
@@ -466,13 +466,13 @@ namespace Finjin { namespace Common {
             }
         }
 
-        Hash hash;
-        KeyEqual keyEqual;
         BucketCollectionType bucketEntries;
         ValueCollectionType valueEntries;
         ValueEntry* unusedValueEntries;
         size_t count;
         size_t collisionCount;
+        Hash hash;
+        KeyEqual keyEqual;
     };
 
     template <typename Owner, typename ValueCollectionType, typename BucketCollectionType, typename Hash, typename KeyType, typename KeyEqual = std::equal_to<typename Owner::value_type> >

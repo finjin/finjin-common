@@ -53,17 +53,17 @@
 #define FINJIN_DECLARE_ERROR(name) Finjin::Common::Error name; FINJIN_ERROR_METHOD_START(name);
 
 //A popular string to pass to Error::JoinErrorMessages()
-#define FINJIN_ERROR_NEWLINE_AND_INDENT "\n<- " 
+#define FINJIN_ERROR_NEWLINE_AND_INDENT "\n<- "
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     struct FINJIN_COMMON_LIBRARY_API ErrorOutputFormat
     {
         /** The order in which errors should be output. */
         enum class Order
-        {            
+        {
             /**
              * Deepest item in the call stack first. This is the operation that caused the error in the first place.
              * This is the default.
@@ -73,15 +73,15 @@ namespace Finjin { namespace Common {
             /**
              * Top level, starting from the point where a call was made that eventually caused an error somewhere down the call stack.
              */
-            SHALLOWEST_FIRST 
+            SHALLOWEST_FIRST
         };
 
         /** Limits the number of errors. */
         enum class ShowUntil
         {
-            /** 
-             * Shows all errors up to and including the current call stack item. 
-             * This is the default. 
+            /**
+             * Shows all errors up to and including the current call stack item.
+             * This is the default.
              */
             CURRENT_STACK_ITEM,
 
@@ -92,14 +92,14 @@ namespace Finjin { namespace Common {
         /** The format of the file name. */
         enum class FileName
         {
-            /** 
-             * The full file name with its path. 
+            /**
+             * The full file name with its path.
              * Depending on how the compiler handles the __FILE__ macro, this may just be the base file name.
              */
             FULL_FILE_NAME,
 
-            /** 
-             * The base file name. 
+            /**
+             * The base file name.
              * This is the default.
              */
             BASE_FILE_NAME
@@ -110,8 +110,8 @@ namespace Finjin { namespace Common {
 
         /** Full constructor. */
         ErrorOutputFormat(Order order, ShowUntil until, FileName fileName);
-        
-        /** 
+
+        /**
          * Extracts the file name according to the internally set 'file name' display setting.
          * @param fileName [in] The file name to potentially parse.
          * @return The file name according to the internally set 'file name' display setting.
@@ -122,41 +122,41 @@ namespace Finjin { namespace Common {
         ShowUntil until;
         FileName fileName;
     };
-    
+
     /**
      * Error class.
      * This class captures the hierarchical nature of exceptions with the explicitness
      * of error codes.
-     * 
+     *
      * Rules for creating a new Error object:
-     * 1)Declare it as FINJIN_DECLARE_ERROR(error) or FINJIN_DECLARE_ERROR(name_of_my_error)     
-     * 
+     * 1)Declare it as FINJIN_DECLARE_ERROR(error) or FINJIN_DECLARE_ERROR(name_of_my_error)
+     *
      * Rules for writing a method that takes a MODIFIABLE Error object:
      * 1)The Error instance must be a non-const reference (Error&)
-     * 2)The Error instance must be the last parameter in the parameter list. 
+     * 2)The Error instance must be the last parameter in the parameter list.
      *     For example: void DoSomething(int a, int b, Error& error)
      *   An exception to this rule occurs when the the parameter list has a variable number of trailing parameters.
      *     For example: void DoSomething(int a, int b, Error& error, ...)
      * 3)The Error instance must be named 'error'.
      * 4)The first line in the method must be: FINJIN_ERROR_METHOD_START(error);
-     * 
+     *
      * Rules for calling a method that takes a modifiable Error object:
      * 1)After calling the method, the error object MUST be checked before proceeding.
      *   For example:
      *   void MyMethod(Error& error)
      *   {
      *       FINJIN_ERROR_METHOD_START(error);
-     * 
+     *
      *       DoSomething(1, 2, error);
      *       if (error)
      *       {
-     *          //Assume the user will read your error message, so try to use complete sentences, 
+     *          //Assume the user will read your error message, so try to use complete sentences,
      *          //with a period at the end.
-     *          FINJIN_SET_ERROR(error, "Failed to compute result."); 
+     *          FINJIN_SET_ERROR(error, "Failed to compute result.");
      *          return;
      *       }
      *   }
-     * 2)It is recommended that you use FINJIN_SET_ERROR() to add detail to a received error. 
+     * 2)It is recommended that you use FINJIN_SET_ERROR() to add detail to a received error.
      * If you don't have any detail to add then use FINJIN_SET_ERROR_NO_MESSAGE().
      * 3)Be sure to use smart pointers and other types that automatically destroy themselves
      * so that you don't create memory leaks when exiting a method early.
@@ -183,13 +183,13 @@ namespace Finjin { namespace Common {
         void LeaveMethod();
 
         /**
-         * Sets error information. 
+         * Sets error information.
          * @param message [in] Error message.
          * @param code [in] Error code.
          */
     #if FINJIN_ERROR_NO_MESSAGES
         void SetError(bool hasErrorMessage, int code, FINJIN_CALLER_PARAMETERS_DECLARATION);
-    #else    
+    #else
         void SetError(const Utf8String& message, int code, FINJIN_CALLER_PARAMETERS_DECLARATION);
     #endif
 
@@ -200,8 +200,8 @@ namespace Finjin { namespace Common {
         int GetLastErrorCode() const;
         const Utf8String& GetLastErrorMessage() const;
         const Utf8String& GetLastNonEmptyErrorMessage() const;
-        
-        /** 
+
+        /**
          * Joins all non-empty error messages, including from the current call stack instance.
          * @param joinText [in] The text used to join the error messages.
          * @return The non-empty error message, joined as a single string.
@@ -229,7 +229,7 @@ namespace Finjin { namespace Common {
 
             bool HasErrorMessage() const;
             const Utf8String& GetErrorMessage() const;
-            
+
             bool isUnexpected;
 
             const char* fileName; //Just hold onto the pointer
@@ -255,7 +255,7 @@ namespace Finjin { namespace Common {
 
         bool hasError;
     };
-    
+
     /** Automatically handles the entry and exit of a method. Should be used via the FINJIN_ERROR_METHOD_START macro. */
     class FINJIN_COMMON_LIBRARY_API ErrorMethodEntry
     {

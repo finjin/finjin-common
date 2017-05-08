@@ -14,18 +14,18 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/DomainInformation.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Winsock2.h>
 #else
-    #include <unistd.h>    
-    #include <pwd.h>    
+    #include <unistd.h>
+    #include <pwd.h>
     #include <stdlib.h>
 #endif
 
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static const Utf8String& _GetHostName()
 {
     static Utf8String result;
@@ -34,7 +34,7 @@ static const Utf8String& _GetHostName()
     {
         const int MAX_HOSTNAME_LENGTH = 1024;
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         auto hostNames = Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
         if (hostNames->Size == 0)
         {
@@ -49,7 +49,7 @@ static const Utf8String& _GetHostName()
         GetHostNameW(hostNameW, MAX_HOSTNAME_LENGTH);
         result = hostNameW;
         return result;
-    #elif FINJIN_TARGET_OS_IS_WINDOWS
+    #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
         //Works in Win8/WinServer2012 and up. Not Win7
         typedef int (WSAAPI *GetHostNameWProc)(PWSTR, int);
         HMODULE ws2_32 = LoadLibraryW(L"Ws2_32.dll");

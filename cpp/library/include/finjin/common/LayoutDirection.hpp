@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Types------------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class LayoutDirection

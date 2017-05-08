@@ -23,11 +23,11 @@
 using namespace Finjin::Common;
 
 
-//Local values-----------------------------------------------------------------
+//Local values------------------------------------------------------------------
 static RandomUuidCreator* randomUuidGenerator = nullptr;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static void ReorderBytesIfCpuLittleEndian(uint8_t* bytes)
 {
     if (IsLittleEndian())
@@ -94,7 +94,7 @@ Uuid Uuid::CreateRandom()
         static RandomUuidCreator defaultRandomUuidCreator;
         return defaultRandomUuidCreator.NewUuid();
     }
-    
+
     return result;
 }
 
@@ -141,7 +141,7 @@ Uuid::Uuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, uint
     ReorderBytesIfCpuLittleEndian(this->data);
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
 Uuid::Uuid(const GUID& guid)
 {
     FINJIN_COPY_MEMORY(&this->data, &guid, sizeof(GUID));
@@ -174,7 +174,7 @@ size_t Uuid::GetHash() const
 
 std::array<uint8_t, 16> Uuid::GetBytes() const
 {
-    std::array<uint8_t, 16> bytes;    
+    std::array<uint8_t, 16> bytes;
     FINJIN_COPY_MEMORY(bytes.data(), this->data, sizeof(this->data));
     return bytes;
 }
@@ -235,10 +235,10 @@ void Uuid::Parse(Uuid& value, const Utf8String& stringValue, Error& error)
     value = Zero();
 
     //Split string
-    StaticVector<Utf8String, 5> stringParts;
+    StaticVector<Utf8StringView, 5> stringParts;
     Split(stringValue, '-', [&stringParts](Utf8StringView& value)
     {
-        return stringParts.push_back(value.ToString());
+        return stringParts.push_back(value);
     });
     if (!stringParts.full())
     {
@@ -280,7 +280,7 @@ void Uuid::Parse(Uuid& value, const Utf8String& stringValue, Error& error)
     }
 
     //Take remaining elements: 8 8-bit ints (2 chars at a time)
-    auto bytesStringPart = stringParts[3];
+    auto bytesStringPart = stringParts[3].ToString();
     bytesStringPart += stringParts[4];
     uint8_t byteParts[8];
     for (size_t i = 0; i < 8; i++)
@@ -295,7 +295,7 @@ void Uuid::Parse(Uuid& value, const Utf8String& stringValue, Error& error)
 
         uint8_t bytePart = 0;
         hexPrefixStringPart = "h";
-        hexPrefixStringPart.append(bytePartString.begin(), bytePartString.length());
+        hexPrefixStringPart += bytePartString;
         Convert::ToInteger(bytePart, hexPrefixStringPart, error);
         if (error)
         {
@@ -320,36 +320,36 @@ void Uuid::Parse(Uuid& value, const Utf8String& stringValue, Error& error)
 Uuid Uuid::Parse(const Utf8String& stringValue)
 {
     Uuid value;
-        
+
     if (stringValue.empty())
         return value;
 
     //Split string
-    StaticVector<Utf8String, 5> stringParts;
+    StaticVector<Utf8StringView, 5> stringParts;
     Split(stringValue, '-', [&stringParts](Utf8StringView& value)
     {
-        return stringParts.push_back(value.ToString());
+        return stringParts.push_back(value);
     });
     if (!stringParts.full())
         return value;
 
     Utf8String hexPrefixStringPart;
-    
+
     //Parse first 3 elements: 1 32-bit int, 2 16-bit ints
     hexPrefixStringPart = "h";
     hexPrefixStringPart += stringParts[0];
     auto part1 = Convert::ToInteger(hexPrefixStringPart, (uint32_t)0);
-    
+
     hexPrefixStringPart = "h";
     hexPrefixStringPart += stringParts[1];
     auto part2 = Convert::ToInteger(hexPrefixStringPart, (uint16_t)0);
-    
+
     hexPrefixStringPart = "h";
     hexPrefixStringPart += stringParts[2];
     auto part3 = Convert::ToInteger(hexPrefixStringPart, (uint16_t)0);
-    
+
     //Take remaining elements: 8 8-bit ints (2 chars at a time)
-    auto bytesStringPart = stringParts[3];
+    auto bytesStringPart = stringParts[3].ToString();
     bytesStringPart += stringParts[4];
     uint8_t byteParts[8];
     for (size_t i = 0; i < 8; i++)
@@ -360,9 +360,9 @@ Uuid Uuid::Parse(const Utf8String& stringValue)
             return value;
 
         hexPrefixStringPart = "h";
-        hexPrefixStringPart.append(bytePartString.begin(), bytePartString.length());
+        hexPrefixStringPart += bytePartString;
         auto bytePart = Convert::ToInteger(hexPrefixStringPart, (uint8_t)0);
-        
+
         byteParts[i] = bytePart;
     }
 

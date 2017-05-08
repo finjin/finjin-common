@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/FiberSpinLock.hpp"
 #include "finjin/common/TaggedMemoryBlockAllocator.hpp"
@@ -23,7 +23,7 @@
 #include <boost/thread/null_mutex.hpp>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FiberJobQueue;
@@ -56,23 +56,23 @@ namespace Finjin { namespace Common {
         void Create
             (
             size_t fiberIndex,
-            const Utf8String& name, 
-            Allocator* allocator, 
-            JobFiber* mainFiber, 
+            const Utf8String& name,
+            Allocator* allocator,
+            JobFiber* mainFiber,
             FiberJobScheduler& scheduler,
             FiberJobQueue& jobQueue,
-            size_t stackCommitSize, 
+            size_t stackCommitSize,
             size_t stackReserveSize
             );
         void Destroy();
-        
+
         /**
          * Initializes the "default" fiber - typically the main application thread (the one that calls JobSystem::Create())
          * This isn't actually a true fiber, it just sets up a few of the necessary default data structures.
          */
         void InitializeDefaultFiber(Allocator* allocator, const Utf8String& name, FiberJobScheduler* scheduler);
         void ShutdownDefaultFiber();
-        
+
         /**
          * Initializes the main fiber - converts the current thread into a fiber and sets it as the active fiber.
          */
@@ -106,7 +106,7 @@ namespace Finjin { namespace Common {
         void SwitchTo();
 
         Allocator* GetActiveJobAllocator();
-        
+
         State GetState() const;
 
         const Utf8String& GetName() const;
@@ -116,11 +116,11 @@ namespace Finjin { namespace Common {
 
         struct Impl;
 
-    protected:        
+    protected:
         Impl* impl;
 
     public:
-        JobFiber* next; //Used by scheduler        
+        JobFiber* next; //Used by scheduler
     };
 
 } }

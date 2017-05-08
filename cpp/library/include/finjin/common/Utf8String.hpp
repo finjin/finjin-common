@@ -14,20 +14,20 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AssignOrError.hpp"
 #include <iostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class Allocator;
     class Utf8String;
     class Utf8StringView;
 
-    /** 
-     * Standard string class. 
+    /**
+     * Standard string class.
      * When initialize an instance of this class it is responsibility of the caller to ensure that the "char*" data being used is actually UTF8.
      * When using Windows API's you will most likely be using the "wide" versions of those API's, which use UTF16. Utf8String will perform UTF16->UTF8 conversion.
      */
@@ -54,7 +54,7 @@ namespace Finjin { namespace Common {
         using const_reverse_iterator = const char*;
 
         static const size_t npos = (size_t)-1;
-        
+
         Utf8String(Allocator* allocator = nullptr);
         Utf8String(const char* other, Allocator* allocator = nullptr);
         Utf8String(const wchar_t* other, Allocator* allocator = nullptr);
@@ -65,7 +65,7 @@ namespace Finjin { namespace Common {
         Utf8String(const uint8_t* first, const uint8_t* last, Allocator* allocator = nullptr);
         Utf8String(const uint8_t* other, size_t len, Allocator* allocator = nullptr);
         Utf8String(size_t count, char c, Allocator* allocator = nullptr);
-        explicit Utf8String(size_t count, Allocator* allocator = nullptr);
+        Utf8String(size_t count, Allocator* allocator);
         Utf8String(const Utf8String& other, Allocator* allocator = nullptr);
         Utf8String(Utf8String&& other);
         ~Utf8String();
@@ -79,8 +79,9 @@ namespace Finjin { namespace Common {
         ValueOrError<void> operator = (const char* other);
         ValueOrError<void> operator = (const wchar_t* other);
         ValueOrError<void> operator = (const Utf8String& other);
+        ValueOrError<void> operator = (const Utf8StringView& other);
         ValueOrError<void> operator = (Utf8String&& other);
-        
+
         ValueOrError<void> assign(const char* other);
         ValueOrError<void> assign(const wchar_t* other);
         ValueOrError<void> assign(const char* other, size_t len);
@@ -91,10 +92,11 @@ namespace Finjin { namespace Common {
         ValueOrError<void> assign(const uint8_t* other, size_t len);
         ValueOrError<void> assign(size_t count, char c);
         ValueOrError<void> assign(const Utf8String& other);
+        ValueOrError<void> assign(const Utf8StringView& other);
         ValueOrError<void> assign(Utf8String&& other);
-        
-        const char* c_str() const;        
-    
+
+        const char* c_str() const;
+
         bool empty() const;
         void clear();
 
@@ -126,26 +128,28 @@ namespace Finjin { namespace Common {
         bool operator == (const Utf8String& other) const;
         bool operator != (const Utf8String& other) const;
         bool operator < (const Utf8String& other) const;
-        bool operator > (const Utf8String& other) const;        
+        bool operator > (const Utf8String& other) const;
 
         bool operator == (const Utf8StringView& other) const;
         bool operator != (const Utf8StringView& other) const;
         bool operator < (const Utf8StringView& other) const;
         bool operator > (const Utf8StringView& other) const;
-        
+
         bool operator == (const char* other) const;
         bool operator != (const char* other) const;
         bool operator < (const char* other) const;
-        bool operator > (const char* other) const;        
+        bool operator > (const char* other) const;
 
         ValueOrError<void> operator += (Utf8String&& other);
         ValueOrError<void> operator += (const Utf8String& other);
+        ValueOrError<void> operator += (const Utf8StringView& other);
         ValueOrError<void> operator += (const char* other);
         ValueOrError<void> operator += (const wchar_t* other);
         ValueOrError<void> operator += (char other);
-    
+
         ValueOrError<void> append(Utf8String&& other);
         ValueOrError<void> append(const Utf8String& other);
+        ValueOrError<void> append(const Utf8StringView& other);
         ValueOrError<void> append(const char* other);
         ValueOrError<void> append(const char* other, size_t len);
         ValueOrError<void> append(const wchar_t* other);
@@ -153,10 +157,10 @@ namespace Finjin { namespace Common {
         ValueOrError<void> append(char other);
         ValueOrError<void> append(wchar_t other);
         ValueOrError<void> append(size_t count, char c);
-    
-        ValueOrError<void> push_back(char c);        
+
+        ValueOrError<void> push_back(char c);
         char back() const;
-        
+
         void pop_front();
         void pop_front(size_t count);
         void pop_back();
@@ -165,14 +169,14 @@ namespace Finjin { namespace Common {
         size_t find(char c, size_t pos = 0) const;
         size_t find(const char* other, size_t pos = 0) const;
         size_t find(const Utf8String& other, size_t pos = 0) const;
-    
+
         size_t rfind(char c, size_t pos = npos) const;
         size_t rfind(const char* other, size_t pos = npos) const;
         size_t rfind(const Utf8String& other, size_t pos = npos) const;
-    
+
         char* erase(char* at);
         char* erase(char* from, char* to);
-        
+
         template <typename BeginIter, typename EndIter>
         ValueOrError<void> insert(char* at, BeginIter beginIt, EndIter endIt)
         {
@@ -208,15 +212,15 @@ namespace Finjin { namespace Common {
 
         void ToUpperAscii();
         void ToLowerAscii();
-        
+
         void ToLowerAlphaNumeric();
-        
+
         void ReplaceFirst(char find, char replace);
         void ReplaceAll(char find, char replace);
-        
+
         void ReplaceFirst(const Utf8String& find, const Utf8String& replace);
         void ReplaceAll(const Utf8String& find, const Utf8String& replace);
-        
+
         void RemoveAllChars(const char* chars);
         void ReplaceAllChars(const char* chars, char replacement);
 
@@ -228,7 +232,7 @@ namespace Finjin { namespace Common {
 
         bool Equals(const Utf8String& other) const;
         bool Equals(const char* other) const;
-        
+
         bool EqualsNoCaseAscii(const Utf8String& other) const;
         bool EqualsNoCaseAscii(const char* other) const;
 
@@ -251,7 +255,7 @@ namespace Finjin { namespace Common {
         /**
          * Converts the UTF8 string to UTF32.
          * @param output [out] - The output codepoints. This should point to an array at least length() + 1.
-         * @param outputLength [in/out] - On input, the number of elements pointed to by 'output'. On output, the length of the output string, not counting the terminating character. 
+         * @param outputLength [in/out] - On input, the number of elements pointed to by 'output'. On output, the length of the output string, not counting the terminating character.
          * If this value is the same as the input length, it indicates that the 'output' array was not long enough and contains a truncated result.
          */
         bool GetCodepoints(uint32_t* output, size_t& outputLength) const;
@@ -268,8 +272,37 @@ namespace Finjin { namespace Common {
         static const char* SkipWhitespace(const char* begin, const char* end);
 
         bool IsWhitespace() const;
-        static bool IsWhitespace(const char* begin, const char* end);
-        
+
+        template <typename BeginIter, typename EndIter>
+        static bool IsWhitespace(BeginIter begin, EndIter end)
+        {
+            if (begin == end)
+                return false;
+
+            for (auto i = begin; i != end; i++)
+            {
+                if (!isspace(*i))
+                    return false;
+            }
+
+            return true;
+        }
+
+        template <typename BeginIter, typename EndIter>
+        static bool IsDigits(BeginIter begin, EndIter end)
+        {
+            if (begin == end)
+                return false;
+
+            for (auto i = begin; i != end; i++)
+            {
+                if (!isdigit(*i))
+                    return false;
+            }
+
+            return true;
+        }
+
         static const char* GetNonNull(const char* c);
 
         enum { STATIC_STRING_LENGTH = 95 };
@@ -288,8 +321,8 @@ namespace Finjin { namespace Common {
         Allocator* allocator;
         size_t l;
         size_t allocatedLength;
-        char* s;        
-        char shortS[STATIC_STRING_LENGTH + 1];        
+        char* s;
+        char shortS[STATIC_STRING_LENGTH + 1];
     };
 
     /**
@@ -307,8 +340,10 @@ namespace Finjin { namespace Common {
         static const size_t npos = (size_t)-1;
 
         Utf8StringView();
+        Utf8StringView(const char* first);
         Utf8StringView(const char* first, size_t len);
 
+        ValueOrError<void> assign(const char* first);
         ValueOrError<void> assign(const char* first, size_t len);
         ValueOrError<void> assign(const char* first, const char* last);
         ValueOrError<void> assign(const uint8_t* first, const uint8_t* last);
@@ -502,6 +537,135 @@ namespace Finjin { namespace Common {
         }
     };
 
+    struct Utf8StringHash
+    {
+        size_t operator () (const Finjin::Common::Utf8String& s) const
+        {
+            return s.GetHash();
+        }
+
+        size_t operator () (const Finjin::Common::Utf8StringView& s) const
+        {
+            return s.GetHash();
+        }
+
+        size_t operator () (const char* s) const
+        {
+            return Utf8String::Hash(s);
+        }
+    };
+
+} }
+
+namespace std
+{
+    template <>
+    struct hash<Finjin::Common::Utf8String>
+    {
+        size_t operator () (const Finjin::Common::Utf8String& s) const
+        {
+            return s.GetHash();
+        }
+    };
+
+    template <>
+    struct hash<char*>
+    {
+        size_t operator () (const char* s) const
+        {
+            return s ? Finjin::Common::Utf8String::Hash(s, strlen(s)) : 0;
+        }
+    };
+
+    template <>
+    struct hash<Finjin::Common::Utf8StringView>
+    {
+        size_t operator () (const Finjin::Common::Utf8StringView& s) const
+        {
+            return Finjin::Common::Utf8String::Hash(s.begin(), s.length());
+        }
+    };
+}
+
+
+//Functions---------------------------------------------------------------------
+namespace std
+{
+    inline bool empty(const Finjin::Common::Utf8String& v)
+    {
+        return v.empty();
+    }
+
+    inline bool empty(const Finjin::Common::Utf8StringView& v)
+    {
+        return v.empty();
+    }
+
+    inline bool empty(const char* v)
+    {
+        return v == nullptr || v[0] == 0;
+    }
+
+    inline istream& operator >> (istream& is, Finjin::Common::Utf8String& v)
+    {
+         int c;
+         while (is)
+         {
+             c = is.get();
+             if (c > 0)
+                 v.append(static_cast<char>(c));
+             else if (c == 0)
+                 break;
+             else
+             {
+                 //boost::lexical_cast<> requires the stream to be in a non-failed state in order for the parse to succeed
+                 //More on this issue at http://www.boost.org/doc/libs/1_49_0/doc/html/boost_lexical_cast/frequently_asked_questions.html
+                 auto state = is.rdstate();
+                 is.clear(state & ~(std::ios_base::eofbit | std::ios_base::failbit));
+                 break;
+             }
+         }
+         return is;
+    }
+
+    inline ostream& operator << (ostream& os, const Finjin::Common::Utf8String& v)
+    {
+        os << v.c_str();
+        return os;
+    }
+
+    inline ostream& operator << (ostream& os, const Finjin::Common::Utf8StringView& v)
+    {
+        os.write(v.begin(), v.size());
+        return os;
+    }
+
+    inline wistream& operator >> (wistream& is, Finjin::Common::Utf8String& v)
+    {
+         wchar_t c;
+         while (is)
+         {
+             is.get(c);
+             v.append(c);
+         }
+         return is;
+    }
+
+    inline wostream& operator << (wostream& os, const Finjin::Common::Utf8String& v)
+    {
+        os << v.c_str();
+        return os;
+    }
+
+    inline wostream& operator << (wostream& os, const Finjin::Common::Utf8StringView& v)
+    {
+        os << v.ToString().c_str();
+        return os;
+    }
+}
+
+namespace Finjin { namespace Common {
+
     /**
      * Finds all the null terminated strings within the specified text
      * @param text [in] - The text to parse. It is assumed to have a double null terminator at the end
@@ -530,22 +694,22 @@ namespace Finjin { namespace Common {
             offset = foundAt + 1;
         }
     }
-    
+
     template <typename ToSplit, typename Handler> //std::function<ValueOrError<bool>(Utf8StringView&)> handler
     ValueOrError<bool> Split(ToSplit& toSplit, char splitChar, Handler handler, bool skipEmpty = true)
     {
         size_t previousIndex = (size_t)-1;
         Utf8StringView sub;
-        
+
         auto s = toSplit.begin();
         auto l = toSplit.length();
-        
+
         for (size_t i = 0; i <= l; i++)
         {
             if (i == l || s[i] == splitChar)
             {
                 sub.assign(s + (previousIndex + 1), s + i);
-                
+
                 previousIndex = i;
 
                 if (!skipEmpty || !sub.IsWhitespace())
@@ -568,7 +732,7 @@ namespace Finjin { namespace Common {
 
         auto s = toSplit.begin();
         auto l = toSplit.length();
-        
+
         for (size_t i = 0; i <= l; i++)
         {
             if (i == l || splitChars.find(s[i]) != Utf8String::npos)
@@ -608,126 +772,4 @@ namespace Finjin { namespace Common {
         return ValueOrError<void>();
     }
 
-    struct Utf8StringHash
-    {
-        size_t operator () (const Finjin::Common::Utf8String& s) const
-        {
-            return s.GetHash();
-        }
-
-        size_t operator () (const Finjin::Common::Utf8StringView& s) const
-        {
-            return s.GetHash();
-        }
-
-        size_t operator () (const char* s) const
-        {
-            return Utf8String::Hash(s);
-        }
-    };
-
 } }
-
-
-//Functions--------------------------------------------------------------------
-namespace std
-{
-    template <>
-    struct hash<Finjin::Common::Utf8String>
-    {
-        size_t operator () (const Finjin::Common::Utf8String& s) const
-        {
-            return s.GetHash();
-        }
-    };
-
-    template <>
-    struct hash<char*>
-    {
-        size_t operator () (const char* s) const
-        {
-            return s ? Finjin::Common::Utf8String::Hash(s, strlen(s)) : 0;
-        }
-    };
-
-    template <>
-    struct hash<Finjin::Common::Utf8StringView>
-    {
-        size_t operator () (const Finjin::Common::Utf8StringView& s) const
-        {
-            return Finjin::Common::Utf8String::Hash(s.begin(), s.length());
-        }
-    };
-
-    inline bool empty(const Finjin::Common::Utf8String& v)
-    {
-        return v.empty();
-    }
-    
-    inline bool empty(const Finjin::Common::Utf8StringView& v)
-    {
-        return v.empty();
-    }
-    
-    inline bool empty(const char* v)
-    {
-        return v == nullptr || v[0] == 0;
-    }
-    
-    inline istream& operator >> (istream& is, Finjin::Common::Utf8String& v) 
-    {
-         int c;
-         while (is)
-         {
-             c = is.get();
-             if (c > 0)
-                 v.append(static_cast<char>(c));
-             else if (c == 0)
-                 break;
-             else
-             {
-                 //boost::lexical_cast<> requires the stream to be in a non-failed state in order for the parse to succeed
-                 //More on this issue at http://www.boost.org/doc/libs/1_49_0/doc/html/boost_lexical_cast/frequently_asked_questions.html
-                 auto state = is.rdstate();
-                 is.clear(state & ~(std::ios_base::eofbit | std::ios_base::failbit));
-                 break;
-             }
-         }
-         return is;
-    }
-
-    inline ostream& operator << (ostream& os, const Finjin::Common::Utf8String& v)
-    {
-        os << v.c_str();
-        return os;
-    }
-
-    inline ostream& operator << (ostream& os, const Finjin::Common::Utf8StringView& v)
-    {
-        os << v.ToString().c_str();
-        return os;
-    }
-
-    inline wistream& operator >> (wistream& is, Finjin::Common::Utf8String& v) 
-    {
-         wchar_t c;
-         while (is)
-         {
-             is.get(c);
-             v.append(c);
-         }
-         return is;
-    }
-
-    inline wostream& operator << (wostream& os, const Finjin::Common::Utf8String& v)
-    {
-        os << v.c_str();
-        return os;
-    }    
-
-    inline wostream& operator << (wostream& os, const Finjin::Common::Utf8StringView& v)
-    {
-        os << v.ToString().c_str();
-        return os;
-    }
-}

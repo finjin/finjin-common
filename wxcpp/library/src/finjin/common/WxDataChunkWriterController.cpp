@@ -21,10 +21,10 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //WxDataChunkWriterController
-WxDataChunkWriterController::~WxDataChunkWriterController() 
+WxDataChunkWriterController::~WxDataChunkWriterController()
 {
 }
 
@@ -45,7 +45,7 @@ std::unique_ptr<WxDocumentWriterOutput> WxDataChunkWriterController::CreateOutpu
 
 bool WxDataChunkWriterController::RequiresNewOutput(const WxDataChunkWriter& writer, const WxChunkName& chunkName) const
 {
-    return false; 
+    return false;
 }
 
 std::unique_ptr<WxDocumentWriterOutput> WxDataChunkWriterController::AddOutput(WxDataChunkWriter& writer, const WxChunkName& chunkName, WxError& error)

@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "FiberJobQueue.hpp"
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Error.hpp"
@@ -23,11 +23,11 @@
 #include "FiberSchedulingAlgorithm.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class JobFiber;
-    
+
     class FiberJobScheduler
     {
     public:
@@ -37,7 +37,7 @@ namespace Finjin { namespace Common {
     public:
         FiberJobScheduler();
         virtual ~FiberJobScheduler();
-        
+
         void Clear();
 
         bool HasMoreFibersToRun() const;
@@ -60,16 +60,16 @@ namespace Finjin { namespace Common {
 
         JobFiber* GetMainFiber();
         void SetMainFiber(JobFiber* fiber);
-        
+
         size_t GetMaxJobGroupID() const;
         void SetMaxJobGroupID(size_t value);
-        
+
     private:
         void ResumeFiber(JobFiber* fiber);
 
     private:
         std::unique_ptr<FiberSchedulingAlgorithm> schedulingAlgorithmPtr;
-        RoundRobinFiberSchedulingAlgorithm defaultSchedulingAlgorithm;        
+        RoundRobinFiberSchedulingAlgorithm defaultSchedulingAlgorithm;
         FiberSchedulingAlgorithm* schedulingAlgorithm;
 
         /** Fibers that are waiting. All queued fibers will either be waiting or interrupted, though they all start off as waiting. */
@@ -84,7 +84,7 @@ namespace Finjin { namespace Common {
             ~WaitingQueue();
 
             bool empty() const;
-            
+
             void clear();
 
             void push(JobFiber* item);
@@ -107,7 +107,7 @@ namespace Finjin { namespace Common {
         WaitingQueue waitingQueue;
 
         TimeDuration waitInterval;
-        
+
         volatile size_t maxJobGroupID;
 
         JobFiber* mainFiber;

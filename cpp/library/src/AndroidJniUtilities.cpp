@@ -18,11 +18,11 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
-AndroidJniUtilities::AndroidJniUtilities(android_app* androidApp) : JniUtilities(androidApp->appThreadEnv, androidApp->appThreadThis) 
+//Implementation----------------------------------------------------------------
+AndroidJniUtilities::AndroidJniUtilities(android_app* androidApp) : JniUtilities(androidApp->appThreadEnv, androidApp->appThreadThis)
 {
 }
 
-AndroidJniUtilities::AndroidJniUtilities(JNIEnv* env, jobject thiz) : JniUtilities(env, thiz) 
+AndroidJniUtilities::AndroidJniUtilities(JNIEnv* env, jobject thiz) : JniUtilities(env, thiz)
 {
 }

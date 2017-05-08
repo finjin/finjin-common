@@ -209,7 +209,7 @@ TimeDuration TimeDuration::Seconds(float value, TimeDurationUnit resolution)
         case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<int64_t>(value * 1000.0f));
         case TimeDurationUnit::SECONDS: return Seconds(static_cast<int64_t>(value));
         default: return Zero();
-    }   
+    }
 }
 
 TimeDuration TimeDuration::Minutes(int64_t value)
@@ -249,7 +249,7 @@ void TimeDuration::Parse(TimeDuration& timeDuration, const Utf8String& s, Error&
         FINJIN_SET_ERROR(error, "Failed to parse empty time duration.");
 
     else if (s.StartsWith("-"))
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Negative specifier in '%1%'.", s));        
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Negative specifier in '%1%'.", s));
 
     else if (s.EndsWith("nanoseconds"))
         PARSE_DURATION("nanoseconds", Nanoseconds)
@@ -260,7 +260,7 @@ void TimeDuration::Parse(TimeDuration& timeDuration, const Utf8String& s, Error&
         PARSE_DURATION("microseconds", Microseconds)
     else if (s.EndsWith("microsecond"))
         PARSE_DURATION("microsecond", Microseconds)
-    
+
     else if (s.EndsWith("milliseconds"))
         PARSE_DURATION("milliseconds", Milliseconds)
     else if (s.EndsWith("millisecond"))
@@ -293,7 +293,7 @@ void TimeDuration::Parse(TimeDuration& timeDuration, const Utf8String& s, Error&
         PARSE_DURATION("m", Minutes)
     else if (s.EndsWith("s"))
         PARSE_DURATION("s", Seconds)
-    
+
     else
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Unrecognized or unspecified time unit in '%1%'.", s));
 }
@@ -372,9 +372,9 @@ DateTime DateTime::NowUtc()
     auto nowLocal = std::chrono::system_clock::now();
     auto nowLocalTimeT = std::chrono::system_clock::to_time_t(nowLocal);
     tm nowUtcTm;
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     gmtime_s(&nowUtcTm, &nowLocalTimeT);
-#else        
+#else
     gmtime_r(&nowLocalTimeT, &nowUtcTm);
 #endif
     auto nowUtcTimeT = mktime(&nowUtcTm);
@@ -384,21 +384,21 @@ DateTime DateTime::NowUtc()
 Utf8String DateTime::ToLogFileName() const
 {
     tm nowUtcTm;
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     localtime_s(&nowUtcTm, &this->value);
 #else
     localtime_r(&this->value, &nowUtcTm);
 #endif
 
     char buff[100];
-    strftime(buff, 100, "%Y-%m-%d-%H_%M_%S", &nowUtcTm);    
+    strftime(buff, 100, "%Y-%m-%d-%H_%M_%S", &nowUtcTm);
     return buff;
 }
 
 Utf8String DateTime::ToIso8601() const
 {
     tm nowUtcTm;
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     localtime_s(&nowUtcTm, &this->value);
 #else
     localtime_r(&this->value, &nowUtcTm);
@@ -467,41 +467,41 @@ TimeDuration HighResolutionTimeStamp::operator - (const HighResolutionTimeStamp&
 
     auto elapsedTimeDuration = this->timepoint - other.timepoint;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
-    return TimeDuration::Nanoseconds(elapsedTimeDuration * 1000000000ll / this->highPerformanceFrequency.QuadPart);    
-#elif FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    return TimeDuration::Nanoseconds(elapsedTimeDuration * 1000000000ll / this->highPerformanceFrequency.QuadPart);
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     return TimeDuration::Nanoseconds(elapsedTimeDuration * this->timebaseInfo.numer / this->timebaseInfo.denom);
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     return TimeDuration::Nanoseconds(elapsedTimeDuration);
-#endif    
+#endif
 }
 
 //HighResolutionClock
 HighResolutionClock::HighResolutionClock()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     QueryPerformanceFrequency(&this->highPerformanceFrequency);
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     mach_timebase_info(&this->timebaseInfo);
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     clock_getres(CLOCK_PROCESS_CPUTIME_ID, &this->clockResolution);
 #endif
 }
-        
+
 HighResolutionTimeStamp HighResolutionClock::Now()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     HighResolutionTimeStamp result(0);
     result.highPerformanceFrequency = this->highPerformanceFrequency;
     LARGE_INTEGER largeCount;
     if (QueryPerformanceCounter(&largeCount))
         result.timepoint = largeCount.QuadPart;
     return result;
-#elif FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
     HighResolutionTimeStamp result(mach_absolute_time());
     result.timebaseInfo = this->timebaseInfo;
     return result;
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     timespec currentTime;
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &currentTime);
     return HighResolutionTimeStamp(static_cast<int64_t>(currentTime.tv_sec) * 1000000000ll + static_cast<int64_t>(currentTime.tv_nsec));

@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataElementWriter.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 
 
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common { 
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API DataDocumentWriter
     {

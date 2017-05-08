@@ -43,7 +43,7 @@ void WrappedFileWriter::Wrap(const Path& inFilePath, ByteOrder byteOrder, const 
     }
 
     auto swapBytes = byteOrder != ::GetByteOrder();
-    
+
     //Write output file----------------------
     FileAccessor outFile;
     if (!outFile.OpenForWrite(outFilePath))
@@ -52,50 +52,50 @@ void WrappedFileWriter::Wrap(const Path& inFilePath, ByteOrder byteOrder, const 
         return;
     }
 
-    //uint32_t: Finjin magic number
-    uint32_t magic = FINJIN_MAGIC_FOURCC;
+    //uint32_t: Finjin signature
+    uint32_t signature = FINJIN_SIGNATURE_FOURCC;
     if (swapBytes)
-        SwapBytes(magic);
-    outFile.Write(&magic, sizeof(magic));
-    
+        SwapBytes(signature);
+    outFile.Write(&signature, sizeof(signature));
+
     //uint32_t: Format
     auto fileFormat = WrappedFileReader::Header::FileFormat::EMBEDDED;
     if (swapBytes)
         SwapBytes(fileFormat);
     outFile.Write(&fileFormat, sizeof(fileFormat));
-    
+
     //uint32_t: Format version
     uint32_t fileFormatVersion = 1;
     if (swapBytes)
         SwapBytes(fileFormatVersion);
     outFile.Write(&fileFormatVersion, sizeof(fileFormatVersion));
-    
+
     //uint32_t: File format class
     auto fileFormatClass = WrappedFileReader::Header::GetFileFormatClass(inFileExtension);
     if (swapBytes)
         SwapBytes(fileFormatClass);
     outFile.Write(&fileFormatClass, sizeof(fileFormatClass));
-    
+
     //uint32_t: File format class version
     uint32_t fileFormatClassVersion = 1;
     if (swapBytes)
         SwapBytes(fileFormatClassVersion);
     outFile.Write(&fileFormatClassVersion, sizeof(fileFormatClassVersion));
-    
+
     //uint32_t: File extension length
     uint32_t fileExtensionLength = static_cast<uint32_t>(inFileExtension.length());
     if (swapBytes)
         SwapBytes(fileExtensionLength);
     outFile.Write(&fileExtensionLength, sizeof(fileExtensionLength));
-    
+
     //UTF-8[File extension length]: File extension (without leading dot)
     outFile.Write(inFileExtension.c_str(), inFileExtension.length());
-    
+
     //uint64_t: Embedded file length
     if (swapBytes)
         SwapBytes(inFileLength);
     outFile.Write(&inFileLength, sizeof(inFileLength));
-    
+
     //Write input file----------------
     FileAccessor inFile;
     if (!inFile.OpenForRead(inFilePath))

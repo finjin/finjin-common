@@ -91,6 +91,10 @@
           <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c</itemPath>
           <itemPath>/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c</itemPath>
         </logicalFolder>
+        <logicalFolder name="f8" displayName="xxhash" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/xxHash/xxhash.c</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/xxHash/xxhash.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f4" displayName="zlib" projectFiles="true">
           <itemPath>/home/build/finjin-3rd-party/cpp/zlib/adler32.c</itemPath>
           <itemPath>/home/build/finjin-3rd-party/cpp/zlib/compress.c</itemPath>
@@ -158,6 +162,28 @@
           <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip32.h</itemPath>
         </logicalFolder>
         <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/iostreams/src/mapped_file.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f7" displayName="collections" projectFiles="true">
+        <itemPath>../../include/finjin/common/AlignedElementStaticVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/BitArray.hpp</itemPath>
+        <itemPath>../../src/ByteBuffer.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ByteBuffer.hpp</itemPath>
+        <itemPath>../../include/finjin/common/DynamicQueue.hpp</itemPath>
+        <itemPath>../../include/finjin/common/DynamicUnorderedMap.hpp</itemPath>
+        <itemPath>../../include/finjin/common/DynamicUnorderedSet.hpp</itemPath>
+        <itemPath>../../include/finjin/common/DynamicVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/EnumArray.hpp</itemPath>
+        <itemPath>../../include/finjin/common/IntrusiveList.hpp</itemPath>
+        <itemPath>../../include/finjin/common/LruCache.hpp</itemPath>
+        <itemPath>../../include/finjin/common/QueueImpl.hpp</itemPath>
+        <itemPath>../../include/finjin/common/RealTimeLruCache.hpp</itemPath>
+        <itemPath>../../include/finjin/common/SetMapImpl.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticQueue.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticUnorderedMap.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticUnorderedSet.hpp</itemPath>
+        <itemPath>../../include/finjin/common/StaticVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/UsableDynamicVector.hpp</itemPath>
+        <itemPath>../../include/finjin/common/UsableStaticVector.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="documents" projectFiles="true">
         <logicalFolder name="f3" displayName="config" projectFiles="true">
@@ -228,9 +254,15 @@
         <itemPath>../../src/XmlDocument.cpp</itemPath>
         <itemPath>../../include/finjin/common/XmlDocument.hpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f6" displayName="external-file-formats" projectFiles="true">
+      <logicalFolder name="f6"
+                     displayName="external-file-formats"
+                     projectFiles="true">
         <itemPath>../../src/PNGReader.cpp</itemPath>
         <itemPath>../../include/finjin/common/PNGReader.hpp</itemPath>
+        <itemPath>../../src/PNGWriter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/PNGWriter.hpp</itemPath>
+        <itemPath>../../src/ZIPReader.cpp</itemPath>
+        <itemPath>../../include/finjin/common/ZIPReader.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="file-system" projectFiles="true">
         <itemPath>../../src/DirEntFileFinder.cpp</itemPath>
@@ -308,6 +340,14 @@
         <itemPath>../../src/LogLevel.cpp</itemPath>
         <itemPath>../../include/finjin/common/LogLevel.hpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f8" displayName="math" projectFiles="true">
+        <itemPath>../../src/Angle.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Angle.hpp</itemPath>
+        <itemPath>../../src/Distance.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Distance.hpp</itemPath>
+        <itemPath>../../src/Math.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Math.hpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f3" displayName="memory" projectFiles="true">
         <itemPath>../../src/AllocatedClass.cpp</itemPath>
         <itemPath>../../include/finjin/common/AllocatedClass.hpp</itemPath>
@@ -327,6 +367,14 @@
         <itemPath>../../include/finjin/common/PassthroughSystemAllocator.hpp</itemPath>
         <itemPath>../../include/finjin/common/TaggedMemoryBlockAllocator.hpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f9" displayName="string" projectFiles="true">
+        <itemPath>../../src/StringMatcher.cpp</itemPath>
+        <itemPath>../../include/finjin/common/StringMatcher.hpp</itemPath>
+        <itemPath>../../src/Utf8String.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Utf8String.hpp</itemPath>
+        <itemPath>../../src/Utf8StringFormatter.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Utf8StringFormatter.hpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f5" displayName="thread" projectFiles="true">
         <itemPath>../../src/ThisThread.cpp</itemPath>
         <itemPath>../../include/finjin/common/ThisThread.hpp</itemPath>
@@ -335,24 +383,12 @@
         <itemPath>../../include/finjin/common/ThreadID.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="utilities" projectFiles="true">
-        <itemPath>../../include/finjin/common/AlignedElementStaticVector.hpp</itemPath>
-        <itemPath>../../include/finjin/common/AllocatedQueue.hpp</itemPath>
-        <itemPath>../../include/finjin/common/AllocatedUnorderedMap.hpp</itemPath>
-        <itemPath>../../include/finjin/common/AllocatedUnorderedSet.hpp</itemPath>
-        <itemPath>../../include/finjin/common/AllocatedVector.hpp</itemPath>
-        <itemPath>../../src/Angle.cpp</itemPath>
-        <itemPath>../../include/finjin/common/Angle.hpp</itemPath>
         <itemPath>../../include/finjin/common/AssignOrError.hpp</itemPath>
         <itemPath>../../src/Base64.cpp</itemPath>
         <itemPath>../../include/finjin/common/Base64.hpp</itemPath>
-        <itemPath>../../include/finjin/common/BitArray.hpp</itemPath>
-        <itemPath>../../src/ByteBuffer.cpp</itemPath>
-        <itemPath>../../include/finjin/common/ByteBuffer.hpp</itemPath>
         <itemPath>../../include/finjin/common/ByteOrder.hpp</itemPath>
         <itemPath>../../src/Chrono.cpp</itemPath>
         <itemPath>../../include/finjin/common/Chrono.hpp</itemPath>
-        <itemPath>../../src/ClassDescription.cpp</itemPath>
-        <itemPath>../../include/finjin/common/ClassDescription.hpp</itemPath>
         <itemPath>../../src/CommandLineArgsProcessor.cpp</itemPath>
         <itemPath>../../include/finjin/common/CommandLineArgsProcessor.hpp</itemPath>
         <itemPath>../../src/CommandLineSettingsDescription.cpp</itemPath>
@@ -361,17 +397,13 @@
         <itemPath>../../include/finjin/common/Convert.hpp</itemPath>
         <itemPath>../../src/CpuFeatures.cpp</itemPath>
         <itemPath>../../include/finjin/common/CpuFeatures.hpp</itemPath>
-        <itemPath>../../src/Distance.cpp</itemPath>
-        <itemPath>../../include/finjin/common/Distance.hpp</itemPath>
         <itemPath>../../src/DomainInformation.cpp</itemPath>
         <itemPath>../../include/finjin/common/DomainInformation.hpp</itemPath>
         <itemPath>../../include/finjin/common/EnumBitwise.hpp</itemPath>
-        <itemPath>../../include/finjin/common/EnumValues.hpp</itemPath>
         <itemPath>../../src/Error.cpp</itemPath>
         <itemPath>../../include/finjin/common/Error.hpp</itemPath>
         <itemPath>../../src/Hash.cpp</itemPath>
         <itemPath>../../include/finjin/common/Hash.hpp</itemPath>
-        <itemPath>../../include/finjin/common/IntrusiveList.hpp</itemPath>
         <itemPath>../../include/finjin/common/LayoutDirection.hpp</itemPath>
         <itemPath>../../src/LibraryLoader.cpp</itemPath>
         <itemPath>../../include/finjin/common/LibraryLoader.hpp</itemPath>
@@ -379,9 +411,6 @@
         <itemPath>../../include/finjin/common/LinuxUtilities.hpp</itemPath>
         <itemPath>../../include/finjin/common/LogicalCpu.hpp</itemPath>
         <itemPath>../../src/LogicalCpu_Linux.cpp</itemPath>
-        <itemPath>../../include/finjin/common/LruCache.hpp</itemPath>
-        <itemPath>../../src/Math.cpp</itemPath>
-        <itemPath>../../include/finjin/common/Math.hpp</itemPath>
         <itemPath>../../src/NamePrefix.cpp</itemPath>
         <itemPath>../../include/finjin/common/NamePrefix.hpp</itemPath>
         <itemPath>../../include/finjin/common/NumericStruct.hpp</itemPath>
@@ -391,45 +420,27 @@
         <itemPath>../../include/finjin/common/ProcessID.hpp</itemPath>
         <itemPath>../../src/ProcessRuntimeInformation.cpp</itemPath>
         <itemPath>../../include/finjin/common/ProcessRuntimeInformation.hpp</itemPath>
-        <itemPath>../../include/finjin/common/QueueUtilities.hpp</itemPath>
-        <itemPath>../../src/RangedNameGenerator.cpp</itemPath>
-        <itemPath>../../include/finjin/common/RangedNameGenerator.hpp</itemPath>
-        <itemPath>../../include/finjin/common/RealTimeLruCache.hpp</itemPath>
         <itemPath>../../include/finjin/common/RequestedValue.hpp</itemPath>
         <itemPath>../../include/finjin/common/ScreenOrientation.hpp</itemPath>
-        <itemPath>../../include/finjin/common/SetMapUtilities.hpp</itemPath>
         <itemPath>../../src/Settings.cpp</itemPath>
         <itemPath>../../include/finjin/common/Settings.hpp</itemPath>
         <itemPath>../../include/finjin/common/SimpleSpinLockMutex.hpp</itemPath>
         <itemPath>../../src/SingleEvent.cpp</itemPath>
         <itemPath>../../include/finjin/common/SingleEvent.hpp</itemPath>
-        <itemPath>../../include/finjin/common/StaticQueue.hpp</itemPath>
-        <itemPath>../../include/finjin/common/StaticUnorderedMap.hpp</itemPath>
-        <itemPath>../../include/finjin/common/StaticUnorderedSet.hpp</itemPath>
-        <itemPath>../../include/finjin/common/StaticVector.hpp</itemPath>
-        <itemPath>../../src/StringKeyValueMap.cpp</itemPath>
-        <itemPath>../../include/finjin/common/StringKeyValueMap.hpp</itemPath>
         <itemPath>../../include/finjin/common/Throttle.hpp</itemPath>
+        <itemPath>../../src/TypeDescription.cpp</itemPath>
+        <itemPath>../../include/finjin/common/TypeDescription.hpp</itemPath>
         <itemPath>../../src/Uri.cpp</itemPath>
         <itemPath>../../include/finjin/common/Uri.hpp</itemPath>
-        <itemPath>../../include/finjin/common/UsableStaticVector.hpp</itemPath>
-        <itemPath>../../include/finjin/common/UsableAllocatedVector.hpp</itemPath>
         <itemPath>../../src/UsageFormatter.cpp</itemPath>
         <itemPath>../../include/finjin/common/UsageFormatter.hpp</itemPath>
         <itemPath>../../src/UserInformation.cpp</itemPath>
         <itemPath>../../include/finjin/common/UserInformation.hpp</itemPath>
-        <itemPath>../../src/Utf8String.cpp</itemPath>
-        <itemPath>../../include/finjin/common/Utf8String.hpp</itemPath>
-        <itemPath>../../src/Utf8StringFormatter.cpp</itemPath>
-        <itemPath>../../include/finjin/common/Utf8StringFormatter.hpp</itemPath>
         <itemPath>../../src/Uuid.cpp</itemPath>
         <itemPath>../../include/finjin/common/Uuid.hpp</itemPath>
         <itemPath>../../include/finjin/common/ValueOrError.hpp</itemPath>
-        <itemPath>../../include/finjin/common/Vector.hpp</itemPath>
         <itemPath>../../src/Version.cpp</itemPath>
         <itemPath>../../include/finjin/common/Version.hpp</itemPath>
-        <itemPath>../../src/ZIPReader.cpp</itemPath>
-        <itemPath>../../include/finjin/common/ZIPReader.hpp</itemPath>
       </logicalFolder>
       <itemPath>../../include/finjin/common/FinjinCommonLibrary.hpp</itemPath>
       <itemPath>../../src/FinjinPrecompiled.cpp</itemPath>
@@ -450,6 +461,7 @@
   <sourceRootList>
     <Elem>/home/build/finjin-3rd-party/cpp/uriparser/src</Elem>
     <Elem>/home/build/finjin-3rd-party/cpp/lpng</Elem>
+    <Elem>/home/build/finjin-3rd-party/cpp/xxHash</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -520,26 +532,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/AllocatedQueue.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedUnorderedMap.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedUnorderedSet.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedVector.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../include/finjin/common/Allocator.hpp"
             ex="false"
             tool="3"
@@ -591,11 +583,6 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/ChunkName.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/ClassDescription.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -715,12 +702,32 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/EnumBitwise.hpp"
+      <item path="../../include/finjin/common/DynamicQueue.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/EnumValues.hpp"
+      <item path="../../include/finjin/common/DynamicUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DynamicUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DynamicVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumArray.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumBitwise.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -885,6 +892,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/PNGWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
             ex="false"
             tool="3"
@@ -910,12 +922,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/QueueUtilities.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/RangedNameGenerator.hpp"
+      <item path="../../include/finjin/common/QueueImpl.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -935,7 +942,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/SetMapUtilities.hpp"
+      <item path="../../include/finjin/common/SetMapImpl.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -980,7 +987,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/StringKeyValueMap.hpp"
+      <item path="../../include/finjin/common/StringMatcher.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1020,17 +1027,22 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/TypeDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/Uri.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/UsableStaticVector.hpp"
+      <item path="../../include/finjin/common/UsableDynamicVector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/UsableAllocatedVector.hpp"
+      <item path="../../include/finjin/common/UsableStaticVector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1061,11 +1073,6 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/ValueOrError.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/Vector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1163,8 +1170,6 @@
       <item path="../../src/Chrono.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/ChunkName.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../../src/ClassDescription.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/CommandLineArgsProcessor.cpp"
             ex="false"
@@ -1318,6 +1323,8 @@
       </item>
       <item path="../../src/PNGReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="../../src/PassthroughSystemAllocator.cpp"
             ex="false"
             tool="1"
@@ -1332,8 +1339,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../src/RangedNameGenerator.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
@@ -1342,7 +1347,7 @@
       </item>
       <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/StringKeyValueMap.cpp" ex="false" tool="1" flavor2="0">
+      <item path="../../src/StringMatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1351,6 +1356,8 @@
       <item path="../../src/ThisThread.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TypeDescription.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Uri.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1743,6 +1750,16 @@
       <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c"
             ex="false"
             tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/xxHash/xxhash.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/xxHash/xxhash.h"
+            ex="false"
+            tool="3"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/zlib/adler32.c"
@@ -2128,26 +2145,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/AllocatedQueue.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedUnorderedMap.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedUnorderedSet.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/AllocatedVector.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../include/finjin/common/Allocator.hpp"
             ex="false"
             tool="3"
@@ -2199,11 +2196,6 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/ChunkName.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/ClassDescription.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2323,12 +2315,32 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/EnumBitwise.hpp"
+      <item path="../../include/finjin/common/DynamicQueue.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/EnumValues.hpp"
+      <item path="../../include/finjin/common/DynamicUnorderedMap.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DynamicUnorderedSet.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/DynamicVector.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumArray.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/EnumBitwise.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2493,6 +2505,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/PNGWriter.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
             ex="false"
             tool="3"
@@ -2518,12 +2535,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/QueueUtilities.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/RangedNameGenerator.hpp"
+      <item path="../../include/finjin/common/QueueImpl.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2543,7 +2555,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/SetMapUtilities.hpp"
+      <item path="../../include/finjin/common/SetMapImpl.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2588,7 +2600,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/StringKeyValueMap.hpp"
+      <item path="../../include/finjin/common/StringMatcher.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2628,17 +2640,22 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/TypeDescription.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/Uri.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/UsableStaticVector.hpp"
+      <item path="../../include/finjin/common/UsableDynamicVector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/UsableAllocatedVector.hpp"
+      <item path="../../include/finjin/common/UsableStaticVector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2669,11 +2686,6 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/ValueOrError.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../../include/finjin/common/Vector.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2771,8 +2783,6 @@
       <item path="../../src/Chrono.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/ChunkName.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../../src/ClassDescription.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/CommandLineArgsProcessor.cpp"
             ex="false"
@@ -2926,6 +2936,8 @@
       </item>
       <item path="../../src/PNGReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="../../src/PassthroughSystemAllocator.cpp"
             ex="false"
             tool="1"
@@ -2940,8 +2952,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../../src/RangedNameGenerator.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
@@ -2950,7 +2960,7 @@
       </item>
       <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/StringKeyValueMap.cpp" ex="false" tool="1" flavor2="0">
+      <item path="../../src/StringMatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2959,6 +2969,8 @@
       <item path="../../src/ThisThread.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/TypeDescription.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Uri.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3351,6 +3363,16 @@
       <item path="/home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c"
             ex="false"
             tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/xxHash/xxhash.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/xxHash/xxhash.h"
+            ex="false"
+            tool="3"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/zlib/adler32.c"

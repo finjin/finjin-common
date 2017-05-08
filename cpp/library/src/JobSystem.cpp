@@ -25,7 +25,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 struct JobSystemThreadCount
 {
     JobSystemThreadCount()
@@ -57,18 +57,18 @@ static JobSystemThreadCount GetBestNumberOfFibers(size_t requestedCount, const L
 }
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JobSystem::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator) : AllocatedClass(allocator)
     {
         this->lastProcessedJobGroupID = 0;
         this->nextJobGroupID = 0;
-        
+
         this->currentPublicJobThreadIndex = 0;
         this->currentReservedJobThreadIndex = 0;
-        
-        this->started = false;        
+
+        this->started = false;
     }
 
     JobThread* SelectJobThread(JobThreadIndex index)
@@ -89,7 +89,7 @@ struct JobSystem::Impl : public AllocatedClass
                 else
                     return this->threads.GetReservedAt(this->currentReservedJobThreadIndex++ % this->threads.GetReservedSize());
             }
-            default: 
+            default:
             {
                 return nullptr;
             }
@@ -106,7 +106,7 @@ struct JobSystem::Impl : public AllocatedClass
             this->publicCount = 0;
             this->reservedCount = 0;
         }
-        ~JobThreads() 
+        ~JobThreads()
         {
             this->count = 0;
         }
@@ -132,9 +132,9 @@ struct JobSystem::Impl : public AllocatedClass
             }
         }
 
-        bool empty() const 
-        { 
-            return this->count == 0; 
+        bool empty() const
+        {
+            return this->count == 0;
         }
 
         void Destroy()
@@ -188,12 +188,12 @@ struct JobSystem::Impl : public AllocatedClass
 
     volatile size_t lastProcessedJobGroupID;
     volatile size_t nextJobGroupID;
-    
+
     std::atomic_size_t currentPublicJobThreadIndex;
     std::atomic_size_t currentReservedJobThreadIndex;
-    
+
     bool started;
-    
+
     JobFiber defaultActiveFiber;
     FiberJobScheduler defaultFiberScheduler;
 
@@ -201,7 +201,7 @@ struct JobSystem::Impl : public AllocatedClass
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //JobSystem::Settings
 JobSystem::Settings::Settings()
@@ -283,7 +283,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                         }
                     }
                 }
-                
+
                 break;
             }
             default: break;
@@ -295,25 +295,25 @@ void JobSystem::Settings::Finalize(const LogicalCpus& logicalCpus)
 {
     auto jobFiberCount = GetBestNumberOfFibers(this->fiberCount.requested, logicalCpus);
     this->fiberCount.actual = jobFiberCount.total;
-    
+
     this->jobThreadsSetup.resize(logicalCpus.size());
     for (size_t i = 0; i < this->jobThreadsSetup.size(); i++)
     {
         this->jobThreadsSetup[i].logicalCpu = logicalCpus[i];
-        
+
         this->jobThreadsSetup[i].fiberCount = (i < logicalCpus.size() - 1) ? jobFiberCount.perThread : jobFiberCount.lastThread;
-        
+
         this->jobThreadsSetup[i].stackByteCount = this->threadStackByteCount;
-        
+
         this->jobThreadsSetup[i].stackReserveByteCount = this->threadStackReserveByteCount;
-        
+
         this->jobThreadsSetup[i].type = JobThreadType::PUBLIC;
     }
 }
 
 //JobSystem
 JobSystem::JobSystem()
-{    
+{
 }
 
 JobSystem::JobSystem(JobSystem&& other)
@@ -364,7 +364,7 @@ void JobSystem::Create(const Settings& settings, Error& error)
             return;
         }
     }
-    
+
     if (settings.allocator == nullptr)
     {
         FINJIN_SET_ERROR(error, "No allocator was specified.");
@@ -381,10 +381,10 @@ void JobSystem::Create(const Settings& settings, Error& error)
     }
 
     impl->defaultActiveFiber.InitializeDefaultFiber(settings.allocator, "job-system-default-fiber", &impl->defaultFiberScheduler);
-    
+
     impl->lastProcessedJobGroupID = 0;
     impl->nextJobGroupID = 0;
-    
+
     impl->currentPublicJobThreadIndex = 0;
     impl->currentReservedJobThreadIndex = 0;
 
@@ -403,14 +403,14 @@ void JobSystem::Create(const Settings& settings, Error& error)
         thread.Create
             (
             threadIndex,
-            threadName, 
-            settings.allocator, 
-            threadSetup.type, 
+            threadName,
+            settings.allocator,
+            threadSetup.type,
             threadSetup.logicalCpu,
             settings.maxJobCount,
-            settings.threadJobObjectHeapSize, 
+            settings.threadJobObjectHeapSize,
             threadSetup.fiberCount,
-            threadSetup.stackByteCount, 
+            threadSetup.stackByteCount,
             threadSetup.stackReserveByteCount,
             error
             );
@@ -436,15 +436,15 @@ void JobSystem::Destroy()
 void JobSystem::Start(Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (impl != nullptr && !impl->started && !impl->threads.empty())
     {
         for (size_t threadIndex = 0; threadIndex < impl->threads.size(); threadIndex++)
         {
             auto& thread = impl->threads[threadIndex];
-            
+
             thread.SetMaxJobGroupID(impl->lastProcessedJobGroupID);
-            
+
             thread.Start(error);
             if (error)
             {
@@ -453,11 +453,11 @@ void JobSystem::Start(Error& error)
                 {
                     for (auto& thread : impl->threads)
                         thread.InterruptFibers();
-                    
+
                     for (auto& thread : impl->threads)
                         thread.Stop();
                 }
-                
+
                 FINJIN_SET_ERROR(error, "Failed to start all job system threads.");
                 return;
             }
@@ -484,7 +484,7 @@ size_t JobSystem::GetCurrentGroupID() const
 size_t JobSystem::StartGroupFromMainThread()
 {
     assert(JobThread::GetActiveFiber() == &impl->defaultActiveFiber); //Can only be called from main thread
-    
+
     if (JobThread::GetActiveFiber() == &impl->defaultActiveFiber)
     {
         while (impl->lastProcessedJobGroupID != impl->nextJobGroupID)
@@ -502,7 +502,7 @@ void JobSystem::FinishGroupFromNonMainThread()
 {
     assert(JobThread::GetActiveFiber() != &impl->defaultActiveFiber); //Can only be called from thread OTHER THAN main thread
     assert(impl->lastProcessedJobGroupID == impl->nextJobGroupID - 1); //A group should have already been started
-    
+
     if (JobThread::GetActiveFiber() != &impl->defaultActiveFiber)
     {
         if (impl->lastProcessedJobGroupID == impl->nextJobGroupID - 1)
@@ -518,7 +518,7 @@ void JobSystem::FinishGroupFromNonMainThread()
             for (auto& thread : impl->threads)
                 thread.SetMaxJobGroupID(0);
 
-            impl->lastProcessedJobGroupID = 0; 
+            impl->lastProcessedJobGroupID = 0;
             impl->nextJobGroupID = 0;
         }
     }
@@ -529,16 +529,16 @@ void JobSystem::Stop()
     if (impl != nullptr && impl->started)
     {
         impl->threads.WaitForAllFibersToStart();
-        
+
         for (auto& thread : impl->threads)
             thread.InterruptFibers();
-        
+
         for (auto& thread : impl->threads)
             thread.Stop();
 
         impl->lastProcessedJobGroupID = 0;
         impl->nextJobGroupID = 0;
-        
+
         impl->currentPublicJobThreadIndex = 0;
         impl->currentReservedJobThreadIndex = 0;
 

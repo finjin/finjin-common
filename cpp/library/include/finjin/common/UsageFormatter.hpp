@@ -18,7 +18,7 @@
 #include <ostream>
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API UsageFormatter
@@ -38,7 +38,7 @@ namespace Finjin { namespace Common {
 
     private:
         struct Impl;
-        Impl* impl;        
+        Impl* impl;
     };
 
 } }

@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 FiberJobQueue::FiberJobQueue()
 {
     clear();
@@ -29,14 +29,14 @@ FiberJobQueue::PushPopResult FiberJobQueue::Push(FiberJob::ptr_t&& newJob)
 {
     if (this->isInterrupted)
         return PushPopResult::INTERRUPTED;
-    
+
     try
     {
         std::unique_lock<FiberMutex> thisLock(this->mutex);
 
         if (this->isInterrupted)
             return PushPopResult::INTERRUPTED;
-        
+
     #if FINJIN_DEBUG
         if (!_IsEmpty())
         {
@@ -68,13 +68,13 @@ FiberJobQueue::PushPopResult FiberJobQueue::Pop(FiberJob::ptr_t& oldHead, size_t
     try
     {
         std::unique_lock<FiberMutex> thisLock(this->mutex);
-        
+
         while (!this->isInterrupted && _IsEmpty())
             this->notEmptyCondition.wait(thisLock);
 
         if (this->head->GetGroupID() > maxGroupID)
             return FiberJobQueue::PushPopResult::GROUP_CHECK_FAILED;
-        
+
         oldHead = this->head;
 
         this->head = oldHead->next;
@@ -94,7 +94,7 @@ FiberJobQueue::PushPopResult FiberJobQueue::Pop(FiberJob::ptr_t& oldHead, size_t
 void FiberJobQueue::clear()
 {
     this->isInterrupted = false;
-    
+
     this->head.reset();
     this->pTail = &this->head;
 }

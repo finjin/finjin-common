@@ -11,13 +11,13 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/RealTimeLruCache.hpp"
 #include "finjin/common/ThisThread.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(LruTest_basic)
 {
     BOOST_TEST_MESSAGE("LruTest_basic:");

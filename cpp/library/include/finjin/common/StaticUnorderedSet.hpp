@@ -14,16 +14,16 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/SetMapUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/SetMapImpl.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T, size_t ValueCount, size_t BucketCount, typename Hash = std::hash<T> >
     class StaticUnorderedSet
-    {   
+    {
     public:
         using value_type = T;
         using hash_value_type = size_t;
@@ -36,7 +36,7 @@ namespace Finjin { namespace Common {
 
         using This = StaticUnorderedSet<T, ValueCount, BucketCount, Hash>;
         using Impl = UnorderedSetImpl<This, ValueCollection, BucketCollection, Hash, T>;
-        
+
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
 
@@ -46,7 +46,7 @@ namespace Finjin { namespace Common {
 
         ValueOrError<void> operator = (const StaticUnorderedSet& other) { return impl.assign(other); }
         ValueOrError<void> operator = (StaticUnorderedSet&& other) { return impl.assign(std::move(other)); }
-        
+
         ValueOrError<bool> insert(const value_type& value) { return impl.insert(value); }
         ValueOrError<bool> insert(value_type&& value) { return impl.insert(std::move(value)); }
 

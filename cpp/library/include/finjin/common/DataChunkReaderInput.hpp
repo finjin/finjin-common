@@ -14,29 +14,29 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include <istream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class DataChunkReaderInput
     {
     public:
         virtual ~DataChunkReaderInput() {}
-        
+
         virtual bool IsValid() const = 0;
-        
+
         virtual uint64_t Skip(uint64_t count) = 0;
-        
+
         virtual size_t Read(void* bytes, size_t count) = 0;
 
         virtual size_t ReadToEnd(ByteBuffer& bytes)
         {
             size_t amountRead = 0;
-            
+
             uint8_t tempBuffer[CommonConstants::FILE_TEMP_BUFFER_SIZE];
             size_t readCount = 0;
             while ((readCount = Read(tempBuffer, sizeof(tempBuffer))) > 0)
@@ -44,7 +44,7 @@ namespace Finjin { namespace Common {
                 bytes.Write(tempBuffer, readCount);
                 amountRead += readCount;
             }
-            
+
             return amountRead;
         }
 
@@ -70,10 +70,10 @@ namespace Finjin { namespace Common {
             this->totalBytesRead = 0;
         }
 
-        ~StreamDataChunkReaderInput() 
+        ~StreamDataChunkReaderInput()
         {
         }
-        
+
         bool IsValid() const override
         {
             return this->inStream != nullptr && *this->inStream;

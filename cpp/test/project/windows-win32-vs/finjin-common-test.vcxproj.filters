@@ -37,7 +37,7 @@
     <ClInclude Include="..\..\src\UuidTest.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ClassDescriptionTest.hpp">
+    <ClInclude Include="..\..\src\TypeDescriptionTest.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\StreamingDataDocumentTest.hpp">
@@ -68,6 +68,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\BitArrayTest.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PNGTest.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

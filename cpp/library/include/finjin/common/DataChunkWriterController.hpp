@@ -14,15 +14,15 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ChunkName.hpp"
 #include "finjin/common/DocumentWriterOutput.hpp"
 #include "finjin/common/Error.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class DataChunkWriter;
 
     class FINJIN_COMMON_LIBRARY_API DataChunkWriterController
@@ -36,7 +36,7 @@ namespace Finjin { namespace Common {
 
         virtual void WriteOutputFile(const Path& filePath, std::function<void(DataChunkWriter&, Error&)> chunkFunc, Error& error);
 
-        virtual bool RequiresNewOutput(const DataChunkWriter& writer, const ChunkName& chunkName) const;        
+        virtual bool RequiresNewOutput(const DataChunkWriter& writer, const ChunkName& chunkName) const;
         virtual std::unique_ptr<DocumentWriterOutput> AddOutput(DataChunkWriter& writer, const ChunkName& chunkName, Error& error);
         virtual bool ScheduleWriteChunk(std::shared_ptr<DataChunkWriter> writer, std::function<void(DataChunkWriter&, Error&)> chunkFunc, Error& error);
 

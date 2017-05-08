@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataElementWriter.hpp"
 
 
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common { 
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API JsonDataElementWriter : public DataElementWriter
     {

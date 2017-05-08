@@ -11,11 +11,11 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8StringFormatter.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(StringFormatTest_simple)
 {
     BOOST_TEST_MESSAGE("StringFormatTest_simple:");
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(StringFormatTest_reuse)
     BOOST_TEST_MESSAGE("StringFormatTest_reuse:");
 
     Utf8StringFormatter format("%1%");
-    
+
     BOOST_CHECK((format % "Hello").ToString() == "Hello");
     BOOST_CHECK((format % "Hello2").ToString() == "Hello2");
     BOOST_CHECK((format % "Test").ToString() == "Test");
@@ -50,6 +50,6 @@ BOOST_AUTO_TEST_CASE(StringFormatTest_direct)
     BOOST_TEST_MESSAGE("StringFormatTest_direct:");
 
     auto expected = "This 1 is the expected result";
-    
+
     BOOST_CHECK(Utf8StringFormatter::Format("This %1% is the expected result", 1) == expected);
 }

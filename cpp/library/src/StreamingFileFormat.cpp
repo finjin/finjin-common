@@ -23,7 +23,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 class FileAccessorDataChunkWriterOutput : public DocumentWriterOutput
 {
 public:
@@ -96,9 +96,9 @@ bool StreamingFileFormatUtilities::IsValid(StreamingFileFormat format)
 {
     switch (format)
     {
-        case StreamingFileFormat::STREAMING_TEXT: 
-        case StreamingFileFormat::STREAMING_BINARY: 
-        case StreamingFileFormat::STREAMING_JSON: 
+        case StreamingFileFormat::STREAMING_TEXT:
+        case StreamingFileFormat::STREAMING_BINARY:
+        case StreamingFileFormat::STREAMING_JSON:
         case StreamingFileFormat::STREAMING_CONFIG: return true;
         default: return false;
     }
@@ -107,7 +107,7 @@ bool StreamingFileFormatUtilities::IsValid(StreamingFileFormat format)
 Utf8String StreamingFileFormatUtilities::ToString(StreamingFileFormat format)
 {
     Utf8String extString;
-    
+
     switch (format)
     {
         case StreamingFileFormat::STREAMING_TEXT: extString = "fstd"; break;
@@ -167,22 +167,22 @@ std::unique_ptr<DataChunkWriter> StreamingFileFormatUtilities::CreateFileWriter(
     {
         case StreamingFileFormat::STREAMING_TEXT:
         {
-            dataChunkWriter.reset(new TextDataChunkWriter);                    
+            dataChunkWriter.reset(new TextDataChunkWriter);
             break;
         }
         case StreamingFileFormat::STREAMING_BINARY:
         {
-            dataChunkWriter.reset(new BinaryDataChunkWriter);                    
+            dataChunkWriter.reset(new BinaryDataChunkWriter);
             break;
         }
         case StreamingFileFormat::STREAMING_JSON:
         {
-            dataChunkWriter.reset(new JsonDataChunkWriter);                    
+            dataChunkWriter.reset(new JsonDataChunkWriter);
             break;
         }
         case StreamingFileFormat::STREAMING_CONFIG:
         {
-            dataChunkWriter.reset(new ConfigDataChunkWriter);                    
+            dataChunkWriter.reset(new ConfigDataChunkWriter);
             break;
         }
         default:

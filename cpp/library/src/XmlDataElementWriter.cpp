@@ -19,9 +19,9 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 XmlDataElementWriter::XmlDataElementWriter(XmlDocument& _xmlDocument, std::shared_ptr<XmlNode> _xmlNode) : xmlDocument(&_xmlDocument), xmlNode(_xmlNode)
-{    
+{
 }
 
 void XmlDataElementWriter::SetAttribute(const Utf8String& name, const Utf8String& value)
@@ -41,7 +41,7 @@ std::shared_ptr<DataElementWriter> XmlDataElementWriter::StartChildElement(const
 
     if (this->xmlNode != nullptr)
         childElement.reset(new XmlDataElementWriter(*this->xmlDocument, this->xmlNode->AddChildElement(name)));
-        
+
     return childElement;
 }
 

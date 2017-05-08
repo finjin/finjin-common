@@ -14,19 +14,19 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class Radians;
-    
+
     class FINJIN_COMMON_LIBRARY_API Degrees
-    {   
+    {
     public:
         Degrees();
         Degrees(const Degrees& other);
         Degrees(const Radians& other);
         explicit Degrees(float value);
-        
+
         Degrees& operator = (const Degrees& other);
         Degrees& operator = (const Radians& other);
 
@@ -35,14 +35,14 @@ namespace Finjin { namespace Common {
 
         Degrees operator * (float scale) const;
         Degrees operator / (float scale) const;
-        
+
         float ToDegreesValue() const;
         float ToRadiansValue() const;
-        
+
     private:
         float value;
     };
-    
+
     class FINJIN_COMMON_LIBRARY_API Radians
     {
     public:
@@ -50,10 +50,10 @@ namespace Finjin { namespace Common {
         Radians(const Degrees& other);
         Radians(const Radians& other);
         explicit Radians(float value);
-        
+
         Radians& operator = (const Degrees& other);
         Radians& operator = (const Radians& other);
-        
+
         bool operator == (const Radians& other) const;
         bool operator != (const Radians& other) const;
 
@@ -62,26 +62,27 @@ namespace Finjin { namespace Common {
 
         float ToDegreesValue() const;
         float ToRadiansValue() const;
-        
+
     private:
         float value;
     };
-    
+
     typedef Radians Angle;
+
 } }
 
 
-//Functions-------------------------------------------------------------------
+//Functions---------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     inline Degrees operator * (float scale, const Degrees& value)
     {
         return value * scale;
     }
-    
+
     inline Radians operator * (float scale, const Radians& value)
     {
         return value * scale;
     }
-    
+
 } }

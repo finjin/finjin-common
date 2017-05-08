@@ -41,7 +41,7 @@ Utf8String ToHexString(T value)
     size_t nibbleCount = sizeof(T) * 2;
 
     T nibbleOffset = ((T)nibbleCount - 1) * 4;
-    
+
     //This results in all digits of the value being converted, including leading zeroes
     char hexDigitChar = 0;
     for (size_t i = 0; i < nibbleCount; i++)
@@ -63,7 +63,7 @@ Utf8String ToHexString(T value)
 //Number
 template <typename T>
 void ToNumberInRange(T& value, const Utf8String& stringValue, T minValue, T maxValue, Error& error)
-{   
+{
     FINJIN_ERROR_METHOD_START(error);
 
     if (stringValue.empty())
@@ -157,12 +157,12 @@ T ToNumberInRange(const Utf8String& stringValue, T minValue, T maxValue, T defau
 {
     if (stringValue.empty())
         return defaultValue;
-    
+
     T result = defaultValue;
 
     try
     {
-        result = boost::lexical_cast<T>(stringValue.c_str());        
+        result = boost::lexical_cast<T>(stringValue.c_str());
     }
     catch (...)
     {
@@ -219,9 +219,9 @@ uint8_t ToNumberInRange<uint8_t>(const Utf8String& stringValue, uint8_t minValue
 
 template <typename T>
 void ToNumber(T& value, const Utf8String& stringValue, Error& error)
-{   
+{
     FINJIN_ERROR_METHOD_START(error);
-    ToNumberInRange<T>(value, stringValue, std::numeric_limits<T>::lowest(), std::numeric_limits<T>::max(), error); 
+    ToNumberInRange<T>(value, stringValue, std::numeric_limits<T>::lowest(), std::numeric_limits<T>::max(), error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
@@ -245,7 +245,7 @@ void ToIntegerInRange(T& value, const Utf8String& stringValue, T minValue, T max
     }
 
     bool performedCast = false;
-    
+
     if (stringValue.length() > 1 && (stringValue[0] == 'h' || stringValue[0] == 'H'))
     {
         //Hexadecimal
@@ -272,7 +272,7 @@ void ToIntegerInRange(T& value, const Utf8String& stringValue, T minValue, T max
     }
     else
     {
-        ::ToNumberInRange(value, stringValue, minValue, maxValue, error);        
+        ::ToNumberInRange(value, stringValue, minValue, maxValue, error);
         if (error)
         {
             FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -344,7 +344,7 @@ T ToInteger(const Utf8String& stringValue, T defaultValue)
 //Implementation----------------------------------------------------------------
 
 //Number
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
 size_t Convert::ToNumber(const Utf8String& stringValue, size_t defaultValue)
 {
     return ::ToNumber(stringValue, defaultValue);
@@ -401,7 +401,7 @@ double Convert::ToNumber(const Utf8String& stringValue, double defaultValue)
     return ::ToNumber(stringValue, defaultValue);
 }
 
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
 void Convert::ToNumber(size_t& value, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -442,7 +442,7 @@ void Convert::ToNumber(int16_t& value, const Utf8String& stringValue, Error& err
 void Convert::ToNumber(uint16_t& value, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     ::ToNumber<uint16_t>(value, stringValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -505,7 +505,7 @@ void Convert::ToNumber(double& value, const Utf8String& stringValue, Error& erro
 void Convert::ToNumberInRange(int& value, const Utf8String& stringValue, const int minValue, const int maxValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     ::ToNumberInRange<int>(value, stringValue, minValue, maxValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -514,7 +514,7 @@ void Convert::ToNumberInRange(int& value, const Utf8String& stringValue, const i
 void Convert::ToNumberInRange(unsigned short& value, const Utf8String& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     ::ToNumberInRange<unsigned short>(value, stringValue, minValue, maxValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -523,14 +523,14 @@ void Convert::ToNumberInRange(unsigned short& value, const Utf8String& stringVal
 void Convert::ToNumberInRange(float& value, const Utf8String& stringValue, const float minValue, const float maxValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     ::ToNumberInRange<float>(value, stringValue, minValue, maxValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
 //Integer
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
 size_t Convert::ToInteger(const Utf8String& stringValue, size_t defaultValue)
 {
     return ::ToInteger(stringValue, defaultValue);
@@ -577,7 +577,7 @@ uint64_t Convert::ToInteger(const Utf8String& stringValue, uint64_t defaultValue
     return ::ToInteger(stringValue, defaultValue);
 }
 
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
 void Convert::ToInteger(size_t& value, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -689,20 +689,22 @@ void Convert::ToIntegerInRange(float& value, const Utf8String& stringValue, cons
 
 bool Convert::ToBool(const Utf8String& stringValue, bool defaultValue)
 {
-    bool result = defaultValue;
+    auto result = defaultValue;
 
     if (!stringValue.empty())
-    {        
-        if (stringValue.EqualsNoCaseAscii("t") || 
+    {
+        if (stringValue.EqualsNoCaseAscii("t") ||
             stringValue.EqualsNoCaseAscii("true") ||
-            stringValue.EqualsNoCaseAscii("yes") || 
+            stringValue.EqualsNoCaseAscii("y") ||
+            stringValue.EqualsNoCaseAscii("yes") ||
             stringValue.EqualsNoCaseAscii("enable") ||
             stringValue.EqualsNoCaseAscii("enabled"))
         {
             result = true;
         }
-        else if (stringValue.EqualsNoCaseAscii("f") || 
+        else if (stringValue.EqualsNoCaseAscii("f") ||
             stringValue.EqualsNoCaseAscii("false") ||
+            stringValue.EqualsNoCaseAscii("n") ||
             stringValue.EqualsNoCaseAscii("no") ||
             stringValue.EqualsNoCaseAscii("disable") ||
             stringValue.EqualsNoCaseAscii("disabled"))
@@ -722,7 +724,7 @@ bool Convert::ToBool(const Utf8String& stringValue, bool defaultValue)
             }
         }
     }
-    
+
     return result;
 }
 
@@ -813,7 +815,7 @@ Utf8String Convert::ToHexString(int64_t value)
     return ::ToHexString<int64_t>(static_cast<int64_t>(value));
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS || FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS || FINJIN_TARGET_PLATFORM_IS_APPLE
 Utf8String Convert::ToString(long value)
 {
     return boost::lexical_cast<Utf8String>(value);

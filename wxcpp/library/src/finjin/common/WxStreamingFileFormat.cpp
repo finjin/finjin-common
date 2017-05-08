@@ -26,7 +26,7 @@ using namespace Finjin::Common;
 wxString WxStreamingFileFormatUtilities::ToString(WxStreamingFileFormat ext)
 {
     wxString extString;
-    
+
     switch (ext)
     {
         case WxStreamingFileFormat::STREAMING_TEXT: extString = wxT("fstd"); break;
@@ -78,12 +78,12 @@ std::unique_ptr<WxDataChunkWriter> WxStreamingFileFormatUtilities::CreateFileWri
     {
         case WxStreamingFileFormat::STREAMING_TEXT:
         {
-            dataChunkWriter.reset(new WxTextDataChunkWriter);                    
+            dataChunkWriter.reset(new WxTextDataChunkWriter);
             break;
         }
         case WxStreamingFileFormat::STREAMING_BINARY:
         {
-            dataChunkWriter.reset(new WxBinaryDataChunkWriter);                    
+            dataChunkWriter.reset(new WxBinaryDataChunkWriter);
             break;
         }
         case WxStreamingFileFormat::STREAMING_JSON:
@@ -93,7 +93,7 @@ std::unique_ptr<WxDataChunkWriter> WxStreamingFileFormatUtilities::CreateFileWri
         }
         case WxStreamingFileFormat::STREAMING_CONFIG:
         {
-            dataChunkWriter.reset(new WxConfigDataChunkWriter);                    
+            dataChunkWriter.reset(new WxConfigDataChunkWriter);
             break;
         }
         default:
@@ -101,7 +101,7 @@ std::unique_ptr<WxDataChunkWriter> WxStreamingFileFormatUtilities::CreateFileWri
             FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Invalid streaming file format '%d'."), (int)fileFormat));
             return nullptr;
         }
-    }       
+    }
 
     auto writerSettings = settings;
     writerSettings.Create(std::shared_ptr<WxFileDataChunkWriterOutput>(new WxFileDataChunkWriterOutput(exportFile)), controller);

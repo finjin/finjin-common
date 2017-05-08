@@ -20,12 +20,12 @@
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct XmlDataDocumentWriter::Impl
 {
     Impl()
     {
-        this->xmlDoc.AddDefaultDeclaration();        
+        this->xmlDoc.AddDefaultDeclaration();
         this->xmlRootElement = this->xmlDoc.GetDocumentElement();
     }
 
@@ -34,9 +34,9 @@ struct XmlDataDocumentWriter::Impl
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 XmlDataDocumentWriter::XmlDataDocumentWriter() : impl(new Impl)
-{    
+{
 }
 
 XmlDataDocumentWriter::~XmlDataDocumentWriter()
@@ -52,7 +52,7 @@ std::shared_ptr<DataElementWriter> XmlDataDocumentWriter::StartRootElement(const
         childElement.reset(new XmlDataElementWriter(impl->xmlDoc, impl->xmlRootElement));
     else
         childElement.reset(new XmlDataElementWriter(impl->xmlDoc, impl->xmlRootElement->AddChildElement(name)));
-    
+
     return childElement;
 }
 
@@ -60,7 +60,7 @@ void XmlDataDocumentWriter::EndRootElement()
 {
 }
 
-void XmlDataDocumentWriter::SaveFile(const Path& fileName, Error& error) 
+void XmlDataDocumentWriter::SaveFile(const Path& fileName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -69,9 +69,9 @@ void XmlDataDocumentWriter::SaveFile(const Path& fileName, Error& error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
-void XmlDataDocumentWriter::GetString(Utf8String& result, Error& error) 
+void XmlDataDocumentWriter::GetString(Utf8String& result, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    result = impl->xmlDoc.ToString();    
+    result = impl->xmlDoc.ToString();
 }

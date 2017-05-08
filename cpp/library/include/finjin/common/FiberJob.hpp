@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AllocatedClass.hpp"
 #include "finjin/common/SimpleSpinLockMutex.hpp"
 #include <boost/intrusive_ptr.hpp>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FiberJob : public AllocatedClass
@@ -49,12 +49,12 @@ namespace Finjin { namespace Common {
             if (--work->useCount == 0)
                 delete work;
         }
-        
+
         size_t GetGroupID() const
         {
             return this->groupID;
         }
-        
+
         SimpleSpinLockMutex* GetInUseMutex() const
         {
             return this->inUseMutex;
@@ -77,7 +77,7 @@ namespace Finjin { namespace Common {
         }
 
         ~WrappedFiberJob()
-        {   
+        {
         }
 
         void Execute() override

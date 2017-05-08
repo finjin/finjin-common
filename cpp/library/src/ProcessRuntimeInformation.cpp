@@ -14,15 +14,15 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/ProcessRuntimeInformation.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #endif
 
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
-#if FINJIN_TARGET_OS_IS_WINDOWS && !FINJIN_TARGET_OS_IS_WINDOWS_UWP
+//Local functions---------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
 
 static bool _IsRunningInteractively()
 {
@@ -62,7 +62,7 @@ static bool _IsRunningInteractively()
             goto ret;
     }
 
-    //We now know the groups associated with this token.  We want to look to see if the interactive group is active in 
+    //We now know the groups associated with this token.  We want to look to see if the interactive group is active in
     //the token, and if so, we know that this is an interactive process.
     //
     //We also look for the "service" SID, and if it's present, we know we're a service.

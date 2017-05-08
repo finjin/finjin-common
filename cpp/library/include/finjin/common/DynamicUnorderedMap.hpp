@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
-#include "finjin/common/SetMapUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
+#include "finjin/common/SetMapImpl.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /**
@@ -28,27 +28,27 @@ namespace Finjin { namespace Common {
      * Instead, this needs to be forced by specifying true for the 'allowOverride' parameter.
      */
     template <typename KeyType, typename ValueType, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType> >
-    class AllocatedUnorderedMap
-    {   
+    class DynamicUnorderedMap
+    {
     public:
         using value_type = MapPairType;
         using hash_value_type = size_t;
 
         using ValueEntry = SetMapValueEntryImpl<hash_value_type, value_type>;
         using BucketEntry = SetMapBucketEntryImpl<hash_value_type, value_type>;
-        
-        using ValueCollection = AllocatedVector<ValueEntry>;
-        using BucketCollection = AllocatedVector<BucketEntry>;
-        
-        using This = AllocatedUnorderedMap<KeyType, ValueType, MapPairType, Hash>;
+
+        using ValueCollection = DynamicVector<ValueEntry>;
+        using BucketCollection = DynamicVector<BucketEntry>;
+
+        using This = DynamicUnorderedMap<KeyType, ValueType, MapPairType, Hash>;
         using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType>;
-        
+
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
 
-        AllocatedUnorderedMap() { }
-        AllocatedUnorderedMap(const AllocatedUnorderedMap& other) { operator = (other); }
-        AllocatedUnorderedMap(AllocatedUnorderedMap&& other) { operator = (std::move(other)); }
+        DynamicUnorderedMap() { }
+        DynamicUnorderedMap(const DynamicUnorderedMap& other) { operator = (other); }
+        DynamicUnorderedMap(DynamicUnorderedMap&& other) { operator = (std::move(other)); }
 
         template <typename... Args>
         bool Create(size_t valueCount, size_t bucketCount, Allocator* allocator, Args&&... args)
@@ -56,13 +56,13 @@ namespace Finjin { namespace Common {
             Destroy();
 
             bucketCount = GetOdd(bucketCount);
-            
+
             auto result = true;
             result &= impl.bucketEntries.Create(bucketCount, allocator);
             result &= impl.valueEntries.Create(valueCount, allocator, std::forward<Args>(args)...);
 
             clear();
-            
+
             return result;
         }
 
@@ -74,12 +74,12 @@ namespace Finjin { namespace Common {
             clear();
         }
 
-        ValueOrError<void> operator = (const AllocatedUnorderedMap& other) { return impl.assign(other); }
-        ValueOrError<void> operator = (AllocatedUnorderedMap&& other) { return impl.assign(std::move(other)); }
-        
+        ValueOrError<void> operator = (const DynamicUnorderedMap& other) { return impl.assign(other); }
+        ValueOrError<void> operator = (DynamicUnorderedMap&& other) { return impl.assign(std::move(other)); }
+
         ValueOrError<bool> insert(const KeyType& key, const ValueType& value, bool allowOverwrite) { return impl.insert(key, value, allowOverwrite); }
         ValueOrError<bool> insert(KeyType&& key, ValueType&& value, bool allowOverwrite) { return impl.insert(std::move(key), std::move(value), allowOverwrite); }
-        
+
         ValueOrError<bool> insert_or_assign(const KeyType& key, const ValueType& value) { return impl.insert(key, value, true); }
         ValueOrError<bool> insert_or_assign(KeyType&& key, ValueType&& value) { return impl.insert(std::move(key), std::move(value), true); }
 
@@ -110,7 +110,7 @@ namespace Finjin { namespace Common {
         ValueCollection& GetValueEntries() { return impl.valueEntries; }
 
         ValueOrError<ValueType*> GetOrAdd(const KeyType& key) { return impl.GetOrAdd(key); }
-        
+
         size_t GetCollisionCount() const { return impl.GetCollisionCount(); }
         float GetCollisionRatio() const { return impl.GetCollisionRatio(); }
 

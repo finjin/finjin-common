@@ -11,7 +11,7 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/TextDataChunkReader.hpp"
 #include "finjin/common/TextDataChunkWriter.hpp"
 #include "finjin/common/JsonDataChunkReader.hpp"
@@ -187,7 +187,7 @@ bool MultipleTextFileDataChunkWriterController::ScheduleWriteChunk(std::shared_p
 
     std::shared_ptr<DataChunkWriter> sharedWriter(writer);
 
-    this->scheduledChunkWrites.push_back(std::async(std::launch::async, [=] 
+    this->scheduledChunkWrites.push_back(std::async(std::launch::async, [=]
     {
         FINJIN_DECLARE_ERROR(error);
 
@@ -250,7 +250,7 @@ std::unique_ptr<DataChunkReader> MultipleTextFileDataChunkReaderController::Crea
 
     JsonDataChunkReader::Settings readerSettings;
     readerSettings.Create(inPtr, *this);
-    
+
     //std::unique_ptr<DataChunkReader> reader(new TextDataChunkReader(readerSettings, inPtr, *this));
     std::unique_ptr<JsonDataChunkReader> jsonReader(new JsonDataChunkReader);
     jsonReader->Create(readerSettings, nullptr, error);
@@ -451,7 +451,7 @@ void MultifileReadTest(DataChunkReader& reader, Error& error)
                                 {
                                     std::cout << "Including file: " << value << std::endl;
 
-                                    reader.GetReaderController().ReadInputFile(value, [](DataChunkReader& meshFormatReader, Error& error) 
+                                    reader.GetReaderController().ReadInputFile(value, [](DataChunkReader& meshFormatReader, Error& error)
                                     {
                                         FINJIN_ERROR_METHOD_START(error);
 
@@ -485,7 +485,7 @@ void MultifileReadTest(DataChunkReader& reader, Error& error)
     }
 }
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(StreamingDataDocumentTest_create_files)
 {
     BOOST_TEST_MESSAGE("StreamingDataDocumentTest_create_files:");
@@ -1032,11 +1032,11 @@ bool DoReadWriteStreamingDocumentMemoryTest(size_t maxBytesPerLine, ByteOrder by
 {
     FINJIN_DECLARE_ERROR(error);
 
-    WriterType::Settings writerSettings;
+    typename WriterType::Settings writerSettings;
     writerSettings.maxBytesPerLine = maxBytesPerLine;
     writerSettings.byteOrder = byteOrder;
 
-    ReaderType::Settings readerSettings;
+    typename ReaderType::Settings readerSettings;
 
     std::stringstream outStream;
     {
@@ -1092,7 +1092,7 @@ bool DoReadWriteStreamingDocumentMemoryTest(size_t maxBytesPerLine, ByteOrder by
             }
         }
     }
-    
+
     return true;
 }
 
@@ -1120,5 +1120,5 @@ BOOST_AUTO_TEST_CASE(StreamingDataDocumentTest_in_memory)
         //Byte order ignored for test
         auto jsonStreamingTestResult = DoReadWriteStreamingDocumentMemoryTest<JsonDataChunkWriter, JsonDataChunkReader>(maxBytesPerLine, ByteOrder::LITTLE);
         BOOST_CHECK(jsonStreamingTestResult == true);
-    } 
+    }
 }

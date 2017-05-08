@@ -20,7 +20,7 @@ using namespace Finjin::Common;
 using namespace Windows::Storage;
 
 
-//Macros--------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 
 //This MUST be a macro so that unprivileged access to the 'which' folder can be handled
 #define GET_SYSTEM_CREATED_DIRECTORY(standardPath, which) \
@@ -46,7 +46,7 @@ using namespace Windows::Storage;
     }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void StandardPaths::Create(const Utf8String& applicationName, void* applicationHandle, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -59,23 +59,23 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     this->applicationExecutableFile.isSystemCreated = true;
 
     GET_SYSTEM_CREATED_DIRECTORY(this->applicationBundleDirectory, Windows::ApplicationModel::Package::Current->InstalledLocation);
-            
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userDocumentsDirectory, KnownFolders::DocumentsLibrary);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userMusicDirectory, KnownFolders::MusicLibrary);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userVideosDirectory, KnownFolders::VideosLibrary);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userPicturesDirectory, KnownFolders::PicturesLibrary);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userCameraRollDirectory, KnownFolders::CameraRoll);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userSavedPicturesDirectory, KnownFolders::SavedPictures);
 
     GET_SYSTEM_CREATED_DIRECTORY(this->userApplicationSettingsDirectory, ApplicationData::Current->LocalFolder);
-    
+
     GET_SYSTEM_CREATED_DIRECTORY(this->userApplicationTemporaryDirectory, ApplicationData::Current->TemporaryFolder);
-    
+
     if (WindowsUtilities::GetWorkingDirectory(this->workingDirectory.path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get working directory.");

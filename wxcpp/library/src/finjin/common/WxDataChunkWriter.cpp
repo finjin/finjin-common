@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //WxDataChunkWriter::Settings
 WxDataChunkWriter::Settings::Settings()
@@ -177,21 +177,21 @@ void WxDataChunkWriter::WriteDoubles(const WxChunkPropertyName& propertyName, co
         FINJIN_WX_SET_ERROR_NO_MESSAGE(error);
 }
 
-const wxString& WxDataChunkWriter::GetContextString(ContextIndex index) const 
-{ 
-    return this->contextStrings[index]; 
+const wxString& WxDataChunkWriter::GetContextString(ContextIndex index) const
+{
+    return this->contextStrings[index];
 }
 
-void WxDataChunkWriter::SetContextString(ContextIndex index, const wxString& value) 
+void WxDataChunkWriter::SetContextString(ContextIndex index, const wxString& value)
 {
     if (this->contextStringProcessors[index] != nullptr)
     {
         auto tempValue = value;
         this->contextStringProcessors[index](tempValue);
-        this->contextStrings[index] = tempValue; 
+        this->contextStrings[index] = tempValue;
     }
     else
-        this->contextStrings[index] = value; 
+        this->contextStrings[index] = value;
 
     if (index == ContextIndex::OBJECT_NAME)
     {
@@ -200,13 +200,13 @@ void WxDataChunkWriter::SetContextString(ContextIndex index, const wxString& val
     }
 }
 
-void WxDataChunkWriter::SetContextStringProcessor(ContextIndex index, std::function<void(wxString&)> value) 
-{ 
-    this->contextStringProcessors[index] = value; 
+void WxDataChunkWriter::SetContextStringProcessor(ContextIndex index, std::function<void(wxString&)> value)
+{
+    this->contextStringProcessors[index] = value;
 }
-        
-void WxDataChunkWriter::InheritContextStrings(WxDataChunkWriter& other) 
-{ 
+
+void WxDataChunkWriter::InheritContextStrings(WxDataChunkWriter& other)
+{
     this->contextStrings = other.contextStrings;
     this->contextStringProcessors = other.contextStringProcessors;
 }

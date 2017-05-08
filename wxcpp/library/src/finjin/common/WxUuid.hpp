@@ -11,17 +11,17 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
 //Includes----------------------------------------------------------------------
 #include <wx/string.h>
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <guiddef.h>
 #endif
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /** 128-bit universally unique identifier. */
@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
         WxUuid(const uint8_t* bytes);
         WxUuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, uint8_t data4_1, uint8_t data4_2, uint8_t data4_3, uint8_t data4_4, uint8_t data4_5, uint8_t data4_6, uint8_t data4_7);
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         WxUuid(const GUID& guid);
 
         operator GUID () const;
@@ -51,9 +51,9 @@ namespace Finjin { namespace Common {
         /** Indicates whether the UUID is "nil". */
         bool IsZero() const;
 
-        /** 
-         * Gets a hash of the UUID. 
-         * @return A hash of the UUID. 
+        /**
+         * Gets a hash of the UUID.
+         * @return A hash of the UUID.
          */
         size_t GetHash() const;
 
@@ -84,9 +84,9 @@ namespace Finjin { namespace Common {
          * @return The parsed UUID. If the UUID could not be parsed, a "nil" UUID is returned.
          */
         static WxUuid Parse(const wxString& stringValue);
-    
+
     private:
-        struct CpuOrderedParts 
+        struct CpuOrderedParts
         {
             uint32_t data1;
             uint16_t data2;
@@ -98,10 +98,10 @@ namespace Finjin { namespace Common {
             CpuOrderedParts cpuOrderedParts;
             uint8_t data[16];
             uint32_t data32[4];
-        #if FINJIN_TARGET_OS_IS_WINDOWS
+        #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
             GUID guid;
         #endif
-        };        
+        };
     };
 
     class WxRandomUuidCreator
@@ -112,7 +112,7 @@ namespace Finjin { namespace Common {
 
         WxUuid NewUuid();
 
-    private:        
+    private:
         std::mt19937 randomGenerator;
     };
 

@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxByteBuffer.hpp"
 #include "finjin/common/WxConfigDocumentReader.hpp"
 #include "finjin/common/WxError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T>
@@ -53,8 +53,7 @@ namespace Finjin { namespace Common {
         FLOAT3,
         FLOAT4,
         FLOAT3x3,
-        FLOAT4x3,
-        FLOAT4x4, 
+        FLOAT4x4,
         NESTED_STRUCT //Pointer to another numeric struct
     };
 
@@ -78,7 +77,6 @@ namespace Finjin { namespace Common {
                 case WxNumericStructElementType::FLOAT3: return wxT("float3");
                 case WxNumericStructElementType::FLOAT4: return wxT("float4");
                 case WxNumericStructElementType::FLOAT3x3: return wxT("float3x3");
-                case WxNumericStructElementType::FLOAT4x3: return wxT("float4x3");
                 case WxNumericStructElementType::FLOAT4x4: return wxT("float4x4");
                 default: return wxT("<unknown element type>");
             }
@@ -123,8 +121,6 @@ namespace Finjin { namespace Common {
                 return WxNumericStructElementType::FLOAT4;
             else if (value == wxT("float3x3"))
                 return WxNumericStructElementType::FLOAT3x3;
-            else if (value == wxT("float4x3"))
-                return WxNumericStructElementType::FLOAT4x3;
             else if (value == wxT("float4x4"))
                 return WxNumericStructElementType::FLOAT4x4;
             else
@@ -156,7 +152,6 @@ namespace Finjin { namespace Common {
                 case WxNumericStructElementType::FLOAT3:
                 case WxNumericStructElementType::FLOAT4:
                 case WxNumericStructElementType::FLOAT3x3:
-                case WxNumericStructElementType::FLOAT4x3:
                 case WxNumericStructElementType::FLOAT4x4: return true;
                 default: return false;
             }
@@ -180,7 +175,6 @@ namespace Finjin { namespace Common {
                 case WxNumericStructElementType::FLOAT3: return 3;
                 case WxNumericStructElementType::FLOAT4: return 4;
                 case WxNumericStructElementType::FLOAT3x3: return 9;
-                case WxNumericStructElementType::FLOAT4x3: return 12;
                 case WxNumericStructElementType::FLOAT4x4: return 16;
                 default: return 0;
             }
@@ -204,7 +198,6 @@ namespace Finjin { namespace Common {
                 case WxNumericStructElementType::FLOAT3: return sizeof(float) * 3;
                 case WxNumericStructElementType::FLOAT4: return sizeof(float) * 4;
                 case WxNumericStructElementType::FLOAT3x3: return sizeof(float) * 9;
-                case WxNumericStructElementType::FLOAT4x3: return sizeof(float) * 12;
                 case WxNumericStructElementType::FLOAT4x4: return sizeof(float) * 16;
                 default: return 0;
             }
@@ -326,7 +319,7 @@ namespace Finjin { namespace Common {
         Type type; //The element type
         WxNumericStruct* nestedStruct; //Pointer to a nested type, if type = Type::NESTED_STRUCT
         DefaultValue defaultValue; //Default value setting
-        bool packArray; //Indicates whether array elements should be packed together tightly. By default they are not, which matches typical GPU memory alignment behavior, Packing can be useful to make a configured array map to consecutive non-array values        
+        bool packArray; //Indicates whether array elements should be packed together tightly. By default they are not, which matches typical GPU memory alignment behavior, Packing can be useful to make a configured array map to consecutive non-array values
     };
 
     template <typename NumericStructMetadata>
@@ -410,7 +403,7 @@ namespace Finjin { namespace Common {
             if (!numericStructs.empty())
             {
                 structCount = 0;
-        
+
                 for (auto line = reader.Current(); line != nullptr; line = reader.Next())
                 {
                     switch (line->GetType())
@@ -422,17 +415,17 @@ namespace Finjin { namespace Common {
 
                             if (sectionName == NumericStructMetadata::GetConfigSectionName() && structCount < numericStructs.size())
                             {
-                                auto& desc = numericStructs[structCount++];                        
-                        
+                                auto& desc = numericStructs[structCount++];
+
                                 InitializeFromScope
                                     (
-                                    desc, 
-                                    reader, 
-                                    memoryStartAddressAlignment, 
-                                    memoryRowSizeInBytes, 
-                                    memoryTotalSizeAlignment, 
-                                    &numericStructs[0], 
-                                    structCount - 1, 
+                                    desc,
+                                    reader,
+                                    memoryStartAddressAlignment,
+                                    memoryRowSizeInBytes,
+                                    memoryTotalSizeAlignment,
+                                    &numericStructs[0],
+                                    structCount - 1,
                                     defines,
                                     error
                                     );
@@ -442,7 +435,7 @@ namespace Finjin { namespace Common {
                                     return;
                                 }
                             }
-                            
+
                             break;
                         }
                         default: break;
@@ -605,7 +598,7 @@ namespace Finjin { namespace Common {
 
         bool IsSubsetOf(const WxNumericStruct& other) const
         {
-            for (auto& element : this->elements) 
+            for (auto& element : this->elements)
             {
                 auto otherElement = other.GetElement(element.elementID);
 
@@ -737,7 +730,7 @@ namespace Finjin { namespace Common {
 
         static void _InitializeDescription
             (
-            WxNumericStruct& desc, 
+            WxNumericStruct& desc,
             size_t memoryStartAddressAlignment,
             size_t memoryRowSizeInBytes,
             size_t memoryTotalSizeAlignment
@@ -766,7 +759,7 @@ namespace Finjin { namespace Common {
                         if (paddedRowElementOffset != 0)
                         {
                             if ((element.arraySize > 1 && !element.packArray) || //Non-packed array
-                                ((paddedRowElementOffset + element.sizeInBytes) > desc.memoryRowSizeInBytes) || //Element spans multiple rows 
+                                ((paddedRowElementOffset + element.sizeInBytes) > desc.memoryRowSizeInBytes) || //Element spans multiple rows
                                 (element.type == WxNumericStructElementType::NESTED_STRUCT) || //Element is a nested struct
                                 (previousElementType == WxNumericStructElementType::NESTED_STRUCT)) //Previous element is a nested struct
                             {
@@ -808,9 +801,9 @@ namespace Finjin { namespace Common {
         size_t memoryTotalSizeAlignment; //Alignment on the total size of the buffer
         size_t paddedTotalSize;
         bool zeroAllElementDefaultValues; //Indicates whether all elements can be zeroed during a call to GpuConstantBuffer::SetDefaults()
-        EnumValues<ElementID, ElementID::COUNT, Element*> elementIDToElement; //Look up table to quickly map a elementID to an element
+        EnumArray<ElementID, ElementID::COUNT, Element*> elementIDToElement; //Look up table to quickly map a elementID to an element
     };
-    
+
     struct GenericNumericStructMetadata
     {
         enum class ElementID
@@ -819,7 +812,7 @@ namespace Finjin { namespace Common {
 
             COUNT
         };
-        
+
         static void ParseElementID(ElementID& result, const wxString& value, WxError& error)
         {
             result = ElementID::NONE;
@@ -934,7 +927,7 @@ namespace Finjin { namespace Common {
                 case ElementID::TEX_COORD_5: return wxT("tex-coord-5");
                 case ElementID::TEX_COORD_6: return wxT("tex-coord-6");
                 case ElementID::TEX_COORD_7: return wxT("tex-coord-7");
-				default: return wxEmptyString;
+                default: return wxEmptyString;
             }
         }
 
@@ -1022,5 +1015,5 @@ namespace Finjin { namespace Common {
             return element;
         }
     };
-    
+
 } }

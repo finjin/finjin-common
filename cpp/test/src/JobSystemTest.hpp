@@ -11,7 +11,7 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/JobSystem.hpp"
@@ -19,7 +19,7 @@
 #include <memory>
 
 
-//Test support functions-------------------------------------------------------
+//Test support functions--------------------------------------------------------
 //Somehow causes a memory leak on Windows?
 /*template <uint64_t n>
 decltype(auto) SubmitFibonacciJob(JobSystem& s)
@@ -39,7 +39,7 @@ decltype(auto) SubmitFibonacciJob(JobSystem& s)
 }*/
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
 {
     BOOST_TEST_MESSAGE("JobSystemTest_submit:");
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
     FINJIN_DECLARE_ERROR(error);
 
     LogicalCpus logicalCpus;
-    
+
     logicalCpus.Enumerate();
     BOOST_CHECK(logicalCpus.size() != 0);
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
         settings.threadStackByteCount = MemorySize::MEBIBYTE * 2;
         settings.threadStackReserveByteCount = MemorySize::MEBIBYTE * 2;
         settings.Finalize(logicalCpus);
-        
+
         std::unique_ptr<JobSystem> jobSystem(new JobSystem);
         jobSystem->Create(settings, error);
         if (error)
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
             BOOST_TEST_MESSAGE(error.GetLastNonEmptyErrorMessage());
             return;
         }
-        
+
         jobSystem->Start(error);
         if (error)
         {
@@ -76,9 +76,9 @@ BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
             return;
         }
 
-        auto f = jobSystem->Submit(0, [](int a, int b) {return a + b; }, 1, 2);
+        auto f = jobSystem->Submit([](int a, int b) {return a + b; }, 1, 2);
         auto result = f.get();
-        BOOST_CHECK(result == 3); 
+        BOOST_CHECK(result == 3);
 
         /*auto f2 = SubmitFibonacciJob<83>(*jobSystem.get());
         auto result2 = f.get();

@@ -11,27 +11,28 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/FinjinCommonLibrary.hpp"
 using namespace Finjin::Common;
 
 
-//Test "main"------------------------------------------------------------------
+//Test "main"-------------------------------------------------------------------
 #define BOOST_TEST_MODULE Finjin Common Library Tests
 #include <boost/test/included/unit_test.hpp>
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 #include "Base64Test.hpp"
 #include "BitArrayTest.hpp"
 #include "ByteBufferTest.hpp"
-#include "ClassDescriptionTest.hpp"
+#include "TypeDescriptionTest.hpp"
 #include "CollectionTest.hpp"
 #include "ConfigTest.hpp"
 #include "DateTimeTest.hpp"
 #include "JobSystemTest.hpp"
 #include "LruTest.hpp"
 #include "MemoryTest.hpp"
+#include "PNGTest.hpp"
 #include "PathTest.hpp"
 #include "SettingsTest.hpp"
 #include "StreamingDataDocumentTest.hpp"

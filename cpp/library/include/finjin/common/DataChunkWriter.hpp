@@ -14,19 +14,19 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteOrder.hpp"
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/ChunkName.hpp"
 #include "finjin/common/EnumBitwise.hpp"
-#include "finjin/common/EnumValues.hpp"
+#include "finjin/common/EnumArray.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Uuid.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class DataChunkWriter;
     class DataChunkWriterController;
     class DocumentWriterOutput;
@@ -90,8 +90,12 @@ namespace Finjin { namespace Common {
 
         virtual DataChunkWriterController& GetWriterController() = 0;
 
+        virtual DocumentWriterOutput* GetWriterOutput() = 0;
+
         virtual void WriteWriterHeader(Error& error) = 0;
         virtual void WriteChunk(const ChunkName& name, std::function<void(DataChunkWriter&, Error&)> chunkFunc, Error& error) = 0;
+        virtual void WriteChunkStart(const ChunkName& name, Error& error) = 0;
+        virtual void WriteChunkEnd(const ChunkName& name, Error& error) = 0;
         virtual void WriteFooter() = 0;
 
         virtual bool IsBinaryFormat() const = 0;
@@ -118,7 +122,7 @@ namespace Finjin { namespace Common {
         virtual void WriteUInt64(const ChunkPropertyName& propertyName, uint64_t value, Error& error) = 0;
         virtual void WriteFloat(const ChunkPropertyName& propertyName, float value, Error& error) = 0;
         virtual void WriteDouble(const ChunkPropertyName& propertyName, double value, Error& error) = 0;
-        
+
         //Note: WriteStridedStrings() and WriteStrings() are provided for writing arrays of simple alphanumeric strings. It should not be used for generic free text strings.
 
         virtual void WriteStridedStrings(const ChunkPropertyName& propertyName, const Utf8String* values, size_t count, DataChunkWriteStride valueStride, Error& error) = 0;
@@ -167,8 +171,8 @@ namespace Finjin { namespace Common {
         void InheritContextStrings(DataChunkWriter& other);
 
     protected:
-        EnumValues<ContextIndex, ContextIndex::COUNT, Utf8String> contextStrings;
-        EnumValues<ContextIndex, ContextIndex::COUNT, std::function<void(Utf8String&)> > contextStringProcessors;
+        EnumArray<ContextIndex, ContextIndex::COUNT, Utf8String> contextStrings;
+        EnumArray<ContextIndex, ContextIndex::COUNT, std::function<void(Utf8String&)> > contextStringProcessors;
     };
 
     template <typename T>

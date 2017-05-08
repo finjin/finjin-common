@@ -14,23 +14,23 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/AssignOrError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     template <typename T>
-    class AllocatedVector
+    class DynamicVector
     {
     public:
         typedef T value_type;
         typedef T* iterator;
         typedef const T* const_iterator;
 
-        AllocatedVector()
+        DynamicVector()
         {
             this->items = nullptr;
             this->count = 0;
@@ -38,7 +38,7 @@ namespace Finjin { namespace Common {
             this->allocator = nullptr;
         }
 
-        AllocatedVector(AllocatedVector&& other)
+        DynamicVector(DynamicVector&& other)
         {
             this->items = other.items;
             this->count = other.count;
@@ -51,7 +51,7 @@ namespace Finjin { namespace Common {
             other.allocator = nullptr;
         }
 
-        AllocatedVector& operator = (AllocatedVector&& other)
+        DynamicVector& operator = (DynamicVector&& other)
         {
             Destroy();
 
@@ -68,9 +68,9 @@ namespace Finjin { namespace Common {
             return *this;
         }
 
-        AllocatedVector(const AllocatedVector& other) = delete;
+        DynamicVector(const DynamicVector& other) = delete;
 
-        ~AllocatedVector()
+        ~DynamicVector()
         {
             Destroy();
         }
@@ -155,7 +155,7 @@ namespace Finjin { namespace Common {
         }
 
         template <typename OtherType>
-        ValueOrError<void> assign(const AllocatedVector<OtherType>& other)
+        ValueOrError<void> assign(const DynamicVector<OtherType>& other)
         {
             return assign(other.data(), other.size());
         }
@@ -334,8 +334,8 @@ namespace Finjin { namespace Common {
         const T* data() const { return this->count > 0 ? &this->items[0] : nullptr; }
         T* data() { return this->count > 0 ? &this->items[0] : nullptr; }
 
-        const T* data_left() const { return this->count < this->maxCount ? &this->items[this->count] : nullptr; }
-        T* data_left() { return this->count < this->maxCount ? &this->items[this->count] : nullptr; }
+        const T* data_left() const { return this->count <= this->maxCount ? &this->items[this->count] : nullptr; } //Use <= to allow getting end
+        T* data_left() { return this->count <= this->maxCount ? &this->items[this->count] : nullptr; } //Use <= to allow getting end
 
         const T* begin() const { return &this->items[0]; }
         T* begin() { return &this->items[0]; }
@@ -369,11 +369,11 @@ namespace Finjin { namespace Common {
         }
 
     protected:
-        AssignOrError<T> assignValue;
         T* items;
         size_t count;
         size_t maxCount;
         Allocator* allocator;
+        AssignOrError<T> assignValue;
     };
 
 } }

@@ -14,19 +14,19 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/ConfigDocumentReader.hpp"
 #include "finjin/common/Convert.hpp"
-#include "finjin/common/EnumValues.hpp"
+#include "finjin/common/DynamicVector.hpp"
+#include "finjin/common/EnumArray.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Hash.hpp"
 #include "finjin/common/StaticUnorderedMap.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class NumericStructElementType
@@ -45,8 +45,7 @@ namespace Finjin { namespace Common {
         FLOAT3,
         FLOAT4,
         FLOAT3x3,
-        FLOAT4x3,
-        FLOAT4x4, 
+        FLOAT4x4,
         NESTED_STRUCT //Pointer to another numeric struct
     };
 
@@ -71,7 +70,6 @@ namespace Finjin { namespace Common {
                 case NumericStructElementType::FLOAT3: return "float3";
                 case NumericStructElementType::FLOAT4: return "float4";
                 case NumericStructElementType::FLOAT3x3: return "float3x3";
-                case NumericStructElementType::FLOAT4x3: return "float4x3";
                 case NumericStructElementType::FLOAT4x4: return "float4x4";
                 case NumericStructElementType::NESTED_STRUCT: return "<nested struct>";
                 default: return "<unknown element type>";
@@ -107,9 +105,8 @@ namespace Finjin { namespace Common {
                 Utf8String::Hash("float1"), NumericStructElementType::FLOAT1,
                 Utf8String::Hash("float2"), NumericStructElementType::FLOAT2,
                 Utf8String::Hash("float3"), NumericStructElementType::FLOAT3,
-                Utf8String::Hash("float4"), NumericStructElementType::FLOAT4,            
+                Utf8String::Hash("float4"), NumericStructElementType::FLOAT4,
                 Utf8String::Hash("float3x3"), NumericStructElementType::FLOAT3x3,
-                Utf8String::Hash("float4x3"), NumericStructElementType::FLOAT4x3,
                 Utf8String::Hash("float4x4"), NumericStructElementType::FLOAT4x4
                 );
 
@@ -119,6 +116,44 @@ namespace Finjin { namespace Common {
                 return foundAt->second;
             else
                 return NumericStructElementType::NONE;
+        }
+
+        static bool IsScalar(NumericStructElementType type)
+        {
+            switch (type)
+            {
+                case NumericStructElementType::INT1:
+                case NumericStructElementType::UINT1:
+                case NumericStructElementType::FLOAT1: return true;
+                default: return false;
+            }
+        }
+
+        static bool IsVector(NumericStructElementType type)
+        {
+            switch (type)
+            {
+                case NumericStructElementType::INT2:
+                case NumericStructElementType::INT3:
+                case NumericStructElementType::INT4:
+                case NumericStructElementType::UINT2:
+                case NumericStructElementType::UINT3:
+                case NumericStructElementType::UINT4:
+                case NumericStructElementType::FLOAT2:
+                case NumericStructElementType::FLOAT3:
+                case NumericStructElementType::FLOAT4: return true;
+                default: return false;
+            }
+        }
+
+        static bool IsMatrix(NumericStructElementType type)
+        {
+            switch (type)
+            {
+                case NumericStructElementType::FLOAT3x3:
+                case NumericStructElementType::FLOAT4x4: return true;
+                default: return false;
+            }
         }
 
         static bool IsInt32(NumericStructElementType type)
@@ -158,7 +193,6 @@ namespace Finjin { namespace Common {
                 case NumericStructElementType::FLOAT3:
                 case NumericStructElementType::FLOAT4:
                 case NumericStructElementType::FLOAT3x3:
-                case NumericStructElementType::FLOAT4x3:
                 case NumericStructElementType::FLOAT4x4: return true;
                 default: return false;
             }
@@ -182,7 +216,6 @@ namespace Finjin { namespace Common {
                 case NumericStructElementType::FLOAT3: return 3;
                 case NumericStructElementType::FLOAT4: return 4;
                 case NumericStructElementType::FLOAT3x3: return 9;
-                case NumericStructElementType::FLOAT4x3: return 12;
                 case NumericStructElementType::FLOAT4x4: return 16;
                 default: return 0;
             }
@@ -206,7 +239,6 @@ namespace Finjin { namespace Common {
                 case NumericStructElementType::FLOAT3: return sizeof(float) * 3;
                 case NumericStructElementType::FLOAT4: return sizeof(float) * 4;
                 case NumericStructElementType::FLOAT3x3: return sizeof(float) * 9;
-                case NumericStructElementType::FLOAT4x3: return sizeof(float) * 12;
                 case NumericStructElementType::FLOAT4x4: return sizeof(float) * 16;
                 default: return 0;
             }
@@ -266,7 +298,7 @@ namespace Finjin { namespace Common {
             auto& element = *this;
 
             size_t result = 0;
-            if (element.type == NumericStructElementType::NESTED_STRUCT)            
+            if (element.type == NumericStructElementType::NESTED_STRUCT)
             {
                 assert(element.nestedStruct != nullptr);
                 if (element.nestedStruct != nullptr)
@@ -316,7 +348,7 @@ namespace Finjin { namespace Common {
         NumericStructElementType type; //The element type
         NumericStruct* nestedStruct; //Pointer to a nested type, if type = NumericStructElementType::NESTED_STRUCT
         DefaultValue defaultValue; //Default value setting
-        bool packArray; //Indicates whether array elements should be packed together tightly. By default they are not, which matches typical GPU memory alignment behavior, Packing can be useful to make a configured array map to consecutive non-array values        
+        bool packArray; //Indicates whether array elements should be packed together tightly. By default they are not, which matches typical GPU memory alignment behavior, Packing can be useful to make a configured array map to consecutive non-array values
     };
 
     template <typename NumericStructMetadata>
@@ -347,7 +379,7 @@ namespace Finjin { namespace Common {
             this->memoryRowSizeInBytes = 0;
             this->memoryTotalSizeAlignment = 0;
             this->totalSize = 0;
-            this->paddedTotalSize = 0;            
+            this->paddedTotalSize = 0;
             this->zeroAllElementDefaultValues = false;
             this->elementHash = 0;
             this->paddedTotalSizeBehavior = PaddedTotalSizeBehavior::NONE;
@@ -378,9 +410,9 @@ namespace Finjin { namespace Common {
                 case PaddedTotalSizeBehavior::ROUND_TO_ROW_SIZE:
                 {
                     //Pad the size to contain an even multiple of rows
-                    return Allocator::AlignSizeUp(this->totalSize, this->memoryRowSizeInBytes);                    
+                    return Allocator::AlignSizeUp(this->totalSize, this->memoryRowSizeInBytes);
                 }
-                case PaddedTotalSizeBehavior::ROUND_UP_TO_NEAREST_ROW_SIZE_MULTIPLE_OF_TOTAL_SIZE_ALIGNMENT:                    
+                case PaddedTotalSizeBehavior::ROUND_UP_TO_NEAREST_ROW_SIZE_MULTIPLE_OF_TOTAL_SIZE_ALIGNMENT:
                 {
                     auto result = this->totalSize;
                     if (result < this->memoryTotalSizeAlignment)
@@ -397,21 +429,19 @@ namespace Finjin { namespace Common {
                 {
                     return Allocator::AlignSizeUp(this->totalSize, this->memoryTotalSizeAlignment);
                 }
-            }    
+            }
 
             assert(0);
             return this->paddedTotalSize;
         }
 
-        template <typename NumericStructVector>
+        template <typename NumericStructVector, typename PackingRules>
         static void Create
             (
             NumericStructVector& numericStructs,
             Allocator* allocator,
             const ByteBuffer& readBuffer,
-            size_t memoryStartAddressAlignment,
-            size_t memoryRowSizeInBytes,
-            size_t memoryTotalSizeAlignment,
+            PackingRules& packingRules,
             uint32_t defines,
             Error& error
             )
@@ -421,20 +451,18 @@ namespace Finjin { namespace Common {
             ConfigDocumentReader reader;
             reader.Start(readBuffer);
 
-            Create(numericStructs, allocator, reader, memoryStartAddressAlignment, memoryRowSizeInBytes, memoryTotalSizeAlignment, defines, error);
+            Create(numericStructs, allocator, reader, packingRules, defines, error);
             if (error)
                 FINJIN_SET_ERROR_NO_MESSAGE(error);
         }
 
-        template <typename NumericStructVector>
+        template <typename NumericStructVector, typename PackingRules>
         static void Create
             (
             NumericStructVector& numericStructs,
             Allocator* allocator,
             ConfigDocumentReader& reader,
-            size_t memoryStartAddressAlignment,
-            size_t memoryRowSizeInBytes,
-            size_t memoryTotalSizeAlignment,
+            PackingRules& packingRules,
             uint32_t defines,
             Error& error
             )
@@ -461,7 +489,7 @@ namespace Finjin { namespace Common {
                 }
 
                 structCount = 0;
-        
+
                 for (auto line = reader.Current(); line != nullptr; line = reader.Next())
                 {
                     switch (line->GetType())
@@ -473,18 +501,16 @@ namespace Finjin { namespace Common {
 
                             if (sectionName == configSectionName)
                             {
-                                auto& desc = numericStructs[structCount++];                        
-                        
+                                auto& desc = numericStructs[structCount++];
+
                                 CreateFromScope
                                     (
-                                    desc, 
+                                    desc,
                                     allocator,
-                                    reader, 
-                                    memoryStartAddressAlignment, 
-                                    memoryRowSizeInBytes, 
-                                    memoryTotalSizeAlignment, 
-                                    &numericStructs[0], 
-                                    structCount - 1, 
+                                    reader,
+                                    packingRules,
+                                    &numericStructs[0],
+                                    structCount - 1,
                                     defines,
                                     error
                                     );
@@ -494,7 +520,7 @@ namespace Finjin { namespace Common {
                                     return;
                                 }
                             }
-                            
+
                             break;
                         }
                         default: break;
@@ -505,14 +531,13 @@ namespace Finjin { namespace Common {
             reader.Restart(startLine);
         }
 
+        template <typename PackingRules>
         static void CreateFromScope
             (
             NumericStruct& desc,
             Allocator* allocator,
             ConfigDocumentReader& reader,
-            size_t memoryStartAddressAlignment,
-            size_t memoryRowSizeInBytes,
-            size_t memoryTotalSizeAlignment,
+            PackingRules& packingRules,
             NumericStruct* otherStructs,
             size_t otherStructCount,
             uint32_t defines,
@@ -521,9 +546,7 @@ namespace Finjin { namespace Common {
         {
             FINJIN_ERROR_METHOD_START(error);
 
-            desc.memoryStartAddressAlignment = memoryStartAddressAlignment;
-            desc.memoryRowSizeInBytes = memoryRowSizeInBytes;
-            desc.memoryTotalSizeAlignment = memoryTotalSizeAlignment;
+            packingRules.GetAlignmentState(desc);
             desc.zeroAllElementDefaultValues = true; //Assume all can be zeroed
 
             auto& configSectionElementName = NumericStructMetadata::GetConfigElementSectionName();
@@ -603,7 +626,7 @@ namespace Finjin { namespace Common {
                                     return;
                                 }
                             }
-                            
+
                             break;
                         }
                         case ConfigDocumentLine::Type::SCOPE_START:
@@ -629,15 +652,15 @@ namespace Finjin { namespace Common {
                 desc.elements.resize(elementCount);
             }
 
-            _InitializeDescription(desc, memoryStartAddressAlignment, memoryRowSizeInBytes, memoryTotalSizeAlignment);
+            _InitializeDescription(desc, packingRules);
         }
 
-        template <typename NumericStructVector>
-        static NumericStruct* GetByTypeName(NumericStructVector& numericStructs, const Utf8String& type)
+        template <typename NumericStructVector, typename Name>
+        static NumericStruct* GetByTypeName(NumericStructVector& numericStructs, const Name& name)
         {
             for (auto& desc : numericStructs)
             {
-                if (desc.typeName == type)
+                if (desc.typeName == name)
                     return &desc;
             }
 
@@ -678,7 +701,7 @@ namespace Finjin { namespace Common {
 
         bool IsSubsetOf(const NumericStruct& other) const
         {
-            for (auto& element : this->elements) 
+            for (auto& element : this->elements)
             {
                 auto otherElement = other.GetElement(element.elementID);
 
@@ -818,68 +841,29 @@ namespace Finjin { namespace Common {
             }
         }
 
+        template <typename PackingRules>
         static void _InitializeDescription
             (
-            NumericStruct& desc, 
-            size_t memoryStartAddressAlignment,
-            size_t memoryRowSizeInBytes,
-            size_t memoryTotalSizeAlignment
+            NumericStruct& desc,
+            PackingRules& packingRules
             )
         {
             FINJIN_ZERO_MEMORY(&desc.elementIDToElement[0], desc.elementIDToElement.size() * sizeof(void*));
             desc.totalSize = 0;
-            desc.totalSize = 0;
+            desc.paddedTotalSize = 0;
+
             if (!desc.elements.empty())
             {
-                auto previousElementType = NumericStructElementType::NONE;
-                size_t paddedRowElementOffset = 0;
-                for (size_t elementIndex = 0; elementIndex < desc.elements.size(); elementIndex++)
+                packingRules.StartPack(desc);
+
+                for (size_t i = 0; i < desc.elements.size(); i++)
                 {
-                    auto& element = desc.elements[elementIndex];
-
-                    element.sizeInBytes = element._GetTypeSizeInBytes();
-
-                    if (element.arraySize == 1 || element.packArray)
-                        element.strideInBytes = element.sizeInBytes;
-                    else
-                        element.strideInBytes = Allocator::AlignSizeUp(element.sizeInBytes, desc.memoryRowSizeInBytes);
-
-                    //Add all the array items
-                    for (size_t arrayItemIndex = 0; arrayItemIndex < element.arraySize; arrayItemIndex++)
-                    {
-                        if (paddedRowElementOffset != 0)
-                        {
-                            if ((element.arraySize > 1 && !element.packArray) || //Non-packed array
-                                (element.packArray && arrayItemIndex == 0 && element.arraySize > 1 && (paddedRowElementOffset + element.arraySize * element.sizeInBytes) > desc.memoryRowSizeInBytes) || //First element of packed array, and it won't fit into current row
-                                ((paddedRowElementOffset + element.sizeInBytes) > desc.memoryRowSizeInBytes) || //Element spans multiple rows 
-                                (element.type == NumericStructElementType::NESTED_STRUCT) || //Element is a nested struct
-                                (previousElementType == NumericStructElementType::NESTED_STRUCT)) //Previous element is a nested struct
-                            {
-                                //Element should be at start of row
-                                desc.totalSize += desc.memoryRowSizeInBytes - paddedRowElementOffset;
-                                paddedRowElementOffset = 0;
-                            }
-                        }
-
-                        //Assign to element if it's first array item
-                        if (arrayItemIndex == 0)
-                            element.gpuPaddedOffset = desc.totalSize;
-                        
-                        //Adjust running total
-                        if (arrayItemIndex == element.arraySize - 1)
-                            desc.totalSize += element.sizeInBytes;
-                        else
-                            desc.totalSize += element.strideInBytes;
-                        paddedRowElementOffset = (paddedRowElementOffset + element.strideInBytes) % desc.memoryRowSizeInBytes;
-
-                        //Update 'previous' type
-                        previousElementType = element.type;
-                    }
+                    auto previousElement = i > 0 ? &desc.elements[i - 1] : nullptr;
+                    auto& element = desc.elements[i];
+                    packingRules.PackElement(desc, element, previousElement, i == desc.elements.size() - 1);
                 }
 
-                //Calculate padded total size
-                desc.paddedTotalSize = desc.totalSize; //Copy in case behavior is DEFAULT
-                desc.paddedTotalSize = desc.GetPaddedTotalSize(desc.paddedTotalSizeBehavior);
+                packingRules.FinishPack(desc);
 
                 //Build elementID->element lookup and calculate hash
                 for (auto& element : desc.elements)
@@ -897,14 +881,14 @@ namespace Finjin { namespace Common {
 
     public:
         Utf8String typeName; //The internal name of the type. Used when looking up nested types
-        AllocatedVector<Element> elements;
+        DynamicVector<Element> elements;
         size_t memoryStartAddressAlignment; //Start address alignment
         size_t memoryRowSizeInBytes; //Element size alignment
         size_t memoryTotalSizeAlignment; //Alignment on the total size of the buffer
         size_t totalSize;
         size_t paddedTotalSize;
         bool zeroAllElementDefaultValues; //Indicates whether all elements can be zeroed during a call to GpuConstantBuffer::SetDefaults()
-        EnumValues<ElementID, ElementID::COUNT, Element*> elementIDToElement; //Look up table to quickly map a elementID to an element
+        EnumArray<ElementID, ElementID::COUNT, Element*> elementIDToElement; //Look up table to quickly map a elementID to an element
         size_t elementHash; //Cached hash of the elements
         PaddedTotalSizeBehavior paddedTotalSizeBehavior;
     };
@@ -950,6 +934,16 @@ namespace Finjin { namespace Common {
 
             return _Set(data, 0, this->numericStruct, instanceIndex, elementIDOrIndexOrName, args...);
         }
+
+        /*template <bool useInternalOrder, typename T, typename IndexType, typename... Args> //T must be MathMatrix4
+        void SetMatrix(const T& data, T& dataTransposeTemp, size_t instanceIndex, const IndexType& elementIDOrIndexOrName, const Args&... args)
+        {
+            static_assert(T::RowsAtCompileTime == 4 && T::ColsAtCompileTime == 4, "Only 4x4 matrices are supported.");
+            assert(this->structInstanceBuffer != nullptr);
+            assert(this->instanceCount > 0);
+
+            _SetMatrix(data, dataTransposeTemp, typename std::integral_constant<bool, useInternalOrder>::type(), instanceIndex, elementIDOrIndexOrName, args...);
+        }*/
 
         template <typename T, typename IndexType, typename... Args>
         void SetArray(const T& data, size_t count, size_t instanceIndex, const IndexType& elementIDOrIndexOrName, const Args&... args)
@@ -999,6 +993,22 @@ namespace Finjin { namespace Common {
         }
 
     private:
+        /*template <typename T, typename IndexType, typename... Args>
+        inline void _SetMatrix(const T& data, T& dataTransposeTemp, std::false_type, size_t instanceIndex, const IndexType& elementIDOrIndexOrName, const Args&... args)
+        {
+            //useInternalOrder = false, so transpose
+            dataTransposeTemp = data;
+            dataTransposeTemp.transposeInPlace();
+            return _Set(dataTransposeTemp, 0, this->numericStruct, instanceIndex, elementIDOrIndexOrName, args...);
+        }
+
+        template <typename T, typename IndexType, typename... Args>
+        inline void _SetMatrix(const T& data, T& dataTransposeTemp, std::true_type, size_t instanceIndex, const IndexType& elementIDOrIndexOrName, const Args&... args)
+        {
+            //useInternalOrder = true, so use internal representation
+            return _Set(data, 0, this->numericStruct, instanceIndex, elementIDOrIndexOrName, args...);
+        }*/
+
         template <typename T, typename IndexType>
         inline size_t _Set
             (
@@ -1091,7 +1101,7 @@ namespace Finjin { namespace Common {
         {
             //Offset to the parent instance
             auto parentInstanceByteOffset = baseByteOffset + parentInstanceIndex * parentStruct->paddedTotalSize;
-            
+
             //Iterate over each element in the struct
             for (size_t elementIndex = 0; elementIndex < parentStruct->elements.size(); elementIndex++)
             {
@@ -1105,7 +1115,7 @@ namespace Finjin { namespace Common {
                 {
                     //Offset to the array entry, relative to the array in the numericStruct element
                     auto arrayElementByteOffset = elementOffset + arrayEntryIndex * element.strideInBytes;
-                    
+
                     if (element.type == NumericStructElementType::NESTED_STRUCT)
                     {
                         _SetDefaults(arrayElementByteOffset, element.nestedStruct, 1);
@@ -1148,7 +1158,7 @@ namespace Finjin { namespace Common {
                                 }
                                 break;
                             }
-                            case ConcreteNumericStruct::Element::DefaultValue::IDENTITY_MATRIX: 
+                            case ConcreteNumericStruct::Element::DefaultValue::IDENTITY_MATRIX:
                             {
                                 switch (element.type)
                                 {
@@ -1158,14 +1168,6 @@ namespace Finjin { namespace Common {
                                         values[0] = 1.0f; values[1] = 0.0f; values[2] = 0.0f;
                                         values[3] = 0.0f; values[4] = 1.0f; values[5] = 0.0f;
                                         values[6] = 0.0f; values[7] = 0.0f; values[8] = 1.0f;
-                                        break;
-                                    }
-                                    case NumericStructElementType::FLOAT4x3:
-                                    {
-                                        auto values = reinterpret_cast<float*>(arrayEntryBufferPointer);
-                                        values[0] = 1.0f; values[1] = 0.0f; values[2] = 0.0f; values[3] = 0.0f; 
-                                        values[4] = 0.0f; values[5] = 1.0f; values[6] = 0.0f; values[7] = 0.0f; 
-                                        values[8] = 0.0f; values[9] = 0.0f; values[10] = 1.0f; values[11] = 0.0f;
                                         break;
                                     }
                                     case NumericStructElementType::FLOAT4x4:
@@ -1183,7 +1185,7 @@ namespace Finjin { namespace Common {
                                         FINJIN_ZERO_MEMORY(arrayEntryBufferPointer, element.arraySize * element.sizeInBytes);
                                         break;
                                     }
-                                }                            
+                                }
                                 break;
                             }
                             case ConcreteNumericStruct::Element::DefaultValue::X_AXIS:
@@ -1211,9 +1213,9 @@ namespace Finjin { namespace Common {
                                     { 0, -1, 0, 0 },
                                     { 0, 0, -1, 0 }
                                 };
-                                
+
                                 auto isSupported = false;
-                                
+
                                 if (element.IsInt32())
                                 {
                                     auto elementCount = NumericStructElementTypeUtilities::GetSimpleTypeSizeInElements(element.type);
@@ -1236,13 +1238,13 @@ namespace Finjin { namespace Common {
                                         isSupported = true;
                                     }
                                 }
-                                
+
                                 if (!isSupported)
                                 {
                                     //Unsupported. Just zero it out
                                     FINJIN_ZERO_MEMORY(arrayEntryBufferPointer, element.arraySize * element.sizeInBytes);
                                 }
-                                
+
                                 break;
                             }
                         }
@@ -1254,7 +1256,7 @@ namespace Finjin { namespace Common {
     protected:
         const ConcreteNumericStruct* numericStruct; //Pointer to NumericStruct derived class that contains the NumericStruct
         uint8_t* structInstanceBuffer; //Pointer to data representing 'instanceCount' instances of the NumericStruct
-        size_t instanceCount; //The number of instances of NumericStruct in the buffer        
+        size_t instanceCount; //The number of instances of NumericStruct in the buffer
     };
 
     /*struct GenericNumericStructMetadata
@@ -1265,7 +1267,7 @@ namespace Finjin { namespace Common {
 
             COUNT
         };
-        
+
         static void ParseElementID(ElementID& result, const Utf8StringView& value, Error& error)
         {
             result = ElementID::NONE;
@@ -1307,12 +1309,12 @@ namespace Finjin { namespace Common {
                 FINJIN_SET_ERROR(error, "Invalid instance count. Must be 1 or greater.");
                 return;
             }
-            
+
             Destroy();
 
             this->numericStruct = &numericStruct;
             this->instanceCount = instanceCount;
-                        
+
             //Allocate buffer
             auto maxByteCount = (instanceCount * this->paddedTotalSize) + numericStruct.memoryStartAddressAlignment;
             if (!this->byteBuffer.Create(maxByteCount, allocator))
@@ -1337,6 +1339,234 @@ namespace Finjin { namespace Common {
 
     private:
         ByteBuffer byteBuffer;
+    };
+
+        template <typename NumericStruct>
+    struct DefaultBufferPackingRules
+    {
+        DefaultBufferPackingRules(size_t memoryStartAddressAlignment, size_t memoryRowSizeInBytes, size_t memoryTotalSizeAlignment)
+        {
+            this->memoryStartAddressAlignment = memoryStartAddressAlignment;
+            this->memoryRowSizeInBytes = memoryRowSizeInBytes;
+            this->memoryTotalSizeAlignment = memoryTotalSizeAlignment;
+        }
+
+        void GetAlignmentState(NumericStruct& desc)
+        {
+            desc.memoryStartAddressAlignment = this->memoryStartAddressAlignment;
+            desc.memoryRowSizeInBytes = this->memoryRowSizeInBytes;
+            desc.memoryTotalSizeAlignment = this->memoryTotalSizeAlignment;
+        }
+
+        void StartPack(NumericStruct& desc)
+        {
+            this->previousElementType = NumericStructElementType::NONE;
+            this->paddedRowElementOffset = 0;
+        }
+
+        void PackElement(NumericStruct& desc, typename NumericStruct::Element& element, typename NumericStruct::Element* previousElement, bool isLast)
+        {
+            element.sizeInBytes = element._GetTypeSizeInBytes();
+
+            if (element.arraySize == 1 || element.packArray)
+                element.strideInBytes = element.sizeInBytes;
+            else
+                element.strideInBytes = Allocator::AlignSizeUp(element.sizeInBytes, desc.memoryRowSizeInBytes);
+
+            //Add all the array items
+            for (size_t arrayItemIndex = 0; arrayItemIndex < element.arraySize; arrayItemIndex++)
+            {
+                if (this->paddedRowElementOffset != 0)
+                {
+                    if ((element.arraySize > 1 && !element.packArray) || //Non-packed array
+                        (element.packArray && arrayItemIndex == 0 && element.arraySize > 1 && (this->paddedRowElementOffset + element.arraySize * element.sizeInBytes) > desc.memoryRowSizeInBytes) || //First element of packed array, and it won't fit into current row
+                        ((this->paddedRowElementOffset + element.sizeInBytes) > desc.memoryRowSizeInBytes) || //Element spans multiple rows
+                        (element.type == NumericStructElementType::NESTED_STRUCT) || //Element is a nested struct
+                        (this->previousElementType == NumericStructElementType::NESTED_STRUCT)) //Previous element is a nested struct
+                    {
+                        //Element should be at start of row
+                        desc.totalSize += desc.memoryRowSizeInBytes - this->paddedRowElementOffset;
+                        this->paddedRowElementOffset = 0;
+                    }
+                }
+
+                //Assign to element if it's first array item
+                if (arrayItemIndex == 0)
+                    element.gpuPaddedOffset = desc.totalSize;
+
+                //Adjust running total
+                if (arrayItemIndex == element.arraySize - 1)
+                    desc.totalSize += element.sizeInBytes;
+                else
+                    desc.totalSize += element.strideInBytes;
+                this->paddedRowElementOffset = (this->paddedRowElementOffset + element.strideInBytes) % desc.memoryRowSizeInBytes;
+
+                //Update 'previous' type
+                this->previousElementType = element.type;
+            }
+        }
+
+        void FinishPack(NumericStruct& desc)
+        {
+            //Calculate padded total size
+            desc.paddedTotalSize = desc.totalSize; //Copy in case behavior is DEFAULT
+            desc.paddedTotalSize = desc.GetPaddedTotalSize(desc.paddedTotalSizeBehavior);
+        }
+
+        size_t memoryStartAddressAlignment;
+        size_t memoryRowSizeInBytes;
+        size_t memoryTotalSizeAlignment;
+
+        NumericStructElementType previousElementType;
+        size_t paddedRowElementOffset;
+    };
+
+    template <typename NumericStruct>
+    class Std140ConstantBufferPackingRules
+    {
+        //This packing works for D3D12 and Vulkan constant/uniform buffers
+        //https://khronos.org/registry/OpenGL/specs/gl/glspec45.core.pdf page 137, section 7.6.2.2 (Standard Uniform Block Layout)
+        //This class adds a few tweakables such as a customizable row size as well as the notion of a "total size alignment"
+
+    public:
+        Std140ConstantBufferPackingRules()
+        {
+            this->memoryRowSizeInBytes = sizeof(float) * 4;
+            this->memoryTotalSizeAlignment = 1;
+        }
+
+        Std140ConstantBufferPackingRules(size_t memoryTotalSizeAlignment)
+        {
+            this->memoryRowSizeInBytes = sizeof(float) * 4;
+            this->memoryTotalSizeAlignment = memoryTotalSizeAlignment;
+        }
+
+        Std140ConstantBufferPackingRules(size_t memoryRowSizeInBytes, size_t memoryTotalSizeAlignment)
+        {
+            this->memoryRowSizeInBytes = memoryRowSizeInBytes;
+            this->memoryTotalSizeAlignment = memoryTotalSizeAlignment;
+        }
+
+        void GetAlignmentState(NumericStruct& desc)
+        {
+            desc.memoryStartAddressAlignment = 0;
+            desc.memoryRowSizeInBytes = this->memoryRowSizeInBytes;
+            desc.memoryTotalSizeAlignment = this->memoryTotalSizeAlignment;
+        }
+
+        void StartPack(NumericStruct& desc)
+        {
+            //std::cout << "Description " << desc.typeName << ": " << std::endl;
+        }
+
+        void PackElement
+            (
+            NumericStruct& desc,
+            typename NumericStruct::Element& element,
+            typename NumericStruct::Element* previousElement,
+            bool isLast
+            )
+        {
+            size_t baseAlignmentInBytes = 0;
+            size_t baseSizeInBytes = 0;
+            if (NumericStructElementTypeUtilities::IsScalar(element.type))
+                baseAlignmentInBytes = baseSizeInBytes = sizeof(float);
+            else if (NumericStructElementTypeUtilities::IsVector(element.type))
+            {
+                switch (NumericStructElementTypeUtilities::GetSimpleTypeSizeInElements(element.type))
+                {
+                    case 2: baseAlignmentInBytes = baseSizeInBytes = sizeof(float) * 2; break;
+                    case 3: //Fall through. A 3-vector is treated like a 4-vector
+                    case 4: baseAlignmentInBytes = baseSizeInBytes = sizeof(float) * 4; break;
+                    default: break;
+                }
+            }
+            else if (NumericStructElementTypeUtilities::IsMatrix(element.type))
+                baseAlignmentInBytes = baseSizeInBytes = this->memoryRowSizeInBytes;
+            else if (element.type == NumericStructElementType::NESTED_STRUCT)
+            {
+                baseAlignmentInBytes = sizeof(float) * 4;
+                baseSizeInBytes = Allocator::AlignSizeUp(element.sizeInBytes, desc.memoryRowSizeInBytes);
+            }
+
+            auto previousIsArrayOrStruct = false;
+            if (previousElement != nullptr)
+            {
+                auto previousTotalArraySize = previousElement->arraySize * GetTypeArraySize(*previousElement);
+                previousIsArrayOrStruct = previousTotalArraySize > 1 || previousElement->type == NumericStructElementType::NESTED_STRUCT;
+            }
+
+            auto typeArraySize = GetTypeArraySize(element);
+            auto totalArraySize = element.arraySize * typeArraySize;
+            auto isArrayOrStruct = totalArraySize > 1 || element.type == NumericStructElementType::NESTED_STRUCT;
+
+            element.sizeInBytes = element._GetTypeSizeInBytes();
+
+            if (totalArraySize == 1)
+                element.strideInBytes = element.sizeInBytes;
+            else
+                element.strideInBytes = Allocator::AlignSizeUp(baseSizeInBytes * typeArraySize, desc.memoryRowSizeInBytes);
+
+            if (previousIsArrayOrStruct || isArrayOrStruct)
+                element.gpuPaddedOffset = Allocator::AlignSizeUp(desc.totalSize, desc.memoryRowSizeInBytes);
+            else
+                element.gpuPaddedOffset = Allocator::AlignSizeUp(desc.totalSize, baseAlignmentInBytes);
+
+            //Add all the array items
+            for (size_t arrayItemIndex = 0; arrayItemIndex < totalArraySize; arrayItemIndex++)
+            {
+                if (totalArraySize > 1)
+                {
+                    if (arrayItemIndex == totalArraySize - 1)
+                    {
+                        //Last element of an array
+                        desc.totalSize += baseSizeInBytes;
+                    }
+                    else
+                    {
+                        //Non-last element of an array
+                        desc.totalSize += Allocator::AlignSizeUp(baseSizeInBytes, desc.memoryRowSizeInBytes);
+                    }
+                }
+                else
+                {
+                    //Not an array
+                    desc.totalSize += baseSizeInBytes;
+                }
+            }
+
+            //std::cout << "  Element " << (int)element.elementID << " is at " << element.gpuPaddedOffset << std::endl;
+        }
+
+        void FinishPack(NumericStruct& desc)
+        {
+            //Calculate padded total size
+            desc.paddedTotalSize = desc.totalSize; //Copy in case behavior is DEFAULT
+            desc.paddedTotalSize = desc.GetPaddedTotalSize(desc.paddedTotalSizeBehavior);
+
+            //std::cout << "  ->" << desc.typeName << " has total padded size " << desc.paddedTotalSize << std::endl;
+            //std::cout << std::endl;
+        }
+
+    private:
+        static size_t GetTypeArraySize(typename NumericStruct::Element& element)
+        {
+            size_t typeArraySize = 1; //The number of elements in the element.type
+
+            if (NumericStructElementTypeUtilities::IsMatrix(element.type))
+            {
+                if (element.type == NumericStructElementType::FLOAT3x3)
+                    typeArraySize = 3;
+                else if (element.type == NumericStructElementType::FLOAT4x4)
+                    typeArraySize = 4;
+            }
+
+            return typeArraySize;
+        }
+
+    private:
+        size_t memoryRowSizeInBytes;
+        size_t memoryTotalSizeAlignment;
     };
 
 } }

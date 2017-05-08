@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataChunkWriter.hpp"
 #include "finjin/common/DocumentWriterOutput.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class StreamingFileFormat
@@ -41,7 +41,7 @@ namespace Finjin { namespace Common {
         static StreamingFileFormat ParseFromExtension(const Utf8String& format, StreamingFileFormat defaultValue = StreamingFileFormat::STREAMING_TEXT);
         static Utf8String MakeExtension(const Utf8String& assetClass, StreamingFileFormat format);
 
-        static std::unique_ptr<DataChunkWriter> CreateFileWriter(const Utf8String& fileName, StreamingFileFormat format, const DataChunkWriter::Settings& writerSettings, DataChunkWriterController& controller, Error& error);            
+        static std::unique_ptr<DataChunkWriter> CreateFileWriter(const Utf8String& fileName, StreamingFileFormat format, const DataChunkWriter::Settings& writerSettings, DataChunkWriterController& controller, Error& error);
     };
 
 } }

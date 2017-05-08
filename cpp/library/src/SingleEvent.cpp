@@ -20,11 +20,11 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 struct SingleEvent::Impl
 {
 public:
-    Impl() 
+    Impl()
     {
         flag.store(false);
     }
@@ -35,7 +35,7 @@ public:
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 SingleEvent::SingleEvent() : impl(new Impl)
 {
 }
@@ -72,8 +72,8 @@ void SingleEvent::WaitIf(std::function<bool()> pred)
     if (pred())
     {
         impl->condition.wait(lock, [this] { return impl->flag == true; });
-        impl->flag.store(false);        
-    }    
+        impl->flag.store(false);
+    }
 }
 
 void* SingleEvent::GetNativeHandle()

@@ -17,14 +17,14 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/OperationStatus.hpp"
 #include "finjin/common/Setting.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     #include <ppltasks.h>
 #endif
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class FINJIN_COMMON_LIBRARY_API UserInformation
     {
     public:
@@ -37,7 +37,7 @@ namespace Finjin { namespace Common {
 
     private:
         Setting<Utf8String> name;
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         bool requestedCancel;
         concurrency::task<void> findUsersTask;
         concurrency::task<void> getPropertyTask;

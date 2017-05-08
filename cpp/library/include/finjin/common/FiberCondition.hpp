@@ -11,17 +11,17 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/FiberSpinLock.hpp"
 #include "finjin/common/FiberException.hpp"
 #include "finjin/common/FiberWaitingQueue.hpp"
 #include <mutex>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FiberCondition
@@ -93,7 +93,7 @@ namespace Finjin { namespace Common {
                 std::unique_lock<FiberSpinLock> thisLock(this->spinLock);
 
                 Fiber_ThrowIfIsInterrupted(f);
-                
+
                 //Ensure the fiber hasn't already been added to wait list
                 assert(!this->waiting.Contains(f));
 
@@ -106,7 +106,7 @@ namespace Finjin { namespace Common {
                 //Suspend this fiber
                 //Locked spinlock will be released if this fiber was stored inside manager's waiting queue
                 Fiber_ScheduleWait(Fiber_GetActiveFiber(), thisLock);
-                
+
                 //Lock caller again before returning
                 callerLock.lock();
             }
@@ -114,7 +114,7 @@ namespace Finjin { namespace Common {
             {
                 std::unique_lock<FiberSpinLock> thisLock(this->spinLock);
                 this->waiting.RemoveOnly(f);
-                
+
                 throw ex;
             }
         }

@@ -18,7 +18,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 bool AndroidUtilities::HasRightToLeftLayout(android_app* androidApp)
 {
     return AConfiguration_getLayoutDirection(androidApp->config) == ACONFIGURATION_LAYOUTDIR_RTL;

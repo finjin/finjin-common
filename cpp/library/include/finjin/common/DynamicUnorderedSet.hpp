@@ -14,17 +14,17 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
-#include "finjin/common/SetMapUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
+#include "finjin/common/SetMapImpl.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T, typename Hash = std::hash<T> >
-    class AllocatedUnorderedSet
-    {   
+    class DynamicUnorderedSet
+    {
     public:
         using value_type = T;
         using hash_value_type = size_t;
@@ -32,18 +32,18 @@ namespace Finjin { namespace Common {
         using ValueEntry = SetMapValueEntryImpl<hash_value_type, value_type>;
         using BucketEntry = SetMapBucketEntryImpl<hash_value_type, value_type>;
 
-        using ValueCollection = AllocatedVector<ValueEntry>;
-        using BucketCollection = AllocatedVector<BucketEntry>;
+        using ValueCollection = DynamicVector<ValueEntry>;
+        using BucketCollection = DynamicVector<BucketEntry>;
 
-        using This = AllocatedUnorderedSet<T, Hash>;
+        using This = DynamicUnorderedSet<T, Hash>;
         using Impl = UnorderedSetImpl<This, ValueCollection, BucketCollection, Hash, T>;
-        
+
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
 
-        AllocatedUnorderedSet() { }
-        AllocatedUnorderedSet(const AllocatedUnorderedSet& other) { operator = (other); }
-        AllocatedUnorderedSet(AllocatedUnorderedSet&& other) { operator = (std::move(other)); }
+        DynamicUnorderedSet() { }
+        DynamicUnorderedSet(const DynamicUnorderedSet& other) { operator = (other); }
+        DynamicUnorderedSet(DynamicUnorderedSet&& other) { operator = (std::move(other)); }
 
         template <typename... Args>
         bool Create(size_t valueCount, size_t bucketCount, Allocator* allocator, Args&&... args)
@@ -51,7 +51,7 @@ namespace Finjin { namespace Common {
             Destroy();
 
             bucketCount = GetOdd(bucketCount);
-            
+
             auto result = true;
             result &= impl.bucketEntries.Create(bucketCount, allocator);
             result &= impl.valueEntries.Create(valueCount, allocator, std::forward<Args>(args)...);
@@ -62,19 +62,19 @@ namespace Finjin { namespace Common {
         }
 
         void Destroy()
-        {   
+        {
             impl.bucketEntries.Destroy();
             impl.valueEntries.Destroy();
 
             clear();
         }
 
-        ValueOrError<void> operator = (const AllocatedUnorderedSet& other) { return impl.assign(other); }
-        ValueOrError<void> operator = (AllocatedUnorderedSet&& other) { return impl.assign(std::move(other)); }
+        ValueOrError<void> operator = (const DynamicUnorderedSet& other) { return impl.assign(other); }
+        ValueOrError<void> operator = (DynamicUnorderedSet&& other) { return impl.assign(std::move(other)); }
 
         ValueOrError<bool> insert(const value_type& value) { return impl.insert(value); }
         ValueOrError<bool> insert(value_type&& value) { return impl.insert(std::move(value)); }
-        
+
         bool contains(const value_type& value) const { return find(value) != end(); }
 
         iterator find(const value_type& value) { return impl.find(value); }
@@ -108,7 +108,7 @@ namespace Finjin { namespace Common {
     };
 
     template <typename T>
-    class AllocatedEncounteredSet
+    class DynamicEncounteredSet
     {
     public:
         bool Create(bool useObjects, size_t maxCount, Allocator* allocator)
@@ -144,8 +144,8 @@ namespace Finjin { namespace Common {
         bool full() const { return this->objects.max_size() > 0 ? this->objects.full() : this->hashes.full(); }
 
     public:
-        AllocatedUnorderedSet<T> objects;
-        AllocatedUnorderedSet<size_t> hashes;
+        DynamicUnorderedSet<T> objects;
+        DynamicUnorderedSet<size_t> hashes;
     };
 
 } }

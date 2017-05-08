@@ -17,7 +17,7 @@
 //Includes----------------------------------------------------------------------
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WxByteBuffer
@@ -37,7 +37,7 @@ namespace Finjin { namespace Common {
         void EnsureCanAppend(size_t byteCount);
         uint8_t* AllocateBytes(size_t byteCount);
         uint8_t* resize(size_t byteCount);
-        
+
         void TruncateBytes(size_t newByteCount);
         void clear();
 
@@ -57,7 +57,7 @@ namespace Finjin { namespace Common {
 
         const uint8_t& operator [] (size_t index) const;
         uint8_t& operator [] (size_t index);
-        
+
         void Fill(uint8_t value);
         void Fill(uint8_t value, uint8_t* start, uint8_t* end);
 
@@ -72,7 +72,7 @@ namespace Finjin { namespace Common {
 
     private:
         void ReallocateData(size_t count);
-        
+
         uint8_t* _Allocate(size_t byteCount);
         void _Deallocate(void* mem);
 

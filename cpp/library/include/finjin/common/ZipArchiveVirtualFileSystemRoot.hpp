@@ -21,9 +21,9 @@
 #include "finjin/common/ZIPReader.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-        
+
     class FINJIN_COMMON_LIBRARY_API ZipArchiveVirtualFileSystemRoot : public VirtualFileSystemRoot
     {
     public:

@@ -11,12 +11,12 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Error.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(TimeDurationParseTest_parse_microseconds)
 {
     BOOST_TEST_MESSAGE("TimeDurationParseTest_parse_microseconds:");
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(TimeDurationParseTest_parse_seconds)
 {
     BOOST_TEST_MESSAGE("TimeDurationParseTest_parse_seconds:");
 
-    TimeDuration oneSecond;    
+    TimeDuration oneSecond;
 
     {
         FINJIN_DECLARE_ERROR(error);

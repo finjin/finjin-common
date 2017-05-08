@@ -19,7 +19,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/FiberException.hpp"
 #include "finjin/common/JobSharedState.hpp"
 #include "JobSharedStateObject.hpp"
@@ -27,18 +27,18 @@
 #include <utility>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename R>
-    class promise 
+    class promise
     {
     public:
         promise(const promise&) = delete;
         promise& operator = (const promise&) = delete;
 
     public:
-        promise() : obtained_(false), future_() 
+        promise() : obtained_(false), future_()
         {
             typedef detail::shared_state_object<R, std::allocator<promise<R> > > object_t;
 
@@ -48,78 +48,78 @@ namespace Finjin { namespace Common {
         }
 
         template <typename Allocator>
-        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_() 
+        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_()
         {
             typedef detail::shared_state_object<R, Allocator> object_t;
-            
+
             typename object_t::allocator_t a(alloc);
             future_ = ptr_t(::new(a.allocate(1)) object_t(a));
         }
 
-        ~promise() 
+        ~promise()
         {
-            if (future_) 
+            if (future_)
                 future_->owner_destroyed();
         }
 
-        promise(promise&& other) noexcept : obtained_(other.obtained_), future_(std::move(other.future_)) 
+        promise(promise&& other) noexcept : obtained_(other.obtained_), future_(std::move(other.future_))
         {
             other.obtained_ = false;
         }
 
-        promise& operator = (promise&& other) noexcept 
+        promise& operator = (promise&& other) noexcept
         {
-            if (this != &other) 
+            if (this != &other)
             {
                 obtained_ = other.obtained_;
-                
+
                 other.obtained_ = false;
-                
+
                 future_ = std::move(other.future_);
             }
             return *this;
         }
 
-        void swap(promise& other) noexcept 
+        void swap(promise& other) noexcept
         {
             std::swap(obtained_, other.obtained_);
             future_.swap(other.future_);
         }
 
-        future<R> get_future() 
+        future<R> get_future()
         {
-            if (obtained_) 
+            if (obtained_)
                 throw future_already_retrieved();
-            
+
             if (!future_)
                 throw promise_uninitialized();
-            
+
             obtained_ = true;
-            
+
             return future<R>(future_);
         }
 
-        void set_value(const R& value) 
+        void set_value(const R& value)
         {
             if (!future_)
                 throw promise_uninitialized();
-            
+
             future_->set_value(value);
         }
 
-        void set_value(R&& value) 
+        void set_value(R&& value)
         {
             if (!future_)
                 throw promise_uninitialized();
-            
+
             future_->set_value(std::move(value));
         }
 
-        void set_exception(std::exception_ptr p) 
+        void set_exception(std::exception_ptr p)
         {
             if (!future_)
                 throw promise_uninitialized();
-            
+
             future_->set_exception(p);
         }
 
@@ -131,14 +131,14 @@ namespace Finjin { namespace Common {
     };
 
     template <typename R>
-    class promise<R&> 
+    class promise<R&>
     {
     public:
         promise(const promise&) = delete;
         promise& operator = (const promise&) = delete;
 
     public:
-        promise() : obtained_(false), future_() 
+        promise() : obtained_(false), future_()
         {
             typedef detail::shared_state_object<R&, std::allocator<promise<R&> > > object_t;
 
@@ -148,7 +148,7 @@ namespace Finjin { namespace Common {
         }
 
         template <typename Allocator>
-        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_() 
+        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_()
         {
             typedef detail::shared_state_object<R&, Allocator> object_t;
 
@@ -161,57 +161,57 @@ namespace Finjin { namespace Common {
             other.obtained_ = false;
         }
 
-        ~promise() 
+        ~promise()
         {
-            if (future_) 
+            if (future_)
                 future_->owner_destroyed();
         }
 
-        promise& operator = (promise&& other) noexcept 
+        promise& operator = (promise&& other) noexcept
         {
-            if (this != & other) 
+            if (this != & other)
             {
                 obtained_ = other.obtained_;
-                
+
                 other.obtained_ = false;
-                
+
                 future_ = std::move(other.future_);
             }
             return *this;
         }
 
-        void swap(promise& other) noexcept 
+        void swap(promise& other) noexcept
         {
             std::swap(obtained_, other.obtained_);
             future_.swap(other.future_);
         }
 
-        future<R&> get_future() 
+        future<R&> get_future()
         {
-            if (obtained_) 
+            if (obtained_)
                 throw future_already_retrieved();
-            
+
             if (!future_)
                 throw promise_uninitialized();
-            
+
             obtained_ = true;
-            
+
             return future<R&>(future_);
         }
 
-        void set_value(R& value) 
+        void set_value(R& value)
         {
             if (!future_)
                 throw promise_uninitialized();
-            
+
             future_->set_value(value);
         }
 
-        void set_exception(std::exception_ptr p) 
+        void set_exception(std::exception_ptr p)
         {
             if (!future_)
                 throw promise_uninitialized();
-            
+
             future_->set_exception(p);
         }
 
@@ -230,17 +230,17 @@ namespace Finjin { namespace Common {
         promise& operator = (const promise&) = delete;
 
     public:
-        promise() : obtained_(false), future_() 
+        promise() : obtained_(false), future_()
         {
             typedef detail::shared_state_object<void, std::allocator<promise<void>> > object_t;
-            
+
             std::allocator<promise<void>> alloc;
             object_t::allocator_t a(alloc);
             future_ = ptr_t(::new(a.allocate(1)) object_t(a));
         }
 
         template <typename Allocator>
-        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_() 
+        promise(std::allocator_arg_t, Allocator alloc) : obtained_(false), future_()
         {
             typedef detail::shared_state_object<void, Allocator>  object_t;
 
@@ -248,50 +248,50 @@ namespace Finjin { namespace Common {
             future_ = ptr_t(::new(a.allocate(1)) object_t(a));
         }
 
-        ~promise() 
+        ~promise()
         {
-            if (future_) 
+            if (future_)
                 future_->owner_destroyed();
         }
 
-        inline promise(promise&& other) noexcept : obtained_(other.obtained_), future_(std::move(other.future_)) 
+        inline promise(promise&& other) noexcept : obtained_(other.obtained_), future_(std::move(other.future_))
         {
             other.obtained_ = false;
         }
 
-        inline promise& operator = (promise&& other) noexcept 
+        inline promise& operator = (promise&& other) noexcept
         {
-            if (this != & other) 
+            if (this != & other)
             {
                 obtained_ = other.obtained_;
-                
+
                 other.obtained_ = false;
-                
+
                 future_ = std::move(other.future_);
             }
             return *this;
         }
 
-        inline void swap(promise& other) noexcept 
+        inline void swap(promise& other) noexcept
         {
             std::swap(obtained_, other.obtained_);
             future_.swap(other.future_);
         }
 
-        inline future<void> get_future() 
+        inline future<void> get_future()
         {
-            if (obtained_) 
+            if (obtained_)
                 throw future_already_retrieved();
-            
+
             if (!future_)
                 throw promise_uninitialized();
-            
+
             obtained_ = true;
-            
+
             return future<void>(future_);
         }
 
-        inline void set_value() 
+        inline void set_value()
         {
             if (!future_)
                 throw promise_uninitialized();
@@ -299,7 +299,7 @@ namespace Finjin { namespace Common {
             future_->set_value();
         }
 
-        inline void set_exception(std::exception_ptr p) 
+        inline void set_exception(std::exception_ptr p)
         {
             if (!future_)
                 throw promise_uninitialized();
@@ -315,7 +315,7 @@ namespace Finjin { namespace Common {
     };
 
     template <typename R>
-    void swap(promise<R>& l, promise<R>& r) 
+    void swap(promise<R>& l, promise<R>& r)
     {
         l.swap(r);
     }

@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/ConfigDocumentReader.hpp"
 #include "finjin/common/DataChunkReader.hpp"
@@ -22,7 +22,7 @@
 #include "finjin/common/Error.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API ConfigDataChunkReader : public DataChunkReader
@@ -39,7 +39,7 @@ namespace Finjin { namespace Common {
         ~ConfigDataChunkReader();
 
         void Create(const Settings& settings, ConfigDataChunkReader* parentSection, Error& error);
-        
+
         DataChunkReaderController& GetReaderController() override;
 
         DataChunkReaderInput* GetReaderInput() override;
@@ -50,7 +50,7 @@ namespace Finjin { namespace Common {
         void Skip(DataHeader& dataHeader, Error& error) override;
 
         const DataChunkReaderHeader& GetHeader() const override;
-        
+
         bool IsBinaryFormat() const override { return false; }
 
         void ReadPropertyName(DataHeader& dataHeader, ParsedChunkPropertyName& result, Error& error) override;
@@ -87,7 +87,7 @@ namespace Finjin { namespace Common {
         size_t ReadStridedUInt64s(DataHeader& dataHeader, uint64_t* values, size_t maxCount, DataChunkReadStride valueStride, Error& error) override;
         size_t ReadStridedFloats(DataHeader& dataHeader, float* values, size_t maxCount, DataChunkReadStride valueStride, Error& error) override;
         size_t ReadStridedDoubles(DataHeader& dataHeader, double* values, size_t maxCount, DataChunkReadStride valueStride, Error& error) override;
-        
+
     private:
         Settings settings;
         DataChunkReaderHeader readerHeader;

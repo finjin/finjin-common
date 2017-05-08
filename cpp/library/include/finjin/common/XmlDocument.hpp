@@ -11,19 +11,19 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     struct XmlDocumentImpl;
-    
+
     /** A single node within an XmlDocument. */
     class FINJIN_COMMON_LIBRARY_API XmlNode
     {
@@ -34,21 +34,21 @@ namespace Finjin { namespace Common {
         XmlNode(XmlNode&& other) = delete;
         XmlNode& operator = (XmlNode&& other) = delete;
 
-    public:        
+    public:
         XmlNode(void* impl);
         virtual ~XmlNode();
 
         Utf8String GetName() const;
 
         bool HasAttribute(const Utf8String& name) const;
-        
+
         bool GetAttributeNoCase(const Utf8String& name, Utf8String& value, const char* defaultValue = nullptr) const;
         bool GetAttribute(const Utf8String& name, Utf8String& value, const char* defaultValue = nullptr) const;
         bool GetBoolAttribute(const Utf8String& name, bool& value, bool defaultValue = false) const;
         bool GetIntAttribute(const Utf8String& name, int& value, int defaultValue = 0) const;
         bool GetIntAttribute(const Utf8String& name, size_t& value, size_t defaultValue = 0) const;
         bool GetDoubleAttribute(const Utf8String& name, double& value, double defaultValue = 0) const;
-        
+
         void SetAttribute(const Utf8String& name, const Utf8String& value);
         void SetIntAttribute(const Utf8String& name, int value);
         void SetIntAttribute(const Utf8String& name, size_t value);
@@ -65,7 +65,7 @@ namespace Finjin { namespace Common {
         std::shared_ptr<XmlNode> GetNextSiblingElement(const Utf8String& name);
 
         Utf8String GetValue() const;
-        
+
     private:
         void* impl;
     };

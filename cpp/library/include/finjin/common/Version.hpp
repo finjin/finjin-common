@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     /**
      * A major/minor/build/revision number collection.
      * Use the Version class to simplify the storage and comparison of version numbers
@@ -76,10 +76,13 @@ namespace Finjin { namespace Common {
 
         //Comparison operators
         bool operator == (const Version& v) const {return Compare(*this, v) == 0;}
+        bool operator != (const Version& v) const {return Compare(*this, v) != 0;}
         bool operator < (const Version& v) const {return Compare(*this, v) < 0;}
         bool operator <= (const Version& v) const {return Compare(*this, v) <= 0;}
         bool operator > (const Version& v) const {return Compare(*this, v) > 0;}
         bool operator >= (const Version& v) const {return Compare(*this, v) >= 0;}
+
+        bool AtLeast(int major, int minor = 0, int patch = 0) const;
 
         /**
          * Compares two versions.
@@ -105,6 +108,7 @@ namespace Finjin { namespace Common {
 
         /** Major, minor, patch */
         int components[MAX_COMPONENTS];
+        int padding; //Not used
     };
 
 } }

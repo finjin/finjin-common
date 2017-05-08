@@ -44,7 +44,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/ByteBuffer.o \
 	${OBJECTDIR}/_ext/56252444/Chrono.o \
 	${OBJECTDIR}/_ext/56252444/ChunkName.o \
-	${OBJECTDIR}/_ext/56252444/ClassDescription.o \
 	${OBJECTDIR}/_ext/56252444/CommandLineArgsProcessor.o \
 	${OBJECTDIR}/_ext/56252444/CommandLineSettingsDescription.o \
 	${OBJECTDIR}/_ext/56252444/ConfigDataChunkReader.o \
@@ -95,20 +94,21 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/MemorySize.o \
 	${OBJECTDIR}/_ext/56252444/NamePrefix.o \
 	${OBJECTDIR}/_ext/56252444/PNGReader.o \
+	${OBJECTDIR}/_ext/56252444/PNGWriter.o \
 	${OBJECTDIR}/_ext/56252444/PassthroughSystemAllocator.o \
 	${OBJECTDIR}/_ext/56252444/Path.o \
 	${OBJECTDIR}/_ext/56252444/PerformanceCounter.o \
 	${OBJECTDIR}/_ext/56252444/ProcessRuntimeInformation.o \
-	${OBJECTDIR}/_ext/56252444/RangedNameGenerator.o \
 	${OBJECTDIR}/_ext/56252444/Settings.o \
 	${OBJECTDIR}/_ext/56252444/SingleEvent.o \
 	${OBJECTDIR}/_ext/56252444/StandardPaths_Linux.o \
 	${OBJECTDIR}/_ext/56252444/StreamingFileFormat.o \
-	${OBJECTDIR}/_ext/56252444/StringKeyValueMap.o \
+	${OBJECTDIR}/_ext/56252444/StringMatcher.o \
 	${OBJECTDIR}/_ext/56252444/TextDataChunkReader.o \
 	${OBJECTDIR}/_ext/56252444/TextDataChunkWriter.o \
 	${OBJECTDIR}/_ext/56252444/ThisThread.o \
 	${OBJECTDIR}/_ext/56252444/Thread.o \
+	${OBJECTDIR}/_ext/56252444/TypeDescription.o \
 	${OBJECTDIR}/_ext/56252444/Uri.o \
 	${OBJECTDIR}/_ext/56252444/UsageFormatter.o \
 	${OBJECTDIR}/_ext/56252444/UserInformation.o \
@@ -159,6 +159,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/5de1235c/UriRecompose.o \
 	${OBJECTDIR}/_ext/5de1235c/UriResolve.o \
 	${OBJECTDIR}/_ext/5de1235c/UriShorten.o \
+	${OBJECTDIR}/_ext/747b22b2/xxhash.o \
 	${OBJECTDIR}/_ext/f9ff474f/adler32.o \
 	${OBJECTDIR}/_ext/f9ff474f/compress.o \
 	${OBJECTDIR}/_ext/f9ff474f/crc32.o \
@@ -258,11 +259,6 @@ ${OBJECTDIR}/_ext/56252444/ChunkName.o: ../../src/ChunkName.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/ChunkName.o ../../src/ChunkName.cpp
-
-${OBJECTDIR}/_ext/56252444/ClassDescription.o: ../../src/ClassDescription.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/ClassDescription.o ../../src/ClassDescription.cpp
 
 ${OBJECTDIR}/_ext/56252444/CommandLineArgsProcessor.o: ../../src/CommandLineArgsProcessor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
@@ -514,6 +510,11 @@ ${OBJECTDIR}/_ext/56252444/PNGReader.o: ../../src/PNGReader.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/PNGReader.o ../../src/PNGReader.cpp
 
+${OBJECTDIR}/_ext/56252444/PNGWriter.o: ../../src/PNGWriter.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/PNGWriter.o ../../src/PNGWriter.cpp
+
 ${OBJECTDIR}/_ext/56252444/PassthroughSystemAllocator.o: ../../src/PassthroughSystemAllocator.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
@@ -533,11 +534,6 @@ ${OBJECTDIR}/_ext/56252444/ProcessRuntimeInformation.o: ../../src/ProcessRuntime
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/ProcessRuntimeInformation.o ../../src/ProcessRuntimeInformation.cpp
-
-${OBJECTDIR}/_ext/56252444/RangedNameGenerator.o: ../../src/RangedNameGenerator.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/RangedNameGenerator.o ../../src/RangedNameGenerator.cpp
 
 ${OBJECTDIR}/_ext/56252444/Settings.o: ../../src/Settings.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
@@ -559,10 +555,10 @@ ${OBJECTDIR}/_ext/56252444/StreamingFileFormat.o: ../../src/StreamingFileFormat.
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/StreamingFileFormat.o ../../src/StreamingFileFormat.cpp
 
-${OBJECTDIR}/_ext/56252444/StringKeyValueMap.o: ../../src/StringKeyValueMap.cpp 
+${OBJECTDIR}/_ext/56252444/StringMatcher.o: ../../src/StringMatcher.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/StringKeyValueMap.o ../../src/StringKeyValueMap.cpp
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/StringMatcher.o ../../src/StringMatcher.cpp
 
 ${OBJECTDIR}/_ext/56252444/TextDataChunkReader.o: ../../src/TextDataChunkReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
@@ -583,6 +579,11 @@ ${OBJECTDIR}/_ext/56252444/Thread.o: ../../src/Thread.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/Thread.o ../../src/Thread.cpp
+
+${OBJECTDIR}/_ext/56252444/TypeDescription.o: ../../src/TypeDescription.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/TypeDescription.o ../../src/TypeDescription.cpp
 
 ${OBJECTDIR}/_ext/56252444/Uri.o: ../../src/Uri.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
@@ -833,6 +834,11 @@ ${OBJECTDIR}/_ext/5de1235c/UriShorten.o: /home/build/finjin-3rd-party/cpp/uripar
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriShorten.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c
+
+${OBJECTDIR}/_ext/747b22b2/xxhash.o: /home/build/finjin-3rd-party/cpp/xxHash/xxhash.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/747b22b2
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/747b22b2/xxhash.o /home/build/finjin-3rd-party/cpp/xxHash/xxhash.c
 
 ${OBJECTDIR}/_ext/f9ff474f/adler32.o: /home/build/finjin-3rd-party/cpp/zlib/adler32.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f

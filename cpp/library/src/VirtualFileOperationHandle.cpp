@@ -60,7 +60,7 @@ bool VirtualFileOperationHandle::FinishInProgress()
 {
     if (this->operationQueue == nullptr)
         return false;
-    
+
     auto result = this->operationQueue->IsQueuedAndFinished(*this);
     if (result)
         Clear();

@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 WxConfigDocumentWriter::WxConfigDocumentWriter()
 {
     this->output = nullptr;
@@ -48,7 +48,7 @@ WxConfigDocumentWriter& WxConfigDocumentWriter::WriteCommentedSection(const wxSt
     this->output->Write("#");
     this->output->WriteString(comment);
     this->output->Write("\n");
-    
+
     Indent();
     this->output->Write("[");
     this->output->WriteString(name);
@@ -61,13 +61,13 @@ WxConfigDocumentWriter& WxConfigDocumentWriter::WriteCommentedSection(const wxSt
 WxConfigDocumentWriter& WxConfigDocumentWriter::WriteSection(const wxString& name)
 {
     this->output->Write("\n");
-    
+
     Indent();
     this->output->Write("[");
     this->output->WriteString(name);
     this->output->Write("]");
     this->output->Write("\n");
-    
+
     return *this;
 }
 
@@ -82,9 +82,9 @@ WxConfigDocumentWriter& WxConfigDocumentWriter::WriteScopeStart(const wxString& 
     Indent();
     this->output->Write("{");
     this->output->Write("\n");
-    
+
     this->depth++;
-    
+
     return *this;
 }
 
@@ -96,7 +96,7 @@ WxConfigDocumentWriter& WxConfigDocumentWriter::WriteScopeEnd()
     Indent();
     this->output->Write("}");
     this->output->Write("\n");
-    
+
     return *this;
 }
 
@@ -111,7 +111,7 @@ WxConfigDocumentWriter& WxConfigDocumentWriter::WriteKeyAndValue(const wxString&
     else
         this->output->Write("=");
     this->output->WriteString(value);
-    this->output->Write("\n");    
+    this->output->Write("\n");
     if (containsNewline)
         this->output->Write("^\n");
     return *this;

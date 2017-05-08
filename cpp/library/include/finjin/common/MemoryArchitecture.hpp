@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Functions/enums--------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class MemoryArchitecture

@@ -15,9 +15,9 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/DirectoryVirtualFileSystemRoot.hpp"
 #include "finjin/common/FileFinder.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
-#elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
     #include <stdio.h>
     #include <sys/stat.h>
 #endif
@@ -37,7 +37,7 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
         {
             if (finder.GetCurrentPath(workingFilePath).HasError())
                 return false;
-            
+
             if (workingFilePath.substr(fileSystemEntry.relativePath, rootDirectory.length() + 1).HasError())
                 return false;
 
@@ -64,8 +64,8 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
 
 
 //Implementation----------------------------------------------------------------
-DirectoryVirtualFileSystemRoot::DirectoryVirtualFileSystemRoot(Allocator* allocator) : 
-    VirtualFileSystemRoot(allocator), 
+DirectoryVirtualFileSystemRoot::DirectoryVirtualFileSystemRoot(Allocator* allocator) :
+    VirtualFileSystemRoot(allocator),
     volumeID(allocator),
     directory(allocator),
     workingFileSystemEntry(this, allocator),
@@ -108,7 +108,7 @@ VirtualFileSystemRoot::EnumerationResult DirectoryVirtualFileSystemRoot::Enumera
 
     if (!::Enumerate(this->directory, this->directory, this->workingFileSystemEntry, items))
         FINJIN_SET_ERROR(error, "Failed to enumerate items.");
-    
+
     return EnumerationResult::COMPLETE;
 }
 
@@ -142,7 +142,7 @@ FileOperationResult DirectoryVirtualFileSystemRoot::Read(const Path& relativeFil
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to read file '%1%'", this->workingFilePath));
         return FileOperationResult::FAILURE;
     }
-    
+
     return FileOperationResult::SUCCESS;
 }
 
@@ -152,10 +152,10 @@ FileOperationResult DirectoryVirtualFileSystemRoot::Read(const Path& relativeFil
         return FileOperationResult::FAILURE;
     if ((this->workingFilePath /= relativeFilePath).HasError())
         return FileOperationResult::FAILURE;
-    
+
     if (!this->workingFilePath.ReadBinaryFile(buffer))
-        return FileOperationResult::NOT_FOUND; 
-    
+        return FileOperationResult::NOT_FOUND;
+
     return FileOperationResult::SUCCESS;
 }
 
@@ -189,7 +189,7 @@ FileOperationResult DirectoryVirtualFileSystemRoot::Open(const Path& relativeFil
     if ((this->workingFilePath /= relativeFilePath).HasError())
         return FileOperationResult::FAILURE;
 
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     nowide::basic_stackstring<wchar_t, char, Path::STATIC_STRING_LENGTH + 1> fileNameW;
     if (!fileNameW.convert(this->workingFilePath.begin(), this->workingFilePath.end()))
         return FileOperationResult::FAILURE;
@@ -197,7 +197,7 @@ FileOperationResult DirectoryVirtualFileSystemRoot::Open(const Path& relativeFil
     DWORD desiredAccess = mode == FileOpenMode::READ ? GENERIC_READ : GENERIC_WRITE;
     DWORD shareMode = mode == FileOpenMode::READ ? FILE_SHARE_READ : FILE_SHARE_WRITE;
     DWORD creationDisposition = mode == FileOpenMode::READ ? OPEN_EXISTING : CREATE_ALWAYS;
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         auto win32Handle = CreateFile2(fileNameW.c_str(), desiredAccess, shareMode, creationDisposition, nullptr);
     #else
         auto win32Handle = CreateFileW(fileNameW.c_str(), desiredAccess, shareMode, nullptr, creationDisposition, 0, nullptr);
@@ -211,9 +211,9 @@ FileOperationResult DirectoryVirtualFileSystemRoot::Open(const Path& relativeFil
         GetFileSizeEx(win32Handle, &largeInt);
         fileHandle.fileSize = (int64_t)largeInt.QuadPart;
     }
-#elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
     fileHandle.ptr = fopen(this->workingFilePath.c_str(), mode == FileOpenMode::READ ? "rb" : "wb");
-    
+
     struct stat statBuf;
     if (mode == FileOpenMode::READ && fileHandle.ptr != nullptr && stat(this->workingFilePath.c_str(), &statBuf) != -1)
         fileHandle.fileSize = statBuf.st_size;
@@ -233,9 +233,9 @@ uint64_t DirectoryVirtualFileSystemRoot::Skip(VirtualFileHandle& fileHandle, uin
 {
     if (fileHandle.IsOpen())
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         auto win32Handle = static_cast<HANDLE>(fileHandle.ptr);
-        
+
         //Get current offset
         LARGE_INTEGER offset = { 0 };
         LARGE_INTEGER offsetBefore = { 0 };
@@ -248,7 +248,7 @@ uint64_t DirectoryVirtualFileSystemRoot::Skip(VirtualFileHandle& fileHandle, uin
 
             return offsetAfter.QuadPart - offsetBefore.QuadPart;
         }
-    #elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+    #elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
         auto file = static_cast<FILE*>(fileHandle.ptr);
 
         auto offsetBefore = ftell(file);
@@ -271,15 +271,15 @@ size_t DirectoryVirtualFileSystemRoot::Read(VirtualFileHandle& fileHandle, void*
 {
     if (fileHandle.IsOpen())
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         auto win32Handle = static_cast<HANDLE>(fileHandle.ptr);
 
         DWORD bytesRead = 0;
         ReadFile(win32Handle, bytes, static_cast<DWORD>(byteCount), &bytesRead, nullptr);
         return bytesRead;
-    #elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+    #elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
         auto file = static_cast<FILE*>(fileHandle.ptr);
-        
+
         return fread(bytes, 1, byteCount, file);
     #else
         #error Unsupported platform!
@@ -293,21 +293,21 @@ size_t DirectoryVirtualFileSystemRoot::Write(VirtualFileHandle& fileHandle, cons
 {
     if (fileHandle.IsOpen())
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         auto win32Handle = static_cast<HANDLE>(fileHandle.ptr);
 
         DWORD bytesWritten = 0;
         WriteFile(win32Handle, bytes, static_cast<DWORD>(byteCount), &bytesWritten, nullptr);
         return static_cast<size_t>(bytesWritten);
-    #elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+    #elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
         auto file = static_cast<FILE*>(fileHandle.ptr);
-        
+
         return fwrite(bytes, 1, byteCount, file);
     #else
         #error Unsupported platform!
     #endif
     }
-    
+
     return 0;
 }
 
@@ -315,13 +315,13 @@ void DirectoryVirtualFileSystemRoot::Close(VirtualFileHandle& fileHandle)
 {
     if (fileHandle.IsOpen())
     {
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         auto win32Handle = static_cast<HANDLE>(fileHandle.ptr);
 
         CloseHandle(win32Handle);
-    #elif FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS_IS_APPLE
+    #elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
         auto file = static_cast<FILE*>(fileHandle.ptr);
-        
+
         fclose(file);
     #else
         #error Unsupported platform!

@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include <type_traits>
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define FINJIN_ENUM_BITWISE_OPERATIONS(enumName)\
     inline enumName operator & (enumName a, enumName b) \
     { \
@@ -47,6 +47,14 @@
         a = a ^ b; \
         return a; \
     } \
+    inline enumName Inverse(enumName a) \
+    { \
+        return enumName(~std::underlying_type<enumName>::type(a)); \
+    } \
+    inline void Invert(enumName& a) \
+    { \
+        a = Inverse(a); \
+    } \
     inline void SetAll(enumName& a) \
     { \
         a = static_cast<enumName>(-1); \
@@ -68,7 +76,7 @@
         return std::underlying_type<enumName>::type(a); \
     }
 
-//Use this at global scope with the fully qualified name of the enum. 
+//Use this at global scope with the fully qualified name of the enum.
 //For example: FINJIN_ENUM_BITWISE_STD_OPERATIONS(Finjin::Engine::PovDirection)
 #define FINJIN_ENUM_BITWISE_STD_OPERATIONS(enumName)\
     namespace std \

@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "Allocator.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     /**
      * Provides custom memory allocation services for a class.
      * To use this, a derived class must be declared. For example:
@@ -79,7 +79,7 @@ namespace Finjin { namespace Common {
             assert(p != nullptr);
             return p;
         }
-        
+
     private:
         Allocator* allocator;
     };

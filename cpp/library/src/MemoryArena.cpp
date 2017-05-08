@@ -22,7 +22,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //MemoryArenaSettings
 MemoryArenaSettings::MemoryArenaSettings()
@@ -68,7 +68,7 @@ void MemoryArenaSettings::ParseSettings(const ByteBufferReader& configFileBuffer
                         this->alignment = Convert::ToInteger(value.ToString(), this->alignment);
                     }
                 }
-                
+
                 break;
             }
             default: break;

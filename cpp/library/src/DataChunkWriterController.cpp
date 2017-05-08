@@ -21,10 +21,10 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //DataChunkWriterController
-DataChunkWriterController::~DataChunkWriterController() 
+DataChunkWriterController::~DataChunkWriterController()
 {
 }
 
@@ -53,7 +53,7 @@ void DataChunkWriterController::WriteOutputFile(const Path& filePath, std::funct
         FINJIN_SET_ERROR(error, "Failed to open output stream.");
         return;
     }
-    
+
     std::unique_ptr<DocumentWriterOutput> sharedOutputFileStream(outputFileStream.release());
     std::unique_ptr<DataChunkWriter> writer(CreateWriter(std::move(sharedOutputFileStream), error));
     if (error)
@@ -72,7 +72,7 @@ void DataChunkWriterController::WriteOutputFile(const Path& filePath, std::funct
 
 bool DataChunkWriterController::RequiresNewOutput(const DataChunkWriter& writer, const ChunkName& chunkName) const
 {
-    return false; 
+    return false;
 }
 
 std::unique_ptr<DocumentWriterOutput> DataChunkWriterController::AddOutput(DataChunkWriter& writer, const ChunkName& chunkName, Error& error)

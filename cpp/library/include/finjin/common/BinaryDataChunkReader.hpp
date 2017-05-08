@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteOrder.hpp"
 #include "finjin/common/Convert.hpp"
 #include "finjin/common/DataChunkReader.hpp"
@@ -22,7 +22,7 @@
 #include "finjin/common/Error.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API BinaryDataChunkReader : public DataChunkReader
@@ -39,7 +39,7 @@ namespace Finjin { namespace Common {
         ~BinaryDataChunkReader();
 
         void Create(const Settings& settings, BinaryDataChunkReader* parentSection, Error& error);
-        
+
         DataChunkReaderController& GetReaderController() override;
 
         DataChunkReaderInput* GetReaderInput() override;
@@ -50,7 +50,7 @@ namespace Finjin { namespace Common {
         void Skip(DataHeader& dataHeader, Error& error) override;
 
         const DataChunkReaderHeader& GetHeader() const override;
-        
+
         bool IsBinaryFormat() const override { return true; }
         ByteOrder GetByteOrder() const;
 
@@ -91,7 +91,7 @@ namespace Finjin { namespace Common {
 
     private:
         Settings settings;
-        
+
         DataChunkReaderHeader readerHeader;
 
         bool swapBytes;

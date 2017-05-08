@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/Error.hpp"
 #include <mutex>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename ArenaType, typename MutexType>
@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
         }
 
         ~GenericForwardAllocator()
-        {   
+        {
         }
 
         struct Settings
@@ -73,7 +73,7 @@ namespace Finjin { namespace Common {
         {
             //This really should not be called while in use, but put a lock here just in case
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
+
             //Free existing memory
             this->arena.Destroy();
             _Init();
@@ -93,7 +93,7 @@ namespace Finjin { namespace Common {
         virtual void Deallocate(MemoryType mem)
         {
         }
-        
+
         virtual MemoryType Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION)
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
@@ -105,15 +105,15 @@ namespace Finjin { namespace Common {
         MemoryType Allocate(size_t byteCount, bool& wrappedAround, FINJIN_CALLER_PARAMETERS_DECLARATION)
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
+
             return _Allocate(byteCount, wrappedAround, FINJIN_CALLER_PARAMETERS);
         }
 
         void FreeCount(size_t byteCount)
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
-            //Doesn't free any memory, just moves the allocate head        
+
+            //Doesn't free any memory, just moves the allocate head
             this->cursor -= std::min(_GetBytesFree(), byteCount);
         }
 
@@ -125,21 +125,21 @@ namespace Finjin { namespace Common {
         virtual void DeallocateAll()
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
+
             _FreeAll();
         }
 
         virtual size_t GetBytesUsed() const
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
+
             return _GetBytesUsed();
         }
 
         virtual size_t GetBytesFree() const
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
-            
+
             return _GetBytesFree();
         }
 
@@ -194,9 +194,9 @@ namespace Finjin { namespace Common {
                     {
                         //Free everything and try again
                         wrappedAround = true;
-                        
+
                         _FreeAll();
-                        
+
                         continue;
                     }
                     else
@@ -230,7 +230,7 @@ namespace Finjin { namespace Common {
     public:
         using Super = Allocator;
         using Super2 = GenericForwardAllocator<ByteMemoryArena, MutexType>;
-        
+
         void Create(ByteMemoryArena&& arena, Error& error)
         {
             FINJIN_ERROR_METHOD_START(error);
@@ -244,7 +244,7 @@ namespace Finjin { namespace Common {
         void Create(ByteMemoryArena&& arena)
         {
             typename Super2::Settings settings;
-            base.Create(settings, std::move(arena));            
+            base.Create(settings, std::move(arena));
         }
 
         void* Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION) override
@@ -258,7 +258,7 @@ namespace Finjin { namespace Common {
         }
 
         void Deallocate(void* mem) override
-        {            
+        {
         }
 
         bool CanDeallocateAll() const override

@@ -14,9 +14,9 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     enum class GenericScreenOrientation
     {
         PORTRAIT,
@@ -30,5 +30,5 @@ namespace Finjin { namespace Common {
         LANDSCAPE_NORMAL,
         LANDSCAPE_FLIPPED
     };
-    
+
 } }

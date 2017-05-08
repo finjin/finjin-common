@@ -11,27 +11,27 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
-#if FINJIN_TARGET_OS_IS_APPLE || FINJIN_TARGET_OS_IS_LINUX
+//Includes----------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_APPLE || FINJIN_TARGET_PLATFORM_IS_LINUX
     #include <pthread.h>
 #endif
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
-#if FINJIN_TARGET_OS_IS_APPLE
+
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
     using ThreadID = uint64_t;
     using ThreadHandle = pthread_t;
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     using ThreadID = pid_t;
     using ThreadHandle = pthread_t;
 #else
     using ThreadID = uintptr_t;
     using ThreadHandle = void*;
 #endif
-    
+
 } }

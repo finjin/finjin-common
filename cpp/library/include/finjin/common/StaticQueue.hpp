@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/QueueUtilities.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/QueueImpl.hpp"
 #include "finjin/common/StaticVector.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T, size_t ValueCount>
@@ -55,7 +55,7 @@ namespace Finjin { namespace Common {
 
         bool pop() { return impl.pop(); }
         ValueOrError<bool> pop(T& value) { return impl.pop(value); }
-        
+
         T& current() { return impl.current(); }
 
         size_t size() const { return impl.count; }
@@ -88,7 +88,7 @@ namespace Finjin { namespace Common {
         ValueCollection& GetValueEntries() { return impl.valueEntries; }
 
         size_t GetIndex(const T& value) const { return &value - impl.valueEntries.data(); }
-        
+
         T& operator [] (size_t i) { return impl.valueEntries[i]; }
         const T& operator [] (size_t i) const { return impl.valueEntries[i]; }
 

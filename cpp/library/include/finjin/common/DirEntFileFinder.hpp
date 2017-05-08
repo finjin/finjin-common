@@ -14,12 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if !FINJIN_TARGET_PLATFORM_IS_WINDOWS
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Path.hpp"
 #include <dirent.h>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class DirEntFileFinder
@@ -47,3 +49,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

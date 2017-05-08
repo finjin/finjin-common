@@ -19,25 +19,25 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "JobSharedState.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common { namespace detail {
 
     template <typename R, typename Allocator>
-    class shared_state_object : public shared_state<R> 
+    class shared_state_object : public shared_state<R>
     {
     public:
         typedef typename Allocator::template rebind<shared_state_object<R, Allocator>>::other allocator_t;
 
-        shared_state_object(const allocator_t& alloc) : shared_state<R>(), alloc_(alloc) 
+        shared_state_object(const allocator_t& alloc) : shared_state<R>(), alloc_(alloc)
         {
         }
 
     protected:
-        void deallocate_future() 
+        void deallocate_future()
         {
             destroy_(alloc_, this);
         }
@@ -45,7 +45,7 @@ namespace Finjin { namespace Common { namespace detail {
     private:
         allocator_t alloc_;
 
-        static void destroy_(allocator_t& alloc, shared_state_object* p) 
+        static void destroy_(allocator_t& alloc, shared_state_object* p)
         {
             alloc.destroy(p);
             alloc.deallocate(p, 1);

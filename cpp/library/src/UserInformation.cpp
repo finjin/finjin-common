@@ -14,20 +14,20 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/UserInformation.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         #include <ppl.h>
         #include <ppltasks.h>
 
         using namespace Windows::Foundation;
         using namespace Windows::Foundation::Collections;
-        using namespace Windows::System;        
+        using namespace Windows::System;
     #else
         #include <Windows.h>
     #endif
 #else
-    #include <unistd.h>    
-    #include <pwd.h>    
+    #include <unistd.h>
+    #include <pwd.h>
     #include <stdlib.h>
 #endif
 
@@ -39,14 +39,14 @@ UserInformation::UserInformation()
 {
     this->initializationStatus.SetStatus(OperationStatus::STARTED);
 
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP    
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     this->requestedCancel = false;
     this->findUsersTask = concurrency::create_task(User::FindAllAsync()).then([this](IVectorView<User^>^ users)
     {
         if (this->requestedCancel)
         {
             this->initializationStatus.SetStatus(OperationStatus::FAILURE);
-            
+
             concurrency::cancel_current_task();
         }
         else
@@ -56,7 +56,7 @@ UserInformation::UserInformation()
                 if (this->requestedCancel)
                 {
                     this->initializationStatus.SetStatus(OperationStatus::FAILURE);
-                    
+
                     concurrency::cancel_current_task();
                 }
                 else
@@ -67,9 +67,9 @@ UserInformation::UserInformation()
                     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
                 }
             });
-        }            
+        }
     });
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     const int MAX_USER_NAME = 100;
     wchar_t userName[MAX_USER_NAME];
     DWORD userNameLength = MAX_USER_NAME;
@@ -88,12 +88,12 @@ UserInformation::UserInformation()
         this->name = ""; //Need this for value to be "set"
 
     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
-#endif    
+#endif
 }
 
 UserInformation::~UserInformation()
 {
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     try
     {
         //if (!this->getPropertyTask.is_done()) //Not correct!?

@@ -21,7 +21,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static ValueOrError<bool> GetSystemCreatedDirectory(StandardPath& standardPath, int which)
 {
     standardPath.path.clear();
@@ -46,7 +46,7 @@ static ValueOrError<bool> GetSystemCreatedDirectory(StandardPath& standardPath, 
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void StandardPaths::Create(const Utf8String& applicationName, void* applicationHandle, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
@@ -71,25 +71,25 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
         FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
         return;
     }
-    
+
     if (GetSystemCreatedDirectory(this->userMusicDirectory, CSIDL_MYMUSIC).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
         return;
     }
-    
+
     if (GetSystemCreatedDirectory(this->userVideosDirectory, CSIDL_MYVIDEO).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user videos directory.");
         return;
     }
-    
+
     if (GetSystemCreatedDirectory(this->userPicturesDirectory, CSIDL_MYPICTURES).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user pictures directory.");
         return;
     }
-    
+
     auto userHomeDirectoryResult = Path::GetUserHomeDirectory(this->userDownloadsDirectory.path);
     if (userHomeDirectoryResult.HasError())
     {
@@ -105,7 +105,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
             return;
         }
     }
-    
+
     Path bestApplicationName;
     if (!applicationName.empty())
         bestApplicationName = applicationName;
@@ -124,9 +124,9 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
         FINJIN_SET_ERROR(error, "Failed to get user application settings directory.");
         return;
     }
-    else if (localAppDataResult.value) 
+    else if (localAppDataResult.value)
     {
-        //On Windows Win32: C:\Users\(username)\AppData\Local    
+        //On Windows Win32: C:\Users\(username)\AppData\Local
         if ((this->userApplicationSettingsDirectory.path /= bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
@@ -161,7 +161,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
             FINJIN_SET_ERROR(error, "Failed to append 'Temp' to user application temporary directory.");
             return;
         }
-    }    
+    }
 
     auto commonAppDataResult = GetSystemCreatedDirectory(this->applicationSettingsDirectory, CSIDL_COMMON_APPDATA);
     if (commonAppDataResult.HasError())
@@ -169,7 +169,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
         FINJIN_SET_ERROR(error, "Failed to get application settings directory.");
         return;
     }
-    else if (commonAppDataResult.value) //On Windows Win32: C:\Users\All Users\Application Data   
+    else if (commonAppDataResult.value) //On Windows Win32: C:\Users\All Users\Application Data
     {
         if ((this->applicationSettingsDirectory.path /= bestApplicationName).HasError())
         {
@@ -190,7 +190,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     DWORD driveFlags = GetLogicalDrives();
     Utf8String driveName;
     for (DWORD driveIndex = 0; driveIndex < MAX_LOGICAL_DRIVES && !this->logicalDrives.full(); driveIndex++)
-    { 
+    {
         if (driveFlags & (1 << driveIndex))
         {
             wchar_t driveNameW[4] = { static_cast<wchar_t>(L'A' + driveIndex), L':', L'\\', L'\0' };
@@ -203,7 +203,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
                     driveNameW[2] = 0; //Remove the trailing slash
                     driveName = driveNameW;//Convert to UTF8
                     this->logicalDrives.push_back(driveName.c_str()); //Add to collection
-                    break;                    
+                    break;
                 }
             }
         }

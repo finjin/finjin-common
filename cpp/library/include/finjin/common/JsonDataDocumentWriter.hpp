@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/DataDocumentWriter.hpp"
 
 
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common { 
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API JsonDataDocumentWriter : public DataDocumentWriter
     {
@@ -33,7 +33,7 @@ namespace Finjin { namespace Common {
     public:
         /**
          * This addExtraObjectAtRoot is a little of a hack.
-         * It is necessary in cases where you need to start out beneath an object opening when calling StartRootElement("status"). 
+         * It is necessary in cases where you need to start out beneath an object opening when calling StartRootElement("status").
          * If addExtraObjectAtRoot were true the following would result:
          * {"status":{ <--After this you would usually call anything EXCEPT DataElementWriter::StartObject()
          * If addExtraObjectAtRoot were false (the default) the following example would result:
@@ -48,10 +48,10 @@ namespace Finjin { namespace Common {
         void SaveFile(const Path& fileName, Error& error) override;
 
         void GetString(Utf8String& result, Error& error) override;
-        
+
     private:
         struct Impl;
-        Impl* impl;        
+        Impl* impl;
     };
 
 } }

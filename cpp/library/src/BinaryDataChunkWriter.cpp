@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_LINE(_this, propertyName, value) \
     WriteValueLine(*_this->settings.output, _this->swapBytes, propertyName, value, _this->settings.maxBytesPerLine, error); \
     if (error) \
@@ -41,7 +41,7 @@ using namespace Finjin::Common;
 #define WRITE_CHUNK_END_LINE(_this) WriteByte(*_this->settings.output, BINARY_LINE_TYPE_CHUNK_END << BINARY_LINE_TYPE_SHIFT);
 
 
-//Local functions-------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 struct BinaryDataChunkSizeTWrapper
 {
     BinaryDataChunkSizeTWrapper(const size_t* _values) : values(_values)
@@ -50,7 +50,7 @@ struct BinaryDataChunkSizeTWrapper
 
     const size_t* values;
     BinaryMultiValueSize tempValue;
-}; 
+};
 
 static const BinaryMultiValueSize& GetStridedValue(BinaryDataChunkSizeTWrapper& values, size_t index, DataChunkWriteStride stride)
 {
@@ -344,7 +344,7 @@ static void WriteBinaryValue(DocumentWriterOutput& out, double value, bool swapB
         value = 0;
     if (swapBytes)
         SwapBytes(value);
-    
+
     out.Write(&value, sizeof(value));
 }
 
@@ -440,11 +440,11 @@ void WriteValueLine(DocumentWriterOutput& out, bool swapBytes, const ChunkProper
     size_t elementOffset = 0;
     auto elementCount = GetElementCount(value);
     while (elementOffset < elementCount)
-    {   
+    {
         uint8_t headerByte = BINARY_LINE_TYPE_SINGLE_VALUE << BINARY_LINE_TYPE_SHIFT;
         if (propertyName.index != (ChunkPropertyName::Index)-1)
             headerByte |= BINARY_LINE_FLAG_INDEXED;
-        
+
         auto maxValueBytes = maxBytesPerLine - 1 - sizeof(BinaryLineLength) - SizeOfValue(propertyName); //Subtract one for header byte, for total length and propertyName length
 
         auto fitElements = FitValueIntoBytes(value, elementOffset, maxValueBytes);
@@ -462,7 +462,7 @@ void WriteValueLine(DocumentWriterOutput& out, bool swapBytes, const ChunkProper
             headerByte |= BINARY_LINE_OCCURRENCE_MORE << BINARY_LINE_OCCURRENCE_SHIFT;
         else
             headerByte |= BINARY_LINE_OCCURRENCE_LAST << BINARY_LINE_OCCURRENCE_SHIFT;
-        
+
         WriteByte(out, headerByte);
 
         WriteLength(out, SizeOfValue(propertyName) + SizeOfValue(value, elementOffset, fitElements), swapBytes);
@@ -534,13 +534,13 @@ void WriteChunkStartLine(DocumentWriterOutput& out, bool swapBytes, IDOrIndex id
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 BinaryDataChunkWriter::BinaryDataChunkWriter()
-{    
+{
 }
 
 BinaryDataChunkWriter::~BinaryDataChunkWriter()
-{        
+{
     if (AnySet(this->style & DataChunkWriterStyle::NESTED))
         WRITE_CHUNK_END_LINE(this);
 
@@ -559,7 +559,7 @@ void BinaryDataChunkWriter::Create(const Settings& settings, DataChunkWriterStyl
     }
 
     this->settings = settings;
-    this->style = style;    
+    this->style = style;
     this->swapBytes = settings.byteOrder != ::GetByteOrder();
 }
 
@@ -568,14 +568,19 @@ DataChunkWriterController& BinaryDataChunkWriter::GetWriterController()
     return *this->settings.controller;
 }
 
+DocumentWriterOutput* BinaryDataChunkWriter::GetWriterOutput()
+{
+    return this->settings.output;
+}
+
 void BinaryDataChunkWriter::WriteWriterHeader(Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    WriteUInt32(StandardChunkPropertyNames::MAGIC, FINJIN_MAGIC_FOURCC, error);
+    WriteUInt32(StandardChunkPropertyNames::SIGNATURE, FINJIN_SIGNATURE_FOURCC, error);
     if (error)
     {
-        FINJIN_SET_ERROR(error, "Failed to write header magic value.");
+        FINJIN_SET_ERROR(error, "Failed to write header signature.");
         return;
     }
 
@@ -617,15 +622,15 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
 
     if (this->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<DocumentWriterOutput> sharedNewOutput = this->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create new output for chunk '%1%'.", name.name));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto binaryChunkWriter = new BinaryDataChunkWriter();
         auto newSettings = this->settings;
         newSettings.Create(sharedNewOutput, *this->settings.controller);
@@ -650,7 +655,7 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
         }
 
         WRITE_CHUNK_START_LINE(binaryChunkWriter, name.id, 0);
-        
+
         auto scheduled = this->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
         if (error)
         {
@@ -660,7 +665,7 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
 
         if (!scheduled)
         {
-            //Write chunk to the new writer's output            
+            //Write chunk to the new writer's output
             chunkFunc(*chunkWriter, error);
             if (error)
             {
@@ -668,14 +673,14 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
         if (name.index != (ChunkName::Index)-1)
         {
             WRITE_CHUNK_START_LINE(this, static_cast<ChunkName::Index>(name.index), BINARY_LINE_FLAG_INDEXED);
-            
+
             BinaryDataChunkWriter chunkWriter;
             chunkWriter.Create(this->settings, DataChunkWriterStyle::NESTED, this, error);
             chunkWriter.InheritContextStrings(*this);
@@ -691,13 +696,13 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
                 FINJIN_SET_ERROR(error, "Failed to write chunk.");
                 return;
             }
-            
+
             //No need to write chunk end since the chunkWriter does it in its destructor
         }
         else
         {
             WRITE_CHUNK_START_LINE(this, name.id, 0);
-            
+
             chunkFunc(*this, error);
             if (error)
             {
@@ -708,6 +713,27 @@ void BinaryDataChunkWriter::WriteChunk(const ChunkName& name, std::function<void
             WRITE_CHUNK_END_LINE(this);
         }
     }
+}
+
+void BinaryDataChunkWriter::WriteChunkStart(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    if (name.index != (ChunkName::Index)-1)
+    {
+        WRITE_CHUNK_START_LINE(this, static_cast<ChunkName::Index>(name.index), BINARY_LINE_FLAG_INDEXED);
+    }
+    else
+    {
+        WRITE_CHUNK_START_LINE(this, name.id, 0);
+    }
+}
+
+void BinaryDataChunkWriter::WriteChunkEnd(const ChunkName& name, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    WRITE_CHUNK_END_LINE(this);
 }
 
 void BinaryDataChunkWriter::WriteFooter()

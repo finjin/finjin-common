@@ -14,17 +14,17 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Path.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #else
     #include <nowide/fstream.hpp>
 #endif
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     //Internal utility class for reading/writing to a file
@@ -44,9 +44,12 @@ namespace Finjin { namespace Common {
         size_t Write(const void* bytes, size_t byteCount);
         void WriteRemaining(FileAccessor& inFile);
 
+        uint64_t GetOffset();
+        void SetOffset(uint64_t offsetFromStart = 0);
+
         static bool GetFileLength(const Path& path, uint64_t& fileLength);
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         HANDLE fileHandle = INVALID_HANDLE_VALUE;
     #else
         nowide::fstream fileStream;

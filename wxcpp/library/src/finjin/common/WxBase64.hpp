@@ -11,19 +11,19 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WxBase64
     {
-    public:        
+    public:
         static size_t ToBase64Count(size_t byteCount);
 
         static size_t ToByteCount(size_t characterCount);

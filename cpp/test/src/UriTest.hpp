@@ -11,13 +11,13 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Uri.hpp"
 #include "finjin/common/StringKeyValueMap.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(UriTest_parse)
 {
     BOOST_TEST_MESSAGE("UriTest_parse:");
@@ -39,14 +39,14 @@ BOOST_AUTO_TEST_CASE(UriTest_rewrite_to_self)
 {
     BOOST_TEST_MESSAGE("UriTest_rewrite_to_self:");
 
-    Utf8String original = "http://www.finjin.com:80/the/path?a=b&c=d#fragment_goes_here";    
+    Utf8String original = "http://www.finjin.com:80/the/path?a=b&c=d#fragment_goes_here";
     Utf8String uri = original;
-    
+
     StringKeyValueMap rewritePatterns;
     rewritePatterns.Set("http", "{URI_SCHEME}://{URI_HOST}:{URI_PORT}{URI_PATH}?{URI_QUERY}#{URI_FRAGMENT}");
-    
-    Uri::Rewrite(uri, rewritePatterns);        
-    
+
+    Uri::Rewrite(uri, rewritePatterns);
+
     BOOST_CHECK(uri == original);
 }
 
@@ -58,9 +58,9 @@ BOOST_AUTO_TEST_CASE(UriTest_rewrite_to_secure)
 
     StringKeyValueMap rewritePatterns;
     rewritePatterns.Set("http", "https://{URI_HOST}:{URI_PORT}{URI_PATH}?{URI_QUERY}#{URI_FRAGMENT}");
-    
+
     Uri::Rewrite(uri, rewritePatterns);
-    
+
     BOOST_CHECK(uri == "https://www.finjin.com:80/the/path?a=b&c=d#fragment_goes_here");
 }
 

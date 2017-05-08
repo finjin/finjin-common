@@ -14,22 +14,22 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
+#include "finjin/common/DynamicVector.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/SimpleSpinLockMutex.hpp"
-#include "finjin/common/AllocatedVector.hpp"
 #include <mutex>
 #include <ostream>
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define FINJIN_TAGGED_MEMORY_BLOCK_ALLOCATOR_SET_INDEX 0 //1 = useful for debugging
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     //TagType should be an integer type
     template <typename ArenaType, typename TagType, TagType TagNullValue, typename MutexType>
     class TaggedMemoryBlockPool
@@ -345,7 +345,7 @@ namespace Finjin { namespace Common {
                 //This assumes that the call is occurring on the tail
                 return TailGetRangeHead()->previous;
             }
-    };
+        };
 
         struct BlockList
         {
@@ -575,15 +575,15 @@ namespace Finjin { namespace Common {
 
         ArenaType arena;
 
-        AllocatedVector<Block> blocks;
+        DynamicVector<Block> blocks;
         size_t blockSize;
 
         BlockList freeBlocks;
-        AllocatedVector<BlockList> usedBlocksByTag;
+        DynamicVector<BlockList> usedBlocksByTag;
 
         size_t bytesUsed;
     };
-    
+
     template <typename PoolType>
     class TaggedMemoryBlockAllocator : public Allocator
     {

@@ -11,17 +11,17 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/JobFiber.hpp"
 #include "finjin/common/FiberJob.hpp"
 #include "finjin/common/LogicalCpu.hpp"
 #include "finjin/common/JobThreadType.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /**
@@ -43,31 +43,31 @@ namespace Finjin { namespace Common {
         void Create
             (
             size_t fiberIndex,
-            const Utf8String& name, 
-            Allocator* allocator, 
-            JobThreadType type, 
-            const LogicalCpu& logicalCpu, 
+            const Utf8String& name,
+            Allocator* allocator,
+            JobThreadType type,
+            const LogicalCpu& logicalCpu,
             size_t maxJobCount,
             size_t jobObjectHeapSize,
             size_t fiberCount,
-            size_t stackCommitSize, 
+            size_t stackCommitSize,
             size_t stackReserveSize,
             Error& error
             );
         void Destroy();
-        
+
         void Start(Error& error);
         void Stop();
 
         void AcquireJobObjectState(Allocator*& allocator, SimpleSpinLockMutex*& inUseMutex);
-        
+
         JobThreadType GetType() const;
 
-        void InterruptFibers(); //Should be called before calling Stop 
-        bool IsRunningFibers() const; 
+        void InterruptFibers(); //Should be called before calling Stop
+        bool IsRunningFibers() const;
 
         void SetMaxJobGroupID(size_t value);
-        
+
         void Submit(FiberJob::ptr_t&& job);
 
     private:

@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/WxDataChunkWriter.hpp"
 #include "finjin/common/WxDocumentWriterOutput.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class WxStreamingFileFormat
@@ -38,7 +38,7 @@ namespace Finjin { namespace Common {
         static WxStreamingFileFormat Parse(const wxString& ext, WxStreamingFileFormat defaultValue = WxStreamingFileFormat::STREAMING_TEXT);
         static wxString MakeExtension(const wxString& assetClass, WxStreamingFileFormat format);
 
-        static std::unique_ptr<WxDataChunkWriter> CreateFileWriter(const wxString& fileName, WxStreamingFileFormat fileFormat, const WxDataChunkWriter::Settings& writerSettings, WxDataChunkWriterController& controller, WxError& error);            
+        static std::unique_ptr<WxDataChunkWriter> CreateFileWriter(const wxString& fileName, WxStreamingFileFormat fileFormat, const WxDataChunkWriter::Settings& writerSettings, WxDataChunkWriterController& controller, WxError& error);
     };
-    
+
 } }

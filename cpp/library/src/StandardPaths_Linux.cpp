@@ -19,9 +19,9 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static void GetSystemCreatedDirectory(StandardPath& standardPath, const Path& userHomeDirectory, const char* standardName)
-{    
+{
     standardPath.path = userHomeDirectory;
     standardPath.path /= standardName;
     standardPath.isSystemCreated = standardPath.path.IsDirectory();
@@ -30,36 +30,36 @@ static void GetSystemCreatedDirectory(StandardPath& standardPath, const Path& us
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 void StandardPaths::Create(const Utf8String& applicationName, void* applicationHandle, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     this->applicationExecutableFile.path = LinuxUtilities::GetProcessFilePath();
     this->applicationExecutableFile.isSystemCreated = true;
-    
+
     this->applicationBundleDirectory.path = this->applicationExecutableFile.path;
     this->applicationBundleDirectory.path.RemoveFileName();
     this->applicationBundleDirectory.isSystemCreated = true;
-    
+
     Path userHomeDirectory;
     Path::GetUserHomeDirectory(userHomeDirectory);
-    
-    GetSystemCreatedDirectory(this->userDocumentsDirectory, userHomeDirectory, "Documents");    
+
+    GetSystemCreatedDirectory(this->userDocumentsDirectory, userHomeDirectory, "Documents");
     GetSystemCreatedDirectory(this->userMusicDirectory, userHomeDirectory, "Music");
     GetSystemCreatedDirectory(this->userVideosDirectory, userHomeDirectory, "Videos");
     GetSystemCreatedDirectory(this->userPicturesDirectory, userHomeDirectory, "Pictures");
     GetSystemCreatedDirectory(this->userDownloadsDirectory, userHomeDirectory, "Downloads");
-    
+
     Path bestApplicationName;
     if (!applicationName.empty())
         bestApplicationName = applicationName;
     else
         this->applicationExecutableFile.path.GetBaseName(bestApplicationName);
-    
+
     this->userApplicationSettingsDirectory.path = userHomeDirectory;
     this->userApplicationSettingsDirectory.path /= bestApplicationName;
-    
+
     auto tmpDir = getenv("TMPDIR");
     if (tmpDir != nullptr && tmpDir[0] != 0)
     {
@@ -70,9 +70,9 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     {
         this->userApplicationTemporaryDirectory.path = userHomeDirectory;
         this->userApplicationTemporaryDirectory.path /= bestApplicationName;
-        this->userApplicationTemporaryDirectory.path /= "temp";    
+        this->userApplicationTemporaryDirectory.path /= "temp";
     }
-    
+
     this->workingDirectory.path = LinuxUtilities::GetWorkingDirectory();
     this->workingDirectory.isSystemCreated = true;
 }

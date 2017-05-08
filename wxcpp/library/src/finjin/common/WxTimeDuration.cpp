@@ -223,7 +223,7 @@ const WxTimeDuration& WxTimeDuration::Zero()
 #define PARSE_DURATION(unitName, generatorFunction) \
     {\
         auto integerString = s;\
-		integerString.Replace(unitName, wxEmptyString);\
+        integerString.Replace(unitName, wxEmptyString);\
         \
         int64_t integerValue;\
         s.ToLongLong(&integerValue);\
@@ -236,9 +236,9 @@ void WxTimeDuration::Parse(WxTimeDuration& timeDuration, const wxString& s, WxEr
 
     if (s.empty())
         FINJIN_WX_SET_ERROR(error, wxT("Failed to parse empty time duration."));
-    
+
     else if (s.StartsWith(wxT("-")))
-        FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to parse non-negative time duration. Negative specifier in '%s'."), s.wx_str()));        
+        FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to parse non-negative time duration. Negative specifier in '%s'."), s.wx_str()));
 
     else if (s.EndsWith(wxT("nanoseconds")))
         PARSE_DURATION(wxT("nanoseconds"), Nanoseconds)
@@ -249,7 +249,7 @@ void WxTimeDuration::Parse(WxTimeDuration& timeDuration, const wxString& s, WxEr
         PARSE_DURATION(wxT("microseconds"), Microseconds)
     else if (s.EndsWith(wxT("microsecond")))
         PARSE_DURATION(wxT("microsecond"), Microseconds)
-    
+
     else if (s.EndsWith(wxT("milliseconds")))
         PARSE_DURATION(wxT("milliseconds"), Milliseconds)
     else if (s.EndsWith(wxT("millisecond")))
@@ -282,7 +282,7 @@ void WxTimeDuration::Parse(WxTimeDuration& timeDuration, const wxString& s, WxEr
         PARSE_DURATION(wxT("m"), Minutes)
     else if (s.EndsWith(wxT("s")))
         PARSE_DURATION(wxT("s"), Seconds)
-    
+
     else
         FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to parse non-negative time duration. Unrecognized or unspecified time unit in '%s'."), s.wx_str()));
 }

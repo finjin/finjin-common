@@ -227,8 +227,8 @@ FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* e
 
 FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntry::Type type, const Path& relativePath)
 {
-    for (auto entry = FindEntryStartingWith(relativePath); 
-        entry != nullptr; 
+    for (auto entry = FindEntryStartingWith(relativePath);
+        entry != nullptr;
         entry = FindNextEntryStartingWith(entry, relativePath))
     {
         if (entry->type == type)
@@ -240,8 +240,8 @@ FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntry::Type 
 
 FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntry::Type type, const Path& relativePath)
 {
-    for (entry = FindNextEntryStartingWith(entry, relativePath); 
-        entry != nullptr; 
+    for (entry = FindNextEntryStartingWith(entry, relativePath);
+        entry != nullptr;
         entry = FindNextEntryStartingWith(entry, relativePath))
     {
         if (entry->type == type)

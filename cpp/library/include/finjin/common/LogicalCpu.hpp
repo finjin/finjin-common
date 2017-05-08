@@ -14,18 +14,16 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/StaticVector.hpp"
 #include "finjin/common/ThreadID.hpp"
-#include <set>
 #include <ostream>
-#include <utility>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     using namespace Finjin::Common;
 
     class CpuSet : public StaticVector<uint64_t, CommonConstants::MAX_CPUS>
@@ -47,7 +45,7 @@ namespace Finjin { namespace Common {
             if (std::find(begin(), end(), value) == end())
                 push_back(value);
         }
-        
+
         void remove(uint64_t value)
         {
             for (size_t itemIndex = 0; itemIndex < this->count; itemIndex++)
@@ -60,20 +58,20 @@ namespace Finjin { namespace Common {
                 }
             }
         }
-        
-        template <typename T>
-        CacheCpuSet& operator = (const std::set<T>& other)
+
+        template <typename T, size_t maxItems>
+        CacheCpuSet& operator = (const StaticVector<T, maxItems>& other)
         {
             this->count = 0;
-            
+
             for (auto value : other)
             {
                 if (this->count >= MAX_ITEMS)
                     break;
-                
+
                 this->items[this->count++] = value;
             }
-            
+
             return *this;
         }
 
@@ -101,27 +99,27 @@ namespace Finjin { namespace Common {
 
         enum {MAX_CACHES = 3};
         CacheCpuSet cacheProcessorSharing[MAX_CACHES]; //0 = level 1 cache, 1 = level 2 cache, etc
-    
+
         LogicalCpu()
         {
             Reset();
         }
-        
+
         void Reset()
         {
             this->nodeID = 0;
             this->processorID = 0;
-            
+
             for (size_t i = 0; i < MAX_CACHES; i++)
                 this->cacheProcessorSharing[i].clear();
         }
-        
+
         uint64_t GetGroup() const;
         uint64_t GetID() const;
-        
+
         bool AssociateCurrentThread() const;
         void AssociateCurrentThread(Error& error) const;
-        
+
         bool AssociateThread(ThreadHandle threadHandle) const;
         void AssociateThread(ThreadHandle threadHandle, Error& error) const;
 
@@ -151,7 +149,7 @@ namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API LogicalCpus : public StaticVector<LogicalCpu, CpuSet::MAX_ITEMS>
     {
-    public:        
+    public:
         void AssociateCurrentThreadAndRemove(LogicalCpu* removed = nullptr);
 
         void Truncate(size_t count)
@@ -159,29 +157,29 @@ namespace Finjin { namespace Common {
             if (count < this->count)
                 this->count = count;
         }
-        
+
         void clear()
         {
             Truncate(0);
         }
-        
+
         void remove(LogicalCpu* iter)
         {
             RemoveAt(iter - begin());
         }
-        
+
         void RemoveAt(size_t index)
         {
             for (size_t i = index; i < this->count - 1; i++)
                 this->items[i] = this->items[i + 1];
             this->count--;
         }
-        
+
         void Output(std::ostream& out)
         {
             LogicalCpu::Output(out, begin(), this->count);
         }
-        
+
         void Enumerate();
     };
 

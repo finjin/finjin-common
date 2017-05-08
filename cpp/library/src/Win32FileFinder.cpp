@@ -20,7 +20,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static bool IsDots(const wchar_t* s)
 {
     if (s[0] != 0)
@@ -34,7 +34,7 @@ static bool IsDots(const wchar_t* s)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 Win32FileFinder::Win32FileFinder(Allocator* allocator) : path(allocator), testPath(allocator)
 {
     this->handle = nullptr;
@@ -45,7 +45,7 @@ Win32FileFinder::~Win32FileFinder()
     Stop();
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
 bool Win32FileFinder::Start(Windows::Storage::StorageFolder^ storageFolder)
 {
     Path path(storageFolder->Path->Data());
@@ -135,7 +135,7 @@ void Win32FileFinder::Stop()
     }
 }
 
-const Path& Win32FileFinder::GetStartPath() const 
-{ 
-    return this->path; 
+const Path& Win32FileFinder::GetStartPath() const
+{
+    return this->path;
 }

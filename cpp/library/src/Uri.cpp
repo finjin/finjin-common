@@ -15,7 +15,7 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Uri.hpp"
 #include <uriparser/Uri.h>
-#if FINJIN_TARGET_OS_IS_WINDOWS || FINJIN_TARGET_OS_IS_LINUX || FINJIN_TARGET_OS == FINJIN_TARGET_OS_MAC
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS || FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
     #include <boost/asio.hpp>
     #define USE_BOOST_IPV6 1
 #else
@@ -26,27 +26,6 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-static bool GetBestRewritePattern(Utf8String& rewritePattern, const Utf8String& scheme, const StringKeyValueMap& rewritePatterns)
-{
-    if (rewritePatterns.HasKey(scheme))
-    {
-        //Found the exact pattern (or the default if scheme was empty)
-        rewritePattern = rewritePatterns[scheme];
-        return true;
-    }
-    else if (!scheme.empty() && rewritePatterns.HasKey(Utf8String::Empty()))
-    {
-        //scheme was specified, and a default was found
-        rewritePattern = rewritePatterns[Utf8String::Empty()];
-        return true;
-    }
-    else
-    {
-        //Nothing found
-        return false;
-    }
-}
-
 static bool IsIPV6(const Utf8String& host)
 {
     auto isIPV6 = false;
@@ -61,7 +40,7 @@ static bool IsIPV6(const Utf8String& host)
     if (inet_pton(AF_INET6, host.c_str(), binaryHost) == 1)
         isIPV6 = true;
 #endif
-    
+
     return isIPV6;
 }
 
@@ -199,10 +178,10 @@ ValueOrError<void> _Init(SimpleUri* _this, const T& s)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //Uri
-Uri::Uri(Allocator* allocator) : 
+Uri::Uri(Allocator* allocator) :
     scheme(allocator),
     host(allocator),
     port(allocator),
@@ -514,78 +493,6 @@ ValueOrError<void> Uri::Format(Utf8String& uri, const Utf8String& scheme, const 
     if (uri.append(path).HasError())
         return ValueOrError<void>::CreateError();
 
-    return ValueOrError<void>();
-}
-
-ValueOrError<void> Uri::Rewrite(Utf8String& uriToRewrite, const StringKeyValueMap& rewritePatterns)
-{
-    if (rewritePatterns.empty())
-    {
-        //No rewrite patterns specified
-        return ValueOrError<void>();
-    }
-
-    //Parse the specified URI
-    Uri parsedUri(uriToRewrite);
-    if (!parsedUri.isValid)
-        return ValueOrError<void>::CreateError();
-    
-    //Prime the new URI with the rewrite pattern
-    if (!GetBestRewritePattern(uriToRewrite, parsedUri.scheme, rewritePatterns))
-    {
-        //No rewrite pattern for the scheme and no default pattern
-        return ValueOrError<void>();
-    }
-
-    //Perform a sequence of replacements on the URI--------------------------------------
-
-    //Scheme
-    uriToRewrite.ReplaceFirst("{URI_SCHEME}", parsedUri.scheme);
-
-    //Host
-    Utf8String formattedHost;
-    if (FormatHost(formattedHost, parsedUri.host).HasError())
-        return ValueOrError<void>::CreateError();
-    uriToRewrite.ReplaceFirst("{URI_HOST}", formattedHost);
-
-    //Port
-    auto port = parsedUri.port;
-    if (port.empty())
-    {
-        if (parsedUri.scheme == "http" || parsedUri.scheme == "ws")
-            port = "80";
-        else if (parsedUri.scheme == "https" || parsedUri.scheme == "wss")
-            port = "443";
-    }
-    uriToRewrite.ReplaceFirst("{URI_PORT}", port);
-
-    //Path
-    uriToRewrite.ReplaceFirst("{URI_PATH}", parsedUri.path);
-
-    //Query string
-    uriToRewrite.ReplaceFirst("{URI_QUERY}", parsedUri.query);
-
-    //Fragment
-    uriToRewrite.ReplaceFirst("{URI_FRAGMENT}", parsedUri.fragment);
-
-    //Path + query string + fragment
-    auto pathQueryFragment = parsedUri.path;
-    if (!parsedUri.query.empty())
-    {
-        if (pathQueryFragment.append("?").HasError())
-            return ValueOrError<void>::CreateError();
-        if (pathQueryFragment.append(parsedUri.query).HasError())
-            return ValueOrError<void>::CreateError();
-    }
-    if (!parsedUri.fragment.empty())
-    {
-        if (pathQueryFragment.append("#").HasError())
-            return ValueOrError<void>::CreateError();
-        if (pathQueryFragment.append(parsedUri.fragment).HasError())
-            return ValueOrError<void>::CreateError();
-    }
-    uriToRewrite.ReplaceFirst("{URI_PATH_QUERY_FRAGMENT}", pathQueryFragment);
-    
     return ValueOrError<void>();
 }
 

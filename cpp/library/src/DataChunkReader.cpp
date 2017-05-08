@@ -14,13 +14,13 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/DataChunkReader.hpp"
-#include "finjin/common/DataChunkReaderController.hpp"
 #include "finjin/common/Convert.hpp"
+#include "finjin/common/DataChunkReaderController.hpp"
 
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //DataHeader
 DataHeader::DataHeader()
@@ -230,7 +230,7 @@ void DataChunkReader::DebugRead(std::ostream& out, DataHeader& dataHeader, Error
                 if (error)
                 {
                     FINJIN_SET_ERROR(error, "Failed to skip property.");
-                }                            
+                }
             }
 
             break;

@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/FiberSpinLock.hpp"
 #include "finjin/common/FiberWaitingQueue.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class JobFiber;
 
     class FiberMutex
@@ -50,5 +50,5 @@ namespace Finjin { namespace Common {
 
         bool LockIfUnlocked();
     };
-    
+
 } }

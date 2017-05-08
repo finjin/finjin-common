@@ -23,13 +23,59 @@ using namespace Finjin::Common;
 //Implementation----------------------------------------------------------------
 
 //ByteBuffer
+ByteBuffer::ByteBuffer()
+{
+    this->items = nullptr;
+    this->count = 0;
+    this->maxCount = 0;
+    this->allocator = nullptr;
+    this->resizeStrategy = MemoryResizeStrategy::LIMIT;
+}
+
+ByteBuffer::ByteBuffer(ByteBuffer&& other)
+{
+    this->items = other.items;
+    this->count = other.count;
+    this->maxCount = other.maxCount;
+    this->allocator = other.allocator;
+    this->resizeStrategy = other.resizeStrategy;
+
+    other.items = nullptr;
+    other.count = 0;
+    other.maxCount = 0;
+    other.allocator = nullptr;
+}
+
+ByteBuffer& ByteBuffer::operator = (ByteBuffer&& other)
+{
+    Destroy();
+
+    this->items = other.items;
+    this->count = other.count;
+    this->maxCount = other.maxCount;
+    this->allocator = other.allocator;
+    this->resizeStrategy = other.resizeStrategy;
+
+    other.items = nullptr;
+    other.count = 0;
+    other.maxCount = 0;
+    other.allocator = nullptr;
+
+    return *this;
+}
+
+ByteBuffer::~ByteBuffer()
+{
+    Destroy();
+}
+
 bool ByteBuffer::Create(size_t count, Allocator* allocator, MemoryResizeStrategy resizeStrategy)
 {
     Destroy();
-    
+
     if (allocator == nullptr)
         allocator = Allocator::GetDefaultAllocator();
-    
+
     void* mem = nullptr;
     if (count > 0)
     {
@@ -43,7 +89,7 @@ bool ByteBuffer::Create(size_t count, Allocator* allocator, MemoryResizeStrategy
     this->maxCount = count;
     this->allocator = allocator;
     this->resizeStrategy = resizeStrategy;
-    
+
     if (count > 0)
         return mem != nullptr;
     else
@@ -54,10 +100,10 @@ bool ByteBuffer::Create(const void* bytes, size_t count, Allocator* allocator, M
 {
     if (!Create(count, allocator, resizeStrategy))
         return false;
-    
+
     if (bytes != nullptr)
         FINJIN_COPY_MEMORY(this->items, bytes, count);
-    
+
     return true;
 }
 
@@ -74,7 +120,7 @@ void ByteBuffer::Destroy()
         this->allocator->Deallocate(this->items);
     else
         Allocator::SystemDeallocate(this->items);
-    
+
     this->items = nullptr;
     this->count = 0;
     this->maxCount = 0;
@@ -105,7 +151,7 @@ void ByteBuffer::Fill(uint8_t value)
 void ByteBuffer::Fill(uint8_t value, uint8_t* start, uint8_t* end)
 {
     assert(start <= end && start >= this->items && start <= this->items + this->count && end >= this->items && end <= this->items + this->count);
-    
+
     if (start < end)
         std::fill_n(start, end - start, value);
 }
@@ -121,11 +167,11 @@ ByteBuffer& ByteBuffer::Write(const void* bytes, size_t byteCount)
     //Reallocate if incoming bytes cannot fit within the unused area
     if (byteCount > size_left())
         Reallocate(this->count + byteCount);
-    
+
     //Copy and increment byte count
     FINJIN_COPY_MEMORY(&this->items[this->count], bytes, byteCount);
     this->count += byteCount;
-    
+
     return *this;
 }
 
@@ -138,7 +184,7 @@ ByteBuffer& ByteBuffer::Write(const char* s)
 {
     if (s != nullptr && s[0] != 0)
         Write(s, strlen(s));
-    
+
     return *this;
 }
 
@@ -150,27 +196,27 @@ ByteBuffer& ByteBuffer::Write(uint8_t b)
 ByteBuffer& ByteBuffer::WriteBase64(const void* bytes, size_t byteCount)
 {
     auto base64Length = Base64::ToBase64Count(byteCount);
-    
+
     //Reallocate if incoming bytes cannot fit within the unused area
     if (base64Length > size_left())
         Reallocate(this->count + base64Length);
-    
+
     this->count += Base64::ToBase64(bytes, byteCount, &this->items[this->count]);
-    
+
     return *this;
 }
 
 size_t ByteBuffer::WriteBase64(const void* bytes, size_t byteCount, size_t maxBase64Bytes)
 {
     maxBase64Bytes = std::min(maxBase64Bytes, size_left());
-    
+
     auto base64Length = Base64::ToBase64Count(byteCount);
     if (base64Length > maxBase64Bytes)
         byteCount = Base64::ToByteCount(maxBase64Bytes);
-    
+
     if (byteCount > 0)
         this->count += Base64::ToBase64(bytes, byteCount, &this->items[this->count]);
-    
+
     return byteCount;
 }
 
@@ -183,7 +229,7 @@ void ByteBuffer::Reallocate(size_t count)
 {
     //Store old data
     auto oldItems = this->items;
-    
+
     //Reallocate enough to store new data
     if (this->allocator != nullptr)
         this->items = static_cast<uint8_t*>(allocator->Allocate(count, FINJIN_CALLER_ARGUMENTS));
@@ -194,7 +240,7 @@ void ByteBuffer::Reallocate(size_t count)
         this->maxCount = count;
     else
         this->count = this->maxCount = 0;
-    
+
     //Copy old data and delete old bytes
     if (oldItems != nullptr)
     {
@@ -232,7 +278,7 @@ const uint8_t* ByteBufferReader::data_start() const
 
 const uint8_t* ByteBufferReader::data_left() const
 {
-    if (size_left() > 0)
+    if (this->dataPointerStart != nullptr)
         return this->dataPointerStart + GetOffset();
     else
         return nullptr;
@@ -258,12 +304,6 @@ bool ByteBufferReader::IsEnd() const
     return (this->remainingLength == 0) ? true : false;
 }
 
-void ByteBufferReader::ResetOffset(size_t offsetFromStart)
-{
-    this->remainingLength = this->byteCount - offsetFromStart;
-    this->dataPointer = this->dataPointerStart + offsetFromStart;
-}
-
 size_t ByteBufferReader::GetOffset() const
 {
     return this->dataPointer - this->dataPointerStart;
@@ -273,8 +313,14 @@ const uint8_t* ByteBufferReader::GetOffsetBytes(size_t length) const
 {
     if (this->remainingLength < length)
         return nullptr;
-    
+
     return this->dataPointer;
+}
+
+void ByteBufferReader::SetOffset(size_t offsetFromStart)
+{
+    this->remainingLength = this->byteCount - offsetFromStart;
+    this->dataPointer = this->dataPointerStart + offsetFromStart;
 }
 
 bool ByteBufferReader::Skip(size_t numBytesToSkip)

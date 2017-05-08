@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 ConfigDocumentWriter::ConfigDocumentWriter()
 {
     this->output = nullptr;
@@ -55,7 +55,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteCommentedSection(const Utf8Stri
     this->output->Write("#");
     this->output->WriteString(comment);
     this->output->Write("\n");
-    
+
     Indent();
     this->output->Write("[");
     this->output->WriteString(name);
@@ -68,13 +68,13 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteCommentedSection(const Utf8Stri
 ConfigDocumentWriter& ConfigDocumentWriter::WriteSection(const Utf8String& name)
 {
     this->output->Write("\n");
-    
+
     Indent();
     this->output->Write("[");
     this->output->WriteString(name);
     this->output->Write("]");
     this->output->Write("\n");
-    
+
     return *this;
 }
 
@@ -89,9 +89,9 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteScopeStart(const Utf8String& na
     Indent();
     this->output->Write("{");
     this->output->Write("\n");
-    
+
     this->depth++;
-    
+
     return *this;
 }
 
@@ -103,7 +103,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteScopeEnd()
     Indent();
     this->output->Write("}");
     this->output->Write("\n");
-    
+
     return *this;
 }
 
@@ -118,7 +118,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteKeyAndValue(const Utf8String& k
     else
         this->output->Write("=");
     this->output->WriteString(value);
-    this->output->Write("\n");    
+    this->output->Write("\n");
     if (containsNewline)
         this->output->Write("^\n");
     return *this;
@@ -145,7 +145,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const ConfigDocumentLine& 
     switch (line.GetType())
     {
         case ConfigDocumentLine::Type::NONE: break;
-        case ConfigDocumentLine::Type::COMMENT: 
+        case ConfigDocumentLine::Type::COMMENT:
         {
             Utf8StringView comment;
             line.GetComment(comment);
@@ -154,7 +154,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const ConfigDocumentLine& 
             this->output->Write("#");
             this->output->WriteString(comment);
             this->output->Write("\n");
-            
+
             break;
         }
         case ConfigDocumentLine::Type::SECTION:
@@ -170,7 +170,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const ConfigDocumentLine& 
 
             break;
         }
-        case ConfigDocumentLine::Type::SCOPE_START: 
+        case ConfigDocumentLine::Type::SCOPE_START:
         {
             Indent(line.GetDepth());
             this->output->Write("{");
@@ -178,7 +178,7 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const ConfigDocumentLine& 
 
             break;
         }
-        case ConfigDocumentLine::Type::SCOPE_END: 
+        case ConfigDocumentLine::Type::SCOPE_END:
         {
             Indent(line.GetDepth());
             this->output->Write("}");
@@ -190,24 +190,24 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const ConfigDocumentLine& 
         {
             Utf8StringView key, value;
             line.GetKeyAndValue(key, value);
-            
+
             Indent(line.GetDepth());
             this->output->WriteString(key);
             this->output->Write("=");
             this->output->WriteString(value);
             this->output->Write("\n");
-            
+
             break;
         }
         case ConfigDocumentLine::Type::PLAIN_LINE:
         {
             Utf8StringView plainLine;
             line.GetLine(plainLine);
-            
+
             Indent(line.GetDepth());
             this->output->WriteString(plainLine);
             this->output->Write("\n");
-            
+
             break;
         }
     }

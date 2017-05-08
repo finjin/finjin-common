@@ -18,10 +18,10 @@
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    /** 
+    /**
      * A description of command line settings, used to display the application command line settings help.
      */
     class FINJIN_COMMON_LIBRARY_API CommandLineSettingsDescription
@@ -33,11 +33,11 @@ namespace Finjin { namespace Common {
         CommandLineSettingsDescription(CommandLineSettingsDescription&& other) = delete;
         CommandLineSettingsDescription& operator = (CommandLineSettingsDescription&& other) = delete;
 
-    public:        
+    public:
         CommandLineSettingsDescription();
         virtual ~CommandLineSettingsDescription();
 
-        /** 
+        /**
          * Starts a group of settings, each of which have the specified prefix.
          * @param prefix [in] The prefix for all the added settings. May be empty.
          */

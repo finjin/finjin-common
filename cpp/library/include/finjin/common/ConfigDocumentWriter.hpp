@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/DocumentWriterOutput.hpp"
 #include <ostream>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class ConfigDocumentLine;
@@ -29,7 +29,7 @@ namespace Finjin { namespace Common {
     {
     public:
         ConfigDocumentWriter();
-        
+
         void Create(DocumentWriterOutput& output, int depth = 0);
         void Create(std::ostream& outStream, int depth = 0);
 
@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
         ConfigDocumentWriter& WriteLine(const Utf8String& line);
         ConfigDocumentWriter& WriteLine(const char* line, size_t length);
         ConfigDocumentWriter& WriteLine(const ConfigDocumentLine& line);
-        
+
         ConfigDocumentWriter& WriteNewline();
 
         int GetDepth() const;
@@ -53,7 +53,7 @@ namespace Finjin { namespace Common {
 
     private:
         StreamDataChunkWriterOutput streamOutput;
-        DocumentWriterOutput* output;        
+        DocumentWriterOutput* output;
         int depth;
     };
 

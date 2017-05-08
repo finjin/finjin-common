@@ -11,16 +11,19 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-#pragma once 
+#pragma once
 
 
-//Includes---------------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
+#include "finjin/common/Path.hpp"
 #include <Windows.h>
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #if FINJIN_DEBUG
     #define FINJIN_CHECK_HRESULT_FAILED(hr) WindowsUtilities::CheckHResultFailed(hr)
 #else
@@ -28,7 +31,7 @@
 #endif
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class WindowsUtilities
@@ -36,7 +39,7 @@ namespace Finjin { namespace Common {
     public:
         static bool CheckHResultFailed(HRESULT hr);
 
-    #if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         static uint8_t* GetPointerToIBufferData(Windows::Storage::Streams::IBuffer^ buffer);
 
         static bool ReadBinaryFile(Windows::Storage::StorageFolder^ storageFolder, const Path& relativeFilePath, ByteBuffer& buffer, Error& error);
@@ -45,7 +48,7 @@ namespace Finjin { namespace Common {
         static bool IsXInputDevice(const GUID& guidProductFromDirectInput);
 
         static ValueOrError<void> GetEnv(Utf8String& result, const Utf8String& key);
-        static Utf8String GetEnv(const Utf8String& key);        
+        static ValueOrError<void> GetEnv(Path& result, const Utf8String& key);
     #endif
 
         static bool ConvertString(Utf8String& dest, DWORD dwMapFlags, const wchar_t* src, size_t srcLength);
@@ -66,9 +69,11 @@ namespace Finjin { namespace Common {
 
         static Path GetProcessFilePath(HMODULE moduleHandle = nullptr);
         static ValueOrError<void> GetProcessFilePath(Path& result, HMODULE moduleHandle = nullptr);
-        
+
         static Path GetWorkingDirectory();
         static ValueOrError<void> GetWorkingDirectory(Path& result);
     };
 
 } }
+
+#endif

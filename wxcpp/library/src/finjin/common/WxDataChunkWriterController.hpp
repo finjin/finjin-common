@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "WxChunkName.hpp"
 #include "finjin/common/WxDocumentWriterOutput.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class WxDataChunkWriter;
 
     class WxDataChunkWriterController

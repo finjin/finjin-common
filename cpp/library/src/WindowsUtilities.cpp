@@ -15,7 +15,7 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/WindowsUtilities.hpp"
 #include "finjin/common/Path.hpp"
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     #include <ppltasks.h>
     #include <MemoryBuffer.h>
 #else
@@ -27,8 +27,45 @@
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
-#if !FINJIN_TARGET_OS_IS_WINDOWS_UWP
+//Local functions---------------------------------------------------------------
+template <typename T>
+ValueOrError<void> _GetEnv(T& result, const Utf8String& key)
+{
+    nowide::basic_stackstring<wchar_t, char, Utf8String::STATIC_STRING_LENGTH + 1> keyW;
+    if (!keyW.convert(key.begin(), key.end()))
+    {
+        result.clear();
+        return ValueOrError<void>::CreateError();
+    }
+
+    //Try to get the environment variable without dynamically allocating memory
+    static const size_t charCount = 1024;
+    wchar_t buff[charCount];
+    wchar_t* valuePtr = buff;
+
+    auto valueLength = GetEnvironmentVariableW(keyW.c_str(), buff, charCount);
+    if (valueLength == 0 || GetLastError() == ERROR_ENVVAR_NOT_FOUND)
+    {
+        //No environment variable for key
+        result.clear();
+        return ValueOrError<void>::CreateError();
+    }
+
+    std::vector<wchar_t> tempBuffer;
+    if (valueLength >= charCount)
+    {
+        //Value length exceeds the length of the temporary buffer, so dynamically allocate
+        tempBuffer.resize(valueLength + 1, L'\0');
+        GetEnvironmentVariableW(keyW.c_str(), &tempBuffer[0], static_cast<DWORD>(tempBuffer.size()) - 1);
+        valuePtr = &tempBuffer[0];
+    }
+
+    return result.assign(valuePtr);
+}
+
+
+//Local types-------------------------------------------------------------------
+#if !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
 class XInputDeviceEnumerator : public Win32PnpDeviceEnumerator
 {
 public:
@@ -40,9 +77,9 @@ public:
 
     bool HandleDevice(wchar_t* bstrVal) override
     {
-        //Enum each PNP device using WMI and check each device ID to see if it contains 
+        //Enum each PNP device using WMI and check each device ID to see if it contains
         //"IG_" (ex. "VID_045E&PID_028E&IG_00").  If it does, then it's an XInput device
-        //Unfortunately this information can not be found by just using DirectInput 
+        //Unfortunately this information can not be found by just using DirectInput
 
         if (wcsstr(bstrVal, L"IG_"))
         {
@@ -51,7 +88,7 @@ public:
             auto strVid = wcsstr(bstrVal, L"VID_");
             if (strVid != nullptr && swscanf(strVid, L"VID_%4X", &dwVid) != 1)
                 dwVid = 0;
-            
+
             DWORD dwPid = 0;
             auto strPid = wcsstr(bstrVal, L"PID_");
             if (strPid != nullptr && swscanf(strPid, L"PID_%4X", &dwPid) != 1)
@@ -75,7 +112,7 @@ public:
 #endif
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 bool WindowsUtilities::CheckHResultFailed(HRESULT hr)
 {
     if (FAILED(hr))
@@ -87,7 +124,7 @@ bool WindowsUtilities::CheckHResultFailed(HRESULT hr)
         return false;
 }
 
-#if FINJIN_TARGET_OS_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
 uint8_t* WindowsUtilities::GetPointerToIBufferData(Windows::Storage::Streams::IBuffer^ buffer)
 {
     //Cast to Object^, then to its underlying IInspectable interface
@@ -166,43 +203,12 @@ bool WindowsUtilities::IsXInputDevice(const GUID& guidProductFromDirectInput)
 
 ValueOrError<void> WindowsUtilities::GetEnv(Utf8String& result, const Utf8String& key)
 {
-    nowide::basic_stackstring<wchar_t, char, Utf8String::STATIC_STRING_LENGTH + 1> keyW;
-    if (!keyW.convert(key.begin(), key.end()))
-    {
-        result.clear();
-        return ValueOrError<void>::CreateError();
-    }
-
-    //Try to get the environment variable without dynamically allocating memory
-    static const size_t charCount = 1024;
-    wchar_t buff[charCount];
-    wchar_t* valuePtr = buff;
-
-    auto valueLength = GetEnvironmentVariableW(keyW.c_str(), buff, charCount);
-    if (valueLength == 0 || GetLastError() == ERROR_ENVVAR_NOT_FOUND)
-    {
-        //No environment variable for key
-        result.clear();
-        return ValueOrError<void>::CreateError();
-    }
-
-    std::vector<wchar_t> tempBuffer;
-    if (valueLength >= charCount)
-    {
-        //Value length exceeds the length of the temporary buffer, so dynamically allocate
-        tempBuffer.resize(valueLength + 1, L'\0');
-        GetEnvironmentVariableW(keyW.c_str(), &tempBuffer[0], static_cast<DWORD>(tempBuffer.size()) - 1);
-        valuePtr = &tempBuffer[0];
-    }
-
-    return result.assign(valuePtr);
+    return _GetEnv(result, key);
 }
 
-Utf8String WindowsUtilities::GetEnv(const Utf8String& key)
+ValueOrError<void> WindowsUtilities::GetEnv(Path& result, const Utf8String& key)
 {
-    Utf8String value;
-    GetEnv(value, key);
-    return value;
+    return _GetEnv(result, key);
 }
 
 #endif
@@ -238,7 +244,7 @@ bool WindowsUtilities::ConvertString(Utf8String& converted, DWORD dwMapFlags, co
 DWORD WindowsUtilities::GetPathAttributes(const Path& path)
 {
     WIN32_FILE_ATTRIBUTE_DATA info = {};
-    
+
     //Convert to wide string
     nowide::basic_stackstring<wchar_t, char, Path::STATIC_STRING_LENGTH + 1> pathW;
     if (!pathW.convert(path.begin(), path.end()))
@@ -262,7 +268,7 @@ DWORD WindowsUtilities::GetPathAttributes(const Path& path)
         wcscat(longPathW, pathW.c_str());
 
         //Get attributes
-        GetFileAttributesExW(longPathW, GetFileExInfoStandard, &info);        
+        GetFileAttributesExW(longPathW, GetFileExInfoStandard, &info);
     }
     else
     {
@@ -270,7 +276,7 @@ DWORD WindowsUtilities::GetPathAttributes(const Path& path)
         longPathW += pathW.c_str();
 
         //Get attributes
-        GetFileAttributesExW(longPathW.c_str(), GetFileExInfoStandard, &info);        
+        GetFileAttributesExW(longPathW.c_str(), GetFileExInfoStandard, &info);
     }
 
     return info.dwFileAttributes;
@@ -299,7 +305,7 @@ Path WindowsUtilities::GetProcessFilePath(HMODULE moduleHandle)
 ValueOrError<void> WindowsUtilities::GetProcessFilePath(Path& result, HMODULE moduleHandle)
 {
     result.clear();
-    
+
     const int charCount = 1024;
     wchar_t buff[charCount];
     auto charsCopied = GetModuleFileNameW(moduleHandle, buff, charCount);

@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/StaticVector.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class StandardPath
@@ -60,26 +60,42 @@ namespace Finjin { namespace Common {
     {
     public:
         template <typename T>
-        bool ForEach(T callback) const //std::function<bool(const StandardPath&)>
+        bool ForEach(T callback, Error& error) const //std::function<bool(const StandardPath&, Error&)>
         {
-            if (!this->applicationExecutableFile.path.empty())
+            FINJIN_ERROR_METHOD_START(error);
+
+            for (auto standardPath : { &this->applicationExecutableFile, &this->applicationBundleDirectory })
             {
-                if (!callback(this->applicationExecutableFile))
+                auto result = callback(*standardPath, error);
+                if (error)
+                {
+                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Error occurred while iterating on standard path '%1%' at '%2%'.", standardPath->GetDisplayName(), standardPath->path));
+                    return false;
+                }
+                if (!result)
                     return false;
             }
 
-            if (!this->applicationBundleDirectory.path.empty())
             {
-                if (!callback(this->applicationBundleDirectory))
+                auto result = ForEachUserPath(callback, error);
+                if (error)
+                {
+                    FINJIN_SET_ERROR(error, "Failed to process a user path.");
+                    return false;
+                }
+                if (!result)
                     return false;
             }
 
-            if (!ForEachUserPath(callback))
-                return false;
-
-            if (!this->workingDirectory.path.empty())
+            for (auto standardPath : { &this->workingDirectory })
             {
-                if (!callback(this->workingDirectory))
+                auto result = callback(*standardPath, error);
+                if (error)
+                {
+                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Error occurred while iterating on working directory path '%1%' at '%2%'.", standardPath->GetDisplayName(), standardPath->path));
+                    return false;
+                }
+                if (!result)
                     return false;
             }
 
@@ -87,60 +103,33 @@ namespace Finjin { namespace Common {
         }
 
         template <typename T>
-        bool ForEachUserPath(T callback) const //std::function<bool(const StandardPath&)>
+        bool ForEachUserPath(T callback, Error& error) const //std::function<bool(const StandardPath&, Error& error)>
         {
-            if (!this->userDocumentsDirectory.path.empty())
-            {
-                if (!callback(this->userDocumentsDirectory))
-                    return false;
-            }
+            FINJIN_ERROR_METHOD_START(error);
 
-            if (!this->userMusicDirectory.path.empty())
+            for (auto standardPath : {
+                &this->userDocumentsDirectory,
+                &this->userMusicDirectory,
+                &this->userVideosDirectory,
+                &this->userPicturesDirectory,
+                &this->userSavedPicturesDirectory,
+                &this->userCameraRollDirectory,
+                &this->userDownloadsDirectory,
+                &this->userApplicationSettingsDirectory,
+                &this->userApplicationTemporaryDirectory
+                })
             {
-                if (!callback(this->userMusicDirectory))
-                    return false;
-            }
-
-            if (!this->userVideosDirectory.path.empty())
-            {
-                if (!callback(this->userVideosDirectory))
-                    return false;
-            }
-
-            if (!this->userPicturesDirectory.path.empty())
-            {
-                if (!callback(this->userPicturesDirectory))
-                    return false;
-            }
-
-            if (!this->userSavedPicturesDirectory.path.empty())
-            {
-                if (!callback(this->userSavedPicturesDirectory))
-                    return false;
-            }
-
-            if (!this->userCameraRollDirectory.path.empty())
-            {
-                if (!callback(this->userCameraRollDirectory))
-                    return false;
-            }
-
-            if (!this->userDownloadsDirectory.path.empty())
-            {
-                if (!callback(this->userDownloadsDirectory))
-                    return false;
-            }
-
-            if (!this->userApplicationSettingsDirectory.path.empty())
-            {
-                if (!callback(this->userApplicationSettingsDirectory))
-                    return false;
-            }
-
-            if (!this->userApplicationTemporaryDirectory.path.empty())
-            {
-                if (!callback(this->userApplicationTemporaryDirectory))
-                    return false;
+                if (!standardPath->path.empty())
+                {
+                    auto result = callback(*standardPath, error);
+                    if (error)
+                    {
+                        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Error occurred while iterating on standard user path '%1%' at '%2%'.", standardPath->GetDisplayName(), standardPath->path));
+                        return false;
+                    }
+                    if (!result)
+                        return false;
+                }
             }
 
             return true;
@@ -152,46 +141,46 @@ namespace Finjin { namespace Common {
         //On Windows Win32: C:\Users\(username)\Documents
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Documents
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Documents
-        StandardPath userDocumentsDirectory; 
+        StandardPath userDocumentsDirectory;
 
         //On Windows Win32: C:\Users\(username)\Music
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Music
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Music
-        StandardPath userMusicDirectory; 
+        StandardPath userMusicDirectory;
 
         //On Windows Win32: C:\Users\(username)\Video
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Movies
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Videos
-        StandardPath userVideosDirectory; 
+        StandardPath userVideosDirectory;
 
         //On Windows Win32: C:\Users\(username)\Pictures
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Pictures
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Pictures
-        StandardPath userPicturesDirectory; 
+        StandardPath userPicturesDirectory;
 
         StandardPath userSavedPicturesDirectory;
 
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/DCIM
-        StandardPath userCameraRollDirectory;        
+        StandardPath userCameraRollDirectory;
 
         //On Windows Win32: C:\Users\(username)\Downloads
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Downloads
-        StandardPath userDownloadsDirectory; 
+        StandardPath userDownloadsDirectory;
 
         //On Windows Win32: C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)
         //On Windows UWP: C:\Users\(username)\AppData\Local\Packages\(app guid)\LocalState
         //On Android 6 (as tested on Nexus 6): androidApp->activity->internalDataPath: /data/user/(userid)/(package name in AndroidManifest.xml)/files
         //On Android 6 (final fallback behavior): androidApp->activity->externalDataPath: /storage/emulated/(userid)/Android/data/(package name in AndroidManifest.xml)/files
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)
-        StandardPath userApplicationSettingsDirectory; 
-        
+        StandardPath userApplicationSettingsDirectory;
+
         //On Windows Win32: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize() or application executable name)
         //On Windows Win32 (fallback): C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)\Temp
         //On Windows UWP: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize())
         //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
-        StandardPath userApplicationTemporaryDirectory; 
-        
+        StandardPath userApplicationTemporaryDirectory;
+
         //On Windows Win32: C:\Users\All Users\Application Data\(applicationName passed to Initialize() or application executable name)
         StandardPath applicationSettingsDirectory;
 
@@ -199,7 +188,7 @@ namespace Finjin { namespace Common {
 
         enum { MAX_USER_PATHS = 9 }; //The number of above paths that start with 'user'
 
-    #if FINJIN_TARGET_OS == FINJIN_TARGET_OS_WINDOWS_WIN32
+    #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
         enum { MAX_LOGICAL_DRIVES = 26 }; //A - Z
         struct LogicalDrive
         {
@@ -214,7 +203,7 @@ namespace Finjin { namespace Common {
     #endif
 
     public:
-        StandardPaths(Allocator* allocator = nullptr) : 
+        StandardPaths(Allocator* allocator = nullptr) :
             applicationExecutableFile("Application Executable", allocator),
             applicationBundleDirectory("Application Bundle", allocator),
             userDocumentsDirectory("Documents", allocator),
@@ -227,7 +216,7 @@ namespace Finjin { namespace Common {
             userApplicationSettingsDirectory("Application Settings", allocator),
             userApplicationTemporaryDirectory("Application Temporary", allocator),
             workingDirectory("Working Directory", allocator)
-        {            
+        {
         }
 
         void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);

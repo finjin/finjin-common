@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-     
+
     class VirtualFileSystemOperationQueue;
-    
+
     //Returned from calls to VirtualFileSystemOperationQueue::AddRequest()
     class FINJIN_COMMON_LIBRARY_API VirtualFileOperationHandle
     {
@@ -43,5 +43,5 @@ namespace Finjin { namespace Common {
         size_t operationIndex;
         size_t sequenceID;
     };
-    
+
 } }

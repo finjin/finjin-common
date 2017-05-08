@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ValueOrError.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T>
@@ -36,5 +36,5 @@ namespace Finjin { namespace Common {
             return ValueOrError<void>();
         }
     };
-    
+
 } }

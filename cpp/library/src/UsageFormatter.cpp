@@ -18,7 +18,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct UsageFormatter::Impl
 {
     Impl()

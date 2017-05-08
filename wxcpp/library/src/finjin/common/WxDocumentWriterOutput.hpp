@@ -14,22 +14,22 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class WxDocumentWriterOutput
     {
     public:
         virtual ~WxDocumentWriterOutput() {}
-        
+
         virtual bool IsValid() const = 0;
-        
+
         virtual void Write(const char* s) = 0;
         virtual void Write(const void* s, size_t byteCount) = 0;
-        
+
         virtual uint64_t GetTotalBytesWritten() const = 0;
 
         virtual float GetMinFloat() const
@@ -71,10 +71,10 @@ namespace Finjin { namespace Common {
             Init();
         }
 
-        ~WxFileDataChunkWriterOutput() 
+        ~WxFileDataChunkWriterOutput()
         {
         }
-        
+
         bool IsValid() const override
         {
             return this->outFile != nullptr && this->outFile->IsOpened();
@@ -131,10 +131,10 @@ namespace Finjin { namespace Common {
             Init();
         }
 
-        ~StreamDataChunkWriterOutput() 
+        ~StreamDataChunkWriterOutput()
         {
         }
-        
+
         bool IsValid() const override
         {
             return this->outStream != nullptr && *this->outStream;

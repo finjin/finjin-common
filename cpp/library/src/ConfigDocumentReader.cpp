@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //ConfigDocumentLine
 ConfigDocumentLine::ConfigDocumentLine()
@@ -28,7 +28,7 @@ ConfigDocumentLine::ConfigDocumentLine()
     this->depth = 0;
     this->lineBegin = this->lineEnd = nullptr;
     this->keyBegin = this->keyEnd = nullptr;
-    this->valueBegin = this->valueEnd = nullptr;    
+    this->valueBegin = this->valueEnd = nullptr;
 }
 
 ConfigDocumentLine::Type ConfigDocumentLine::GetType() const
@@ -326,7 +326,7 @@ ConfigDocumentLine* ConfigDocumentReader::Next()
     this->line.lineBegin = this->line.lineEnd;
     if (this->line.lineBegin != this->textEnd)
         this->line.lineBegin = Utf8String::SkipWhitespace(this->line.lineBegin, this->textEnd);
-    
+
     return ProcessLine();
 }
 
@@ -386,14 +386,14 @@ ConfigDocumentLine* ConfigDocumentReader::ProcessLine()
                 this->line.keyBegin = this->line.lineBegin + 1;
                 this->line.keyEnd = sectionEndBracket;
             }
-            else if (scopeStartBracket == line.lineBegin && Utf8String::IsWhitespace(scopeStartBracket + 1, this->line.lineEnd))
+            else if (scopeStartBracket == line.lineBegin && (scopeStartBracket + 1 == this->line.lineEnd || Utf8String::IsWhitespace(scopeStartBracket + 1, this->line.lineEnd)))
             {
                 this->line.type = ConfigDocumentLine::Type::SCOPE_START;
                 this->line.keyBegin = this->line.lineBegin;
                 this->line.keyEnd = this->line.lineBegin + 1;
                 this->line.depth++;
             }
-            else if (scopeEndBracket == line.lineBegin && Utf8String::IsWhitespace(scopeEndBracket + 1, this->line.lineEnd))
+            else if (scopeEndBracket == line.lineBegin && (scopeEndBracket + 1 == this->line.lineEnd || Utf8String::IsWhitespace(scopeEndBracket + 1, this->line.lineEnd)))
             {
                 this->line.type = ConfigDocumentLine::Type::SCOPE_END;
                 this->line.keyBegin = this->line.lineBegin;
@@ -426,7 +426,7 @@ ConfigDocumentLine* ConfigDocumentReader::ProcessLine()
             {
                 this->line.type = ConfigDocumentLine::Type::PLAIN_LINE;
                 this->line.keyBegin = this->line.lineBegin;
-                this->line.keyEnd = this->line.lineEnd;                
+                this->line.keyEnd = this->line.lineEnd;
             }
 
             return &this->line;

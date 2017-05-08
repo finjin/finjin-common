@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 class ProcessorInfoEnumerator
 {
 public:
@@ -66,7 +66,7 @@ private:
 };
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 template <typename CPU_SET>
 void ComputeCpuSet(CPU_SET& cpuSet, uint64_t groupID, KAFFINITY mask)
 {
@@ -88,9 +88,9 @@ static bool AssociateThreadWithProcessor(ThreadHandle threadHandle, uint64_t gro
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
-//LogicalCpu---------------
+//LogicalCpu
 uint64_t LogicalCpu::GetGroup() const
 {
     return this->processorID / MAXIMUM_PROC_PER_GROUP;
@@ -118,7 +118,7 @@ void LogicalCpu::AssociateCurrentThread(Error& error) const
 }
 
 bool LogicalCpu::AssociateThread(ThreadHandle threadHandle) const
-{    
+{
     return AssociateThreadWithProcessor(threadHandle, GetGroup(), GetID());
 }
 
@@ -133,7 +133,7 @@ void LogicalCpu::AssociateThread(ThreadHandle threadHandle, Error& error) const
     }
 }
 
-//LogicalCpus------------------------
+//LogicalCpus
 void LogicalCpus::AssociateCurrentThreadAndRemove(LogicalCpu* removed)
 {
     //Search in a way that keeps same group that it already has
@@ -165,11 +165,11 @@ void LogicalCpus::Enumerate()
         ComputeCpuSet(cpuSet, pi->NumaNode.GroupMask.Group, pi->NumaNode.GroupMask.Mask);
         for (auto processorID : cpuSet)
         {
-            LogicalCpu t;
-            t.nodeID = pi->NumaNode.NodeNumber;
-            t.processorID = processorID;
+            LogicalCpu logicalCpu;
+            logicalCpu.nodeID = pi->NumaNode.NodeNumber;
+            logicalCpu.processorID = processorID;
 
-            cpuMap.insert(processorID, t);
+            cpuMap.insert(processorID, logicalCpu);
         }
     }
 
@@ -196,9 +196,9 @@ void LogicalCpus::Enumerate()
 
     //Convert map to array
     this->count = 0;
-    for (const auto& p : cpuMap)
+    for (const auto& cpuItem : cpuMap)
     {
-        if (push_back(p.second).HasErrorOrValue(false))
+        if (push_back(cpuItem.second).HasErrorOrValue(false))
             break;
-    }    
+    }
 }

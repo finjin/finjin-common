@@ -19,25 +19,25 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator) : AllocatedClass(allocator)
-{    
+CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator) : AllocatedClass(allocator), consumedValue(allocator)
+{
 }
 
-CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, int argc, char* argv[]) : AllocatedClass(allocator)
+CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, int argc, char* argv[]) : AllocatedClass(allocator), consumedValue(allocator)
 {
     this->items.Create(argc - 1, allocator);
     for (int i = 1; i < argc; i++)
         this->items[i - 1] = argv[i];
 }
 
-CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, int argc, wchar_t* argv[]) : AllocatedClass(allocator)
+CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, int argc, wchar_t* argv[]) : AllocatedClass(allocator), consumedValue(allocator)
 {
     this->items.Create(argc - 1, allocator);
     for (int i = 1; i < argc; i++)
         this->items[i - 1] = argv[i];
 }
 
-CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, const CommandLineArgsProcessor& other) : AllocatedClass(allocator)
+CommandLineArgsProcessor::CommandLineArgsProcessor(Allocator* allocator, const CommandLineArgsProcessor& other) : AllocatedClass(allocator), consumedValue(allocator)
 {
     if (!other.items.empty())
     {
@@ -52,9 +52,9 @@ CommandLineArgsProcessor::CommandLineArgsProcessor(CommandLineArgsProcessor&& ot
 }
 
 CommandLineArgsProcessor::~CommandLineArgsProcessor()
-{    
+{
 }
-    
+
 CommandLineArgsProcessor& CommandLineArgsProcessor::operator = (const CommandLineArgsProcessor& other)
 {
     if (this != &other)
@@ -75,7 +75,7 @@ CommandLineArgsProcessor& CommandLineArgsProcessor::operator = (CommandLineArgsP
 {
     if (this != &other)
         this->items = std::move(other.items);
-    
+
     return *this;
 }
 
@@ -90,24 +90,36 @@ void CommandLineArgsProcessor::Create(size_t count)
         this->items.clear();
 }
 
+void CommandLineArgsProcessor::Destroy()
+{
+    this->items.Destroy();
+}
+
 size_t CommandLineArgsProcessor::GetCount() const
 {
     return this->items.size();
 }
 
-Utf8String CommandLineArgsProcessor::Consume(size_t i)
+Utf8String& CommandLineArgsProcessor::Consume(size_t index)
 {
-    auto value = this->items[i];
-    this->items.erase(&this->items[i]);
-    return value;
+    this->consumedValue.clear();
+
+    if (index < this->items.size())
+    {
+        this->consumedValue = this->items[index];
+
+        this->items.erase(&this->items[index]);
+    }
+
+    return this->consumedValue;
 }
 
-const Utf8String& CommandLineArgsProcessor::operator [] (size_t i) const
+const Utf8String& CommandLineArgsProcessor::operator [] (size_t index) const
 {
-    return this->items[i];
+    return this->items[index];
 }
 
-Utf8String& CommandLineArgsProcessor::operator [] (size_t i)
+Utf8String& CommandLineArgsProcessor::operator [] (size_t index)
 {
-    return this->items[i];
+    return this->items[index];
 }

@@ -18,9 +18,9 @@
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 NamePrefix::NamePrefix()
-{    
+{
 }
 
 NamePrefix::NamePrefix(const NamePrefix& other)
@@ -37,7 +37,7 @@ NamePrefix::NamePrefix(NamePrefix&& other)
 }
 
 NamePrefix::NamePrefix(const Utf8String& prefix)
-{    
+{
     if (!prefix.empty())
         this->parts.push_back(prefix);
 }
@@ -68,7 +68,7 @@ NamePrefix& NamePrefix::operator = (const Utf8String& prefix)
     this->parts.clear();
     if (!prefix.empty())
         this->parts.push_back(prefix);
-    
+
     return *this;
 }
 
@@ -90,7 +90,7 @@ NamePrefix& NamePrefix::operator += (const Utf8String& prefix)
 {
     if (!prefix.empty())
         this->parts.push_back(prefix);
-    
+
     return *this;
 }
 
@@ -98,20 +98,20 @@ NamePrefix& NamePrefix::operator += (const NamePrefix& other)
 {
     for (auto& otherPrefix : other.parts)
         this->parts.push_back(otherPrefix);
-    
+
     return *this;
 }
 
 Utf8String NamePrefix::ToString(char joinChar) const
-{    
+{
     Utf8String result;
-    
+
     for (auto& prefix : this->parts)
     {
         result += prefix;
         result += joinChar; //Yes, the final string will have the join character at the end
     }
-    
+
     return result;
 }
 

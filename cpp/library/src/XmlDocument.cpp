@@ -22,7 +22,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct XmlDocument::Impl
 {
     tinyxml2::XMLDocument doc;
@@ -73,12 +73,12 @@ bool XmlNode::GetAttributeNoCase(const Utf8String& name, Utf8String& value, cons
         return false;
     }
 
-    for (auto attribute = static_cast<tinyxml2::XMLNode*>(impl)->ToElement()->FirstAttribute(); 
-        attribute != nullptr; 
-        attribute = attribute->Next()) 
+    for (auto attribute = static_cast<tinyxml2::XMLNode*>(impl)->ToElement()->FirstAttribute();
+        attribute != nullptr;
+        attribute = attribute->Next())
     {
         if (name.EqualsNoCaseAscii(attribute->Name()))
-        {                
+        {
             if (!attribute->Value())
                 break;
 
@@ -86,7 +86,7 @@ bool XmlNode::GetAttributeNoCase(const Utf8String& name, Utf8String& value, cons
             return true;
         }
     }
-    
+
     value = defaultValue;
     return false;
 }
@@ -99,12 +99,12 @@ bool XmlNode::GetAttribute(const Utf8String& name, Utf8String& value, const char
         return false;
     }
 
-    for (auto attribute = static_cast<tinyxml2::XMLNode*>(impl)->ToElement()->FirstAttribute(); 
-        attribute != nullptr; 
-        attribute = attribute->Next()) 
+    for (auto attribute = static_cast<tinyxml2::XMLNode*>(impl)->ToElement()->FirstAttribute();
+        attribute != nullptr;
+        attribute = attribute->Next())
     {
         if (name.Equals(attribute->Name()))
-        {                
+        {
             if (!attribute->Value())
                 break;
 
@@ -112,7 +112,7 @@ bool XmlNode::GetAttribute(const Utf8String& name, Utf8String& value, const char
             return true;
         }
     }
-    
+
     value = defaultValue;
     return false;
 }
@@ -202,16 +202,16 @@ void XmlNode::SetDoubleAttribute(const Utf8String& name, double value)
 }
 
 Utf8String XmlNode::GetText() const
-{    
+{
     Utf8String value;
-    
+
     if (static_cast<tinyxml2::XMLNode*>(impl)->ToElement() != nullptr)
     {
         const char* elementText = static_cast<tinyxml2::XMLNode*>(impl)->ToElement()->GetText();
         if (elementText != nullptr)
             value = elementText;
     }
-    
+
     return value;
 }
 
@@ -329,7 +329,7 @@ XmlDocument::~XmlDocument()
 void XmlDocument::Load(const Path& fileName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (fileName.empty())
     {
         FINJIN_SET_ERROR(error, "Empty file name specified.");
@@ -337,11 +337,11 @@ void XmlDocument::Load(const Path& fileName, Error& error)
     }
 
     if (!fileName.Exists())
-    {        
+    {
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("File '%1%' does not exist.", fileName));
         return;
     }
-    
+
     auto file = nowide::fopen(fileName.c_str(), "rb");
     if (file == nullptr)
     {
@@ -365,13 +365,13 @@ void XmlDocument::Load(const Path& fileName, Error& error)
 void XmlDocument::Save(const Path& fileName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (fileName.empty())
     {
         FINJIN_SET_ERROR(error, "Empty file name specified.");
         return;
     }
-    
+
     auto file = nowide::fopen(fileName.c_str(), "w");
     if (file == nullptr)
     {

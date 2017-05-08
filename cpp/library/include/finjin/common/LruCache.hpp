@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/AllocatedClass.hpp"
 #include <boost/cstdint.hpp>
 #include <boost/heap/fibonacci_heap.hpp>
 #include <mutex>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     using LruCacheItemHandle = void*;
@@ -51,7 +51,7 @@ namespace Finjin { namespace Common {
             using TypedItem = Item;
             using Heap = boost::heap::fibonacci_heap<TypedItem*, boost::heap::compare<ItemCompare<TypedItem*> > >;
             using HeapItemHandle = typename Heap::handle_type;
-            
+
             ValueType value; //The value
             TimeType lastUsed; //The last used time
             HeapItemHandle heapItemHandle; //The handle that references the item in the heap
@@ -75,8 +75,8 @@ namespace Finjin { namespace Common {
 
         using TypedItem = Item;
         using Heap = boost::heap::fibonacci_heap<TypedItem*, boost::heap::compare<ItemCompare<TypedItem*> > >;
-        
-    public:    
+
+    public:
         struct Settings
         {
             Settings() = default;
@@ -91,7 +91,7 @@ namespace Finjin { namespace Common {
         {
             this->cacheUsed = 0;
         }
-        
+
         ~LruCache()
         {
             ClearQuiet();
@@ -188,8 +188,8 @@ namespace Finjin { namespace Common {
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
 
-            std::unique_ptr<TypedItem> item(static_cast<TypedItem*>(itemHandle));        
-            this->heap.erase(item->heapItemHandle);        
+            std::unique_ptr<TypedItem> item(static_cast<TypedItem*>(itemHandle));
+            this->heap.erase(item->heapItemHandle);
             _DeleteItem(std::move(item));
         }
 
@@ -237,7 +237,7 @@ namespace Finjin { namespace Common {
 
                 values++;
             }
-            
+
             return true;
         }
 
@@ -257,7 +257,7 @@ namespace Finjin { namespace Common {
                     amount -= item->size;
                 else
                     amount = 0;
-            
+
                 //Delete item
                 _DeleteItem(std::move(item));
             }
@@ -268,7 +268,7 @@ namespace Finjin { namespace Common {
             this->cacheUsed -= item->size;
             _DeleteValue(item.get(), item->value);
         }
-    
+
         void _DeleteValue(LruCacheItemHandle itemHandle, ValueType& value)
         {
             if (this->settings.deleteValue != nullptr)
@@ -277,9 +277,9 @@ namespace Finjin { namespace Common {
 
     private:
         Settings settings;
-        
+
         Heap heap;
-        
+
         SizeType cacheUsed; //Current amount of user-defined space used by the cache
 
         mutable MutexType mutex;
@@ -288,7 +288,7 @@ namespace Finjin { namespace Common {
 } }
 
 
-//Functions--------------------------------------------------------------------
+//Functions---------------------------------------------------------------------
 namespace std
 {
     template <typename ValueType, typename TimeType, typename MutexType>

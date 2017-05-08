@@ -21,16 +21,16 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct CommandLineSettingsDescription::Impl
 {
     Impl()
-    {        
+    {
     }
 
     boost::program_options::options_description description;
     std::unique_ptr<boost::program_options::options_description_easy_init> options;
-    
+
     Utf8String prefix;
 };
 
@@ -72,14 +72,14 @@ CommandLineSettingsDescription& CommandLineSettingsDescription::AddSetting(const
     switch (argCount)
     {
         case 0: (*impl->options.get())(fullName.c_str(), description.c_str()); break;
-        default: (*impl->options.get())(fullName.c_str(), value<std::string>(), description.c_str()); break;        
+        default: (*impl->options.get())(fullName.c_str(), value<std::string>(), description.c_str()); break;
     }
-    
+
     return *this;
 }
 
 Utf8String CommandLineSettingsDescription::ToString() const
-{    
+{
     std::stringstream descriptionStream;
     descriptionStream << impl->description;
     return descriptionStream.str().c_str();

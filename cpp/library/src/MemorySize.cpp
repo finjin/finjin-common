@@ -19,7 +19,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static uint64_t Bytes(int64_t value)
 {
     return value;
@@ -72,7 +72,7 @@ template <typename T>
 void MemorySizeParse(T& sizeValue, const Utf8String& s, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (s.empty())
         FINJIN_SET_ERROR(error, "Failed to parse empty memory size.");
 
@@ -140,28 +140,28 @@ void MemorySizeParse(T& sizeValue, const Utf8String& s, Error& error)
 
     else if (s.EndsWith("B") || s.IsDigits())
         PARSE_SIZE("B", Bytes)
-            
+
     else
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative memory size. Unrecognized or unspecified memory size unit in '%1%'.", s));
 }
 
 
-//Implementation---------------------------------------------------------------
-#if FINJIN_TARGET_OS_IS_APPLE
+//Implementation----------------------------------------------------------------
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
 void MemorySize::Parse(size_t& sizeValue, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     MemorySizeParse(sizeValue, stringValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 #endif
-    
+
 void MemorySize::Parse(uint32_t& sizeValue, const Utf8String& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     uint64_t sizeValue64;
     MemorySizeParse(sizeValue64, stringValue, error);
     if (error)
@@ -169,20 +169,20 @@ void MemorySize::Parse(uint32_t& sizeValue, const Utf8String& stringValue, Error
         FINJIN_SET_ERROR_NO_MESSAGE(error);
         return;
     }
-    
+
     if (sizeValue64 > std::numeric_limits<uint32_t>::max())
     {
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("'%1%' could not be converted to a 32-bit memory size. The value should be within [0 - %2%]", stringValue, std::numeric_limits<uint32_t>::max()));
         return;
     }
-    
+
     sizeValue = static_cast<uint32_t>(sizeValue64);
 }
 
 uint32_t MemorySize::Parse32(const Utf8String& stringValue, uint32_t defaultValue)
 {
     FINJIN_DECLARE_ERROR(error);
-    
+
     uint32_t parsed;
     Parse(parsed, stringValue, error);
     return error ? defaultValue : parsed;

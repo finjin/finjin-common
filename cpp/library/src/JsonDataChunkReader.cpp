@@ -17,37 +17,37 @@
 #include "finjin/common/Base64.hpp"
 #include "finjin/common/Convert.hpp"
 #include "finjin/common/JsonDocumentImpl.hpp"
-#include <rapidjson/encodings.h>
 #include "DataChunkCommon.hpp"
+#include <rapidjson/encodings.h>
 
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JsonDataChunkReader::Impl
 {
     JsonDataChunkReader::Settings settings;
-    
+
     DataChunkReaderHeader readerHeader;
-    
+
     Utf8String lineBuffer;
     size_t lineBufferOffset;
-    
+
     Impl()
     {
         this->lineBufferOffset = 0;
     }
-    
+
     void Skip(DataHeader& dataHeader, Error& error)
     {
         FINJIN_ERROR_METHOD_START(error);
-        
+
         dataHeader.currentOffset = dataHeader.length;
         this->lineBufferOffset = this->lineBuffer.size();
     }
-    
+
     void ReadLine();
-    
+
     void ReadPropertyName(DataHeader& dataHeader, Utf8String& result, Error& error);
     void ReadValue(DataHeader& dataHeader, Utf8String& value, Error& error);
     void ReadStringBlock(DataHeader& dataHeader, Utf8StringView& value, char startChar, char endChar, Error& error);
@@ -55,14 +55,14 @@ struct JsonDataChunkReader::Impl
 };
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 
 //Adapted from RapidJSON reader.h
 template<typename Ch, typename InputStream>
-unsigned ParseHex4(InputStream& is) 
-{    
+unsigned ParseHex4(InputStream& is)
+{
     unsigned codepoint = 0;
-    for (int i = 0; i < 4; i++) 
+    for (int i = 0; i < 4; i++)
     {
         Ch c = is.Take();
         codepoint <<= 4;
@@ -80,11 +80,11 @@ unsigned ParseHex4(InputStream& is)
 }
 
 template<typename Ch, typename TEncoding, typename InputStream, typename OutputStream>
-void ParseStringToStream(InputStream& is, OutputStream& os) 
-{    
+void ParseStringToStream(InputStream& is, OutputStream& os)
+{
     #define Z16 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
-    static const char escape[256] = 
+    static const char escape[256] =
     {
         Z16, Z16, 0, 0, '\"', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '/',
         Z16, Z16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '\\', 0, 0, 0,
@@ -94,25 +94,25 @@ void ParseStringToStream(InputStream& is, OutputStream& os)
     };
 
     #undef Z16
-    
+
     while (!is.IsEOF())
     {
         Ch c = is.Peek();
-        if (c == '\\') 
-        {    
+        if (c == '\\')
+        {
             is.Take();
 
             //Escape
             Ch e = is.Take();
-            if ((sizeof(Ch) == 1 || unsigned(e) < 256) && escape[(unsigned char)e]) 
+            if ((sizeof(Ch) == 1 || unsigned(e) < 256) && escape[(unsigned char)e])
             {
                 os.Put(escape[(unsigned char)e]);
             }
-            else if (e == 'u') 
-            {    
+            else if (e == 'u')
+            {
                 //Unicode
                 unsigned codepoint = ParseHex4<Ch>(is);
-                if (codepoint >= 0xD800 && codepoint <= 0xDBFF) 
+                if (codepoint >= 0xD800 && codepoint <= 0xDBFF)
                 {
                     //Handle UTF-16 surrogate pair
                     if (is.Take() != '\\' || is.Take() != 'u')
@@ -135,7 +135,7 @@ void ParseStringToStream(InputStream& is, OutputStream& os)
         {
             //RAPIDJSON_PARSE_ERROR(kParseErrorStringEscapeInvalid, is.Tell() - 1);
         }
-        else 
+        else
         {
             rapidjson::Transcoder<TEncoding, TEncoding>::Transcode(is, os);
             /*if (parseFlags & kParseValidateEncodingFlag ?
@@ -195,7 +195,7 @@ static Utf8String UnescapeStringValue(const Utf8String& value)
 {
     if (value.empty())
         return value;
-    
+
     RapidJsonUnescapeInputStream input(value);
     RapidJsonUnescapeOutputStream output;
     ParseStringToStream<char, rapidjson::UTF8<> >(input, output);
@@ -364,7 +364,7 @@ size_t ReadIntegers(JsonDataChunkReader::Impl* reader, DataHeader& dataHeader, T
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //JsonDataChunkReader::Impl
 void JsonDataChunkReader::Impl::ReadLine()
@@ -492,7 +492,7 @@ JsonDataChunkReader::JsonDataChunkReader()
 }
 
 JsonDataChunkReader::~JsonDataChunkReader()
-{   
+{
 }
 
 void JsonDataChunkReader::Create(const Settings& settings, JsonDataChunkReader* parentSection, Error& error)
@@ -564,7 +564,7 @@ void JsonDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& error)
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Expected 'format' key, read '%1%' instead.", key.ToString()));
         return;
     }
-    
+
     ReadString(dataHeader, impl->readerHeader.format, error);
     if (error)
     {
@@ -694,10 +694,10 @@ void JsonDataChunkReader::ReadDataHeader(DataHeader& dataHeader, Error& error)
 
     //Read length, but be ready for the end
     impl->ReadLine();
-    
+
     dataHeader.Reset();
     dataHeader.length = impl->lineBuffer.size();
-    
+
     if (dataHeader.length == 0)
     {
         //The end
@@ -718,7 +718,7 @@ void JsonDataChunkReader::ReadDataHeader(DataHeader& dataHeader, Error& error)
                     return;
                 }
             }
-            
+
             if (!error)
             {
                 Skip(dataHeader, error);
@@ -726,7 +726,7 @@ void JsonDataChunkReader::ReadDataHeader(DataHeader& dataHeader, Error& error)
                     FINJIN_SET_ERROR(error, "Successfully read chunk start but failed to skip past it.");
             }
         }
-        else if (impl->lineBuffer.length() > 1 && 
+        else if (impl->lineBuffer.length() > 1 &&
             impl->lineBuffer[impl->lineBuffer.size() - 2] == '}' &&
             impl->lineBuffer[impl->lineBuffer.size() - 1] == ',')
         {
@@ -817,7 +817,7 @@ size_t JsonDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, size_
 
             break;
         }
-    }    
+    }
 
     return result;
 }
@@ -833,7 +833,7 @@ void JsonDataChunkReader::ReadString(DataHeader& dataHeader, Utf8String& value, 
         if (error)
             FINJIN_SET_ERROR_NO_MESSAGE(error);
     }
-    else if (impl->lineBufferOffset < impl->lineBuffer.size() - 2 && 
+    else if (impl->lineBufferOffset < impl->lineBuffer.size() - 2 &&
         impl->lineBuffer[impl->lineBufferOffset] == '"' &&
         impl->lineBuffer[impl->lineBuffer.size() - 2] == '"')
     {
@@ -845,14 +845,14 @@ void JsonDataChunkReader::ReadString(DataHeader& dataHeader, Utf8String& value, 
             FINJIN_SET_ERROR(error, "Failed to allocate memory for string content.");
             return;
         }
-        
+
         impl->lineBufferOffset = impl->lineBuffer.size();
         Skip(dataHeader, error);
         if (error)
             FINJIN_SET_ERROR_NO_MESSAGE(error);
     }
     else
-        FINJIN_SET_ERROR(error, "Failed to read value.");        
+        FINJIN_SET_ERROR(error, "Failed to read value.");
 }
 
 void JsonDataChunkReader::ReadDateTime(DataHeader& dataHeader, DateTime& value, Error& error)
@@ -897,7 +897,7 @@ void JsonDataChunkReader::ReadUuid(DataHeader& dataHeader, Uuid& value, Error& e
         FINJIN_SET_ERROR(error, "Failed to read value for UUID.");
     else
     {
-        Uuid::Parse(value, tempValueString, error);        
+        Uuid::Parse(value, tempValueString, error);
         if (error)
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse UUID value for %1%.", tempValueString));
     }
@@ -1046,7 +1046,7 @@ size_t JsonDataChunkReader::ReadStridedStrings(DataHeader& dataHeader, Utf8Strin
                         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("There are more than %1% strings to be parsed.", maxCount));
                         return 0;
                     }
-                    
+
                     Utf8String unquoted;
                     stringValue.substr(unquoted, 1, stringValue.length() - 2);
 

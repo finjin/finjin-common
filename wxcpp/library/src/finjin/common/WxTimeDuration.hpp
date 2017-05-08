@@ -17,7 +17,7 @@
 //Includes----------------------------------------------------------------------
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     enum class WxTimeDurationUnit
@@ -73,12 +73,12 @@ namespace Finjin { namespace Common {
 
         wxString ToString() const;
         wxString ToString(WxTimeDurationUnit unit) const;
-        
+
         static void Parse(WxTimeDuration& timeDuration, const wxString& s, WxError& error);
         static WxTimeDuration Parse(const wxString& s, WxTimeDuration defaultValue = WxTimeDuration::Zero());
 
     private:
         int64_t value; //Nanoseconds
     };
-        
+
 } }

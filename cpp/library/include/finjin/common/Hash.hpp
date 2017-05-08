@@ -14,17 +14,17 @@
 #pragma once
 
 
-//Classes---------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class Hash
     {
     public:
-        static size_t Bytes(const void* vbegin, const void* vend);
-        
-        static size_t Bytes(const void* bytes, size_t byteCount);
+        static size_t Bytes(const void* vbegin, const void* vend, size_t seed = 0);
+
+        static size_t Bytes(const void* bytes, size_t byteCount, size_t seed = 0);
     };
-    
+
     struct PassthroughHash
     {
         size_t operator () (size_t value) const
@@ -32,5 +32,5 @@ namespace Finjin { namespace Common {
             return value;
         }
     };
-    
+
 } }

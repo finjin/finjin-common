@@ -22,7 +22,7 @@
 using namespace Finjin::Common;
 
 
-//Local classes----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct JsonDataDocumentWriter::Impl
 {
     Impl() : writer(buffer)
@@ -36,9 +36,9 @@ struct JsonDataDocumentWriter::Impl
 };
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 JsonDataDocumentWriter::JsonDataDocumentWriter(bool addExtraObjectAtRoot) : impl(new Impl)
-{    
+{
     impl->addExtraObjectAtRoot = addExtraObjectAtRoot;
 }
 
@@ -50,14 +50,14 @@ JsonDataDocumentWriter::~JsonDataDocumentWriter()
 std::shared_ptr<DataElementWriter> JsonDataDocumentWriter::StartRootElement(const Utf8String& name)
 {
     impl->rootName = name;
-    
+
     impl->writer.StartObject();
 
-    impl->writer.Key(impl->rootName.c_str());        
+    impl->writer.Key(impl->rootName.c_str());
 
     if (impl->addExtraObjectAtRoot)
         impl->writer.StartObject();
-    std::shared_ptr<DataElementWriter> root(new JsonDataElementWriter(&impl->writer));    
+    std::shared_ptr<DataElementWriter> root(new JsonDataElementWriter(&impl->writer));
     return root;
 }
 
@@ -69,7 +69,7 @@ void JsonDataDocumentWriter::EndRootElement()
     impl->writer.EndObject();
 }
 
-void JsonDataDocumentWriter::SaveFile(const Path& fileName, Error& error) 
+void JsonDataDocumentWriter::SaveFile(const Path& fileName, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -95,7 +95,7 @@ void JsonDataDocumentWriter::SaveFile(const Path& fileName, Error& error)
     }
 }
 
-void JsonDataDocumentWriter::GetString(Utf8String& result, Error& error) 
+void JsonDataDocumentWriter::GetString(Utf8String& result, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 

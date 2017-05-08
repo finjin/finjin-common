@@ -16,12 +16,14 @@
 #include "finjin/common/Angle.hpp"
 #include "finjin/common/Math.hpp"
 
-#define RADIANS_PER_DEGREE (FINJIN_PI / 180.0f)
-
 using namespace Finjin::Common;
 
 
-//Implementation---------------------------------------------------------------
+//Macros------------------------------------------------------------------------
+#define RADIANS_PER_DEGREE (FINJIN_PI / 180.0f)
+
+
+//Implementation----------------------------------------------------------------
 
 //Degrees
 Degrees::Degrees()
@@ -30,12 +32,12 @@ Degrees::Degrees()
 }
 
 Degrees::Degrees(const Degrees& other)
-{    
+{
     this->value = other.value;
 }
 
 Degrees::Degrees(const Radians& other)
-{    
+{
     this->value = other.ToRadiansValue();
 }
 
@@ -51,11 +53,11 @@ Degrees& Degrees::operator = (const Degrees& other)
 }
 
 Degrees& Degrees::operator = (const Radians& other)
-{   
+{
     this->value = other.ToRadiansValue();
     return *this;
 }
-        
+
 bool Degrees::operator == (const Degrees& other) const
 {
     return this->value == other.value;
@@ -91,7 +93,7 @@ Radians::Radians()
 {
     this->value = 0;
 }
-    
+
 Radians::Radians(const Degrees& other)
 {
     this->value = other.ToRadiansValue();
@@ -118,7 +120,7 @@ Radians& Radians::operator = (const Radians& other)
     this->value = other.value;
     return *this;
 }
-        
+
 bool Radians::operator == (const Radians& other) const
 {
     return this->value == other.value;
@@ -140,7 +142,7 @@ Radians Radians::operator / (float scale) const
 }
 
 float Radians::ToDegreesValue() const
-{    
+{
     return this->value / RADIANS_PER_DEGREE;
 }
 

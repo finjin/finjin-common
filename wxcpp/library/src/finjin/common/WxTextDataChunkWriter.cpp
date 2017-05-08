@@ -31,7 +31,7 @@ struct TextDataChunkBlobWrapper
 };
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define WRITE_VALUE_LINE(_this, propertyName, value) \
     WriteValueLine(*_this->settings.output, _this->lineBuffer, propertyName, value, _this->settings.maxBytesPerLine, error); \
     if (error) \
@@ -60,7 +60,7 @@ struct TextDataChunkBlobWrapper
 #define WRITE_CHUNK_END_LINE(_this) _this->settings.output->Write("2 }\n")
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 
 //SizeOfValue
 template <typename T>
@@ -86,7 +86,7 @@ static size_t SizeOfValue(double value, WxDocumentWriterOutput& writerOutput)
 {
     if (std::abs(value) < writerOutput.GetMinDouble())
         value = 0;
-    
+
     return ConvertToUtf8String(value).length();
 }
 
@@ -133,7 +133,7 @@ static WxByteBuffer& WritePropertyName(WxByteBuffer& out, const WxChunkPropertyN
         out.Write(ConvertToUtf8String(propertyName.index));
     else
         out.Write(propertyName.name);
-    
+
     return out;
 }
 
@@ -152,7 +152,7 @@ static void WriteTextValue(WxByteBuffer& out, bool value, WxDocumentWriterOutput
 }
 
 static void WriteTextValue(WxByteBuffer& out, TextDataChunkBlobWrapper<const uint8_t*>& value, WxDocumentWriterOutput* writerOutput, size_t outputByteOffset, size_t maxBytesToWrite)
-{   
+{
     auto bytesProcessed = out.WriteBase64(value.bytes, value.count, maxBytesToWrite);
     value.bytes += bytesProcessed;
     value.count -= bytesProcessed;
@@ -173,7 +173,7 @@ static void WriteTextValue(WxByteBuffer& out, const wxString& value, WxDocumentW
     auto length = strlen(valueData.data()) - byteOffset;
     if (length > maxBytesToWrite)
         length = maxBytesToWrite;
-    
+
     out.Write(valueData.data() + byteOffset, length);
 }
 
@@ -183,7 +183,7 @@ static void WriteTextValue(WxByteBuffer& out, const WxTimeDuration& value, WxDoc
     auto length = strlen(valueData.data()) - byteOffset;
     if (length > maxBytesToWrite)
         length = maxBytesToWrite;
-    
+
     out.Write(valueData.data() + byteOffset, length);
 }
 
@@ -211,7 +211,7 @@ static void WriteTextValue(WxByteBuffer& out, double value, WxDocumentWriterOutp
     {
         if (std::abs(value) < writerOutput->GetMinDouble())
             value = 0;
-        
+
         out.Write(ConvertToUtf8String(value));
     }
 }
@@ -225,7 +225,7 @@ static void WriteTextValues(WxByteBuffer& out, const bool* values, size_t count,
         auto& value = GetStridedValue(values, startIndex, valueStride);
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -255,7 +255,7 @@ static void WriteTextValues(WxByteBuffer& out, const wxString* values, size_t co
         auto& value = GetStridedValue(values, startIndex, valueStride);
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -285,7 +285,7 @@ static void WriteTextValues(WxByteBuffer& out, const WxTimeDuration* values, siz
         auto value = GetStridedValue(values, startIndex, valueStride).ToString();
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -316,7 +316,7 @@ void WriteTextValues(WxByteBuffer& out, const T* values, size_t count, WxDataChu
         auto& value = GetStridedValue(values, startIndex, valueStride);
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -347,9 +347,9 @@ static void WriteTextValues(WxByteBuffer& out, const float* values, size_t count
 
         if (std::abs(value) < writerOutput->GetMinFloat())
             value = 0;
-        
+
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -382,7 +382,7 @@ static void WriteTextValues(WxByteBuffer& out, const double* values, size_t coun
             value = 0;
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
-        
+
         if (writtenCount++ > 0)
         {
             //Need enough space for separator and value
@@ -416,7 +416,7 @@ void WriteValueLine(WxDocumentWriterOutput& out, WxByteBuffer& lineBuffer, const
         FINJIN_WX_SET_ERROR(error, wxT("Unable to write value line length for property. The line buffer is too small."));
         return;
     }
-    
+
     //Subtract worst case scenario of line length header being the maximum bytes, plus the following ' '
     auto maxNonHeaderSizeBytes = maxBytesPerLine - maxBytesPerLineString.length() - 1;
 
@@ -430,7 +430,7 @@ void WriteValueLine(WxDocumentWriterOutput& out, WxByteBuffer& lineBuffer, const
         //Write propertyName to line buffer
         WritePropertyName(lineBuffer, propertyName);
         auto maxValueBytes = maxNonHeaderSizeBytes - lineBuffer.size() - 1 - 1; //Subtract one for next ' ' and one for the trailing newline
-        lineBuffer.Write(" "); 
+        lineBuffer.Write(" ");
 
         //Write as much of value as possible to line buffer
         char occurrenceChar = ' '; //' ' indicates a single occurrence. This may be overwritten later
@@ -487,7 +487,7 @@ void WriteValuesLine(WxDocumentWriterOutput& out, WxByteBuffer& lineBuffer, cons
         FINJIN_WX_SET_ERROR(error, wxT("Unable to write value line length for property. The line buffer is too small."));
         return;
     }
-    
+
     //Subtract worst case scenario of line length header being the maximum bytes, plus the following ' '
     auto maxNonHeaderSizeBytes = maxBytesPerLine - maxBytesPerLineString.length() - 1;
 
@@ -585,13 +585,13 @@ static wxString EscapeStringValue(const wxString& value)
 }
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 WxTextDataChunkWriter::WxTextDataChunkWriter()
-{    
+{
 }
 
 WxTextDataChunkWriter::~WxTextDataChunkWriter()
-{    
+{
     if (AnySet(this->style & DataChunkWriterStyle::NESTED))
         WRITE_CHUNK_END_LINE(this);
 
@@ -668,15 +668,15 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
 
     if (this->settings.controller->RequiresNewOutput(*this, name))
     {
-        //Create new chunk output 
+        //Create new chunk output
         std::shared_ptr<WxDocumentWriterOutput> sharedNewOutput = this->settings.controller->AddOutput(*this, name, error);
         if (error || sharedNewOutput == nullptr)
         {
             FINJIN_WX_SET_ERROR(error, wxString::Format(wxT("Failed to create new output for chunk '%s'."), name.ToString().wx_str()));
             return;
-        }        
-        
-        //Create new writer 
+        }
+
+        //Create new writer
         auto textChunkWriter = new WxTextDataChunkWriter();
         auto newSettings = this->settings;
         newSettings.Create(sharedNewOutput, *this->settings.controller);
@@ -684,7 +684,7 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
         if (error)
         {
             delete textChunkWriter;
-            
+
             FINJIN_WX_SET_ERROR(error, wxT("Failed to create new writer."));
             return;
         }
@@ -702,7 +702,7 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
 
         auto nameString = name.ToString();
         WRITE_CHUNK_START_LINE(textChunkWriter, nameString);
-        
+
         auto scheduled = this->settings.controller->ScheduleWriteChunk(chunkWriter, chunkFunc, error);
         if (error)
         {
@@ -712,7 +712,7 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
 
         if (!scheduled)
         {
-            //Write chunk to the new writer's output            
+            //Write chunk to the new writer's output
             chunkFunc(*chunkWriter, error);
             if (error)
             {
@@ -720,7 +720,7 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
                 return;
             }
         }
-    }    
+    }
     else
     {
         //Write chunk to this writer's output
@@ -730,8 +730,8 @@ void WxTextDataChunkWriter::WriteChunk(const WxChunkName& name, std::function<vo
         else
             nameString = name.ToString();
         WRITE_CHUNK_START_LINE(this, nameString);
-        
-        chunkFunc(*this, error);        
+
+        chunkFunc(*this, error);
         if (error)
         {
             FINJIN_WX_SET_ERROR(error, wxT("Failed to write chunk."));
@@ -775,7 +775,7 @@ bool WxTextDataChunkWriter::WillSplitBlob(const WxChunkPropertyName& propertyNam
             {
                 if (i > 0)
                     valueLength += 1; //strlen(" ")
-                
+
                 if (bytes[i] <= 9)
                     valueLength += 1; //1 digit
                 else if (bytes[i] <= 99)
@@ -786,7 +786,7 @@ bool WxTextDataChunkWriter::WillSplitBlob(const WxChunkPropertyName& propertyNam
                 if (valueLength > this->settings.maxBytesPerLine)
                     return true;
             }
-            
+
             break;
         }
         case WxDataChunkBlobTextFormat::BASE64:
@@ -809,7 +809,7 @@ bool WxTextDataChunkWriter::WillSplitString(const WxChunkPropertyName& propertyN
         valueLength = EscapeStringValue(value).ToUTF8().length();
     else
         valueLength = value.ToUTF8().length();
-    
+
     auto nonSizeHeaderLength = SizeOfValue(propertyName) + 1 + valueLength + 1; //Trailing +1 is for newline
     auto sizeHeaderLength = ConvertToUtf8String(nonSizeHeaderLength).length() + 1;
     auto proposedLength = sizeHeaderLength + nonSizeHeaderLength;
@@ -819,7 +819,7 @@ bool WxTextDataChunkWriter::WillSplitString(const WxChunkPropertyName& propertyN
 void WxTextDataChunkWriter::WriteBlob(const WxChunkPropertyName& propertyName, const void* values, size_t count, WxError& error)
 {
     FINJIN_WX_ERROR_METHOD_START(error);
-    
+
     if (this->settings.lengthHintPropertyName.IsValid() && WillSplitBlob(propertyName, values, count))
     {
         WriteCount(this->settings.lengthHintPropertyName, count, error);
@@ -850,7 +850,7 @@ void WxTextDataChunkWriter::WriteBlob(const WxChunkPropertyName& propertyName, c
 
             break;
         }
-    }        
+    }
 }
 
 void WxTextDataChunkWriter::WriteString(const WxChunkPropertyName& propertyName, const wxString& value, WxError& error)

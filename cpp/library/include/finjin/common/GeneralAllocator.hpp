@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Allocator.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/SimpleSpinLockMutex.hpp"
 #include <mutex>
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     /**
@@ -30,7 +30,7 @@ namespace Finjin { namespace Common {
      * a standard mutex for synchronization, which will cause problems with the job system's threads/fibers.
      */
     class FINJIN_COMMON_LIBRARY_API GeneralAllocator : public Allocator
-    {        
+    {
     public:
         GeneralAllocator(const GeneralAllocator& other) = delete;
         GeneralAllocator& operator = (const GeneralAllocator& other) = delete;
@@ -38,9 +38,9 @@ namespace Finjin { namespace Common {
         GeneralAllocator(GeneralAllocator&& GeneralAllocator) = delete;
         GeneralAllocator& operator = (GeneralAllocator&& other) = delete;
 
-    public:    
+    public:
         GeneralAllocator();
-        ~GeneralAllocator();    
+        ~GeneralAllocator();
 
         struct Settings
         {
@@ -51,7 +51,7 @@ namespace Finjin { namespace Common {
 
         void Create(const Settings& settings, ByteMemoryArena&& arena);
 
-        /** 
+        /**
          * Sets the number of bytes the allocator is to manage.
          * Note that calling this wipes out whatever data the allocator
          * had previously allocated.
@@ -67,16 +67,16 @@ namespace Finjin { namespace Common {
         void* Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION) override;
 
         bool CanDeallocateBlock() const override;
-        
+
         /**
          * Frees the memory that was previously allocated by the allocator.
-         * @param mem [in] - Pointer to memory that was previously allocated by the 
+         * @param mem [in] - Pointer to memory that was previously allocated by the
          * allocator.
          */
         void Deallocate(void* mem) override;
 
         bool CanDeallocateAll() const override;
-        
+
         /**
          * Frees all the memory allocated by the allocator.
          */
@@ -89,14 +89,14 @@ namespace Finjin { namespace Common {
         size_t GetBytesFree() const override;
 
         size_t GetAlignment() const override;
-        
+
         void DebugCheck();
 
         void Output(std::ostream& out, bool forward = true);
-        
+
     private:
         void _DebugCheck();
-        
+
         struct MemoryBlockHeader
         {
             //This struct is 16 bytes on 32-bit, 32 bytes on 64-bit
@@ -105,7 +105,7 @@ namespace Finjin { namespace Common {
             MemoryBlockHeader* previous;
             MemoryBlockHeader* next;
             size_t padding; //Pads the struct
-            
+
         #if FINJIN_DEBUG
             const char* fileName;
             const char* functionName;
@@ -120,16 +120,16 @@ namespace Finjin { namespace Common {
         size_t GetAlignedMemberBlockHeaderSize() const;
 
         MemoryBlockHeader* FindFirstFreeFit(size_t byteCount);
-        
+
         void _Init();
         void _FreeAllBlocks();
 
         MemoryBlockHeader* GetHeader(void* mem);
         void* GetMemory(MemoryBlockHeader* header);
 
-    private:    
+    private:
         ByteMemoryArena arena;
-        
+
         struct BlockRange
         {
             MemoryBlockHeader* head;
@@ -173,7 +173,7 @@ namespace Finjin { namespace Common {
             {
                 this->head = this->tail = nullptr;
             }
-            
+
             size_t GetTotal() const
             {
                 size_t total = 0;
@@ -184,9 +184,9 @@ namespace Finjin { namespace Common {
         };
 
         BlockRange allocList; //Beginning/end of list of allocated blocks
-        
+
         BlockRange freeList; //Beginning/end of list of free blocks
-        
+
         using MutexType = SimpleSpinLockMutex;
         mutable MutexType mutex;
     };

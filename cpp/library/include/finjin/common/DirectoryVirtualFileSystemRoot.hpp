@@ -18,14 +18,14 @@
 #include "finjin/common/VirtualFileSystemRoot.hpp"
 
 
-//Classes-----------------------------------------------------------------------
-namespace Finjin { namespace Common {    
-    
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
+
     class FINJIN_COMMON_LIBRARY_API DirectoryVirtualFileSystemRoot : public VirtualFileSystemRoot
     {
     public:
         DirectoryVirtualFileSystemRoot(Allocator* allocator);
-        
+
         void OpenRoot(const Path& directory, Error& error);
 
         EnumerationResult Enumerate(FileSystemEntries& items, Error& error) override;
@@ -43,7 +43,7 @@ namespace Finjin { namespace Common {
         size_t Write(VirtualFileHandle& fileHandle, const void* bytes, size_t byteCount) override;
         void Close(VirtualFileHandle& fileHandle) override;
 
-    private:        
+    private:
         Utf8String volumeID;
         Path directory;
         FileSystemEntry workingFileSystemEntry;

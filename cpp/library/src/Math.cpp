@@ -18,7 +18,7 @@
 using namespace Finjin::Common;
 
 
-//Local functions--------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 
 /* Decomposition code copyright Ken Shoemake, 1993------------------------------ */
 enum VectorIndex { X, Y, Z, W };
@@ -118,7 +118,7 @@ MathDecomposedAffineTransform::QuatPart Qt_Scale(MathDecomposedAffineTransform::
 }
 
 /* Construct a unit quaternion from rotation matrix.  Assumes matrix is
-* used to multiply column vector on the left: vnew = mat vold.	 Works
+* used to multiply column vector on the left: vnew = mat vold.     Works
 * correctly for right-handed coordinate system and right-handed rotations.
 * Translation and perspective components ignored. */
 MathDecomposedAffineTransform::QuatPart Qt_FromMatrix(HMatrix mat)
@@ -146,14 +146,14 @@ MathDecomposedAffineTransform::QuatPart Qt_FromMatrix(HMatrix mat)
         if (mat[Z][Z] > mat[h][h]) h = Z;
         switch (h) {
 #define caseMacro(i,j,k,I,J,K) \
-	    case I:\
-		s = sqrtf( (mat[I][I] - (mat[J][J]+mat[K][K])) + mat[W][W] );\
-		qu.i = s*0.5f;\
-		s = 0.5f / s;\
-		qu.j = (mat[I][J] + mat[J][I]) * s;\
-		qu.k = (mat[K][I] + mat[I][K]) * s;\
-		qu.w = (mat[K][J] - mat[J][K]) * s;\
-		break
+        case I:\
+        s = sqrtf( (mat[I][I] - (mat[J][J]+mat[K][K])) + mat[W][W] );\
+        qu.i = s*0.5f;\
+        s = 0.5f / s;\
+        qu.j = (mat[I][J] + mat[J][I]) * s;\
+        qu.k = (mat[K][I] + mat[I][K]) * s;\
+        qu.w = (mat[K][J] - mat[J][K]) * s;\
+        break
             caseMacro(x, y, z, X, Y, Z);
             caseMacro(y, z, x, Y, Z, X);
             caseMacro(z, x, y, Z, X, Y);
@@ -174,7 +174,7 @@ float mat_norm(HMatrix M, int tpose)
     max = 0.f;
     for (i = 0; i<3; i++) {
         if (tpose) sum = fabsf(M[0][i]) + fabsf(M[1][i]) + fabsf(M[2][i]);
-        else	   sum = fabsf(M[i][0]) + fabsf(M[i][1]) + fabsf(M[i][2]);
+        else       sum = fabsf(M[i][0]) + fabsf(M[i][1]) + fabsf(M[i][2]);
         if (max<sum) max = sum;
     }
     return max;
@@ -301,7 +301,7 @@ float polar_decomp(HMatrix M, HMatrix Q, HMatrix S)
         M_one = norm_one(Mk);  M_inf = norm_inf(Mk);
     } while (E_one>(M_one*TOL));
     mat_tpose(Q, =, Mk, 3); mat_pad(Q);
-    mat_mult(Mk, M, S);	 mat_pad(S);
+    mat_mult(Mk, M, S);     mat_pad(S);
     for (i = 0; i<3; i++) for (j = i; j<3; j++)
         S[i][j] = S[j][i] = 0.5f*(S[i][j] + S[j][i]);
     return (det);
@@ -376,7 +376,7 @@ MathDecomposedAffineTransform::QuatPart snuggle(MathDecomposedAffineTransform::Q
 #define sgn(n,v)    ((n)?-(v):(v))
 #define swap(a,i,j) {a[3]=a[i]; a[i]=a[j]; a[j]=a[3];}
 #define cycle(a,p)  if (p) {a[3]=a[0]; a[0]=a[1]; a[1]=a[2]; a[2]=a[3];}\
-		    else   {a[3]=a[2]; a[2]=a[1]; a[1]=a[0]; a[0]=a[3];}
+            else   {a[3]=a[2]; a[2]=a[1]; a[1]=a[0]; a[0]=a[3];}
     MathDecomposedAffineTransform::QuatPart p;
     float ka[4];
     int i, turn = -1;
@@ -517,7 +517,7 @@ void invert_affine(const MathDecomposedAffineTransform::Parts *parts, MathDecomp
 /* End decomposition code copyright Ken Shoemake, 1993------------------------------ */
 
 
-//Implementation---------------------------------------------------------------
+//Implementation----------------------------------------------------------------
 
 //MathDecomposedAffineTransform
 MathDecomposedAffineTransform::MathDecomposedAffineTransform()
@@ -530,7 +530,7 @@ MathDecomposedAffineTransform::MathDecomposedAffineTransform(const MathAffineTra
     Set(af);
 }
 
-MathDecomposedAffineTransform::MathDecomposedAffineTransform(const MathMatrix44& m)
+MathDecomposedAffineTransform::MathDecomposedAffineTransform(const MathMatrix4& m)
 {
     SetMatrix(m);
 }
@@ -546,14 +546,14 @@ void MathDecomposedAffineTransform::Set(const MathAffineTransform& af)
     SetMatrix(m);
 }
 
-void MathDecomposedAffineTransform::SetMatrix(const MathMatrix44& m)
+void MathDecomposedAffineTransform::SetMatrix(const MathMatrix4& m)
 {
     HMatrix hm;
-    GetColumnMajorSquareMatrixData(hm, m);
+    GetRowsInCRowsMatrixData(hm, m);
     decomp_affine(hm, &this->parts);
 }
 
-ValueOrError<void> MathDecomposedAffineTransform::GetMatrix(MathMatrix44& m) const
+ValueOrError<void> MathDecomposedAffineTransform::GetMatrix(MathMatrix4& m) const
 {
     if (this->parts.f == 0)
     {
@@ -657,10 +657,10 @@ ValueOrError<void> MathDecomposedAffineTransform::Interpolate(MathDecomposedAffi
         if (a.parts.f * b.parts.f < 0)
         {
             //'a' and 'b' have different determinants. Use the calculated scale to determine new determinant
-            result.parts.f = 
-                GetSign(result.parts.k.x) * 
-                GetSign(result.parts.k.y) * 
-                GetSign(result.parts.k.z) * 
+            result.parts.f =
+                GetSign(result.parts.k.x) *
+                GetSign(result.parts.k.y) *
+                GetSign(result.parts.k.z) *
                 GetSign(result.parts.k.w)
                 ;
         }

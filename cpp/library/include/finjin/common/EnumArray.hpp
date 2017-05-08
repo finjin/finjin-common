@@ -14,28 +14,39 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     template <typename EnumType, EnumType count, typename ValueType>
-    class EnumValues
+    class EnumArray
     {
     public:
         typedef ValueType* iterator;
         typedef const ValueType* const_iterator;
-        
+
+        EnumArray() {}
+
+        EnumArray(const ValueType& initialValue)
+        {
+            for (size_t i = 0; i < (size_t)count; i++)
+                this->items[i] = initialValue;
+        }
+
         size_t size() const { return (size_t)count; }
         size_t max_size() const { return (size_t)count; }
 
         template <typename Index> const ValueType& operator [] (Index index) const { return this->items[(size_t)index]; }
         template <typename Index> ValueType& operator [] (Index index) { return this->items[(size_t)index]; }
 
+        const ValueType* data() const { return &this->items[0]; }
+        ValueType* data() { return &this->items[0]; }
+
         iterator begin() { return &this->items[0]; }
         iterator end() { return &this->items[(size_t)count]; }
 
         const_iterator begin() const { return &this->items[0]; }
         const_iterator end() const { return &this->items[(size_t)count]; }
-        
+
     private:
         ValueType items[(size_t)count];
     };

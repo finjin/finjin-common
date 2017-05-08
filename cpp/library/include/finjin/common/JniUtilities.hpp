@@ -14,14 +14,14 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/StaticVector.hpp"
 #include <jni.h>
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define JNI_EXCEPTION_RETURN_VALUE(env, value) \
     if (env->ExceptionOccurred()) { \
         env->ExceptionDescribe(); \
@@ -37,14 +37,14 @@
     }
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API JniUtilities
     {
     public:
         JniUtilities(JNIEnv* env, jobject thiz);
-                
+
         bool GetBoolField(bool& value, const char* name, bool defaultValue = false);
         bool GetIntField(int32_t& value, const char* name, int32_t defaultValue = 0);
         bool GetIntArrayFieldElement(int32_t& value, const char* name, int index, int32_t defaultValue = 0);
@@ -75,7 +75,7 @@ namespace Finjin { namespace Common {
             arr.resize(static_cast<size_t>(result ? len : 0));
             return result;
         }
-                
+
         bool CallVoidMethod(const char* name);
         bool CallVoidMethod_String(const char* name, const char* v0);
         bool CallVoidMethod_String_String(const char* name, const char* v0, const char* v1);
@@ -99,7 +99,7 @@ namespace Finjin { namespace Common {
      * Instances of this class delete the specified JNI resource when the instance goes out of scope.
      * This is helpful for preventing resource leaks in the event that JNI exceptions occur and a function needs to exit early.
      */
-    template <typename T> 
+    template <typename T>
     class JniAutoDeleteLocalRef
     {
     public:

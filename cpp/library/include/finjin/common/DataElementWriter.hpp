@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 
 
-//Classes----------------------------------------------------------------------
-namespace Finjin { namespace Common { 
+//Types-------------------------------------------------------------------------
+namespace Finjin { namespace Common {
 
     class FINJIN_COMMON_LIBRARY_API DataElementWriter
     {
@@ -33,7 +33,7 @@ namespace Finjin { namespace Common {
     public:
         DataElementWriter() {}
         virtual ~DataElementWriter() {}
-        
+
         virtual void SetAttribute(const Utf8String& name, const Utf8String& value) = 0;
         virtual void SetAttribute(const Utf8String& name, const char* value);
         virtual void SetAttribute(const Utf8String& name, int value);
@@ -64,7 +64,7 @@ namespace Finjin { namespace Common {
         virtual void AddChildText(const Utf8String& name, const Utf8String& value) = 0;
         virtual void AddSimpleChildText(const Utf8String& name, const Utf8String& value) {AddChildText(name, value);}
     };
-    
+
     /**
      * For JSON: Creates an entry of the form: {
      * For XML: Creates an entry of the form: <name></name>

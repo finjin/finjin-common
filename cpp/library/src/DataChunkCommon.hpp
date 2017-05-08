@@ -14,11 +14,11 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteOrder.hpp"
 
 
-//Macros-----------------------------------------------------------------------
+//Macros------------------------------------------------------------------------
 #define BINARY_LINE_TYPE_CHUNK_START 1
 #define BINARY_LINE_TYPE_CHUNK_END 2
 #define BINARY_LINE_TYPE_DOCUMENT_END 3
@@ -39,7 +39,7 @@
 //#define BINARY_LINE_FLAG_MORE (1 << 7) //In the future, if more than 8 bits of flags are needed, use the 8th bit to indicate the presence of another byte
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     using BinaryMultiValueSize = uint64_t;

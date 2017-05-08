@@ -14,13 +14,13 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "WxUuid.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     struct ParsedChunkName;
 
     struct WxChunkName
@@ -58,13 +58,13 @@ namespace Finjin { namespace Common {
     {
         typedef uint32_t ID;
         typedef WxChunkName::Index Index;
-        
+
         WxChunkPropertyName();
         WxChunkPropertyName(const char* s);
         WxChunkPropertyName(size_t index);
-        
+
         bool IsValid() const;
-        
+
         bool operator == (const WxChunkPropertyName& other) const;
 
         bool operator != (const WxChunkPropertyName& other) const;
@@ -79,12 +79,12 @@ namespace Finjin { namespace Common {
     //Standard names-------------------------------
     struct WxStandardChunkPropertyNames
     {
-        static const WxChunkPropertyName MAGIC;
+        static const WxChunkPropertyName SIGNATURE;
         static const WxChunkPropertyName FORMAT;
         static const WxChunkPropertyName FORMAT_VERSION;
         static const WxChunkPropertyName MAX_BYTES_PER_LINE;
         static const WxChunkPropertyName BLOB_TEXT_FORMAT;
-    };    
+    };
 
     enum class WxDataChunkBlobTextFormat
     {

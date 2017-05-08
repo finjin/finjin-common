@@ -14,12 +14,12 @@
 #pragma once
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T>
     struct RequestedValue
-    {   
+    {
     public:
         RequestedValue()
         {
@@ -35,9 +35,9 @@ namespace Finjin { namespace Common {
             this->requested = this->actual = value;
             return *this;
         }
-        
+
         T requested;
         T actual;
     };
-    
+
 } }

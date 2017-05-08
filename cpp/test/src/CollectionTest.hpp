@@ -11,17 +11,17 @@
 //file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
 #include "finjin/common/StaticVector.hpp"
 
 
-//Tests------------------------------------------------------------------------
+//Tests-------------------------------------------------------------------------
 BOOST_AUTO_TEST_CASE(CollectionTest_allocatedvector_pushfront)
 {
     BOOST_TEST_MESSAGE("CollectionTest_allocatedvector_pushfront:");
 
-    AllocatedVector<int> v;
+    DynamicVector<int> v;
     BOOST_CHECK(v.CreateEmpty(3, FINJIN_ALLOCATOR_NULL));
 
     BOOST_CHECK(v.push_front(1).HasValue(true));
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(CollectionTest_staticvector_pushfront)
     BOOST_TEST_MESSAGE("CollectionTest_staticvector_pushfront:");
 
     StaticVector<int, 3> v;
-    
+
     BOOST_CHECK(v.push_front(1).HasValue(true));
     BOOST_CHECK(v[0] == 1);
 

@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Preliminary macros-----------------------------------------------------------
+//Preliminary macros------------------------------------------------------------
 #if defined(_MSC_VER)
     #pragma warning(disable: 4521) //The class has multiple copy constructors of a single type
     #pragma warning(disable: 4355) //'this' : used in base member initializer list
@@ -48,30 +48,30 @@
 //Platform identifiers---------------
 
 //For FINJIN_TARGET_CPU
-#define FINJIN_TARGET_CPU_TYPE_ARM 1
-#define FINJIN_TARGET_CPU_TYPE_INTEL 2
+#define FINJIN_TARGET_CPU_ARM 1
+#define FINJIN_TARGET_CPU_INTEL 2
 
 //For FINJIN_TARGET_CPU_BITS
 //FINJIN_TARGET_CPU_BITS will be defined to be 32 or 64
 
-//For FINJIN_TARGET_OS
-#define FINJIN_TARGET_OS_WINDOWS_WIN32 1
-#define FINJIN_TARGET_OS_WINDOWS_UWP 2
-#define FINJIN_TARGET_OS_IOS 4
-#define FINJIN_TARGET_OS_APPLE_WATCH 5
-#define FINJIN_TARGET_OS_APPLE_TV 6
-#define FINJIN_TARGET_OS_MAC 7
-#define FINJIN_TARGET_OS_LINUX 8
+//For FINJIN_TARGET_PLATFORM
+#define FINJIN_TARGET_PLATFORM_WINDOWS_WIN32 1
+#define FINJIN_TARGET_PLATFORM_WINDOWS_UWP 2
+#define FINJIN_TARGET_PLATFORM_IOS 4
+#define FINJIN_TARGET_PLATFORM_WATCHOS 5
+#define FINJIN_TARGET_PLATFORM_TVOS 6
+#define FINJIN_TARGET_PLATFORM_MACOS 7
+#define FINJIN_TARGET_PLATFORM_LINUX 8
 
 
-//Detect target cpu/platform---------------
+//Detect target CPU/platform---------------
 #if defined(_WIN32)
-    #define FINJIN_TARGET_OS_IS_WINDOWS 1
-    
+    #define FINJIN_TARGET_PLATFORM_IS_WINDOWS 1
+
     #ifdef _M_ARM
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_ARM
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_ARM
     #else
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_INTEL
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_INTEL
     #endif
 
     #if defined(_WIN64) || defined(__x86_64__) || defined(_M_X64)
@@ -81,19 +81,19 @@
     #endif
 
     #if defined(WINAPI_FAMILY_PARTITION)
-        #define FINJIN_TARGET_OS_IS_WINDOWS_UWP 1
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_WINDOWS_UWP
+        #define FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP 1
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_WINDOWS_UWP
     #else
-        #define FINJIN_TARGET_OS_IS_WINDOWS_UWP 0
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_WINDOWS_WIN32
+        #define FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP 0
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
     #endif
 #elif __APPLE__
     #include "TargetConditionals.h"
 
-    #define FINJIN_TARGET_OS_IS_APPLE 1
+    #define FINJIN_TARGET_PLATFORM_IS_APPLE 1
 
     #if TARGET_OS_SIMULATOR
-        #define FINJIN_TARGET_OS_SIMULATED 1
+        #define FINJIN_TARGET_PLATFORM_SIMULATED 1
     #endif
 
     #if __LP64__
@@ -102,23 +102,29 @@
         #define FINJIN_TARGET_CPU_BITS 32
     #endif
 
-    #if TARGET_OS_IPHONE
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_ARM
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_IOS
+    #if TARGET_OS_TV
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_ARM
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_TVOS
+    #elif TARGET_OS_IPHONE
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_ARM
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_IOS
     #elif TARGET_OS_WATCH
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_ARM
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_APPLE_WATCH
-    #elif TARGET_OS_TV
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_ARM
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_APPLE_TV
-    #elif TARGET_OS_MAC
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_INTEL
-        #define FINJIN_TARGET_OS FINJIN_TARGET_OS_MAC
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_ARM
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_WATCHOS
+    #elif TARGET_OS_OSX
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_INTEL
+        #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_MACOS
     #else
         #error Unknown platform
     #endif
+
+    #if __has_feature(objc_arc)
+        #define FINJIN_APPLE_WEAK __weak
+    #else
+        #define FINJIN_APPLE_WEAK
+    #endif
 #elif defined(__linux)
-    #define FINJIN_TARGET_OS_IS_LINUX 1
+    #define FINJIN_TARGET_PLATFORM_IS_LINUX 1
 
     #if _LP64
         #define FINJIN_TARGET_CPU_BITS 64
@@ -127,14 +133,14 @@
     #endif
 
     #if __arm__ || __APCS_32__
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_ARM
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_ARM
     #elif __i386__ || __x86_64
-        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_TYPE_INTEL
+        #define FINJIN_TARGET_CPU FINJIN_TARGET_CPU_INTEL
     #else
         #error Unknown CPU type
     #endif
-    
-    #define FINJIN_TARGET_OS FINJIN_TARGET_OS_LINUX
+
+    #define FINJIN_TARGET_PLATFORM FINJIN_TARGET_PLATFORM_LINUX
 #else
     #error Unknown compiler
 #endif
@@ -142,40 +148,40 @@
 
 //Set up platform defaults---------------
 #if defined(__ANDROID__)
-    #define FINJIN_TARGET_OS_IS_ANDROID 1 //Note: FINJIN_TARGET_OS_IS_LINUX will also be 1
+    #define FINJIN_TARGET_PLATFORM_IS_ANDROID 1 //Note: FINJIN_TARGET_PLATFORM_IS_LINUX will also be 1
 #else
-    #define FINJIN_TARGET_OS_IS_ANDROID 0
+    #define FINJIN_TARGET_PLATFORM_IS_ANDROID 0
 #endif
 
-#if !defined(FINJIN_TARGET_OS_SIMULATED)
-    #define FINJIN_TARGET_OS_SIMULATED 0
+#if !defined(FINJIN_TARGET_PLATFORM_SIMULATED)
+    #define FINJIN_TARGET_PLATFORM_SIMULATED 0
 #endif
 
-#if !defined(FINJIN_TARGET_OS_IS_WINDOWS)
-    #define FINJIN_TARGET_OS_IS_WINDOWS 0
-    #define FINJIN_TARGET_OS_IS_WINDOWS_UWP 0
+#if !defined(FINJIN_TARGET_PLATFORM_IS_WINDOWS)
+    #define FINJIN_TARGET_PLATFORM_IS_WINDOWS 0
+    #define FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP 0
 #endif
 
-#if !defined(FINJIN_TARGET_OS_IS_APPLE)
-    #define FINJIN_TARGET_OS_IS_APPLE 0
+#if !defined(FINJIN_TARGET_PLATFORM_IS_APPLE)
+    #define FINJIN_TARGET_PLATFORM_IS_APPLE 0
 #endif
 
-#if !defined(FINJIN_TARGET_OS_IS_LINUX)
-    #define FINJIN_TARGET_OS_IS_LINUX 0
+#if !defined(FINJIN_TARGET_PLATFORM_IS_LINUX)
+    #define FINJIN_TARGET_PLATFORM_IS_LINUX 0
 #endif
 
 
 //Thread-local---------------
 //To ensure cross-platform compatibility, use only plain data types with FINJIN_THREAD_LOCAL
 #if __APPLE__
-    #define FINJIN_THREAD_LOCAL __thread 
+    #define FINJIN_THREAD_LOCAL __thread
 #else
     #define FINJIN_THREAD_LOCAL thread_local
 #endif
 
 
 //Debug macro---------------
-#if defined(_DEBUG)    
+#if defined(_DEBUG)
     #define FINJIN_DEBUG 1 //_DEBUG is typically defined by itself to indicate a debug build
 #elif defined(DEBUG)
     #define FINJIN_DEBUG DEBUG //DEBUG is typically defined with a 0 or 1 to indicate a debug build
@@ -188,9 +194,9 @@
 
 //Function name------------
 #ifndef __FUNCTION_NAME__
-    #if defined(_MSC_VER) 
+    #if defined(_MSC_VER)
         #define __FUNCTION_NAME__ __FUNCTION__
-    #else 
+    #else
         #define __FUNCTION_NAME__ __func__
     #endif
 #endif
@@ -205,11 +211,11 @@
 
 
 //SSE functionality-------------
-#if !defined(FINJIN_SSE)
-    #if FINJIN_TARGET_OS_IS_WINDOWS
-        #define FINJIN_SSE 1
+#if !defined(FINJIN_ENABLE_SSE)
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+        #define FINJIN_ENABLE_SSE 1
     #else
-        #define FINJIN_SSE 0
+        #define FINJIN_ENABLE_SSE 0
     #endif
 #endif
 
@@ -228,14 +234,14 @@
 #define FINJIN_FOURCC(a, b, c, d) ((static_cast<uint32_t>(d) << 24) | (static_cast<uint32_t>(c) << 16) | (static_cast<uint32_t>(b) << 8) | static_cast<uint32_t>(a))
 #define FINJIN_FOURCC_BIG_ENDIAN(a, b, c, d) FINJIN_FOURCC(d, c, b, a)
 
-#define FINJIN_MAGIC_FOURCC FINJIN_FOURCC('f', 'i', 'n', 'j')
+#define FINJIN_SIGNATURE_FOURCC FINJIN_FOURCC('f', 'i', 'n', 'j')
 
 #define FINJIN_CALLER_PARAMETERS_DECLARATION const char* fileName, const char* functionName, int line //In the signature for Error::SetError() and other methods
 #define FINJIN_CALLER_PARAMETERS fileName, functionName, line //Allows error parameters in a method to be passed to another method
 #define FINJIN_CALLER_ARGUMENTS __FILE__, __FUNCTION_NAME__, __LINE__ //Passed into Error::SetError() and other methods
 
 
-//Classes/functions------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     class DomainInformation;
@@ -245,7 +251,7 @@ namespace Finjin { namespace Common {
     class UsageFormatter;
     class UserInformation;
     class VirtualFileSystem;
-    
+
     typedef int16_t Int16BigEndian;
     typedef int16_t Int16LittleEndian;
 
@@ -267,16 +273,16 @@ namespace Finjin { namespace Common {
     struct CommonConstants
     {
         enum { MAX_FIBERS = 128 };
-        
+
         enum { MAX_CPU_GROUPS = 1 };
         enum { MAX_CPUS_PER_GROUP = 64 };
         enum { MAX_CPUS = MAX_CPU_GROUPS * MAX_CPUS_PER_GROUP };
         enum { MAX_CPU_CACHE_SHARING = 8 };
-        
+
         enum { MAX_ROOT_FILE_SYSTEM_ENTRIES = 8 };
 
-        enum { MAX_CLASS_DESCRIPTION_CLASSES = 1024 }; //Maximum number of classes created with FINJIN_DECLARE_CLASS_DESCRIPTION and friends
-        
+        enum { MAX_TYPE_DESCRIPTIONS = 1024 }; //Maximum number of classes created with FINJIN_DECLARE_TYPE_DESCRIPTION and friends
+
         enum { FILE_TEMP_BUFFER_SIZE = 1024 };
 
         enum { MAX_DATA_CHUNK_DEPTH = 16 };
@@ -297,7 +303,13 @@ namespace Finjin { namespace Common {
         enum { MAX_LENGTH = NAME_MAX_LENGTH + 1 + ID_MAX_LENGTH };
     };
 
-    inline void DoesNothingToAvoidCompilerWarning() 
+} }
+
+
+//Functions---------------------------------------------------------------------
+namespace Finjin { namespace Common {
+
+    inline void DoesNothingToAvoidCompilerWarning()
     {
         //Called by some utility macros that expand to "nothing"
     }
@@ -310,7 +322,7 @@ namespace Finjin { namespace Common {
         if (value > static_cast<T>(maxValue))
             value = static_cast<T>(maxValue);
     }
-    
+
     template <typename T, typename V, typename W>
     inline T Limited(T value, V minValue, W maxValue)
     {
@@ -321,7 +333,7 @@ namespace Finjin { namespace Common {
         return value;
     }
 
-    /** 
+    /**
      * Scales a normalized value to fall within a range
      * @param value [in] - Normalized value, from 0 to 1
      * @param rangeStart [in] - The start of the range
@@ -337,7 +349,7 @@ namespace Finjin { namespace Common {
         return rangeStart + (rangeEnd - rangeStart) * value;
     }
 
-    /** 
+    /**
      * Normalizes a value to fall within a range
      * @param value [in] - Non-normalized value. Should be in [rangeStart, rangeEnd]
      * @param rangeStart [in] - The start of the range
@@ -352,7 +364,7 @@ namespace Finjin { namespace Common {
     {
         return (value - rangeStart) / (rangeEnd - rangeStart);
     }
-    
+
     template <typename T>
     inline T GetSign(T value)
     {
@@ -423,7 +435,7 @@ namespace Finjin { namespace Common {
     {
         return static_cast<int>(value + .5);
     }
-    
+
     inline int64_t RoundToInt64(double value)
     {
         return static_cast<int64_t>(value + .5);

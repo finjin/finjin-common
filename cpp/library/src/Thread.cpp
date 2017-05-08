@@ -14,20 +14,20 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Thread.hpp"
-#include "finjin/common/ThisThread.hpp"
-#include "finjin/common/Settings.hpp"
 #include "finjin/common/AllocatedClass.hpp"
+#include "finjin/common/Settings.hpp"
+#include "finjin/common/ThisThread.hpp"
 
-#if FINJIN_TARGET_OS_IS_APPLE
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
     #include <pthread.h>
     #include <mach/mach.h>
 
     #define FINJIN_THREAD_USE_PTHREAD 1
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     #include <pthread.h>
 
     #define FINJIN_THREAD_USE_PTHREAD 1
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #else
     #include <thread>
@@ -36,14 +36,14 @@
 using namespace Finjin::Common;
 
 
-//Local classes-----------------------------------------------------------------
+//Local types-------------------------------------------------------------------
 struct Thread::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator) : AllocatedClass(allocator), name(allocator)
     {
     #if FINJIN_THREAD_USE_PTHREAD
         this->t = 0;
-    #elif FINJIN_TARGET_OS_IS_WINDOWS
+    #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
         this->t = nullptr;
     #endif
     }
@@ -61,7 +61,7 @@ struct Thread::Impl : public AllocatedClass
             pthread_join(this->t, nullptr);
             this->t = 0;
         }
-    #elif FINJIN_TARGET_OS_IS_WINDOWS
+    #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
         if (this->t != nullptr)
         {
             WaitForSingleObject(this->t, INFINITE);
@@ -79,14 +79,14 @@ struct Thread::Impl : public AllocatedClass
 
         this->threadProc();
     }
-    
+
     Utf8String name;
     Setting<LogicalCpu> logicalCpu;
     std::function<void()> threadProc;
 
 #if FINJIN_THREAD_USE_PTHREAD
     pthread_t t;
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     HANDLE t;
 #else
     std::thread t;
@@ -94,14 +94,14 @@ struct Thread::Impl : public AllocatedClass
 };
 
 #if FINJIN_THREAD_USE_PTHREAD
-    #if FINJIN_TARGET_OS_IS_APPLE
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static void* MachPThreadProc(void* data)
         {
             auto impl = reinterpret_cast<Thread::Impl*>(data);
             impl->ThreadProc();
             return nullptr;
         }
-    #elif FINJIN_TARGET_OS_IS_LINUX
+    #elif FINJIN_TARGET_PLATFORM_IS_LINUX
         static void* LinuxPThreadProc(void* data)
         {
             auto impl = reinterpret_cast<Thread::Impl*>(data);
@@ -113,7 +113,7 @@ struct Thread::Impl : public AllocatedClass
             return nullptr;
         }
     #endif
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     static DWORD WINAPI WindowsThreadProc(void* data)
     {
         auto impl = reinterpret_cast<Thread::Impl*>(data);
@@ -132,7 +132,7 @@ Thread::Thread()
 Thread::Thread(Thread&& other)
 {
     impl = other.impl;
-    
+
     other.impl = nullptr;
 }
 
@@ -141,9 +141,9 @@ Thread& Thread::operator = (Thread&& other)
     delete impl;
 
     impl = other.impl;
-    
+
     other.impl = nullptr;
-    
+
     return *this;
 }
 
@@ -181,15 +181,15 @@ void Thread::Start(Error& error)
         FINJIN_SET_ERROR(error, "Thread has not yet been initialized.");
         return;
     }
-    
-#if FINJIN_TARGET_OS_IS_APPLE
+
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
     auto res = pthread_create_suspended_np(&impl->t, nullptr, MachPThreadProc, impl);
     if (res != 0)
     {
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread: %1%", res));
         return;
     }
-    
+
     if (impl->logicalCpu.IsSet())
     {
         impl->logicalCpu.value.AssociateThread(impl->t, error);
@@ -199,17 +199,17 @@ void Thread::Start(Error& error)
             return;
         }
     }
-    
+
     mach_port_t machThread = pthread_mach_thread_np(impl->t);
     thread_resume(machThread);
-#elif FINJIN_TARGET_OS_IS_LINUX
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
     auto res = pthread_create(&impl->t, nullptr, LinuxPThreadProc, impl);
     if (res != 0)
     {
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread: %1%", res));
         return;
     }
-#elif FINJIN_TARGET_OS_IS_WINDOWS
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     impl->t = CreateThread(nullptr, 0, WindowsThreadProc, impl, CREATE_SUSPENDED, nullptr);
     if (impl->t == nullptr)
     {
@@ -229,18 +229,18 @@ void Thread::Start(Error& error)
 
     ResumeThread(impl->t);
 #else
-    impl->t = std::thread([this]() 
+    impl->t = std::thread([this]()
     {
         if (impl->logicalCpu.IsSet())
             impl->logicalCpu.value.AssociateCurrentThread();
-        
+
         ThreadProc();
     });
 #endif
 }
 
 void Thread::Stop()
-{    
+{
     if (impl == nullptr)
         return;
 
@@ -264,11 +264,11 @@ const LogicalCpu* Thread::GetLogicalCpu() const
 }
 
 ThreadHandle Thread::GetNativeHandle()
-{   
+{
     if (impl == nullptr)
         return 0;
 
-#if FINJIN_THREAD_USE_PTHREAD || FINJIN_TARGET_OS_IS_WINDOWS
+#if FINJIN_THREAD_USE_PTHREAD || FINJIN_TARGET_PLATFORM_IS_WINDOWS
     return impl->t;
 #else
     return impl->t.native_handle();

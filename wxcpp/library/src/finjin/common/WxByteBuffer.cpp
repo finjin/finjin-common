@@ -60,14 +60,14 @@ WxByteBuffer& WxByteBuffer::operator = (const WxByteBuffer& other)
     if (other.byteCount > 0)
         FINJIN_COPY_MEMORY(this->bytes, other.bytes, other.byteCount);
     this->byteCount = other.byteCount;
-    
+
     return *this;
 }
 
 WxByteBuffer& WxByteBuffer::operator = (WxByteBuffer&& other)
 {
     _Deallocate(this->bytes);
-    
+
     this->bytes = other.bytes;
     this->maxByteCount = other.maxByteCount;
     this->byteCount = other.byteCount;
@@ -107,7 +107,7 @@ uint8_t* WxByteBuffer::AllocateBytes(size_t byteCount)
     {
         _Deallocate(this->bytes);
         this->bytes = _Allocate(byteCount);
-        this->maxByteCount = byteCount; 
+        this->maxByteCount = byteCount;
     }
     this->byteCount = byteCount;
     return this->bytes;
@@ -206,7 +206,7 @@ WxByteBuffer& WxByteBuffer::Write(const void* bytes, size_t byteCount)
     //Reallocate if incoming bytes cannot fit within the unused area
     if (byteCount > GetUnusedByteCount())
         ReallocateData(this->byteCount + byteCount);
-    
+
     //Copy and increment byte count
     FINJIN_COPY_MEMORY(&this->bytes[this->byteCount], static_cast<const uint8_t*>(bytes), byteCount);
     this->byteCount += byteCount;
@@ -240,7 +240,7 @@ WxByteBuffer& WxByteBuffer::Write(const char* s)
 WxByteBuffer& WxByteBuffer::WriteBase64(const void* bytes, size_t byteCount)
 {
     auto base64Length = WxBase64::ToBase64Count(byteCount);
-    
+
     //Reallocate if incoming bytes cannot fit within the unused area
     if (base64Length > GetUnusedByteCount())
         ReallocateData(this->byteCount + base64Length);
@@ -253,11 +253,11 @@ WxByteBuffer& WxByteBuffer::WriteBase64(const void* bytes, size_t byteCount)
 size_t WxByteBuffer::WriteBase64(const void* bytes, size_t byteCount, size_t maxBase64Bytes)
 {
     maxBase64Bytes = std::min(maxBase64Bytes, GetUnusedByteCount());
-    
+
     auto base64Length = WxBase64::ToBase64Count(byteCount);
     if (base64Length > maxBase64Bytes)
         byteCount = WxBase64::ToByteCount(maxBase64Bytes);
-    
+
     if (byteCount > 0)
         this->byteCount += WxBase64::ToBase64(bytes, byteCount, &this->bytes[this->byteCount]);
 
@@ -268,7 +268,7 @@ void WxByteBuffer::ReallocateData(size_t count)
 {
     //Store old data
     auto oldBytes = this->bytes;
-    
+
     //Reallocate enough to store new data
     this->bytes = _Allocate(count);
     this->maxByteCount = count;
@@ -280,7 +280,7 @@ void WxByteBuffer::ReallocateData(size_t count)
 
 uint8_t* WxByteBuffer::_Allocate(size_t byteCount)
 {
-    auto result = static_cast<uint8_t*>(malloc(byteCount));    
+    auto result = static_cast<uint8_t*>(malloc(byteCount));
     assert(result != nullptr);
     return result;
 }

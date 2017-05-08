@@ -14,7 +14,7 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
+//Includes----------------------------------------------------------------------
 #include "finjin/common/ByteOrder.hpp"
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/ChunkName.hpp"
@@ -23,9 +23,9 @@
 #include "finjin/common/Uuid.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     enum class DataHeaderType
     {
         NONE,
@@ -39,9 +39,9 @@ namespace Finjin { namespace Common {
     {
     public:
         DataHeader();
-        
+
         void Reset();
-        
+
         ParsedChunkName GetChunkStart();
 
         bool IsOnlyOrFirstOccurrence() const;
@@ -90,13 +90,13 @@ namespace Finjin { namespace Common {
     {
         DataChunkReaderHeader()
         {
-            this->magic = 0;
+            this->signature = 0;
             this->version = 0;
             this->maxBytesPerLine = 0;
             this->blobTextFormat = DataChunkBlobTextFormat::BYTE_ARRAY;
         }
 
-        uint32_t magic; //Only used with binary files
+        uint32_t signature; //Only used with binary files
         Utf8String format;
         uint32_t version;
         size_t maxBytesPerLine; //The maximum bytes per line. This value may exceed the amount of content in the largest line. If 0 (as with JSON reader/writer), then the maximum is unknown
@@ -161,7 +161,7 @@ namespace Finjin { namespace Common {
             size_t maxBytesPerLine;
             size_t estimatedLineCount;
             std::shared_ptr<DataChunkReaderInput> inputPtr;
-            DataChunkReaderInput* input; 
+            DataChunkReaderInput* input;
             DataChunkReaderController* controller;
         };
 
@@ -177,7 +177,7 @@ namespace Finjin { namespace Common {
         virtual void Skip(DataHeader& dataHeader, Error& error) = 0;
 
         virtual const DataChunkReaderHeader& GetHeader() const = 0;
-        
+
         virtual bool IsBinaryFormat() const = 0;
 
         virtual void ReadPropertyName(DataHeader& dataHeader, ParsedChunkPropertyName& result, Error& error) = 0;
@@ -186,7 +186,7 @@ namespace Finjin { namespace Common {
         virtual void ReadString(DataHeader& dataHeader, Utf8String& value, Error& error) = 0;
         virtual void ReadDateTime(DataHeader& dataHeader, DateTime& value, Error& error) = 0;
         virtual void ReadTimeDuration(DataHeader& dataHeader, TimeDuration& value, Error& error) = 0;
-        virtual void ReadUuid(DataHeader& dataHeader, Uuid& value, Error& error) = 0;        
+        virtual void ReadUuid(DataHeader& dataHeader, Uuid& value, Error& error) = 0;
         virtual void ReadBool(DataHeader& dataHeader, bool& value, Error& error) = 0;
         virtual void ReadCount(DataHeader& dataHeader, size_t& value, Error& error) = 0;
         virtual void ReadInt8(DataHeader& dataHeader, int8_t& value, Error& error) = 0;

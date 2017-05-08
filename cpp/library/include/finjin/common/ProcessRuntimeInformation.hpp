@@ -14,9 +14,9 @@
 #pragma once
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
-    
+
     class ProcessRuntimeInformation
     {
     public:
@@ -26,5 +26,5 @@ namespace Finjin { namespace Common {
          */
         static bool IsRunningInteractively();
     };
-    
+
 } }

@@ -16,12 +16,19 @@
 
 //Includes----------------------------------------------------------------------
 #include "finjin/common/AllocatedClass.hpp"
-#include "finjin/common/AllocatedVector.hpp"
+#include "finjin/common/DynamicVector.hpp"
 #include "finjin/common/Error.hpp"
 
 
-//Classes-----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
+
+    enum class ReadCommandLineResult
+    {
+        SUCCESS,
+        SHOW_USAGE,
+        FAILURE
+    };
 
     class FINJIN_COMMON_LIBRARY_API CommandLineArgsProcessor : public AllocatedClass
     {
@@ -40,16 +47,18 @@ namespace Finjin { namespace Common {
         CommandLineArgsProcessor& operator = (CommandLineArgsProcessor&& other);
 
         void Create(size_t count);
+        void Destroy();
 
         size_t GetCount() const;
-        
-        Utf8String Consume(size_t i);
-                
-        const Utf8String& operator [] (size_t i) const;
-        Utf8String& operator [] (size_t i);
+
+        Utf8String& Consume(size_t index);
+
+        const Utf8String& operator [] (size_t index) const;
+        Utf8String& operator [] (size_t index);
 
     private:
-        AllocatedVector<Utf8String> items;
+        DynamicVector<Utf8String> items;
+        Utf8String consumedValue;
     };
 
 } }

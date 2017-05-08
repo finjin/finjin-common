@@ -14,19 +14,19 @@
 #pragma once
 
 
-//Includes---------------------------------------------------------------------
-#include "finjin/common/AllocatedVector.hpp"
+//Includes----------------------------------------------------------------------
+#include "finjin/common/DynamicVector.hpp"
 
 
-//Classes----------------------------------------------------------------------
+//Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
     template <typename T>
-    struct UsableAllocatedVector
+    struct UsableDynamicVector
     {
-        AllocatedVector<T> items;
-        AllocatedVector<T*> usedItems;
-        
+        DynamicVector<T> items;
+        DynamicVector<T*> usedItems;
+
         template <typename... Args>
         bool Create(size_t size, Allocator* allocator, Args&&... args)
         {
@@ -41,7 +41,7 @@ namespace Finjin { namespace Common {
         {
             auto result = true;
             result &= this->items.CreateEmpty(size, allocator, std::forward<Args>(args)...);
-            result &= this->usedItems.CreateEmpty(size, allocator);            
+            result &= this->usedItems.CreateEmpty(size, allocator);
             return result;
         }
 
@@ -125,11 +125,11 @@ namespace Finjin { namespace Common {
     };
 
     template <typename T>
-    struct UsableAllocatedVectorOfPointers
+    struct UsableDynamicVectorOfPointers
     {
-        AllocatedVector<T> items;
-        AllocatedVector<T> usedItems;
-        
+        DynamicVector<T> items;
+        DynamicVector<T> usedItems;
+
         bool Create(size_t size, Allocator* allocator)
         {
             auto result = true;

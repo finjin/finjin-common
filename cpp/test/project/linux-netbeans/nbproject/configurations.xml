@@ -10,12 +10,12 @@
                    projectFiles="true">
       <itemPath>../../src/Base64Test.hpp</itemPath>
       <itemPath>../../src/ByteBufferTest.hpp</itemPath>
-      <itemPath>../../src/ClassDescriptionTest.hpp</itemPath>
       <itemPath>../../src/CollectionTest.hpp</itemPath>
       <itemPath>../../src/DateTimeTest.hpp</itemPath>
       <itemPath>../../src/JobSystemTest.hpp</itemPath>
       <itemPath>../../src/LruTest.hpp</itemPath>
       <itemPath>../../src/MemoryTest.hpp</itemPath>
+      <itemPath>../../src/PNGTest.hpp</itemPath>
       <itemPath>../../src/PathTest.hpp</itemPath>
       <itemPath>../../src/SettingsTest.hpp</itemPath>
       <itemPath>../../src/StreamingDataDocumentTest.hpp</itemPath>
@@ -25,6 +25,17 @@
       <itemPath>../../src/UriTest.hpp</itemPath>
       <itemPath>../../src/UuidTest.hpp</itemPath>
       <itemPath>../../src/main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -103,8 +114,6 @@
       </item>
       <item path="../../src/ByteBufferTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../src/ClassDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../../src/CollectionTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/DateTimeTest.hpp" ex="false" tool="3" flavor2="0">
@@ -114,6 +123,8 @@
       <item path="../../src/LruTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/MemoryTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/PNGTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/PathTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -132,6 +143,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="../../src/TypeDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/UriTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -212,8 +225,6 @@
       </item>
       <item path="../../src/ByteBufferTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../../src/ClassDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../../src/CollectionTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/DateTimeTest.hpp" ex="false" tool="3" flavor2="0">
@@ -223,6 +234,8 @@
       <item path="../../src/LruTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/MemoryTest.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../../src/PNGTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/PathTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -241,6 +254,8 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="../../src/TypeDescriptionTest.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/UriTest.hpp" ex="false" tool="3" flavor2="0">
       </item>

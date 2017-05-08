@@ -20,8 +20,8 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-VirtualFileSystemRoot::VirtualFileSystemRoot(Allocator* allocator) : 
-    AllocatedClass(allocator), 
+VirtualFileSystemRoot::VirtualFileSystemRoot(Allocator* allocator) :
+    AllocatedClass(allocator),
     description(allocator)
 {
 }
