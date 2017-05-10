@@ -607,7 +607,7 @@ namespace Finjin { namespace Common {
                             line->GetKeyAndValue(key, value);
 
                             if (key == "type")
-                                desc.typeName = value.ToString();
+                                desc.typeName = value;
                             else if (key == "padded-total-size-behavior")
                             {
                                 if (value == "default")
@@ -622,7 +622,7 @@ namespace Finjin { namespace Common {
                                     desc.paddedTotalSizeBehavior = PaddedTotalSizeBehavior::ROUND_UP_TO_TOTAL_SIZE_ALIGNMENT;
                                 else
                                 {
-                                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse 'total-size-pading-behavior' value '%1%'.", value.ToString()));
+                                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse 'total-size-pading-behavior' value '%1%'.", value));
                                     return;
                                 }
                             }
@@ -777,24 +777,24 @@ namespace Finjin { namespace Common {
                                 }
                                 if (element.type == NumericStructElementType::NONE)
                                 {
-                                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse item type '%1%'.", value.ToString()));
+                                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse item type '%1%'.", value));
                                     return;
                                 }
                             }
                         }
                         else if (key == "array-size")
                         {
-                            element.arraySize = Convert::ToInteger(value.ToString(), element.arraySize);
+                            element.arraySize = Convert::ToInteger(value, element.arraySize);
                             if (element.arraySize == 0)
                                 element.arraySize = 1;
                         }
                         else if (key == "pack-array")
                         {
-                            element.packArray = Convert::ToBool(value.ToString(), element.packArray);
+                            element.packArray = Convert::ToBool(value, element.packArray);
                         }
                         else if (key == "ifdef")
                         {
-                            ifDefines = NumericStructMetadata::ParseIfdef(value.ToString());
+                            ifDefines = NumericStructMetadata::ParseIfdef(value);
                         }
                         else if (key == "default-value")
                         {
@@ -818,7 +818,7 @@ namespace Finjin { namespace Common {
                                 element.defaultValue = Element::DefaultValue::NEGATIVE_Z_AXIS;
                             else
                             {
-                                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse default value '%1%'.", value.ToString()));
+                                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse default value '%1%'.", value));
                                 return;
                             }
                         }
@@ -1283,7 +1283,8 @@ namespace Finjin { namespace Common {
             return Utf8String::Empty();
         }
 
-        static uint32_t ParseIfdef(const Utf8String& value)
+        template <typename StringType>
+        static uint32_t ParseIfdef(const StringType& value)
         {
             return 0;
         }

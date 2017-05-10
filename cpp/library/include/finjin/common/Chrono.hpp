@@ -90,8 +90,13 @@ namespace Finjin { namespace Common {
         Utf8String ToString() const;
         Utf8String ToString(TimeDurationUnit unit) const;
 
+        static void Parse(TimeDuration& timeDuration, const char* s, Error& error);
         static void Parse(TimeDuration& timeDuration, const Utf8String& s, Error& error);
+        static void Parse(TimeDuration& timeDuration, const Utf8StringView& s, Error& error);
+
+        static TimeDuration Parse(const char* s, TimeDuration defaultValue = TimeDuration::Zero());
         static TimeDuration Parse(const Utf8String& s, TimeDuration defaultValue = TimeDuration::Zero());
+        static TimeDuration Parse(const Utf8StringView& s, TimeDuration defaultValue = TimeDuration::Zero());
 
     private:
         int64_t value; //Nanoseconds

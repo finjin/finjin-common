@@ -91,6 +91,23 @@ private:
 };
 
 
+//Local functions---------------------------------------------------------------
+template <typename StringType>
+StreamingFileFormat ParseFromExtension(const StringType& format, StreamingFileFormat defaultValue)
+{
+    if (format.StartsWith("fstd"))
+        return StreamingFileFormat::STREAMING_TEXT;
+    else if (format.StartsWith("fsbd"))
+        return StreamingFileFormat::STREAMING_BINARY;
+    else if (format.StartsWith("json"))
+        return StreamingFileFormat::STREAMING_JSON;
+    else if (format.StartsWith("cfg"))
+        return StreamingFileFormat::STREAMING_CONFIG;
+    else
+        return defaultValue;
+}
+
+
 //Implementation----------------------------------------------------------------
 bool StreamingFileFormatUtilities::IsValid(StreamingFileFormat format)
 {
@@ -129,18 +146,23 @@ void StreamingFileFormatUtilities::ParseFromExtension(StreamingFileFormat& forma
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse streaming file format. Invalid value in '%1%'.", s));
 }
 
+void StreamingFileFormatUtilities::ParseFromExtension(StreamingFileFormat& format, const Utf8StringView& s, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    format = ParseFromExtension(s, StreamingFileFormat::COUNT);
+    if (format == StreamingFileFormat::COUNT)
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse streaming file format. Invalid value in '%1%'.", s));
+}
+
 StreamingFileFormat StreamingFileFormatUtilities::ParseFromExtension(const Utf8String& format, StreamingFileFormat defaultValue)
 {
-    if (format.StartsWith("fstd"))
-        return StreamingFileFormat::STREAMING_TEXT;
-    else if (format.StartsWith("fsbd"))
-        return StreamingFileFormat::STREAMING_BINARY;
-    else if (format.StartsWith("json"))
-        return StreamingFileFormat::STREAMING_JSON;
-    else if (format.StartsWith("cfg"))
-        return StreamingFileFormat::STREAMING_CONFIG;
-    else
-        return defaultValue;
+    return ::ParseFromExtension(format, defaultValue);
+}
+
+StreamingFileFormat StreamingFileFormatUtilities::ParseFromExtension(const Utf8StringView& format, StreamingFileFormat defaultValue)
+{
+    return ::ParseFromExtension(format, defaultValue);
 }
 
 Utf8String StreamingFileFormatUtilities::MakeExtension(const Utf8String& assetClass, StreamingFileFormat format)

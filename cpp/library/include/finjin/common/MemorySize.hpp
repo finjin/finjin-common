@@ -37,12 +37,20 @@ namespace Finjin { namespace Common {
         static void Parse(size_t& value, const Utf8String& stringValue, Error& error);
     #endif
 
-        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);
+        //Parse with default value
         static uint32_t Parse32(const Utf8String& stringValue, uint32_t defaultValue = 0);
-
-        static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error);
         static uint64_t Parse64(const Utf8String& stringValue, uint64_t defaultValue = 0);
 
+        static uint32_t Parse32(const Utf8StringView& stringValue, uint32_t defaultValue = 0);
+        static uint64_t Parse64(const Utf8StringView& stringValue, uint64_t defaultValue = 0);
+
+        //Parse with error
+        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);        
+        static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error);
+
+        static void Parse(uint32_t& value, const Utf8StringView& stringValue, Error& error);
+        static void Parse(uint64_t& value, const Utf8StringView& stringValue, Error& error);
+        
         static Utf8String Format(uint64_t value);
     };
 

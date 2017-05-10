@@ -14,8 +14,8 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/VirtualFileHandle.hpp"
-#include "finjin/common/VirtualFileSystemRoot.hpp"
 #include "finjin/common/VirtualFileSystem.hpp"
+#include "finjin/common/VirtualFileSystemRoot.hpp"
 
 using namespace Finjin::Common;
 
@@ -79,5 +79,7 @@ void VirtualFileHandle::Close()
     {
         assert(this->fileSystem != nullptr);
         this->fileSystem->Close(*this);
+        
+        Clear(); 
     }
 }

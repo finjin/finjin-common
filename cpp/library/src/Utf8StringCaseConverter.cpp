@@ -13,12 +13,16 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
+
+#if FINJIN_TARGET_PLATFORM_IS_DESKTOP_OR_SERVER
+
 #include "finjin/common/Utf8StringCaseConverter.hpp"
 #include <nowide/stackstring.hpp>
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/WindowsUtilities.hpp"
+#else
+    #include <boost/locale.hpp>
 #endif
-#include <boost/locale.hpp>
 
 using namespace Finjin::Common;
 
@@ -132,3 +136,5 @@ bool Utf8StringCaseConverter::EqualsNoCase(const char* a, const char* b) const
 {
     return CompareNoCase(a, b) == 0;
 }
+
+#endif

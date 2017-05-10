@@ -161,6 +161,7 @@ namespace Finjin { namespace Common {
         void pop_front(size_t count);
         void pop_back();
         void pop_back(size_t count);
+        void pop_back(const char* other);
 
         size_t find(char c, size_t pos = 0) const;
         size_t find(const char* other, size_t pos = 0) const;

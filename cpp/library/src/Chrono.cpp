@@ -20,7 +20,83 @@
 using namespace Finjin::Common;
 
 
+//Macros------------------------------------------------------------------------
+#define PARSE_TIME_DURATION(unitName, generatorFunction) \
+    { \
+        auto integerString = s; \
+        integerString.pop_back(unitName); \
+        \
+        int64_t integerValue; \
+        Convert::ToNumber(integerValue, integerString, error); \
+        if (error) \
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse integer %1% time duration from '%2%'.", unitName, integerString)); \
+        else \
+            timeDuration = generatorFunction(integerValue); \
+    }
+
+
+//Local functions---------------------------------------------------------------
+template <typename T>
+void ParseTimeDuration(TimeDuration& timeDuration, const T& s, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    if (s.empty())
+        FINJIN_SET_ERROR(error, "Failed to parse empty time duration.");
+
+    else if (s.StartsWith("-"))
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Negative specifier in '%1%'.", s));
+
+    else if (s.EndsWith("nanoseconds"))
+        PARSE_TIME_DURATION("nanoseconds", TimeDuration::Nanoseconds)
+    else if (s.EndsWith("nanosecond"))
+        PARSE_TIME_DURATION("nanosecond", TimeDuration::Nanoseconds)
+
+    else if (s.EndsWith("microseconds"))
+        PARSE_TIME_DURATION("microseconds", TimeDuration::Microseconds)
+    else if (s.EndsWith("microsecond"))
+        PARSE_TIME_DURATION("microsecond", TimeDuration::Microseconds)
+
+    else if (s.EndsWith("milliseconds"))
+        PARSE_TIME_DURATION("milliseconds", TimeDuration::Milliseconds)
+    else if (s.EndsWith("millisecond"))
+        PARSE_TIME_DURATION("millisecond", TimeDuration::Milliseconds)
+
+    else if (s.EndsWith("hours"))
+        PARSE_TIME_DURATION("hours", TimeDuration::Hours)
+    else if (s.EndsWith("hour"))
+        PARSE_TIME_DURATION("hour", TimeDuration::Hours)
+
+    else if (s.EndsWith("minutes"))
+        PARSE_TIME_DURATION("minutes", TimeDuration::Minutes)
+    else if (s.EndsWith("minute"))
+        PARSE_TIME_DURATION("minute", TimeDuration::Minutes)
+
+    else if (s.EndsWith("seconds"))
+        PARSE_TIME_DURATION("seconds", TimeDuration::Seconds)
+    else if (s.EndsWith("second"))
+        PARSE_TIME_DURATION("second", TimeDuration::Seconds)
+
+    else if (s.EndsWith("ns"))
+        PARSE_TIME_DURATION("ns", TimeDuration::Nanoseconds)
+    else if (s.EndsWith("us"))
+        PARSE_TIME_DURATION("us", TimeDuration::Microseconds)
+    else if (s.EndsWith("ms"))
+        PARSE_TIME_DURATION("ms", TimeDuration::Milliseconds)
+    else if (s.EndsWith("h"))
+        PARSE_TIME_DURATION("h", TimeDuration::Hours)
+    else if (s.EndsWith("m"))
+        PARSE_TIME_DURATION("m", TimeDuration::Minutes)
+    else if (s.EndsWith("s"))
+        PARSE_TIME_DURATION("s", TimeDuration::Seconds)
+
+    else
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Unrecognized or unspecified time unit in '%1%'.", s));
+}
+
+
 //Implementation----------------------------------------------------------------
+
 //TimeDuration
 bool TimeDuration::operator == (const TimeDuration& other) const
 {
@@ -228,77 +304,53 @@ const TimeDuration& TimeDuration::Zero()
     return zero;
 }
 
-#define PARSE_DURATION(unitName, generatorFunction) \
-    {\
-        auto integerString = s;\
-        integerString.ReplaceAll(unitName, Utf8String::Empty());\
-        \
-        int64_t integerValue;\
-        Convert::ToNumber(integerValue, integerString, error);\
-        if (error)\
-            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse integer %1% time duration from '%2%'.", unitName, integerString));\
-        else \
-            timeDuration = generatorFunction(integerValue);\
-    }
+void TimeDuration::Parse(TimeDuration& timeDuration, const char* s, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    Utf8StringView sView(s);
+    ParseTimeDuration(timeDuration, sView, error);
+    if (error)
+        FINJIN_SET_ERROR_NO_MESSAGE(error);
+}
 
 void TimeDuration::Parse(TimeDuration& timeDuration, const Utf8String& s, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    if (s.empty())
-        FINJIN_SET_ERROR(error, "Failed to parse empty time duration.");
+    ParseTimeDuration(timeDuration, s, error);
+    if (error)
+        FINJIN_SET_ERROR_NO_MESSAGE(error);
+}
 
-    else if (s.StartsWith("-"))
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Negative specifier in '%1%'.", s));
+void TimeDuration::Parse(TimeDuration& timeDuration, const Utf8StringView& s, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
 
-    else if (s.EndsWith("nanoseconds"))
-        PARSE_DURATION("nanoseconds", Nanoseconds)
-    else if (s.EndsWith("nanosecond"))
-        PARSE_DURATION("nanosecond", Nanoseconds)
+    ParseTimeDuration(timeDuration, s, error);
+    if (error)
+        FINJIN_SET_ERROR_NO_MESSAGE(error);
+}
 
-    else if (s.EndsWith("microseconds"))
-        PARSE_DURATION("microseconds", Microseconds)
-    else if (s.EndsWith("microsecond"))
-        PARSE_DURATION("microsecond", Microseconds)
+TimeDuration TimeDuration::Parse(const char* s, TimeDuration defaultValue)
+{
+    Utf8StringView sView(s);
 
-    else if (s.EndsWith("milliseconds"))
-        PARSE_DURATION("milliseconds", Milliseconds)
-    else if (s.EndsWith("millisecond"))
-        PARSE_DURATION("millisecond", Milliseconds)
-
-    else if (s.EndsWith("hours"))
-        PARSE_DURATION("hours", Hours)
-    else if (s.EndsWith("hour"))
-        PARSE_DURATION("hour", Hours)
-
-    else if (s.EndsWith("minutes"))
-        PARSE_DURATION("minutes", Minutes)
-    else if (s.EndsWith("minute"))
-        PARSE_DURATION("minute", Minutes)
-
-    else if (s.EndsWith("seconds"))
-        PARSE_DURATION("seconds", Seconds)
-    else if (s.EndsWith("second"))
-        PARSE_DURATION("second", Seconds)
-
-    else if (s.EndsWith("ns"))
-        PARSE_DURATION("ns", Nanoseconds)
-    else if (s.EndsWith("us"))
-        PARSE_DURATION("us", Microseconds)
-    else if (s.EndsWith("ms"))
-        PARSE_DURATION("ms", Milliseconds)
-    else if (s.EndsWith("h"))
-        PARSE_DURATION("h", Hours)
-    else if (s.EndsWith("m"))
-        PARSE_DURATION("m", Minutes)
-    else if (s.EndsWith("s"))
-        PARSE_DURATION("s", Seconds)
-
-    else
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse non-negative time duration. Unrecognized or unspecified time unit in '%1%'.", s));
+    FINJIN_DECLARE_ERROR(error);
+    TimeDuration parsed;    
+    Parse(parsed, sView, error);
+    return error ? defaultValue : parsed;
 }
 
 TimeDuration TimeDuration::Parse(const Utf8String& s, TimeDuration defaultValue)
+{
+    FINJIN_DECLARE_ERROR(error);
+    TimeDuration parsed;
+    Parse(parsed, s, error);
+    return error ? defaultValue : parsed;
+}
+
+TimeDuration TimeDuration::Parse(const Utf8StringView& s, TimeDuration defaultValue)
 {
     FINJIN_DECLARE_ERROR(error);
     TimeDuration parsed;

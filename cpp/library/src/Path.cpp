@@ -22,13 +22,12 @@
 #include "FileAccessor.hpp"
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/path.hpp>
-#include <boost/filesystem/detail/utf8_codecvt_facet.hpp>
-#include <boost/regex.hpp>
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include "finjin/common/WindowsUtilities.hpp"
 
     #if !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         #include <Shlobj.h>
+        #include <boost/filesystem/detail/utf8_codecvt_facet.hpp>
     #endif
 #else
     #include <sys/types.h>
@@ -1079,6 +1078,17 @@ void Path::pop_back(size_t count)
 {
     this->l -= std::min(count, this->l);
     this->s[this->l] = 0;
+}
+
+void Path::pop_back(const char* other)
+{
+    auto otherLength = other != nullptr ? strlen(other) : (size_t)0;
+    while (this->l > 0 && otherLength > 0 && this->s[this->l - 1] == other[otherLength - 1])
+    {
+        this->s[this->l - 1] = 0;
+        this->l--;
+        otherLength--;
+    }
 }
 
 size_t Path::find(char c, size_t pos) const

@@ -44,8 +44,8 @@ static bool IsIPV6(const Utf8String& host)
     return isIPV6;
 }
 
-template <typename T>
-ValueOrError<void> _Init(Uri* _this, const T& s)
+template <typename Begin, typename End>
+ValueOrError<void> _Init(Uri* _this, Begin begin, End end)
 {
     _this->scheme.clear();
     _this->host.clear();
@@ -59,7 +59,7 @@ ValueOrError<void> _Init(Uri* _this, const T& s)
 
     state.uri = &parsedUri;
     _this->isValid = false;
-    if (uriParseUriA(&state, s.c_str()) == URI_SUCCESS)
+    if (uriParseUriExA(&state, begin, end) == URI_SUCCESS)
     {
         if (_this->scheme.assign(parsedUri.scheme.first, parsedUri.scheme.afterLast).HasError())
         {
@@ -105,6 +105,12 @@ ValueOrError<void> _Init(Uri* _this, const T& s)
     uriFreeUriMembersA(&parsedUri);
 
     return ValueOrError<void>();
+}
+
+template <typename T>
+ValueOrError<void> _Init(Uri* _this, const T& s)
+{
+    return _Init(_this, s.begin(), s.end());
 }
 
 template <typename T>
@@ -192,7 +198,30 @@ Uri::Uri(Allocator* allocator) :
     this->isValid = false;
 }
 
+Uri::Uri(const char* s, Allocator* allocator) :
+    scheme(allocator),
+    host(allocator),
+    port(allocator),
+    path(allocator),
+    query(allocator),
+    fragment(allocator)
+{
+    Utf8StringView sView(s);
+    _Init(this, sView);
+}
+
 Uri::Uri(const Utf8String& s, Allocator* allocator) :
+    scheme(allocator),
+    host(allocator),
+    port(allocator),
+    path(allocator),
+    query(allocator),
+    fragment(allocator)
+{
+    _Init(this, s);
+}
+
+Uri::Uri(const Utf8StringView& s, Allocator* allocator) :
     scheme(allocator),
     host(allocator),
     port(allocator),
@@ -534,7 +563,26 @@ SimpleUri::SimpleUri(Allocator* allocator) :
 {
 }
 
+SimpleUri::SimpleUri(const char* s, Allocator* allocator) :
+    scheme(allocator),
+    host(allocator),
+    path(allocator),
+    fragment(allocator)
+{
+    Utf8StringView sView(s);
+    _Init(this, sView);
+}
+
 SimpleUri::SimpleUri(const Utf8String& s, Allocator* allocator) :
+    scheme(allocator),
+    host(allocator),
+    path(allocator),
+    fragment(allocator)
+{
+    _Init(this, s);
+}
+
+SimpleUri::SimpleUri(const Utf8StringView& s, Allocator* allocator) :
     scheme(allocator),
     host(allocator),
     path(allocator),
@@ -608,6 +656,11 @@ void SimpleUri::clear()
 }
 
 ValueOrError<void> SimpleUri::operator = (const Utf8String& s)
+{
+    return _Init(this, s);
+}
+
+ValueOrError<void> SimpleUri::operator = (const Utf8StringView& s)
 {
     return _Init(this, s);
 }

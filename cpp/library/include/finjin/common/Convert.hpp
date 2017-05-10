@@ -25,7 +25,7 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API Convert
     {
     public:
-        //Number
+        //Parse number with default value
     #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static size_t ToNumber(const Utf8String& stringValue, size_t defaultValue = 0);
     #endif
@@ -40,6 +40,21 @@ namespace Finjin { namespace Common {
         static float ToNumber(const Utf8String& stringValue, float defaultValue = 0);
         static double ToNumber(const Utf8String& stringValue, double defaultValue = 0);
 
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
+        static size_t ToNumber(const Utf8StringView& stringValue, size_t defaultValue = 0);
+    #endif
+        static int8_t ToNumber(const Utf8StringView& stringValue, int8_t defaultValue = 0);
+        static uint8_t ToNumber(const Utf8StringView& stringValue, uint8_t defaultValue = 0);
+        static int16_t ToNumber(const Utf8StringView& stringValue, int16_t defaultValue = 0);
+        static uint16_t ToNumber(const Utf8StringView& stringValue, uint16_t defaultValue = 0);
+        static int32_t ToNumber(const Utf8StringView& stringValue, int32_t defaultValue = 0);
+        static uint32_t ToNumber(const Utf8StringView& stringValue, uint32_t defaultValue = 0);
+        static int64_t ToNumber(const Utf8StringView& stringValue, int64_t defaultValue = 0);
+        static uint64_t ToNumber(const Utf8StringView& stringValue, uint64_t defaultValue = 0);
+        static float ToNumber(const Utf8StringView& stringValue, float defaultValue = 0);
+        static double ToNumber(const Utf8StringView& stringValue, double defaultValue = 0);
+
+        //Parse number with error
     #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static void ToNumber(size_t& value, const Utf8String& stringValue, Error& error);
     #endif
@@ -58,7 +73,25 @@ namespace Finjin { namespace Common {
         static void ToNumberInRange(unsigned short& value, const Utf8String& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
         static void ToNumberInRange(float& value, const Utf8String& stringValue, const float minValue, const float maxValue, Error& error);
 
-        //Integer
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
+        static void ToNumber(size_t& value, const Utf8StringView& stringValue, Error& error);
+    #endif
+        static void ToNumber(int8_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(uint8_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(int16_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(uint16_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(int32_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(uint32_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(int64_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(uint64_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(float& value, const Utf8StringView& stringValue, Error& error);
+        static void ToNumber(double& value, const Utf8StringView& stringValue, Error& error);
+
+        static void ToNumberInRange(int& value, const Utf8StringView& stringValue, const int minValue, const int maxValue, Error& error);
+        static void ToNumberInRange(unsigned short& value, const Utf8StringView& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
+        static void ToNumberInRange(float& value, const Utf8StringView& stringValue, const float minValue, const float maxValue, Error& error);
+
+        //Parse integer with default value
     #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static size_t ToInteger(const Utf8String& stringValue, size_t defaultValue = 0);
     #endif
@@ -72,6 +105,19 @@ namespace Finjin { namespace Common {
         static uint64_t ToInteger(const Utf8String& stringValue, uint64_t defaultValue = 0);
 
     #if FINJIN_TARGET_PLATFORM_IS_APPLE
+        static size_t ToInteger(const Utf8StringView& stringValue, size_t defaultValue = 0);
+    #endif
+        static int8_t ToInteger(const Utf8StringView& stringValue, int8_t defaultValue = 0);
+        static uint8_t ToInteger(const Utf8StringView& stringValue, uint8_t defaultValue = 0);
+        static int16_t ToInteger(const Utf8StringView& stringValue, int16_t defaultValue = 0);
+        static uint16_t ToInteger(const Utf8StringView& stringValue, uint16_t defaultValue = 0);
+        static int32_t ToInteger(const Utf8StringView& stringValue, int32_t defaultValue = 0);
+        static uint32_t ToInteger(const Utf8StringView& stringValue, uint32_t defaultValue = 0);
+        static int64_t ToInteger(const Utf8StringView& stringValue, int64_t defaultValue = 0);
+        static uint64_t ToInteger(const Utf8StringView& stringValue, uint64_t defaultValue = 0);
+
+        //Parse integer with error
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
         static void ToInteger(size_t& value, const Utf8String& stringValue, Error& error);
     #endif
         static void ToInteger(int8_t& value, const Utf8String& stringValue, Error& error);
@@ -83,11 +129,31 @@ namespace Finjin { namespace Common {
         static void ToInteger(int64_t& value, const Utf8String& stringValue, Error& error);
         static void ToInteger(uint64_t& value, const Utf8String& stringValue, Error& error);
 
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
+        static void ToInteger(size_t& value, const Utf8StringView& stringValue, Error& error);
+    #endif
+        static void ToInteger(int8_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(uint8_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(int16_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(uint16_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(int32_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(uint32_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(int64_t& value, const Utf8StringView& stringValue, Error& error);
+        static void ToInteger(uint64_t& value, const Utf8StringView& stringValue, Error& error);
+
+        //Parse integer with range and error
         static void ToIntegerInRange(int& value, const Utf8String& stringValue, const int minValue, const int maxValue, Error& error);
         static void ToIntegerInRange(unsigned short& value, const Utf8String& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
-        static void ToIntegerInRange(float& value, const Utf8String& stringValue, const float minValue, const float maxValue, Error& error);
+        
+        static void ToIntegerInRange(int& value, const Utf8StringView& stringValue, const int minValue, const int maxValue, Error& error);
+        static void ToIntegerInRange(unsigned short& value, const Utf8StringView& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
+        
 
+        //Boolean with default value
         static bool ToBool(const Utf8String& stringValue, bool defaultValue = false);
+        static bool ToBool(const Utf8StringView& stringValue, bool defaultValue = false);
+
+        //ToString()----------------------------------------
         static const Utf8String& ToString(bool value);
 
         static Utf8String ToString(int8_t value);

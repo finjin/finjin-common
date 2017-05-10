@@ -65,7 +65,7 @@ static StaticVector<uint32_t, CommonConstants::MAX_CPUS> ParseIDsFromLine(const 
                 if (Utf8String::IsDigits(range[0].begin(), range[0].end()))
                 {
                     uint32_t id = 0;
-                    id = Convert::ToInteger(range[0].ToString(), id);
+                    id = Convert::ToInteger(range[0], id);
                     if (!ids.contains(id))
                         ids.push_back(id);
                 }
@@ -77,10 +77,10 @@ static StaticVector<uint32_t, CommonConstants::MAX_CPUS> ParseIDsFromLine(const 
                     Utf8String::IsDigits(range[1].begin(), range[1].end()))
                 {
                     uint32_t first = 0;
-                    first = Convert::ToInteger(range[0].ToString(), first);
+                    first = Convert::ToInteger(range[0], first);
 
                     uint32_t last = 0;
-                    last = Convert::ToInteger(range[1].ToString(), last);
+                    last = Convert::ToInteger(range[1], last);
 
                     for (auto i = first; i <= last; ++i)
                     {
@@ -220,7 +220,8 @@ void LogicalCpus::Enumerate()
                     if (!fileFinder.GetCurrentName(maybeNodePath).HasError() && maybeNodePath.StartsWith("node"))
                     {
                         //It's a file starting with 'node'
-                        logicalCpu.nodeID = Convert::ToInteger(&maybeNodePath[4], logicalCpu.nodeID);
+                        Utf8StringView maybeNodePathString(&maybeNodePath[4]);
+                        logicalCpu.nodeID = Convert::ToInteger(maybeNodePathString, logicalCpu.nodeID);
                         break;
                     }
                 } while (fileFinder.Next());

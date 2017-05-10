@@ -15,6 +15,10 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/FinjinCommonLibrary.hpp"
+
+#if FINJIN_TARGET_PLATFORM_IS_DESKTOP_OR_SERVER
+
 #include "finjin/common/Utf8String.hpp"
 
 
@@ -50,3 +54,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

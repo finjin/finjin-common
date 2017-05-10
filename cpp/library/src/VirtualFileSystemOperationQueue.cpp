@@ -80,7 +80,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                 {
                     if (key == "queue-size")
                     {
-                        this->queueSize = Convert::ToInteger(value.ToString(), this->queueSize);
+                        this->queueSize = Convert::ToInteger(value, this->queueSize);
                         if (this->queueSize < 2)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'queue-size'.", value));
@@ -89,7 +89,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                     }
                     else if (key == "read-bytes-per-second")
                     {
-                        MemorySize::Parse(this->requestedReadByteCountPerSecond, value.ToString(), error);
+                        MemorySize::Parse(this->requestedReadByteCountPerSecond, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'read-bytes-per-second'.", value));
@@ -98,7 +98,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                     }
                     else if (key == "write-bytes-per-second")
                     {
-                        MemorySize::Parse(this->requestedWriteByteCountPerSecond, value.ToString(), error);
+                        MemorySize::Parse(this->requestedWriteByteCountPerSecond, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'write-bytes-per-second'.", value));
@@ -107,7 +107,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                     }
                     else if (key == "read-buffer-bytes")
                     {
-                        MemorySize::Parse(this->readBufferSize, value.ToString(), error);
+                        MemorySize::Parse(this->readBufferSize, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'read-buffer-bytes'.", value));
@@ -116,7 +116,7 @@ void VirtualFileSystemOperationQueue::Settings::ParseSettings(const ByteBufferRe
                     }
                     else if (key == "create-read-buffer")
                     {
-                        this->createReadBuffer = Convert::ToBool(value.ToString());
+                        this->createReadBuffer = Convert::ToBool(value);
                     }
                 }
 

@@ -13,6 +13,9 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
+
+#if FINJIN_TARGET_PLATFORM_IS_DESKTOP_OR_SERVER
+
 #include "finjin/common/StringMatcher.hpp"
 #include <boost/regex.hpp>
 
@@ -91,3 +94,5 @@ bool StringMatcher::WildcardSearch(Utf8String& found, const Path& src, const Utf
 {
     return DoWildcardSearch(found, src, wildcardPattern, caseSensitive);
 }
+
+#endif

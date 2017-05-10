@@ -56,7 +56,7 @@ void MemoryArenaSettings::ParseSettings(const ByteBufferReader& configFileBuffer
                 {
                     if (key == "size")
                     {
-                        MemorySize::Parse(this->byteCount, value.ToString(), error);
+                        MemorySize::Parse(this->byteCount, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'size'.", value));
@@ -65,7 +65,7 @@ void MemoryArenaSettings::ParseSettings(const ByteBufferReader& configFileBuffer
                     }
                     else if (key == "alignment")
                     {
-                        this->alignment = Convert::ToInteger(value.ToString(), this->alignment);
+                        this->alignment = Convert::ToInteger(value, this->alignment);
                     }
                 }
 

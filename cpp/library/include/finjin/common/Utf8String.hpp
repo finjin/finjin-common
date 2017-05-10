@@ -67,6 +67,7 @@ namespace Finjin { namespace Common {
         Utf8String(size_t count, char c, Allocator* allocator = nullptr);
         Utf8String(size_t count, Allocator* allocator);
         Utf8String(const Utf8String& other, Allocator* allocator = nullptr);
+        Utf8String(const Utf8StringView& other, Allocator* allocator = nullptr);
         Utf8String(Utf8String&& other);
         ~Utf8String();
 
@@ -165,6 +166,7 @@ namespace Finjin { namespace Common {
         void pop_front(size_t count);
         void pop_back();
         void pop_back(size_t count);
+        void pop_back(const char* other);
 
         size_t find(char c, size_t pos = 0) const;
         size_t find(const char* other, size_t pos = 0) const;
@@ -365,8 +367,13 @@ namespace Finjin { namespace Common {
 
         size_t size() const;
         size_t length() const;
+        
+        void pop_back();
+        void pop_back(size_t count);
+        void pop_back(const char* other);
 
         size_t find(char c, size_t pos = 0) const;
+        size_t find(const char* other, size_t pos = 0) const;
 
         template <typename T>
         ValueOrError<void> substr(T& result, size_t pos, size_t len = npos) const
@@ -382,6 +389,12 @@ namespace Finjin { namespace Common {
         Utf8StringView substr(size_t pos, size_t len = npos) const;
 
         const char& operator [] (size_t i) const;
+        
+        bool IsDigits() const;
+
+        int CompareNoCaseAscii(const char* other) const;
+
+        bool EqualsNoCaseAscii(const char* other) const;
 
         bool StartsWith(const char* other) const;
         bool StartsWith(const char* other, size_t otherLength) const;

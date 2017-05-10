@@ -29,7 +29,9 @@ namespace Finjin { namespace Common {
     {
     public:
         Uri(Allocator* allocator = nullptr);
+        Uri(const char* s, Allocator* allocator = nullptr);
         Uri(const Utf8String& s, Allocator* allocator = nullptr);
+        Uri(const Utf8StringView& s, Allocator* allocator = nullptr);
         Uri(const Uri& other, Allocator* allocator = nullptr);
         Uri(Uri&& other);
         ~Uri();
@@ -236,7 +238,9 @@ namespace Finjin { namespace Common {
     {
     public:
         SimpleUri(Allocator* allocator = nullptr);
+        SimpleUri(const char* s, Allocator* allocator = nullptr);
         SimpleUri(const Utf8String& s, Allocator* allocator = nullptr);
+        SimpleUri(const Utf8StringView& s, Allocator* allocator = nullptr);
         SimpleUri(const SimpleUri& other, Allocator* allocator = nullptr);
         SimpleUri(SimpleUri&& other);
         ~SimpleUri();
@@ -250,6 +254,7 @@ namespace Finjin { namespace Common {
         void clear();
 
         ValueOrError<void> operator = (const Utf8String& s);
+        ValueOrError<void> operator = (const Utf8StringView& s);
         ValueOrError<void> operator = (const Path& s);
         ValueOrError<void> operator = (const SimpleUri& other);
         ValueOrError<void> operator = (SimpleUri&& other);

@@ -239,7 +239,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                 {
                     if (key == "max-job-count")
                     {
-                        Convert::ToInteger(this->maxJobCount, value.ToString(), error);
+                        Convert::ToInteger(this->maxJobCount, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'max-job-count'.", value));
@@ -248,7 +248,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                     }
                     else if (key == "thread-job-object-heap-size")
                     {
-                        MemorySize::Parse(this->threadJobObjectHeapSize, value.ToString(), error);
+                        MemorySize::Parse(this->threadJobObjectHeapSize, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'thread-job-object-heap-size'.", value));
@@ -257,7 +257,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                     }
                     else if (key == "fiber-count")
                     {
-                        Convert::ToInteger(this->fiberCount.requested, value.ToString(), error);
+                        Convert::ToInteger(this->fiberCount.requested, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'fiber-count'.", value));
@@ -266,7 +266,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                     }
                     else if (key == "stack-size")
                     {
-                        MemorySize::Parse(this->threadStackByteCount, value.ToString(), error);
+                        MemorySize::Parse(this->threadStackByteCount, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'stack-size'.", value));
@@ -275,7 +275,7 @@ void JobSystem::Settings::ParseSettings(const ByteBufferReader& configFileBuffer
                     }
                     else if (key == "stack-reserve")
                     {
-                        MemorySize::Parse(this->threadStackReserveByteCount, value.ToString(), error);
+                        MemorySize::Parse(this->threadStackReserveByteCount, value, error);
                         if (error)
                         {
                             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Invalid value '%1%' for setting 'stack-reserve'.", value));
