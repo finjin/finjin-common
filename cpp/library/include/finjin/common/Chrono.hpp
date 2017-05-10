@@ -60,12 +60,12 @@ namespace Finjin { namespace Common {
 
         bool IsZero() const;
 
-        int64_t ToNanoseconds() const;
-        int64_t ToMicroseconds() const;
-        int64_t ToMilliseconds() const;
-        int64_t ToSeconds() const;
-        int64_t ToMinutes() const;
-        int64_t ToHours() const;
+        uint64_t ToNanoseconds() const;
+        uint64_t ToMicroseconds() const;
+        uint64_t ToMilliseconds() const;
+        uint64_t ToSeconds() const;
+        uint64_t ToMinutes() const;
+        uint64_t ToHours() const;
 
         double ToSecondsDouble() const;
         SimpleTimeDelta ToSimpleTimeDelta() const;
@@ -75,15 +75,15 @@ namespace Finjin { namespace Common {
         TimeDuration operator * (const TimeDuration& other) const;
         TimeDuration operator / (const TimeDuration& other) const;
 
-        static TimeDuration Nanoseconds(int64_t value);
-        static TimeDuration Microseconds(int64_t value);
-        static TimeDuration Milliseconds(int64_t value);
-        static TimeDuration Seconds(int64_t value);
+        static TimeDuration Nanoseconds(uint64_t value);
+        static TimeDuration Microseconds(uint64_t value);
+        static TimeDuration Milliseconds(uint64_t value);
+        static TimeDuration Seconds(uint64_t value);
         static TimeDuration Seconds(int value);
         static TimeDuration Seconds(double value, TimeDurationUnit resolution);
         static TimeDuration Seconds(float value, TimeDurationUnit resolution);
-        static TimeDuration Minutes(int64_t value);
-        static TimeDuration Hours(int64_t value);
+        static TimeDuration Minutes(uint64_t value);
+        static TimeDuration Hours(uint64_t value);
 
         static const TimeDuration& Zero();
 
@@ -99,7 +99,7 @@ namespace Finjin { namespace Common {
         static TimeDuration Parse(const Utf8StringView& s, TimeDuration defaultValue = TimeDuration::Zero());
 
     private:
-        int64_t value; //Nanoseconds
+        uint64_t value; //Nanoseconds
     };
 
     /** A date/time. */

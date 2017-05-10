@@ -133,39 +133,39 @@ bool TimeDuration::IsZero() const
     return *this == Zero();
 }
 
-int64_t TimeDuration::ToNanoseconds() const
+uint64_t TimeDuration::ToNanoseconds() const
 {
     return this->value;
 }
 
-int64_t TimeDuration::ToMicroseconds() const
+uint64_t TimeDuration::ToMicroseconds() const
 {
-    return this->value / 1000ll;
+    return this->value / 1000ull;
 }
 
-int64_t TimeDuration::ToMilliseconds() const
+uint64_t TimeDuration::ToMilliseconds() const
 {
-    return this->value / 1000000ll;
+    return this->value / 1000000ull;
 }
 
-int64_t TimeDuration::ToSeconds() const
+uint64_t TimeDuration::ToSeconds() const
 {
-    return this->value / 1000000000ll;
+    return this->value / 1000000000ull;
 }
 
-int64_t TimeDuration::ToMinutes() const
+uint64_t TimeDuration::ToMinutes() const
 {
-    return this->value / (1000000000ll * 60ll);
+    return this->value / (1000000000ull * 60ull);
 }
 
-int64_t TimeDuration::ToHours() const
+uint64_t TimeDuration::ToHours() const
 {
-    return this->value / (1000000000ll * 60ll * 60ll);
+    return this->value / (1000000000ull * 60ull * 60ull);
 }
 
 double TimeDuration::ToSecondsDouble() const
 {
-    return (double)this->value / 1000000000.0;
+    return static_cast<double>(this->value) / 1000000000.0;
 }
 
 SimpleTimeDelta TimeDuration::ToSimpleTimeDelta() const
@@ -239,39 +239,39 @@ TimeDuration TimeDuration::operator / (const TimeDuration& other) const
     return result;
 }
 
-TimeDuration TimeDuration::Nanoseconds(int64_t value)
+TimeDuration TimeDuration::Nanoseconds(uint64_t value)
 {
     return reinterpret_cast<TimeDuration&>(value);
 }
 
-TimeDuration TimeDuration::Microseconds(int64_t value)
+TimeDuration TimeDuration::Microseconds(uint64_t value)
 {
-    return Nanoseconds(value * 1000ll);
+    return Nanoseconds(value * 1000ull);
 }
 
-TimeDuration TimeDuration::Milliseconds(int64_t value)
+TimeDuration TimeDuration::Milliseconds(uint64_t value)
 {
-    return Nanoseconds(value * 1000000ll);
+    return Nanoseconds(value * 1000000ull);
 }
 
-TimeDuration TimeDuration::Seconds(int64_t value)
+TimeDuration TimeDuration::Seconds(uint64_t value)
 {
-    return Nanoseconds(value * 1000000000ll);
+    return Nanoseconds(value * 1000000000ull);
 }
 
 TimeDuration TimeDuration::Seconds(int value)
 {
-    return Seconds(static_cast<int64_t>(value));
+    return Seconds(static_cast<uint64_t>(value));
 }
 
 TimeDuration TimeDuration::Seconds(double value, TimeDurationUnit resolution)
 {
     switch (resolution)
     {
-        case TimeDurationUnit::NANOSECONDS: return Nanoseconds(static_cast<int64_t>(value * 1000000000.0)); //Unlikely
-        case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<int64_t>(value * 1000000.0));
-        case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<int64_t>(value * 1000.0));
-        case TimeDurationUnit::SECONDS: return Seconds(static_cast<int64_t>(value));
+        case TimeDurationUnit::NANOSECONDS: return Nanoseconds(static_cast<uint64_t>(value * 1000000000.0)); //Unlikely
+        case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<uint64_t>(value * 1000000.0));
+        case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<uint64_t>(value * 1000.0));
+        case TimeDurationUnit::SECONDS: return Seconds(static_cast<uint64_t>(value));
         default: return Zero();
     }
 }
@@ -280,22 +280,22 @@ TimeDuration TimeDuration::Seconds(float value, TimeDurationUnit resolution)
 {
     switch (resolution)
     {
-        case TimeDurationUnit::NANOSECONDS: return Nanoseconds(static_cast<int64_t>(value * 1000000000.0f)); //Unlikely
-        case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<int64_t>(value * 1000000.0f)); //Unlikely
-        case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<int64_t>(value * 1000.0f));
-        case TimeDurationUnit::SECONDS: return Seconds(static_cast<int64_t>(value));
+        case TimeDurationUnit::NANOSECONDS: return Nanoseconds(static_cast<uint64_t>(value * 1000000000.0f)); //Unlikely
+        case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<uint64_t>(value * 1000000.0f)); //Unlikely
+        case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<uint64_t>(value * 1000.0f));
+        case TimeDurationUnit::SECONDS: return Seconds(static_cast<uint64_t>(value));
         default: return Zero();
     }
 }
 
-TimeDuration TimeDuration::Minutes(int64_t value)
+TimeDuration TimeDuration::Minutes(uint64_t value)
 {
-    return Nanoseconds(value * 1000000000ll * 60ll);
+    return Nanoseconds(value * 1000000000ull * 60ull);
 }
 
-TimeDuration TimeDuration::Hours(int64_t value)
+TimeDuration TimeDuration::Hours(uint64_t value)
 {
-    return Nanoseconds(value * 1000000000ll * 60ll * 60ll);
+    return Nanoseconds(value * 1000000000ull * 60ull * 60ull);
 }
 
 const TimeDuration& TimeDuration::Zero()
