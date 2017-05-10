@@ -178,13 +178,16 @@ Utf8String TimeDuration::ToString() const
     auto result = ToString(TimeDurationUnit::NANOSECONDS);
     if (result.EndsWith("000ns"))
     {
-        result.ReplaceFirst("000ns", "us");
+        result.pop_back("000ns");
+        result.append("us");
         if (result.EndsWith("000us"))
         {
-            result.ReplaceFirst("000us", "ms");
+            result.pop_back("000us");
+            result.append("ms");
             if (result.EndsWith("000ms"))
             {
-                result.ReplaceFirst("000ms", "s");
+                result.pop_back("000ms");
+                result.append("s");
             }
         }
     }
