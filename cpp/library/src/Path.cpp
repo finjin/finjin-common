@@ -1148,7 +1148,7 @@ size_t Path::rfind(const char* other, size_t pos) const
 
     auto range = boost::make_iterator_range(this->s, this->s + pos);
 
-    const char* safeOther = Utf8String::GetNonNull(other);
+    auto safeOther = Utf8String::GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
 
     auto foundAt = boost::algorithm::find_last(range, otherRange);
@@ -1464,8 +1464,8 @@ bool Path::StartsWith(const Path& other) const
     else if (this->l < other.l)
         return false;
 
-    const char* thisS = this->s;
-    const char* otherS = other.s;
+    auto thisS = this->s;
+    auto otherS = other.s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
@@ -1483,8 +1483,8 @@ bool Path::StartsWith(const Utf8String& other) const
     else if (this->l < other.l)
         return false;
 
-    const char* thisS = this->s;
-    const char* otherS = other.s;
+    auto thisS = this->s;
+    auto otherS = other.s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
@@ -1497,14 +1497,14 @@ bool Path::StartsWith(const Utf8String& other) const
 
 bool Path::StartsWith(const char* other) const
 {
-    const char* otherS = Utf8String::GetNonNull(other);
+    auto otherS = Utf8String::GetNonNull(other);
     if (*otherS == 0)
     {
         //Input string is empty
         return false;
     }
 
-    const char* thisS = this->s;
+    auto thisS = this->s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;

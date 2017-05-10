@@ -850,7 +850,7 @@ size_t Utf8String::rfind(const char* other, size_t pos) const
 
     auto range = boost::make_iterator_range(this->s, this->s + pos);
 
-    const char* safeOther = GetNonNull(other);
+    auto safeOther = GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
 
     auto foundAt = boost::algorithm::find_last(range, otherRange);
@@ -1202,8 +1202,8 @@ bool Utf8String::StartsWith(const Utf8String& other) const
     else if (this->l < other.l)
         return false;
 
-    const char* thisS = this->s;
-    const char* otherS = other.s;
+    auto thisS = this->s;
+    auto otherS = other.s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
@@ -1216,14 +1216,14 @@ bool Utf8String::StartsWith(const Utf8String& other) const
 
 bool Utf8String::StartsWith(const char* other) const
 {
-    const char* otherS = GetNonNull(other);
+    auto otherS = GetNonNull(other);
     if (*otherS == 0)
     {
         //Input string is empty
         return false;
     }
 
-    const char* thisS = this->s;
+    auto thisS = this->s;
     while (*thisS == *otherS && *thisS && *otherS)
     {
         ++thisS;
