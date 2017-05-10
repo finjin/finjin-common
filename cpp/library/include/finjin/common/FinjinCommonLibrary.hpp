@@ -147,29 +147,37 @@
 
 
 //Set up platform defaults---------------
+
+//Android?
 #if defined(__ANDROID__)
     #define FINJIN_TARGET_PLATFORM_IS_ANDROID 1 //Note: FINJIN_TARGET_PLATFORM_IS_LINUX will also be 1
 #else
     #define FINJIN_TARGET_PLATFORM_IS_ANDROID 0
 #endif
 
+//Simulated environment?
 #if !defined(FINJIN_TARGET_PLATFORM_SIMULATED)
     #define FINJIN_TARGET_PLATFORM_SIMULATED 0
 #endif
 
+//Universal Windows Platform?
 #if !defined(FINJIN_TARGET_PLATFORM_IS_WINDOWS)
     #define FINJIN_TARGET_PLATFORM_IS_WINDOWS 0
     #define FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP 0
 #endif
 
+//Apple?
 #if !defined(FINJIN_TARGET_PLATFORM_IS_APPLE)
     #define FINJIN_TARGET_PLATFORM_IS_APPLE 0
 #endif
 
+//Linux?
 #if !defined(FINJIN_TARGET_PLATFORM_IS_LINUX)
     #define FINJIN_TARGET_PLATFORM_IS_LINUX 0
 #endif
 
+//Desktop/server/mobile?
+//This is just a hint, since there is some overlap with respect to what's considered desktop/server/mobile
 #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32 || \
     FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS || \
     (FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_LINUX && !FINJIN_TARGET_PLATFORM_IS_ANDROID)

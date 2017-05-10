@@ -1444,12 +1444,12 @@ int Path::Compare(const char* other) const
 
 bool Path::Equals(const Path& other) const
 {
-    return strcmp(this->s, other.s) == 0;
+    return this->l == other.l && strcmp(this->s, other.s) == 0;
 }
 
 bool Path::Equals(const Utf8String& other) const
 {
-    return strcmp(this->s, other.s) == 0;
+    return this->l == other.length() && strcmp(this->s, other.s) == 0;
 }
 
 bool Path::Equals(const char* other) const

@@ -1177,7 +1177,7 @@ int Utf8String::CompareNoCaseAscii(const char* other) const
 
 bool Utf8String::Equals(const Utf8String& other) const
 {
-    return strcmp(this->s, other.s) == 0;
+    return this->l == other.l && strcmp(this->s, other.s) == 0;
 }
 
 bool Utf8String::Equals(const char* other) const

@@ -39,6 +39,54 @@ void GeneralAllocator::Settings::ParseSettings(const ByteBufferReader& configFil
 {
 }
 
+//GeneralAllocator::BlockRange
+GeneralAllocator::BlockRange::BlockRange()
+{
+    this->head = this->tail = nullptr;
+}
+
+GeneralAllocator::BlockRange::BlockRange(MemoryBlockHeader* first, MemoryBlockHeader* second)
+{
+    this->head = first;
+    this->tail = second;
+}
+
+void GeneralAllocator::BlockRange::AddOrCombineWithTail(MemoryBlockHeader* blockHeader)
+{
+    if (this->tail != nullptr)
+    {
+        if (this->tail->GetByteEnd() == blockHeader->GetByteStart())
+            this->tail->size += blockHeader->size;
+        else
+        {
+            this->tail->next = blockHeader;
+            blockHeader->previous = this->tail;
+            
+            this->tail = blockHeader;
+        }
+    }
+    else
+        this->head = this->tail = blockHeader;
+}
+
+bool GeneralAllocator::BlockRange::empty() const
+{
+    return this->head == nullptr;
+}
+
+void GeneralAllocator::BlockRange::clear()
+{
+    this->head = this->tail = nullptr;
+}
+
+size_t GeneralAllocator::BlockRange::GetTotal() const
+{
+    size_t total = 0;
+    for (auto node = this->head; node != nullptr; node = node->next)
+        total += node->size;
+    return total;
+}
+
 //GeneralAllocator
 GeneralAllocator::GeneralAllocator()
 {

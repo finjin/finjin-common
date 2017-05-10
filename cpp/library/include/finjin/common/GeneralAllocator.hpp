@@ -132,59 +132,22 @@ namespace Finjin { namespace Common {
 
         struct BlockRange
         {
+            BlockRange();
+            BlockRange(MemoryBlockHeader* first, MemoryBlockHeader* second);
+
+            void AddOrCombineWithTail(MemoryBlockHeader* blockHeader);
+
+            bool empty() const;
+
+            void clear();
+
+            size_t GetTotal() const;
+            
             MemoryBlockHeader* head;
             MemoryBlockHeader* tail;
-
-            BlockRange()
-            {
-                this->head = this->tail = nullptr;
-            }
-
-            BlockRange(MemoryBlockHeader* first, MemoryBlockHeader* second)
-            {
-                this->head = first;
-                this->tail = second;
-            }
-
-            void AddOrCombineWithTail(MemoryBlockHeader* blockHeader)
-            {
-                if (this->tail != nullptr)
-                {
-                    if (this->tail->GetByteEnd() == blockHeader->GetByteStart())
-                        this->tail->size += blockHeader->size;
-                    else
-                    {
-                        this->tail->next = blockHeader;
-                        blockHeader->previous = this->tail;
-
-                        this->tail = blockHeader;
-                    }
-                }
-                else
-                    this->head = this->tail = blockHeader;
-            }
-
-            bool empty() const
-            {
-                return this->head == nullptr;
-            }
-
-            void clear()
-            {
-                this->head = this->tail = nullptr;
-            }
-
-            size_t GetTotal() const
-            {
-                size_t total = 0;
-                for (auto node = this->head; node != nullptr; node = node->next)
-                    total += node->size;
-                return total;
-            }
         };
 
         BlockRange allocList; //Beginning/end of list of allocated blocks
-
         BlockRange freeList; //Beginning/end of list of free blocks
 
         using MutexType = SimpleSpinLockMutex;
