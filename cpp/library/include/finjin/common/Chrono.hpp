@@ -79,7 +79,6 @@ namespace Finjin { namespace Common {
         static TimeDuration Microseconds(uint64_t value);
         static TimeDuration Milliseconds(uint64_t value);
         static TimeDuration Seconds(uint64_t value);
-        static TimeDuration Seconds(int value);
         static TimeDuration Seconds(double value, TimeDurationUnit resolution);
         static TimeDuration Seconds(float value, TimeDurationUnit resolution);
         static TimeDuration Minutes(uint64_t value);

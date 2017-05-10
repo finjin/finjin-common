@@ -259,11 +259,6 @@ TimeDuration TimeDuration::Seconds(uint64_t value)
     return Nanoseconds(value * 1000000000ull);
 }
 
-TimeDuration TimeDuration::Seconds(int value)
-{
-    return Seconds(static_cast<uint64_t>(value));
-}
-
 TimeDuration TimeDuration::Seconds(double value, TimeDurationUnit resolution)
 {
     switch (resolution)
