@@ -70,9 +70,9 @@ UserInformation::UserInformation()
         }
     });
 #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
-    const int MAX_USER_NAME = 100;
-    wchar_t userName[MAX_USER_NAME];
-    DWORD userNameLength = MAX_USER_NAME;
+    const int maxUserName = 500;
+    wchar_t userName[maxUserName];
+    DWORD userNameLength = maxUserName;
     if (GetUserNameW(userName, &userNameLength))
         this->name = userName;
     else

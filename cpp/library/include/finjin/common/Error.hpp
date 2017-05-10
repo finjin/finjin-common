@@ -47,7 +47,7 @@
 #endif
 
 //Should be placed at the top of every method that takes a non-const Error object
-#define FINJIN_ERROR_METHOD_START(error)  Finjin::Common::ErrorMethodEntry _errorMethodEntry(error, FINJIN_CALLER_ARGUMENTS)
+#define FINJIN_ERROR_METHOD_START(error) Finjin::Common::ErrorMethodEntry _errorMethodEntry(error, FINJIN_CALLER_ARGUMENTS)
 
 //Declares an Error object
 #define FINJIN_DECLARE_ERROR(name) Finjin::Common::Error name; FINJIN_ERROR_METHOD_START(name);

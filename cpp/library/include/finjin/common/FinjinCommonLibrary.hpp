@@ -230,11 +230,7 @@
 
 //SSE functionality-------------
 #if !defined(FINJIN_ENABLE_SSE)
-    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-        #define FINJIN_ENABLE_SSE 1
-    #else
-        #define FINJIN_ENABLE_SSE 0
-    #endif
+    #define FINJIN_ENABLE_SSE 1
 #endif
 
 

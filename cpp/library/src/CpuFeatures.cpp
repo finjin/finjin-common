@@ -220,6 +220,11 @@ using namespace Finjin::Common;
 
             return bSSE42Extensions;
         }
+    #else
+        static bool DetectSSE42Supported()
+        {
+            return false;
+        }
     #endif
 #endif
 
