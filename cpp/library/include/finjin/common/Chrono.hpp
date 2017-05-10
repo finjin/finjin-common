@@ -160,14 +160,14 @@ namespace Finjin { namespace Common {
 
     public:
         HighResolutionTimeStamp();
-        HighResolutionTimeStamp(int64_t timepoint);
+        HighResolutionTimeStamp(uint64_t timepoint);
 
         bool IsZero() const;
 
         TimeDuration operator - (const HighResolutionTimeStamp& other) const;
 
     private:
-        int64_t timepoint;
+        uint64_t timepoint;
     #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         LARGE_INTEGER highPerformanceFrequency;
     #elif FINJIN_TARGET_PLATFORM_IS_APPLE
@@ -218,37 +218,37 @@ namespace Finjin { namespace Common {
     }
 
     template <typename T>
-    T SecondsToNanoseconds(int64_t in)
+    T SecondsToNanoseconds(uint64_t in)
     {
         return static_cast<T>(in) * (T)1000000000;
     }
 
     template <typename T>
-    T SecondsToMicroseconds(int64_t in)
+    T SecondsToMicroseconds(uint64_t in)
     {
         return static_cast<T>(in) * (T)1000000;
     }
 
     template <typename T>
-    T SecondsToMilliseconds(int64_t in)
+    T SecondsToMilliseconds(uint64_t in)
     {
         return static_cast<T>(in) * (T)1000;
     }
 
     template <typename T>
-    T NanosecondsToSeconds(int64_t in)
+    T NanosecondsToSeconds(uint64_t in)
     {
         return static_cast<T>(in) / (T)1000000000;
     }
 
     template <typename T>
-    T MicrosecondsToSeconds(int64_t in)
+    T MicrosecondsToSeconds(uint64_t in)
     {
         return static_cast<T>(in) / (T)1000000;
     }
 
     template <typename T>
-    T MillisecondsToSeconds(int64_t in)
+    T MillisecondsToSeconds(uint64_t in)
     {
         return static_cast<T>(in) / (T)1000;
     }

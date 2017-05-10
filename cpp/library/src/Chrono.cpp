@@ -26,7 +26,7 @@ using namespace Finjin::Common;
         auto integerString = s; \
         integerString.pop_back(unitName); \
         \
-        int64_t integerValue; \
+        uint64_t integerValue; \
         Convert::ToNumber(integerValue, integerString, error); \
         if (error) \
             FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse integer %1% time duration from '%2%'.", unitName, integerString)); \
@@ -498,7 +498,7 @@ HighResolutionTimeStamp::HighResolutionTimeStamp()
     this->timepoint = 0;
 }
 
-HighResolutionTimeStamp::HighResolutionTimeStamp(int64_t timepoint)
+HighResolutionTimeStamp::HighResolutionTimeStamp(uint64_t timepoint)
 {
     this->timepoint = timepoint;
 }
@@ -515,7 +515,7 @@ TimeDuration HighResolutionTimeStamp::operator - (const HighResolutionTimeStamp&
     auto elapsedTimeDuration = this->timepoint - other.timepoint;
 
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-    return TimeDuration::Nanoseconds(elapsedTimeDuration * 1000000000ll / this->highPerformanceFrequency.QuadPart);
+    return TimeDuration::Nanoseconds(elapsedTimeDuration * 1000000000ull / this->highPerformanceFrequency.QuadPart);
 #elif FINJIN_TARGET_PLATFORM_IS_APPLE
     return TimeDuration::Nanoseconds(elapsedTimeDuration * this->timebaseInfo.numer / this->timebaseInfo.denom);
 #elif FINJIN_TARGET_PLATFORM_IS_LINUX
@@ -551,6 +551,6 @@ HighResolutionTimeStamp HighResolutionClock::Now()
 #elif FINJIN_TARGET_PLATFORM_IS_LINUX
     timespec currentTime;
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &currentTime);
-    return HighResolutionTimeStamp(static_cast<int64_t>(currentTime.tv_sec) * 1000000000ll + static_cast<int64_t>(currentTime.tv_nsec));
+    return HighResolutionTimeStamp(static_cast<uint64_t>(currentTime.tv_sec) * 1000000000ull + static_cast<uint64_t>(currentTime.tv_nsec));
 #endif
 }
