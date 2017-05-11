@@ -14,11 +14,9 @@
 #pragma once
 
 
-//Includes----------------------------------------------------------------------
-#include "finjin/common/FinjinCommonLibrary.hpp"
-
 #if FINJIN_TARGET_PLATFORM_IS_DESKTOP_OR_SERVER
 
+//Includes----------------------------------------------------------------------
 #include "finjin/common/Path.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include <locale>

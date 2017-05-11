@@ -367,7 +367,7 @@ namespace Finjin { namespace Common {
 
         size_t size() const;
         size_t length() const;
-        
+
         void pop_back();
         void pop_back(size_t count);
         void pop_back(const char* other);
@@ -389,7 +389,7 @@ namespace Finjin { namespace Common {
         Utf8StringView substr(size_t pos, size_t len = npos) const;
 
         const char& operator [] (size_t i) const;
-        
+
         bool IsDigits() const;
 
         int CompareNoCaseAscii(const char* other) const;

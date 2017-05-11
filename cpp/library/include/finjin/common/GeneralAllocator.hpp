@@ -142,7 +142,7 @@ namespace Finjin { namespace Common {
             void clear();
 
             size_t GetTotal() const;
-            
+
             MemoryBlockHeader* head;
             MemoryBlockHeader* tail;
         };

@@ -1122,7 +1122,7 @@ bool Convert::ToBool(const Utf8StringView& stringValue, bool defaultValue)
     return ::ToBool(stringValue, defaultValue);
 }
 
-//ToString()----------------------------------------
+//ToString()--------------------------------------------------------------------
 const Utf8String& Convert::ToString(bool value)
 {
     static const Utf8String yesString("yes");

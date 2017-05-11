@@ -335,7 +335,7 @@ TimeDuration TimeDuration::Parse(const char* s, TimeDuration defaultValue)
     Utf8StringView sView(s);
 
     FINJIN_DECLARE_ERROR(error);
-    TimeDuration parsed;    
+    TimeDuration parsed;
     Parse(parsed, sView, error);
     return error ? defaultValue : parsed;
 }

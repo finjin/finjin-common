@@ -1956,9 +1956,9 @@ bool Utf8StringView::operator == (const Utf8String& other) const
 {
     if (this->l != other.length())
         return false;
-    
+
     auto s = Utf8String::GetNonNull(this->s);
-    
+
     return strncmp(s, other.c_str(), this->l) == 0;
 }
 
@@ -2072,10 +2072,10 @@ bool Utf8StringView::IsDigits() const
 }
 
 int Utf8StringView::CompareNoCaseAscii(const char* other) const
-{    
+{
     auto nonNullOther = Utf8String::GetNonNull(other);
     auto nonNullOtherLength = strlen(nonNullOther);
-    
+
     auto minLength = std::min(this->l, nonNullOtherLength);
     for (size_t i = 0; i < minLength; i++)
     {
@@ -2083,25 +2083,25 @@ int Utf8StringView::CompareNoCaseAscii(const char* other) const
         if (diff != 0)
             return diff;
     }
-    
+
     return static_cast<int>(this->l) - static_cast<int>(nonNullOtherLength);
 }
 
 bool Utf8StringView::EqualsNoCaseAscii(const char* other) const
-{    
+{
     auto nonNullOther = Utf8String::GetNonNull(other);
     auto nonNullOtherLength = strlen(nonNullOther);
-    
+
     if (this->l != nonNullOtherLength)
         return false;
-    
+
     for (size_t i = 0; i < this->l; i++)
     {
         auto diff = toupper(this->s[i]) - toupper(other[i]);
         if (diff != 0)
             return false;
     }
-    
+
     return true;
 }
 

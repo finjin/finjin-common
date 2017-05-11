@@ -256,7 +256,7 @@ void MemorySize::Parse(uint64_t& sizeValue, const Utf8StringView& stringValue, E
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
-Utf8String MemorySize::Format(uint64_t value)
+Utf8String MemorySize::ToString(uint64_t value)
 {
     auto gibibytes = value / GIBIBYTE;
     value -= gibibytes * GIBIBYTE;

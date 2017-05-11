@@ -144,10 +144,10 @@ namespace Finjin { namespace Common {
         //Parse integer with range and error
         static void ToIntegerInRange(int& value, const Utf8String& stringValue, const int minValue, const int maxValue, Error& error);
         static void ToIntegerInRange(unsigned short& value, const Utf8String& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
-        
+
         static void ToIntegerInRange(int& value, const Utf8StringView& stringValue, const int minValue, const int maxValue, Error& error);
         static void ToIntegerInRange(unsigned short& value, const Utf8StringView& stringValue, const unsigned short minValue, const unsigned short maxValue, Error& error);
-        
+
 
         //Boolean with default value
         static bool ToBool(const Utf8String& stringValue, bool defaultValue = false);

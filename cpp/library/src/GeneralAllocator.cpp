@@ -61,7 +61,7 @@ void GeneralAllocator::BlockRange::AddOrCombineWithTail(MemoryBlockHeader* block
         {
             this->tail->next = blockHeader;
             blockHeader->previous = this->tail;
-            
+
             this->tail = blockHeader;
         }
     }

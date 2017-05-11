@@ -45,13 +45,13 @@ namespace Finjin { namespace Common {
         static uint64_t Parse64(const Utf8StringView& stringValue, uint64_t defaultValue = 0);
 
         //Parse with error
-        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);        
+        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);
         static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error);
 
         static void Parse(uint32_t& value, const Utf8StringView& stringValue, Error& error);
         static void Parse(uint64_t& value, const Utf8StringView& stringValue, Error& error);
-        
-        static Utf8String Format(uint64_t value);
+
+        static Utf8String ToString(uint64_t value);
     };
 
 } }

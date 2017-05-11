@@ -79,7 +79,7 @@ void VirtualFileHandle::Close()
     {
         assert(this->fileSystem != nullptr);
         this->fileSystem->Close(*this);
-        
-        Clear(); 
+
+        Clear();
     }
 }

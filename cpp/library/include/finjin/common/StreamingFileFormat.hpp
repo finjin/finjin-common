@@ -37,13 +37,13 @@ namespace Finjin { namespace Common {
         static bool IsValid(StreamingFileFormat format);
 
         static Utf8String ToString(StreamingFileFormat format);
-        
+
         static void ParseFromExtension(StreamingFileFormat& format, const Utf8String& s, Error& error);
-        static void ParseFromExtension(StreamingFileFormat& format, const Utf8StringView& s, Error& error);        
-        
+        static void ParseFromExtension(StreamingFileFormat& format, const Utf8StringView& s, Error& error);
+
         static StreamingFileFormat ParseFromExtension(const Utf8String& format, StreamingFileFormat defaultValue = StreamingFileFormat::STREAMING_TEXT);
         static StreamingFileFormat ParseFromExtension(const Utf8StringView& format, StreamingFileFormat defaultValue = StreamingFileFormat::STREAMING_TEXT);
-        
+
         static Utf8String MakeExtension(const Utf8String& assetClass, StreamingFileFormat format);
 
         static std::unique_ptr<DataChunkWriter> CreateFileWriter(const Utf8String& fileName, StreamingFileFormat format, const DataChunkWriter::Settings& writerSettings, DataChunkWriterController& controller, Error& error);
