@@ -235,8 +235,6 @@
 
 
 //Some utilities------------
-#define FINJIN_OFFSET_OF(theClass, theMember) ((size_t)(&((theClass*)0)->theMember))
-
 #define FINJIN_COUNT_OF(x) (sizeof(x)/sizeof((x)[0]))
 
 #define FINJIN_SAFE_RELEASE(p) {if (p) {(p)->Release(); (p) = nullptr;}}

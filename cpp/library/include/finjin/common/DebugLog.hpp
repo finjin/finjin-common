@@ -62,9 +62,9 @@
     #define FINJIN_DEBUG_LOG_WARNING(...) (__android_log_print(ANDROID_LOG_WARN, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))
     #define FINJIN_DEBUG_LOG_INFO(...) (__android_log_print(ANDROID_LOG_INFO, "finjin-debug-log", Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__).c_str()))
 #elif FINJIN_ENABLE_DEBUG_LOG && (FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE)
-    #define FINJIN_DEBUG_LOG_ERROR(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
-    #define FINJIN_DEBUG_LOG_WARNING(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
-    #define FINJIN_DEBUG_LOG_INFO(...) { auto __s = Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__); std::cout << __s << std::endl; }
+    #define FINJIN_DEBUG_LOG_ERROR(...) { std::cout << Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__) << std::endl; }
+    #define FINJIN_DEBUG_LOG_WARNING(...) { std::cout << Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__) << std::endl; }
+    #define FINJIN_DEBUG_LOG_INFO(...) { std::cout << Finjin::Common::Utf8StringFormatter::Format(__VA_ARGS__) << std::endl; }
 #else
     #define FINJIN_DEBUG_LOG_ERROR(...) Finjin::Common::DoesNothingToAvoidCompilerWarning();
     #define FINJIN_DEBUG_LOG_WARNING(...) Finjin::Common::DoesNothingToAvoidCompilerWarning();
