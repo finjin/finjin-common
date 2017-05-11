@@ -38,14 +38,14 @@ bool JniUtilities::GetBoolField(bool& value, const char* name, bool defaultValue
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "Z");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     value = env->GetBooleanField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -55,14 +55,14 @@ bool JniUtilities::GetIntField(int32_t& value, const char* name, int32_t default
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "I");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     value = env->GetIntField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -72,14 +72,14 @@ bool JniUtilities::GetIntArrayFieldElement(int32_t& value, const char* name, int
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "[I");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jobjectArray fieldObjArray = (jobjectArray)fieldObj;
     if (fieldObjArray == 0)
         return false;
@@ -87,7 +87,7 @@ bool JniUtilities::GetIntArrayFieldElement(int32_t& value, const char* name, int
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     env->GetIntArrayRegion((jintArray)fieldObjArray, index, 1, &value);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -97,14 +97,14 @@ bool JniUtilities::GetLongField(int64_t& value, const char* name, int64_t defaul
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "J");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     value = env->GetLongField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -114,14 +114,14 @@ bool JniUtilities::GetLongArrayFieldElement(int64_t& value, const char* name, in
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "[J");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jobjectArray fieldObjArray = (jobjectArray)fieldObj;
     if (fieldObjArray == 0)
         return false;
@@ -129,7 +129,7 @@ bool JniUtilities::GetLongArrayFieldElement(int64_t& value, const char* name, in
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     env->GetLongArrayRegion((jlongArray)fieldObjArray, index, 1, &value);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -139,14 +139,14 @@ bool JniUtilities::GetStringField(Utf8String& value, const char* name, const cha
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring fieldString = (jstring)fieldObj;
     if (fieldString == 0)
         return false;
@@ -165,14 +165,14 @@ bool JniUtilities::GetStringField(Path& value, const char* name, const Path::val
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring fieldString = (jstring)fieldObj;
     if (fieldString == 0)
         return false;
@@ -191,14 +191,14 @@ bool JniUtilities::GetStringArrayFieldElement(Utf8String& value, const char* nam
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "[Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jobjectArray fieldObjArray = (jobjectArray)fieldObj;
     if (fieldObjArray == 0)
         return false;
@@ -206,7 +206,7 @@ bool JniUtilities::GetStringArrayFieldElement(Utf8String& value, const char* nam
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     jobject elementObj = env->GetObjectArrayElement(fieldObjArray, index);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring elementString = (jstring)elementObj;
     if (elementString != 0)
     {
@@ -225,14 +225,14 @@ bool JniUtilities::GetStringArrayFieldElement(Path& value, const char* name, int
     value = defaultValue;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID fieldId = env->GetFieldID(thizClass, name, "[Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, fieldId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jobjectArray fieldObjArray = (jobjectArray)fieldObj;
     if (fieldObjArray == 0)
         return false;
@@ -240,7 +240,7 @@ bool JniUtilities::GetStringArrayFieldElement(Path& value, const char* name, int
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     jobject elementObj = env->GetObjectArrayElement(fieldObjArray, index);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring elementString = (jstring)elementObj;
     if (elementString != 0)
     {
@@ -259,14 +259,14 @@ bool JniUtilities::GetIntArrayField(int32_t* arr, int& arrayLength, int arrayMax
     arrayLength = 0;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID arrayId = env->GetFieldID(thizClass, name, "[I");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, arrayId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jintArray arrayObj = (jintArray)fieldObj;
     if (arrayObj == 0)
         return false;
@@ -274,12 +274,12 @@ bool JniUtilities::GetIntArrayField(int32_t* arr, int& arrayLength, int arrayMax
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     arrayLength = env->GetArrayLength(arrayObj);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (arrayLength > arrayMaxLength)
         arrayLength = arrayMaxLength;
 
     env->GetIntArrayRegion(arrayObj, 0, arrayLength, arr);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -289,14 +289,14 @@ bool JniUtilities::GetFloatArrayField(float* arr, int& arrayLength, int arrayMax
     arrayLength = 0;
 
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jfieldID arrayId = env->GetFieldID(thizClass, name, "[F");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     jobject fieldObj = env->GetObjectField(thiz, arrayId);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jfloatArray arrayObj = (jfloatArray)fieldObj;
     if (arrayObj == 0)
         return false;
@@ -304,12 +304,12 @@ bool JniUtilities::GetFloatArrayField(float* arr, int& arrayLength, int arrayMax
     JNIAutoDeleteLocalObjectRef autoDeleteLocal_fieldObj(env, fieldObj);
 
     arrayLength = env->GetArrayLength(arrayObj);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (arrayLength > arrayMaxLength)
         arrayLength = arrayMaxLength;
 
     env->GetFloatArrayRegion(arrayObj, 0, arrayLength, arr);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -317,16 +317,16 @@ bool JniUtilities::GetFloatArrayField(float* arr, int& arrayLength, int arrayMax
 bool JniUtilities::CallVoidMethod(const char* name)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "()V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     env->CallVoidMethod(thiz, methodID);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -334,18 +334,18 @@ bool JniUtilities::CallVoidMethod(const char* name)
 bool JniUtilities::CallVoidMethod_String(const char* name, const char* v0)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     jstring jni_v0 = NEW_STRING(env, v0 ? v0 : "");
     env->CallVoidMethod(thiz, methodID, jni_v0);
     env->DeleteLocalRef(jni_v0);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -353,11 +353,11 @@ bool JniUtilities::CallVoidMethod_String(const char* name, const char* v0)
 bool JniUtilities::CallVoidMethod_String_String(const char* name, const char* v0, const char* v1)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;Ljava/lang/String;)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -366,7 +366,7 @@ bool JniUtilities::CallVoidMethod_String_String(const char* name, const char* v0
     env->CallVoidMethod(thiz, methodID, jni_v0, jni_v1);
     env->DeleteLocalRef(jni_v0);
     env->DeleteLocalRef(jni_v1);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -374,11 +374,11 @@ bool JniUtilities::CallVoidMethod_String_String(const char* name, const char* v0
 bool JniUtilities::CallVoidMethod_String_String_String_String(const char* name, const char* v0, const char* v1, const char* v2, const char* v3)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -391,7 +391,7 @@ bool JniUtilities::CallVoidMethod_String_String_String_String(const char* name, 
     env->DeleteLocalRef(jni_v1);
     env->DeleteLocalRef(jni_v2);
     env->DeleteLocalRef(jni_v3);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -399,11 +399,11 @@ bool JniUtilities::CallVoidMethod_String_String_String_String(const char* name, 
 bool JniUtilities::CallVoidMethod_Int_String_String_String_String(const char* name, int v0, const char* v1, const char* v2, const char* v3, const char* v4)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -416,7 +416,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String(const char* na
     env->DeleteLocalRef(jni_v2);
     env->DeleteLocalRef(jni_v3);
     env->DeleteLocalRef(jni_v4);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -424,11 +424,11 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String(const char* na
 bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_Float(const char* name, int v0, const char* v1, const char* v2, const char* v3, const char* v4, int v5, int v6, float v7, float v8)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIFF)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -441,7 +441,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
     env->DeleteLocalRef(jni_v2);
     env->DeleteLocalRef(jni_v3);
     env->DeleteLocalRef(jni_v4);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -449,11 +449,11 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
 bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_Float_Int(const char* name, int v0, const char* v1, const char* v2, const char* v3, const char* v4, int v5, int v6, float v7, float v8, int v9)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIFFI)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -466,7 +466,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
     env->DeleteLocalRef(jni_v2);
     env->DeleteLocalRef(jni_v3);
     env->DeleteLocalRef(jni_v4);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -474,11 +474,11 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_Int_Float_
 bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_int_Int_Float_Float(const char* name, int v0, const char* v1, const char* v2, const char* v3, const char* v4, int v5, int v6, int v7, float v8, float v9)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIFF)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
@@ -491,7 +491,7 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_int_Int_Fl
     env->DeleteLocalRef(jni_v2);
     env->DeleteLocalRef(jni_v3);
     env->DeleteLocalRef(jni_v4);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     return true;
 }
@@ -499,31 +499,31 @@ bool JniUtilities::CallVoidMethod_Int_String_String_String_String_Int_int_Int_Fl
 bool JniUtilities::CallVoidMethod_Int(const char* name, int v0)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(I)V");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     env->CallVoidMethod(thiz, methodID, v0);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 }
 
 bool JniUtilities::CallBoolMethod(bool& result, const char* name)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "()Z");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     jboolean jniResult = env->CallBooleanMethod(thiz, methodID);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
 
     result = jniResult == JNI_TRUE;
 
@@ -533,16 +533,16 @@ bool JniUtilities::CallBoolMethod(bool& result, const char* name)
 bool JniUtilities::CallStringMethod_Int(Utf8String& result, const char* name, int v0)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetMethodID(thizClass, name, "(I)Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     jobject jniResult = env->CallObjectMethod(thiz, methodID, v0);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring resultString = (jstring)jniResult;
 
     if (resultString == 0)
@@ -558,16 +558,16 @@ bool JniUtilities::CallStringMethod_Int(Utf8String& result, const char* name, in
 bool JniUtilities::CallClassStringMethod_Int(Utf8String& result, const char* name, int v0)
 {
     jclass thizClass = env->GetObjectClass(thiz);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     JNIAutoDeleteLocalClassRef autoDeleteLocal_thizClass(env, thizClass);
 
     jmethodID methodID = env->GetStaticMethodID(thizClass, name, "(I)Ljava/lang/String;");
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     if (methodID == 0)
         return false;
 
     jobject jniResult = env->CallStaticObjectMethod(thizClass, methodID, v0);
-    JNI_EXCEPTION_RETURN_VALUE(env, false);
+    FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, false);
     jstring resultString = (jstring)jniResult;
 
     if (resultString == 0)

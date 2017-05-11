@@ -14,22 +14,24 @@
 #pragma once
 
 
+#if FINJIN_TARGET_PLATFORM_IS_ANDROID
+
 //Includes----------------------------------------------------------------------
-#include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/StaticVector.hpp"
+#include "finjin/common/Utf8String.hpp"
 #include <jni.h>
 
 
 //Macros------------------------------------------------------------------------
-#define JNI_EXCEPTION_RETURN_VALUE(env, value) \
+#define FINJIN_JNI_EXCEPTION_RETURN_VALUE(env, value) \
     if (env->ExceptionOccurred()) { \
         env->ExceptionDescribe(); \
         env->ExceptionClear(); \
         return value; \
     }
 
-#define JNI_EXCEPTION_RETURN(env) \
+#define FINJIN_JNI_EXCEPTION_RETURN(env) \
     if (env->ExceptionOccurred()) { \
         env->ExceptionDescribe(); \
         env->ExceptionClear(); \
@@ -129,3 +131,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif

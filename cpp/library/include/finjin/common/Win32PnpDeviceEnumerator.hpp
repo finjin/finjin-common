@@ -14,11 +14,7 @@
 #pragma once
 
 
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-
-//Includes----------------------------------------------------------------------
-#include "finjin/common/Utf8String.hpp"
-
+#if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
 
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {

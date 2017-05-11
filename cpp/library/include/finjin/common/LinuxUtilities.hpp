@@ -14,6 +14,8 @@
 #pragma once
 
 
+#if FINJIN_TARGET_PLATFORM_IS_LINUX
+
 //Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
@@ -31,3 +33,5 @@ namespace Finjin { namespace Common {
     };
 
 } }
+
+#endif
