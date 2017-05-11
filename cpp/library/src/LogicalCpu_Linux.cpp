@@ -62,7 +62,7 @@ static StaticVector<uint32_t, CommonConstants::MAX_CPUS> ParseIDsFromLine(const 
             if (range.size() == 1)
             {
                 //Only one ID
-                if (Utf8String::IsDigits(range[0].begin(), range[0].end()))
+                if (range[0].IsDigits())
                 {
                     uint32_t id = 0;
                     id = Convert::ToInteger(range[0], id);
@@ -73,8 +73,7 @@ static StaticVector<uint32_t, CommonConstants::MAX_CPUS> ParseIDsFromLine(const 
             else
             {
                 //Range of IDs
-                if (Utf8String::IsDigits(range[0].begin(), range[0].end()) &&
-                    Utf8String::IsDigits(range[1].begin(), range[1].end()))
+                if (range[0].IsDigits() && range[1].IsDigits())
                 {
                     uint32_t first = 0;
                     first = Convert::ToInteger(range[0], first);
