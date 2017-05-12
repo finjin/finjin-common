@@ -276,19 +276,19 @@ Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
         result = Convert::ToString(gb);
         result += ".";
         result += Convert::ToString(static_cast<uint64_t>(10.0 * static_cast<double>(mb) / static_cast<double>(base * base)));
-        result += base == 1000 ? "GB" : "GiB";
+        result += base == KILOBYTE ? "GB" : "GiB";
     }
     else if (mb > 0)
     {
         result = Convert::ToString(mb);
         result += ".";
         result += Convert::ToString(static_cast<uint64_t>(10.0 * static_cast<double>(kb) / static_cast<double>(base)));
-        result += base == 1000 ? "MB" : "MiB";
+        result += base == KILOBYTE ? "MB" : "MiB";
     }
     else if (kb > 0)
     {
         result = Convert::ToString(kb);
-        result += base == 1000 ? "KB" : "KiB";
+        result += base == KILOBYTE ? "KB" : "KiB";
     }
     else
     {
