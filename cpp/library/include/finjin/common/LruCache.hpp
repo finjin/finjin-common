@@ -212,14 +212,13 @@ namespace Finjin { namespace Common {
             }
         }
 
-        std::ostream& Output(std::ostream& out) const
+        void Output(std::ostream& out) const
         {
             std::lock_guard<MutexType> thisLock(this->mutex);
 
             //This will output from least-recently-used to most-recently-used
             for (auto i = this->heap.ordered_begin(); i != this->heap.ordered_end(); ++i)
                 out << "Value: " << (*i)->value << ", Last used: " << (*i)->lastUsed << std::endl;
-            return out << std::endl;
         }
 
         bool Test(const ValueType* values, size_t valueCount)
@@ -286,14 +285,3 @@ namespace Finjin { namespace Common {
     };
 
 } }
-
-
-//Functions---------------------------------------------------------------------
-namespace std
-{
-    template <typename ValueType, typename TimeType, typename MutexType>
-    ostream& operator << (ostream& out, const Finjin::Common::LruCache<ValueType, TimeType, MutexType>& cache)
-    {
-        return cache.OrderedOutput(out);
-    }
-}
