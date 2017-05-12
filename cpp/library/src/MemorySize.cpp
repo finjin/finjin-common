@@ -256,59 +256,45 @@ void MemorySize::Parse(uint64_t& sizeValue, const Utf8StringView& stringValue, E
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
-Utf8String MemorySize::ToString(uint64_t value)
+Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
 {
-    auto gibibytes = value / GIBIBYTE;
-    value -= gibibytes * GIBIBYTE;
-
-    auto mebibytes = value / MEBIBYTE;
-    value -= mebibytes * MEBIBYTE;
-
-    auto kibibytes = value / KIBIBYTE;
-    value -= kibibytes * KIBIBYTE;
-
-    auto bytes = value;
-
     Utf8String result;
-
-    if (gibibytes > 0)
+    if (base != KILOBYTE && base != KIBIBYTE)
+        base = KILOBYTE;
+    
+    auto gb = bytes / (base * base * base);
+    bytes -= gb * (base * base * base);
+    
+    auto mb = bytes / (base * base);
+    bytes -= mb * (base * base);
+    
+    auto kb = bytes / base;
+    bytes -= kb * base;
+    
+    if (gb > 0)
     {
-        auto whole = gibibytes;
-        auto fractional = mebibytes;
-        RoundFractionalInt(whole, fractional, 2);
-
-        result = Convert::ToString(whole);
+        result = Convert::ToString(gb);
         result += ".";
-        result += Convert::ToString(fractional);
-        result += "GiB";
+        result += Convert::ToString(static_cast<uint64_t>(10.0 * static_cast<double>(mb) / static_cast<double>(base * base)));
+        result += base == 1000 ? "GB" : "GiB";
     }
-    else if (mebibytes > 0)
+    else if (mb > 0)
     {
-        auto whole = mebibytes;
-        auto fractional = kibibytes;
-        RoundFractionalInt(whole, fractional, 2);
-
-        result = Convert::ToString(whole);
+        result = Convert::ToString(mb);
         result += ".";
-        result += Convert::ToString(fractional);
-        result += "MiB";
+        result += Convert::ToString(static_cast<uint64_t>(10.0 * static_cast<double>(kb) / static_cast<double>(base)));
+        result += base == 1000 ? "MB" : "MiB";
     }
-    else if (kibibytes > 0)
+    else if (kb > 0)
     {
-        auto whole = kibibytes;
-        auto fractional = bytes;
-        RoundFractionalInt(whole, fractional, 2);
-
-        result = Convert::ToString(whole);
-        result += ".";
-        result += Convert::ToString(fractional);
-        result += "KiB";
+        result = Convert::ToString(kb);
+        result += base == 1000 ? "KB" : "KiB";
     }
     else
     {
         result = Convert::ToString(bytes);
         result += "B";
     }
-
+    
     return result;
 }

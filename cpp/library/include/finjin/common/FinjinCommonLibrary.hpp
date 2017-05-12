@@ -459,30 +459,6 @@ namespace Finjin { namespace Common {
     }
 
     template <typename T>
-    inline void RoundFractionalInt(T& whole, T& fractional, int maxDigits)
-    {
-        T maxValue = 1;
-        for (int i = 0; i < maxDigits; i++)
-            maxValue *= 10;
-        maxValue--;
-
-        while (fractional > maxValue)
-        {
-            auto lowestDigit = fractional % 10;
-            auto carry = lowestDigit > 4 ? 1 : 0;
-            fractional /= 10;
-
-            if (fractional < maxValue)
-                fractional += carry;
-            if (fractional == maxValue)
-            {
-                whole = GetSign(whole) * (GetAbs(whole) + (T)1);
-                fractional = 0;
-            }
-        }
-    }
-
-    template <typename T>
     inline bool IsInRange(const T& value, const T& minValue, const T& maxValue)
     {
         return value >= minValue && value <= maxValue;
