@@ -156,7 +156,7 @@ namespace Finjin { namespace Common {
 
     struct DataChunkBlobTextFormatUtilities
     {
-        static Utf8String ToString(DataChunkBlobTextFormat value);
+        static const char* ToString(DataChunkBlobTextFormat value);
 
         static DataChunkBlobTextFormat Parse(const Utf8String& value);
     };

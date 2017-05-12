@@ -121,20 +121,16 @@ bool StreamingFileFormatUtilities::IsValid(StreamingFileFormat format)
     }
 }
 
-Utf8String StreamingFileFormatUtilities::ToString(StreamingFileFormat format)
+const char* StreamingFileFormatUtilities::ToString(StreamingFileFormat format)
 {
-    Utf8String extString;
-
     switch (format)
     {
-        case StreamingFileFormat::STREAMING_TEXT: extString = "fstd"; break;
-        case StreamingFileFormat::STREAMING_BINARY: extString = "fsbd"; break;
-        case StreamingFileFormat::STREAMING_JSON: extString = "json"; break;
-        case StreamingFileFormat::STREAMING_CONFIG: extString = "cfg"; break;
-        default: extString = "<unknown streaming file format>"; break;
+        case StreamingFileFormat::STREAMING_TEXT: return "fstd";
+        case StreamingFileFormat::STREAMING_BINARY: return "fsbd";
+        case StreamingFileFormat::STREAMING_JSON: return "json";
+        case StreamingFileFormat::STREAMING_CONFIG: return "cfg";
+        default: return "<unknown>";
     }
-
-    return extString;
 }
 
 void StreamingFileFormatUtilities::ParseFromExtension(StreamingFileFormat& format, const Utf8String& s, Error& error)
@@ -167,7 +163,7 @@ StreamingFileFormat StreamingFileFormatUtilities::ParseFromExtension(const Utf8S
 
 Utf8String StreamingFileFormatUtilities::MakeExtension(const Utf8String& assetClass, StreamingFileFormat format)
 {
-    auto result = ToString(format);
+    Utf8String result = ToString(format);
     result += "-";
     result += assetClass;
     return result;

@@ -22,6 +22,20 @@ using namespace Finjin::Common;
 
 //Implementation----------------------------------------------------------------
 
+//DataHeader::OccurrenceUtilities
+const char* DataHeader::OccurrenceUtilities::ToString(DataHeader::Occurrence value)
+{
+    switch (value)
+    {
+        case Occurrence::NONE: return "none"; break;
+        case Occurrence::ONE: return "one"; break;
+        case Occurrence::FIRST: return "first"; break;
+        case Occurrence::MORE: return "more"; break;
+        case Occurrence::LAST: return "last"; break;
+        default: return "<unknown>";
+    }
+}
+
 //DataHeader
 DataHeader::DataHeader()
 {

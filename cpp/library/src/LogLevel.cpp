@@ -55,7 +55,7 @@ LogLevel LogLevelUtilities::Parse(const Utf8String& value, LogLevel defaultValue
         return defaultValue;
 }
 
-Utf8String LogLevelUtilities::ToString(LogLevel value)
+const char* LogLevelUtilities::ToString(LogLevel value)
 {
     switch (value)
     {
@@ -64,6 +64,6 @@ Utf8String LogLevelUtilities::ToString(LogLevel value)
         case LogLevel::ERROR_LEVEL: return "error";
         case LogLevel::DEBUG_LEVEL: return "debug";
         case LogLevel::TRACE_LEVEL: return "trace";
-        default: return "<Unknown log level>";
+        default: return "<unknown>";
     }
 }

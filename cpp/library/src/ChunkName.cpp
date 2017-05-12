@@ -403,13 +403,13 @@ Utf8String ParsedChunkPropertyName::ToString() const
 }
 
 //DataChunkBlobTextFormatUtilities
-Utf8String DataChunkBlobTextFormatUtilities::ToString(DataChunkBlobTextFormat value)
+const char* DataChunkBlobTextFormatUtilities::ToString(DataChunkBlobTextFormat value)
 {
     switch (value)
     {
         case DataChunkBlobTextFormat::BYTE_ARRAY: return "byte-array";
         case DataChunkBlobTextFormat::BASE64: return "base64";
-        default: return "byte-array";
+        default: return "<unknown>";
     }
 }
 

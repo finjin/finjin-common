@@ -52,7 +52,7 @@ namespace Finjin { namespace Common {
     class NumericStructElementTypeUtilities
     {
     public:
-        static Utf8String ToString(NumericStructElementType value)
+        static const char* ToString(NumericStructElementType value)
         {
             switch (value)
             {
@@ -72,7 +72,7 @@ namespace Finjin { namespace Common {
                 case NumericStructElementType::FLOAT3x3: return "float3x3";
                 case NumericStructElementType::FLOAT4x4: return "float4x4";
                 case NumericStructElementType::NESTED_STRUCT: return "<nested struct>";
-                default: return "<unknown element type>";
+                default: return "<unknown>";
             }
         }
 

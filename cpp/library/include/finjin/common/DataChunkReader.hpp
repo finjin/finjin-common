@@ -59,18 +59,7 @@ namespace Finjin { namespace Common {
 
         struct OccurrenceUtilities
         {
-            static Utf8String ToString(Occurrence value)
-            {
-                switch (value)
-                {
-                    case Occurrence::NONE: return "none"; break;
-                    case Occurrence::ONE: return "one"; break;
-                    case Occurrence::FIRST: return "first"; break;
-                    case Occurrence::MORE: return "more"; break;
-                    case Occurrence::LAST: return "last"; break;
-                    default: return "<unknown>";
-                }
-            }
+            static const char* ToString(Occurrence value);
         };
 
         uint8_t headerByte; //Only used with binary files

@@ -36,7 +36,7 @@ namespace Finjin { namespace Common {
     {
         static bool IsValid(StreamingFileFormat format);
 
-        static Utf8String ToString(StreamingFileFormat format);
+        static const char* ToString(StreamingFileFormat format);
 
         static void ParseFromExtension(StreamingFileFormat& format, const Utf8String& s, Error& error);
         static void ParseFromExtension(StreamingFileFormat& format, const Utf8StringView& s, Error& error);

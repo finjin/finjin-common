@@ -258,7 +258,6 @@ void MemorySize::Parse(uint64_t& sizeValue, const Utf8StringView& stringValue, E
 
 Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
 {
-    Utf8String result;
     if (base != KILOBYTE && base != KIBIBYTE)
         base = KILOBYTE;
     
@@ -270,6 +269,8 @@ Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
     
     auto kb = bytes / base;
     bytes -= kb * base;
+    
+    Utf8String result;
     
     if (gb > 0)
     {

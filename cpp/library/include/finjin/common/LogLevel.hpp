@@ -44,7 +44,7 @@ namespace Finjin { namespace Common {
         static void Parse(LogLevel& result, const Utf8String& value, Error& error);
         static LogLevel Parse(const Utf8String& value, LogLevel defaultValue = FINJIN_DEFAULT_LOG_LEVEL);
 
-        static Utf8String ToString(LogLevel value);
+        static const char* ToString(LogLevel value);
     };
 
 } }
