@@ -122,8 +122,8 @@ namespace Finjin { namespace Common {
         bool empty() const { return this->count == 0; }
         bool full() const { return this->count == MAX_ITEMS; }
 
-        template <typename OtherType>
-        bool contains(const OtherType& value) const
+        template <typename FindValueType>
+        bool contains(const FindValueType& value) const
         {
             return find(value) != end();
         }
@@ -145,8 +145,8 @@ namespace Finjin { namespace Common {
                 _Get(i) = *begin++;
         }
 
-        template <typename OtherType>
-        iterator find(const OtherType& value)
+        template <typename FindValueType>
+        iterator find(const FindValueType& value)
         {
             for (size_t i = 0; i < this->count; i++)
             {
@@ -156,8 +156,8 @@ namespace Finjin { namespace Common {
             return end();
         }
 
-        template <typename OtherType>
-        const const_iterator find(const OtherType& value) const
+        template <typename FindValueType>
+        const const_iterator find(const FindValueType& value) const
         {
             for (size_t i = 0; i < this->count; i++)
             {
