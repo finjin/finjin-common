@@ -27,7 +27,7 @@ namespace Finjin { namespace Common {
      * Note that default insert() behavior does not update the value as std::unordered_map does.
      * Instead, this needs to be forced by specifying true for the 'allowOverride' parameter.
      */
-    template <typename KeyType, typename ValueType, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType> >
+    template <typename KeyType, typename ValueType, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType>, typename KeyEqual = std::equal_to<KeyType> >
     class DynamicUnorderedMap
     {
     public:
@@ -40,8 +40,8 @@ namespace Finjin { namespace Common {
         using ValueCollection = DynamicVector<ValueEntry>;
         using BucketCollection = DynamicVector<BucketEntry>;
 
-        using This = DynamicUnorderedMap<KeyType, ValueType, MapPairType, Hash>;
-        using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType>;
+        using This = DynamicUnorderedMap<KeyType, ValueType, MapPairType, Hash, KeyEqual>;
+        using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType, KeyEqual>;
 
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
@@ -83,16 +83,20 @@ namespace Finjin { namespace Common {
         ValueOrError<bool> insert_or_assign(const KeyType& key, const ValueType& value) { return impl.insert(key, value, true); }
         ValueOrError<bool> insert_or_assign(KeyType&& key, ValueType&& value) { return impl.insert(std::move(key), std::move(value), true); }
 
-        bool contains(const KeyType& key) const { return find(key) != end(); }
+        template <typename FindKeyType>
+        bool contains(const FindKeyType& key) const { return find(key) != end(); }
 
-        iterator find(const KeyType& key) { return impl.find(key); }
-        const_iterator find(const KeyType& key) const { return impl.find(key); }
+        template <typename FindKeyType>
+        iterator find(const FindKeyType& key) { return impl.find(key); }
+        template <typename FindKeyType>
+        const_iterator find(const FindKeyType& key) const { return impl.find(key); }
 
         void clear() { impl.clear(); }
 
         iterator erase(iterator iter) { return impl.erase(iter); }
 
-        bool remove(const KeyType& key) { return impl.remove(key); }
+        template <typename FindKeyType>
+        bool remove(const FindKeyType& key) { return impl.remove(key); }
 
         size_t size() const { return impl.count; }
         size_t max_size() const { return impl.valueEntries.size(); }

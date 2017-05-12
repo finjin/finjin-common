@@ -344,6 +344,8 @@ namespace Finjin { namespace Common {
         Utf8StringView();
         Utf8StringView(const char* first);
         Utf8StringView(const char* first, size_t len);
+        Utf8StringView(const Utf8StringView& s);
+        explicit Utf8StringView(const Utf8String& s);
 
         ValueOrError<void> assign(const char* first);
         ValueOrError<void> assign(const char* first, size_t len);
@@ -544,28 +546,39 @@ namespace Finjin { namespace Common {
             return a.assign(b);
         }
 
-        ValueOrError<void> operator () (Utf8String& a, Utf8String&& b)
-        {
-            return a.assign(std::move(b));
+        ValueOrError<void> operator () (Utf8String& a, Utf8String&& b) 
+        { 
+            return a.assign(std::move(b)); 
         }
     };
 
     struct Utf8StringHash
     {
-        size_t operator () (const Finjin::Common::Utf8String& s) const
-        {
-            return s.GetHash();
+        size_t operator () (const Finjin::Common::Utf8String& s) const 
+        { 
+            return s.GetHash(); 
         }
 
-        size_t operator () (const Finjin::Common::Utf8StringView& s) const
-        {
-            return s.GetHash();
+        size_t operator () (const Finjin::Common::Utf8StringView& s) const 
+        { 
+            return s.GetHash(); 
         }
 
-        size_t operator () (const char* s) const
-        {
-            return Utf8String::Hash(s);
+        size_t operator () (const char* s) const 
+        { 
+            return Utf8String::Hash(s); 
         }
+    };
+
+    struct Utf8StringEqual
+    {
+        template <typename A, typename B>
+        bool operator () (const A& a, const B& b) const 
+        {
+            Utf8StringView aView(a); 
+            Utf8StringView bView(b); 
+            return aView == bView;
+        }        
     };
 
 } }

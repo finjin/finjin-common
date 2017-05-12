@@ -22,7 +22,7 @@
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    template <typename T, typename Hash = std::hash<T> >
+    template <typename T, typename Hash = std::hash<T>, typename ValueEqual = std::equal_to<T> >
     class DynamicUnorderedSet
     {
     public:
@@ -35,8 +35,8 @@ namespace Finjin { namespace Common {
         using ValueCollection = DynamicVector<ValueEntry>;
         using BucketCollection = DynamicVector<BucketEntry>;
 
-        using This = DynamicUnorderedSet<T, Hash>;
-        using Impl = UnorderedSetImpl<This, ValueCollection, BucketCollection, Hash, T>;
+        using This = DynamicUnorderedSet<T, Hash, ValueEqual>;
+        using Impl = UnorderedSetImpl<This, ValueCollection, BucketCollection, Hash, T, ValueEqual>;
 
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
@@ -75,16 +75,20 @@ namespace Finjin { namespace Common {
         ValueOrError<bool> insert(const value_type& value) { return impl.insert(value); }
         ValueOrError<bool> insert(value_type&& value) { return impl.insert(std::move(value)); }
 
-        bool contains(const value_type& value) const { return find(value) != end(); }
+        template <typename FindValueType>
+        bool contains(const FindValueType& value) const { return find(value) != end(); }
 
-        iterator find(const value_type& value) { return impl.find(value); }
-        const_iterator find(const value_type& value) const { return impl.find(value); }
+        template <typename FindValueType>
+        iterator find(const FindValueType& value) { return impl.find(value); }
+        template <typename FindValueType>
+        const_iterator find(const FindValueType& value) const { return impl.find(value); }
 
         void clear() { impl.clear(); }
 
         iterator erase(iterator iter) { return impl.erase(iter); }
 
-        bool remove(const value_type& value) { return impl.remove(value); }
+        template <typename FindValueType>
+        bool remove(const FindValueType& value) { return impl.remove(value); }
 
         size_t size() const { return impl.count; }
         size_t max_size() const { return impl.valueEntries.size(); }

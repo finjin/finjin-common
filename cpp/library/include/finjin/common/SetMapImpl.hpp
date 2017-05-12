@@ -107,17 +107,20 @@ namespace Finjin { namespace Common {
         second_type second; //The value
     };
 
-    template <typename PairType>
+    template <typename PairType, typename KeyEqual = std::equal_to<typename PairType::first_type> >
     struct MapPairEqualTo
     {
         using first_argument_type = typename PairType::first_type;
         using second_argument_type = typename PairType::second_type;
         typedef bool result_type;
 
-        result_type operator () (const PairType& a, const first_argument_type& b) const
+        template <typename Other>
+        result_type operator () (const PairType& a, const Other& b) const
         {
-            return a.first == b;
+            return equals(a.first, b);
         }
+
+        KeyEqual equals;
     };
 
     template <typename Owner, typename ValueCollectionType, typename BucketCollectionType, typename Hash, typename KeyType, typename KeyEqual>
@@ -226,7 +229,7 @@ namespace Finjin { namespace Common {
                 //Prefix operator
                 if (this->impl == nullptr || this->bucketEntry == nullptr || this->valueEntry == nullptr)
                 {
-                    *this = iterator();
+                    *this = const_iterator();
                     return *this;
                 }
 
@@ -238,7 +241,7 @@ namespace Finjin { namespace Common {
             {
                 //Postfix operator
                 if (this->impl == nullptr || this->bucketEntry == nullptr || this->valueEntry == nullptr)
-                    return iterator();
+                    return const_iterator();
 
                 auto result = *this;
                 this->impl->advance(*this);
@@ -361,7 +364,8 @@ namespace Finjin { namespace Common {
             return next;
         }
 
-        bool remove(const KeyType& key)
+        template <typename FindKeyType>
+        bool remove(const FindKeyType& key)
         {
             auto foundAt = find(key);
             if (foundAt != end())
@@ -373,7 +377,8 @@ namespace Finjin { namespace Common {
                 return false;
         }
 
-        iterator find(const KeyType& key)
+        template <typename FindKeyType>
+        iterator find(const FindKeyType& key)
         {
             if (!this->valueEntries.empty())
             {
@@ -401,7 +406,8 @@ namespace Finjin { namespace Common {
             return end();
         }
 
-        const_iterator find(const KeyType& key) const
+        template <typename FindKeyType>
+        const_iterator find(const FindKeyType& key) const
         {
             if (!this->valueEntries.empty())
             {
@@ -440,6 +446,30 @@ namespace Finjin { namespace Common {
                 return RoundToFloat(this->collisionCount) / RoundToFloat(this->count);
             else
                 return 0;
+        }
+
+        template <typename Iter>
+        void advance(Iter& it) const
+        {
+            if (it.valueEntry->next != nullptr)
+            {
+                it.previousValueEntry = it.valueEntry;
+                it.valueEntry = it.valueEntry->next;
+            }
+            else
+            {
+                for (size_t bucketEntryIndex = (it.bucketEntry - &this->bucketEntries[0]) + 1; bucketEntryIndex < this->bucketEntries.size(); bucketEntryIndex++)
+                {
+                    auto& bucketEntry = this->bucketEntries[bucketEntryIndex];
+                    if (bucketEntry.valueEntriesHead != nullptr)
+                    {
+                        it = Iter(it.impl, &bucketEntry, nullptr, bucketEntry.valueEntriesHead, 1);
+                        return;
+                    }
+                }
+
+                it = Iter();
+            }
         }
 
         template <typename Iter>
@@ -615,10 +645,10 @@ namespace Finjin { namespace Common {
         AssignOrError<KeyType> assignValue;
     };
 
-    template <typename Owner, typename ValueCollectionType, typename BucketCollectionType, typename Hash, typename KeyType, typename ValueType, typename MapPairType = MapPairConstructFirst<KeyType, ValueType> >
-    struct UnorderedMapImpl : UnorderedSetMapImpl<Owner, ValueCollectionType, BucketCollectionType, Hash, KeyType, MapPairEqualTo<MapPairType> >
+    template <typename Owner, typename ValueCollectionType, typename BucketCollectionType, typename Hash, typename KeyType, typename ValueType, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename KeyEqual = std::equal_to<KeyType> >
+    struct UnorderedMapImpl : UnorderedSetMapImpl<Owner, ValueCollectionType, BucketCollectionType, Hash, KeyType, MapPairEqualTo<typename Owner::value_type, KeyEqual> >
     {
-        using Super = UnorderedSetMapImpl<Owner, ValueCollectionType, BucketCollectionType, Hash, KeyType, MapPairEqualTo<MapPairType> >;
+        using Super = UnorderedSetMapImpl<Owner, ValueCollectionType, BucketCollectionType, Hash, KeyType, MapPairEqualTo<typename Owner::value_type, KeyEqual> >;
 
         template <typename Other>
         ValueOrError<void> assign(const Other& other)

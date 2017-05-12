@@ -1890,6 +1890,18 @@ Utf8StringView::Utf8StringView(const char* first, size_t len)
     this->l = len;
 }
 
+Utf8StringView::Utf8StringView(const Utf8StringView& s)
+{
+    this->s = s.s;
+    this->l = s.l;
+}
+
+Utf8StringView::Utf8StringView(const Utf8String& s)
+{
+    this->s = s.c_str();
+    this->l = s.length();
+}
+
 ValueOrError<void> Utf8StringView::assign(const char* first)
 {
     this->s = first;

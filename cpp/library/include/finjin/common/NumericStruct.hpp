@@ -89,29 +89,28 @@ namespace Finjin { namespace Common {
         template <typename T>
         static NumericStructElementType ParseSimpleType(const T& value)
         {
-            static StaticUnorderedMap<size_t, NumericStructElementType, 20, 21, MapPairConstructNone<size_t, NumericStructElementType>, PassthroughHash> lookup
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(NumericStructElementType, 20) lookup
                 (
-                Utf8String::Hash("int"), NumericStructElementType::INT1,
-                Utf8String::Hash("int1"), NumericStructElementType::INT1,
-                Utf8String::Hash("int2"), NumericStructElementType::INT2,
-                Utf8String::Hash("int3"), NumericStructElementType::INT3,
-                Utf8String::Hash("int4"), NumericStructElementType::INT4,
-                Utf8String::Hash("uint"), NumericStructElementType::UINT1,
-                Utf8String::Hash("uint1"), NumericStructElementType::UINT1,
-                Utf8String::Hash("uint2"), NumericStructElementType::UINT2,
-                Utf8String::Hash("uint3"), NumericStructElementType::UINT3,
-                Utf8String::Hash("uint4"), NumericStructElementType::UINT4,
-                Utf8String::Hash("float"), NumericStructElementType::FLOAT1,
-                Utf8String::Hash("float1"), NumericStructElementType::FLOAT1,
-                Utf8String::Hash("float2"), NumericStructElementType::FLOAT2,
-                Utf8String::Hash("float3"), NumericStructElementType::FLOAT3,
-                Utf8String::Hash("float4"), NumericStructElementType::FLOAT4,
-                Utf8String::Hash("float3x3"), NumericStructElementType::FLOAT3x3,
-                Utf8String::Hash("float4x4"), NumericStructElementType::FLOAT4x4
+                "int", NumericStructElementType::INT1,
+                "int1", NumericStructElementType::INT1,
+                "int2", NumericStructElementType::INT2,
+                "int3", NumericStructElementType::INT3,
+                "int4", NumericStructElementType::INT4,
+                "uint", NumericStructElementType::UINT1,
+                "uint1", NumericStructElementType::UINT1,
+                "uint2", NumericStructElementType::UINT2,
+                "uint3", NumericStructElementType::UINT3,
+                "uint4", NumericStructElementType::UINT4,
+                "float", NumericStructElementType::FLOAT1,
+                "float1", NumericStructElementType::FLOAT1,
+                "float2", NumericStructElementType::FLOAT2,
+                "float3", NumericStructElementType::FLOAT3,
+                "float4", NumericStructElementType::FLOAT4,
+                "float3x3", NumericStructElementType::FLOAT3x3,
+                "float4x4", NumericStructElementType::FLOAT4x4
                 );
 
-            Utf8StringHash hash;
-            auto foundAt = lookup.find(hash(value));
+            auto foundAt = lookup.find(value);
             if (foundAt != lookup.end())
                 return foundAt->second;
             else

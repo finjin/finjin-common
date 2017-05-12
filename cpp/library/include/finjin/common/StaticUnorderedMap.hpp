@@ -24,6 +24,12 @@
  */
 #define FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count) (size_t(count) * 3 | (size_t)1)
 
+/**
+ * Defines a lookup table with known number of literal string keys and corresponding values.
+ * For this to compile without error, the Utf8String.hpp header must also be included
+ */
+#define FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(valueType, count) StaticUnorderedMap<const char*, valueType, size_t(count), FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count), Finjin::Common::MapPairConstructNone<const char*, valueType>, Finjin::Common::Utf8StringHash, Finjin::Common::Utf8StringEqual>
+
 
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
@@ -33,7 +39,7 @@ namespace Finjin { namespace Common {
      * Note that default insert() behavior does not update the value as std::unordered_map does.
      * Instead, this needs to be forced by specifying true for the 'allowOverride' parameter.
      */
-    template <typename KeyType, typename ValueType, size_t ValueCount, size_t BucketCount, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType> >
+    template <typename KeyType, typename ValueType, size_t ValueCount, size_t BucketCount, typename MapPairType = MapPairConstructFirst<KeyType, ValueType>, typename Hash = std::hash<KeyType>, typename KeyEqual = std::equal_to<KeyType> >
     class StaticUnorderedMap
     {
     public:
@@ -46,8 +52,8 @@ namespace Finjin { namespace Common {
         using ValueCollection = std::array<ValueEntry, ValueCount>;
         using BucketCollection = std::array<BucketEntry, BucketCount>;
 
-        using This = StaticUnorderedMap<KeyType, ValueType, ValueCount, BucketCount, MapPairType, Hash>;
-        using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType>;
+        using This = StaticUnorderedMap<KeyType, ValueType, ValueCount, BucketCount, MapPairType, Hash, KeyEqual>;
+        using Impl = UnorderedMapImpl<This, ValueCollection, BucketCollection, Hash, KeyType, ValueType, MapPairType, KeyEqual>;
 
         using iterator = typename Impl::iterator;
         using const_iterator = typename Impl::const_iterator;
@@ -69,16 +75,20 @@ namespace Finjin { namespace Common {
         ValueOrError<bool> insert_or_assign(const KeyType& key, const ValueType& value, bool allowOverwrite) { return impl.insert(key, value, true); }
         ValueOrError<bool> insert_or_assign(KeyType&& key, ValueType&& value, bool allowOverwrite) { return impl.insert(std::move(key), std::move(value), true); }
 
-        bool contains(const KeyType& key) const { return find(key) != end(); }
+        template <typename FindKeyType>
+        bool contains(const FindKeyType& key) const { return find(key) != end(); }
 
-        iterator find(const KeyType& key) { return impl.find(key); }
-        const_iterator find(const KeyType& key) const { return impl.find(key); }
+        template <typename FindKeyType>
+        iterator find(const FindKeyType& key) { return impl.find(key); }
+        template <typename FindKeyType>
+        const_iterator find(const FindKeyType& key) const { return impl.find(key); }
 
         void clear() { impl.clear(); }
 
         iterator erase(iterator iter) { return impl.erase(iter); }
 
-        bool remove(const KeyType& key) { return impl.remove(key); }
+        template <typename FindKeyType>
+        bool remove(const FindKeyType& key) { return impl.remove(key); }
 
         size_t size() const { return impl.count; }
         size_t max_size() const { return impl.valueEntries.size(); }
