@@ -20,49 +20,49 @@
 
 #define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, next, value) \
     { \
-        auto _headTemp = head;\
-        head = value;\
+        auto _headTemp = head; \
+        head = value; \
         head->next = _headTemp; \
     }
 
 #define FINJIN_INTRUSIVE_SINGLE_LIST_ADD_UNIQUE_ITEM(head, next, value) \
-    {\
-        auto found = false;\
-        FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, next, innerValue)\
-        {\
-            if (value == innerValue)\
-            {\
-                found = true;\
-                break;\
-            }\
-        }\
-        if (!found)\
-        {\
-            FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, next, value)\
-        }\
+    { \
+        auto found = false; \
+        FINJIN_INTRUSIVE_SINGLE_LIST_ITERATE(head, next, innerValue) \
+        { \
+            if (value == innerValue) \
+            { \
+                found = true; \
+                break; \
+            } \
+        } \
+        if (!found) \
+        { \
+            FINJIN_INTRUSIVE_SINGLE_LIST_ADD_ITEM(head, next, value) \
+        } \
     }
 
 #define FINJIN_INTRUSIVE_SINGLE_LIST_REMOVE_ITEM(head, next, value) \
-    if (head == nullptr)\
-    {\
-    }\
-    else if (value == head)\
-    {\
-        head = head->next;\
-    }\
-    else\
-    {\
-        auto previousIter = head;\
-        for (auto currentIter = head->next; currentIter != nullptr; currentIter = currentIter->next)\
-        {\
-            if (value == currentIter)\
-            {\
-                previousIter->next = currentIter->next;\
-                currentIter->next = nullptr;\
-                break;\
-            }\
-            previousIter = currentIter;\
-        }\
+    if (head == nullptr) \
+    { \
+    } \
+    else if (value == head) \
+    { \
+        head = head->next; \
+    } \
+    else \
+    { \
+        auto previousIter = head; \
+        for (auto currentIter = head->next; currentIter != nullptr; currentIter = currentIter->next) \
+        { \
+            if (value == currentIter) \
+            { \
+                previousIter->next = currentIter->next; \
+                currentIter->next = nullptr; \
+                break; \
+            } \
+            previousIter = currentIter; \
+        } \
     }
 
 

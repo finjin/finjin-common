@@ -247,6 +247,13 @@ namespace Finjin { namespace Common {
             return result;
         }
 
+        bool TestAndClearBit(size_t index)
+        {
+            auto result = IsBitSet(index);
+            ClearBit(index);
+            return result;
+        }
+
         size_t GetHash() const
         {
             return Hash::Bytes(bits, sizeof(bits));

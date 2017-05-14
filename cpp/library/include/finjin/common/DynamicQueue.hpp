@@ -102,7 +102,7 @@ namespace Finjin { namespace Common {
 
         ValueCollection& GetValueEntries() { return impl.valueEntries; }
 
-        size_t GetIndex(const T& value) const { return &value - impl.valueEntries.data(); }
+        size_t GetEntryIndex(const T& value) const { return &value - impl.valueEntries.data(); }
 
         T& operator [] (size_t i) { return impl.valueEntries[i]; }
         const T& operator [] (size_t i) const { return impl.valueEntries[i]; }

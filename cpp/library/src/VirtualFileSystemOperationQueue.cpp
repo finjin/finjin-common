@@ -521,7 +521,7 @@ void VirtualFileSystemOperationQueue::AddRequest(VirtualFileOperationHandle& ope
 
     //Fill in result
     operationHandle.operationQueue = this;
-    operationHandle.operationIndex = this->operations.GetIndex(internalReadRequest);
+    operationHandle.operationIndex = this->operations.GetEntryIndex(internalReadRequest);
     operationHandle.sequenceID = this->sequenceID;
 
     internalReadRequest.Start(request, operationHandle);
