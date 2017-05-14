@@ -352,14 +352,8 @@ namespace Finjin { namespace Common {
      * @param rangeEnd [in] - The end of the range
      * @return The scaled value is returned
      */
-    inline float Scaled(float value, float rangeStart, float rangeEnd)
-    {
-        return rangeStart + (rangeEnd - rangeStart) * value;
-    }
-    inline double Scaled(double value, double rangeStart, double rangeEnd)
-    {
-        return rangeStart + (rangeEnd - rangeStart) * value;
-    }
+    inline float Scaled(float value, float rangeStart, float rangeEnd) { return rangeStart + (rangeEnd - rangeStart) * value; }
+    inline double Scaled(double value, double rangeStart, double rangeEnd) { return rangeStart + (rangeEnd - rangeStart) * value; }
 
     /**
      * Normalizes a value to fall within a range
@@ -368,100 +362,31 @@ namespace Finjin { namespace Common {
      * @param rangeEnd [in] - The end of the range
      * @return The normalized value is returned
      */
-    inline float Normalized(float value, float rangeStart, float rangeEnd)
-    {
-        return (value - rangeStart) / (rangeEnd - rangeStart);
-    }
-    inline double Normalized(double value, double rangeStart, double rangeEnd)
-    {
-        return (value - rangeStart) / (rangeEnd - rangeStart);
-    }
+    inline float Normalized(float value, float rangeStart, float rangeEnd) { return (value - rangeStart) / (rangeEnd - rangeStart); }
+    inline double Normalized(double value, double rangeStart, double rangeEnd) { return (value - rangeStart) / (rangeEnd - rangeStart); }
 
-    template <typename T>
-    inline T GetSign(T value)
-    {
-        return value < 0 ? (T)-1 : (T)1;
-    }
+    template <typename T> inline bool IsInRange(const T& value, const T& minValue, const T& maxValue) { return value >= minValue && value <= maxValue; }
 
-    template <typename T>
-    inline T GetAbs(T value)
-    {
-        return value < 0 ? -value : value;
-    }
+    template <typename T> inline T GetSign(T value) { return value < 0 ? (T)-1 : (T)1; }
 
-    template <>
-    inline uint8_t GetAbs(uint8_t value)
-    {
-        return value;
-    }
+    template <typename T> inline T GetOdd(T value) { return value | (T)1; } //T should be an integer type
+    
+    template <typename T> inline T GetAbs(T value) { return value < 0 ? -value : value; }
+    template <> inline uint8_t GetAbs(uint8_t value) { return value; }
+    template <> inline uint16_t GetAbs(uint16_t value) { return value; }
+    template <> inline uint32_t GetAbs(uint32_t value) { return value; }
+    template <> inline uint64_t GetAbs(uint64_t value) { return value; }
 
-    template <>
-    inline uint16_t GetAbs(uint16_t value)
-    {
-        return value;
-    }
+    template <typename T> inline float RoundToFloat(T value) { return std::floor(value + .5f); }
+    template <> inline float RoundToFloat(float value) { return value; }
+    template <> inline float RoundToFloat(double value) { return static_cast<float>(value); }
 
-    template <>
-    inline uint32_t GetAbs(uint32_t value)
-    {
-        return value;
-    }
+    template <typename T> inline double RoundToDouble(T value) { return std::floor(value + .5); }
+    template <> inline double RoundToDouble(float value) { return value; }
+    template <> inline double RoundToDouble(double value) { return value; }
 
-    template <>
-    inline uint64_t GetAbs(uint64_t value)
-    {
-        return value;
-    }
-
-    template <typename T>
-    inline T GetOdd(T value)
-    {
-        return value | (T)1;
-    }
-
-    template <typename T>
-    inline float RoundToFloat(T value)
-    {
-        return std::floor(value + .5f);
-    }
-
-    template <>
-    inline float RoundToFloat(float value)
-    {
-        return value;
-    }
-
-    template <typename T>
-    inline double RoundToDouble(T value)
-    {
-        return std::floor(value + .5);
-    }
-
-    template <>
-    inline double RoundToDouble(double value)
-    {
-        return value;
-    }
-
-    inline int RoundToInt(double value)
-    {
-        return static_cast<int>(value + .5);
-    }
-
-    inline int64_t RoundToInt64(double value)
-    {
-        return static_cast<int64_t>(value + .5);
-    }
-
-    inline uint64_t RoundToUInt64(double value)
-    {
-        return static_cast<uint64_t>(value + .5);
-    }
-
-    template <typename T>
-    inline bool IsInRange(const T& value, const T& minValue, const T& maxValue)
-    {
-        return value >= minValue && value <= maxValue;
-    }
+    inline int RoundToInt(double value) { return static_cast<int>(value + .5); }
+    inline int64_t RoundToInt64(double value) { return static_cast<int64_t>(value + .5); }
+    inline uint64_t RoundToUInt64(double value) { return static_cast<uint64_t>(value + .5); }
 
 } }
