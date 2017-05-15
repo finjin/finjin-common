@@ -20,8 +20,6 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-
-//AllocatedClass
 AllocatedClass::AllocatedClass(Allocator* allocator)
 {
     this->allocator = allocator;
