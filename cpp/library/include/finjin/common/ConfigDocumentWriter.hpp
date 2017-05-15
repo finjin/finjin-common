@@ -113,6 +113,13 @@ namespace Finjin { namespace Common {
             return *this;
         }
 
+        template <typename KeyType>
+        ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const char* value)
+        {
+            Utf8StringView valueView(value);
+            return WriteKeyAndValue(key, valueView);
+        }
+
         template <typename StringType>
         ConfigDocumentWriter& WriteLine(const StringType& line)
         {

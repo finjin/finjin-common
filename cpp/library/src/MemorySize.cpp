@@ -22,52 +22,52 @@ using namespace Finjin::Common;
 //Macros------------------------------------------------------------------------
 #define PARSE_MEMORY_SIZE(unitName, generatorFunction) \
     { \
-        auto integerString = s; \
-        integerString.pop_back(unitName); \
+        auto doubleString = s; \
+        doubleString.pop_back(unitName); \
         \
-        uint64_t integerValue; \
-        Convert::ToInteger(integerValue, integerString, error); \
+        double doubleValue; \
+        Convert::ToNumber(doubleValue, doubleString, error); \
         if (error) \
-            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse integer %1% size from '%2%'.", unitName, integerString)); \
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse double %1% size from '%2%'.", unitName, doubleString)); \
         else \
-            sizeValue = generatorFunction(integerValue); \
+            sizeValue = generatorFunction(doubleValue); \
     }
 
 
 //Local functions---------------------------------------------------------------
-static uint64_t Bytes(uint64_t value)
+static uint64_t Bytes(double value)
 {
-    return value;
+    return RoundToUInt64(value);
 }
 
-static uint64_t Kilobytes(uint64_t value)
+static uint64_t Kilobytes(double value)
 {
-    return MemorySize::KILOBYTE * value;
+    return RoundToUInt64(MemorySize::KILOBYTE * value);
 }
 
-static uint64_t Megabytes(uint64_t value)
+static uint64_t Megabytes(double value)
 {
-    return MemorySize::MEGABYTE * value;
+    return RoundToUInt64(MemorySize::MEGABYTE * value);
 }
 
-static uint64_t Gigabytes(uint64_t value)
+static uint64_t Gigabytes(double value)
 {
-    return MemorySize::GIGABYTE * value;
+    return RoundToUInt64(MemorySize::GIGABYTE * value);
 }
 
-static uint64_t Kibibytes(uint64_t value)
+static uint64_t Kibibytes(double value)
 {
-    return MemorySize::KIBIBYTE * value;
+    return RoundToUInt64(MemorySize::KIBIBYTE * value);
 }
 
-static uint64_t Mebibytes(uint64_t value)
+static uint64_t Mebibytes(double value)
 {
-    return MemorySize::MEBIBYTE * value;
+    return RoundToUInt64(MemorySize::MEBIBYTE * value);
 }
 
-static uint64_t Gibibytes(uint64_t value)
+static uint64_t Gibibytes(double value)
 {
-    return MemorySize::GIBIBYTE * value;
+    return RoundToUInt64(MemorySize::GIBIBYTE * value);
 }
 
 template <typename T, typename StringType>
@@ -149,35 +149,6 @@ void ParseMemorySize(T& sizeValue, const StringType& s, Error& error)
 
 
 //Implementation----------------------------------------------------------------
-#if FINJIN_TARGET_PLATFORM_IS_APPLE
-void MemorySize::Parse(size_t& sizeValue, const Utf8String& stringValue, Error& error)
-{
-    FINJIN_ERROR_METHOD_START(error);
-
-    ParseMemorySize(sizeValue, stringValue, error);
-    if (error)
-        FINJIN_SET_ERROR_NO_MESSAGE(error);
-}
-#endif
-
-uint32_t MemorySize::Parse32(const Utf8String& stringValue, uint32_t defaultValue)
-{
-    FINJIN_DECLARE_ERROR(error);
-
-    uint32_t parsed;
-    Parse(parsed, stringValue, error);
-    return error ? defaultValue : parsed;
-}
-
-uint64_t MemorySize::Parse64(const Utf8String& stringValue, uint64_t defaultValue)
-{
-    FINJIN_DECLARE_ERROR(error);
-
-    uint64_t parsed;
-    Parse(parsed, stringValue, error);
-    return error ? defaultValue : parsed;
-}
-
 uint32_t MemorySize::Parse32(const Utf8StringView& stringValue, uint32_t defaultValue)
 {
     FINJIN_DECLARE_ERROR(error);
@@ -194,36 +165,6 @@ uint64_t MemorySize::Parse64(const Utf8StringView& stringValue, uint64_t default
     uint64_t parsed;
     Parse(parsed, stringValue, error);
     return error ? defaultValue : parsed;
-}
-
-void MemorySize::Parse(uint32_t& sizeValue, const Utf8String& stringValue, Error& error)
-{
-    FINJIN_ERROR_METHOD_START(error);
-
-    uint64_t sizeValue64;
-    ParseMemorySize(sizeValue64, stringValue, error);
-    if (error)
-    {
-        FINJIN_SET_ERROR_NO_MESSAGE(error);
-        return;
-    }
-
-    if (sizeValue64 > std::numeric_limits<uint32_t>::max())
-    {
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("'%1%' could not be converted to a 32-bit memory size. The value should be within [0 - %2%]", stringValue, std::numeric_limits<uint32_t>::max()));
-        return;
-    }
-
-    sizeValue = static_cast<uint32_t>(sizeValue64);
-}
-
-void MemorySize::Parse(uint64_t& sizeValue, const Utf8String& stringValue, Error& error)
-{
-    FINJIN_ERROR_METHOD_START(error);
-
-    ParseMemorySize(sizeValue, stringValue, error);
-    if (error)
-        FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
 void MemorySize::Parse(uint32_t& sizeValue, const Utf8StringView& stringValue, Error& error)
@@ -275,15 +216,23 @@ Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
     if (gb > 0)
     {
         result = Convert::ToString(gb);
-        result += ".";
-        result += Convert::ToString(RoundToInt(10.0 * static_cast<double>(mb) / static_cast<double>(base * base)));
+        auto fractional = RoundToInt(10.0 * static_cast<double>(mb) / static_cast<double>(base * base));
+        if (fractional > 0)
+        {
+            result += ".";
+            result += Convert::ToString(fractional);
+        }
         result += base == KILOBYTE ? "GB" : "GiB";
     }
     else if (mb > 0)
     {
         result = Convert::ToString(mb);
-        result += ".";
-        result += Convert::ToString(RoundToInt(10.0 * static_cast<double>(kb) / static_cast<double>(base)));
+        auto fractional = RoundToInt(10.0 * static_cast<double>(kb) / static_cast<double>(base));
+        if (fractional > 0)
+        {
+            result += ".";
+            result += Convert::ToString(fractional);
+        }
         result += base == KILOBYTE ? "MB" : "MiB";
     }
     else if (kb > 0)

@@ -33,20 +33,22 @@ namespace Finjin { namespace Common {
         enum { MEBIBYTE = KIBIBYTE * KIBIBYTE };
         enum { GIBIBYTE = KIBIBYTE * KIBIBYTE * KIBIBYTE };
 
-    #if FINJIN_TARGET_PLATFORM_IS_APPLE
-        static void Parse(size_t& value, const Utf8String& stringValue, Error& error);
-    #endif
-
         //Parse with default value
-        static uint32_t Parse32(const Utf8String& stringValue, uint32_t defaultValue = 0);
-        static uint64_t Parse64(const Utf8String& stringValue, uint64_t defaultValue = 0);
+        static uint32_t Parse32(const char* stringValue, uint32_t defaultValue = 0) { Utf8StringView stringValueView(stringValue); return Parse32(stringValueView, defaultValue); }
+        static uint64_t Parse64(const char* stringValue, uint64_t defaultValue = 0) { Utf8StringView stringValueView(stringValue); return Parse64(stringValueView, defaultValue); }
+
+        static uint32_t Parse32(const Utf8String& stringValue, uint32_t defaultValue = 0) { Utf8StringView stringValueView(stringValue); return Parse32(stringValueView, defaultValue); }
+        static uint64_t Parse64(const Utf8String& stringValue, uint64_t defaultValue = 0) { Utf8StringView stringValueView(stringValue); return Parse64(stringValueView, defaultValue); }
 
         static uint32_t Parse32(const Utf8StringView& stringValue, uint32_t defaultValue = 0);
         static uint64_t Parse64(const Utf8StringView& stringValue, uint64_t defaultValue = 0);
 
         //Parse with error
-        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error);
-        static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error);
+        static void Parse(uint32_t& value, const char* stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
+        static void Parse(uint64_t& value, const char* stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
+
+        static void Parse(uint32_t& value, const Utf8String& stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
+        static void Parse(uint64_t& value, const Utf8String& stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
 
         static void Parse(uint32_t& value, const Utf8StringView& stringValue, Error& error);
         static void Parse(uint64_t& value, const Utf8StringView& stringValue, Error& error);
