@@ -21,7 +21,7 @@
 using namespace Finjin::Common;
 
 
-//Local variables---------------------------------------------------------------
+//Local functions---------------------------------------------------------------
 static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT)& GetLogLevelLookup()
 {
     static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT) lookup
