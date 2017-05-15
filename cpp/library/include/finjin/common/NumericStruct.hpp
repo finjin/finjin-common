@@ -52,42 +52,7 @@ namespace Finjin { namespace Common {
     class NumericStructElementTypeUtilities
     {
     public:
-        static const char* ToString(NumericStructElementType value)
-        {
-            switch (value)
-            {
-                case NumericStructElementType::NONE: return "<none>";
-                case NumericStructElementType::INT1: return "int1";
-                case NumericStructElementType::INT2: return "int2";
-                case NumericStructElementType::INT3: return "int3";
-                case NumericStructElementType::INT4: return "int4";
-                case NumericStructElementType::UINT1: return "uint1";
-                case NumericStructElementType::UINT2: return "uint2";
-                case NumericStructElementType::UINT3: return "uint3";
-                case NumericStructElementType::UINT4: return "uint4";
-                case NumericStructElementType::FLOAT1: return "float1";
-                case NumericStructElementType::FLOAT2: return "float2";
-                case NumericStructElementType::FLOAT3: return "float3";
-                case NumericStructElementType::FLOAT4: return "float4";
-                case NumericStructElementType::FLOAT3x3: return "float3x3";
-                case NumericStructElementType::FLOAT4x4: return "float4x4";
-                case NumericStructElementType::NESTED_STRUCT: return "<nested struct>";
-                default: return "<unknown>";
-            }
-        }
-
-        template <typename T>
-        static void ParseSimpleType(NumericStructElementType& result, const T& value, Error& error)
-        {
-            FINJIN_ERROR_METHOD_START(error);
-
-            result = ParseSimpleType(value);
-            if (result == NumericStructElementType::NONE)
-                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse simple numeric struct element type '%1%'.", value));
-        }
-
-        template <typename T>
-        static NumericStructElementType ParseSimpleType(const T& value)
+        static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(NumericStructElementType, 20)& GetLookup()
         {
             static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(NumericStructElementType, 20) lookup
                 (
@@ -109,7 +74,35 @@ namespace Finjin { namespace Common {
                 "float3x3", NumericStructElementType::FLOAT3x3,
                 "float4x4", NumericStructElementType::FLOAT4x4
                 );
+            return lookup;
+        }
+        
+        static const char* ToString(NumericStructElementType value)
+        {
+            auto& lookup = GetLookup();
+            for (auto& item : lookup)
+            {
+                if (item.second == value)
+                    return item.first;
+            }
+            
+            return "<unknown>";
+        }
 
+        template <typename T>
+        static void ParseSimpleType(NumericStructElementType& result, const T& value, Error& error)
+        {
+            FINJIN_ERROR_METHOD_START(error);
+
+            result = ParseSimpleType(value);
+            if (result == NumericStructElementType::NONE)
+                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse simple numeric struct element type '%1%'.", value));
+        }
+
+        template <typename T>
+        static NumericStructElementType ParseSimpleType(const T& value)
+        {
+            auto& lookup = GetLookup();
             return lookup.GetOrDefault(value, NumericStructElementType::NONE);
         }
 
