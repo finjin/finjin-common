@@ -32,7 +32,7 @@ const char* DataHeader::OccurrenceUtilities::ToString(DataHeader::Occurrence val
         case Occurrence::FIRST: return "first"; break;
         case Occurrence::MORE: return "more"; break;
         case Occurrence::LAST: return "last"; break;
-        default: return "<unknown>";
+        default: return FINJIN_ENUM_UNKNOWN_STRING;
     }
 }
 

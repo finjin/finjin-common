@@ -129,7 +129,7 @@ const char* StreamingFileFormatUtilities::ToString(StreamingFileFormat format)
         case StreamingFileFormat::STREAMING_BINARY: return "fsbd";
         case StreamingFileFormat::STREAMING_JSON: return "json";
         case StreamingFileFormat::STREAMING_CONFIG: return "cfg";
-        default: return "<unknown>";
+        default: return FINJIN_ENUM_UNKNOWN_STRING;
     }
 }
 

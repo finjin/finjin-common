@@ -409,7 +409,7 @@ const char* DataChunkBlobTextFormatUtilities::ToString(DataChunkBlobTextFormat v
     {
         case DataChunkBlobTextFormat::BYTE_ARRAY: return "byte-array";
         case DataChunkBlobTextFormat::BASE64: return "base64";
-        default: return "<unknown>";
+        default: return FINJIN_ENUM_UNKNOWN_STRING;
     }
 }
 

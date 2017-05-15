@@ -55,5 +55,5 @@ const char* LogLevelUtilities::ToString(LogLevel value)
             return item.first;
     }
     
-    return "<unknown>";
+    return FINJIN_ENUM_UNKNOWN_STRING;
 }

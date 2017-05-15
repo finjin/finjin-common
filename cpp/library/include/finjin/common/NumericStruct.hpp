@@ -86,7 +86,7 @@ namespace Finjin { namespace Common {
                     return item.first;
             }
             
-            return "<unknown>";
+            return FINJIN_ENUM_UNKNOWN_STRING;
         }
 
         template <typename T>

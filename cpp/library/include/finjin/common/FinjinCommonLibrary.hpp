@@ -252,6 +252,8 @@
 #define FINJIN_CALLER_PARAMETERS fileName, functionName, line //Allows error parameters in a method to be passed to another method
 #define FINJIN_CALLER_ARGUMENTS __FILE__, __FUNCTION_NAME__, __LINE__ //Passed into Error::SetError() and other methods
 
+#define FINJIN_ENUM_UNKNOWN_STRING "<unknown>" //When an enum is turned into a string, this is used if the enum value is not recognized
+
 
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
