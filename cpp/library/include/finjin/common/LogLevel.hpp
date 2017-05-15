@@ -35,7 +35,9 @@ namespace Finjin { namespace Common {
         WARNING_LEVEL,
         ERROR_LEVEL,
         DEBUG_LEVEL,
-        TRACE_LEVEL
+        TRACE_LEVEL,
+        
+        COUNT
     };
 
     class FINJIN_COMMON_LIBRARY_API LogLevelUtilities
