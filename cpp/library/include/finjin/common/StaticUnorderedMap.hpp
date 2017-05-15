@@ -107,6 +107,9 @@ namespace Finjin { namespace Common {
 
         ValueOrError<ValueType*> GetOrAdd(const KeyType& key) { return impl.GetOrAdd(key); }
 
+        template <typename FindKeyType>
+        const ValueType& GetOrDefault(const FindKeyType& key, const ValueType& defaultValue) const { return impl.GetOrDefault(key, defaultValue); }
+
         size_t GetCollisionCount() const { return impl.GetCollisionCount(); }
         float GetCollisionRatio() const { return impl.GetCollisionRatio(); }
 

@@ -34,7 +34,7 @@ namespace Finjin { namespace Common {
         using traits_type = std::char_traits<char>;
         using value_type = char;
         using size_type = size_t;
-        using difference_type = size_t;
+        using difference_type = intptr_t;
         using pointer = Path*;
         using const_pointer = const Path*;
         using reference = Path&;
@@ -171,8 +171,8 @@ namespace Finjin { namespace Common {
         size_t rfind(const char* other, size_t pos = npos) const;
         size_t rfind(const Utf8String& other, size_t pos = npos) const;
 
-        char* erase(char* at);
-        char* erase(char* from, char* to);
+        char* erase(const char* at);
+        char* erase(const char* from, const char* to);
 
         template <typename BeginIter, typename EndIter>
         ValueOrError<void> insert(char* at, BeginIter beginIt, EndIter endIt)

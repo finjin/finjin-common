@@ -1174,7 +1174,7 @@ size_t Path::rfind(const Utf8String& other, size_t pos) const
         return npos;
 }
 
-char* Path::erase(char* at)
+char* Path::erase(const char* at)
 {
     if (at != nullptr)
     {
@@ -1194,13 +1194,16 @@ char* Path::erase(char* at)
         return end();
 }
 
-char* Path::erase(char* from, char* to)
+char* Path::erase(const char* constFrom, const char* constTo)
 {
     char* last = this->s + this->l;
 
     //Ensure 'from' is within range
-    if (from >= this->s && from <= last)
+    if (constFrom >= this->s && constFrom <= last)
     {
+        auto from = this->s + (constFrom - this->s);
+        auto to = this->s + (constTo - this->s);
+
         //Ensure 'to' is within range
         if (to < from)
             to = from; //We assume from/to is non-decreasing
@@ -1269,9 +1272,9 @@ void Path::RemoveLeadingSeparators()
 
     if (i > 0 && i < this->l)
     {
-        Path sub;
+        Utf8StringView sub;
         substr(sub, i);
-        *this = sub;
+        erase(sub.begin(), sub.end());
     }
 }
 
@@ -1569,15 +1572,15 @@ void Path::TrimTrailingWhitespace()
 
 void Path::RemoveWhitespace(size_t offset)
 {
-    Path result;
+    TrimTrailingWhitespace();
 
-    for (size_t i = offset; i < this->l; i++)
+    for (size_t i = offset; i < this->l;)
     {
-        if (!isspace(this->s[i]))
-            result.append(this->s[i]);
+        if (isspace(this->s[i]))
+            erase(&this->s[i]);
+        else
+            i++;
     }
-
-    *this = result;
 }
 
 bool Path::IterateCodepoint(size_t& iter, uint32_t& codepoint) const
@@ -2493,7 +2496,7 @@ bool Path::CreateDirectories() const
     if (empty())
         return false;
 
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
     WideningToUtf16Converter pathW;
     if (!pathW.convert(begin(), end()))
         return false;
@@ -2535,7 +2538,7 @@ bool Path::CreateDirectories() const
 
 void Path::InitializeUtf8FileSystemAccess()
 {
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
     std::locale newLocale(std::locale(), new boost::filesystem::detail::utf8_codecvt_facet);
     boost::filesystem::path::imbue(newLocale);
 #endif

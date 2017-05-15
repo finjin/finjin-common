@@ -28,7 +28,7 @@ namespace Finjin { namespace Common {
 
     /**
      * Standard string class.
-     * When initialize an instance of this class it is responsibility of the caller to ensure that the "char*" data being used is actually UTF8.
+     * When initializing an instance of this class it is responsibility of the caller to ensure that the "char*" data being used is actually UTF8.
      * When using Windows API's you will most likely be using the "wide" versions of those API's, which use UTF16. Utf8String will perform UTF16->UTF8 conversion.
      */
     class FINJIN_COMMON_LIBRARY_API Utf8String
@@ -41,7 +41,7 @@ namespace Finjin { namespace Common {
         using traits_type = std::char_traits<char>;
         using value_type = char;
         using size_type = size_t;
-        using difference_type = size_t;
+        using difference_type = intptr_t;
         using pointer = Utf8String*;
         using const_pointer = const Utf8String*;
         using reference = Utf8String&;
@@ -176,8 +176,8 @@ namespace Finjin { namespace Common {
         size_t rfind(const char* other, size_t pos = npos) const;
         size_t rfind(const Utf8String& other, size_t pos = npos) const;
 
-        char* erase(char* at);
-        char* erase(char* from, char* to);
+        char* erase(const char* at);
+        char* erase(const char* from, const char* to);
 
         template <typename BeginIter, typename EndIter>
         ValueOrError<void> insert(char* at, BeginIter beginIt, EndIter endIt)

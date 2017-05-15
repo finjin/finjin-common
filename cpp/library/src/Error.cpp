@@ -187,25 +187,19 @@ void Error::LeaveMethod()
 
 #if FINJIN_ERROR_NO_MESSAGES
 void Error::SetError(bool hasErrorMessage, int code, FINJIN_CALLER_PARAMETERS_DECLARATION)
-#else
-void Error::SetError(const Utf8String& message, int code, FINJIN_CALLER_PARAMETERS_DECLARATION)
-#endif
 {
-    //Note: The error parameters such as line number, file name, are not used here since
+    //Note: The error parameters such as line number, file name, are not used in Error::SetError() since
     //it's assumed the values captured during EnterMethod() were good enough.
 
     if (IsCallerOwnerThread() && this->depth >= 0)
     {
         this->hasError = true;
 
-    #if FINJIN_ERROR_NO_MESSAGES
         this->callStack[this->depth].hasErrorMessage = hasErrorMessage;
-    #else
-        this->callStack[this->depth].errorMessage = message;
-    #endif
         this->callStack[this->depth].errorCode = code;
     }
 }
+#endif
 
 Error::operator bool() const
 {
@@ -242,14 +236,14 @@ const Utf8String& Error::GetLastNonEmptyErrorMessage() const
     return Utf8String::Empty();
 }
 
-Utf8String Error::JoinErrorMessages(const Utf8String& joinText) const
+Utf8String Error::JoinErrorMessages(const Utf8StringView& joinText) const
 {
     Utf8String result;
     JoinErrorMessages(result, joinText);
     return result;
 }
 
-ValueOrError<void> Error::JoinErrorMessages(Utf8String& result, const Utf8String& joinText) const
+ValueOrError<void> Error::JoinErrorMessages(Utf8String& result, const Utf8StringView& joinText) const
 {
     result.clear();
 

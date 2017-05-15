@@ -23,22 +23,39 @@
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
+    enum class WhichStandardPath
+    {
+        APPLICATION_EXECUTABLE_FILE, //The actual application .exe, if applicable
+        APPLICATION_BUNDLE_DIRECTORY,
+        USER_DOCUMENTS_DIRECTORY,
+        USER_MUSIC_DIRECTORY,
+        USER_VIDEOS_DIRECTORY,
+        USER_PICTURES_DIRECTORY,
+        USER_SAVED_PICTURES_DIRECTORY,
+        USER_CAMERA_ROLL_DIRECTORY,
+        USER_DOWNLOADS_DIRECTORY,
+        USER_APPLICATION_SETTINGS_DIRECTORY,
+        USER_APPLICATION_TEMPORARY_DIRECTORY,
+        USER_WORKING_DIRECTORY
+    };
+
     class StandardPath
     {
     public:
-        StandardPath(Allocator* allocator = nullptr) : path(allocator), internalDisplayName(allocator), displayName(allocator)
+        StandardPath(Allocator* allocator = nullptr) : path(allocator), internalDisplayName(allocator), defaultDisplayName(allocator)
         {
             this->isSystemCreated = false;
         }
 
-        StandardPath(const char* _internalDisplayName, Allocator* allocator = nullptr) : path(allocator), internalDisplayName(_internalDisplayName, allocator), displayName(allocator)
+        StandardPath(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator = nullptr) : path(allocator), internalDisplayName(_internalDisplayName, allocator), defaultDisplayName(allocator)
         {
+            this->which = which;
             this->isSystemCreated = false;
         }
 
         const Utf8String& GetDisplayName() const
         {
-            return !this->displayName.empty() ? this->displayName : this->internalDisplayName;
+            return !this->defaultDisplayName.empty() ? this->defaultDisplayName : this->internalDisplayName;
         }
 
         bool CreateDirectories() const
@@ -50,9 +67,10 @@ namespace Finjin { namespace Common {
         }
 
     public:
+        WhichStandardPath which;
         Path path;
         Utf8String internalDisplayName; //Internal name
-        Utf8String displayName; //System defined name. If empty, a standard name should be used, such as "Video"
+        Utf8String defaultDisplayName; //System defined name. If empty, a standard name should be used, such as "Video"
         bool isSystemCreated; //Indicates whether the path is defined by the system. If false, it's specific to this application and may need to be created
     };
 
@@ -204,22 +222,22 @@ namespace Finjin { namespace Common {
 
     public:
         StandardPaths(Allocator* allocator = nullptr) :
-            applicationExecutableFile("Application Executable", allocator),
-            applicationBundleDirectory("Application Bundle", allocator),
-            userDocumentsDirectory("Documents", allocator),
-            userMusicDirectory("Music", allocator),
-            userVideosDirectory("Videos", allocator),
-            userPicturesDirectory("Pictures", allocator),
-            userSavedPicturesDirectory("Saved Pictures", allocator),
-            userCameraRollDirectory("Camera Roll", allocator),
-            userDownloadsDirectory("Downloads", allocator),
-            userApplicationSettingsDirectory("Application Settings", allocator),
-            userApplicationTemporaryDirectory("Application Temporary", allocator),
-            workingDirectory("Working Directory", allocator)
+            applicationExecutableFile(WhichStandardPath::APPLICATION_EXECUTABLE_FILE, "Application Executable", allocator),
+            applicationBundleDirectory(WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY, "Application Bundle", allocator),
+            userDocumentsDirectory(WhichStandardPath::USER_DOCUMENTS_DIRECTORY, "Documents", allocator),
+            userMusicDirectory(WhichStandardPath::USER_MUSIC_DIRECTORY, "Music", allocator),
+            userVideosDirectory(WhichStandardPath::USER_VIDEOS_DIRECTORY, "Videos", allocator),
+            userPicturesDirectory(WhichStandardPath::USER_PICTURES_DIRECTORY, "Pictures", allocator),
+            userSavedPicturesDirectory(WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY, "Saved Pictures", allocator),
+            userCameraRollDirectory(WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY, "Camera Roll", allocator),
+            userDownloadsDirectory(WhichStandardPath::USER_DOWNLOADS_DIRECTORY, "Downloads", allocator),
+            userApplicationSettingsDirectory(WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY, "Application Settings", allocator),
+            userApplicationTemporaryDirectory(WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY, "Application Temporary", allocator),
+            workingDirectory(WhichStandardPath::USER_WORKING_DIRECTORY, "Working Directory", allocator)
         {
         }
 
         void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);
     };
-
+    
 } }

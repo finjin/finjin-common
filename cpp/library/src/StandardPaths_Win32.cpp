@@ -15,10 +15,15 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/StandardPaths.hpp"
 #include "finjin/common/WindowsUtilities.hpp"
+#include <nowide/stackstring.hpp>
 #include <Windows.h>
 #include <Shlobj.h>
 
 using namespace Finjin::Common;
+
+
+//Local types-------------------------------------------------------------------
+using NarrowingConverter = nowide::basic_stackstring<char, wchar_t, 10>;
 
 
 //Local functions---------------------------------------------------------------
@@ -187,8 +192,8 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     this->workingDirectory.isSystemCreated = true;
 
     this->logicalDrives.clear();
-    DWORD driveFlags = GetLogicalDrives();
-    Utf8String driveName;
+    auto driveFlags = GetLogicalDrives();
+    NarrowingConverter utf8DriveName;
     for (DWORD driveIndex = 0; driveIndex < MAX_LOGICAL_DRIVES && !this->logicalDrives.full(); driveIndex++)
     {
         if (driveFlags & (1 << driveIndex))
@@ -201,8 +206,10 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
                 case DRIVE_REMOTE:
                 {
                     driveNameW[2] = 0; //Remove the trailing slash
-                    driveName = driveNameW;//Convert to UTF8
-                    this->logicalDrives.push_back(driveName.c_str()); //Add to collection
+
+                    if (utf8DriveName.convert(driveNameW) && this->logicalDrives.push_back())
+                        strcpy(this->logicalDrives.back().name, utf8DriveName.c_str());
+                    
                     break;
                 }
             }

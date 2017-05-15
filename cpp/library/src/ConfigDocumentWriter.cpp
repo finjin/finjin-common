@@ -39,62 +39,6 @@ void ConfigDocumentWriter::Create(std::ostream& outStream, int depth)
     this->depth = depth;
 }
 
-ConfigDocumentWriter& ConfigDocumentWriter::WriteComment(const Utf8String& comment)
-{
-    Indent();
-    this->output->Write("#");
-    this->output->WriteString(comment);
-    this->output->Write("\n");
-    return *this;
-}
-
-ConfigDocumentWriter& ConfigDocumentWriter::WriteCommentedSection(const Utf8String& comment, const Utf8String& name)
-{
-    Indent();
-    this->output->Write("\n");
-    this->output->Write("#");
-    this->output->WriteString(comment);
-    this->output->Write("\n");
-
-    Indent();
-    this->output->Write("[");
-    this->output->WriteString(name);
-    this->output->Write("]");
-    this->output->Write("\n");
-
-    return *this;
-}
-
-ConfigDocumentWriter& ConfigDocumentWriter::WriteSection(const Utf8String& name)
-{
-    this->output->Write("\n");
-
-    Indent();
-    this->output->Write("[");
-    this->output->WriteString(name);
-    this->output->Write("]");
-    this->output->Write("\n");
-
-    return *this;
-}
-
-ConfigDocumentWriter& ConfigDocumentWriter::WriteScopeStart(const Utf8String& name)
-{
-    Indent();
-    this->output->Write("[");
-    this->output->WriteString(name);
-    this->output->Write("]");
-    this->output->Write("\n");
-
-    Indent();
-    this->output->Write("{");
-    this->output->Write("\n");
-
-    this->depth++;
-
-    return *this;
-}
-
 ConfigDocumentWriter& ConfigDocumentWriter::WriteScopeEnd()
 {
     if (this->depth > 0)
@@ -104,31 +48,6 @@ ConfigDocumentWriter& ConfigDocumentWriter::WriteScopeEnd()
     this->output->Write("}");
     this->output->Write("\n");
 
-    return *this;
-}
-
-ConfigDocumentWriter& ConfigDocumentWriter::WriteKeyAndValue(const Utf8String& key, const Utf8String& value)
-{
-    auto containsNewline = value.find('\n') != Utf8String::npos;
-
-    Indent();
-    this->output->WriteString(key);
-    if (containsNewline)
-        this->output->Write("^=");
-    else
-        this->output->Write("=");
-    this->output->WriteString(value);
-    this->output->Write("\n");
-    if (containsNewline)
-        this->output->Write("^\n");
-    return *this;
-}
-
-ConfigDocumentWriter& ConfigDocumentWriter::WriteLine(const Utf8String& line)
-{
-    Indent();
-    this->output->WriteString(line);
-    this->output->Write("\n");
     return *this;
 }
 

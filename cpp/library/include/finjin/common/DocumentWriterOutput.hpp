@@ -50,6 +50,12 @@ namespace Finjin { namespace Common {
             if (!s.empty())
                 Write(s.begin(), s.length());
         }
+
+        void WriteString(const char* s)
+        {
+            if (s != nullptr && s[0] != 0)
+                Write(s, strlen(s));
+        }
     };
 
     class StreamDataChunkWriterOutput : public DocumentWriterOutput

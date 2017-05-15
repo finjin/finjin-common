@@ -22,7 +22,7 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS && !FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+#if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
 
 static bool _IsRunningInteractively()
 {

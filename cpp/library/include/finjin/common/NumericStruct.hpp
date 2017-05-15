@@ -110,11 +110,7 @@ namespace Finjin { namespace Common {
                 "float4x4", NumericStructElementType::FLOAT4x4
                 );
 
-            auto foundAt = lookup.find(value);
-            if (foundAt != lookup.end())
-                return foundAt->second;
-            else
-                return NumericStructElementType::NONE;
+            return lookup.GetOrDefault(value, NumericStructElementType::NONE);
         }
 
         static bool IsScalar(NumericStructElementType type)

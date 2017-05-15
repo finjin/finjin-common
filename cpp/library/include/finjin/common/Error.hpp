@@ -190,7 +190,19 @@ namespace Finjin { namespace Common {
     #if FINJIN_ERROR_NO_MESSAGES
         void SetError(bool hasErrorMessage, int code, FINJIN_CALLER_PARAMETERS_DECLARATION);
     #else
-        void SetError(const Utf8String& message, int code, FINJIN_CALLER_PARAMETERS_DECLARATION);
+        template <typename StringType>
+        void SetError(const StringType& message, int code, FINJIN_CALLER_PARAMETERS_DECLARATION)
+        {
+            //Note: The error parameters such as line number, file name, are not used in Error::SetError() since
+            //it's assumed the values captured during EnterMethod() were good enough.
+            if (IsCallerOwnerThread() && this->depth >= 0)
+            {
+                this->hasError = true;
+
+                this->callStack[this->depth].errorMessage = message;
+                this->callStack[this->depth].errorCode = code;
+            }
+        }
     #endif
 
         /** Boolean operator, used to test whether the error object has an error. */
@@ -206,8 +218,8 @@ namespace Finjin { namespace Common {
          * @param joinText [in] The text used to join the error messages.
          * @return The non-empty error message, joined as a single string.
          */
-        Utf8String JoinErrorMessages(const Utf8String& joinText) const;
-        ValueOrError<void> JoinErrorMessages(Utf8String& result, const Utf8String& joinText) const;
+        Utf8String JoinErrorMessages(const Utf8StringView& joinText) const;
+        ValueOrError<void> JoinErrorMessages(Utf8String& result, const Utf8StringView& joinText) const;
 
         /**
          * Outputs the errors.

@@ -30,7 +30,7 @@ using namespace Windows::Storage;
     { \
         if (standardPath.path.assign(which->Path->Data()).HasError()) \
         { \
-            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to assign path for '%1%'.", standardPath.displayName)); \
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to assign path for '%1%'.", standardPath.defaultDisplayName)); \
             return; \
         } \
         if (standardPath.path.IsDirectory()) \

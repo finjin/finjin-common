@@ -852,6 +852,16 @@ namespace Finjin { namespace Common {
             return &freeValueEntry->value.second;
         }
 
+        template <typename FindKeyType>
+        const ValueType& GetOrDefault(const FindKeyType& key, const ValueType& defaultValue) const
+        {
+            auto foundAt = Super::find(key);
+            if (foundAt != Super::end())
+                return foundAt->second;
+            else
+                return defaultValue;
+        }
+
         AssignOrError<KeyType> assignKey;
         AssignOrError<ValueType> assignValue;
     };

@@ -821,9 +821,9 @@ size_t Utf8String::find(const Utf8String& other, size_t pos) const
 {
     auto range = boost::make_iterator_range(this->s + pos, this->s + this->l);
 
-    //auto otherRange = boost::make_iterator_range(other.begin(), other.end());
+    auto otherRange = boost::make_iterator_range(other.s, other.s + other.l);
 
-    auto foundAt = boost::algorithm::find_first(range, boost::make_iterator_range(other));
+    auto foundAt = boost::algorithm::find_first(range, otherRange);
     if (foundAt)
         return foundAt.begin() - this->s;
     else
@@ -876,7 +876,7 @@ size_t Utf8String::rfind(const Utf8String& other, size_t pos) const
         return npos;
 }
 
-char* Utf8String::erase(char* at)
+char* Utf8String::erase(const char* at)
 {
     if (at != nullptr)
     {
@@ -896,13 +896,16 @@ char* Utf8String::erase(char* at)
         return end();
 }
 
-char* Utf8String::erase(char* from, char* to)
+char* Utf8String::erase(const char* constFrom, const char* constTo)
 {
     char* last = this->s + this->l;
 
     //Ensure 'from' is within range
-    if (from >= this->s && from <= last)
+    if (constFrom >= this->s && constFrom <= last)
     {
+        auto from = this->s + (constFrom - this->s);
+        auto to = this->s + (constTo - this->s);
+
         //Ensure 'to' is within range
         if (to < from)
             to = from; //We assume from/to is non-decreasing
@@ -1276,15 +1279,15 @@ void Utf8String::TrimTrailingWhitespace()
 
 void Utf8String::RemoveWhitespace(size_t offset)
 {
-    Utf8String result;
+    TrimTrailingWhitespace();
 
-    for (size_t i = offset; i < this->l; i++)
+    for (size_t i = offset; i < this->l;)
     {
-        if (!isspace(this->s[i]))
-            result.append(this->s[i]);
+        if (isspace(this->s[i]))
+            erase(&this->s[i]);
+        else
+            i++;
     }
-
-    *this = result;
 }
 
 bool Utf8String::IterateCodepoint(size_t& iter, uint32_t& codepoint) const

@@ -15,8 +15,8 @@
 
 
 //Includes----------------------------------------------------------------------
-#include "finjin/common/Error.hpp"
 #include "finjin/common/DocumentWriterOutput.hpp"
+#include "finjin/common/Error.hpp"
 #include <ostream>
 
 
@@ -33,13 +33,95 @@ namespace Finjin { namespace Common {
         void Create(DocumentWriterOutput& output, int depth = 0);
         void Create(std::ostream& outStream, int depth = 0);
 
-        ConfigDocumentWriter& WriteComment(const Utf8String& comment);
-        ConfigDocumentWriter& WriteCommentedSection(const Utf8String& comment, const Utf8String& name);
-        ConfigDocumentWriter& WriteSection(const Utf8String& name);
-        ConfigDocumentWriter& WriteScopeStart(const Utf8String& name);
+        template <typename StringType>
+        ConfigDocumentWriter& WriteComment(const StringType& comment)
+        {
+            Indent();
+            this->output->Write("#");
+            this->output->WriteString(comment);
+            this->output->Write("\n");
+            return *this;
+        }
+
+        template <typename CommentStringType, typename NameStringType>
+        ConfigDocumentWriter& WriteCommentedSection(const CommentStringType& comment, const NameStringType& name)
+        {
+            Indent();
+            this->output->Write("\n");
+            this->output->Write("#");
+            this->output->WriteString(comment);
+            this->output->Write("\n");
+
+            Indent();
+            this->output->Write("[");
+            this->output->WriteString(name);
+            this->output->Write("]");
+            this->output->Write("\n");
+
+            return *this;
+        }
+
+        template <typename StringType>
+        ConfigDocumentWriter& WriteSection(const StringType& name)
+        {
+            this->output->Write("\n");
+
+            Indent();
+            this->output->Write("[");
+            this->output->WriteString(name);
+            this->output->Write("]");
+            this->output->Write("\n");
+
+            return *this;
+        }
+
+        template <typename StringType>
+        ConfigDocumentWriter& WriteScopeStart(const StringType& name)
+        {
+            Indent();
+            this->output->Write("[");
+            this->output->WriteString(name);
+            this->output->Write("]");
+            this->output->Write("\n");
+
+            Indent();
+            this->output->Write("{");
+            this->output->Write("\n");
+
+            this->depth++;
+
+            return *this;
+        }
+
         ConfigDocumentWriter& WriteScopeEnd();
-        ConfigDocumentWriter& WriteKeyAndValue(const Utf8String& key, const Utf8String& value);
-        ConfigDocumentWriter& WriteLine(const Utf8String& line);
+        
+        template <typename KeyType, typename ValueType>
+        ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const ValueType& value)
+        {
+            auto containsNewline = value.find('\n') != Utf8String::npos;
+
+            Indent();
+            this->output->WriteString(key);
+            if (containsNewline)
+                this->output->Write("^=");
+            else
+                this->output->Write("=");
+            this->output->WriteString(value);
+            this->output->Write("\n");
+            if (containsNewline)
+                this->output->Write("^\n");
+            return *this;
+        }
+
+        template <typename StringType>
+        ConfigDocumentWriter& WriteLine(const StringType& line)
+        {
+            Indent();
+            this->output->WriteString(line);
+            this->output->Write("\n");
+            return *this;
+        }
+
         ConfigDocumentWriter& WriteLine(const char* line, size_t length);
         ConfigDocumentWriter& WriteLine(const ConfigDocumentLine& line);
 
