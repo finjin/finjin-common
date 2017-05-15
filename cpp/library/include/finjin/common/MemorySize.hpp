@@ -52,6 +52,12 @@ namespace Finjin { namespace Common {
 
         static void Parse(uint32_t& value, const Utf8StringView& stringValue, Error& error);
         static void Parse(uint64_t& value, const Utf8StringView& stringValue, Error& error);
+        
+    #if FINJIN_TARGET_PLATFORM_IS_APPLE
+        static void Parse(size_t& value, const char* stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
+        static void Parse(size_t& value, const Utf8String& stringValue, Error& error) { Utf8StringView stringValueView(stringValue); Parse(value, stringValueView, error); } //Wrapper - No need to set error
+        static void Parse(size_t& value, const Utf8StringView& stringValue, Error& error);
+    #endif
 
         static Utf8String ToString(uint64_t value, uint64_t base = KILOBYTE);
     };

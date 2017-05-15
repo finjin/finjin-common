@@ -197,6 +197,17 @@ void MemorySize::Parse(uint64_t& sizeValue, const Utf8StringView& stringValue, E
         FINJIN_SET_ERROR_NO_MESSAGE(error);
 }
 
+#if FINJIN_TARGET_PLATFORM_IS_APPLE
+void MemorySize::Parse(size_t& sizeValue, const Utf8StringView& stringValue, Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+    
+    ParseMemorySize(sizeValue, stringValue, error);
+    if (error)
+        FINJIN_SET_ERROR_NO_MESSAGE(error);
+}
+#endif
+
 Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
 {
     if (base != KILOBYTE && base != KIBIBYTE)
