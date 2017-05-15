@@ -65,14 +65,14 @@ static size_t SizeOfValue(bool value, DocumentWriterOutput& writerOutput)
 
 static size_t SizeOfValue(float value, DocumentWriterOutput& writerOutput)
 {
-    if (std::abs(value) < writerOutput.GetMinFloat())
+    if (GetAbs(value) < writerOutput.GetMinFloat())
         value = 0;
     return Convert::ToString(value).length();
 }
 
 static size_t SizeOfValue(double value, DocumentWriterOutput& writerOutput)
 {
-    if (std::abs(value) < writerOutput.GetMinDouble())
+    if (GetAbs(value) < writerOutput.GetMinDouble())
         value = 0;
     return Convert::ToString(value).length();
 }
@@ -184,7 +184,7 @@ static void WriteTextValue(ByteBuffer& out, float value, DocumentWriterOutput* w
 {
     if (sizeof(value) <= maxBytesToWrite)
     {
-        if (std::abs(value) < writerOutput->GetMinFloat())
+        if (GetAbs(value) < writerOutput->GetMinFloat())
             value = 0;
         out.Write(Convert::ToString(value));
     }
@@ -194,7 +194,7 @@ static void WriteTextValue(ByteBuffer& out, double value, DocumentWriterOutput* 
 {
     if (sizeof(value) <= maxBytesToWrite)
     {
-        if (std::abs(value) < writerOutput->GetMinDouble())
+        if (GetAbs(value) < writerOutput->GetMinDouble())
             value = 0;
         out.Write(Convert::ToString(value));
     }
@@ -329,7 +329,7 @@ static void WriteTextValues(ByteBuffer& out, const float* values, size_t count, 
     {
         auto value = GetStridedValue(values, startIndex, valueStride);
 
-        if (std::abs(value) < writerOutput->GetMinFloat())
+        if (GetAbs(value) < writerOutput->GetMinFloat())
             value = 0;
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);
@@ -362,7 +362,7 @@ static void WriteTextValues(ByteBuffer& out, const double* values, size_t count,
     {
         auto value = GetStridedValue(values, startIndex, valueStride);
 
-        if (std::abs(value) < writerOutput->GetMinDouble())
+        if (GetAbs(value) < writerOutput->GetMinDouble())
             value = 0;
 
         auto valueOutputByteSize = SizeOfValue(value, *writerOutput);

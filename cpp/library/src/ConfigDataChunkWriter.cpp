@@ -137,7 +137,7 @@ static void WriteTextValue(ByteBuffer& out, float value, DocumentWriterOutput* w
 {
     out.Write("=");
 
-    if (std::abs(value) < writerOutput->GetMinFloat())
+    if (GetAbs(value) < writerOutput->GetMinFloat())
         value = 0;
     out.Write(Convert::ToString(value));
 }
@@ -146,7 +146,7 @@ static void WriteTextValue(ByteBuffer& out, double value, DocumentWriterOutput* 
 {
     out.Write("=");
 
-    if (std::abs(value) < writerOutput->GetMinDouble())
+    if (GetAbs(value) < writerOutput->GetMinDouble())
         value = 0;
     out.Write(Convert::ToString(value));
 }
@@ -211,7 +211,7 @@ static void WriteTextValues(ByteBuffer& out, const float* values, size_t offset,
     for (size_t startIndex = 0; startIndex < count; startIndex++)
     {
         auto value = GetStridedValue(values, offset + startIndex, valueStride);
-        if (std::abs(value) < writerOutput->GetMinFloat())
+        if (GetAbs(value) < writerOutput->GetMinFloat())
             value = 0;
 
         if (writtenCount++ > 0)
@@ -227,7 +227,7 @@ static void WriteTextValues(ByteBuffer& out, const double* values, size_t offset
     for (size_t startIndex = 0; startIndex < count; startIndex++)
     {
         auto value = GetStridedValue(values, offset + startIndex, valueStride);
-        if (std::abs(value) < writerOutput->GetMinDouble())
+        if (GetAbs(value) < writerOutput->GetMinDouble())
             value = 0;
 
         if (writtenCount++ > 0)

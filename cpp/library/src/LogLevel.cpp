@@ -22,14 +22,19 @@ using namespace Finjin::Common;
 
 
 //Local variables---------------------------------------------------------------
-static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT) logLevelLookup
-    (
-    "info", LogLevel::INFO_LEVEL,
-    "warning", LogLevel::WARNING_LEVEL,
-    "error", LogLevel::ERROR_LEVEL,
-    "debug", LogLevel::DEBUG_LEVEL,
-    "trace", LogLevel::TRACE_LEVEL
-    );
+static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT)& GetLogLevelLookup()
+{
+    static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT) lookup
+        (
+        "info", LogLevel::INFO_LEVEL,
+        "warning", LogLevel::WARNING_LEVEL,
+        "error", LogLevel::ERROR_LEVEL,
+        "debug", LogLevel::DEBUG_LEVEL,
+        "trace", LogLevel::TRACE_LEVEL
+        );
+    
+    return lookup;
+}
 
 
 //Implementation----------------------------------------------------------------
@@ -44,12 +49,13 @@ void LogLevelUtilities::Parse(LogLevel& result, const Utf8String& value, Error& 
 
 LogLevel LogLevelUtilities::Parse(const Utf8String& value, LogLevel defaultValue)
 {
-    return logLevelLookup.GetOrDefault(value, defaultValue);
+    return GetLogLevelLookup().GetOrDefault(value, defaultValue);
 }
 
 const char* LogLevelUtilities::ToString(LogLevel value)
 {
-    for (auto& item : logLevelLookup)
+    auto& lookup = GetLogLevelLookup();
+    for (auto& item : lookup)
     {
         if (item.second == value)
             return item.first;

@@ -208,7 +208,7 @@ static void WriteJsonValues(DocumentWriterOutput& out, JsonStringEscaper& escape
             out << ",";
 
         auto value = GetStridedValue(values, i, valueStride);
-        if (std::abs(value) < out.GetMinFloat())
+        if (GetAbs(value) < out.GetMinFloat())
             value = 0;
         out << Convert::ToString(value);
     }
@@ -224,7 +224,7 @@ static void WriteJsonValues(DocumentWriterOutput& out, JsonStringEscaper& escape
             out << ",";
 
         auto value = GetStridedValue(values, i, valueStride);
-        if (std::abs(value) < out.GetMinDouble())
+        if (GetAbs(value) < out.GetMinDouble())
             value = 0;
         out << Convert::ToString(value);
     }

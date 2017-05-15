@@ -330,7 +330,7 @@ static void WriteBinaryValue(DocumentWriterOutput& out, const Uuid& value, bool 
 
 static void WriteBinaryValue(DocumentWriterOutput& out, float value, bool swapBytes, size_t elementOffset, size_t elementCount)
 {
-    if (std::abs(value) < out.GetMinFloat())
+    if (GetAbs(value) < out.GetMinFloat())
         value = 0;
     if (swapBytes)
         SwapBytes(value);
@@ -340,7 +340,7 @@ static void WriteBinaryValue(DocumentWriterOutput& out, float value, bool swapBy
 
 static void WriteBinaryValue(DocumentWriterOutput& out, double value, bool swapBytes, size_t elementOffset, size_t elementCount)
 {
-    if (std::abs(value) < out.GetMinDouble())
+    if (GetAbs(value) < out.GetMinDouble())
         value = 0;
     if (swapBytes)
         SwapBytes(value);
