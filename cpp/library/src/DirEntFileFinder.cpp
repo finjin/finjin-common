@@ -91,9 +91,9 @@ ValueOrError<bool> DirEntFileFinder::IsCurrentFile() const
 {
     if (this->ent != nullptr)
     {
-        if (this->ent->d_type & DT_DIR)
+        if (this->ent->d_type == DT_DIR)
             return true;
-        else if (this->ent->d_type & DT_LNK)
+        else if (this->ent->d_type == DT_LNK)
         {
             if (this->testPath.assign(this->path).HasError())
                 return ValueOrError<bool>::CreateError();
@@ -111,9 +111,9 @@ ValueOrError<bool> DirEntFileFinder::IsCurrentDirectory() const
 {
     if (this->ent != nullptr)
     {
-        if (this->ent->d_type & DT_DIR)
+        if (this->ent->d_type == DT_DIR)
             return true;
-        else if (this->ent->d_type & DT_LNK)
+        else if (this->ent->d_type == DT_LNK)
         {
             if (this->testPath.assign(this->path).HasError())
                 return ValueOrError<bool>::CreateError();
@@ -131,11 +131,11 @@ ValueOrError<FileSystemEntryType> DirEntFileFinder::GetCurrentType() const
 {
     if (this->ent != nullptr)
     {
-        if (this->ent->d_type & DT_DIR)
+        if (this->ent->d_type == DT_DIR)
             return FileSystemEntryType::DIRECTORY;
-        else if (this->ent->d_type & DT_REG)
+        else if (this->ent->d_type == DT_REG)
             return FileSystemEntryType::FILE;
-        else if (this->ent->d_type & DT_LNK)
+        else if (this->ent->d_type == DT_LNK)
         {
             if (this->testPath.assign(this->path).HasError())
                 return ValueOrError<FileSystemEntryType>::CreateError();
