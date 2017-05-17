@@ -25,15 +25,20 @@ using namespace Finjin::Common;
 FileSystemEntry::FileSystemEntry(Allocator* allocator) : relativePath(allocator)
 {
     this->owner = nullptr;
-    this->type = FileSystemEntryType::FILE;
-    this->decompressedSize = (size_t)-1;
+    Reset();
 }
 
 FileSystemEntry::FileSystemEntry(VirtualFileSystemRoot* owner, Allocator* allocator) : relativePath(allocator)
 {
     this->owner = owner;
+    Reset();
+}
+
+void FileSystemEntry::Reset()
+{
     this->type = FileSystemEntryType::FILE;
     this->decompressedSize = (size_t)-1;
+    this->relativePath.clear();
 }
 
 bool FileSystemEntry::operator < (const FileSystemEntry& other) const
@@ -136,12 +141,11 @@ FileSystemEntry* FileSystemEntries::Add()
 {
     if (this->items.full())
         return nullptr;
+    
     this->items.push_back();
-    auto entry = &this->items.back();
-    entry->type = FileSystemEntryType::FILE;
-    entry->decompressedSize = (size_t)-1;
-    entry->relativePath.clear();
-    return entry;
+    auto& entry = this->items.back();
+    entry.Reset();
+    return &entry;
 }
 
 void FileSystemEntries::CancelAdd(FileSystemEntry* entry)
@@ -149,14 +153,6 @@ void FileSystemEntries::CancelAdd(FileSystemEntry* entry)
     if (!empty() && entry == &this->items.back())
         this->items.pop_back();
 }
-
-/*bool Contains(const Path& relativePath) const;
-
-bool FileSystemEntries::Contains(const Path& relativePath) const
-{
-    auto itemIter = std::lower_bound(this->items.begin(), this->items.end(), relativePath);
-    return itemIter != this->items.end() && itemIter->relativePath == relativePath;
-}*/
 
 bool FileSystemEntries::empty() const
 {
@@ -182,7 +178,7 @@ FileSystemEntry* FileSystemEntries::FindEntry(const Path& relativePath)
     if (itemIter != this->items.end() && itemIter->relativePath == relativePath)
     {
         auto index = itemIter - this->items.begin();
-        return &this->items[index];
+        return this->items.begin() + index;
     }
     else
         return nullptr;
@@ -194,7 +190,7 @@ FileSystemEntry* FileSystemEntries::FindEntryStartingWith(const Path& relativePa
     if (itemIter != this->items.end() && itemIter->relativePath.StartsWith(relativePath))
     {
         auto index = itemIter - this->items.begin();
-        return &this->items[index];
+        return this->items.begin() + index;
     }
     else
         return nullptr;
@@ -204,15 +200,13 @@ FileSystemEntry* FileSystemEntries::FindNextEntry(FileSystemEntry* entry)
 {
     if (entry != nullptr)
     {
-        auto entryIndex = entry - &this->items[0];
+        auto entryIndex = entry - this->items.begin();
 
-        auto nextEntryIter = this->items.begin() + entryIndex;
-        ++nextEntryIter;
-
+        auto nextEntryIter = this->items.begin() + entryIndex + 1;
         if (nextEntryIter != this->items.end() && nextEntryIter->relativePath == entry->relativePath)
         {
             auto index = nextEntryIter - this->items.begin();
-            return &this->items[index];
+            return this->items.begin() + index;
         }
     }
 
@@ -223,15 +217,13 @@ FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* e
 {
     if (entry != nullptr)
     {
-        auto entryIndex = entry - &this->items[0];
+        auto entryIndex = entry - this->items.begin();
 
-        auto nextEntryIter = this->items.begin() + entryIndex;
-        ++nextEntryIter;
-
+        auto nextEntryIter = this->items.begin() + entryIndex + 1;
         if (nextEntryIter != this->items.end() && nextEntryIter->relativePath.StartsWith(relativePath))
         {
             auto index = nextEntryIter - this->items.begin();
-            return &this->items[index];
+            return this->items.begin() + index;
         }
     }
 

@@ -41,6 +41,8 @@ namespace Finjin { namespace Common {
     public:
         FileSystemEntry(Allocator* allocator);
         FileSystemEntry(VirtualFileSystemRoot* owner, Allocator* allocator);
+        
+        void Reset();
 
         bool operator < (const FileSystemEntry& other) const;
         bool operator < (const Path& other) const;
