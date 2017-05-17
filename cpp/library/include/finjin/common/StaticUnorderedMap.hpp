@@ -28,7 +28,17 @@
  * Defines a lookup table with known number of literal string keys and corresponding values.
  * For this to compile without error, the Utf8String.hpp header must also be included
  */
-#define FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(valueType, count) StaticUnorderedMap<const char*, valueType, size_t(count), FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count), Finjin::Common::MapPairConstructNone<const char*, valueType>, Finjin::Common::Utf8StringHash, Finjin::Common::Utf8StringEqual>
+#define FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(valueType, count) \
+    Finjin::Common::StaticUnorderedMap \
+        < \
+        const char*, \
+        valueType, \
+        size_t(count), \
+        FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count), \
+        Finjin::Common::MapPairConstructNone<const char*, valueType>, \
+        Finjin::Common::Utf8StringHash, \
+        Finjin::Common::Utf8StringEqual \
+        >
 
 
 //Types-------------------------------------------------------------------------
@@ -61,7 +71,7 @@ namespace Finjin { namespace Common {
         StaticUnorderedMap() {}
 
         template <typename... Args>
-        StaticUnorderedMap(Args... args) { ConstructAdd(args...); }
+        StaticUnorderedMap(Args... args) { Construct(args...); }
 
         StaticUnorderedMap(const StaticUnorderedMap& other) { operator = (other); }
         StaticUnorderedMap(StaticUnorderedMap&& other) { operator = (std::move(other)); }
@@ -115,20 +125,20 @@ namespace Finjin { namespace Common {
 
     private:
         template <typename... Args>
-        void ConstructAdd(const KeyType& key, const ValueType& value, Args... args)
+        void Construct(const KeyType& key, const ValueType& value, Args... args)
         {
-            ConstructAdd(key, value);
+            Construct(key, value);
 
-            ConstructAdd(args...);
+            Construct(args...);
         }
 
-        void ConstructAdd(const KeyType& key, const ValueType& value)
+        void Construct(const KeyType& key, const ValueType& value)
         {
             auto result = insert(key, value, false);
             assert(!result.HasErrorOrValue(false));
         }
 
-        void ConstructAdd()
+        void Construct()
         {
             //Do nothing
         }

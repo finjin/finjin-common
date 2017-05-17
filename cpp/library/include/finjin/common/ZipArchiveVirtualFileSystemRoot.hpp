@@ -31,7 +31,7 @@ namespace Finjin { namespace Common {
 
         void OpenRoot(const Path& zipFilePath, Error& error);
 
-        EnumerationResult Enumerate(FileSystemEntries& items, Error& error) override;
+        EnumerationResult Enumerate(FileSystemEntries& items, FileSystemEntryType types, Error& error) override;
 
         const Utf8String& GetInternalVolumeID() const override;
         const Path& GetFileSystemPath() const override;
@@ -50,7 +50,6 @@ namespace Finjin { namespace Common {
         Utf8String volumeID;
         Path zipFilePath;
         ZIPReader zipArchive;
-        FileSystemEntry workingFileSystemEntry;
     };
 
 } }

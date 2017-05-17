@@ -23,7 +23,7 @@ using namespace Finjin::Common;
 //Implementation----------------------------------------------------------------
 VirtualFileSystem::VirtualFileSystem()
 {
-    this->isDatabaseComplete = false;
+    this->completeDatabaseTypes = FileSystemEntryType::NONE;
 }
 
 void VirtualFileSystem::Create(const Settings& settings, Error& error)
@@ -156,7 +156,7 @@ void VirtualFileSystem::AddRoot(std::unique_ptr<VirtualFileSystemRoot>&& root, E
     rootEntry.volume = rootVolume;
     rootEntry.fileSystemRoot = std::move(root);
 
-    this->isDatabaseComplete = false;
+    this->completeDatabaseTypes = FileSystemEntryType::NONE;
 }
 
 size_t VirtualFileSystem::GetRootCount() const
@@ -172,14 +172,14 @@ void VirtualFileSystem::RebuildDatabase(Error& error)
 
     if (!this->roots.empty())
     {
-        this->isDatabaseComplete = true; //Assume the database is complete
+        this->completeDatabaseTypes = this->settings.searchEntryTypes; //Assume the database is complete
         for (auto& root : this->roots)
         {
-            auto result = root.fileSystemRoot->Enumerate(this->database, error);
+            auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, error);
             if (error)
             {
                 this->database.CancelRebuild();
-                this->isDatabaseComplete = false; //Database is not complete
+                this->completeDatabaseTypes = FileSystemEntryType::NONE; //Database is not complete
 
                 FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to enumerate items in '%1%'.", root.fileSystemRoot->GetDescription()));
                 return;
@@ -188,11 +188,11 @@ void VirtualFileSystem::RebuildDatabase(Error& error)
             root.status = RootEntry::Status::ENUMERATED;
 
             if (result != VirtualFileSystemRoot::EnumerationResult::COMPLETE)
-                this->isDatabaseComplete = false; //Database is not complete
+                this->completeDatabaseTypes = FileSystemEntryType::NONE; //Database is not complete
         }
     }
     else
-        this->isDatabaseComplete = false;
+        this->completeDatabaseTypes = FileSystemEntryType::NONE;
 
     this->database.FinishRebuild();
 }
@@ -205,16 +205,16 @@ void VirtualFileSystem::UpdateDatabase(Error& error)
 
     if (!this->roots.empty())
     {
-        this->isDatabaseComplete = true; //Assume the database is complete
+        this->completeDatabaseTypes = this->settings.searchEntryTypes; //Assume the database is complete
         for (auto& root : this->roots)
         {
             if (root.status == RootEntry::Status::NEW)
             {
-                auto result = root.fileSystemRoot->Enumerate(this->database, error);
+                auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, error);
                 if (error)
                 {
                     this->database.CancelUpdate();
-                    this->isDatabaseComplete = false; //Database is not complete
+                    this->completeDatabaseTypes = FileSystemEntryType::NONE; //Database is not complete
 
                     FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to enumerate items in '%1%'.", root.fileSystemRoot->GetDescription()));
                     return;
@@ -223,12 +223,12 @@ void VirtualFileSystem::UpdateDatabase(Error& error)
                 root.status = RootEntry::Status::ENUMERATED;
 
                 if (result != VirtualFileSystemRoot::EnumerationResult::COMPLETE)
-                    this->isDatabaseComplete = false; //Database is not complete
+                    this->completeDatabaseTypes = FileSystemEntryType::NONE; //Database is not complete
             }
         }
     }
     else
-        this->isDatabaseComplete = false;
+        this->completeDatabaseTypes = FileSystemEntryType::NONE;
 
     this->database.FinishUpdate();
 }
@@ -243,7 +243,7 @@ bool VirtualFileSystem::CanRead(const Path& relativeFilePath)
     if (this->roots.empty())
         return false;
 
-    if (!this->database.empty())
+    if (!this->database.empty() && AnySet(this->settings.searchEntryTypes & FileSystemEntryType::FILE))
     {
         //Database has been built
         auto entry = this->database.FindEntry(relativeFilePath);
@@ -260,7 +260,7 @@ bool VirtualFileSystem::CanRead(const Path& relativeFilePath)
             return false;
         }
 
-        if (this->isDatabaseComplete)
+        if (AnySet(this->completeDatabaseTypes & FileSystemEntryType::FILE))
         {
             //The database is considered complete and the file could not be found
             return false;
@@ -282,7 +282,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
     if (this->roots.empty())
         return FileOperationResult::NOT_INITIALIZED;
 
-    if (!this->database.empty())
+    if (!this->database.empty() && AnySet(this->settings.searchEntryTypes & FileSystemEntryType::FILE))
     {
         //Database has been built
         auto entry = this->database.FindEntry(relativeFilePath);
@@ -302,7 +302,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
             return FileOperationResult::FAILURE;
         }
 
-        if (this->isDatabaseComplete)
+        if (AnySet(this->completeDatabaseTypes & FileSystemEntryType::FILE))
         {
             //The database is considered complete and the file could not be found
             return FileOperationResult::NOT_FOUND;
@@ -329,7 +329,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
     if (this->roots.empty())
         return FileOperationResult::NOT_INITIALIZED;
 
-    if (!this->database.empty())
+    if (!this->database.empty() && AnySet(this->settings.searchEntryTypes & FileSystemEntryType::FILE))
     {
         //Database has been built
         auto entry = this->database.FindEntry(relativeFilePath);
@@ -353,7 +353,7 @@ FileOperationResult VirtualFileSystem::Read(const Path& relativeFilePath, ByteBu
             return FileOperationResult::FAILURE;
         }
 
-        if (this->isDatabaseComplete)
+        if (AnySet(this->completeDatabaseTypes & FileSystemEntryType::FILE))
         {
             //The database is considered complete and the file could not be found
             return FileOperationResult::NOT_FOUND;
@@ -428,7 +428,7 @@ void VirtualFileSystem::Close(VirtualFileHandle& fileHandle)
 
 bool VirtualFileSystem::IsDatabaseComplete() const
 {
-    return this->isDatabaseComplete;
+    return this->completeDatabaseTypes == this->settings.searchEntryTypes;
 }
 
 bool VirtualFileSystem::IsDatabasePopulated() const

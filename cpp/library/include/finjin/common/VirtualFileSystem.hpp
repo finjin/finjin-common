@@ -59,9 +59,9 @@ namespace Finjin { namespace Common {
         template <typename Paths>
         void GetDirectoriesStartingWith(const Path& relativePath, Paths& paths)
         {
-            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath);
+            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntryType::DIRECTORY, relativePath);
                 entry != nullptr;
-                entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntry::Type::DIRECTORY, relativePath))
+                entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntryType::DIRECTORY, relativePath))
             {
                 if (!paths.push_back(entry->GetRelativePath()))
                     break;
@@ -70,9 +70,9 @@ namespace Finjin { namespace Common {
 
         void ForDirectoriesStartingWith(const Path& relativePath, std::function<bool(const Path&)> func)
         {
-            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntry::Type::DIRECTORY, relativePath);
+            for (auto entry = this->database.FindEntryStartingWith(FileSystemEntryType::DIRECTORY, relativePath);
                 entry != nullptr;
-                entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntry::Type::DIRECTORY, relativePath))
+                entry = this->database.FindNextEntryStartingWith(entry, FileSystemEntryType::DIRECTORY, relativePath))
             {
                 if (!func(entry->GetRelativePath()))
                     break;
@@ -116,7 +116,7 @@ namespace Finjin { namespace Common {
         StaticVector<RootEntry, CommonConstants::MAX_ROOT_FILE_SYSTEM_ENTRIES> roots;
 
         FileSystemEntries database;
-        bool isDatabaseComplete;
+        FileSystemEntryType completeDatabaseTypes;
     };
 
 } }

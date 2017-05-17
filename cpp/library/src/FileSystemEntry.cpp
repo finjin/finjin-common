@@ -25,14 +25,14 @@ using namespace Finjin::Common;
 FileSystemEntry::FileSystemEntry(Allocator* allocator) : relativePath(allocator)
 {
     this->owner = nullptr;
-    this->type = Type::FILE;
+    this->type = FileSystemEntryType::FILE;
     this->decompressedSize = (size_t)-1;
 }
 
 FileSystemEntry::FileSystemEntry(VirtualFileSystemRoot* owner, Allocator* allocator) : relativePath(allocator)
 {
     this->owner = owner;
-    this->type = Type::FILE;
+    this->type = FileSystemEntryType::FILE;
     this->decompressedSize = (size_t)-1;
 }
 
@@ -48,12 +48,12 @@ bool FileSystemEntry::operator < (const Path& other) const
 
 bool FileSystemEntry::IsDirectory() const
 {
-    return this->type == Type::DIRECTORY;
+    return this->type == FileSystemEntryType::DIRECTORY;
 }
 
 bool FileSystemEntry::IsFile() const
 {
-    return this->type == Type::FILE;
+    return this->type == FileSystemEntryType::FILE;
 }
 
 const Path& FileSystemEntry::GetRelativePath() const
@@ -132,9 +132,22 @@ void FileSystemEntries::FinishUpdate()
         std::sort(this->items.begin(), this->items.end());
 }
 
-void FileSystemEntries::Add(const FileSystemEntry& entry)
+FileSystemEntry* FileSystemEntries::Add()
 {
-    this->items.push_back(entry);
+    if (this->items.full())
+        return nullptr;
+    this->items.push_back();
+    auto entry = &this->items.back();
+    entry->type = FileSystemEntryType::FILE;
+    entry->decompressedSize = (size_t)-1;
+    entry->relativePath.clear();
+    return entry;
+}
+
+void FileSystemEntries::CancelAdd(FileSystemEntry* entry)
+{
+    if (!empty() && entry == &this->items.back())
+        this->items.pop_back();
 }
 
 /*bool Contains(const Path& relativePath) const;
@@ -225,7 +238,7 @@ FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* e
     return nullptr;
 }
 
-FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntry::Type type, const Path& relativePath)
+FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntryType type, const Path& relativePath)
 {
     for (auto entry = FindEntryStartingWith(relativePath);
         entry != nullptr;
@@ -238,7 +251,7 @@ FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntry::Type 
     return nullptr;
 }
 
-FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntry::Type type, const Path& relativePath)
+FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType type, const Path& relativePath)
 {
     for (entry = FindNextEntryStartingWith(entry, relativePath);
         entry != nullptr;

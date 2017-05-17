@@ -26,11 +26,15 @@ namespace Finjin { namespace Common {
 
         EnumArray() {}
 
-        EnumArray(const ValueType& initialValue)
+        template <typename InitialValue>
+        EnumArray(const InitialValue& initialValue)
         {
             for (size_t i = 0; i < (size_t)count; i++)
                 this->items[i] = initialValue;
         }
+        
+        template <typename... Args>
+        EnumArray(Args... args) { Construct(args...); }
 
         size_t size() const { return (size_t)count; }
         size_t max_size() const { return (size_t)count; }
@@ -46,6 +50,25 @@ namespace Finjin { namespace Common {
 
         const_iterator begin() const { return &this->items[0]; }
         const_iterator end() const { return &this->items[(size_t)count]; }
+        
+    private:
+        template <typename... Args>
+        void Construct(EnumType index, const ValueType& value, Args... args)
+        {
+            Construct(index, value);
+            
+            Construct(args...);
+        }
+        
+        void Construct(EnumType index, const ValueType& value)
+        {
+            this->items[(size_t)index] = value;
+        }
+        
+        void Construct()
+        {
+            //Do nothing
+        }
 
     private:
         ValueType items[(size_t)count];

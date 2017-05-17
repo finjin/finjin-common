@@ -16,6 +16,7 @@
 
 //Includes----------------------------------------------------------------------
 #include "finjin/common/DynamicVector.hpp"
+#include "finjin/common/EnumBitwise.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 #include <ostream>
@@ -26,15 +27,18 @@ namespace Finjin { namespace Common {
 
     class VirtualFileSystemRoot;
 
+    enum class FileSystemEntryType
+    {
+        NONE = 0,
+        FILE = 1 << 0,
+        DIRECTORY = 1 << 1,
+        ALL = FILE | DIRECTORY
+    };
+    FINJIN_ENUM_BITWISE_OPERATIONS(FileSystemEntryType)
+    
     class FINJIN_COMMON_LIBRARY_API FileSystemEntry
     {
     public:
-        enum class Type
-        {
-            FILE,
-            DIRECTORY
-        };
-
         FileSystemEntry(Allocator* allocator);
         FileSystemEntry(VirtualFileSystemRoot* owner, Allocator* allocator);
 
@@ -48,7 +52,7 @@ namespace Finjin { namespace Common {
         void GetAbsolutePath(Path& path, Error& error) const;
 
         VirtualFileSystemRoot* owner;
-        Type type;
+        FileSystemEntryType type;
         size_t decompressedSize; //0 = directory, -1 = unknown
         Path relativePath;
     };
@@ -61,10 +65,12 @@ namespace Finjin { namespace Common {
             Settings()
             {
                 this->allocator = nullptr;
-                this->maxEntries = 500;
+                this->searchEntryTypes = FileSystemEntryType::DIRECTORY;
+                this->maxEntries = 100;
             }
 
             Allocator* allocator;
+            FileSystemEntryType searchEntryTypes;
             size_t maxEntries;
         };
 
@@ -78,7 +84,8 @@ namespace Finjin { namespace Common {
         void CancelUpdate();
         void FinishUpdate();
 
-        void Add(const FileSystemEntry& entry);
+        FileSystemEntry* Add();
+        void CancelAdd(FileSystemEntry* entry);
 
         bool empty() const;
         bool full() const;
@@ -91,8 +98,8 @@ namespace Finjin { namespace Common {
         FileSystemEntry* FindNextEntry(FileSystemEntry* entry);
         FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, const Path& relativePath);
 
-        FileSystemEntry* FindEntryStartingWith(FileSystemEntry::Type type, const Path& relativePath);
-        FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntry::Type type, const Path& relativePath);
+        FileSystemEntry* FindEntryStartingWith(FileSystemEntryType type, const Path& relativePath);
+        FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType type, const Path& relativePath);
 
     private:
         Settings settings;

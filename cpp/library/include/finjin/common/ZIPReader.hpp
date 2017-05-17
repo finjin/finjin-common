@@ -18,6 +18,7 @@
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/FileOperationTypes.hpp"
+#include "finjin/common/FileSystemEntry.hpp"
 #include "finjin/common/Path.hpp"
 
 
@@ -62,7 +63,18 @@ namespace Finjin { namespace Common {
             {
                 return !this->path.empty() && this->decompressedSize > 0;
             }
+            
+            FileSystemEntryType GetType() const
+            {
+                if (IsFile())
+                    return FileSystemEntryType::FILE;
+                else if (IsDirectory())
+                    return FileSystemEntryType::DIRECTORY;
+                else
+                    return FileSystemEntryType::NONE;
+            }
         };
+        
         bool Next(Entry& entry);
 
         FileOperationResult Inflate(ByteBuffer& buffer, const Entry& entry); //Decompresses entire file/entry

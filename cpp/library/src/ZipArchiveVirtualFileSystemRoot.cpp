@@ -22,8 +22,7 @@ using namespace Finjin::Common;
 ZipArchiveVirtualFileSystemRoot::ZipArchiveVirtualFileSystemRoot(Allocator* allocator) :
     VirtualFileSystemRoot(allocator),
     volumeID(allocator),
-    zipFilePath(allocator),
-    workingFileSystemEntry(this, allocator)
+    zipFilePath(allocator)
 {
 }
 
@@ -62,7 +61,7 @@ void ZipArchiveVirtualFileSystemRoot::OpenRoot(const Path& zipFilePath, Error& e
     }
 }
 
-VirtualFileSystemRoot::EnumerationResult ZipArchiveVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, Error& error)
+VirtualFileSystemRoot::EnumerationResult ZipArchiveVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, FileSystemEntryType types, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -76,18 +75,29 @@ VirtualFileSystemRoot::EnumerationResult ZipArchiveVirtualFileSystemRoot::Enumer
     ZIPReader::Entry zipEntry;
     while (this->zipArchive.Next(zipEntry))
     {
-        if (this->workingFileSystemEntry.relativePath.assign(zipEntry.path).HasError())
+        auto type = zipEntry.GetType();
+        if (AnySet(type & types))
         {
-            FINJIN_SET_ERROR(error, "Failed to assign relative zip path.");
-            return EnumerationResult::INCOMPLETE;
+            auto fileSystemEntry = items.Add();
+            if (fileSystemEntry == nullptr)
+            {
+                FINJIN_SET_ERROR(error, "Failed to get free free database entry for zip path.");
+                return EnumerationResult::INCOMPLETE;
+            }
+            
+            if (fileSystemEntry->relativePath.assign(zipEntry.path).HasError())
+            {
+                items.CancelAdd(fileSystemEntry);
+
+                FINJIN_SET_ERROR(error, "Failed to assign relative zip path.");
+                return EnumerationResult::INCOMPLETE;
+            }
+            fileSystemEntry->relativePath.UniversalNormalize();
+            
+            fileSystemEntry->type = zipEntry.IsFile() ? FileSystemEntryType::FILE : FileSystemEntryType::DIRECTORY;
+            
+            fileSystemEntry->decompressedSize = zipEntry.decompressedSize;
         }
-        this->workingFileSystemEntry.relativePath.UniversalNormalize();
-
-        this->workingFileSystemEntry.type = zipEntry.IsFile() ? FileSystemEntry::Type::FILE : FileSystemEntry::Type::DIRECTORY;
-
-        this->workingFileSystemEntry.decompressedSize = zipEntry.decompressedSize;
-
-        items.Add(this->workingFileSystemEntry);
     }
 
     return EnumerationResult::COMPLETE;

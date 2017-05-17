@@ -27,7 +27,7 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEntry& fileSystemEntry, FileSystemEntries& items)
+static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEntries& items, FileSystemEntryType types)
 {
     FileFinder finder;
     if (finder.Start(path))
@@ -38,23 +38,32 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
             if (finder.GetCurrentPath(workingFilePath).HasError())
                 return false;
 
-            if (workingFilePath.substr(fileSystemEntry.relativePath, rootDirectory.length() + 1).HasError())
-                return false;
-
-            fileSystemEntry.relativePath.UniversalNormalize();
-
             auto isCurrentFile = finder.IsCurrentFile();
             if (isCurrentFile.HasError())
                 return false;
-
-            fileSystemEntry.type = isCurrentFile.value ? FileSystemEntry::Type::FILE : FileSystemEntry::Type::DIRECTORY;
-
-            items.Add(fileSystemEntry);
-
-            if (fileSystemEntry.type == FileSystemEntry::Type::DIRECTORY)
+            
+            auto type = isCurrentFile.value ? FileSystemEntryType::FILE : FileSystemEntryType::DIRECTORY;
+            if (AnySet(type & types))
             {
-                if (!Enumerate(rootDirectory, workingFilePath, fileSystemEntry, items))
+                auto fileSystemEntry = items.Add();
+                if (fileSystemEntry == nullptr)
                     return false;
+                
+                if (workingFilePath.substr(fileSystemEntry->relativePath, rootDirectory.length() + 1).HasError())
+                {
+                    items.CancelAdd(fileSystemEntry);
+                    return false;
+                }
+                
+                fileSystemEntry->relativePath.UniversalNormalize();
+                
+                fileSystemEntry->type = isCurrentFile.value ? FileSystemEntryType::FILE : FileSystemEntryType::DIRECTORY;
+                
+                if (fileSystemEntry->type == FileSystemEntryType::DIRECTORY)
+                {
+                    if (!Enumerate(rootDirectory, workingFilePath, items, types))
+                        return false;
+                }
             }
         } while (finder.Next());
     }
@@ -68,7 +77,6 @@ DirectoryVirtualFileSystemRoot::DirectoryVirtualFileSystemRoot(Allocator* alloca
     VirtualFileSystemRoot(allocator),
     volumeID(allocator),
     directory(allocator),
-    workingFileSystemEntry(this, allocator),
     workingFilePath(allocator)
 {
 }
@@ -102,11 +110,11 @@ void DirectoryVirtualFileSystemRoot::OpenRoot(const Path& directory, Error& erro
     }
 }
 
-VirtualFileSystemRoot::EnumerationResult DirectoryVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, Error& error)
+VirtualFileSystemRoot::EnumerationResult DirectoryVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, FileSystemEntryType types, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    if (!::Enumerate(this->directory, this->directory, this->workingFileSystemEntry, items))
+    if (!::Enumerate(this->directory, this->directory, items, types))
         FINJIN_SET_ERROR(error, "Failed to enumerate items.");
 
     return EnumerationResult::COMPLETE;
