@@ -91,30 +91,65 @@ ValueOrError<bool> DirEntFileFinder::IsCurrentFile() const
 {
     if (this->ent != nullptr)
     {
-        if (this->testPath.assign(this->path).HasError())
-            return ValueOrError<bool>::CreateError();
-        if ((this->testPath /= this->ent->d_name).HasError())
-            return ValueOrError<bool>::CreateError();
-
-        return Path::IsFile(this->testPath.c_str());
+        if (this->ent->d_type & DT_DIR)
+            return true;
+        else if (this->ent->d_type & DT_LNK)
+        {
+            if (this->testPath.assign(this->path).HasError())
+                return ValueOrError<bool>::CreateError();
+            if ((this->testPath /= this->ent->d_name).HasError())
+                return ValueOrError<bool>::CreateError();
+            
+            return this->testPath.IsFile();
+        }
     }
-    else
-        return false;
+    
+    return false;
 }
 
 ValueOrError<bool> DirEntFileFinder::IsCurrentDirectory() const
 {
     if (this->ent != nullptr)
     {
-        if (this->testPath.assign(this->path).HasError())
-            return ValueOrError<bool>::CreateError();
-        if ((this->testPath /= this->ent->d_name).HasError())
-            return ValueOrError<bool>::CreateError();
-
-        return Path::IsDirectory(this->testPath.c_str());
+        if (this->ent->d_type & DT_DIR)
+            return true;
+        else if (this->ent->d_type & DT_LNK)
+        {
+            if (this->testPath.assign(this->path).HasError())
+                return ValueOrError<bool>::CreateError();
+            if ((this->testPath /= this->ent->d_name).HasError())
+                return ValueOrError<bool>::CreateError();
+            
+            return this->testPath.IsDirectory();
+        }
     }
-    else
-        return false;
+    
+    return false;
+}
+
+ValueOrError<FileSystemEntryType> DirEntFileFinder::GetCurrentType() const
+{
+    if (this->ent != nullptr)
+    {
+        if (this->ent->d_type & DT_DIR)
+            return FileSystemEntryType::DIRECTORY;
+        else if (this->ent->d_type & DT_REG)
+            return FileSystemEntryType::FILE;
+        else if (this->ent->d_type & DT_LNK)
+        {
+            if (this->testPath.assign(this->path).HasError())
+                return ValueOrError<FileSystemEntryType>::CreateError();
+            if ((this->testPath /= this->ent->d_name).HasError())
+                return ValueOrError<FileSystemEntryType>::CreateError();
+            
+            if (this->testPath.IsDirectory())
+                return FileSystemEntryType::DIRECTORY;
+            else
+                return FileSystemEntryType::FILE;
+        }
+    }
+    
+    return FileSystemEntryType::NONE;
 }
 
 void DirEntFileFinder::Stop()

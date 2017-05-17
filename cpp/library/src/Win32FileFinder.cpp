@@ -126,6 +126,19 @@ ValueOrError<bool> Win32FileFinder::IsCurrentDirectory() const
         return false;
 }
 
+ValueOrError<FileSystemEntryType> Win32FileFinder::GetCurrentType() const
+{
+    if (this->handle != nullptr)
+    {
+        if (WindowsUtilities::IsDirectoryAttribute(this->foundData.dwFileAttributes))
+            return FileSystemEntryType::DIRECTORY;
+        else if (WindowsUtilities::IsFileAttribute(this->foundData.dwFileAttributes))
+            return FileSystemEntryType::FILE;
+    }
+    
+    return FileSystemEntryType::NONE;
+}
+
 void Win32FileFinder::Stop()
 {
     if (this->handle != nullptr)

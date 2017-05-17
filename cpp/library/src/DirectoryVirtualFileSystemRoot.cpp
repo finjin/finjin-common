@@ -38,12 +38,11 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
             if (finder.GetCurrentPath(workingFilePath).HasError())
                 return false;
 
-            auto isCurrentFile = finder.IsCurrentFile();
-            if (isCurrentFile.HasError())
+            auto currentType = finder.GetCurrentType();
+            if (currentType.HasError())
                 return false;
             
-            auto type = isCurrentFile.value ? FileSystemEntryType::FILE : FileSystemEntryType::DIRECTORY;
-            if (AnySet(type & types))
+            if (AnySet(currentType.value & types))
             {
                 auto fileSystemEntry = items.Add();
                 if (fileSystemEntry == nullptr)
@@ -57,7 +56,7 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
                 
                 fileSystemEntry->relativePath.UniversalNormalize();
                 
-                fileSystemEntry->type = isCurrentFile.value ? FileSystemEntryType::FILE : FileSystemEntryType::DIRECTORY;
+                fileSystemEntry->type = currentType.value;
                 
                 if (fileSystemEntry->type == FileSystemEntryType::DIRECTORY)
                 {

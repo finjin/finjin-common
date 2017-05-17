@@ -17,6 +17,7 @@
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/FileSystemEntry.hpp"
 #include "finjin/common/Path.hpp"
 #include <Windows.h>
 
@@ -39,6 +40,7 @@ namespace Finjin { namespace Common {
         ValueOrError<void> GetCurrentPath(Path& result) const;
         ValueOrError<bool> IsCurrentFile() const;
         ValueOrError<bool> IsCurrentDirectory() const;
+        ValueOrError<FileSystemEntryType> GetCurrentType() const;
         void Stop();
 
         const Path& GetStartPath() const;
