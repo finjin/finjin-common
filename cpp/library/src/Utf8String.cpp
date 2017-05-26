@@ -767,8 +767,10 @@ void Utf8String::pop_front()
 void Utf8String::pop_front(size_t count)
 {
     count = std::min(count, this->l);
-    for (size_t i = 0; i < count; i++)
-        pop_front();
+    for (size_t i = 0; i < this->l - count; i++)
+        this->s[i] = this->s[i + count];
+    this->l -= count;
+    this->s[this->l] = 0;
 }
 
 void Utf8String::pop_back()

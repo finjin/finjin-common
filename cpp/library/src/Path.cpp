@@ -1065,8 +1065,10 @@ void Path::pop_front()
 void Path::pop_front(size_t count)
 {
     count = std::min(count, this->l);
-    for (size_t i = 0; i < count; i++)
-        pop_front();
+    for (size_t i = 0; i < this->l - count; i++)
+        this->s[i] = this->s[i + count];
+    this->l -= count;
+    this->s[this->l] = 0;
 }
 
 void Path::pop_back()
@@ -1348,6 +1350,11 @@ void Path::Free()
     this->s = this->shortS;
     this->shortS[0] = 0;
     this->l = 0;
+}
+
+bool Path::IsAbsolute(const char* begin, const char* end)
+{
+    return ::IsAbsolute(begin, end);
 }
 
 char* Path::_Allocate(size_t charCount, FINJIN_CALLER_PARAMETERS_DECLARATION)
@@ -1872,7 +1879,7 @@ size_t Path::GetParentOffset() const
         return (size_t)-1;
 
     size_t endIndex = npos;
-    if (HasLongPathPrefix(this->s))
+    if (::HasLongPathPrefix(this->s))
         endIndex = LONG_PATH_PREFIX_LENGTH - 1;
 
     size_t i = length() - 1;
@@ -1894,43 +1901,13 @@ bool Path::HasParent() const
     return GetParentOffset() != (size_t)-1;
 }
 
-ValueOrError<bool> Path::GetParent(Path& result) const
-{
-    result.clear();
-
-    if (empty())
-        return false;
-
-    size_t endIndex = npos;
-    if (HasLongPathPrefix(this->s))
-        endIndex = LONG_PATH_PREFIX_LENGTH - 1;
-
-    size_t i = length() - 1;
-    if (endIndex != npos && i <= endIndex)
-        return false;
-    if (IsSeparator(this->s[i]) || this->s[i] == ':')
-        i--;
-    for (; i != endIndex; i--)
-    {
-        if (IsSeparator(this->s[i]) || this->s[i] == ':')
-        {
-            if (substr(result, 0, i).HasError())
-                return ValueOrError<bool>::CreateError();
-            else
-                return !result.empty();
-        }
-    }
-
-    return false;
-}
-
 bool Path::GoToParent()
 {
     if (empty())
         return false;
 
     size_t endIndex = npos;
-    if (HasLongPathPrefix(this->s))
+    if (::HasLongPathPrefix(this->s))
         endIndex = LONG_PATH_PREFIX_LENGTH - 1;
 
     size_t i = length() - 1;
@@ -1963,50 +1940,6 @@ bool Path::RemoveParent()
         pop_front(parentOffset + 1);
         return true;
     }
-
-    return false;
-}
-
-ValueOrError<bool> Path::GetRoot(Path& result) const
-{
-    result.clear();
-
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-    size_t index = 0;
-    if (HasLongPathPrefix(this->s))
-        index += LONG_PATH_PREFIX_LENGTH;
-    if (::IsAbsolute(begin() + index, end()))
-    {
-        if (IsSeparator(this->s[index]) && IsSeparator(this->s[index + 1]))
-        {
-            size_t startIndex = index;
-
-            index += 2;
-            while (index < this->l && !IsSeparator(this->s[index]))
-                index++;
-
-            if (substr(result, startIndex, index - startIndex).HasError())
-                return ValueOrError<bool>::CreateError();
-
-            return !result.empty();
-        }
-        else if (this->s[index + 1] == ':')
-        {
-            if (substr(result, index, index + 2).HasError())
-                return ValueOrError<bool>::CreateError();
-
-            return !result.empty();
-        }
-    }
-#else
-    if (IsAbsolute())
-    {
-        if (result.assign(PLATFORM_INDEPENDENT_SEPARATOR_STRING).HasError())
-            return ValueOrError<bool>::CreateError();
-
-        return !result.empty();
-    }
-#endif
 
     return false;
 }
@@ -2119,7 +2052,7 @@ size_t Path::FindFirstDirectoryLength() const
 {
     //Skip UNC prefix
     size_t index = 0;
-    if (HasLongPathPrefix(this->s))
+    if (::HasLongPathPrefix(this->s))
         index += LONG_PATH_PREFIX_LENGTH;
 
     if (::IsAbsolute(begin() + index, end()))
@@ -2216,6 +2149,26 @@ ValueOrError<bool> Path::ContainsFile(const Path& other) const
     }
 
     return false;
+}
+
+const char* Path::GetPlatformIndependentSeparatorString()
+{
+    return PLATFORM_INDEPENDENT_SEPARATOR_STRING;
+}
+
+bool Path::HasLongPathPrefix(const char* s)
+{
+    return ::HasLongPathPrefix(s);
+}
+
+const char* Path::GetLongPathPrefix()
+{
+    return LONG_PATH_PREFIX;
+}
+
+size_t Path::GetLongPathPrefixLength()
+{
+    return LONG_PATH_PREFIX_LENGTH;
 }
 
 ValueOrError<bool> Path::ExpandUserHomeDirectory()

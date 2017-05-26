@@ -414,12 +414,84 @@ namespace Finjin { namespace Common {
          * Gets the path's parent.
          * @return The path's parent.
          */
-        ValueOrError<bool> GetParent(Path& result) const;
+        template <typename T>
+        ValueOrError<bool> GetParent(T& result) const
+        {
+            result.clear();
+            
+            if (empty())
+                return false;
+            
+            size_t endIndex = npos;
+            if (HasLongPathPrefix(this->s))
+                endIndex = GetLongPathPrefixLength() - 1;
+            
+            size_t i = length() - 1;
+            if (endIndex != npos && i <= endIndex)
+                return false;
+            if (IsSeparator(this->s[i]) || this->s[i] == ':')
+                i--;
+            for (; i != endIndex; i--)
+            {
+                if (IsSeparator(this->s[i]) || this->s[i] == ':')
+                {
+                    if (substr(result, 0, i).HasError())
+                        return ValueOrError<bool>::CreateError();
+                    else
+                        return !result.empty();
+                }
+            }
+            
+            return false;
+        }
 
         bool GoToParent();
         bool RemoveParent();
 
-        ValueOrError<bool> GetRoot(Path& result) const;
+        template <typename T>
+        ValueOrError<bool> GetRoot(T& result) const
+        {
+            result.clear();
+            
+        #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+            size_t index = 0;
+            if (HasLongPathPrefix(this->s))
+                index += GetLongPathPrefixLength();
+            if (::IsAbsolute(begin() + index, end()))
+            {
+                if (IsSeparator(this->s[index]) && IsSeparator(this->s[index + 1]))
+                {
+                    size_t startIndex = index;
+                    
+                    index += 2;
+                    while (index < this->l && !IsSeparator(this->s[index]))
+                        index++;
+                    
+                    if (substr(result, startIndex, index - startIndex).HasError())
+                        return ValueOrError<bool>::CreateError();
+                    
+                    return !result.empty();
+                }
+                else if (this->s[index + 1] == ':')
+                {
+                    if (substr(result, index, index + 2).HasError())
+                        return ValueOrError<bool>::CreateError();
+                    
+                    return !result.empty();
+                }
+            }
+        #else
+            if (IsAbsolute())
+            {
+                if (result.assign(GetPlatformIndependentSeparatorString()).HasError())
+                    return ValueOrError<bool>::CreateError();
+                
+                return !result.empty();
+            }
+        #endif
+            
+            return false;
+        }
 
         ValueOrError<bool> GetInternalVolumeID(Utf8String& result) const;
 
@@ -443,12 +515,20 @@ namespace Finjin { namespace Common {
          */
         ValueOrError<bool> ContainsFile(const Path& other) const;
 
+        static const char* GetPlatformIndependentSeparatorString();
+        
+        static bool HasLongPathPrefix(const char* s);
+        
+        static const char* GetLongPathPrefix();
+        
+        static size_t GetLongPathPrefixLength();
+        
         template <typename T>
         static bool IsSeparator(T c)
         {
             return c == '/' || c == '\\';
         }
-
+        
         //File system methods--------------------------------------------------
 
         ValueOrError<bool> ExpandUserHomeDirectory();
@@ -520,10 +600,12 @@ namespace Finjin { namespace Common {
         ValueOrError<void> EnsureLengthAllocated(size_t len, bool oversize);
         void Truncate();
         void Free();
+        
+        static bool IsAbsolute(const char* begin, const char* end);
 
         char* _Allocate(size_t charCount, FINJIN_CALLER_PARAMETERS_DECLARATION);
         void _Deallocate(void* mem);
-
+        
     protected:
         Allocator* allocator;
         size_t l;
