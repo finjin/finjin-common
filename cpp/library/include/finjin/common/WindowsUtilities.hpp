@@ -59,7 +59,7 @@ namespace Finjin { namespace Common {
             if (errorBlob != nullptr)
                 return Utf8String(static_cast<const char*>(errorBlob->GetBufferPointer()), static_cast<size_t>(errorBlob->GetBufferSize()));
             else
-                return Utf8String::Empty();
+                return Utf8String::GetEmpty();
         }
 
         static DWORD GetPathAttributes(const Path& path);

@@ -310,7 +310,18 @@ void Uri::clear()
     this->fragment.clear();
 }
 
+ValueOrError<void> Uri::operator = (const char* s)
+{
+    Utf8StringView sView(s);
+    return _Init(this, sView);
+}
+
 ValueOrError<void> Uri::operator = (const Utf8String& s)
+{
+    return _Init(this, s);
+}
+
+ValueOrError<void> Uri::operator = (const Utf8StringView& s)
 {
     return _Init(this, s);
 }
@@ -653,6 +664,12 @@ void SimpleUri::clear()
     this->host.clear();
     this->path.clear();
     this->fragment.clear();
+}
+
+ValueOrError<void> SimpleUri::operator = (const char* s)
+{
+    Utf8StringView sView(s);
+    return _Init(this, sView);
 }
 
 ValueOrError<void> SimpleUri::operator = (const Utf8String& s)

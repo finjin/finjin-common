@@ -201,7 +201,7 @@ void MemorySize::Parse(uint64_t& sizeValue, const Utf8StringView& stringValue, E
 void MemorySize::Parse(size_t& sizeValue, const Utf8StringView& stringValue, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     ParseMemorySize(sizeValue, stringValue, error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
@@ -212,18 +212,18 @@ Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
 {
     if (base != KILOBYTE && base != KIBIBYTE)
         base = KILOBYTE;
-    
+
     auto gb = bytes / (base * base * base);
     bytes -= gb * (base * base * base);
-    
+
     auto mb = bytes / (base * base);
     bytes -= mb * (base * base);
-    
+
     auto kb = bytes / base;
     bytes -= kb * base;
-    
+
     Utf8String result;
-    
+
     if (gb > 0)
     {
         result = Convert::ToString(gb);
@@ -256,6 +256,6 @@ Utf8String MemorySize::ToString(uint64_t bytes, uint64_t base)
         result = Convert::ToString(bytes);
         result += "B";
     }
-    
+
     return result;
 }

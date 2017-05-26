@@ -107,6 +107,11 @@ bool ByteBuffer::Create(const void* bytes, size_t count, Allocator* allocator, M
     return true;
 }
 
+bool ByteBuffer::Create(const ByteBuffer& other, Allocator* allocator, MemoryResizeStrategy resizeStrategy)
+{
+    return Create(other.data(), other.size(), allocator, resizeStrategy);
+}
+
 bool ByteBuffer::CreateEmpty(size_t count, Allocator* allocator, MemoryResizeStrategy resizeStrategy)
 {
     auto result = Create(count, allocator, resizeStrategy);

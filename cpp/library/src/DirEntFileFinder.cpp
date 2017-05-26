@@ -32,12 +32,69 @@ static bool IsDots(const char* s)
     return false;
 }
 
+static ValueOrError<void> GetCurrentTypeAndPath(FileSystemEntryType& currentEntryType, Path& currentPath, const DIR* dir, const struct dirent* ent, const Path& startPath, FileSystemEntryType findTypes)
+{
+    currentEntryType = FileSystemEntryType::NONE;
+    currentPath.clear();
+
+    if (ent != nullptr && !IsDots(ent->d_name))
+    {
+        if (ent->d_type == DT_DIR)
+        {
+            if (AnySet(findTypes & FileSystemEntryType::DIRECTORY))
+            {
+                currentEntryType = FileSystemEntryType::DIRECTORY;
+
+                if (currentPath.assign(startPath).HasError())
+                    return ValueOrError<void>::CreateError();
+                if ((currentPath /= ent->d_name).HasError())
+                    return ValueOrError<void>::CreateError();
+            }
+        }
+        else if (ent->d_type == DT_REG)
+        {
+            if (AnySet(findTypes & FileSystemEntryType::FILE))
+            {
+                currentEntryType = FileSystemEntryType::FILE;
+
+                if (currentPath.assign(startPath).HasError())
+                    return ValueOrError<void>::CreateError();
+                if ((currentPath /= ent->d_name).HasError())
+                    return ValueOrError<void>::CreateError();
+            }
+        }
+        else if (ent->d_type == DT_LNK)
+        {
+            if (currentPath.assign(startPath).HasError())
+                return ValueOrError<void>::CreateError();
+            if ((currentPath /= ent->d_name).HasError())
+                return ValueOrError<void>::CreateError();
+
+            if (currentPath.IsDirectory())
+            {
+                if (AnySet(findTypes & FileSystemEntryType::DIRECTORY))
+                    currentEntryType = FileSystemEntryType::DIRECTORY;
+            }
+            else if (currentPath.IsFile())
+            {
+                if (AnySet(findTypes & FileSystemEntryType::FILE))
+                    currentEntryType = FileSystemEntryType::FILE;
+            }
+        }
+    }
+
+    return ValueOrError<void>();
+}
+
 
 //Implementation----------------------------------------------------------------
-DirEntFileFinder::DirEntFileFinder(Allocator* allocator) : path(allocator), testPath(allocator)
+DirEntFileFinder::DirEntFileFinder(Allocator* allocator) : startPath(allocator), currentPath(allocator)
 {
+    this->findTypes = FileSystemEntryType::ALL;
+
     this->dir = nullptr;
     this->ent = nullptr;
+    this->currentEntryType = FileSystemEntryType::NONE;
 }
 
 DirEntFileFinder::~DirEntFileFinder()
@@ -45,111 +102,84 @@ DirEntFileFinder::~DirEntFileFinder()
     Stop();
 }
 
-bool DirEntFileFinder::Start(const Path& path)
+ValueOrError<bool> DirEntFileFinder::Start(const Path& path, FileSystemEntryType findTypes)
 {
     Stop();
 
-    if (this->path.assign(path).HasError())
-        return false;
+    if (this->startPath.assign(path).HasError())
+        return ValueOrError<bool>::CreateError();
+
+    this->findTypes = findTypes;
 
     this->dir = opendir(path.c_str());
     this->ent = this->dir != nullptr ? readdir(this->dir) : nullptr;
+    this->currentEntryType = FileSystemEntryType::NONE;
 
-    if (this->ent != nullptr && ::IsDots(this->ent->d_name))
-        Next();
+    if (this->ent != nullptr)
+    {
+        GetCurrentTypeAndPath(this->currentEntryType, this->currentPath, this->dir, this->ent, this->startPath, this->findTypes);
+        if (NoneSet(this->currentEntryType & this->findTypes))
+        {
+            if (Next().HasError())
+                return ValueOrError<bool>::CreateError(false);
+        }
+    }
 
     return this->ent != nullptr;
 }
 
-bool DirEntFileFinder::Next()
+ValueOrError<bool> DirEntFileFinder::Next()
 {
     do
     {
         this->ent = readdir(this->dir);
-    } while (this->ent != nullptr && ::IsDots(this->ent->d_name));
+        if (this->ent != nullptr)
+        {
+            if (GetCurrentTypeAndPath(this->currentEntryType, this->currentPath, this->dir, this->ent, this->startPath, this->findTypes).HasError())
+                return ValueOrError<bool>::CreateError();
+        }
+        else
+        {
+            this->currentPath.clear();
+            this->currentEntryType = FileSystemEntryType::NONE;
+        }
+    } while (this->ent != nullptr && NoneSet(this->currentEntryType & this->findTypes));
 
-    return this->ent != nullptr;
+    if (this->ent == nullptr)
+        Stop();
+
+    return this->currentEntryType != FileSystemEntryType::NONE;
 }
 
 ValueOrError<void> DirEntFileFinder::GetCurrentName(Path& result) const
 {
-    return result.assign(this->ent->d_name);
+    if (this->ent == nullptr)
+    {
+        result.clear();
+        return ValueOrError<void>();
+    }
+    else
+        return result.assign(this->ent->d_name);
 }
 
 ValueOrError<void> DirEntFileFinder::GetCurrentPath(Path& result) const
 {
-    if (result.assign(this->path).HasError())
-        return ValueOrError<void>::CreateError();
-
-    if (this->ent != nullptr)
-        return result /= this->ent->d_name;
-    else
-        return ValueOrError<void>();
+    return result.assign(this->currentPath);
 }
 
-ValueOrError<bool> DirEntFileFinder::IsCurrentFile() const
+bool DirEntFileFinder::IsCurrentFile() const
 {
-    if (this->ent != nullptr)
-    {
-        if (this->ent->d_type == DT_DIR)
-            return true;
-        else if (this->ent->d_type == DT_LNK)
-        {
-            if (this->testPath.assign(this->path).HasError())
-                return ValueOrError<bool>::CreateError();
-            if ((this->testPath /= this->ent->d_name).HasError())
-                return ValueOrError<bool>::CreateError();
-            
-            return this->testPath.IsFile();
-        }
-    }
-    
-    return false;
+    return this->currentEntryType == FileSystemEntryType::FILE;
 }
 
-ValueOrError<bool> DirEntFileFinder::IsCurrentDirectory() const
+bool DirEntFileFinder::IsCurrentDirectory() const
 {
-    if (this->ent != nullptr)
-    {
-        if (this->ent->d_type == DT_DIR)
-            return true;
-        else if (this->ent->d_type == DT_LNK)
-        {
-            if (this->testPath.assign(this->path).HasError())
-                return ValueOrError<bool>::CreateError();
-            if ((this->testPath /= this->ent->d_name).HasError())
-                return ValueOrError<bool>::CreateError();
-            
-            return this->testPath.IsDirectory();
-        }
-    }
-    
-    return false;
+    return this->currentEntryType == FileSystemEntryType::DIRECTORY;
 }
 
-ValueOrError<FileSystemEntryType> DirEntFileFinder::GetCurrentType() const
+FileSystemEntryType DirEntFileFinder::GetCurrentType() const
 {
-    if (this->ent != nullptr)
-    {
-        if (this->ent->d_type == DT_DIR)
-            return FileSystemEntryType::DIRECTORY;
-        else if (this->ent->d_type == DT_REG)
-            return FileSystemEntryType::FILE;
-        else if (this->ent->d_type == DT_LNK)
-        {
-            if (this->testPath.assign(this->path).HasError())
-                return ValueOrError<FileSystemEntryType>::CreateError();
-            if ((this->testPath /= this->ent->d_name).HasError())
-                return ValueOrError<FileSystemEntryType>::CreateError();
-            
-            if (this->testPath.IsDirectory())
-                return FileSystemEntryType::DIRECTORY;
-            else
-                return FileSystemEntryType::FILE;
-        }
-    }
-    
-    return FileSystemEntryType::NONE;
+    return this->currentEntryType;
 }
 
 void DirEntFileFinder::Stop()
@@ -159,10 +189,12 @@ void DirEntFileFinder::Stop()
         closedir(this->dir);
         this->dir = nullptr;
         this->ent = nullptr;
+        this->currentPath.clear();
+        this->currentEntryType = FileSystemEntryType::NONE;
     }
 }
 
 const Path& DirEntFileFinder::GetStartPath() const
 {
-    return this->path;
+    return this->startPath;
 }

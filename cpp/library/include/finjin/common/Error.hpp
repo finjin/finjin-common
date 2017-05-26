@@ -34,7 +34,7 @@
 #if FINJIN_ERROR_NO_MESSAGES
     #define FINJIN_SET_ERROR_NO_MESSAGE(error) error.SetError(false, -1, FINJIN_CALLER_ARGUMENTS)
 #else
-    #define FINJIN_SET_ERROR_NO_MESSAGE(error) error.SetError(Finjin::Common::Utf8String::Empty(), -1, FINJIN_CALLER_ARGUMENTS)
+    #define FINJIN_SET_ERROR_NO_MESSAGE(error) error.SetError(Finjin::Common::Utf8String::GetEmpty(), -1, FINJIN_CALLER_ARGUMENTS)
 #endif
 
 //Sets an error message into the Error object

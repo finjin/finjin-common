@@ -19,7 +19,7 @@
 #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #elif FINJIN_TARGET_PLATFORM_IS_LINUX
-    #include <malloc.h>
+    #include <sys/sysinfo.h>
 #elif FINJIN_TARGET_PLATFORM_IS_APPLE
     #import <mach/mach.h>
     #import <mach/mach_host.h>
@@ -71,8 +71,9 @@ size_t PassthroughSystemAllocator::GetBytesUsed() const
     GlobalMemoryStatusEx(&memoryStatus);
     return memoryStatus.ullTotalPhys - memoryStatus.ullAvailPhys;
 #elif FINJIN_TARGET_PLATFORM_IS_LINUX
-    struct mallinfo info = mallinfo();
-    return info.uordblks;
+    struct sysinfo info;
+    sysinfo(&info);
+    return info.totalram - info.freeram;
 #elif FINJIN_TARGET_PLATFORM_IS_APPLE
     mach_port_t hostPort = mach_host_self();
 
@@ -111,8 +112,9 @@ size_t PassthroughSystemAllocator::GetBytesFree() const
     GlobalMemoryStatusEx(&memoryStatus);
     return memoryStatus.ullAvailPhys;
 #elif FINJIN_TARGET_PLATFORM_IS_LINUX
-    struct mallinfo info = mallinfo();
-    return info.fordblks;
+    struct sysinfo info;
+    sysinfo(&info);
+    return info.freeram;
 #elif FINJIN_TARGET_PLATFORM_IS_APPLE
     mach_port_t hostPort = mach_host_self();
 

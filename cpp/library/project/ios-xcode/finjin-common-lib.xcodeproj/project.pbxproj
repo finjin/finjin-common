@@ -85,6 +85,9 @@
 		65430DFD1DF2DBA700588409 /* WrappedFileWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430DFB1DF2DBA700588409 /* WrappedFileWriter.cpp */; };
 		65430E101DF2E00000588409 /* FileAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E0E1DF2E00000588409 /* FileAccessor.cpp */; };
 		6552169F1EACE4C1006AEB40 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 6552169D1EACE4C1006AEB40 /* xxhash.c */; };
+		657359721ECED5C3009FA3E6 /* JobFiber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 657359711ECED5C3009FA3E6 /* JobFiber.mm */; };
+		6573597C1ECF4277009FA3E6 /* Luid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6573597B1ECF4277009FA3E6 /* Luid.cpp */; };
+		657359C01ED109FA009FA3E6 /* StandardPaths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657359BF1ED109FA009FA3E6 /* StandardPaths.cpp */; };
 		657AA13D1E3D97DB004ADA22 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA1281E3D97DB004ADA22 /* png.c */; };
 		657AA1411E3D97DB004ADA22 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA12C1E3D97DB004ADA22 /* pngerror.c */; };
 		657AA1421E3D97DB004ADA22 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA12D1E3D97DB004ADA22 /* pngget.c */; };
@@ -126,7 +129,6 @@
 		65E4794B1C4F8DBF00A1501F /* FiberMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478EA1C4F8DBE00A1501F /* FiberMutex.cpp */; };
 		65E4794D1C4F8DBF00A1501F /* FiberSchedulingAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478EC1C4F8DBE00A1501F /* FiberSchedulingAlgorithm.cpp */; };
 		65E4794F1C4F8DBF00A1501F /* FiberSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478EE1C4F8DBE00A1501F /* FiberSpinLock.cpp */; };
-		65E479561C4F8DBF00A1501F /* JobFiber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478F51C4F8DBE00A1501F /* JobFiber.cpp */; };
 		65E479581C4F8DBF00A1501F /* JobFuture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478F71C4F8DBE00A1501F /* JobFuture.cpp */; };
 		65E4795F1C4F8DBF00A1501F /* JobSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E478FE1C4F8DBE00A1501F /* JobSystem.cpp */; };
 		65E479631C4F8DBF00A1501F /* JobThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E479021C4F8DBE00A1501F /* JobThread.cpp */; };
@@ -361,6 +363,10 @@
 		65430E0F1DF2E00000588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
 		6552169D1EACE4C1006AEB40 /* xxhash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.c"; sourceTree = "<absolute>"; };
 		6552169E1EACE4C1006AEB40 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.h"; sourceTree = "<absolute>"; };
+		657359711ECED5C3009FA3E6 /* JobFiber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JobFiber.mm; path = ../../src/JobFiber.mm; sourceTree = SOURCE_ROOT; };
+		657359791ECF4264009FA3E6 /* Luid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Luid.hpp; path = ../../include/finjin/common/Luid.hpp; sourceTree = SOURCE_ROOT; };
+		6573597B1ECF4277009FA3E6 /* Luid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Luid.cpp; path = ../../src/Luid.cpp; sourceTree = SOURCE_ROOT; };
+		657359BF1ED109FA009FA3E6 /* StandardPaths.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StandardPaths.cpp; path = ../../src/StandardPaths.cpp; sourceTree = SOURCE_ROOT; };
 		657AA1281E3D97DB004ADA22 /* png.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = png.c; path = "/Users/derek/finjin-3rd-party/cpp/lpng/png.c"; sourceTree = "<absolute>"; };
 		657AA1291E3D97DB004ADA22 /* png.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = png.h; path = "/Users/derek/finjin-3rd-party/cpp/lpng/png.h"; sourceTree = "<absolute>"; };
 		657AA12A1E3D97DB004ADA22 /* pngconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngconf.h; path = "/Users/derek/finjin-3rd-party/cpp/lpng/pngconf.h"; sourceTree = "<absolute>"; };
@@ -603,6 +609,7 @@
 				65127BFC1CB1A3970041C324 /* FileSystemEntry.hpp */,
 				65E479141C4F8DBF00A1501F /* Path.cpp */,
 				65E479B91C4F914600A1501F /* Path.hpp */,
+				657359BF1ED109FA009FA3E6 /* StandardPaths.cpp */,
 				65127C1A1CB3A4F80041C324 /* StandardPaths.hpp */,
 				65127C181CB3A4E70041C324 /* StandardPaths_iOS.mm */,
 				650FA3AF1D5B992400535D8D /* VirtualFileHandle.cpp */,
@@ -861,6 +868,8 @@
 				650FA3381D32178000535D8D /* LayoutDirection.hpp */,
 				65E479B21C4F914600A1501F /* LogicalCpu.hpp */,
 				65E47A5A1C4FC8E800A1501F /* LogicalCpu_iOS.cpp */,
+				6573597B1ECF4277009FA3E6 /* Luid.cpp */,
+				657359791ECF4264009FA3E6 /* Luid.hpp */,
 				65E479121C4F8DBF00A1501F /* NamePrefix.cpp */,
 				65E479B71C4F914600A1501F /* NamePrefix.hpp */,
 				651288761D220D3D0041C324 /* NumericStruct.hpp */,
@@ -921,6 +930,7 @@
 				65E47A281C4F928700A1501F /* fiber */,
 				65E478F51C4F8DBE00A1501F /* JobFiber.cpp */,
 				65E478F61C4F8DBE00A1501F /* JobFiber.hpp */,
+				657359711ECED5C3009FA3E6 /* JobFiber.mm */,
 				65E478FE1C4F8DBE00A1501F /* JobSystem.cpp */,
 				65E478FF1C4F8DBE00A1501F /* JobSystem.hpp */,
 				65E479021C4F8DBE00A1501F /* JobThread.cpp */,
@@ -1217,6 +1227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657359C01ED109FA009FA3E6 /* StandardPaths.cpp in Sources */,
+				6573597C1ECF4277009FA3E6 /* Luid.cpp in Sources */,
+				657359721ECED5C3009FA3E6 /* JobFiber.mm in Sources */,
 				65F7C2E41EB66B810084EC43 /* arm_init.c in Sources */,
 				65F7C2E51EB66B810084EC43 /* filter_neon_intrinsics.c in Sources */,
 				65F7C17E1EADD9CD0084EC43 /* PNGWriter.cpp in Sources */,
@@ -1343,7 +1356,6 @@
 				65E4794B1C4F8DBF00A1501F /* FiberMutex.cpp in Sources */,
 				65E4794D1C4F8DBF00A1501F /* FiberSchedulingAlgorithm.cpp in Sources */,
 				65E4794F1C4F8DBF00A1501F /* FiberSpinLock.cpp in Sources */,
-				65E479561C4F8DBF00A1501F /* JobFiber.cpp in Sources */,
 				65E479581C4F8DBF00A1501F /* JobFuture.cpp in Sources */,
 				65E4795F1C4F8DBF00A1501F /* JobSystem.cpp in Sources */,
 				65E479631C4F8DBF00A1501F /* JobThread.cpp in Sources */,

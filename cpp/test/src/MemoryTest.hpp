@@ -12,6 +12,7 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/ByteOrder.hpp"
 #include "finjin/common/Chrono.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/ForwardAllocator.hpp"
@@ -130,5 +131,49 @@ BOOST_AUTO_TEST_CASE(MemoryTest_general_allocator)
         generalAllocator.Deallocate(mem);
 
         BOOST_CHECK(generalAllocator.GetBytesUsed() == 0);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(MemoryTest_size_parse)
+{
+    BOOST_TEST_MESSAGE("MemoryTest_size_parse:");
+
+    auto result = MemorySize::Parse64("12.5MB");
+    BOOST_CHECK(result == 12500000);
+
+    result = MemorySize::Parse64("12MB");
+    BOOST_CHECK(result == 12000000);
+}
+
+BOOST_AUTO_TEST_CASE(MemoryTest_swap_bytes)
+{
+    BOOST_TEST_MESSAGE("MemoryTest_swap_bytes:");
+
+    {
+        std::array<uint8_t, 4> value;
+        value[0] = 0;
+        value[1] = 1;
+        value[2] = 2;
+        value[3] = 3;
+        SwapBytes(value);
+        BOOST_CHECK(value[0] == 3);
+        BOOST_CHECK(value[1] == 2);
+        BOOST_CHECK(value[2] == 1);
+        BOOST_CHECK(value[3] == 0);
+    }
+
+    {
+        std::array<uint8_t, 5> value;
+        value[0] = 0;
+        value[1] = 1;
+        value[2] = 2;
+        value[3] = 3;
+        value[4] = 4;
+        SwapBytes(value);
+        BOOST_CHECK(value[0] == 4);
+        BOOST_CHECK(value[1] == 3);
+        BOOST_CHECK(value[2] == 2);
+        BOOST_CHECK(value[3] == 1);
+        BOOST_CHECK(value[4] == 0);
     }
 }

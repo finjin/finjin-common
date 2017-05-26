@@ -94,7 +94,7 @@ namespace Finjin { namespace Common {
         }
 
         ConfigDocumentWriter& WriteScopeEnd();
-        
+
         template <typename KeyType, typename ValueType>
         ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const ValueType& value)
         {

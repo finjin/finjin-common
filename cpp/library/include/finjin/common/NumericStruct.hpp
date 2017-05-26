@@ -76,7 +76,7 @@ namespace Finjin { namespace Common {
                 );
             return lookup;
         }
-        
+
         static const char* ToString(NumericStructElementType value)
         {
             auto& lookup = GetLookup();
@@ -85,7 +85,7 @@ namespace Finjin { namespace Common {
                 if (item.second == value)
                     return item.first;
             }
-            
+
             return FINJIN_ENUM_UNKNOWN_STRING;
         }
 
@@ -1263,12 +1263,12 @@ namespace Finjin { namespace Common {
 
         static const Utf8String& GetConfigSectionName()
         {
-            return Utf8String::Empty();
+            return Utf8String::GetEmpty();
         }
 
         static const Utf8String& GetConfigElementSectionName()
         {
-            return Utf8String::Empty();
+            return Utf8String::GetEmpty();
         }
 
         template <typename StringType>

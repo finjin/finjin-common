@@ -15,6 +15,7 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/JobFiber.hpp"
 #include "finjin/common/AllocatedClass.hpp"
+#include "finjin/common/Convert.hpp"
 #include "finjin/common/FiberException.hpp"
 #include "finjin/common/FiberJob.hpp"
 #include "finjin/common/FiberWaitingQueue.hpp"
@@ -23,12 +24,11 @@
 #include "FiberJobScheduler.hpp"
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
-#elif FINJIN_TARGET_PLATFORM_IS_ANDROID || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_IOS || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_TVOS
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE || FINJIN_TARGET_PLATFORM_IS_LINUX //Also applies to Android
     #include <boost/context/all.hpp>
 
     #define FINJIN_USE_BOOST_CONTEXT 1
-#elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
-    //TODO: In the future, make changes to the development/build environment so that boost is used instead
+#else
     #include <sys/mman.h>
     #if !defined(_XOPEN_SOURCE)
         #define _XOPEN_SOURCE 600
@@ -144,7 +144,7 @@ static size_t CalculateStackSize(size_t requestedSize)
     #if FINJIN_USE_POSIX_CONTEXT && __WORDSIZE == 32
         static void ContextFunction32(int a0)
         {
-            assert(sizeof(int) == 4);
+            static_assert(sizeof(int) == 4, "Unexpected int size. Must be 4 bytes.");
 
             auto impl = reinterpret_cast<JobFiber::Impl*>(a0);
             assert(impl != nullptr);
@@ -153,7 +153,7 @@ static size_t CalculateStackSize(size_t requestedSize)
     #elif FINJIN_USE_POSIX_CONTEXT && __WORDSIZE == 64
         static void ContextFunction64(int a0, int a1)
         {
-            assert(sizeof(int) == 4);
+            static_assert(sizeof(int) == 4, "Unexpected int size. Must be 4 bytes.");
 
             auto impl = reinterpret_cast<JobFiber::Impl*>(((uint64_t)a0 << 32) | (uint64_t)(uint32_t)a1);
             assert(impl != nullptr);
@@ -237,7 +237,14 @@ void JobFiber::Impl::FiberFunc()
                 {
                     this->activeJob = jobToExecute.get();
 
-                    jobToExecute->Execute();
+                #if FINJIN_TARGET_PLATFORM_IS_APPLE
+                    @autoreleasepool
+                    {
+                #endif
+                        jobToExecute->Execute();
+                #if FINJIN_TARGET_PLATFORM_IS_APPLE
+                    }
+                #endif
 
                     this->activeJob = nullptr;
 
@@ -300,10 +307,10 @@ JobFiber::~JobFiber()
     delete impl;
 }
 
-void JobFiber::Create
+JobFiber::CreateResult JobFiber::Create
     (
     size_t fiberIndex,
-    const Utf8String& name,
+    const Utf8String& ownerThreadName,
     Allocator* allocator,
     JobFiber* mainFiber,
     FiberJobScheduler& scheduler,
@@ -315,7 +322,10 @@ void JobFiber::Create
     if (impl == nullptr)
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
 
-    impl->name = name;
+    impl->name = ownerThreadName;
+    impl->name += "-";
+    impl->name += "job-fiber-";
+    impl->name += Convert::ToString(fiberIndex);
 
     impl->mainFiber = mainFiber;
 
@@ -328,14 +338,20 @@ void JobFiber::Create
 
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     impl->fiberHandle = CreateFiberEx(impl->stackSize, impl->stackReserveSize, FIBER_FLAG_FLOAT_SWITCH, FiberFuncWin32, impl);
-    assert(impl->fiberHandle != nullptr);
+    FINJIN_MEMORY_ALLOCATION_ASSERT(impl->fiberHandle != nullptr);
+    if (impl->fiberHandle == nullptr)
+        return CreateResult::FAILED_TO_ALLOCATE_STACK;
 #elif FINJIN_USE_POSIX_CONTEXT
     auto totalStackSize = impl->stackSize + impl->stackReserveSize;
     impl->stack = AllocateStack(allocator, totalStackSize);
-    assert(impl->stack != nullptr);
+    FINJIN_MEMORY_ALLOCATION_ASSERT(impl->stack != nullptr);
+    if (impl->stack == nullptr)
+        return CreateResult::FAILED_TO_ALLOCATE_STACK;
 
     auto getContextSupported = getcontext(&impl->context);
-    assert(getContextSupported != -1); //If this fails, it's because getcontext() is not supported on this platform
+    FINJIN_MEMORY_ALLOCATION_ASSERT(getContextSupported != -1); //If this fails, it's because getcontext() is not supported on this platform
+    if (getContextSupported == -1)
+        return CreateResult::CONTEXT_SWITCHING_NOT_SUPPORTED;
 
     impl->context.uc_stack.ss_sp = impl->stack;
     impl->context.uc_stack.ss_size = totalStackSize;
@@ -349,12 +365,16 @@ void JobFiber::Create
 #elif FINJIN_USE_BOOST_CONTEXT
     auto totalStackSize = impl->stackSize + impl->stackReserveSize;
     impl->stack = AllocateStack(allocator, totalStackSize);
-    assert(impl->stack != nullptr);
+    FINJIN_MEMORY_ALLOCATION_ASSERT(impl->stack != nullptr);
+    if (impl->stack == nullptr)
+        return CreateResult::FAILED_TO_ALLOCATE_STACK;
 
     impl->context = boost::context::make_fcontext(impl->stack + totalStackSize, totalStackSize, BoostContextFunction);
 #else
     #error Implement this!
 #endif
+
+    return CreateResult::SUCCESS;
 }
 
 void JobFiber::Destroy()
@@ -363,7 +383,7 @@ void JobFiber::Destroy()
     impl = nullptr;
 }
 
-void JobFiber::InitializeDefaultFiber(Allocator* allocator, const Utf8String& name, FiberJobScheduler* scheduler)
+void JobFiber::InitializeDefaultFiber(Allocator* allocator, const char* name, FiberJobScheduler* scheduler)
 {
     assert(scheduler != nullptr);
     assert(GetActiveFiber() == nullptr);
@@ -390,7 +410,7 @@ void JobFiber::ShutdownDefaultFiber()
     }
 }
 
-void JobFiber::InitializeMainFiber(Allocator* allocator, const Utf8String& name, FiberJobScheduler* scheduler)
+void JobFiber::InitializeMainFiber(Allocator* allocator, const char* name, FiberJobScheduler* scheduler)
 {
     assert(scheduler != nullptr);
 

@@ -13,6 +13,7 @@
                 <sourceRootElem>/home/build/finjin-3rd-party/cpp/uriparser/src</sourceRootElem>
                 <sourceRootElem>/home/build/finjin-3rd-party/cpp/lpng</sourceRootElem>
                 <sourceRootElem>/home/build/finjin-3rd-party/cpp/xxHash</sourceRootElem>
+                <sourceRootElem>/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

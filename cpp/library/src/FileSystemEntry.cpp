@@ -141,7 +141,7 @@ FileSystemEntry* FileSystemEntries::Add()
 {
     if (this->items.full())
         return nullptr;
-    
+
     this->items.push_back();
     auto& entry = this->items.back();
     entry.Reset();
@@ -230,26 +230,26 @@ FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* e
     return nullptr;
 }
 
-FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntryType type, const Path& relativePath)
+FileSystemEntry* FileSystemEntries::FindEntryStartingWith(FileSystemEntryType findTypes, const Path& relativePath)
 {
     for (auto entry = FindEntryStartingWith(relativePath);
         entry != nullptr;
         entry = FindNextEntryStartingWith(entry, relativePath))
     {
-        if (entry->type == type)
+        if (AnySet(entry->type & findTypes))
             return entry;
     }
 
     return nullptr;
 }
 
-FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType type, const Path& relativePath)
+FileSystemEntry* FileSystemEntries::FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType findTypes, const Path& relativePath)
 {
     for (entry = FindNextEntryStartingWith(entry, relativePath);
         entry != nullptr;
         entry = FindNextEntryStartingWith(entry, relativePath))
     {
-        if (entry->type == type)
+        if (AnySet(entry->type & findTypes))
             return entry;
     }
 

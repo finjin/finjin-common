@@ -21,29 +21,42 @@
 using namespace Finjin::Common;
 
 
-//Local functions---------------------------------------------------------------
-
 //Implementation----------------------------------------------------------------
-Path LinuxUtilities::GetProcessFilePath()
+ValueOrError<bool> LinuxUtilities::GetProcessFilePath(Path& path)
 {
-    Path result;
-
     const int charCount = 4096;
     char buff[charCount];
 
     ssize_t charsCopied = readlink("/proc/self/exe", buff, charCount - 1);
     if (charsCopied != -1)
     {
-        buff[charsCopied] = 0;
-        result = buff;
+        if (path.assign(buff, charsCopied).HasError())
+            return ValueOrError<bool>::CreateError();
+        return true;
     }
 
+    return false;
+}
+
+Path LinuxUtilities::GetProcessFilePath()
+{
+    Path result;
+    GetProcessFilePath(result);
     return result;
+}
+
+ValueOrError<bool> LinuxUtilities::GetWorkingDirectory(Path& path)
+{
+    const int charCount = 4096;
+    char buff[charCount];
+    if (path.assign(getcwd(buff, charCount - 1)).HasError())
+        return ValueOrError<bool>::CreateError();
+    return !path.empty();
 }
 
 Path LinuxUtilities::GetWorkingDirectory()
 {
-    const int charCount = 4096;
-    char buff[charCount];
-    return getcwd(buff, charCount - 1);
+    Path result;
+    GetWorkingDirectory(result);
+    return result;
 }

@@ -100,7 +100,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\tinyxml\tinyxml2.cpp">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\tinyxml\tinyxml2.cpp">
       <Filter>Source Files\3rd-party\tinyxml2</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Convert.cpp">
@@ -235,85 +235,85 @@
     <ClCompile Include="..\..\src\FiberCondition.cpp">
       <Filter>Source Files\job-system\fiber</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fseeko.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\info.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\memdisk.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\mmapped.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\plugin.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stat.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\stat.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\write.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zip.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zip.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\dir.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\dir.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\err.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\err.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fetch.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\file.c">
       <Filter>Source Files\3rd-party\zziplib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inflate.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inftrees.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\trees.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\uncompr.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\uncompr.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\zutil.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\adler32.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\adler32.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\compress.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\compress.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\crc32.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\deflate.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzclose.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzclose.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzlib.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzlib.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzread.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzwrite.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzwrite.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\infback.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\infback.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inffast.c">
       <Filter>Source Files\3rd-party\zlib</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\VirtualFileSystem.cpp">
@@ -388,46 +388,46 @@
     <ClCompile Include="..\..\src\MemoryArena.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalize.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalize.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParse.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParse.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParseBase.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriQuery.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriQuery.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriRecompose.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriRecompose.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriResolve.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriResolve.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriShorten.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriShorten.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCommon.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCompare.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCompare.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriFile.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriFile.c">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\BinaryDataChunkWriter.cpp">
@@ -466,49 +466,49 @@
     <ClCompile Include="..\..\src\PNGReader.cpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngmem.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngmem.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngpread.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngread.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrio.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrio.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrtran.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrtran.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrutil.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngset.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngset.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngtrans.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngtrans.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwio.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwio.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwrite.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwrite.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwtran.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwtran.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwutil.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\png.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngerror.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngerror.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngget.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngget.c">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Hash.cpp">
@@ -520,7 +520,7 @@
     <ClCompile Include="..\..\src\ZIPReader.cpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\xxHash\xxhash.c">
       <Filter>Source Files\3rd-party\xxhash</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Angle.cpp">
@@ -550,93 +550,99 @@
     <ClCompile Include="..\..\src\PNGWriter.cpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Luid.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\StandardPaths.cpp">
+      <Filter>Source Files\file-system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\memorybuffer.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\memorybuffer.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\memorystream.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\memorystream.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\prettywriter.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\prettywriter.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\rapidjson.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\rapidjson.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\reader.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\reader.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\stringbuffer.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\stringbuffer.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\writer.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\writer.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\allocators.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\allocators.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\document.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\document.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\encodedstream.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\encodedstream.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\encodings.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\encodings.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filereadstream.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\filereadstream.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filestream.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\filestream.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\filewritestream.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\filewritestream.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\error\error.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\error\error.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\error\en.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\error\en.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\pow10.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\pow10.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\stack.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\stack.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\strfunc.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\strfunc.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\strtod.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\strtod.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\biginteger.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\biginteger.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\diyfp.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\diyfp.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\dtoa.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\dtoa.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\ieee754.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\ieee754.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\itoa.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\itoa.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\internal\meta.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\internal\meta.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\msinttypes\inttypes.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\msinttypes\inttypes.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\rapidjson\msinttypes\stdint.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\rapidjson\msinttypes\stdint.h">
       <Filter>Source Files\3rd-party\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\tinyxml\tinyxml2.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\tinyxml\tinyxml2.h">
       <Filter>Source Files\3rd-party\tinyxml2</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\CommandLineSettingsDescription.hpp">
@@ -825,106 +831,106 @@
     <ClInclude Include="..\..\include\finjin\common\FiberCondition.hpp">
       <Filter>Source Files\job-system\fiber</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\crc32.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\deflate.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzguts.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\gzguts.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inffast.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffixed.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inffixed.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inflate.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inftrees.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\trees.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zconf.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zconf.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zlib.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zlib.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zutil.h">
       <Filter>Source Files\3rd-party\zlib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__debug.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__debug.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__dirent.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__dirent.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__fnmatch.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__fnmatch.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__hints.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__hints.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_config.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\_config.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_msvc.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\_msvc.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\autoconf.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\autoconf.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\conf.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\conf.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fetch.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\file.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\format.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\format.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fseeko.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zzip.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\write.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\types.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\types.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stdint.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\stdint.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\plugin.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\mmapped.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\memdisk.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\lib.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\lib.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\info.h">
       <Filter>Source Files\3rd-party\zziplib\includes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\VirtualFileSystem.hpp">
@@ -1044,16 +1050,16 @@
     <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp">
       <Filter>Source Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCommon.h">
       <Filter>Source Files\3rd-party\uriparser</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\BinaryDataChunkReader.hpp">
@@ -1101,22 +1107,22 @@
     <ClInclude Include="..\..\include\finjin\common\PNGReader.hpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\png.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngconf.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngconf.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngdebug.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngdebug.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pnginfo.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pnginfo.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpriv.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngpriv.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngstruct.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngstruct.h">
       <Filter>Source Files\3rd-party\lpng</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Hash.hpp">
@@ -1128,7 +1134,7 @@
     <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp">
       <Filter>Source Files\external-file-formats</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.h">
+    <ClInclude Include="C:\finjin-3rd-party\cpp\xxHash\xxhash.h">
       <Filter>Source Files\3rd-party\xxhash</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Angle.hpp">
@@ -1211,6 +1217,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\PNGWriter.hpp">
       <Filter>Source Files\external-file-formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\Luid.hpp">
+      <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,13 +20,18 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-static void GetSystemCreatedDirectory(StandardPath& standardPath, const Path& userHomeDirectory, const char* standardName)
+static ValueOrError<void> GetSystemCreatedDirectory(StandardPath& standardPath, const Path& path, const char* standardName)
 {
-    standardPath.path = userHomeDirectory;
-    standardPath.path /= standardName;
+    if (standardPath.path.assign(path).HasError())
+        return ValueOrError<void>::CreateError();
+    if ((standardPath.path /= standardName).HasError())
+        return ValueOrError<void>::CreateError();
+
     standardPath.isSystemCreated = standardPath.path.IsDirectory();
     if (!standardPath.isSystemCreated)
         standardPath.path.clear();
+
+    return ValueOrError<void>();
 }
 
 
@@ -35,44 +40,125 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    this->applicationExecutableFile.path = LinuxUtilities::GetProcessFilePath();
-    this->applicationExecutableFile.isSystemCreated = true;
+    if (LinuxUtilities::GetProcessFilePath(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get application executable path");
+        return;
+    }
+    this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].isSystemCreated = true;
 
-    this->applicationBundleDirectory.path = this->applicationExecutableFile.path;
-    this->applicationBundleDirectory.path.RemoveFileName();
-    this->applicationBundleDirectory.isSystemCreated = true;
+    if (this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].path.assign(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to assign application bundle directory");
+        return;
+    }
+    this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].path.RemoveFileName();
+    this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].isSystemCreated = true;
 
     Path userHomeDirectory;
-    Path::GetUserHomeDirectory(userHomeDirectory);
+    if (Path::GetUserHomeDirectory(userHomeDirectory).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user home directory.");
+        return;
+    }
 
-    GetSystemCreatedDirectory(this->userDocumentsDirectory, userHomeDirectory, "Documents");
-    GetSystemCreatedDirectory(this->userMusicDirectory, userHomeDirectory, "Music");
-    GetSystemCreatedDirectory(this->userVideosDirectory, userHomeDirectory, "Videos");
-    GetSystemCreatedDirectory(this->userPicturesDirectory, userHomeDirectory, "Pictures");
-    GetSystemCreatedDirectory(this->userDownloadsDirectory, userHomeDirectory, "Downloads");
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY], userHomeDirectory, "Documents").HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
+        return;
+    }
+
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY], userHomeDirectory, "Music").HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user music directory.");
+        return;
+    }
+
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY], userHomeDirectory, "Videos").HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user videos directory.");
+        return;
+    }
+
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY], userHomeDirectory, "Pictures").HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user pictures directory.");
+        return;
+    }
+
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY], userHomeDirectory, "Downloads").HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get user downloads directory.");
+        return;
+    }
 
     Path bestApplicationName;
     if (!applicationName.empty())
-        bestApplicationName = applicationName;
+    {
+        if (bestApplicationName.assign(applicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to assign application name to best application name.");
+            return;
+        }
+    }
     else
-        this->applicationExecutableFile.path.GetBaseName(bestApplicationName);
+    {
+        if (this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path.GetBaseName(bestApplicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to get application base name.");
+            return;
+        }
+    }
 
-    this->userApplicationSettingsDirectory.path = userHomeDirectory;
-    this->userApplicationSettingsDirectory.path /= bestApplicationName;
+    if (this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path.assign(userHomeDirectory).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to assign user application settings directory.");
+        return;
+    }
+    if ((this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path /= bestApplicationName).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
+        return;
+    }
 
     auto tmpDir = getenv("TMPDIR");
     if (tmpDir != nullptr && tmpDir[0] != 0)
     {
-        this->userApplicationTemporaryDirectory.path = tmpDir;
-        this->userApplicationTemporaryDirectory.path /= bestApplicationName;
+        if (this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path.assign(tmpDir).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to assign TMPDIR to user application temporary directory.");
+            return;
+        }
+
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= bestApplicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to append application name to user application temporary directory.");
+            return;
+        }
     }
     else
     {
-        this->userApplicationTemporaryDirectory.path = userHomeDirectory;
-        this->userApplicationTemporaryDirectory.path /= bestApplicationName;
-        this->userApplicationTemporaryDirectory.path /= "temp";
+        if (this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path.assign(userHomeDirectory).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to assign user home directory to user application temporary directory.");
+            return;
+        }
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= bestApplicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to append application name to user application temporary directory.");
+            return;
+        }
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= "temp").HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to 'temp' to user application temporary directory.");
+            return;
+        }
     }
 
-    this->workingDirectory.path = LinuxUtilities::GetWorkingDirectory();
-    this->workingDirectory.isSystemCreated = true;
+    if (LinuxUtilities::GetWorkingDirectory(this->paths[WhichStandardPath::WORKING_DIRECTORY].path).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get working directory.");
+        return;
+    }
+    this->paths[WhichStandardPath::WORKING_DIRECTORY].isSystemCreated = true;
 }

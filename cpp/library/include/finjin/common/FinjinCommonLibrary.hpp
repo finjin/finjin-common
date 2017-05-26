@@ -16,8 +16,8 @@
 
 //Preliminary macros------------------------------------------------------------
 #if defined(_MSC_VER)
-    #pragma warning(disable: 4521) //The class has multiple copy constructors of a single type
-    #pragma warning(disable: 4355) //'this' : used in base member initializer list
+    #pragma warning(disable: 4521) //"The class has multiple copy constructors of a single type"
+    #pragma warning(disable: 4355) //"'this' : used in base member initializer list"
 
     #ifndef WIN32_LEAN_AND_MEAN
         #define WIN32_LEAN_AND_MEAN 1
@@ -234,6 +234,26 @@
 #endif
 
 
+//Memory-related assertion-------------
+#if !defined(FINJIN_ENABLE_MEMORY_ALLOCATION_ASSERT)
+    //Useful to enable this during development, to force some memory allocation failures to be caught on the spot
+    #define FINJIN_ENABLE_MEMORY_ALLOCATION_ASSERT 0
+#endif
+#if FINJIN_ENABLE_MEMORY_ALLOCATION_ASSERT
+    #define FINJIN_MEMORY_ALLOCATION_ASSERT(condition) assert(condition)
+#else
+    #define FINJIN_MEMORY_ALLOCATION_ASSERT(condition)
+#endif
+
+
+//Overloaded "new" throw spec-------------
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    #define FINJIN_GLOBAL_NEW_THROW throw()
+#else
+    #define FINJIN_GLOBAL_NEW_THROW throw(std::bad_alloc)
+#endif
+
+
 //Some utilities------------
 #define FINJIN_COUNT_OF(x) (sizeof(x)/sizeof((x)[0]))
 
@@ -250,6 +270,7 @@
 
 #define FINJIN_CALLER_PARAMETERS_DECLARATION const char* fileName, const char* functionName, int line //In the signature for Error::SetError() and other methods
 #define FINJIN_CALLER_PARAMETERS fileName, functionName, line //Allows error parameters in a method to be passed to another method
+#define FINJIN_CALLER_PARAMETER_COUNT 3 //Number of items in FINJIN_CALLER_PARAMETERS and FINJIN_CALLER_ARGUMENTS
 #define FINJIN_CALLER_ARGUMENTS __FILE__, __FUNCTION_NAME__, __LINE__ //Passed into Error::SetError() and other methods
 
 #define FINJIN_ENUM_UNKNOWN_STRING "<unknown>" //When an enum is turned into a string, this is used if the enum value is not recognized
@@ -372,7 +393,7 @@ namespace Finjin { namespace Common {
     template <typename T> inline T GetSign(T value) { return value < 0 ? (T)-1 : (T)1; }
 
     template <typename T> inline T GetOdd(T value) { return value | (T)1; } //T should be an integer type
-    
+
     template <typename T> inline T GetAbs(T value) { return value < 0 ? -value : value; }
     template <> inline uint8_t GetAbs(uint8_t value) { return value; }
     template <> inline uint16_t GetAbs(uint16_t value) { return value; }
@@ -388,6 +409,8 @@ namespace Finjin { namespace Common {
     template <> inline double RoundToDouble(double value) { return value; }
 
     inline int RoundToInt(double value) { return static_cast<int>(value + .5); }
+    inline int32_t RoundToInt32(double value) { return static_cast<int32_t>(value + .5); }
+    inline uint32_t RoundToUInt32(double value) { return static_cast<uint32_t>(value + .5); }
     inline int64_t RoundToInt64(double value) { return static_cast<int64_t>(value + .5); }
     inline uint64_t RoundToUInt64(double value) { return static_cast<uint64_t>(value + .5); }
 

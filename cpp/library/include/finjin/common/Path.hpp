@@ -29,7 +29,7 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API Path
     {
     public:
-        static const Path& Empty();
+        static const Path& GetEmpty();
 
         using traits_type = std::char_traits<char>;
         using value_type = char;

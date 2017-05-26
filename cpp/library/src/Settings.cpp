@@ -83,12 +83,12 @@ Path Settings::CompletePath(const Path& _path, RelativeTo relativeTo, const Stan
 
         if (relativeTo == RelativeTo::CURRENT_WORKING_DIRECTORY)
         {
-            combinedPath = standardPaths.workingDirectory.path;
+            combinedPath = standardPaths.paths[WhichStandardPath::WORKING_DIRECTORY].path;
             combinedPath /= path;
         }
         else if (relativeTo == RelativeTo::APPLICATION)
         {
-            standardPaths.applicationExecutableFile.path.GetParent(combinedPath);
+            standardPaths.paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path.GetParent(combinedPath);
             combinedPath /= path;
         }
         else if (!GetThisFileName().empty())

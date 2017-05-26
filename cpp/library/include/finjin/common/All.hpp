@@ -99,6 +99,7 @@
 #include "LogLevel.hpp"
 #include "LogicalCpu.hpp"
 #include "LruCache.hpp"
+#include "Luid.hpp"
 #include "Math.hpp"
 #include "MemoryArchitecture.hpp"
 #include "MemoryArena.hpp"

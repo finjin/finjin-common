@@ -33,9 +33,9 @@ namespace Finjin { namespace Common {
     public:
         static Uuid CreateRandom();
 
-        static const Uuid& Zero();
+        static const Uuid& GetZero();
 
-        Uuid(); //Sets to nil
+        Uuid(); //Sets to zero
         Uuid(const Utf8String& stringValue);
         Uuid(const char* stringValue);
         Uuid(const uint8_t* bytes);
@@ -46,6 +46,8 @@ namespace Finjin { namespace Common {
 
         operator GUID () const;
     #endif
+
+        bool empty() const { return IsZero(); }
 
         bool IsZero() const;
 

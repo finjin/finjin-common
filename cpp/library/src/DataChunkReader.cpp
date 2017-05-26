@@ -50,7 +50,7 @@ void DataHeader::Reset()
     this->length = 0;
     this->currentOffset = 0;
     this->name.clear();
-    this->id = Uuid::Zero();
+    this->id = Uuid::GetZero();
     this->index = (ParsedChunkName::Index)-1;
 }
 

@@ -437,7 +437,14 @@ namespace Finjin { namespace Common {
             return nullptr;
         }
 
-        return CreateInstanceOf<T>(*typeToCreate, allocator, FINJIN_CALLER_PARAMETERS);
+        auto obj = CreateInstanceOf<T>(*typeToCreate, allocator, FINJIN_CALLER_PARAMETERS);
+        if (obj == nullptr)
+        {
+            static_assert(FINJIN_CALLER_PARAMETER_COUNT == 3, "This code expects there to be 3 caller parameters/arguments. You will need to adjust the formatting string below this line.");
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Creation of type '%1%' at (%2%, %3%, %4%) failed.", typeToCreate->GetName(), FINJIN_CALLER_PARAMETERS));
+        }
+
+        return obj;
     }
 
 } }

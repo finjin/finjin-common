@@ -498,8 +498,8 @@ BOOST_AUTO_TEST_CASE(StreamingDataDocumentTest_create_files)
 
     RandomUuidCreator uuidCreator;
 
-    standardPaths.userApplicationTemporaryDirectory.CreateDirectories();
-    Path outputDirectory = standardPaths.userApplicationTemporaryDirectory.path;
+    standardPaths.paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].CreateDirectories();
+    Path outputDirectory = standardPaths.paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path;
     Path outputFilePath = outputDirectory;
     outputFilePath /= "exported.fstd";
 

@@ -24,7 +24,7 @@ namespace Finjin { namespace Common {
     /**
      * Provides custom memory allocation services for a class.
      * To use this, a derived class must be declared. For example:
-     * class Person : public AllocatedClass
+     * class Person : public AllocatedClass, public SomeOtherBaseClass //Note that AllocatedClass must be first base class
      * {
      * public:
      *     Person(int a): age(a) {}
@@ -52,21 +52,20 @@ namespace Finjin { namespace Common {
         void SetAllocator(Allocator* allocator);
 
         void* operator new(size_t byteCount, Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION);
-        void operator delete(void* mem);
-        void operator delete(void* mem, Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION);
+        void operator delete(void* mem) noexcept;
+        void operator delete(void* mem, Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION) noexcept;
 
-        //Array operators intentionally omitted
-        //void* operator new[](size_t byteCount, Allocator* allocator);
-        //void operator delete[](void* mem);
-        //void operator delete[](void* mem, Allocator* allocator);
+        //void* operator new[](size_t byteCount, Allocator* allocator); //Intentionally omitted
+        //void operator delete[](void* mem) noexcept; //Intentionally omitted
+        //void operator delete[](void* mem, Allocator* allocator) noexcept; //Intentionally omitted
 
         template <typename T, typename... Args>
         static T* New(Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION, Args&&... args)
         {
             if (allocator == nullptr)
                 allocator = Allocator::GetDefaultAllocator();
+
             auto p = new (allocator, FINJIN_CALLER_PARAMETERS) T(allocator, std::forward<Args>(args)...);
-            assert(p != nullptr);
             return p;
         }
 
@@ -75,8 +74,8 @@ namespace Finjin { namespace Common {
         {
             if (allocator == nullptr)
                 allocator = Allocator::GetDefaultAllocator();
+
             std::unique_ptr<T> p(new (allocator, FINJIN_CALLER_PARAMETERS) T(allocator, std::forward<Args>(args)...));
-            assert(p != nullptr);
             return p;
         }
 

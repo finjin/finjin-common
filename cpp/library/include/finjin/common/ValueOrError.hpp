@@ -44,6 +44,15 @@ namespace Finjin { namespace Common {
             return result;
         }
 
+        template <typename OtherType>
+        static ValueOrError CreateError(const OtherType& value)
+        {
+            ValueOrError result;
+            result.type = HAS_ERROR;
+            result.value = value;
+            return result;
+        }
+
         bool HasValue() const
         {
             return this->type == VALUE;

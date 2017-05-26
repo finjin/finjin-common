@@ -130,7 +130,7 @@ bool TimeDuration::operator >= (const TimeDuration& other) const
 
 bool TimeDuration::IsZero() const
 {
-    return *this == Zero();
+    return *this == GetZero();
 }
 
 uint64_t TimeDuration::ToNanoseconds() const
@@ -270,7 +270,7 @@ TimeDuration TimeDuration::Seconds(double value, TimeDurationUnit resolution)
         case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<uint64_t>(value * 1000000.0));
         case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<uint64_t>(value * 1000.0));
         case TimeDurationUnit::SECONDS: return Seconds(static_cast<uint64_t>(value));
-        default: return Zero();
+        default: return GetZero();
     }
 }
 
@@ -282,7 +282,7 @@ TimeDuration TimeDuration::Seconds(float value, TimeDurationUnit resolution)
         case TimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<uint64_t>(value * 1000000.0f)); //Unlikely
         case TimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<uint64_t>(value * 1000.0f));
         case TimeDurationUnit::SECONDS: return Seconds(static_cast<uint64_t>(value));
-        default: return Zero();
+        default: return GetZero();
     }
 }
 
@@ -296,7 +296,7 @@ TimeDuration TimeDuration::Hours(uint64_t value)
     return Nanoseconds(value * 1000000000ull * 60ull * 60ull);
 }
 
-const TimeDuration& TimeDuration::Zero()
+const TimeDuration& TimeDuration::GetZero()
 {
     static const TimeDuration zero = Nanoseconds(0);
     return zero;

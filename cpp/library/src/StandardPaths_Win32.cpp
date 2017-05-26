@@ -56,46 +56,46 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    if (WindowsUtilities::GetProcessFilePath(this->applicationExecutableFile.path, static_cast<HMODULE>(applicationHandle)).HasError())
+    if (WindowsUtilities::GetProcessFilePath(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path, static_cast<HMODULE>(applicationHandle)).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get application executable file path.");
         return;
     }
-    this->applicationExecutableFile.isSystemCreated = true;
+    this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].isSystemCreated = true;
 
-    if (this->applicationBundleDirectory.path.assign(this->applicationExecutableFile.path).HasError())
+    if (this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].path.assign(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to assign application bundle directory.");
         return;
     }
-    this->applicationBundleDirectory.path.RemoveFileName();
-    this->applicationBundleDirectory.isSystemCreated = true;
+    this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].path.RemoveFileName();
+    this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY].isSystemCreated = true;
 
-    if (GetSystemCreatedDirectory(this->userDocumentsDirectory, CSIDL_MYDOCUMENTS).HasError())
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY], CSIDL_MYDOCUMENTS).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
         return;
     }
 
-    if (GetSystemCreatedDirectory(this->userMusicDirectory, CSIDL_MYMUSIC).HasError())
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY], CSIDL_MYMUSIC).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user documents directory.");
         return;
     }
 
-    if (GetSystemCreatedDirectory(this->userVideosDirectory, CSIDL_MYVIDEO).HasError())
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY], CSIDL_MYVIDEO).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user videos directory.");
         return;
     }
 
-    if (GetSystemCreatedDirectory(this->userPicturesDirectory, CSIDL_MYPICTURES).HasError())
+    if (GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY], CSIDL_MYPICTURES).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user pictures directory.");
         return;
     }
 
-    auto userHomeDirectoryResult = Path::GetUserHomeDirectory(this->userDownloadsDirectory.path);
+    auto userHomeDirectoryResult = Path::GetUserHomeDirectory(this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY].path);
     if (userHomeDirectoryResult.HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user home directory.");
@@ -104,7 +104,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     else if (userHomeDirectoryResult.value)
     {
         //On Windows Win32: C:\Users\username
-        if ((this->userDownloadsDirectory.path /= "Downloads").HasError())
+        if ((this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY].path /= "Downloads").HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append 'Downloads' to user home directory.");
             return;
@@ -113,17 +113,23 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 
     Path bestApplicationName;
     if (!applicationName.empty())
-        bestApplicationName = applicationName;
+    {
+        if (bestApplicationName.assign(applicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to assign application name to best application name.");
+            return;
+        }
+    }
     else
     {
-        if (this->applicationExecutableFile.path.GetBaseName(bestApplicationName).HasError())
+        if (this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path.GetBaseName(bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to get application executable file base name.");
             return;
         }
     }
 
-    auto localAppDataResult = GetSystemCreatedDirectory(this->userApplicationSettingsDirectory, CSIDL_LOCAL_APPDATA);
+    auto localAppDataResult = GetSystemCreatedDirectory(this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY], CSIDL_LOCAL_APPDATA);
     if (localAppDataResult.HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get user application settings directory.");
@@ -132,23 +138,23 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     else if (localAppDataResult.value)
     {
         //On Windows Win32: C:\Users\(username)\AppData\Local
-        if ((this->userApplicationSettingsDirectory.path /= bestApplicationName).HasError())
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path /= bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
             return;
         }
-        this->userApplicationSettingsDirectory.isSystemCreated = false; //The base part is system created but the part with the application name at the end is not
+        this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].isSystemCreated = false; //The base part is system created but the part with the application name at the end is not
     }
 
     wchar_t tempPathW[MAX_PATH + 1]; //On Windows Win32: C:\Users\(username)\AppData\Local\Temp
     if (GetTempPathW(MAX_PATH, tempPathW) > 0)
     {
-        if (this->userApplicationTemporaryDirectory.path.assign(tempPathW).HasError())
+        if (this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path.assign(tempPathW).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to assign user application temporary directory from system temporary directory.");
             return;
         }
-        if ((this->userApplicationTemporaryDirectory.path /= bestApplicationName).HasError())
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append application name to user application temporary directory.");
             return;
@@ -156,19 +162,19 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     }
     else
     {
-        if (this->userApplicationTemporaryDirectory.path.assign(this->userApplicationSettingsDirectory.path).HasError())
+        if (this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path.assign(this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to assign user application temporary directory from user application settings directory.");
             return;
         }
-        if ((this->userApplicationTemporaryDirectory.path /= "Temp").HasError())
+        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= "Temp").HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append 'Temp' to user application temporary directory.");
             return;
         }
     }
 
-    auto commonAppDataResult = GetSystemCreatedDirectory(this->applicationSettingsDirectory, CSIDL_COMMON_APPDATA);
+    auto commonAppDataResult = GetSystemCreatedDirectory(this->paths[WhichStandardPath::APPLICATION_SETTINGS_DIRECTORY], CSIDL_COMMON_APPDATA);
     if (commonAppDataResult.HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get application settings directory.");
@@ -176,25 +182,25 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     }
     else if (commonAppDataResult.value) //On Windows Win32: C:\Users\All Users\Application Data
     {
-        if ((this->applicationSettingsDirectory.path /= bestApplicationName).HasError())
+        if ((this->paths[WhichStandardPath::APPLICATION_SETTINGS_DIRECTORY].path /= bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append application name to application settings directory.");
             return;
         }
-        this->applicationSettingsDirectory.isSystemCreated = false; //The base part is system created but the part with the application name at the end is not
+        this->paths[WhichStandardPath::APPLICATION_SETTINGS_DIRECTORY].isSystemCreated = false; //The base part is system created but the part with the application name at the end is not
     }
 
-    if (WindowsUtilities::GetWorkingDirectory(this->workingDirectory.path).HasError())
+    if (WindowsUtilities::GetWorkingDirectory(this->paths[WhichStandardPath::WORKING_DIRECTORY].path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get working directory.");
         return;
     }
-    this->workingDirectory.isSystemCreated = true;
+    this->paths[WhichStandardPath::WORKING_DIRECTORY].isSystemCreated = true;
 
     this->logicalDrives.clear();
     auto driveFlags = GetLogicalDrives();
     NarrowingConverter utf8DriveName;
-    for (DWORD driveIndex = 0; driveIndex < MAX_LOGICAL_DRIVES && !this->logicalDrives.full(); driveIndex++)
+    for (DWORD driveIndex = 0; driveIndex < this->logicalDrives.max_size() && !this->logicalDrives.full(); driveIndex++)
     {
         if (driveFlags & (1 << driveIndex))
         {
@@ -209,7 +215,7 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 
                     if (utf8DriveName.convert(driveNameW) && this->logicalDrives.push_back())
                         strcpy(this->logicalDrives.back().name, utf8DriveName.c_str());
-                    
+
                     break;
                 }
             }

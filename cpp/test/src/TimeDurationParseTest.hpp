@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(TimeDurationParseTest_parse_microseconds)
     }
 
     TimeDuration badNegative = TimeDuration::Parse("-1us");
-    BOOST_CHECK(badNegative == TimeDuration::Zero());
+    BOOST_CHECK(badNegative == TimeDuration::GetZero());
 }
 
 BOOST_AUTO_TEST_CASE(TimeDurationParseTest_parse_seconds)
@@ -88,5 +88,5 @@ BOOST_AUTO_TEST_CASE(TimeDurationParseTest_parse_seconds)
     }
 
     TimeDuration badNegative = TimeDuration::Parse("-1s");
-    BOOST_CHECK(badNegative == TimeDuration::Zero());
+    BOOST_CHECK(badNegative == TimeDuration::GetZero());
 }

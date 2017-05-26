@@ -30,18 +30,20 @@ namespace Finjin { namespace Common {
     enum class FileSystemEntryType
     {
         NONE = 0,
+
         FILE = 1 << 0,
         DIRECTORY = 1 << 1,
+
         ALL = FILE | DIRECTORY
     };
     FINJIN_ENUM_BITWISE_OPERATIONS(FileSystemEntryType)
-    
+
     class FINJIN_COMMON_LIBRARY_API FileSystemEntry
     {
     public:
         FileSystemEntry(Allocator* allocator);
         FileSystemEntry(VirtualFileSystemRoot* owner, Allocator* allocator);
-        
+
         void Reset();
 
         bool operator < (const FileSystemEntry& other) const;
@@ -100,8 +102,8 @@ namespace Finjin { namespace Common {
         FileSystemEntry* FindNextEntry(FileSystemEntry* entry);
         FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, const Path& relativePath);
 
-        FileSystemEntry* FindEntryStartingWith(FileSystemEntryType type, const Path& relativePath);
-        FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType type, const Path& relativePath);
+        FileSystemEntry* FindEntryStartingWith(FileSystemEntryType findTypes, const Path& relativePath);
+        FileSystemEntry* FindNextEntryStartingWith(FileSystemEntry* entry, FileSystemEntryType findTypes, const Path& relativePath);
 
     private:
         Settings settings;

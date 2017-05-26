@@ -51,35 +51,35 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    if (WindowsUtilities::GetProcessFilePath(this->applicationExecutableFile.path, static_cast<HMODULE>(applicationHandle)).HasError())
+    if (WindowsUtilities::GetProcessFilePath(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path, static_cast<HMODULE>(applicationHandle)).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get application executable file path.");
         return;
     }
-    this->applicationExecutableFile.isSystemCreated = true;
+    this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].isSystemCreated = true;
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->applicationBundleDirectory, Windows::ApplicationModel::Package::Current->InstalledLocation);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY], Windows::ApplicationModel::Package::Current->InstalledLocation);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userDocumentsDirectory, KnownFolders::DocumentsLibrary);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY], KnownFolders::DocumentsLibrary);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userMusicDirectory, KnownFolders::MusicLibrary);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY], KnownFolders::MusicLibrary);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userVideosDirectory, KnownFolders::VideosLibrary);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY], KnownFolders::VideosLibrary);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userPicturesDirectory, KnownFolders::PicturesLibrary);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY], KnownFolders::PicturesLibrary);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userCameraRollDirectory, KnownFolders::CameraRoll);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY], KnownFolders::CameraRoll);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userSavedPicturesDirectory, KnownFolders::SavedPictures);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY], KnownFolders::SavedPictures);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userApplicationSettingsDirectory, ApplicationData::Current->LocalFolder);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY], ApplicationData::Current->LocalFolder);
 
-    GET_SYSTEM_CREATED_DIRECTORY(this->userApplicationTemporaryDirectory, ApplicationData::Current->TemporaryFolder);
+    GET_SYSTEM_CREATED_DIRECTORY(this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY], ApplicationData::Current->TemporaryFolder);
 
-    if (WindowsUtilities::GetWorkingDirectory(this->workingDirectory.path).HasError())
+    if (WindowsUtilities::GetWorkingDirectory(this->paths[WhichStandardPath::WORKING_DIRECTORY].path).HasError())
     {
         FINJIN_SET_ERROR(error, "Failed to get working directory.");
         return;
     }
-    this->workingDirectory.isSystemCreated = true;
+    this->paths[WhichStandardPath::WORKING_DIRECTORY].isSystemCreated = true;
 }

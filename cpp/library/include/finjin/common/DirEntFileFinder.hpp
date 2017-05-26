@@ -31,23 +31,25 @@ namespace Finjin { namespace Common {
         DirEntFileFinder(Allocator* allocator = nullptr);
         ~DirEntFileFinder();
 
-        bool Start(const Path& path);
-        bool Next();
+        ValueOrError<bool> Start(const Path& path, FileSystemEntryType findTypes);
+        ValueOrError<bool> Next();
         ValueOrError<void> GetCurrentName(Path& result) const;
         ValueOrError<void> GetCurrentPath(Path& result) const;
-        ValueOrError<bool> IsCurrentFile() const;
-        ValueOrError<bool> IsCurrentDirectory() const;
-        ValueOrError<FileSystemEntryType> GetCurrentType() const;
+        bool IsCurrentFile() const;
+        bool IsCurrentDirectory() const;
+        FileSystemEntryType GetCurrentType() const;
         void Stop();
 
         const Path& GetStartPath() const;
 
     protected:
-        Path path;
-        mutable Path testPath;
+        Path startPath;
+        FileSystemEntryType findTypes;
 
         DIR* dir;
         struct dirent* ent;
+        mutable Path currentPath;
+        FileSystemEntryType currentEntryType;
     };
 
 } }

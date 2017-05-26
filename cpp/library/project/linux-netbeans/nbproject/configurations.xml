@@ -9,6 +9,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f10" displayName="3rd-party" projectFiles="true">
+        <logicalFolder name="f9" displayName="boost" projectFiles="true">
+          <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/jump_x86_64_sysv_elf_gas.S</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S</itemPath>
+          <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/iostreams/src/mapped_file.cpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="f5" displayName="lpng" projectFiles="true">
           <itemPath>/home/build/finjin-3rd-party/cpp/lpng/png.c</itemPath>
           <itemPath>/home/build/finjin-3rd-party/cpp/lpng/png.h</itemPath>
@@ -161,7 +166,6 @@
           <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip.h</itemPath>
           <itemPath>/home/build/finjin-3rd-party/cpp/zziplib/zzip/zzip32.h</itemPath>
         </logicalFolder>
-        <itemPath>/home/build/finjin-3rd-party/cpp/boost/libs/iostreams/src/mapped_file.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="collections" projectFiles="true">
         <itemPath>../../include/finjin/common/AlignedElementStaticVector.hpp</itemPath>
@@ -277,6 +281,7 @@
         <itemPath>../../include/finjin/common/FileSystemEntry.hpp</itemPath>
         <itemPath>../../src/Path.cpp</itemPath>
         <itemPath>../../include/finjin/common/Path.hpp</itemPath>
+        <itemPath>../../src/StandardPaths.cpp</itemPath>
         <itemPath>../../include/finjin/common/StandardPaths.hpp</itemPath>
         <itemPath>../../src/StandardPaths_Linux.cpp</itemPath>
         <itemPath>../../src/VirtualFileHandle.cpp</itemPath>
@@ -411,6 +416,8 @@
         <itemPath>../../include/finjin/common/LinuxUtilities.hpp</itemPath>
         <itemPath>../../include/finjin/common/LogicalCpu.hpp</itemPath>
         <itemPath>../../src/LogicalCpu_Linux.cpp</itemPath>
+        <itemPath>../../src/Luid.cpp</itemPath>
+        <itemPath>../../include/finjin/common/Luid.hpp</itemPath>
         <itemPath>../../src/NamePrefix.cpp</itemPath>
         <itemPath>../../include/finjin/common/NamePrefix.hpp</itemPath>
         <itemPath>../../include/finjin/common/NumericStruct.hpp</itemPath>
@@ -462,6 +469,7 @@
     <Elem>/home/build/finjin-3rd-party/cpp/uriparser/src</Elem>
     <Elem>/home/build/finjin-3rd-party/cpp/lpng</Elem>
     <Elem>/home/build/finjin-3rd-party/cpp/xxHash</Elem>
+    <Elem>/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -848,6 +856,11 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/LruCache.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/Luid.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1311,6 +1324,8 @@
       </item>
       <item path="../../src/LogicalCpu_Linux.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="../../src/Luid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="../../src/Math.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/MemoryArchitecture.cpp" ex="false" tool="1" flavor2="0">
@@ -1342,6 +1357,8 @@
       <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StandardPaths.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/StandardPaths_Linux.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1410,6 +1427,16 @@
       <item path="../../src/ZipArchiveVirtualFileSystemRoot.cpp"
             ex="false"
             tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/jump_x86_64_sysv_elf_gas.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S"
+            ex="false"
+            tool="4"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"
@@ -2465,6 +2492,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/Luid.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/Math.hpp"
             ex="false"
             tool="3"
@@ -2924,6 +2956,8 @@
       </item>
       <item path="../../src/LogicalCpu_Linux.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="../../src/Luid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="../../src/Math.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/MemoryArchitecture.cpp" ex="false" tool="1" flavor2="0">
@@ -2955,6 +2989,8 @@
       <item path="../../src/Settings.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/SingleEvent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/StandardPaths.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/StandardPaths_Linux.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3023,6 +3059,16 @@
       <item path="../../src/ZipArchiveVirtualFileSystemRoot.cpp"
             ex="false"
             tool="1"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/jump_x86_64_sysv_elf_gas.S"
+            ex="false"
+            tool="4"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S"
+            ex="false"
+            tool="4"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"

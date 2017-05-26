@@ -44,38 +44,24 @@ namespace Finjin { namespace Common {
         struct Entry
         {
             int compressionMethod;
+            FileSystemEntryType type;
             size_t compressedSize;
             size_t decompressedSize;
             Path path;
 
             Entry()
             {
+                this->type = FileSystemEntryType::NONE;
                 this->compressedSize = 0;
                 this->decompressedSize = 0;
             }
 
-            bool IsDirectory() const
-            {
-                return !this->path.empty() && this->path.EndsWith("/");
-            }
-
-            bool IsFile() const
-            {
-                return !this->path.empty() && this->decompressedSize > 0;
-            }
-            
-            FileSystemEntryType GetType() const
-            {
-                if (IsFile())
-                    return FileSystemEntryType::FILE;
-                else if (IsDirectory())
-                    return FileSystemEntryType::DIRECTORY;
-                else
-                    return FileSystemEntryType::NONE;
-            }
+            bool IsDirectory() const { return this->type == FileSystemEntryType::DIRECTORY; }
+            bool IsFile() const { return this->type == FileSystemEntryType::FILE; }
+            FileSystemEntryType GetType() const { return this->type; }
         };
-        
-        bool Next(Entry& entry);
+
+        bool Next(Entry& entry, FileSystemEntryType findTypes);
 
         FileOperationResult Inflate(ByteBuffer& buffer, const Entry& entry); //Decompresses entire file/entry
         FileOperationResult Inflate(ByteBuffer& buffer, const Path& path); //Decompresses entire file/entry

@@ -333,7 +333,7 @@ Utf8String PNGReader::GetReadResultString(ReadResult result) const
         case ReadResult::FAILED_TO_START_IMAGE_READ: return "Failed to start reading image.";
         case ReadResult::NOT_ENOUGH_MEMORY_FOR_IMAGE: return "Not enough memory to read image.";
         case ReadResult::FAILED_TO_FINISH_IMAGE_READ: return "Failed to finish reading image.";
-        default: return Utf8String::Empty();
+        default: return Utf8String::GetEmpty();
     }
 }
 

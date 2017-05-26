@@ -15,6 +15,7 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/EnumArray.hpp"
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/StaticVector.hpp"
@@ -27,29 +28,79 @@ namespace Finjin { namespace Common {
     {
         APPLICATION_EXECUTABLE_FILE, //The actual application .exe, if applicable
         APPLICATION_BUNDLE_DIRECTORY,
+
+        //On Windows Win32: C:\Users\All Users\Application Data\(applicationName passed to Initialize() or application executable name)
+        APPLICATION_SETTINGS_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\Documents
+        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Documents
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Documents
         USER_DOCUMENTS_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\Music
+        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Music
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Music
         USER_MUSIC_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\Video
+        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Movies
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Videos
         USER_VIDEOS_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\Pictures
+        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Pictures
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Pictures
         USER_PICTURES_DIRECTORY,
+
         USER_SAVED_PICTURES_DIRECTORY,
+
+        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/DCIM
         USER_CAMERA_ROLL_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\Downloads
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Downloads
         USER_DOWNLOADS_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)
+        //On Windows UWP: C:\Users\(username)\AppData\Local\Packages\(app guid)\LocalState
+        //On Android 6 (as tested on Nexus 6): androidApp->activity->internalDataPath: /data/user/(userid)/(package name in AndroidManifest.xml)/files
+        //On Android 6 (final fallback behavior): androidApp->activity->externalDataPath: /storage/emulated/(userid)/Android/data/(package name in AndroidManifest.xml)/files
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)
         USER_APPLICATION_SETTINGS_DIRECTORY,
+
+        //On Windows Win32: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize() or application executable name)
+        //On Windows Win32 (fallback): C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)\Temp
+        //On Windows UWP: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize())
+        //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
+        //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
         USER_APPLICATION_TEMPORARY_DIRECTORY,
-        USER_WORKING_DIRECTORY
+
+        WORKING_DIRECTORY,
+
+        COUNT
     };
 
     class StandardPath
     {
     public:
+        enum { MAX_USER_PATHS = 9 }; //The number of the above paths that start with "USER_"
+
         StandardPath(Allocator* allocator = nullptr) : path(allocator), internalDisplayName(allocator), defaultDisplayName(allocator)
         {
             this->isSystemCreated = false;
         }
 
-        StandardPath(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator = nullptr) : path(allocator), internalDisplayName(_internalDisplayName, allocator), defaultDisplayName(allocator)
+        void Create(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator = nullptr)
         {
             this->which = which;
+
+            this->path.Create(allocator);
+
+            this->internalDisplayName.Create(allocator);
+            this->internalDisplayName.assign(_internalDisplayName);
+
+            this->defaultDisplayName.Create(allocator);
+
             this->isSystemCreated = false;
         }
 
@@ -77,17 +128,25 @@ namespace Finjin { namespace Common {
     class StandardPaths
     {
     public:
+        StandardPaths(Allocator* allocator = nullptr);
+
+        void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);
+
         template <typename T>
         bool ForEach(T callback, Error& error) const //std::function<bool(const StandardPath&, Error&)>
         {
             FINJIN_ERROR_METHOD_START(error);
 
-            for (auto standardPath : { &this->applicationExecutableFile, &this->applicationBundleDirectory })
+            for (auto standardPath : {
+                &this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE],
+                &this->paths[WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY],
+                &this->paths[WhichStandardPath::APPLICATION_SETTINGS_DIRECTORY]
+                })
             {
                 auto result = callback(*standardPath, error);
                 if (error)
                 {
-                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Error occurred while iterating on standard path '%1%' at '%2%'.", standardPath->GetDisplayName(), standardPath->path));
+                    FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Error occurred while iterating on application standard path '%1%' at '%2%'.", standardPath->GetDisplayName(), standardPath->path));
                     return false;
                 }
                 if (!result)
@@ -105,7 +164,7 @@ namespace Finjin { namespace Common {
                     return false;
             }
 
-            for (auto standardPath : { &this->workingDirectory })
+            for (auto standardPath : { &this->paths[WhichStandardPath::WORKING_DIRECTORY] })
             {
                 auto result = callback(*standardPath, error);
                 if (error)
@@ -126,15 +185,15 @@ namespace Finjin { namespace Common {
             FINJIN_ERROR_METHOD_START(error);
 
             for (auto standardPath : {
-                &this->userDocumentsDirectory,
-                &this->userMusicDirectory,
-                &this->userVideosDirectory,
-                &this->userPicturesDirectory,
-                &this->userSavedPicturesDirectory,
-                &this->userCameraRollDirectory,
-                &this->userDownloadsDirectory,
-                &this->userApplicationSettingsDirectory,
-                &this->userApplicationTemporaryDirectory
+                &this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY]
                 })
             {
                 if (!standardPath->path.empty())
@@ -153,61 +212,13 @@ namespace Finjin { namespace Common {
             return true;
         }
 
-        StandardPath applicationExecutableFile;
-        StandardPath applicationBundleDirectory;
+        template <typename Index> const StandardPath& operator [] (Index index) const { return this->paths[index]; }
+        template <typename Index> StandardPath& operator [] (Index index) { return this->paths[index]; }
 
-        //On Windows Win32: C:\Users\(username)\Documents
-        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Documents
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Documents
-        StandardPath userDocumentsDirectory;
-
-        //On Windows Win32: C:\Users\(username)\Music
-        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Music
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Music
-        StandardPath userMusicDirectory;
-
-        //On Windows Win32: C:\Users\(username)\Video
-        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Movies
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Videos
-        StandardPath userVideosDirectory;
-
-        //On Windows Win32: C:\Users\(username)\Pictures
-        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Pictures
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Pictures
-        StandardPath userPicturesDirectory;
-
-        StandardPath userSavedPicturesDirectory;
-
-        //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/DCIM
-        StandardPath userCameraRollDirectory;
-
-        //On Windows Win32: C:\Users\(username)\Downloads
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/Downloads
-        StandardPath userDownloadsDirectory;
-
-        //On Windows Win32: C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)
-        //On Windows UWP: C:\Users\(username)\AppData\Local\Packages\(app guid)\LocalState
-        //On Android 6 (as tested on Nexus 6): androidApp->activity->internalDataPath: /data/user/(userid)/(package name in AndroidManifest.xml)/files
-        //On Android 6 (final fallback behavior): androidApp->activity->externalDataPath: /storage/emulated/(userid)/Android/data/(package name in AndroidManifest.xml)/files
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)
-        StandardPath userApplicationSettingsDirectory;
-
-        //On Windows Win32: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize() or application executable name)
-        //On Windows Win32 (fallback): C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)\Temp
-        //On Windows UWP: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize())
-        //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
-        //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
-        StandardPath userApplicationTemporaryDirectory;
-
-        //On Windows Win32: C:\Users\All Users\Application Data\(applicationName passed to Initialize() or application executable name)
-        StandardPath applicationSettingsDirectory;
-
-        StandardPath workingDirectory;
-
-        enum { MAX_USER_PATHS = 9 }; //The number of above paths that start with 'user'
+    public:
+        EnumArray<WhichStandardPath, WhichStandardPath::COUNT, StandardPath> paths;
 
     #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_WINDOWS_WIN32
-        enum { MAX_LOGICAL_DRIVES = 26 }; //A - Z
         struct LogicalDrive
         {
             char name[3];
@@ -217,27 +228,8 @@ namespace Finjin { namespace Common {
 
             operator const char* () const { return this->name; }
         };
-        StaticVector<LogicalDrive, MAX_LOGICAL_DRIVES> logicalDrives; //Of the form "C:", "D:", etc.
+        StaticVector<LogicalDrive, 26> logicalDrives; //Of the form "C:", "D:", etc.
     #endif
-
-    public:
-        StandardPaths(Allocator* allocator = nullptr) :
-            applicationExecutableFile(WhichStandardPath::APPLICATION_EXECUTABLE_FILE, "Application Executable", allocator),
-            applicationBundleDirectory(WhichStandardPath::APPLICATION_BUNDLE_DIRECTORY, "Application Bundle", allocator),
-            userDocumentsDirectory(WhichStandardPath::USER_DOCUMENTS_DIRECTORY, "Documents", allocator),
-            userMusicDirectory(WhichStandardPath::USER_MUSIC_DIRECTORY, "Music", allocator),
-            userVideosDirectory(WhichStandardPath::USER_VIDEOS_DIRECTORY, "Videos", allocator),
-            userPicturesDirectory(WhichStandardPath::USER_PICTURES_DIRECTORY, "Pictures", allocator),
-            userSavedPicturesDirectory(WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY, "Saved Pictures", allocator),
-            userCameraRollDirectory(WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY, "Camera Roll", allocator),
-            userDownloadsDirectory(WhichStandardPath::USER_DOWNLOADS_DIRECTORY, "Downloads", allocator),
-            userApplicationSettingsDirectory(WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY, "Application Settings", allocator),
-            userApplicationTemporaryDirectory(WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY, "Application Temporary", allocator),
-            workingDirectory(WhichStandardPath::USER_WORKING_DIRECTORY, "Working Directory", allocator)
-        {
-        }
-
-        void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);
     };
-    
+
 } }

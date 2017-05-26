@@ -21,6 +21,7 @@
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
+    class Luid;
     class Path;
     class TimeDuration;
     class Uuid;
@@ -38,6 +39,8 @@ namespace Finjin { namespace Common {
         Utf8StringFormatter(const char* format);
         Utf8StringFormatter(const Utf8String& format);
         ~Utf8StringFormatter();
+
+        size_t GetRemainingArgCount() const;
 
         Utf8StringFormatter& operator % (int8_t value);
         Utf8StringFormatter& operator % (int16_t value);
@@ -63,6 +66,7 @@ namespace Finjin { namespace Common {
         Utf8StringFormatter& operator % (const Path& value);
         Utf8StringFormatter& operator % (const TimeDuration& value);
         Utf8StringFormatter& operator % (const Uuid& value);
+        Utf8StringFormatter& operator % (const Luid& value);
 
         Utf8StringFormatter& operator % (const void* value);
 

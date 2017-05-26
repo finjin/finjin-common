@@ -227,7 +227,7 @@ Utf8String JsonDocument::GetStringMember(const Utf8String& name) const
     if (impl->doc.HasMember(name.c_str()))
         return impl->doc[name.c_str()].GetString();
     else
-        return Utf8String::Empty();
+        return Utf8String::GetEmpty();
 }
 
 void JsonDocument::Parse(const Utf8String& text, Error& error)
@@ -255,7 +255,7 @@ Utf8String JsonDocument::GetParseError() const
     if (impl->doc.HasParseError())
         return Utf8StringFormatter::Format("JSON parse error: %1% (%2%)", GetParseError_En(impl->doc.GetParseError()), impl->doc.GetErrorOffset());
     else
-        return Utf8String::Empty();
+        return Utf8String::GetEmpty();
 }
 
 Utf8String JsonDocument::ToString() const

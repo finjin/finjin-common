@@ -32,26 +32,27 @@ namespace Finjin { namespace Common {
         ~Win32FileFinder();
 
     #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
-        bool Start(Windows::Storage::StorageFolder^ storageFolder);
+        ValueOrError<bool> Start(Windows::Storage::StorageFolder^ storageFolder, FileSystemEntryType findTypes);
     #endif
-        bool Start(const Path& path);
-        bool Next();
+        ValueOrError<bool> Start(const Path& path, FileSystemEntryType findTypes);
+        ValueOrError<bool> Next();
         ValueOrError<void> GetCurrentName(Path& result) const;
         ValueOrError<void> GetCurrentPath(Path& result) const;
-        ValueOrError<bool> IsCurrentFile() const;
-        ValueOrError<bool> IsCurrentDirectory() const;
-        ValueOrError<FileSystemEntryType> GetCurrentType() const;
+        bool IsCurrentFile() const;
+        bool IsCurrentDirectory() const;
+        FileSystemEntryType GetCurrentType() const;
         void Stop();
 
         const Path& GetStartPath() const;
 
     private:
-        Path path;
-        mutable Path testPath;
+        Path startPath;
+        FileSystemEntryType findEntryTypes;
 
         HANDLE handle;
         WIN32_FIND_DATAW foundData;
-
+        mutable Path currentPath;
+        FileSystemEntryType currentEntryType;
     };
 
 } }

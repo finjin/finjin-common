@@ -90,7 +90,7 @@ static int strncmp32(const char32_t* a, const char32_t* b)
 //Implementation----------------------------------------------------------------
 
 //Utf8String
-const Utf8String& Utf8String::Empty()
+const Utf8String& Utf8String::GetEmpty()
 {
     static const Utf8String value;
     return value;
@@ -1041,11 +1041,12 @@ ValueOrError<void> Utf8String::EnsureLengthAllocated(size_t len, bool oversize)
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
-        if (this->s == nullptr)
-        {
-            Truncate();
-            return ValueOrError<void>::CreateError();
-        }
+    }
+
+    if (this->s == nullptr)
+    {
+        Truncate();
+        return ValueOrError<void>::CreateError();
     }
 
     this->s[0] = 0;
@@ -1585,11 +1586,12 @@ ValueOrError<void> Utf8StringToWideString::EnsureLengthAllocated(size_t len)
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
-        if (this->s == nullptr)
-        {
-            Truncate();
-            return ValueOrError<void>::CreateError();
-        }
+    }
+
+    if (this->s == nullptr)
+    {
+        Truncate();
+        return ValueOrError<void>::CreateError();
     }
 
     this->s[0] = 0;
@@ -1815,11 +1817,12 @@ ValueOrError<void> Utf8StringToCodepointString::EnsureLengthAllocated(size_t len
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
-        if (this->s == nullptr)
-        {
-            Truncate();
-            return ValueOrError<void>::CreateError();
-        }
+    }
+
+    if (this->s == nullptr)
+    {
+        Truncate();
+        return ValueOrError<void>::CreateError();
     }
 
     this->s[0] = 0;
@@ -1870,7 +1873,7 @@ void Utf8StringToCodepointString::_Deallocate(void* mem)
 }
 
 //Utf8StringView
-const Utf8StringView& Utf8StringView::Empty()
+const Utf8StringView& Utf8StringView::GetEmpty()
 {
     static const Utf8StringView value;
     return value;

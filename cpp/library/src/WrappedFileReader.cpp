@@ -119,7 +119,7 @@ static Utf8String GetReadHeaderResultString(const WrappedFileReader::Header& hea
         case WrappedFileReader::ReadHeaderResult::INVALID_FILE_EXTENSION_LENGTH: return Utf8StringFormatter::Format("Invalid file extension length '%1%'", header.fileExtensionLength);
         case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_EXTENSION: return "Failed to read file extension.";
         case WrappedFileReader::ReadHeaderResult::FAILED_TO_READ_FILE_LENGTH: return "Failed to read file length.";
-        default: return Utf8String::Empty();
+        default: return Utf8String::GetEmpty();
     }
 }
 

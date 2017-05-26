@@ -353,7 +353,7 @@ static bool IsValidCodepoint(uint32_t ch)
 
 
 //Implementation----------------------------------------------------------------
-const Path& Path::Empty()
+const Path& Path::GetEmpty()
 {
     static const Path value;
     return value;
@@ -1323,11 +1323,12 @@ ValueOrError<void> Path::EnsureLengthAllocated(size_t len, bool oversize)
         if (!IsStatic())
             _Deallocate(this->s);
         this->s = _Allocate(this->allocatedLength + 1, FINJIN_CALLER_ARGUMENTS);
-        if (this->s == nullptr)
-        {
-            Truncate();
-            return ValueOrError<void>();
-        }
+    }
+
+    if (this->s == nullptr)
+    {
+        Truncate();
+        return ValueOrError<void>();
     }
 
     this->s[0] = 0;
@@ -2234,18 +2235,17 @@ ValueOrError<bool> Path::ExpandUserHomeDirectory()
 
             auto newLength = this->l + userHome.l - 1;
             if (newLength <= STATIC_STRING_LENGTH || newLength <= this->allocatedLength)
-            {
                 boost::algorithm::replace_first(*this, "~", userHome.c_str());
-            }
             else
             {
                 Path newString(this->allocator);
                 if (newString.EnsureLengthAllocated(newLength, false).HasError())
                     return ValueOrError<bool>::CreateError();
-                if (newString.assign(this->s, this->l).HasError())
-                    return ValueOrError<bool>::CreateError();
 
-                boost::algorithm::replace_first(newString, "~", userHome.c_str());
+                if (newString.assign(userHome.c_str(), userHome.length()).HasError())
+                    return ValueOrError<bool>::CreateError();
+                if (newString.append(this->s + 1, this->l - 1).HasError()) //Skip leading '~'
+                    return ValueOrError<bool>::CreateError();
 
                 assign(std::move(newString));
             }
@@ -2507,16 +2507,20 @@ bool Path::CreateDirectories() const
     auto directoryLength = FindFirstDirectoryLength();
     if (directoryLength != npos)
     {
+    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
         WideningToUtf16Converter pathW;
+    #endif
+
+        Path path;
 
         do
         {
-            Path path;
-            substr(path, 0, directoryLength);
+            if (substr(path, 0, directoryLength).HasError())
+                return false;
+
         #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
             if (!pathW.convert(path.begin(), path.end()))
                 return false;
-
             auto res = _wmkdir(pathW.c_str());
         #else
             auto res = mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);

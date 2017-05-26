@@ -91,7 +91,9 @@ namespace Finjin { namespace Common {
         void Create(const Settings& settings, Error& error);
         void Destroy();
 
-        void Start(Error& error);
+        void Validate(Error& error);
+
+        void Start(bool validate, Error& error);
         void Stop();
 
         size_t GetCurrentGroupID() const;

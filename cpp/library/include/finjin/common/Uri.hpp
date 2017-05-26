@@ -44,7 +44,9 @@ namespace Finjin { namespace Common {
 
         void clear();
 
+        ValueOrError<void> operator = (const char* s);
         ValueOrError<void> operator = (const Utf8String& s);
+        ValueOrError<void> operator = (const Utf8StringView& s);
         ValueOrError<void> operator = (const Path& s);
         ValueOrError<void> operator = (const Uri& other);
         ValueOrError<void> operator = (Uri&& other);
@@ -204,10 +206,10 @@ namespace Finjin { namespace Common {
                 rewritePattern = rewritePatterns[scheme];
                 return true;
             }
-            else if (!scheme.empty() && rewritePatterns.HasKey(Utf8String::Empty()))
+            else if (!scheme.empty() && rewritePatterns.HasKey(Utf8String::GetEmpty()))
             {
                 //scheme was specified, and a default was found
-                rewritePattern = rewritePatterns[Utf8String::Empty()];
+                rewritePattern = rewritePatterns[Utf8String::GetEmpty()];
                 return true;
             }
             else
@@ -253,6 +255,7 @@ namespace Finjin { namespace Common {
 
         void clear();
 
+        ValueOrError<void> operator = (const char* s);
         ValueOrError<void> operator = (const Utf8String& s);
         ValueOrError<void> operator = (const Utf8StringView& s);
         ValueOrError<void> operator = (const Path& s);

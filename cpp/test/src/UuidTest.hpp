@@ -14,6 +14,7 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Uuid.hpp"
+#include "finjin/common/Luid.hpp"
 
 
 //Tests-------------------------------------------------------------------------
@@ -49,4 +50,12 @@ BOOST_AUTO_TEST_CASE(UuidTest_construct_and_tostring)
     Uuid test3(g);
     BOOST_CHECK(test3.ToString() == uuidString);
 #endif
+}
+
+BOOST_AUTO_TEST_CASE(LuidTest_construct_and_tostring)
+{
+    Utf8String luidString("00000000001251cd");
+
+    Luid test1(luidString);
+    BOOST_CHECK(test1.ToString() == luidString);
 }

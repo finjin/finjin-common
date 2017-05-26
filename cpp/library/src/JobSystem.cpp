@@ -389,21 +389,15 @@ void JobSystem::Create(const Settings& settings, Error& error)
     impl->currentReservedJobThreadIndex = 0;
 
     //Create threads
-    Utf8String threadName;
     for (size_t threadIndex = 0; threadIndex < settings.jobThreadsSetup.size(); threadIndex++)
     {
         auto& threadSetup = settings.jobThreadsSetup[threadIndex];
 
         JobThread thread;
 
-        //Name
-        threadName = "job-thread-";
-        threadName += Convert::ToString(threadIndex);
-
         thread.Create
             (
             threadIndex,
-            threadName,
             settings.allocator,
             threadSetup.type,
             threadSetup.logicalCpu,
@@ -414,6 +408,11 @@ void JobSystem::Create(const Settings& settings, Error& error)
             threadSetup.stackReserveByteCount,
             error
             );
+        if (error)
+        {
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread for job thread '%1%'.", threadIndex));
+            return;
+        }
 
         //Store
         impl->threads.push_back(std::move(thread));
@@ -433,7 +432,7 @@ void JobSystem::Destroy()
     impl->defaultActiveFiber.ShutdownDefaultFiber();
 }
 
-void JobSystem::Start(Error& error)
+void JobSystem::Start(bool validate, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -464,6 +463,13 @@ void JobSystem::Start(Error& error)
         }
 
         impl->started = true;
+    }
+
+    if (validate)
+    {
+        Validate(error);
+        if (error)
+            FINJIN_SET_ERROR(error, "Failed to validate job system.");
     }
 }
 
@@ -543,6 +549,32 @@ void JobSystem::Stop()
         impl->currentReservedJobThreadIndex = 0;
 
         impl->started = false;
+    }
+}
+
+void JobSystem::Validate(Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    if (impl != nullptr && impl->started)
+    {
+        if (impl->threads.empty())
+        {
+            FINJIN_SET_ERROR(error, "There are no job threads.");
+            return;
+        }
+
+        impl->threads.WaitForAllFibersToStart();
+
+        for (auto& thread : impl->threads)
+        {
+            thread.Validate(error);
+            if (error)
+            {
+                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to validate job thread '%1%'.", thread.GetName()));
+                return;
+            }
+        }
     }
 }
 

@@ -51,7 +51,7 @@ bool WxTimeDuration::operator >= (const WxTimeDuration& other) const
 
 bool WxTimeDuration::IsZero() const
 {
-    return *this == Zero();
+    return *this == GetZero();
 }
 
 int64_t WxTimeDuration::ToNanoseconds() const
@@ -188,7 +188,7 @@ WxTimeDuration WxTimeDuration::Seconds(double value, WxTimeDurationUnit resoluti
         case WxTimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<int64_t>(value * 1000000.0));
         case WxTimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<int64_t>(value * 1000.0));
         case WxTimeDurationUnit::SECONDS: return Seconds(static_cast<int64_t>(value));
-        default: return Zero();
+        default: return GetZero();
     }
 }
 
@@ -200,7 +200,7 @@ WxTimeDuration WxTimeDuration::Seconds(float value, WxTimeDurationUnit resolutio
         case WxTimeDurationUnit::MICROSECONDS: return Microseconds(static_cast<int64_t>(value * 1000000.0f)); //Unlikely
         case WxTimeDurationUnit::MILLISECONDS: return Milliseconds(static_cast<int64_t>(value * 1000.0f));
         case WxTimeDurationUnit::SECONDS: return Seconds(static_cast<int64_t>(value));
-        default: return Zero();
+        default: return GetZero();
     }
 }
 
@@ -214,7 +214,7 @@ WxTimeDuration WxTimeDuration::Hours(int64_t value)
     return Nanoseconds(value * 1000000000ll * 60ll * 60ll);
 }
 
-const WxTimeDuration& WxTimeDuration::Zero()
+const WxTimeDuration& WxTimeDuration::GetZero()
 {
     static const WxTimeDuration zero = Nanoseconds(0);
     return zero;

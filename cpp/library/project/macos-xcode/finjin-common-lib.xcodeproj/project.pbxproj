@@ -83,6 +83,11 @@
 		65430E141DF32A3800588409 /* StringMatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E121DF32A3800588409 /* StringMatcher.cpp */; };
 		65430E151DF32A3800588409 /* Utf8StringCaseConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65430E131DF32A3800588409 /* Utf8StringCaseConverter.cpp */; };
 		655216991EACC664006AEB40 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 655216961EACC664006AEB40 /* xxhash.c */; };
+		657359591ECEAA26009FA3E6 /* BoostContextJumpAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 657359571ECEAA26009FA3E6 /* BoostContextJumpAsm.S */; };
+		6573595A1ECEAA26009FA3E6 /* BoostContextMakeAsm.S in Sources */ = {isa = PBXBuildFile; fileRef = 657359581ECEAA26009FA3E6 /* BoostContextMakeAsm.S */; };
+		657359701ECED508009FA3E6 /* JobFiber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6573596F1ECED508009FA3E6 /* JobFiber.mm */; };
+		657359761ECF41B7009FA3E6 /* Luid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657359751ECF41B7009FA3E6 /* Luid.cpp */; };
+		657359C21ED10A2B009FA3E6 /* StandardPaths.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657359C11ED10A2B009FA3E6 /* StandardPaths.cpp */; };
 		657AA0DE1E3D94F3004ADA22 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0C91E3D94F3004ADA22 /* png.c */; };
 		657AA0E21E3D94F3004ADA22 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0CD1E3D94F3004ADA22 /* pngerror.c */; };
 		657AA0E31E3D94F3004ADA22 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 657AA0CE1E3D94F3004ADA22 /* pngget.c */; };
@@ -128,7 +133,6 @@
 		65E6F50C1C526245005F5DF2 /* FiberMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4B71C526245005F5DF2 /* FiberMutex.cpp */; };
 		65E6F50D1C526245005F5DF2 /* FiberSchedulingAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4B81C526245005F5DF2 /* FiberSchedulingAlgorithm.cpp */; };
 		65E6F50F1C526245005F5DF2 /* FiberSpinLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4BA1C526245005F5DF2 /* FiberSpinLock.cpp */; };
-		65E6F5141C526245005F5DF2 /* JobFiber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4BF1C526245005F5DF2 /* JobFiber.cpp */; };
 		65E6F5161C526245005F5DF2 /* JobFuture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4C11C526245005F5DF2 /* JobFuture.cpp */; };
 		65E6F5191C526245005F5DF2 /* JobSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4C41C526245005F5DF2 /* JobSystem.cpp */; };
 		65E6F51A1C526245005F5DF2 /* JobThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E6F4C51C526245005F5DF2 /* JobThread.cpp */; };
@@ -333,6 +337,12 @@
 		65430E171DF32A5500588409 /* Utf8StringCaseConverter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Utf8StringCaseConverter.hpp; path = ../../include/finjin/common/Utf8StringCaseConverter.hpp; sourceTree = SOURCE_ROOT; };
 		655216961EACC664006AEB40 /* xxhash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.c"; sourceTree = "<absolute>"; };
 		655216971EACC664006AEB40 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.h"; sourceTree = "<absolute>"; };
+		657359571ECEAA26009FA3E6 /* BoostContextJumpAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextJumpAsm.S; path = ../../src/BoostContextJumpAsm.S; sourceTree = SOURCE_ROOT; };
+		657359581ECEAA26009FA3E6 /* BoostContextMakeAsm.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; name = BoostContextMakeAsm.S; path = ../../src/BoostContextMakeAsm.S; sourceTree = SOURCE_ROOT; };
+		6573596F1ECED508009FA3E6 /* JobFiber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JobFiber.mm; path = ../../src/JobFiber.mm; sourceTree = SOURCE_ROOT; };
+		657359751ECF41B7009FA3E6 /* Luid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Luid.cpp; path = ../../src/Luid.cpp; sourceTree = SOURCE_ROOT; };
+		657359771ECF41CC009FA3E6 /* Luid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Luid.hpp; path = ../../include/finjin/common/Luid.hpp; sourceTree = SOURCE_ROOT; };
+		657359C11ED10A2B009FA3E6 /* StandardPaths.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StandardPaths.cpp; path = ../../src/StandardPaths.cpp; sourceTree = SOURCE_ROOT; };
 		657AA0C91E3D94F3004ADA22 /* png.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = png.c; path = "/Users/derek/finjin-3rd-party/cpp/lpng/png.c"; sourceTree = "<absolute>"; };
 		657AA0CA1E3D94F3004ADA22 /* png.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = png.h; path = "/Users/derek/finjin-3rd-party/cpp/lpng/png.h"; sourceTree = "<absolute>"; };
 		657AA0CB1E3D94F3004ADA22 /* pngconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pngconf.h; path = "/Users/derek/finjin-3rd-party/cpp/lpng/pngconf.h"; sourceTree = "<absolute>"; };
@@ -581,6 +591,7 @@
 				65127C061CB1A4060041C324 /* FileSystemEntry.hpp */,
 				65E6F4D81C526245005F5DF2 /* Path.cpp */,
 				65E6F57F1C52625E005F5DF2 /* Path.hpp */,
+				657359C11ED10A2B009FA3E6 /* StandardPaths.cpp */,
 				65127C161CB3A4A70041C324 /* StandardPaths.hpp */,
 				65127C131CB3A4760041C324 /* StandardPaths_macOS.mm */,
 				650FA38D1D5B964E00535D8D /* VirtualFileHandle.cpp */,
@@ -789,6 +800,7 @@
 				65E6F49A1C5261FF005F5DF2 /* fiber */,
 				65E6F4BF1C526245005F5DF2 /* JobFiber.cpp */,
 				65E6F4C01C526245005F5DF2 /* JobFiber.hpp */,
+				6573596F1ECED508009FA3E6 /* JobFiber.mm */,
 				65E6F4C41C526245005F5DF2 /* JobSystem.cpp */,
 				65E6F56B1C52625E005F5DF2 /* JobSystem.hpp */,
 				65E6F4C51C526245005F5DF2 /* JobThread.cpp */,
@@ -841,6 +853,8 @@
 				6508AF961E34C59800EB826E /* AssignOrError.hpp */,
 				65E6F49E1C526245005F5DF2 /* Base64.cpp */,
 				65E6F5481C52625E005F5DF2 /* Base64.hpp */,
+				657359571ECEAA26009FA3E6 /* BoostContextJumpAsm.S */,
+				657359581ECEAA26009FA3E6 /* BoostContextMakeAsm.S */,
 				650FA3311D32170400535D8D /* ByteOrder.hpp */,
 				65E6F4A01C526245005F5DF2 /* Chrono.cpp */,
 				65E6F54A1C52625E005F5DF2 /* Chrono.hpp */,
@@ -862,6 +876,8 @@
 				650FA3321D32170400535D8D /* LayoutDirection.hpp */,
 				65E6F65C1C527573005F5DF2 /* LogicalCpu_macOS.cpp */,
 				65E6F5781C52625E005F5DF2 /* LogicalCpu.hpp */,
+				657359751ECF41B7009FA3E6 /* Luid.cpp */,
+				657359771ECF41CC009FA3E6 /* Luid.hpp */,
 				65E6F4D61C526245005F5DF2 /* NamePrefix.cpp */,
 				65E6F57D1C52625E005F5DF2 /* NamePrefix.hpp */,
 				651288721D220D110041C324 /* NumericStruct.hpp */,
@@ -1195,6 +1211,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657359C21ED10A2B009FA3E6 /* StandardPaths.cpp in Sources */,
+				657359761ECF41B7009FA3E6 /* Luid.cpp in Sources */,
+				657359701ECED508009FA3E6 /* JobFiber.mm in Sources */,
+				657359591ECEAA26009FA3E6 /* BoostContextJumpAsm.S in Sources */,
+				6573595A1ECEAA26009FA3E6 /* BoostContextMakeAsm.S in Sources */,
 				65F7C17C1EADD9270084EC43 /* PNGWriter.cpp in Sources */,
 				65F7C1761EADC4E70084EC43 /* CpuFeatures.cpp in Sources */,
 				655216991EACC664006AEB40 /* xxhash.c in Sources */,
@@ -1321,7 +1342,6 @@
 				65E6F50C1C526245005F5DF2 /* FiberMutex.cpp in Sources */,
 				65E6F50D1C526245005F5DF2 /* FiberSchedulingAlgorithm.cpp in Sources */,
 				65E6F50F1C526245005F5DF2 /* FiberSpinLock.cpp in Sources */,
-				65E6F5141C526245005F5DF2 /* JobFiber.cpp in Sources */,
 				65E6F5161C526245005F5DF2 /* JobFuture.cpp in Sources */,
 				65E6F5191C526245005F5DF2 /* JobSystem.cpp in Sources */,
 				65E6F51A1C526245005F5DF2 /* JobThread.cpp in Sources */,

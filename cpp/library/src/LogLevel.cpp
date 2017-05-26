@@ -32,7 +32,7 @@ static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUN
         "debug", LogLevel::DEBUG_LEVEL,
         "trace", LogLevel::TRACE_LEVEL
         );
-    
+
     return lookup;
 }
 
@@ -60,6 +60,6 @@ const char* LogLevelUtilities::ToString(LogLevel value)
         if (item.second == value)
             return item.first;
     }
-    
+
     return FINJIN_ENUM_UNKNOWN_STRING;
 }

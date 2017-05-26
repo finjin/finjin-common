@@ -33,11 +33,44 @@ static bool IsDots(const wchar_t* s)
     return false;
 }
 
+static ValueOrError<void> GetCurrentTypeAndPath(FileSystemEntryType& currentEntryType, Path& currentPath, const WIN32_FIND_DATAW& foundData, const Path& startPath, FileSystemEntryType findTypes)
+{
+    currentEntryType = FileSystemEntryType::NONE;
+    currentPath.clear();
+
+    if (!IsDots(foundData.cFileName))
+    {
+        if (WindowsUtilities::IsDirectoryAttribute(foundData.dwFileAttributes))
+        {
+            if (AnySet(findTypes & FileSystemEntryType::DIRECTORY))
+                currentEntryType = FileSystemEntryType::DIRECTORY;
+        }
+        else if (WindowsUtilities::IsFileAttribute(foundData.dwFileAttributes))
+        {
+            if (AnySet(findTypes & FileSystemEntryType::FILE))
+                currentEntryType = FileSystemEntryType::FILE;
+        }
+    }
+
+    if (currentEntryType != FileSystemEntryType::NONE)
+    {
+        if (currentPath.assign(startPath).HasError())
+            return ValueOrError<void>::CreateError();
+        if ((currentPath /= foundData.cFileName).HasError())
+            return ValueOrError<void>::CreateError();
+    }
+
+    return ValueOrError<void>();
+}
+
 
 //Implementation----------------------------------------------------------------
-Win32FileFinder::Win32FileFinder(Allocator* allocator) : path(allocator), testPath(allocator)
+Win32FileFinder::Win32FileFinder(Allocator* allocator) : startPath(allocator), currentPath(allocator)
 {
+    this->findEntryTypes = FileSystemEntryType::ALL;
+
     this->handle = nullptr;
+    this->currentEntryType = FileSystemEntryType::NONE;
 }
 
 Win32FileFinder::~Win32FileFinder()
@@ -46,97 +79,105 @@ Win32FileFinder::~Win32FileFinder()
 }
 
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
-bool Win32FileFinder::Start(Windows::Storage::StorageFolder^ storageFolder)
+ValueOrError<bool> Win32FileFinder::Start(Windows::Storage::StorageFolder^ storageFolder, FileSystemEntryType findTypes)
 {
     Path path(storageFolder->Path->Data());
-    return Start(path);
+    return Start(path, findTypes);
 }
 #endif
 
-bool Win32FileFinder::Start(const Path& path)
+ValueOrError<bool> Win32FileFinder::Start(const Path& path, FileSystemEntryType findTypes)
 {
     Stop();
 
-    if (this->path.assign(path).HasError())
-        return false;
+    if (this->startPath.assign(path).HasError())
+        return ValueOrError<bool>::CreateError();
 
-    if (this->testPath.assign(path).HasError())
-        return false;
-    if ((this->testPath /= "*").HasError())
-        return false;
+    this->findEntryTypes = findTypes;
+
+    if (this->currentPath.assign(path).HasError())
+        return ValueOrError<bool>::CreateError();
+    if ((this->currentPath /= "*").HasError())
+        return ValueOrError<bool>::CreateError();
 
     nowide::basic_stackstring<wchar_t, char, Path::STATIC_STRING_LENGTH + 1> searchPathW;
-    if (!searchPathW.convert(this->testPath.begin(), this->testPath.end()))
-        return false;
+    if (!searchPathW.convert(this->currentPath.begin(), this->currentPath.end()))
+        return ValueOrError<bool>::CreateError();
 
-    this->handle = FindFirstFileExW(searchPathW.c_str(), FindExInfoStandard, &foundData, FindExSearchNameMatch, 0, 0);
+    auto searchOp = FindExSearchNameMatch;
+    if (this->findEntryTypes == FileSystemEntryType::DIRECTORY)
+        searchOp = FindExSearchLimitToDirectories;
+    this->handle = FindFirstFileExW(searchPathW.c_str(), FindExInfoStandard, &foundData, searchOp, nullptr, FIND_FIRST_EX_CASE_SENSITIVE);
     if (this->handle == INVALID_HANDLE_VALUE)
         this->handle = nullptr;
 
-    if (this->handle != nullptr && ::IsDots(this->foundData.cFileName))
-        Next();
+    if (this->handle != nullptr)
+    {
+        if (GetCurrentTypeAndPath(this->currentEntryType, this->currentPath, this->foundData, this->startPath, this->findEntryTypes).HasError())
+            return ValueOrError<bool>::CreateError();
+        if (NoneSet(this->currentEntryType & this->findEntryTypes))
+        {
+            if (Next().HasError())
+                return ValueOrError<bool>::CreateError();
+        }
+    }
 
     return this->handle != nullptr;
 }
 
-bool Win32FileFinder::Next()
+ValueOrError<bool> Win32FileFinder::Next()
 {
-    auto result = FALSE;
+    auto foundEntry = FALSE;
     do
     {
-        result = FindNextFileW(this->handle, &this->foundData);
-    } while (result && ::IsDots(this->foundData.cFileName));
+        foundEntry = FindNextFileW(this->handle, &this->foundData);
+        if (foundEntry)
+        {
+            if (GetCurrentTypeAndPath(this->currentEntryType, this->currentPath, this->foundData, this->startPath, this->findEntryTypes).HasError())
+                return ValueOrError<bool>::CreateError();
+        }
+        else
+        {
+            this->currentPath.clear();
+            this->currentEntryType = FileSystemEntryType::NONE;
+        }
+    } while (foundEntry && NoneSet(this->currentEntryType & this->findEntryTypes));
 
-    if (!result)
+    if (!foundEntry)
         Stop();
 
-    return result ? true : false;
+    return this->currentEntryType != FileSystemEntryType::NONE;
 }
 
 ValueOrError<void> Win32FileFinder::GetCurrentName(Path& result) const
 {
-    return result.assign(this->foundData.cFileName);
+    if (this->handle == nullptr)
+    {
+        result.clear();
+        return ValueOrError<void>();
+    }
+    else
+        return result.assign(this->foundData.cFileName);
 }
 
 ValueOrError<void> Win32FileFinder::GetCurrentPath(Path& result) const
 {
-    if (result.assign(this->path).HasError())
-        return ValueOrError<void>::CreateError();
-    if (this->handle != nullptr)
-    {
-        if ((result /= this->foundData.cFileName).HasError())
-            return ValueOrError<void>::CreateError();
-    }
-    return ValueOrError<void>();
+    return result.assign(this->currentPath);
 }
 
-ValueOrError<bool> Win32FileFinder::IsCurrentFile() const
+bool Win32FileFinder::IsCurrentFile() const
 {
-    if (this->handle != nullptr)
-        return WindowsUtilities::IsFileAttribute(this->foundData.dwFileAttributes);
-    else
-        return false;
+    return this->currentEntryType == FileSystemEntryType::FILE;
 }
 
-ValueOrError<bool> Win32FileFinder::IsCurrentDirectory() const
+bool Win32FileFinder::IsCurrentDirectory() const
 {
-    if (this->handle != nullptr)
-        return WindowsUtilities::IsDirectoryAttribute(this->foundData.dwFileAttributes);
-    else
-        return false;
+    return this->currentEntryType == FileSystemEntryType::DIRECTORY;
 }
 
-ValueOrError<FileSystemEntryType> Win32FileFinder::GetCurrentType() const
+FileSystemEntryType Win32FileFinder::GetCurrentType() const
 {
-    if (this->handle != nullptr)
-    {
-        if (WindowsUtilities::IsDirectoryAttribute(this->foundData.dwFileAttributes))
-            return FileSystemEntryType::DIRECTORY;
-        else if (WindowsUtilities::IsFileAttribute(this->foundData.dwFileAttributes))
-            return FileSystemEntryType::FILE;
-    }
-    
-    return FileSystemEntryType::NONE;
+    return this->currentEntryType;
 }
 
 void Win32FileFinder::Stop()
@@ -145,10 +186,13 @@ void Win32FileFinder::Stop()
     {
         FindClose(this->handle);
         this->handle = nullptr;
+
+        this->currentPath.clear();
+        this->currentEntryType = FileSystemEntryType::NONE;
     }
 }
 
 const Path& Win32FileFinder::GetStartPath() const
 {
-    return this->path;
+    return this->startPath;
 }

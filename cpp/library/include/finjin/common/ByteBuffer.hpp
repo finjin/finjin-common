@@ -38,6 +38,7 @@ namespace Finjin { namespace Common {
 
         bool Create(size_t count, Allocator* allocator, MemoryResizeStrategy resizeStrategy = MemoryResizeStrategy::LIMIT);
         bool Create(const void* bytes, size_t count, Allocator* allocator, MemoryResizeStrategy resizeStrategy = MemoryResizeStrategy::LIMIT);
+        bool Create(const ByteBuffer& other, Allocator* allocator, MemoryResizeStrategy resizeStrategy = MemoryResizeStrategy::LIMIT);
         bool CreateEmpty(size_t count, Allocator* allocator, MemoryResizeStrategy resizeStrategy = MemoryResizeStrategy::LIMIT);
 
         void Destroy();

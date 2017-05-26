@@ -48,24 +48,32 @@ void* AllocatedClass::operator new(size_t byteCount, Allocator* allocator, FINJI
         mem = allocator->Allocate(byteCount, FINJIN_CALLER_PARAMETERS);
     else
         mem = Allocator::SystemAllocate(byteCount, FINJIN_CALLER_PARAMETERS);
-    assert(mem != nullptr);
+    FINJIN_MEMORY_ALLOCATION_ASSERT(mem != nullptr);
+    if (mem == nullptr)
+        throw std::bad_alloc();
     return mem;
 }
 
-void AllocatedClass::operator delete(void* mem)
+void AllocatedClass::operator delete(void* mem) noexcept
 {
-    auto obj = static_cast<AllocatedClass*>(mem);
-    auto allocator = obj->GetAllocator();
-    if (allocator != nullptr)
-        allocator->Deallocate(obj);
-    else
-        Allocator::SystemDeallocate(obj);
+    if (mem != nullptr)
+    {
+        auto obj = static_cast<AllocatedClass*>(mem);
+        auto allocator = obj->GetAllocator();
+        if (allocator != nullptr)
+            allocator->Deallocate(obj);
+        else
+            Allocator::SystemDeallocate(obj);
+    }
 }
 
-void AllocatedClass::operator delete(void* mem, Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION)
+void AllocatedClass::operator delete(void* mem, Allocator* allocator, FINJIN_CALLER_PARAMETERS_DECLARATION) noexcept
 {
-    if (allocator != nullptr)
-        allocator->Deallocate(mem);
-    else
-        Allocator::SystemDeallocate(mem);
+    if (mem != nullptr)
+    {
+        if (allocator != nullptr)
+            allocator->Deallocate(mem);
+        else
+            Allocator::SystemDeallocate(mem);
+    }
 }

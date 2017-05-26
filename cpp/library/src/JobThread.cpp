@@ -25,10 +25,10 @@
 
 using namespace Finjin::Common;
 
-using JobObjectAllocatorPool = TaggedMemoryBlockPool<ByteMemoryArena, uint64_t, (uint64_t)-1, SimpleSpinLockMutex>;
-
 
 //Local types-------------------------------------------------------------------
+using JobObjectAllocatorPool = TaggedMemoryBlockPool<ByteMemoryArena, uint64_t, (uint64_t)-1, SimpleSpinLockMutex>;
+
 struct JobThread::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator, JobThread* owner) : AllocatedClass(allocator)
@@ -105,25 +105,18 @@ struct JobThread::Impl : public AllocatedClass
 void JobThread::Impl::ThreadFunc()
 {
     //Convert this thread to main fiber
-    this->owner->InitializeMainFiber(GetAllocator(), this->thread.GetName(), &this->scheduler);
+    this->owner->InitializeMainFiber(GetAllocator(), this->thread.GetName().c_str(), &this->scheduler);
 
     //Create other fibers
-    Utf8String fiberName;
     for (size_t fiberIndex = 0; fiberIndex < this->fiberCount; fiberIndex++)
     {
         JobFiber jobFiber;
 
-        //Name
-        fiberName = this->thread.GetName();
-        fiberName += "-";
-        fiberName += "job-fiber-";
-        fiberName += Convert::ToString(fiberIndex);
-
         //Create the fiber
-        jobFiber.Create
+        auto fiberCreateResult = jobFiber.Create
             (
             fiberIndex,
-            fiberName,
+            this->thread.GetName(),
             GetAllocator(),
             this->owner,
             this->scheduler,
@@ -131,37 +124,42 @@ void JobThread::Impl::ThreadFunc()
             this->stackCommitSize,
             this->stackReserveSize
             );
+        if (fiberCreateResult == JobFiber::CreateResult::SUCCESS)
+        {
+            //Store
+            this->fibers.push_back(std::move(jobFiber));
+            this->scheduler.AddFiber(&this->fibers[fiberIndex]);
 
-        //Store
-        this->fibers.push_back(std::move(jobFiber));
-        this->scheduler.AddFiber(&this->fibers[fiberIndex]);
-
-        //Switch to the fiber, which will initialize and then switch back
-        this->fibers[fiberIndex].SwitchTo();
+            //Switch to the fiber, which will initialize and then switch back
+            this->fibers[fiberIndex].SwitchTo();
+        }
     }
 
-    this->runningFibers = true;
-
-    //Run until the scheduler stops
-    while (this->scheduler.HasMoreFibersToRun())
-        this->scheduler.RunFiber();
-
-    //Destroy fibers
-    //Some interrupted fibers may not have had a chance to fully terminate
-    //Switch back to those and let them properly schedule themselves for termination
-    for (auto& fiber : this->fibers)
+    if (!this->fibers.empty())
     {
-        if (fiber.IsInterrupted())
-            fiber.SwitchTo();
+        this->runningFibers = true;
+
+        //Run until the scheduler stops
+        while (this->scheduler.HasMoreFibersToRun())
+            this->scheduler.RunFiber();
+
+        //Destroy fibers
+        //Some interrupted fibers may not have had a chance to fully terminate
+        //Switch back to those and let them properly schedule themselves for termination
+        for (auto& fiber : this->fibers)
+        {
+            if (fiber.IsInterrupted())
+                fiber.SwitchTo();
+        }
+
+        this->fibers.Destroy();
+        this->scheduler.Clear();
+
+        //Convert main fiber back to a thread
+        this->owner->ShutdownMainFiber();
+
+        this->jobQueue.clear();
     }
-
-    this->fibers.Destroy();
-    this->scheduler.Clear();
-
-    //Convert main fiber back to a thread
-    this->owner->ShutdownMainFiber();
-
-    this->jobQueue.clear();
 
     this->runningFibers = false;
 }
@@ -201,8 +199,7 @@ JobThread::~JobThread()
 
 void JobThread::Create
     (
-    size_t fiberIndex,
-    const Utf8String& name,
+    size_t threadIndex,
     Allocator* allocator,
     JobThreadType type,
     const LogicalCpu& logicalCpu,
@@ -217,7 +214,14 @@ void JobThread::Create
     FINJIN_ERROR_METHOD_START(error);
 
     if (impl == nullptr)
+    {
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS, this);
+        if (impl == nullptr)
+        {
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to allocate internal state for job thread '%1%'.", threadIndex));
+            return;
+        }
+    }
 
     impl->type = type;
     impl->fiberCount = std::min(fiberCount, (size_t)CommonConstants::MAX_FIBERS);
@@ -227,6 +231,11 @@ void JobThread::Create
     impl->jobSlotIndex = 0;
 
     auto jobObjectArena = allocator->AllocateArena(jobObjectHeapSize, 0, FINJIN_CALLER_ARGUMENTS);
+    if (jobObjectArena.IsNull())
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to allocate memory arena for job thread '%1%'.", threadIndex));
+        return;
+    }
 
     JobObjectAllocatorPool::Settings jobObjectAllocatorPoolSettings;
     jobObjectAllocatorPoolSettings.blockCount = jobObjectHeapSize / 4096; //Job data seems to go over 2k so 4k blocks should be fine
@@ -235,7 +244,7 @@ void JobThread::Create
     impl->jobObjectAllocatorPool.Create(jobObjectAllocatorPoolSettings, std::move(jobObjectArena), error);
     if (error)
     {
-        FINJIN_SET_ERROR(error, "Failed to create job allocator pool.");
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to allocate job allocator pool for job thread '%1%'.", threadIndex));
         return;
     }
 
@@ -243,13 +252,33 @@ void JobThread::Create
     for (size_t jobTag = 0; jobTag < impl->jobSlots.size(); jobTag++)
         impl->jobSlots[jobTag].objectAllocator.Create(jobTag, &impl->jobObjectAllocatorPool);
 
-    impl->thread.Create(allocator, name, logicalCpu, std::bind(&JobThread::Impl::ThreadFunc, impl));
+    //Name
+    impl->thread.Create(allocator, "job-thread-", threadIndex, &logicalCpu, std::bind(&JobThread::Impl::ThreadFunc, impl), error);
+    if (error)
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread object for job thread '%1%'.", threadIndex));
+        return;
+    }
 }
 
 void JobThread::Destroy()
 {
     delete impl;
     impl = nullptr;
+}
+
+void JobThread::Validate(Error& error)
+{
+    FINJIN_ERROR_METHOD_START(error);
+
+    assert(impl != nullptr);
+    assert(impl->jobObjectAllocatorPool.GetBytesFree() > 0);
+
+    if (impl != nullptr && impl->fibers.size() < impl->fiberCount)
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Only %1% of %2% fibers were created.", impl->fibers.size(), impl->fiberCount));
+        return;
+    }
 }
 
 void JobThread::Start(Error& error)

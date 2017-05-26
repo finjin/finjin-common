@@ -211,7 +211,7 @@ void LogicalCpus::Enumerate()
         if (cpuPath.IsDirectory())
         {
             DirEntFileFinder fileFinder;
-            if (fileFinder.Start(cpuPath))
+            if (fileFinder.Start(cpuPath, FileSystemEntryType::FILE).HasValue(true))
             {
                 Path maybeNodePath;
                 do
@@ -223,7 +223,7 @@ void LogicalCpus::Enumerate()
                         logicalCpu.nodeID = Convert::ToInteger(maybeNodePathString, logicalCpu.nodeID);
                         break;
                     }
-                } while (fileFinder.Next());
+                } while (fileFinder.Next().HasValue(true));
             }
 
             //Determine which CPUs this CPU shares its caches with

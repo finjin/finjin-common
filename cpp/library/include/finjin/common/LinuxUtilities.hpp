@@ -19,6 +19,7 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/Error.hpp"
 #include "finjin/common/Path.hpp"
+#include "finjin/common/ValueOrError.hpp"
 
 
 //Types-------------------------------------------------------------------------
@@ -27,8 +28,10 @@ namespace Finjin { namespace Common {
     class LinuxUtilities
     {
     public:
+        static ValueOrError<bool> GetProcessFilePath(Path& path);
         static Path GetProcessFilePath();
 
+        static ValueOrError<bool> GetWorkingDirectory(Path& path);
         static Path GetWorkingDirectory();
     };
 

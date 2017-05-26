@@ -42,8 +42,7 @@ namespace Finjin { namespace Common {
 
         void Create
             (
-            size_t fiberIndex,
-            const Utf8String& name,
+            size_t threadIndex,
             Allocator* allocator,
             JobThreadType type,
             const LogicalCpu& logicalCpu,
@@ -55,6 +54,8 @@ namespace Finjin { namespace Common {
             Error& error
             );
         void Destroy();
+
+        void Validate(Error& error);
 
         void Start(Error& error);
         void Stop();

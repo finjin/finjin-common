@@ -152,23 +152,39 @@ Thread::~Thread()
     delete impl;
 }
 
-void Thread::Create(Allocator* allocator, const Utf8String& name, std::function<void()> threadProc)
+void Thread::Create(Allocator* allocator, const char* name, size_t index, const LogicalCpu* logicalCpu, std::function<void()> threadProc, Error& error)
 {
     if (impl == nullptr)
+    {
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
+        if (impl == nullptr)
+        {
+            FINJIN_SET_ERROR(error, "Failed to allocate internal state for thread.");
+            return;
+        }
+    }
 
-    impl->name = name;
-    impl->logicalCpu.Reset();
-    impl->threadProc = threadProc;
-}
+    if (impl->name.assign(name).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to store thread name.");
+        return;
+    }
 
-void Thread::Create(Allocator* allocator, const Utf8String& name, const LogicalCpu& logicalCpu, std::function<void()> threadProc)
-{
-    if (impl == nullptr)
-        impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
+    if (index != (size_t)-1)
+    {
+        //Index specified, append it to name
+        if (impl->name.append(Convert::ToString(index)).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to append index to thread name.");
+            return;
+        }
+    }
 
-    impl->name = name;
-    impl->logicalCpu = logicalCpu;
+    if (logicalCpu != nullptr)
+        impl->logicalCpu = *logicalCpu;
+    else
+        impl->logicalCpu.Reset();
+
     impl->threadProc = threadProc;
 }
 
@@ -250,7 +266,7 @@ void Thread::Stop()
 const Utf8String& Thread::GetName() const
 {
     if (impl == nullptr)
-        return Utf8String::Empty();
+        return Utf8String::GetEmpty();
 
     return impl->name;
 }

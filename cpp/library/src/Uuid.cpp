@@ -77,7 +77,7 @@ Uuid RandomUuidCreator::NewUuid()
 }
 
 //Uuid
-const Uuid& Uuid::Zero()
+const Uuid& Uuid::GetZero()
 {
     static const Uuid value;
     return value;
@@ -121,7 +121,7 @@ Uuid::Uuid(const char* stringValue)
 
 Uuid::Uuid(const uint8_t* bytes)
 {
-    FINJIN_COPY_MEMORY(&this->data, bytes, sizeof(this->data));
+    FINJIN_COPY_MEMORY(this->data, bytes, sizeof(this->data));
 }
 
 Uuid::Uuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, uint8_t data4_1, uint8_t data4_2, uint8_t data4_3, uint8_t data4_4, uint8_t data4_5, uint8_t data4_6, uint8_t data4_7)
@@ -144,7 +144,7 @@ Uuid::Uuid(uint32_t data1, uint16_t data2, uint16_t data3, uint8_t data4_0, uint
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
 Uuid::Uuid(const GUID& guid)
 {
-    FINJIN_COPY_MEMORY(&this->data, &guid, sizeof(GUID));
+    FINJIN_COPY_MEMORY(this->data, &guid, sizeof(GUID));
 
     ReorderBytesIfCpuLittleEndian(this->data);
 }
@@ -232,7 +232,7 @@ void Uuid::Parse(Uuid& value, const Utf8String& stringValue, Error& error)
         return;
     }
 
-    value = Zero();
+    value = GetZero();
 
     //Split string
     StaticVector<Utf8StringView, 5> stringParts;

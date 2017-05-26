@@ -50,55 +50,63 @@ void StandardPaths::Create(const Utf8String& applicationName, void* applicationH
     AndroidJniUtilities jniUtils(androidApp);
 
     //System defined locations------------------------------
-    this->applicationExecutableFile.path = LinuxUtilities::GetProcessFilePath(); //This will return something like "/system/bin/app_process32", not really that useful
-    this->applicationExecutableFile.isSystemCreated = true;
-    //FINJIN_DEBUG_LOG_INFO("this->applicationExecutableFile: %1%", this->applicationExecutableFile.path);
+    if (LinuxUtilities::GetProcessFilePath(this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path).HasError()) //This will return something like "/system/bin/app_process32", not really that useful
+    {
+        FINJIN_SET_ERROR(error, "Failed to get process path.");
+        return;
+    }
+    this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].isSystemCreated = true;
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE]: %1%", this->paths[WhichStandardPath::APPLICATION_EXECUTABLE_FILE].path);
 
-    jniUtils.GetStringField(this->userDocumentsDirectory.path, "userDocumentsDirectory");
-    this->userDocumentsDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userDocumentsDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userDocumentsDirectory: %1%", this->userDocumentsDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY].path, "userDocumentsDirectory");
+    this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_DOCUMENTS_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userMusicDirectory.path, "userMusicDirectory");
-    this->userMusicDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userMusicDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userMusicDirectory: %1%", this->userMusicDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY].path, "userMusicDirectory");
+    this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_MUSIC_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userVideosDirectory.path, "userVideosDirectory");
-    this->userVideosDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userVideosDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userVideosDirectory: %1%", this->userVideosDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY].path, "userVideosDirectory");
+    this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_VIDEOS_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userPicturesDirectory.path, "userPicturesDirectory");
-    this->userPicturesDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userPicturesDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userPicturesDirectory: %1%", this->userPicturesDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY].path, "userPicturesDirectory");
+    this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userCameraRollDirectory.path, "userCameraRollDirectory");
-    this->userCameraRollDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userCameraRollDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userCameraRollDirectory: %1%", this->userCameraRollDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY].path, "userCameraRollDirectory");
+    this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userDownloadsDirectory.path, "userDownloadsDirectory");
-    this->userDownloadsDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userDownloadsDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userDownloadsDirectory: %1%", this->userDownloadsDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY].path, "userDownloadsDirectory");
+    this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_DOWNLOADS_DIRECTORY].path);
 
-    this->userApplicationSettingsDirectory.path = androidApp->activity->internalDataPath;
-    if (this->userApplicationSettingsDirectory.path.empty())
-        this->userApplicationSettingsDirectory.path = androidApp->activity->externalDataPath;
-    this->userApplicationSettingsDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userApplicationSettingsDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userApplicationSettingsDirectory: %1%", this->userApplicationSettingsDirectory.path);
+    this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path = androidApp->activity->internalDataPath;
+    if (this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path.empty())
+        this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path = androidApp->activity->externalDataPath;
+    this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path);
 
-    jniUtils.GetStringField(this->userApplicationTemporaryDirectory.path, "userApplicationTemporaryDirectory");
-    this->userApplicationTemporaryDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->userApplicationTemporaryDirectory);
-    //FINJIN_DEBUG_LOG_INFO("this->userApplicationTemporaryDirectory: %1%", this->userApplicationTemporaryDirectory.path);
+    jniUtils.GetStringField(this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path, "userApplicationTemporaryDirectory");
+    this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY]);
+    //FINJIN_DEBUG_LOG_INFO("this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY]: %1%", this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path);
 
-    this->workingDirectory.path = LinuxUtilities::GetWorkingDirectory();
-    this->workingDirectory.isSystemCreated = true;
-    VerifyStandardPath(this->workingDirectory);
+    if (LinuxUtilities::GetWorkingDirectory(this->paths[WhichStandardPath::WORKING_DIRECTORY].path).HasError())
+    {
+        FINJIN_SET_ERROR(error, "Failed to get working directory.");
+        return;
+    }
+    this->paths[WhichStandardPath::WORKING_DIRECTORY].isSystemCreated = true;
+    VerifyStandardPath(this->paths[WhichStandardPath::WORKING_DIRECTORY]);
 
     //Fallback behavior for missing locations--------------------
     //Utf8String applicationPackageName;

@@ -19,343 +19,343 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\png.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngerror.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngerror.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngget.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngget.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngmem.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngmem.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngpread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrio.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrtran.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrtran.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngrutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngrutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngset.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngset.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngtrans.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngtrans.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwio.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwrite.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwrite.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwtran.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwtran.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngwutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\lpng\pngwutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCommon.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCompare.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCompare.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriEscape.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriFile.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriFile.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalize.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalize.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParse.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParse.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParseBase.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriQuery.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriQuery.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriRecompose.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriRecompose.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriResolve.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriResolve.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriShorten.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\uriparser\src\UriShorten.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\xxHash\xxhash.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\adler32.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\adler32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\compress.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\compress.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\crc32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\deflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzclose.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzclose.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzlib.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzlib.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzread.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzwrite.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\gzwrite.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\infback.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\infback.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inffast.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\inftrees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\trees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\uncompr.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\uncompr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zlib\zutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\dir.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\dir.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\err.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fetch.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\file.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fseeko.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\info.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\memdisk.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\mmapped.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\plugin.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stat.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\write.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zip.c">
+    <ClCompile Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -375,9 +375,11 @@
     <ClCompile Include="..\..\src\DataChunkReaderCallbacks.cpp" />
     <ClCompile Include="..\..\src\Distance.cpp" />
     <ClCompile Include="..\..\src\Hash.cpp" />
+    <ClCompile Include="..\..\src\Luid.cpp" />
     <ClCompile Include="..\..\src\Math.cpp" />
     <ClCompile Include="..\..\src\PNGReader.cpp" />
     <ClCompile Include="..\..\src\PNGWriter.cpp" />
+    <ClCompile Include="..\..\src\StandardPaths.cpp" />
     <ClCompile Include="..\..\src\StringMatcher.cpp" />
     <ClCompile Include="..\..\src\Utf8StringCaseConverter.cpp" />
     <ClCompile Include="..\..\src\WrappedFileReader.cpp" />
@@ -475,51 +477,51 @@
     <ClCompile Include="..\..\src\XmlDocument.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\png.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngconf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngdebug.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pnginfo.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngpriv.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\lpng\pngstruct.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriCommon.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\xxHash\xxhash.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\crc32.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\deflate.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\gzguts.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffast.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inffixed.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inflate.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\inftrees.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\trees.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zconf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zlib.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zlib\zutil.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\autoconf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\conf.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fetch.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\file.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\format.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\fseeko.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\info.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\lib.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\memdisk.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\mmapped.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\plugin.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\stdint.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\types.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\write.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_config.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\_msvc.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__debug.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__dirent.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__fnmatch.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__hints.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\png.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngconf.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngdebug.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pnginfo.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngpriv.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\lpng\pngstruct.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriCommon.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriIp4Base.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriNormalizeBase.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\uriparser\src\UriParseBase.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\xxHash\xxhash.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\crc32.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\deflate.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\gzguts.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inffast.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inffixed.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inflate.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\inftrees.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\trees.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zconf.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zlib.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zlib\zutil.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\autoconf.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\conf.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fetch.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\file.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\format.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\fseeko.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\info.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\lib.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\memdisk.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\mmapped.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\plugin.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\stdint.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\types.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\write.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zzip.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\zzip32.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\_config.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\_msvc.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__debug.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__dirent.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__fnmatch.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__hints.h" />
+    <ClInclude Include="C:\finjin-3rd-party\cpp\zziplib\zzip\__mmap.h" />
     <ClInclude Include="..\..\include\finjin\common\AlignedElementStaticVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\AllocatedClass.hpp" />
     <ClInclude Include="..\..\include\finjin\common\DynamicQueue.hpp" />
@@ -541,6 +543,7 @@
     <ClInclude Include="..\..\include\finjin\common\DefaultAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Distance.hpp" />
     <ClInclude Include="..\..\include\finjin\common\Hash.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\Luid.hpp" />
     <ClInclude Include="..\..\include\finjin\common\PNGReader.hpp" />
     <ClInclude Include="..\..\include\finjin\common\PNGWriter.hpp" />
     <ClInclude Include="..\..\include\finjin\common\QueueImpl.hpp" />

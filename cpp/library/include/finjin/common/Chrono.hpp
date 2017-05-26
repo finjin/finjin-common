@@ -84,7 +84,7 @@ namespace Finjin { namespace Common {
         static TimeDuration Minutes(uint64_t value);
         static TimeDuration Hours(uint64_t value);
 
-        static const TimeDuration& Zero();
+        static const TimeDuration& GetZero();
 
         Utf8String ToString() const;
         Utf8String ToString(TimeDurationUnit unit) const;
@@ -93,9 +93,9 @@ namespace Finjin { namespace Common {
         static void Parse(TimeDuration& timeDuration, const Utf8String& s, Error& error);
         static void Parse(TimeDuration& timeDuration, const Utf8StringView& s, Error& error);
 
-        static TimeDuration Parse(const char* s, TimeDuration defaultValue = TimeDuration::Zero());
-        static TimeDuration Parse(const Utf8String& s, TimeDuration defaultValue = TimeDuration::Zero());
-        static TimeDuration Parse(const Utf8StringView& s, TimeDuration defaultValue = TimeDuration::Zero());
+        static TimeDuration Parse(const char* s, TimeDuration defaultValue = TimeDuration::GetZero());
+        static TimeDuration Parse(const Utf8String& s, TimeDuration defaultValue = TimeDuration::GetZero());
+        static TimeDuration Parse(const Utf8StringView& s, TimeDuration defaultValue = TimeDuration::GetZero());
 
     private:
         uint64_t value; //Nanoseconds

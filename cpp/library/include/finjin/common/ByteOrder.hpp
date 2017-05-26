@@ -58,4 +58,11 @@ namespace Finjin { namespace Common {
             *outByte++ = *inByte--;
     }
 
+    template <typename T>
+    inline void SwapArrayBytes(const T* value, size_t count)
+    {
+        for (size_t i = 0; i < count; i++)
+            SwapBytes(value[i]);
+    }
+
 } }

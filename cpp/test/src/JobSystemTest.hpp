@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(JobSystemTest_submit)
             return;
         }
 
-        jobSystem->Start(error);
+        jobSystem->Start(true, error);
         if (error)
         {
             BOOST_TEST_MESSAGE(error.GetLastNonEmptyErrorMessage());

@@ -175,7 +175,7 @@ Utf8String PNGWriter::GetWriteResultString(WriteResult result) const
     {
         case WriteResult::FAILED_TO_START_WRITE: return "Failed to start writing PNG.";
         case WriteResult::NOT_ENOUGH_MEMORY: return "Not enough memory to write PNG.";
-        default: return Utf8String::Empty();
+        default: return Utf8String::GetEmpty();
     }
 }
 

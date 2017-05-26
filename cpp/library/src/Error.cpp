@@ -139,7 +139,7 @@ bool Error::CallStackRecord::HasErrorMessage() const
 const Utf8String& Error::CallStackRecord::GetErrorMessage() const
 {
 #if FINJIN_ERROR_NO_MESSAGES
-    return this->hasErrorMessage ? DISABLED_ERROR_MESSAGE : Utf8String::Empty();
+    return this->hasErrorMessage ? DISABLED_ERROR_MESSAGE : Utf8String::GetEmpty();
 #else
     return this->errorMessage;
 #endif
@@ -219,7 +219,7 @@ const Utf8String& Error::GetLastErrorMessage() const
     if (IsCallerOwnerThread() && this->hasError)
         return this->callStack[this->depth + 1].GetErrorMessage();
     else
-        return Utf8String::Empty();
+        return Utf8String::GetEmpty();
 }
 
 const Utf8String& Error::GetLastNonEmptyErrorMessage() const
@@ -233,7 +233,7 @@ const Utf8String& Error::GetLastNonEmptyErrorMessage() const
         }
     }
 
-    return Utf8String::Empty();
+    return Utf8String::GetEmpty();
 }
 
 Utf8String Error::JoinErrorMessages(const Utf8StringView& joinText) const
@@ -303,12 +303,12 @@ void Error::Output(std::ostream& out, const ErrorOutputFormat& format) const
 
 Utf8String Error::ToString() const
 {
-    return ToStringWithPrefix(Utf8String::Empty());
+    return ToStringWithPrefix(Utf8String::GetEmpty());
 }
 
 ValueOrError<void> Error::ToString(Utf8String& result) const
 {
-    return ToStringWithPrefix(result, Utf8String::Empty());
+    return ToStringWithPrefix(result, Utf8String::GetEmpty());
 }
 
 Utf8String Error::ToStringWithPrefix(const Utf8String& messagePrefix) const
@@ -448,7 +448,7 @@ bool ErrorState::HasErrorMessage() const
 const Utf8String& ErrorState::GetErrorMessage() const
 {
 #if FINJIN_ERROR_NO_MESSAGES
-    return this->hasErrorMessage ? DISABLED_ERROR_MESSAGE : Utf8String::Empty();
+    return this->hasErrorMessage ? DISABLED_ERROR_MESSAGE : Utf8String::GetEmpty();
 #else
     return this->errorMessage;
 #endif

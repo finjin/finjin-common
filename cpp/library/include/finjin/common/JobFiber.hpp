@@ -50,13 +50,20 @@ namespace Finjin { namespace Common {
         JobFiber& operator = (JobFiber&& other);
         ~JobFiber();
 
+        enum class CreateResult
+        {
+            SUCCESS,
+            FAILED_TO_ALLOCATE_STACK,
+            CONTEXT_SWITCHING_NOT_SUPPORTED
+        };
+
         /**
          * Initialization method for a "regular" fiber - a fiber created within a spawned thread procedure.
          */
-        void Create
+        CreateResult Create
             (
             size_t fiberIndex,
-            const Utf8String& name,
+            const Utf8String& ownerThreadName,
             Allocator* allocator,
             JobFiber* mainFiber,
             FiberJobScheduler& scheduler,
@@ -70,13 +77,13 @@ namespace Finjin { namespace Common {
          * Initializes the "default" fiber - typically the main application thread (the one that calls JobSystem::Create())
          * This isn't actually a true fiber, it just sets up a few of the necessary default data structures.
          */
-        void InitializeDefaultFiber(Allocator* allocator, const Utf8String& name, FiberJobScheduler* scheduler);
+        void InitializeDefaultFiber(Allocator* allocator, const char* name, FiberJobScheduler* scheduler);
         void ShutdownDefaultFiber();
 
         /**
          * Initializes the main fiber - converts the current thread into a fiber and sets it as the active fiber.
          */
-        void InitializeMainFiber(Allocator* allocator, const Utf8String& name, FiberJobScheduler* scheduler);
+        void InitializeMainFiber(Allocator* allocator, const char* name, FiberJobScheduler* scheduler);
         void ShutdownMainFiber();
 
         bool IsReady() const;

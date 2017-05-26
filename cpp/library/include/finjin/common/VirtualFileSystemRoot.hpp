@@ -30,7 +30,7 @@ namespace Finjin { namespace Common {
 
     class VirtualFileSystem;
     class VirtualFileSystemRoot;
-    
+
     class FINJIN_COMMON_LIBRARY_API VirtualFileSystemRoot : public AllocatedClass
     {
     public:
@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
             COMPLETE,
             INCOMPLETE
         };
-        virtual EnumerationResult Enumerate(FileSystemEntries& items, FileSystemEntryType types, Error& error) = 0;
+        virtual EnumerationResult Enumerate(FileSystemEntries& items, FileSystemEntryType findTypes, Error& error) = 0;
 
         virtual const Utf8String& GetInternalVolumeID() const = 0;
         virtual const Path& GetFileSystemPath() const = 0;

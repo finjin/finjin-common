@@ -244,20 +244,49 @@ void ZIPReader::Close()
     impl->Close();
 }
 
-bool ZIPReader::Next(Entry& entry)
+bool ZIPReader::Next(Entry& entry, FileSystemEntryType findTypes)
 {
     ZZIP_DIRENT dirent;
 
-    if (!zzip_dir_read(impl->zzipDir, &dirent))
+    size_t nameLength = 0;
+    do
     {
-        //Not an error. There's nothing left to read
-        return false;
-    }
+        if (!zzip_dir_read(impl->zzipDir, &dirent))
+        {
+            //Not an error. There's nothing left to read
+            return false;
+        }
+
+        entry.type = FileSystemEntryType::NONE;
+
+        if (dirent.d_name != nullptr && dirent.d_name[0] != 0)
+        {
+            if (dirent.st_size > 0)
+            {
+                //It's a file
+                if (AnySet(findTypes & FileSystemEntryType::FILE))
+                {
+                    nameLength = strlen(dirent.d_name);
+                    entry.type = FileSystemEntryType::FILE;
+                }
+            }
+            else
+            {
+                //Probably a directory
+                if (AnySet(findTypes & FileSystemEntryType::DIRECTORY))
+                {
+                    nameLength = strlen(dirent.d_name);
+                    if (dirent.d_name[nameLength - 1] == '/')
+                        entry.type = FileSystemEntryType::DIRECTORY;
+                }
+            }
+        }
+    } while (NoneSet(findTypes & entry.type));
 
     entry.compressionMethod = dirent.d_compr;
     entry.compressedSize = static_cast<size_t>(dirent.d_csize);
     entry.decompressedSize = static_cast<size_t>(dirent.st_size);
-    entry.path = dirent.d_name;
+    entry.path.assign(dirent.d_name, nameLength);
 
     return true;
 }

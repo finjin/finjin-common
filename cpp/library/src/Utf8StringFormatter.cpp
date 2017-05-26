@@ -15,6 +15,7 @@
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/Utf8StringFormatter.hpp"
 #include "finjin/common/Chrono.hpp"
+#include "finjin/common/Luid.hpp"
 #include "finjin/common/Path.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Uuid.hpp"
@@ -45,6 +46,11 @@ Utf8StringFormatter::Utf8StringFormatter(const Utf8String& format) : impl(new Im
 Utf8StringFormatter::~Utf8StringFormatter()
 {
     delete impl;
+}
+
+size_t Utf8StringFormatter::GetRemainingArgCount() const
+{
+    return static_cast<size_t>(impl->boostFormat.remaining_args());
 }
 
 Utf8StringFormatter& Utf8StringFormatter::operator % (int8_t value)
@@ -175,6 +181,11 @@ Utf8StringFormatter& Utf8StringFormatter::operator % (const Uuid& value)
     return operator % (value.ToString());
 }
 
+Utf8StringFormatter& Utf8StringFormatter::operator % (const Luid& value)
+{
+    return operator % (value.ToString());
+}
+
 Utf8StringFormatter& Utf8StringFormatter::operator % (const void* value)
 {
     return operator % ((uintptr_t)value);
@@ -187,7 +198,7 @@ Utf8String Utf8StringFormatter::ToString() const
 
     try
     {
-        Utf8String result = boost::str(impl->boostFormat).c_str();
+        Utf8String result(boost::str(impl->boostFormat).c_str());
         impl->boostFormat.clear();
         return result;
     }

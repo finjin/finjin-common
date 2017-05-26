@@ -35,8 +35,7 @@ namespace Finjin { namespace Common {
         Thread& operator = (Thread&& other);
         ~Thread();
 
-        void Create(Allocator* allocator, const Utf8String& name, std::function<void()> threadProc);
-        void Create(Allocator* allocator, const Utf8String& name, const LogicalCpu& logicalCpu, std::function<void()> threadProc);
+        void Create(Allocator* allocator, const char* name, size_t index, const LogicalCpu* logicalCpu, std::function<void()> threadProc, Error& error);
 
         void Start(Error& error);
         void Stop();

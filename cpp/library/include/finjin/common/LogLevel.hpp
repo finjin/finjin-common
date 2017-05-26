@@ -36,7 +36,7 @@ namespace Finjin { namespace Common {
         ERROR_LEVEL,
         DEBUG_LEVEL,
         TRACE_LEVEL,
-        
+
         COUNT
     };
 

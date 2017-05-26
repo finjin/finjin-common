@@ -167,7 +167,7 @@ void ParsedChunkName::Parse(const Utf8String& s)
 {
     this->name.clear();
     this->index = (Index)-1;
-    this->id = Uuid::Zero();
+    this->id = Uuid::GetZero();
 
     if (s.IsDigits())
         this->index = Convert::ToInteger(s, this->index);
