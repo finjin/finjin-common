@@ -171,7 +171,7 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
     imageOutputBuffer.clear();
 
     //Create a temporary allocator that uses memory at the end of the specified output buffer
-    auto tempAllocatorSize = Allocator::AlignMemoryUp(125000, Allocator::GetDefaultAlignment());;
+    auto tempAllocatorSize = Allocator::AlignMemoryUp((size_t)125000, Allocator::GetDefaultAlignment());;
     if (imageOutputBuffer.max_size() < tempAllocatorSize)
         return ReadResult::NOT_ENOUGH_MEMORY_TO_START_IMAGE_READ;
 

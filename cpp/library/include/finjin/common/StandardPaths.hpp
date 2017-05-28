@@ -35,21 +35,26 @@ namespace Finjin { namespace Common {
         //On Windows Win32: C:\Users\(username)\Documents
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Documents
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Documents
+        //On macOS: /Users/(username)/Documents
+        //On iOS: /var/mobile/Containers/Data/Application/(Application UUID)/Documents
         USER_DOCUMENTS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\Music
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Music
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Music
+        //On macOS: /Users/(username)/Music
         USER_MUSIC_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\Video
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Movies
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Videos
+        //On macOS: /Users/(username)/Movies
         USER_VIDEOS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\Pictures
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Pictures
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Pictures
+        //On macOS: /Users/(username)/Pictures
         USER_PICTURES_DIRECTORY,
 
         USER_SAVED_PICTURES_DIRECTORY,
@@ -59,6 +64,7 @@ namespace Finjin { namespace Common {
 
         //On Windows Win32: C:\Users\(username)\Downloads
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Downloads
+        //On macOS: /Users/(username)/Downloads
         USER_DOWNLOADS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\AppData\Local\(applicationName passed to Initialize() or application executable name)
@@ -66,6 +72,8 @@ namespace Finjin { namespace Common {
         //On Android 6 (as tested on Nexus 6): androidApp->activity->internalDataPath: /data/user/(userid)/(package name in AndroidManifest.xml)/files
         //On Android 6 (final fallback behavior): androidApp->activity->externalDataPath: /storage/emulated/(userid)/Android/data/(package name in AndroidManifest.xml)/files
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)
+        //On macOS: /Users/(username)/Library/Application Support/(applicationName passed to Initialize() or application executable name)
+        //On iOS: /var/mobile/Containers/Data/Application/(Application UUID)/Library/Application Support
         USER_APPLICATION_SETTINGS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize() or application executable name)
@@ -73,6 +81,8 @@ namespace Finjin { namespace Common {
         //On Windows UWP: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize())
         //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
+        //On macOS: /var/folders/(random numbers)/(applicationName passed to Initialize() or application executable name)
+        //On iOS: /private/var/mobile/Containers/Data/Application/(Application UUID)/tmp/(Application name in info.plist)
         USER_APPLICATION_TEMPORARY_DIRECTORY,
 
         WORKING_DIRECTORY,
@@ -217,7 +227,6 @@ namespace Finjin { namespace Common {
             for (auto standardPath : {
                 &this->paths[WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY],
                 &this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY],
-                &this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY]
                 })
             {
                 if (!standardPath->path.empty())

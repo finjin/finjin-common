@@ -15,7 +15,6 @@
 
 
 //Includes----------------------------------------------------------------------
-#include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Path.hpp"
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
