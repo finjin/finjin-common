@@ -36,7 +36,7 @@ namespace Finjin { namespace Common {
         //On Android 6 (as tested on Nexus 6): /storage/emulated/(userid)/Documents
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/Documents
         //On macOS: /Users/(username)/Documents
-        //On iOS: /var/mobile/Containers/Data/Application/(Application UUID)/Documents
+        //On iOS: /var/mobile/Containers/Data/Application/(application UUID)/Documents
         USER_DOCUMENTS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\Music
@@ -73,7 +73,7 @@ namespace Finjin { namespace Common {
         //On Android 6 (final fallback behavior): androidApp->activity->externalDataPath: /storage/emulated/(userid)/Android/data/(package name in AndroidManifest.xml)/files
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)
         //On macOS: /Users/(username)/Library/Application Support/(applicationName passed to Initialize() or application executable name)
-        //On iOS: /var/mobile/Containers/Data/Application/(Application UUID)/Library/Application Support
+        //On iOS: /var/mobile/Containers/Data/Application/(application UUID)/Library/Application Support
         USER_APPLICATION_SETTINGS_DIRECTORY,
 
         //On Windows Win32: C:\Users\(username)\AppData\Local\Temp\(applicationName passed to Initialize() or application executable name)
@@ -82,7 +82,7 @@ namespace Finjin { namespace Common {
         //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
         //On macOS: /var/folders/(random numbers)/(applicationName passed to Initialize() or application executable name)
-        //On iOS: /private/var/mobile/Containers/Data/Application/(Application UUID)/tmp/(Application name in info.plist)
+        //On iOS: /private/var/mobile/Containers/Data/Application/(application UUID)/tmp/(application name in info.plist)
         USER_APPLICATION_TEMPORARY_DIRECTORY,
 
         WORKING_DIRECTORY,

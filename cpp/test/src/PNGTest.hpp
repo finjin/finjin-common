@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(PNGTest_write_and_read)
     pngBuffer.Create(MemorySize::MEBIBYTE * 10, FINJIN_ALLOCATOR_NULL);
 
     PNGWriter writer;
-    writer.WriteRGBA8888(writePixels.data(), width, height, pngBuffer, error);
+    writer.Write(writePixels.data(), width, height, 0, pngBuffer, error);
     BOOST_CHECK(!error);
     if (!error)
     {
