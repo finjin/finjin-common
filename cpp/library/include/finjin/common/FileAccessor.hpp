@@ -30,6 +30,13 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API FileAccessor
     {
     public:
+        FileAccessor(const FileAccessor& other) = delete;
+        FileAccessor& operator = (const FileAccessor& other) = delete;
+        
+        FileAccessor(FileAccessor&& other) = delete;
+        FileAccessor& operator = (FileAccessor&& other) = delete;
+        
+    public:
         FileAccessor();
         ~FileAccessor();
 
