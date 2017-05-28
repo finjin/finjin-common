@@ -37,19 +37,19 @@ namespace Finjin { namespace Common {
             NOT_ENOUGH_MEMORY
         };
 
-        bool GetReverseRGB() const;
+        bool GetReverseRGB() const; //Transforms output data on Write
         void SetReverseRGB(bool value);
         
-        bool GetSwapAlpha() const;
+        bool GetSwapAlpha() const; //Transforms output data on Write
         void SetSwapAlpha(bool value);
         
-        bool GetSRGB() const;
+        bool GetSRGB() const; //Information about input data
         void SetSRGB(bool value);
         
-        uint32_t GetChannelCount() const;
+        uint32_t GetChannelCount() const; //Information about input data
         void SetChannelCount(uint32_t value);
         
-        uint32_t GetBytesPerChannel() const;
+        uint32_t GetBytesPerChannel() const; //Information about input data
         void SetBytesPerChannel(uint32_t value);
 
         WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer);

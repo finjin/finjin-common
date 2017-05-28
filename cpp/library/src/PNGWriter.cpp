@@ -254,7 +254,7 @@ Utf8String PNGWriter::GetWriteResultString(WriteResult result) const
     {
         case WriteResult::FAILED_TO_START_WRITE: return "Failed to start writing PNG.";
         case WriteResult::INVALID_CHANNEL_COUNT: return Utf8StringFormatter::Format("Invalid channel count '%1%'.", this->channelCount);
-        case WriteResult::INVALID_BYTES_PER_CHANNEL: return Utf8StringFormatter::Format("Invalid channel count '%1%'.", this->bytesPerChannel);
+        case WriteResult::INVALID_BYTES_PER_CHANNEL: return Utf8StringFormatter::Format("Invalid bytes per channel '%1%'.", this->bytesPerChannel);
         case WriteResult::NOT_ENOUGH_MEMORY: return "Not enough memory to write PNG.";
         default: return Utf8String::GetEmpty();
     }
