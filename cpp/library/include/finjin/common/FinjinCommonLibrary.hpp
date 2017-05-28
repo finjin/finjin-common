@@ -408,10 +408,16 @@ namespace Finjin { namespace Common {
     template <> inline double RoundToDouble(float value) { return value; }
     template <> inline double RoundToDouble(double value) { return value; }
 
-    inline int RoundToInt(double value) { return static_cast<int>(value + .5); }
+    template <typename T = int> inline T RoundToInt(double value) { return static_cast<T>(value + .5); }
     inline int32_t RoundToInt32(double value) { return static_cast<int32_t>(value + .5); }
     inline uint32_t RoundToUInt32(double value) { return static_cast<uint32_t>(value + .5); }
     inline int64_t RoundToInt64(double value) { return static_cast<int64_t>(value + .5); }
     inline uint64_t RoundToUInt64(double value) { return static_cast<uint64_t>(value + .5); }
+
+    template <typename T = int> inline T RoundToInt(float value) { return static_cast<T>(value + .5f); }
+    inline int32_t RoundToInt32(float value) { return static_cast<int32_t>(value + .5f); }
+    inline uint32_t RoundToUInt32(float value) { return static_cast<uint32_t>(value + .5f); }
+    inline int64_t RoundToInt64(float value) { return static_cast<int64_t>(value + .5f); }
+    inline uint64_t RoundToUInt64(float value) { return static_cast<uint64_t>(value + .5f); }
 
 } }

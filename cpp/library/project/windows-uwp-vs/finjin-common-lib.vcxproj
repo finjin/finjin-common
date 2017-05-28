@@ -442,7 +442,7 @@
     <ClInclude Include="..\..\include\finjin\common\XmlDataElementWriter.hpp" />
     <ClInclude Include="..\..\include\finjin\common\XmlDocument.hpp" />
     <ClInclude Include="..\..\include\finjin\common\ZIPReader.hpp" />
-    <ClInclude Include="..\..\src\FileAccessor.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\FileAccessor.hpp" />
     <ClInclude Include="..\..\src\FinjinPrecompiled.hpp" />
     <ClInclude Include="..\..\src\FiberJobQueue.hpp" />
     <ClInclude Include="..\..\src\FiberJobScheduler.hpp" />

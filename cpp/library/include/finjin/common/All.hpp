@@ -69,6 +69,7 @@
 #include "FiberMutex.hpp"
 #include "FiberSpinLock.hpp"
 #include "FiberWaitingQueue.hpp"
+#include "FileAccessor.hpp"
 #include "FileFinder.hpp"
 #include "FileOperationTypes.hpp"
 #include "FileSystemEntry.hpp"

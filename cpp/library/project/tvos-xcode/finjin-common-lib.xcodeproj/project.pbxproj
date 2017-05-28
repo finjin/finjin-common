@@ -502,9 +502,9 @@
 		65430E3C1DF46AA700588409 /* StreamingFileFormat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StreamingFileFormat.cpp; path = ../../src/StreamingFileFormat.cpp; sourceTree = SOURCE_ROOT; };
 		65430E401DF46B5D00588409 /* BinaryDataChunkWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryDataChunkWriter.cpp; path = ../../src/BinaryDataChunkWriter.cpp; sourceTree = SOURCE_ROOT; };
 		65430E531DF46FCE00588409 /* FileAccessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileAccessor.cpp; path = ../../src/FileAccessor.cpp; sourceTree = SOURCE_ROOT; };
-		65430E541DF46FCE00588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
+		65430E541DF46FCE00588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../include/finjin/common/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
 		65430E571DF46FE300588409 /* FileAccessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileAccessor.cpp; path = ../../src/FileAccessor.cpp; sourceTree = SOURCE_ROOT; };
-		65430E581DF46FE300588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
+		65430E581DF46FE300588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../include/finjin/common/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
 		655216A21EACE4F6006AEB40 /* xxhash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.c"; sourceTree = "<absolute>"; };
 		655216A31EACE4F6006AEB40 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.h"; sourceTree = "<absolute>"; };
 		657359731ECED5ED009FA3E6 /* JobFiber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JobFiber.mm; path = ../../src/JobFiber.mm; sourceTree = SOURCE_ROOT; };

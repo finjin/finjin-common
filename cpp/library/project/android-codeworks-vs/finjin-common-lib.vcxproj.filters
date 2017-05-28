@@ -1109,7 +1109,7 @@
     <ClInclude Include="..\..\include\finjin\common\WrappedFileReader.hpp">
       <Filter>Source Files\file-system</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\FileAccessor.hpp">
+    <ClInclude Include="..\..\include\finjin\common\FileAccessor.hpp">
       <Filter>Source Files\file-system</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\StreamingFileFormat.hpp">

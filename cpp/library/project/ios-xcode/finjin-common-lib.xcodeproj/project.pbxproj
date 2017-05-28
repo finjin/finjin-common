@@ -360,7 +360,7 @@
 		65430DFA1DF2DBA700588409 /* WrappedFileReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WrappedFileReader.cpp; path = ../../src/WrappedFileReader.cpp; sourceTree = SOURCE_ROOT; };
 		65430DFB1DF2DBA700588409 /* WrappedFileWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WrappedFileWriter.cpp; path = ../../src/WrappedFileWriter.cpp; sourceTree = SOURCE_ROOT; };
 		65430E0E1DF2E00000588409 /* FileAccessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FileAccessor.cpp; path = ../../src/FileAccessor.cpp; sourceTree = SOURCE_ROOT; };
-		65430E0F1DF2E00000588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../src/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
+		65430E0F1DF2E00000588409 /* FileAccessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = FileAccessor.hpp; path = ../../include/finjin/common/FileAccessor.hpp; sourceTree = SOURCE_ROOT; };
 		6552169D1EACE4C1006AEB40 /* xxhash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.c"; sourceTree = "<absolute>"; };
 		6552169E1EACE4C1006AEB40 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = "/Users/derek/finjin-3rd-party/cpp/xxHash/xxhash.h"; sourceTree = "<absolute>"; };
 		657359711ECED5C3009FA3E6 /* JobFiber.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = JobFiber.mm; path = ../../src/JobFiber.mm; sourceTree = SOURCE_ROOT; };

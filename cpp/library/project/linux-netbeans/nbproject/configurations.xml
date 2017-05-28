@@ -274,7 +274,7 @@
         <itemPath>../../src/DirectoryVirtualFileSystemRoot.cpp</itemPath>
         <itemPath>../../include/finjin/common/DirectoryVirtualFileSystemRoot.hpp</itemPath>
         <itemPath>../../src/FileAccessor.cpp</itemPath>
-        <itemPath>../../src/FileAccessor.hpp</itemPath>
+        <itemPath>../../include/finjin/common/FileAccessor.hpp</itemPath>
         <itemPath>../../include/finjin/common/FileFinder.hpp</itemPath>
         <itemPath>../../include/finjin/common/FileOperationTypes.hpp</itemPath>
         <itemPath>../../src/FileSystemEntry.cpp</itemPath>
@@ -1276,7 +1276,7 @@
       </item>
       <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
+      <item path="../../include/finjin/common/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2908,7 +2908,7 @@
       </item>
       <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
+      <item path="../../include/finjin/common/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
       </item>

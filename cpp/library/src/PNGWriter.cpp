@@ -69,13 +69,24 @@ static void PngWriteCallback(png_structp png, png_bytep data, png_size_t length)
 //Implementation----------------------------------------------------------------
 PNGWriter::PNGWriter()
 {
+    this->reverseRGB = false;
 }
 
 PNGWriter::~PNGWriter()
 {
 }
 
-PNGWriter::WriteResult PNGWriter::WriteRGBA8888(const void* pixels, uint32_t width, uint32_t height, ByteBuffer& pngOutputBuffer)
+void PNGWriter::SetReverseRGB(bool value)
+{
+    this->reverseRGB = value;
+}
+
+bool PNGWriter::GetReverseRGB() const
+{
+    return this->reverseRGB;
+}
+
+PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer)
 {
     auto png = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, PngWriteErrorHandler, PngWriteWarningHandler);
     if (png == nullptr)
@@ -98,7 +109,7 @@ PNGWriter::WriteResult PNGWriter::WriteRGBA8888(const void* pixels, uint32_t wid
 
     //Create a temporary allocator that uses memory at the end of the specified output buffer
     auto rowPointersSize = sizeof(uint8_t*) * height;
-    auto tempAllocatorSize = rowPointersSize;
+    auto tempAllocatorSize = Allocator::AlignMemoryUp(rowPointersSize, Allocator::GetDefaultAlignment());
     if (pngOutputBuffer.max_size() < tempAllocatorSize)
     {
         png_destroy_write_struct(&png, &info);
@@ -128,16 +139,17 @@ PNGWriter::WriteResult PNGWriter::WriteRGBA8888(const void* pixels, uint32_t wid
     uint32_t componentCount = 4;
     uint32_t bitsPerComponent = 8;
     auto bytesPerPixel = componentCount * bitsPerComponent / 8;
+    if (rowStride == 0)
+        rowStride = width * bytesPerPixel;
 
     auto rows = reinterpret_cast<uint8_t**>(tempAllocator.Allocate(rowPointersSize, FINJIN_CALLER_ARGUMENTS));
     {
         auto rgbaPixels = static_cast<const uint8_t*>(pixels);
 
-        size_t rowOffset = 0;
-        for (size_t y = 0; y < height; ++y)
+        for (size_t y = 0; y < height; y++)
         {
-            rows[y] = const_cast<uint8_t*>(&rgbaPixels[rowOffset]);
-            rowOffset += width * bytesPerPixel;
+            rows[y] = const_cast<uint8_t*>(rgbaPixels);
+            rgbaPixels += rowStride;
         }
     }
 
@@ -159,7 +171,11 @@ PNGWriter::WriteResult PNGWriter::WriteRGBA8888(const void* pixels, uint32_t wid
     ByteBufferAndInfo byteBufferAndInfo(pngOutputBuffer, pngOutputBuffer.max_size() - tempAllocatorSize);
     png_set_write_fn(png, &byteBufferAndInfo, PngWriteCallback, nullptr);
 
-    png_write_png(png, info, PNG_TRANSFORM_IDENTITY, nullptr);
+    int transform = PNG_TRANSFORM_IDENTITY;
+    if (this->reverseRGB)
+        transform |= PNG_TRANSFORM_BGR;
+
+    png_write_png(png, info, transform, nullptr);
 
     png_destroy_write_struct(&png, &info);
 
@@ -179,11 +195,11 @@ Utf8String PNGWriter::GetWriteResultString(WriteResult result) const
     }
 }
 
-void PNGWriter::WriteRGBA8888(const void* pixels, uint32_t width, uint32_t height, ByteBuffer& pngOutputBuffer, Error& error)
+void PNGWriter::Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    auto result = WriteRGBA8888(pixels, width, height, pngOutputBuffer);
+    auto result = Write(pixels, width, height, rowStride, pngOutputBuffer);
     if (result != WriteResult::SUCCESS)
         FINJIN_SET_ERROR(error, GetWriteResultString(result));
 }

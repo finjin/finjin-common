@@ -14,11 +14,11 @@
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
 #include "finjin/common/StreamingFileFormat.hpp"
-#include "finjin/common/TextDataChunkWriter.hpp"
-#include "finjin/common/JsonDataChunkWriter.hpp"
+#include "finjin/common/FileAccessor.hpp"
 #include "finjin/common/BinaryDataChunkWriter.hpp"
 #include "finjin/common/ConfigDataChunkWriter.hpp"
-#include "FileAccessor.hpp"
+#include "finjin/common/JsonDataChunkWriter.hpp"
+#include "finjin/common/TextDataChunkWriter.hpp"
 
 using namespace Finjin::Common;
 

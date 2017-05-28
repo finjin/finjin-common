@@ -20,7 +20,7 @@ namespace Finjin { namespace Common {
     class Hash
     {
     public:
-        static size_t Bytes(const void* vbegin, const void* vend, size_t seed = 0);
+        static size_t Bytes(const void* begin, const void* end, size_t seed = 0);
 
         static size_t Bytes(const void* bytes, size_t byteCount, size_t seed = 0);
     };

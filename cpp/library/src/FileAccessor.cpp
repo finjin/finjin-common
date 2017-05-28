@@ -13,7 +13,7 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
-#include "FileAccessor.hpp"
+#include "finjin/common/FileAccessor.hpp"
 #include <nowide/stackstring.hpp>
 #if !FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <sys/stat.h>
@@ -29,6 +29,9 @@ using WideningToUtf16Converter = nowide::basic_stackstring<wchar_t, char, Path::
 //Implementation----------------------------------------------------------------
 FileAccessor::FileAccessor()
 {
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    this->fileHandle = INVALID_HANDLE_VALUE;
+#endif
 }
 
 FileAccessor::~FileAccessor()
@@ -64,9 +67,9 @@ bool FileAccessor::OpenForRead(const Path& path, uint64_t* fileSize)
     this->fileStream.open(path.c_str(), std::ios_base::in | std::ios_base::binary);
     if (this->fileStream.is_open() && fileSize != nullptr)
     {
-        this->fileStream.seekg(0, nowide::ifstream::end);
+        this->fileStream.seekg(0, std::ifstream::end);
         *fileSize = this->fileStream.tellg();
-        this->fileStream.seekg(0, nowide::ifstream::beg);
+        this->fileStream.seekg(0, std::ifstream::beg);
     }
 
     return this->fileStream.is_open();
@@ -177,7 +180,7 @@ void FileAccessor::SetOffset(uint64_t offsetFromStart)
     offsetFromStartLI.QuadPart = offsetFromStart;
     SetFilePointerEx(this->fileHandle, offsetFromStartLI, nullptr, FILE_BEGIN);
 #else
-    this->fileStream.seekg(offsetFromStart, nowide::ifstream::beg);
+    this->fileStream.seekg(offsetFromStart, std::ifstream::beg);
 #endif
 }
 

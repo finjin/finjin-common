@@ -20,16 +20,17 @@
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #else
-    #include <nowide/fstream.hpp>
+    #include <fstream>
 #endif
 
 
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    //Internal utility class for reading/writing to a file
-    struct FileAccessor
+    //Development/internal utility class for reading/writing a file.
+    class FINJIN_COMMON_LIBRARY_API FileAccessor
     {
+    public:
         FileAccessor();
         ~FileAccessor();
 
@@ -49,10 +50,11 @@ namespace Finjin { namespace Common {
 
         static bool GetFileLength(const Path& path, uint64_t& fileLength);
 
+    public:
     #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-        HANDLE fileHandle = INVALID_HANDLE_VALUE;
+        HANDLE fileHandle;
     #else
-        nowide::fstream fileStream;
+        std::fstream fileStream;
     #endif
     };
 

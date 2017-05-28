@@ -637,7 +637,7 @@
     <ClInclude Include="..\..\include\finjin\common\JobFiber.hpp" />
     <ClInclude Include="..\..\src\FiberJobQueue.hpp" />
     <ClInclude Include="..\..\include\finjin\common\JobPackagedTask.hpp" />
-    <ClInclude Include="..\..\src\FileAccessor.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\FileAccessor.hpp" />
     <ClInclude Include="..\..\src\JobPromise.hpp" />
     <ClInclude Include="..\..\include\finjin\common\JobSharedState.hpp" />
     <ClInclude Include="..\..\src\JobSharedStateObject.hpp" />

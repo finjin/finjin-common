@@ -212,6 +212,21 @@ namespace Finjin { namespace Common {
             return true;
         }
 
+        const StandardPath* GetBestSavedScreenCapturePath() const
+        {
+            for (auto standardPath : {
+                &this->paths[WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY],
+                &this->paths[WhichStandardPath::USER_CAMERA_ROLL_DIRECTORY]
+                })
+            {
+                if (!standardPath->path.empty())
+                    return standardPath;
+            }
+
+            return nullptr;
+        }
+
         template <typename Index> const StandardPath& operator [] (Index index) const { return this->paths[index]; }
         template <typename Index> StandardPath& operator [] (Index index) { return this->paths[index]; }
 

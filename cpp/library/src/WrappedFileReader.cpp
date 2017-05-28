@@ -16,7 +16,7 @@
 #include "finjin/common/WrappedFileReader.hpp"
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/ByteOrder.hpp"
-#include "FileAccessor.hpp"
+#include "finjin/common/FileAccessor.hpp"
 
 using namespace Finjin::Common;
 

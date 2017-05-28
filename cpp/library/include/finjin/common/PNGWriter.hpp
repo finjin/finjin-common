@@ -34,10 +34,17 @@ namespace Finjin { namespace Common {
             FAILED_TO_START_WRITE,
             NOT_ENOUGH_MEMORY
         };
-        WriteResult WriteRGBA8888(const void* pixels, uint32_t width, uint32_t height, ByteBuffer& pngOutputBuffer); //Same format in and out (32 bits per pixel)
+
+        void SetReverseRGB(bool value);
+        bool GetReverseRGB() const;
+
+        WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer); //Same format in and out (32 bits per pixel)
         Utf8String GetWriteResultString(WriteResult result) const;
 
-        void WriteRGBA8888(const void* pixels, uint32_t width, uint32_t height, ByteBuffer& pngOutputBuffer, Error& error);
+        void Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer, Error& error);
+
+    private:
+        bool reverseRGB; //false = RGB, true = BGR
     };
 
 } }
