@@ -70,15 +70,14 @@ static void PngWriteCallback(png_structp png, png_bytep data, png_size_t length)
 PNGWriter::PNGWriter()
 {
     this->reverseRGB = false;
+    this->swapAlpha = false;
+    this->isSRGB = false;
+    this->channelCount = 4;
+    this->bytesPerChannel = 1;
 }
 
 PNGWriter::~PNGWriter()
 {
-}
-
-void PNGWriter::SetReverseRGB(bool value)
-{
-    this->reverseRGB = value;
 }
 
 bool PNGWriter::GetReverseRGB() const
@@ -86,8 +85,66 @@ bool PNGWriter::GetReverseRGB() const
     return this->reverseRGB;
 }
 
+void PNGWriter::SetReverseRGB(bool value)
+{
+    this->reverseRGB = value;
+}
+
+bool PNGWriter::GetSwapAlpha() const
+{
+    return this->swapAlpha;
+}
+
+void PNGWriter::SetSwapAlpha(bool value)
+{
+    this->swapAlpha = value;
+}
+
+bool PNGWriter::GetSRGB() const
+{
+    return this->isSRGB;
+}
+
+void PNGWriter::SetSRGB(bool value)
+{
+    this->isSRGB = value;
+}
+
+uint32_t PNGWriter::GetChannelCount() const
+{
+    return this->channelCount;
+}
+
+void PNGWriter::SetChannelCount(uint32_t value)
+{
+    this->channelCount = value;
+}
+
+uint32_t PNGWriter::GetBytesPerChannel() const
+{
+    return this->bytesPerChannel;
+}
+
+void PNGWriter::SetBytesPerChannel(uint32_t value)
+{
+    this->bytesPerChannel = value;
+}
+
 PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer)
 {
+    int format = 0;
+    switch (this->channelCount)
+    {
+        case 1: format = PNG_COLOR_TYPE_GRAY; break;
+        case 2: format = PNG_COLOR_TYPE_GRAY_ALPHA; break;
+        case 3: format = PNG_COLOR_TYPE_RGB; break;
+        case 4: format = PNG_COLOR_TYPE_RGB_ALPHA; break;
+        default: return INVALID_CHANNEL_COUNT;
+    }
+    
+    if (this->bytesPerChannel != 1 && this->bytesPerChannel != 2)
+        return INVALID_BYTES_PER_CHANNEL;
+    
     auto png = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, PngWriteErrorHandler, PngWriteWarningHandler);
     if (png == nullptr)
         return WriteResult::FAILED_TO_START_WRITE;
@@ -136,11 +193,8 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
         tempAllocator.Create(std::move(arena));
     }
 
-    uint32_t componentCount = 4;
-    uint32_t bitsPerComponent = 8;
-    auto bytesPerPixel = componentCount * bitsPerComponent / 8;
     if (rowStride == 0)
-        rowStride = width * bytesPerPixel;
+        rowStride = width * this->channelCount * this->bytesPerChannel;
 
     auto rows = reinterpret_cast<uint8_t**>(tempAllocator.Allocate(rowPointersSize, FINJIN_CALLER_ARGUMENTS));
     {
@@ -152,19 +206,27 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
             rgbaPixels += rowStride;
         }
     }
-
+    
     png_set_IHDR
         (
         png,
         info,
         width,
         height,
-        bitsPerComponent,
-        PNG_COLOR_TYPE_RGBA,
+        this->bytesPerChannel * 8,
+        format,
         PNG_INTERLACE_NONE,
         PNG_COMPRESSION_TYPE_DEFAULT,
         PNG_FILTER_TYPE_DEFAULT
         );
+    
+#ifdef PNG_sRGB_SUPPORTED
+    if (this->isSRGB)
+    {
+        png_set_gAMA(png, info, 1.0);
+        png_set_sRGB(png, info, PNG_sRGB_INTENT_SATURATION);
+    }
+#endif
 
     png_set_rows(png, info, rows);
 
@@ -174,14 +236,15 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
     int transform = PNG_TRANSFORM_IDENTITY;
     if (this->reverseRGB)
         transform |= PNG_TRANSFORM_BGR;
-
+    if (this->swapAlpha)
+        transform |= PNG_TRANSFORM_SWAP_ALPHA;
     png_write_png(png, info, transform, nullptr);
 
     png_destroy_write_struct(&png, &info);
 
     if (byteBufferAndInfo.memoryExhausted)
         return WriteResult::NOT_ENOUGH_MEMORY;
-
+    
     return WriteResult::SUCCESS;
 }
 
@@ -190,6 +253,8 @@ Utf8String PNGWriter::GetWriteResultString(WriteResult result) const
     switch (result)
     {
         case WriteResult::FAILED_TO_START_WRITE: return "Failed to start writing PNG.";
+        case WriteResult::INVALID_CHANNEL_COUNT: return Utf8StringFormatter::Format("Invalid channel count '%1%'.", this->channelCount);
+        case WriteResult::INVALID_BYTES_PER_CHANNEL: return Utf8StringFormatter::Format("Invalid channel count '%1%'.", this->bytesPerChannel);
         case WriteResult::NOT_ENOUGH_MEMORY: return "Not enough memory to write PNG.";
         default: return Utf8String::GetEmpty();
     }

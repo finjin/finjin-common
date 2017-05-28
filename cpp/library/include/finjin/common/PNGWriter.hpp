@@ -32,19 +32,37 @@ namespace Finjin { namespace Common {
         {
             SUCCESS,
             FAILED_TO_START_WRITE,
+            INVALID_CHANNEL_COUNT,
+            INVALID_BYTES_PER_CHANNEL,
             NOT_ENOUGH_MEMORY
         };
 
-        void SetReverseRGB(bool value);
         bool GetReverseRGB() const;
+        void SetReverseRGB(bool value);
+        
+        bool GetSwapAlpha() const;
+        void SetSwapAlpha(bool value);
+        
+        bool GetSRGB() const;
+        void SetSRGB(bool value);
+        
+        uint32_t GetChannelCount() const;
+        void SetChannelCount(uint32_t value);
+        
+        uint32_t GetBytesPerChannel() const;
+        void SetBytesPerChannel(uint32_t value);
 
-        WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer); //Same format in and out (32 bits per pixel)
+        WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer);
         Utf8String GetWriteResultString(WriteResult result) const;
-
+        
         void Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer, Error& error);
 
     private:
         bool reverseRGB; //false = RGB, true = BGR
+        bool swapAlpha;
+        bool isSRGB;
+        uint32_t channelCount;
+        uint32_t bytesPerChannel;
     };
 
 } }
