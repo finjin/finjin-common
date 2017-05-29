@@ -227,6 +227,32 @@ namespace Finjin { namespace Common {
                 std::swap(result[row][column], result[column][row]);
     }
 
+    template <typename Matrix>
+    void GetColumnsFromCRowsMatrixData
+        (
+        Matrix& result,
+        const typename Matrix::Scalar value[Matrix::RowsAtCompileTime][Matrix::ColsAtCompileTime]
+        )
+    {
+        //Destination will have the matrix columns in each of its rows
+
+        FINJIN_COPY_MEMORY(result.data(), value, sizeof(typename Matrix::Scalar) * result.size());
+    }
+
+    template <typename Matrix>
+    void GetRowsFromCRowsMatrixData
+        (
+        Matrix& result,
+        const typename Matrix::Scalar value[Matrix::RowsAtCompileTime][Matrix::ColsAtCompileTime]
+        )
+    {
+        //Destination will have the matrix rows in each of its rows
+
+        FINJIN_COPY_MEMORY(result.data(), value, sizeof(typename Matrix::Scalar) * result.size());
+
+        result.transposeInPlace();
+    }
+
     template <typename Struct, typename Matrix> //Struct will usually be MathMatrix4Values
     void GetColumnOrderMatrixData(Struct& result, const Matrix& value)
     {

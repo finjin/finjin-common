@@ -252,6 +252,24 @@ namespace Finjin { namespace Common {
             NEGATIVE_Z_AXIS
         };
 
+        NumericStructElement()
+        {
+            Reset();
+        }
+
+        NumericStructElement(ElementID elementID, NumericStructElementType numericElementType, size_t gpuPaddedOffset = 0)
+        {
+            this->elementID = elementID;
+            this->arraySize = 1;
+            this->sizeInBytes = NumericStructElementTypeUtilities::GetSimpleTypeSizeInBytes(numericElementType);
+            this->strideInBytes = this->sizeInBytes;
+            this->gpuPaddedOffset = gpuPaddedOffset;
+            this->type = numericElementType;
+            this->nestedStruct = nullptr;
+            this->defaultValue = DefaultValue::NONE;
+            this->packArray = false;
+        }
+
         void Reset()
         {
             this->elementID = ElementID::NONE;

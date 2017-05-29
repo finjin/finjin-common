@@ -95,37 +95,21 @@ namespace Finjin { namespace Common {
     public:
         enum { MAX_USER_PATHS = 9 }; //The number of the above paths that start with "USER_"
 
-        StandardPath(Allocator* allocator = nullptr) : path(allocator), internalDisplayName(allocator), defaultDisplayName(allocator)
+        StandardPath(Allocator* allocator = nullptr);
+
+        void Create(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator = nullptr);
+
+        const Utf8String& GetDisplayName() const;
+
+        enum class CreateDirectoriesResult
         {
-            this->isSystemCreated = false;
-        }
-
-        void Create(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator = nullptr)
-        {
-            this->which = which;
-
-            this->path.Create(allocator);
-
-            this->internalDisplayName.Create(allocator);
-            this->internalDisplayName.assign(_internalDisplayName);
-
-            this->defaultDisplayName.Create(allocator);
-
-            this->isSystemCreated = false;
-        }
-
-        const Utf8String& GetDisplayName() const
-        {
-            return !this->defaultDisplayName.empty() ? this->defaultDisplayName : this->internalDisplayName;
-        }
-
-        bool CreateDirectories() const
-        {
-            if (!this->isSystemCreated && !this->path.empty())
-                return this->path.CreateDirectories();
-            else
-                return false;
-        }
+            SUCCESS,
+            DIRECTORY_EMPTY,
+            SYSTEM_CREATED,
+            SYSTEM_CREATED_DOESNT_EXIST,
+            FAILURE
+        };
+        CreateDirectoriesResult CreateDirectories() const;
 
     public:
         WhichStandardPath which;
@@ -142,6 +126,8 @@ namespace Finjin { namespace Common {
 
         void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);
 
+        const StandardPath* GetBestSavedScreenCapturePath() const;
+        
         template <typename T>
         bool ForEach(T callback, Error& error) const //std::function<bool(const StandardPath&, Error&)>
         {
@@ -220,20 +206,6 @@ namespace Finjin { namespace Common {
             }
 
             return true;
-        }
-
-        const StandardPath* GetBestSavedScreenCapturePath() const
-        {
-            for (auto standardPath : {
-                &this->paths[WhichStandardPath::USER_SAVED_PICTURES_DIRECTORY],
-                &this->paths[WhichStandardPath::USER_PICTURES_DIRECTORY],
-                })
-            {
-                if (!standardPath->path.empty())
-                    return standardPath;
-            }
-
-            return nullptr;
         }
 
         template <typename Index> const StandardPath& operator [] (Index index) const { return this->paths[index]; }
