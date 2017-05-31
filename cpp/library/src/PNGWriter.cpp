@@ -198,12 +198,12 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
 
     auto rows = reinterpret_cast<uint8_t**>(tempAllocator.Allocate(rowPointersSize, FINJIN_CALLER_ARGUMENTS));
     {
-        auto rgbaPixels = static_cast<const uint8_t*>(pixels);
+        auto row = static_cast<const uint8_t*>(pixels);
 
         for (size_t y = 0; y < height; y++)
         {
-            rows[y] = const_cast<uint8_t*>(rgbaPixels);
-            rgbaPixels += rowStride;
+            rows[y] = const_cast<uint8_t*>(row);
+            row += rowStride;
         }
     }
     
