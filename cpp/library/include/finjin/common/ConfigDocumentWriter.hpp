@@ -119,6 +119,41 @@ namespace Finjin { namespace Common {
             Utf8StringView valueView(value);
             return WriteKeyAndValue(key, valueView);
         }
+        
+        template <typename KeyType, typename ValueType>
+        ConfigDocumentWriter& WriteKeyAndValues(const KeyType& key, const ValueType* values, size_t count, bool testForNewline = true)
+        {
+            auto containsNewline = false;
+            if (testForNewline)
+            {
+                for (size_t valueIndex = 0; valueIndex < count; valueIndex++)
+                {
+                    Utf8StringView valueView(values[valueIndex]);
+                    if (valueView.find('\n') != Utf8String::npos)
+                    {
+                        containsNewline = true;
+                        break;
+                    }
+                }
+            }
+            
+            Indent();
+            this->output->WriteString(key);
+            if (containsNewline)
+                this->output->Write("^=");
+            else
+                this->output->Write("=");
+            for (size_t valueIndex = 0; valueIndex < count; valueIndex++)
+            {
+                if (valueIndex > 0)
+                    this->output->WriteString(" ");
+                this->output->WriteString(values[valueIndex]);
+            }
+            this->output->Write("\n");
+            if (containsNewline)
+                this->output->Write("^\n");
+            return *this;
+        }
 
         template <typename StringType>
         ConfigDocumentWriter& WriteLine(const StringType& line)
