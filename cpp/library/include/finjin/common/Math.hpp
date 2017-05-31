@@ -66,9 +66,6 @@ namespace Finjin { namespace Common {
         {
         }
 
-        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
-        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
-
         union
         {
             struct
@@ -96,9 +93,6 @@ namespace Finjin { namespace Common {
             m20(_20), m21(_21), m22(_22)
         {
         }
-
-        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
-        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
 
         union
         {
@@ -130,9 +124,6 @@ namespace Finjin { namespace Common {
             m30(_30), m31(_31), m32(_32), m33(_33)
         {
         }
-
-        float operator() (size_t row, size_t column) const { return this->m[row][column]; }
-        float& operator() (size_t row, size_t column) { return this->m[row][column]; }
 
         union
         {
