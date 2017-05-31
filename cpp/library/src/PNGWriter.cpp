@@ -220,13 +220,11 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
         PNG_FILTER_TYPE_DEFAULT
         );
     
-#ifdef PNG_sRGB_SUPPORTED
     if (this->isSRGB)
     {
         png_set_gAMA(png, info, 1.0);
         png_set_sRGB(png, info, PNG_sRGB_INTENT_SATURATION);
     }
-#endif
 
     png_set_rows(png, info, rows);
 

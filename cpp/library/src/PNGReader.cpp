@@ -270,7 +270,7 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
         png_set_bgr(png);
         reversingRGB = true;
     }
-    
+
     if (colorType == PNG_COLOR_TYPE_RGB_ALPHA && this->swapAlpha)
     {
         //RGBA -> ARGB
@@ -332,11 +332,10 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
 
     //Determine flags
     this->flags = 0;
-#ifdef PNG_COLORSPACE_SUPPORTED
+    
     //From pngread.c, line 1410
     if ((this->format & PNG_FORMAT_FLAG_COLOR) && ((png->colorspace.flags & (PNG_COLORSPACE_HAVE_ENDPOINTS | PNG_COLORSPACE_ENDPOINTS_MATCH_sRGB | PNG_COLORSPACE_INVALID)) == PNG_COLORSPACE_HAVE_ENDPOINTS))
         this->flags |= PNG_IMAGE_FLAG_COLORSPACE_NOT_sRGB;
-#endif
 
     //Cleanup
     png_destroy_read_struct(&png, &info, nullptr);
