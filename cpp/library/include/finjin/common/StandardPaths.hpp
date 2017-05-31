@@ -127,7 +127,7 @@ namespace Finjin { namespace Common {
         void Create(const Utf8String& applicationName, void* applicationHandle, Error& error);
 
         const StandardPath* GetBestSavedScreenCapturePath() const;
-        
+
         template <typename T>
         bool ForEach(T callback, Error& error) const //std::function<bool(const StandardPath&, Error&)>
         {

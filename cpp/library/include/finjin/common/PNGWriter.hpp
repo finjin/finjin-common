@@ -39,22 +39,22 @@ namespace Finjin { namespace Common {
 
         bool GetReverseRGB() const; //Transforms output data on Write
         void SetReverseRGB(bool value);
-        
+
         bool GetSRGB() const; //Information about input data
         void SetSRGB(bool value);
-        
+
         bool GetSwapAlpha() const; //Transforms output data on Write
         void SetSwapAlpha(bool value);
-        
+
         uint32_t GetChannelCount() const; //Information about input data
         void SetChannelCount(uint32_t value);
-        
+
         uint32_t GetBytesPerChannel() const; //Information about input data
         void SetBytesPerChannel(uint32_t value);
 
         WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer);
         Utf8String GetWriteResultString(WriteResult result) const;
-        
+
         void Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer, Error& error);
 
     private:

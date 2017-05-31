@@ -48,7 +48,7 @@ namespace Finjin { namespace Common {
 
         bool GetReverseRGB() const; //Transforms input data on Read
         void SetReverseRGB(bool value);
-        
+
         bool GetAddAlpha() const; //Transforms input data on Read
         void SetAddAlpha(bool value);
 

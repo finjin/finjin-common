@@ -288,7 +288,7 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
         colorType |= PNG_COLOR_MASK_ALPHA;
         this->channelCount++;
     }
-    
+
     this->bytesPerChannel = bitDepth / 8;
 
     png_read_update_info(png, info);
@@ -332,7 +332,7 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
 
     //Determine flags
     this->flags = 0;
-    
+
     //From pngread.c, line 1410
     if ((this->format & PNG_FORMAT_FLAG_COLOR) && ((png->colorspace.flags & (PNG_COLORSPACE_HAVE_ENDPOINTS | PNG_COLORSPACE_ENDPOINTS_MATCH_sRGB | PNG_COLORSPACE_INVALID)) == PNG_COLORSPACE_HAVE_ENDPOINTS))
         this->flags |= PNG_IMAGE_FLAG_COLORSPACE_NOT_sRGB;

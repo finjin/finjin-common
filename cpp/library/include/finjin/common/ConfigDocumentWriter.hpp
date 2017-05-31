@@ -99,7 +99,7 @@ namespace Finjin { namespace Common {
         ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const ValueType& _value, bool testForNewline = true)
         {
             Utf8StringView value(_value);
-            
+
             auto containsNewline = false;
             if (testForNewline)
                 containsNewline = value.find('\n') != Utf8String::npos;
@@ -133,7 +133,7 @@ namespace Finjin { namespace Common {
                     }
                 }
             }
-            
+
             Indent();
             this->output->WriteString(key);
             if (containsNewline)

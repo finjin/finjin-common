@@ -29,14 +29,14 @@ StandardPath::StandardPath(Allocator* allocator) : path(allocator), internalDisp
 void StandardPath::Create(WhichStandardPath which, const char* _internalDisplayName, Allocator* allocator)
 {
     this->which = which;
-    
+
     this->path.Create(allocator);
-    
+
     this->internalDisplayName.Create(allocator);
     this->internalDisplayName.assign(_internalDisplayName);
-    
+
     this->defaultDisplayName.Create(allocator);
-    
+
     this->isSystemCreated = false;
 }
 
@@ -49,10 +49,10 @@ StandardPath::CreateDirectoriesResult StandardPath::CreateDirectories() const
 {
     if (this->path.empty())
         return CreateDirectoriesResult::DIRECTORY_EMPTY;
-    
+
     if (this->isSystemCreated)
         return this->path.Exists() ? CreateDirectoriesResult::SYSTEM_CREATED : CreateDirectoriesResult::SYSTEM_CREATED_DOESNT_EXIST;
-    
+
     return this->path.CreateDirectories() ? CreateDirectoriesResult::SUCCESS : CreateDirectoriesResult::FAILURE;
 }
 
@@ -84,6 +84,6 @@ const StandardPath* StandardPaths::GetBestSavedScreenCapturePath() const
         if (!standardPath->path.empty())
             return standardPath;
     }
-    
+
     return nullptr;
 }

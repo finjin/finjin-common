@@ -141,10 +141,10 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
         case 4: format = PNG_COLOR_TYPE_RGB_ALPHA; break;
         default: return INVALID_CHANNEL_COUNT;
     }
-    
+
     if (this->bytesPerChannel != 1 && this->bytesPerChannel != 2)
         return INVALID_BYTES_PER_CHANNEL;
-    
+
     auto png = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, PngWriteErrorHandler, PngWriteWarningHandler);
     if (png == nullptr)
         return WriteResult::FAILED_TO_START_WRITE;
@@ -206,7 +206,7 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
             row += rowStride;
         }
     }
-    
+
     png_set_IHDR
         (
         png,
@@ -219,7 +219,7 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
         PNG_COMPRESSION_TYPE_DEFAULT,
         PNG_FILTER_TYPE_DEFAULT
         );
-    
+
     if (this->isSRGB)
     {
         png_set_gAMA(png, info, 1.0);
@@ -242,7 +242,7 @@ PNGWriter::WriteResult PNGWriter::Write(const void* pixels, uint32_t width, uint
 
     if (byteBufferAndInfo.memoryExhausted)
         return WriteResult::NOT_ENOUGH_MEMORY;
-    
+
     return WriteResult::SUCCESS;
 }
 
