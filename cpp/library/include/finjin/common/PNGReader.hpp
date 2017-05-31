@@ -43,13 +43,16 @@ namespace Finjin { namespace Common {
         PNGReader();
         ~PNGReader();
 
-        bool GetConvert16bitTo8bit() const;
+        bool GetConvert16bitTo8bit() const; //Transforms input data on Read
         void SetConvert16bitTo8bit(bool value);
 
-        bool GetAddAlpha() const;
+        bool GetReverseRGB() const; //Transforms input data on Read
+        void SetReverseRGB(bool value);
+        
+        bool GetAddAlpha() const; //Transforms input data on Read
         void SetAddAlpha(bool value);
 
-        bool GetSwapAlpha() const;
+        bool GetSwapAlpha() const; //Transforms input data on Read
         void SetSwapAlpha(bool value);
 
         uint32_t GetPixelFormat() const;
@@ -87,6 +90,7 @@ namespace Finjin { namespace Common {
         uint32_t flags;
 
         bool convert16bitTo8bit;
+        bool reverseRGB; //false = RGB, true = BGR
         bool addAlpha;
         bool swapAlpha;
     };

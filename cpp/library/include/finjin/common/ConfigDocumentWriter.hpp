@@ -96,9 +96,13 @@ namespace Finjin { namespace Common {
         ConfigDocumentWriter& WriteScopeEnd();
 
         template <typename KeyType, typename ValueType>
-        ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const ValueType& value)
+        ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const ValueType& _value, bool testForNewline = true)
         {
-            auto containsNewline = value.find('\n') != Utf8String::npos;
+            Utf8StringView value(_value);
+            
+            auto containsNewline = false;
+            if (testForNewline)
+                containsNewline = value.find('\n') != Utf8String::npos;
 
             Indent();
             this->output->WriteString(key);
@@ -113,13 +117,6 @@ namespace Finjin { namespace Common {
             return *this;
         }
 
-        template <typename KeyType>
-        ConfigDocumentWriter& WriteKeyAndValue(const KeyType& key, const char* value)
-        {
-            Utf8StringView valueView(value);
-            return WriteKeyAndValue(key, valueView);
-        }
-        
         template <typename KeyType, typename ValueType>
         ConfigDocumentWriter& WriteKeyAndValues(const KeyType& key, const ValueType* values, size_t count, bool testForNewline = true)
         {

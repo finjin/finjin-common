@@ -40,11 +40,11 @@ namespace Finjin { namespace Common {
         bool GetReverseRGB() const; //Transforms output data on Write
         void SetReverseRGB(bool value);
         
-        bool GetSwapAlpha() const; //Transforms output data on Write
-        void SetSwapAlpha(bool value);
-        
         bool GetSRGB() const; //Information about input data
         void SetSRGB(bool value);
+        
+        bool GetSwapAlpha() const; //Transforms output data on Write
+        void SetSwapAlpha(bool value);
         
         uint32_t GetChannelCount() const; //Information about input data
         void SetChannelCount(uint32_t value);
@@ -59,8 +59,8 @@ namespace Finjin { namespace Common {
 
     private:
         bool reverseRGB; //false = RGB, true = BGR
-        bool swapAlpha;
         bool isSRGB;
+        bool swapAlpha;
         uint32_t channelCount;
         uint32_t bytesPerChannel;
     };

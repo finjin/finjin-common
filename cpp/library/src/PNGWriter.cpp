@@ -90,16 +90,6 @@ void PNGWriter::SetReverseRGB(bool value)
     this->reverseRGB = value;
 }
 
-bool PNGWriter::GetSwapAlpha() const
-{
-    return this->swapAlpha;
-}
-
-void PNGWriter::SetSwapAlpha(bool value)
-{
-    this->swapAlpha = value;
-}
-
 bool PNGWriter::GetSRGB() const
 {
     return this->isSRGB;
@@ -108,6 +98,16 @@ bool PNGWriter::GetSRGB() const
 void PNGWriter::SetSRGB(bool value)
 {
     this->isSRGB = value;
+}
+
+bool PNGWriter::GetSwapAlpha() const
+{
+    return this->swapAlpha;
+}
+
+void PNGWriter::SetSwapAlpha(bool value)
+{
+    this->swapAlpha = value;
 }
 
 uint32_t PNGWriter::GetChannelCount() const

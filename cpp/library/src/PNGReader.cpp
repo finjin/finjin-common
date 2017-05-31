@@ -80,6 +80,7 @@ PNGReader::PNGReader()
 
     this->convert16bitTo8bit = false;
     this->addAlpha = false;
+    this->reverseRGB = false;
     this->swapAlpha = false;
 }
 
@@ -95,6 +96,16 @@ bool PNGReader::GetConvert16bitTo8bit() const
 void PNGReader::SetConvert16bitTo8bit(bool value)
 {
     this->convert16bitTo8bit = value;
+}
+
+bool PNGReader::GetReverseRGB() const
+{
+    return this->reverseRGB;
+}
+
+void PNGReader::SetReverseRGB(bool value)
+{
+    this->reverseRGB = value;
 }
 
 bool PNGReader::GetAddAlpha() const
@@ -252,6 +263,14 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
         }
     }
 
+    auto reversingRGB = false;
+    if (colorType == PNG_COLOR_TYPE_RGB && this->reverseRGB)
+    {
+        //RGB->BGR
+        png_set_bgr(png);
+        reversingRGB = true;
+    }
+    
     if (colorType == PNG_COLOR_TYPE_RGB_ALPHA && this->swapAlpha)
     {
         //RGBA -> ARGB
@@ -269,7 +288,7 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
         colorType |= PNG_COLOR_MASK_ALPHA;
         this->channelCount++;
     }
-
+    
     this->bytesPerChannel = bitDepth / 8;
 
     png_read_update_info(png, info);
@@ -308,6 +327,8 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
         this->format |= PNG_FORMAT_FLAG_AFIRST;
     if (bitDepth == 16)
         this->format |= PNG_FORMAT_FLAG_LINEAR;
+    if (reversingRGB)
+        this->format |= PNG_FORMAT_FLAG_BGR;
 
     //Determine flags
     this->flags = 0;
