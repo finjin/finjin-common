@@ -160,7 +160,7 @@ struct ZIPReader::Impl
         uint8_t buffer[CommonConstants::FILE_TEMP_BUFFER_SIZE];
         while (true)
         {
-            PartialInflate(workingFile, buffer, bytesDecompressed, sizeof(buffer));
+            PartialInflate(workingFile, buffer, bytesDecompressed, std::min(sizeof(buffer), byteCount));
             bytesSkipped += bytesDecompressed;
             if (bytesDecompressed < sizeof(buffer))
                 break;

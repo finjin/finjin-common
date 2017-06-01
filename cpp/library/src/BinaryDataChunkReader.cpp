@@ -414,7 +414,7 @@ void BinaryDataChunkReader::Skip(DataHeader& dataHeader, Error& error)
         dataHeader.currentOffset += amountSkipped;
 
         if (dataHeader.currentOffset != dataHeader.length)
-            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Requested to skip '%1%' bytes but was only able to skip '%2%'.", amountToSkip, amountSkipped));
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Requested to skip '%1%' bytes but actually skipped '%2%'.", amountToSkip, amountSkipped));
     }
 }
 
