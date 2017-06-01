@@ -279,18 +279,6 @@ const LogicalCpu* Thread::GetLogicalCpu() const
     return impl->logicalCpu.IsSet() ? &impl->logicalCpu.value : nullptr;
 }
 
-ThreadHandle Thread::GetNativeHandle()
-{
-    if (impl == nullptr)
-        return 0;
-
-#if FINJIN_THREAD_USE_PTHREAD || FINJIN_TARGET_PLATFORM_IS_WINDOWS
-    return impl->t;
-#else
-    return impl->t.native_handle();
-#endif
-}
-
 Thread::Impl* Thread::GetImpl()
 {
     return impl;

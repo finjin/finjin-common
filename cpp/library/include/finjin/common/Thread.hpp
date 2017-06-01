@@ -44,8 +44,6 @@ namespace Finjin { namespace Common {
 
         const LogicalCpu* GetLogicalCpu() const;
 
-        ThreadHandle GetNativeHandle();
-
         struct Impl;
         Impl* GetImpl();
 

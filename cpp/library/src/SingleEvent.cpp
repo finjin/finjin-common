@@ -75,8 +75,3 @@ void SingleEvent::WaitIf(std::function<bool()> pred)
         impl->flag.store(false);
     }
 }
-
-void* SingleEvent::GetNativeHandle()
-{
-    return impl->condition.native_handle();
-}

@@ -35,8 +35,6 @@ namespace Finjin { namespace Common {
         void Wait();
         void WaitIf(std::function<bool()> pred);
 
-        void* GetNativeHandle();
-
     private:
         struct Impl;
         Impl* impl;
