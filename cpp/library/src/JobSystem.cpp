@@ -62,7 +62,7 @@ struct JobSystem::Impl : public AllocatedClass
 {
     Impl(Allocator* allocator) : AllocatedClass(allocator)
     {
-        this->lastProcessedJobGroupID = 0;
+        this->currentProcessingJobGroupID = 0;
         this->nextJobGroupID = 0;
 
         this->currentPublicJobThreadIndex = 0;
@@ -186,8 +186,8 @@ struct JobSystem::Impl : public AllocatedClass
         size_t reservedCount;
     };
 
-    volatile size_t lastProcessedJobGroupID;
-    volatile size_t nextJobGroupID;
+    std::atomic_size_t currentProcessingJobGroupID;
+    std::atomic_size_t nextJobGroupID;
 
     std::atomic_size_t currentPublicJobThreadIndex;
     std::atomic_size_t currentReservedJobThreadIndex;
@@ -382,7 +382,7 @@ void JobSystem::Create(const Settings& settings, Error& error)
 
     impl->defaultActiveFiber.InitializeDefaultFiber(settings.allocator, "job-system-default-fiber", &impl->defaultFiberScheduler);
 
-    impl->lastProcessedJobGroupID = 0;
+    impl->currentProcessingJobGroupID = 0;
     impl->nextJobGroupID = 0;
 
     impl->currentPublicJobThreadIndex = 0;
@@ -442,7 +442,7 @@ void JobSystem::Start(bool validate, Error& error)
         {
             auto& thread = impl->threads[threadIndex];
 
-            thread.SetMaxJobGroupID(impl->lastProcessedJobGroupID);
+            thread.SetMaxJobGroupID(impl->currentProcessingJobGroupID);
 
             thread.Start(error);
             if (error)
@@ -493,7 +493,7 @@ size_t JobSystem::StartGroupFromMainThread()
 
     if (JobThread::GetActiveFiber() == &impl->defaultActiveFiber)
     {
-        while (impl->lastProcessedJobGroupID != impl->nextJobGroupID)
+        while (impl->currentProcessingJobGroupID != impl->nextJobGroupID)
         {
             //A group has already been started. Wait for it to finish (it will finish in a non-main thread)
         }
@@ -507,16 +507,16 @@ size_t JobSystem::StartGroupFromMainThread()
 void JobSystem::FinishGroupFromNonMainThread()
 {
     assert(JobThread::GetActiveFiber() != &impl->defaultActiveFiber); //Can only be called from thread OTHER THAN main thread
-    assert(impl->lastProcessedJobGroupID == impl->nextJobGroupID - 1); //A group should have already been started
+    assert(impl->currentProcessingJobGroupID == impl->nextJobGroupID - 1); //A group should have already been started
 
     if (JobThread::GetActiveFiber() != &impl->defaultActiveFiber)
     {
-        if (impl->lastProcessedJobGroupID == impl->nextJobGroupID - 1)
+        if (impl->currentProcessingJobGroupID == impl->nextJobGroupID - 1)
         {
             for (auto& thread : impl->threads)
                 thread.SetMaxJobGroupID(impl->nextJobGroupID);
 
-            impl->lastProcessedJobGroupID = impl->nextJobGroupID;
+            impl->currentProcessingJobGroupID.store(impl->nextJobGroupID);
         }
         else
         {
@@ -524,7 +524,7 @@ void JobSystem::FinishGroupFromNonMainThread()
             for (auto& thread : impl->threads)
                 thread.SetMaxJobGroupID(0);
 
-            impl->lastProcessedJobGroupID = 0;
+            impl->currentProcessingJobGroupID = 0;
             impl->nextJobGroupID = 0;
         }
     }
@@ -542,7 +542,7 @@ void JobSystem::Stop()
         for (auto& thread : impl->threads)
             thread.Stop();
 
-        impl->lastProcessedJobGroupID = 0;
+        impl->currentProcessingJobGroupID = 0;
         impl->nextJobGroupID = 0;
 
         impl->currentPublicJobThreadIndex = 0;

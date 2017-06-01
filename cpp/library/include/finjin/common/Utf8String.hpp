@@ -695,10 +695,10 @@ namespace Finjin { namespace Common {
     /**
      * Finds all the null terminated strings within the specified text
      * @param text [in] - The text to parse. It is assumed to have a double null terminator at the end
-     * @param items [out] - The output collection into which parsed items are placed
+     * @param handler [in] - Callback called for each null terminated string
      */
-    template <class Collection>
-    void ParseNullTerminatedStrings(const char* text, Collection& items)
+    template <typename Handler> //std::function<ValueOrError<bool>(const char*)> handler
+    ValueOrError<bool> ParseNullTerminatedStrings(const char* text, Handler handler)
     {
         size_t offset = 0;
         size_t foundAt;
@@ -713,12 +713,16 @@ namespace Finjin { namespace Common {
             if (text[offset] == 0 && text[foundAt] == 0)
                 break;
 
-            //Add the item
-            items.push_back(&text[offset]);
-
+            //Handle the item
+            auto handlerResult = handler(&text[offset]);
+            if (handlerResult.HasErrorOrValue(false))
+                return handlerResult;
+            
             //Update offset
             offset = foundAt + 1;
         }
+        
+        return true;
     }
 
     template <typename ToSplit, typename Handler> //std::function<ValueOrError<bool>(Utf8StringView&)> handler
