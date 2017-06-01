@@ -408,9 +408,9 @@ namespace Finjin { namespace Common {
     template <> inline double RoundToDouble(float value) { return value; }
     template <> inline double RoundToDouble(double value) { return value; }
 
-#if defined(FINJIN_EXPORTER)    
+#if defined(FINJIN_EXPORTER)
     inline int RoundToInt(double value) { return static_cast<int>(value + .5); }
-#else    
+#else
     template <typename T = int> inline T RoundToInt(double value) { return static_cast<T>(value + .5); }
 #endif
     inline int32_t RoundToInt32(double value) { return static_cast<int32_t>(value + .5); }
