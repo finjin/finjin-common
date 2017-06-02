@@ -82,7 +82,7 @@ namespace Finjin { namespace Common {
         //On Android 6 (as tested on Nexus 6): /data/user/(userid)/(package name in AndroidManifest.xml)/cache
         //On Linux (as tested on Ubuntu 15.x): /home/(username)/(applicationName passed to Initialize() or application executable name)/temp
         //On macOS: /var/folders/(random numbers)/(applicationName passed to Initialize() or application executable name)
-        //On iOS: /private/var/mobile/Containers/Data/Application/(application UUID)/tmp/(application name in info.plist)
+        //On iOS: /private/var/mobile/Containers/Data/Application/(application UUID)/tmp
         USER_APPLICATION_TEMPORARY_DIRECTORY,
 
         WORKING_DIRECTORY,

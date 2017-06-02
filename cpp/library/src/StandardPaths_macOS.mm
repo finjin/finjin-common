@@ -122,29 +122,43 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
         }
     }
 
-    if (GetSystemDirectory(this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY], NSApplicationSupportDirectory, false).HasError())
     {
-        FINJIN_SET_ERROR(error, "Failed to get user application support directory.");
-        return;
-    }
-    if ((this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY].path /= bestApplicationName).HasError())
-    {
-        FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
-        return;
+        auto& standardPath = this->paths[WhichStandardPath::USER_APPLICATION_SETTINGS_DIRECTORY];
+        if (GetSystemDirectory(standardPath, NSApplicationSupportDirectory, false).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to get user application support directory.");
+            return;
+        }
+        if ((standardPath.path /= bestApplicationName).HasError())
+        {
+            FINJIN_SET_ERROR(error, "Failed to append application name to user application settings directory.");
+            return;
+        }
+        if (!standardPath.path.IsDirectory())
+        {
+            if (!standardPath.path.CreateDirectories())
+                standardPath.path.clear();
+        }
     }
 
     auto tempDirectory = NSTemporaryDirectory();
     if (tempDirectory != nullptr)
     {
-        if (this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path.assign(tempDirectory.UTF8String).HasError())
+        auto& standardPath = this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY];
+        if (standardPath.path.assign(tempDirectory.UTF8String).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to get assign temporary directory.");
             return;
         }
-        if ((this->paths[WhichStandardPath::USER_APPLICATION_TEMPORARY_DIRECTORY].path /= bestApplicationName).HasError())
+        if ((standardPath.path /= bestApplicationName).HasError())
         {
             FINJIN_SET_ERROR(error, "Failed to append application name to temporary directory.");
             return;
+        }
+        if (!standardPath.path.IsDirectory())
+        {
+            if (!standardPath.path.CreateDirectories())
+                standardPath.path.clear();
         }
     }
 
