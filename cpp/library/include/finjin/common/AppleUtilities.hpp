@@ -22,6 +22,9 @@
 #include "finjin/common/Path.hpp"
 #if FINJIN_APPLE_OBJCPP_UTILITIES //Define this before including AppleUtilites.hpp
     #import <Foundation/NSPathUtilities.h>
+    #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
+        #import <Foundation/NSGeometry.h>
+    #endif
 #endif
 
 
@@ -37,6 +40,10 @@ namespace Finjin { namespace Common {
 
     #if FINJIN_APPLE_OBJCPP_UTILITIES
         static ValueOrError<void> GetSystemDirectory(Path& path, bool& isSystemCreated, NSSearchPathDirectory which, bool tryCreateIfNotPresent = true);
+        
+        #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
+            static void PositionWindowRect(NSRect& windowRect, const NSRect& screenRect, CGFloat defaultCoordinate);
+        #endif
     #endif
 
         static size_t GetVolumeIDHash(const Path& path);

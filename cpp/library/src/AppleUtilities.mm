@@ -78,6 +78,18 @@ ValueOrError<void> AppleUtilities::GetSystemDirectory(Path& path, bool& isSystem
     return ValueOrError<void>();
 }
 
+#if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
+void AppleUtilities::PositionWindowRect(NSRect& windowRect, const NSRect& screenRect, CGFloat defaultCoordinate)
+{
+    auto defaultWindowX = screenRect.origin.x + screenRect.size.width / 2 - windowRect.size.width / 2;
+    auto defaultWindowY = screenRect.origin.y + screenRect.size.height / 2 - windowRect.size.height / 2;
+    if (windowRect.origin.x == defaultCoordinate)
+        windowRect.origin.x = defaultWindowX;
+    if (windowRect.origin.y == defaultCoordinate)
+        windowRect.origin.y = defaultWindowY;
+}
+#endif
+
 size_t AppleUtilities::GetVolumeIDHash(const Path& path)
 {
     auto nsstrPath = [NSString stringWithUTF8String:path.c_str()];
