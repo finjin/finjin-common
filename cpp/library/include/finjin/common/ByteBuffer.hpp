@@ -54,7 +54,7 @@ namespace Finjin { namespace Common {
 
         size_t resize(size_t newSize)
         {
-            if (this->resizeStrategy == MemoryResizeStrategy::REALLOCATE && full())
+            if (this->resizeStrategy == MemoryResizeStrategy::REALLOCATE && newSize > this->maxCount)
                 Reallocate(newSize);
 
             this->count = std::min(newSize, this->maxCount);
@@ -73,7 +73,7 @@ namespace Finjin { namespace Common {
         ValueOrError<void> assign(const uint8_t* otherItems, size_t otherCount)
         {
             if (this->resizeStrategy == MemoryResizeStrategy::LIMIT || otherCount <= this->maxCount)
-                this->count = std::min(max_size(), otherCount);
+                this->count = std::min(this->maxCount, otherCount);
             else
             {
                 Reallocate(otherCount);
@@ -210,9 +210,7 @@ namespace Finjin { namespace Common {
             assert(iter >= begin());
             assert(iter < end());
 
-            size_t itemIndex = iter - begin();
-
-            for (size_t i = itemIndex; i < this->count - 1; i++)
+            for (size_t i = iter - begin(); i < this->count - 1; i++)
                 this->items[i] = this->items[i + 1];
             this->count--;
 

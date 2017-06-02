@@ -30,9 +30,9 @@ namespace Finjin { namespace Common {
     {
         using Index = uint32_t;
 
-        enum { NAME_MAX_LENGTH = ChunkNameConstants::NAME_MAX_LENGTH };
-        enum { ID_MAX_LENGTH = ChunkNameConstants::ID_MAX_LENGTH };
-        enum { MAX_LENGTH = ChunkNameConstants::MAX_LENGTH };
+        enum { NAME_MAX_LENGTH = CommonConstants::ChunkName::NAME_MAX_LENGTH };
+        enum { ID_MAX_LENGTH = CommonConstants::ChunkName::ID_MAX_LENGTH };
+        enum { MAX_LENGTH = CommonConstants::ChunkName::MAX_LENGTH };
 
         ChunkName();
         ChunkName(const char* name);

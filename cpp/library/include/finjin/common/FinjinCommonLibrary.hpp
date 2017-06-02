@@ -287,24 +287,6 @@ namespace Finjin { namespace Common {
     class UserInformation;
     class VirtualFileSystem;
 
-    typedef int16_t Int16BigEndian;
-    typedef int16_t Int16LittleEndian;
-
-    typedef int32_t Int32BigEndian;
-    typedef int32_t Int32LittleEndian;
-
-    typedef int64_t Int64BigEndian;
-    typedef int64_t Int64LittleEndian;
-
-    typedef uint16_t UInt16BigEndian;
-    typedef uint16_t UInt16LittleEndian;
-
-    typedef uint32_t UInt32BigEndian;
-    typedef uint32_t UInt32LittleEndian;
-
-    typedef uint64_t UInt64BigEndian;
-    typedef uint64_t UInt64LittleEndian;
-
     struct CommonConstants
     {
         enum { MAX_FIBERS = 128 };
@@ -323,19 +305,19 @@ namespace Finjin { namespace Common {
         enum { MAX_DATA_CHUNK_DEPTH = 16 };
 
         enum { MAX_ERROR_CALL_STACK_DEPTH = 50 };
+
+        struct ChunkName
+        {
+            enum { NAME_MAX_LENGTH = 43 };
+            enum { ID_MAX_LENGTH = 36 };
+            enum { MAX_LENGTH = NAME_MAX_LENGTH + 1 + ID_MAX_LENGTH };
+        };
     };
 
     enum class MemoryResizeStrategy
     {
         LIMIT,
         REALLOCATE
-    };
-
-    struct ChunkNameConstants
-    {
-        enum { NAME_MAX_LENGTH = 43 };
-        enum { ID_MAX_LENGTH = 36 };
-        enum { MAX_LENGTH = NAME_MAX_LENGTH + 1 + ID_MAX_LENGTH };
     };
 
 } }

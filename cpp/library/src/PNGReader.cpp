@@ -243,7 +243,8 @@ PNGReader::ReadResult PNGReader::ReadImage(ByteBufferReader& reader, ByteBuffer&
     {
         //Convert paletted to RGB
         png_set_palette_to_rgb(png);
-        colorType = PNG_COLOR_TYPE_RGB;
+        colorType = PNG_COLOR_TYPE_RGB;        
+        this->channelCount = 3;
     }
 
     if (colorType == PNG_COLOR_TYPE_GRAY && bitDepth < 8)

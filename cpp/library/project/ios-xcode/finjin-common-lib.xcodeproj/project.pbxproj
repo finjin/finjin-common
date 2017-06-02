@@ -1434,7 +1434,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/cpp-netlib",
 					"/Users/derek/finjin-3rd-party/cpp/nowide_standalone",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1483,7 +1483,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/cpp-netlib",
 					"/Users/derek/finjin-3rd-party/cpp/nowide_standalone",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1511,7 +1511,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/lpng",
 					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1539,7 +1539,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/lpng",
 					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

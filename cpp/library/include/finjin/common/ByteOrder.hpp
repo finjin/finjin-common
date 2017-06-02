@@ -23,6 +23,27 @@ namespace Finjin { namespace Common {
         BIG
     };
 
+    //These are used in scenarios where a binary file is being read and values are in a known order, 
+    //regardless of the system byte ordering
+
+    typedef int16_t Int16BigEndian;
+    typedef int16_t Int16LittleEndian;
+
+    typedef int32_t Int32BigEndian;
+    typedef int32_t Int32LittleEndian;
+
+    typedef int64_t Int64BigEndian;
+    typedef int64_t Int64LittleEndian;
+
+    typedef uint16_t UInt16BigEndian;
+    typedef uint16_t UInt16LittleEndian;
+
+    typedef uint32_t UInt32BigEndian;
+    typedef uint32_t UInt32LittleEndian;
+
+    typedef uint64_t UInt64BigEndian;
+    typedef uint64_t UInt64LittleEndian;
+
 } }
 
 

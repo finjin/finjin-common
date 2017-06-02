@@ -225,9 +225,7 @@ namespace Finjin { namespace Common {
             assert(iter >= begin());
             assert(iter < end());
 
-            size_t itemIndex = iter - begin();
-
-            for (size_t i = itemIndex; i < this->count - 1; i++)
+            for (size_t i = iter - begin(); i < this->count - 1; i++)
                 _Get(i) = std::move(_Get(i + 1));
             this->count--;
         }

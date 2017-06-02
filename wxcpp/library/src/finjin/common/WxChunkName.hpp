@@ -27,9 +27,9 @@ namespace Finjin { namespace Common {
     {
         typedef uint32_t Index;
 
-        enum { NAME_MAX_LENGTH = Finjin::Common::ChunkNameConstants::NAME_MAX_LENGTH };
-        enum { ID_MAX_LENGTH = Finjin::Common::ChunkNameConstants::ID_MAX_LENGTH };
-        enum { MAX_LENGTH = Finjin::Common::ChunkNameConstants::MAX_LENGTH };
+        enum { NAME_MAX_LENGTH = Finjin::Common::CommonConstants::ChunkName::NAME_MAX_LENGTH };
+        enum { ID_MAX_LENGTH = Finjin::Common::CommonConstants::ChunkName::ID_MAX_LENGTH };
+        enum { MAX_LENGTH = Finjin::Common::CommonConstants::ChunkName::MAX_LENGTH };
 
     #if wxUSE_UNICODE
         WxChunkName(const char* name);

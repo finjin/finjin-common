@@ -717,11 +717,11 @@ namespace Finjin { namespace Common {
             auto handlerResult = handler(&text[offset]);
             if (handlerResult.HasErrorOrValue(false))
                 return handlerResult;
-            
+
             //Update offset
             offset = foundAt + 1;
         }
-        
+
         return true;
     }
 

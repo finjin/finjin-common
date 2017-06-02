@@ -15,6 +15,7 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/ByteOrder.hpp"
 #include "finjin/common/Utf8String.hpp"
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
