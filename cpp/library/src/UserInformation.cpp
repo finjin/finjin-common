@@ -35,8 +35,10 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-UserInformation::UserInformation()
+UserInformation::UserInformation(Allocator* allocator)
 {
+    this->name.value.SetAllocator(allocator);
+    
     this->initializationStatus.SetStatus(OperationStatus::STARTED);
 
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
@@ -62,7 +64,8 @@ UserInformation::UserInformation()
                 else
                 {
                     auto userName = safe_cast<Platform::String^>(obj);
-                    this->name = userName->Data();
+                    if (!this->name.value.assign(userName->Data()).HasError())
+                        this->name.isSet = true;
 
                     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
                 }
@@ -74,7 +77,10 @@ UserInformation::UserInformation()
     wchar_t userName[maxUserName];
     DWORD userNameLength = maxUserName;
     if (GetUserNameW(userName, &userNameLength))
-        this->name = userName;
+    {
+        if (!this->name.value.assign(userName).HasError())
+            this->name.isSet = true;
+    }
     else
         this->name = Utf8String::GetEmpty(); //Need this for value to be "set"
 
@@ -83,9 +89,12 @@ UserInformation::UserInformation()
     uid_t uid = geteuid();
     struct passwd* pw = getpwuid(uid);
     if (pw != nullptr)
-        this->name = pw->pw_name;
+    {
+        if (!this->name.value.assign(pw->pw_name).HasError())
+            this->name.isSet = true;
+    }
     else
-        this->name = ""; //Need this for value to be "set"
+        this->name = Utf8String::GetEmpty(); //Need this for value to be "set"
 
     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
 #endif

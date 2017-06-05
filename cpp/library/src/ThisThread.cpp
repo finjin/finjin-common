@@ -86,8 +86,8 @@ void ThisThread::SleepFor(TimeDuration duration)
     Sleep(std::max((DWORD)1, static_cast<DWORD>(duration.ToMilliseconds())));
 #elif FINJIN_TARGET_PLATFORM_IS_APPLE || FINJIN_TARGET_PLATFORM_IS_LINUX
     auto nanos = duration.ToNanoseconds();
-    auto seconds = nanos / 1000000000ll;
-    nanos %= 1000000000ll;
+    auto seconds = nanos / 1000000000ull;
+    nanos %= 1000000000ull;
 
     timespec ts;
     ts.tv_sec = static_cast<time_t>(seconds);

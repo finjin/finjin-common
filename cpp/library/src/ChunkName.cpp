@@ -401,24 +401,3 @@ Utf8String ParsedChunkPropertyName::ToString() const
     }
     return s;
 }
-
-//DataChunkBlobTextFormatUtilities
-const char* DataChunkBlobTextFormatUtilities::ToString(DataChunkBlobTextFormat value)
-{
-    switch (value)
-    {
-        case DataChunkBlobTextFormat::BYTE_ARRAY: return "byte-array";
-        case DataChunkBlobTextFormat::BASE64: return "base64";
-        default: return FINJIN_ENUM_UNKNOWN_STRING;
-    }
-}
-
-DataChunkBlobTextFormat DataChunkBlobTextFormatUtilities::Parse(const Utf8String& value)
-{
-    if (value == "byte-array")
-        return DataChunkBlobTextFormat::BYTE_ARRAY;
-    else if (value == "base64")
-        return DataChunkBlobTextFormat::BASE64;
-    else
-        return DataChunkBlobTextFormat::BYTE_ARRAY;
-}

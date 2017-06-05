@@ -368,8 +368,8 @@
         <itemPath>../../include/finjin/common/MemoryArena.hpp</itemPath>
         <itemPath>../../src/MemorySize.cpp</itemPath>
         <itemPath>../../include/finjin/common/MemorySize.hpp</itemPath>
-        <itemPath>../../src/PassthroughSystemAllocator.cpp</itemPath>
-        <itemPath>../../include/finjin/common/PassthroughSystemAllocator.hpp</itemPath>
+        <itemPath>../../src/SystemAllocator.cpp</itemPath>
+        <itemPath>../../include/finjin/common/SystemAllocator.hpp</itemPath>
         <itemPath>../../include/finjin/common/TaggedMemoryBlockAllocator.hpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f9" displayName="string" projectFiles="true">
@@ -910,7 +910,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
+      <item path="../../include/finjin/common/SystemAllocator.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1340,7 +1340,7 @@
       </item>
       <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/PassthroughSystemAllocator.cpp"
+      <item path="../../src/SystemAllocator.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -2542,7 +2542,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/PassthroughSystemAllocator.hpp"
+      <item path="../../include/finjin/common/SystemAllocator.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2972,7 +2972,7 @@
       </item>
       <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/PassthroughSystemAllocator.cpp"
+      <item path="../../src/SystemAllocator.cpp"
             ex="false"
             tool="1"
             flavor2="0">

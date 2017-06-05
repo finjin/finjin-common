@@ -26,7 +26,7 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API DomainInformation
     {
     public:
-        DomainInformation();
+        DomainInformation(Allocator* allocator);
         ~DomainInformation();
 
         const Setting<Utf8String>& GetHostName() const;

@@ -19,7 +19,7 @@
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #include <Windows.h>
 #else
-    #include <fstream>
+    #include <stdio.h>
 #endif
 
 
@@ -33,11 +33,10 @@ namespace Finjin { namespace Common {
         FileAccessor(const FileAccessor& other) = delete;
         FileAccessor& operator = (const FileAccessor& other) = delete;
 
-        FileAccessor(FileAccessor&& other) = delete;
-        FileAccessor& operator = (FileAccessor&& other) = delete;
-
     public:
         FileAccessor();
+        FileAccessor(FileAccessor&& other);
+        FileAccessor& operator = (FileAccessor&& other);
         ~FileAccessor();
 
         bool OpenForRead(const Path& path, uint64_t* fileSize = nullptr);
@@ -56,11 +55,11 @@ namespace Finjin { namespace Common {
 
         static bool GetFileLength(const Path& path, uint64_t& fileLength);
 
-    public:
+    private:
     #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
         HANDLE fileHandle;
     #else
-        std::fstream fileStream;
+        FILE* file;
     #endif
     };
 

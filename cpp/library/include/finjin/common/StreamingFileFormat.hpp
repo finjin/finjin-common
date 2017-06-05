@@ -37,12 +37,31 @@ namespace Finjin { namespace Common {
         static bool IsValid(StreamingFileFormat format);
 
         static const char* ToString(StreamingFileFormat format);
+        
+        template <typename T>
+        static StreamingFileFormat ParseFromExtension(const T& format, StreamingFileFormat defaultValue)
+        {
+            if (format.StartsWith("fstd"))
+                return StreamingFileFormat::STREAMING_TEXT;
+            else if (format.StartsWith("fsbd"))
+                return StreamingFileFormat::STREAMING_BINARY;
+            else if (format.StartsWith("json"))
+                return StreamingFileFormat::STREAMING_JSON;
+            else if (format.StartsWith("cfg"))
+                return StreamingFileFormat::STREAMING_CONFIG;
+            else
+                return defaultValue;
+        }
 
-        static void ParseFromExtension(StreamingFileFormat& format, const Utf8String& s, Error& error);
-        static void ParseFromExtension(StreamingFileFormat& format, const Utf8StringView& s, Error& error);
-
-        static StreamingFileFormat ParseFromExtension(const Utf8String& format, StreamingFileFormat defaultValue = StreamingFileFormat::STREAMING_TEXT);
-        static StreamingFileFormat ParseFromExtension(const Utf8StringView& format, StreamingFileFormat defaultValue = StreamingFileFormat::STREAMING_TEXT);
+        template <typename T>
+        static void ParseFromExtension(StreamingFileFormat& format, const T& s, Error& error)
+        {
+            FINJIN_ERROR_METHOD_START(error);
+            
+            format = ParseFromExtension(s, StreamingFileFormat::COUNT);
+            if (format == StreamingFileFormat::COUNT)
+                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse streaming file format. Invalid value in '%1%'.", s));
+        }
 
         static Utf8String MakeExtension(const Utf8String& assetClass, StreamingFileFormat format);
 

@@ -154,6 +154,8 @@ Thread::~Thread()
 
 void Thread::Create(Allocator* allocator, const char* name, size_t index, const LogicalCpu* logicalCpu, std::function<void()> threadProc, Error& error)
 {
+    FINJIN_ERROR_METHOD_START(error);
+    
     if (impl == nullptr)
     {
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
@@ -166,7 +168,7 @@ void Thread::Create(Allocator* allocator, const char* name, size_t index, const 
 
     if (impl->name.assign(name).HasError())
     {
-        FINJIN_SET_ERROR(error, "Failed to store thread name.");
+        FINJIN_SET_ERROR(error, "Failed to assign thread name.");
         return;
     }
 
@@ -199,10 +201,10 @@ void Thread::Start(Error& error)
     }
 
 #if FINJIN_TARGET_PLATFORM_IS_APPLE
-    auto res = pthread_create_suspended_np(&impl->t, nullptr, MachPThreadProc, impl);
-    if (res != 0)
+    auto result = pthread_create_suspended_np(&impl->t, nullptr, MachPThreadProc, impl);
+    if (result != 0)
     {
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread: %1%", res));
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to create thread: %1%", result));
         return;
     }
 

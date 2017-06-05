@@ -349,6 +349,11 @@ void TextDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& error)
         return;
     }
     this->readerHeader.blobTextFormat = DataChunkBlobTextFormatUtilities::Parse(blobTextFormat);
+    if (this->readerHeader.blobTextFormat == DataChunkBlobTextFormat::COUNT)
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse blob text format value '%1%'.", blobTextFormat));
+        return;
+    }
 }
 
 void TextDataChunkReader::ReadChunk(std::unique_ptr<DataChunkReader> reader, std::function<void(DataChunkReader&, Error&)> chunkFunc, Error& error)

@@ -13,7 +13,7 @@
 
 //Includes----------------------------------------------------------------------
 #include "FinjinPrecompiled.hpp"
-#include "finjin/common/PassthroughSystemAllocator.hpp"
+#include "finjin/common/SystemAllocator.hpp"
 #include "finjin/common/MemorySize.hpp"
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
 #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
@@ -29,39 +29,39 @@ using namespace Finjin::Common;
 
 
 //Implementation----------------------------------------------------------------
-PassthroughSystemAllocator::PassthroughSystemAllocator()
+SystemAllocator::SystemAllocator()
 {
 }
 
-PassthroughSystemAllocator::~PassthroughSystemAllocator()
+SystemAllocator::~SystemAllocator()
 {
 }
 
-void* PassthroughSystemAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION)
+void* SystemAllocator::Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION)
 {
     return SystemAllocate(byteCount, FINJIN_CALLER_PARAMETERS);
 }
 
-bool PassthroughSystemAllocator::CanDeallocateBlock() const
+bool SystemAllocator::CanDeallocateBlock() const
 {
     return true;
 }
 
-void PassthroughSystemAllocator::Deallocate(void* mem)
+void SystemAllocator::Deallocate(void* mem)
 {
     SystemDeallocate(mem);
 }
 
-bool PassthroughSystemAllocator::CanDeallocateAll() const
+bool SystemAllocator::CanDeallocateAll() const
 {
     return false;
 }
 
-void PassthroughSystemAllocator::DeallocateAll()
+void SystemAllocator::DeallocateAll()
 {
 }
 
-size_t PassthroughSystemAllocator::GetBytesUsed() const
+size_t SystemAllocator::GetBytesUsed() const
 {
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     return Windows::System::MemoryManager::AppMemoryUsage;
@@ -91,7 +91,7 @@ size_t PassthroughSystemAllocator::GetBytesUsed() const
 #endif
 }
 
-size_t PassthroughSystemAllocator::GetBytesFree() const
+size_t SystemAllocator::GetBytesFree() const
 {
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     auto family = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
@@ -103,7 +103,7 @@ size_t PassthroughSystemAllocator::GetBytesFree() const
     }
     else
     {
-        //TODO: Verify that this works as expected on other devices such as phone and Xbox
+        //TODO: Verify that this works as expected on other devices such as Xbox
         return Windows::System::MemoryManager::AppMemoryUsageLimit - Windows::System::MemoryManager::AppMemoryUsage;
     }
 #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
@@ -132,7 +132,7 @@ size_t PassthroughSystemAllocator::GetBytesFree() const
 #endif
 }
 
-size_t PassthroughSystemAllocator::GetAlignment() const
+size_t SystemAllocator::GetAlignment() const
 {
     return GetDefaultAlignment();
 }

@@ -41,27 +41,11 @@ int ConfigDocumentLine::GetDepth() const
     return this->depth;
 }
 
-void ConfigDocumentLine::GetComment(Utf8String& comment) const
-{
-    if (this->type == Type::COMMENT)
-        comment.assign(this->keyBegin, this->keyEnd);
-    else
-        comment.clear();
-}
-
 Utf8String ConfigDocumentLine::GetComment() const
 {
     Utf8String comment;
     GetComment(comment);
     return comment;
-}
-
-void ConfigDocumentLine::GetSectionName(Utf8String& name) const
-{
-    if (this->type == Type::SECTION)
-        name.assign(this->keyBegin, this->keyEnd);
-    else
-        name.clear();
 }
 
 Utf8String ConfigDocumentLine::GetSectionName() const
@@ -88,89 +72,10 @@ Utf8String ConfigDocumentLine::GetValue() const
     return value;
 }
 
-void ConfigDocumentLine::GetKeyAndValue(Utf8String& key, Utf8String& value) const
-{
-    if (this->type == Type::KEY_AND_VALUE)
-    {
-        key.assign(this->keyBegin, this->keyEnd);
-        value.assign(this->valueBegin, this->valueEnd);
-        value.TrimTrailingWhitespace();
-    }
-    else
-    {
-        key.clear();
-        value.clear();
-    }
-}
-
-void ConfigDocumentLine::GetKeyAndValue(Utf8StringView& key, Utf8StringView& value) const
-{
-    if (this->type == Type::KEY_AND_VALUE)
-    {
-        key.assign(this->keyBegin, this->keyEnd);
-        value.assign(this->valueBegin, this->valueEnd);
-        value.TrimTrailingWhitespace();
-    }
-    else
-    {
-        key.clear();
-        value.clear();
-    }
-}
-
-void ConfigDocumentLine::GetLine(Utf8String& line) const
-{
-    if (this->type != Type::NONE)
-        line.assign(this->lineBegin, this->lineEnd);
-    else
-        line.clear();
-}
-
 Utf8String ConfigDocumentLine::GetLine() const
 {
     Utf8String line;
     GetLine(line);
-    return line;
-}
-
-Utf8StringView& ConfigDocumentLine::GetComment(Utf8StringView& comment) const
-{
-    size_t len;
-    auto beginPointer = GetComment(len);
-    comment.assign(beginPointer, len);
-    return comment;
-}
-
-Utf8StringView& ConfigDocumentLine::GetSectionName(Utf8StringView& name) const
-{
-    size_t len;
-    auto beginPointer = GetSectionName(len);
-    name.assign(beginPointer, len);
-    return name;
-}
-
-Utf8StringView& ConfigDocumentLine::GetKey(Utf8StringView& key) const
-{
-    size_t len;
-    auto beginPointer = GetKey(len);
-    key.assign(beginPointer, len);
-    return key;
-}
-
-Utf8StringView& ConfigDocumentLine::GetValue(Utf8StringView& value) const
-{
-    size_t len;
-    auto beginPointer = GetValue(len);
-    value.assign(beginPointer, len);
-    value.TrimTrailingWhitespace();
-    return value;
-}
-
-Utf8StringView& ConfigDocumentLine::GetLine(Utf8StringView& line) const
-{
-    size_t len;
-    auto beginPointer = GetLine(len);
-    line.assign(beginPointer, len);
     return line;
 }
 

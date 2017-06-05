@@ -79,10 +79,10 @@ ValueOrError<void> AppleUtilities::GetSystemDirectory(Path& path, bool& isSystem
 }
 
 #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
-void AppleUtilities::PositionWindowRect(NSRect& windowRect, const NSRect& screenRect, CGFloat defaultCoordinate)
+void AppleUtilities::CenterDefaultsInParent(NSRect& windowRect, const NSRect& parentRect, CGFloat defaultCoordinate)
 {
-    auto defaultWindowX = screenRect.origin.x + screenRect.size.width / 2 - windowRect.size.width / 2;
-    auto defaultWindowY = screenRect.origin.y + screenRect.size.height / 2 - windowRect.size.height / 2;
+    auto defaultWindowX = parentRect.origin.x + parentRect.size.width / 2 - windowRect.size.width / 2;
+    auto defaultWindowY = parentRect.origin.y + parentRect.size.height / 2 - windowRect.size.height / 2;
     if (windowRect.origin.x == defaultCoordinate)
         windowRect.origin.x = defaultWindowX;
     if (windowRect.origin.y == defaultCoordinate)

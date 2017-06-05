@@ -145,7 +145,7 @@
     <ClCompile Include="..\..\src\LogicalCpu_Linux.cpp" />
     <ClCompile Include="..\..\src\LogLevel.cpp" />
     <ClCompile Include="..\..\src\MemoryArena.cpp" />
-    <ClCompile Include="..\..\src\PassthroughSystemAllocator.cpp" />
+    <ClCompile Include="..\..\src\SystemAllocator.cpp" />
     <ClCompile Include="..\..\src\VirtualFileHandle.cpp" />
     <ClCompile Include="..\..\src\VirtualFileOperationHandle.cpp" />
     <ClCompile Include="..\..\src\VirtualFileSystem.cpp" />
@@ -298,7 +298,7 @@
     <ClInclude Include="..\..\include\finjin\common\EnumArray.hpp" />
     <ClInclude Include="..\..\include\finjin\common\LayoutDirection.hpp" />
     <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\PassthroughSystemAllocator.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\SystemAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\RequestedValue.hpp" />
     <ClInclude Include="..\..\include\finjin\common\GeneralAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\ConfigDocumentReader.hpp" />

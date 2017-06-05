@@ -409,7 +409,7 @@
     <ClCompile Include="..\..\src\LogLevel.cpp" />
     <ClCompile Include="..\..\src\MemoryArchitecture.cpp" />
     <ClCompile Include="..\..\src\MemoryArena.cpp" />
-    <ClCompile Include="..\..\src\PassthroughSystemAllocator.cpp" />
+    <ClCompile Include="..\..\src\SystemAllocator.cpp" />
     <ClCompile Include="..\..\src\StreamingFileFormat.cpp" />
     <ClCompile Include="..\..\src\VirtualFileHandle.cpp" />
     <ClCompile Include="..\..\src\VirtualFileOperationHandle.cpp" />
@@ -562,7 +562,7 @@
     <ClInclude Include="..\..\include\finjin\common\Math.hpp" />
     <ClInclude Include="..\..\include\finjin\common\MemoryArchitecture.hpp" />
     <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp" />
-    <ClInclude Include="..\..\include\finjin\common\PassthroughSystemAllocator.hpp" />
+    <ClInclude Include="..\..\include\finjin\common\SystemAllocator.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StaticVector.hpp" />
     <ClInclude Include="..\..\include\finjin\common\StreamingFileFormat.hpp" />
     <ClInclude Include="..\..\include\finjin\common\UsableStaticVector.hpp" />

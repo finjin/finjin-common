@@ -10,7 +10,7 @@
 		650FA38F1D5B964E00535D8D /* VirtualFileHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA38D1D5B964E00535D8D /* VirtualFileHandle.cpp */; };
 		650FA3901D5B964E00535D8D /* VirtualFileOperationHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA38E1D5B964E00535D8D /* VirtualFileOperationHandle.cpp */; };
 		650FA4851D61419800535D8D /* MemoryArena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4831D61419800535D8D /* MemoryArena.cpp */; };
-		650FA4861D61419800535D8D /* PassthroughSystemAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4841D61419800535D8D /* PassthroughSystemAllocator.cpp */; };
+		650FA4861D61419800535D8D /* SystemAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4841D61419800535D8D /* SystemAllocator.cpp */; };
 		650FA49F1D64288300535D8D /* UriCommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA48D1D64288300535D8D /* UriCommon.c */; };
 		650FA4A11D64288300535D8D /* UriCompare.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA48F1D64288300535D8D /* UriCompare.c */; };
 		650FA4A21D64288300535D8D /* UriEscape.c in Sources */ = {isa = PBXBuildFile; fileRef = 650FA4901D64288300535D8D /* UriEscape.c */; };
@@ -190,10 +190,10 @@
 		650FA3981D5B968000535D8D /* VirtualFileHandleDataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileHandleDataChunkReaderInput.hpp; path = ../../include/finjin/common/VirtualFileHandleDataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3991D5B968000535D8D /* VirtualFileOperationHandle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VirtualFileOperationHandle.hpp; path = ../../include/finjin/common/VirtualFileOperationHandle.hpp; sourceTree = SOURCE_ROOT; };
 		650FA4831D61419800535D8D /* MemoryArena.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryArena.cpp; path = ../../src/MemoryArena.cpp; sourceTree = SOURCE_ROOT; };
-		650FA4841D61419800535D8D /* PassthroughSystemAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PassthroughSystemAllocator.cpp; path = ../../src/PassthroughSystemAllocator.cpp; sourceTree = SOURCE_ROOT; };
+		650FA4841D61419800535D8D /* SystemAllocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SystemAllocator.cpp; path = ../../src/SystemAllocator.cpp; sourceTree = SOURCE_ROOT; };
 		650FA4871D6141BC00535D8D /* DefaultAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DefaultAllocator.hpp; path = ../../include/finjin/common/DefaultAllocator.hpp; sourceTree = SOURCE_ROOT; };
 		650FA4881D6141BC00535D8D /* MemoryArena.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MemoryArena.hpp; path = ../../include/finjin/common/MemoryArena.hpp; sourceTree = SOURCE_ROOT; };
-		650FA4891D6141BC00535D8D /* PassthroughSystemAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PassthroughSystemAllocator.hpp; path = ../../include/finjin/common/PassthroughSystemAllocator.hpp; sourceTree = SOURCE_ROOT; };
+		650FA4891D6141BC00535D8D /* SystemAllocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SystemAllocator.hpp; path = ../../include/finjin/common/SystemAllocator.hpp; sourceTree = SOURCE_ROOT; };
 		650FA48D1D64288300535D8D /* UriCommon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCommon.c; path = "/Users/derek/finjin-3rd-party/cpp/uriparser/src/UriCommon.c"; sourceTree = "<absolute>"; };
 		650FA48E1D64288300535D8D /* UriCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UriCommon.h; path = "/Users/derek/finjin-3rd-party/cpp/uriparser/src/UriCommon.h"; sourceTree = "<absolute>"; };
 		650FA48F1D64288300535D8D /* UriCompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = UriCompare.c; path = "/Users/derek/finjin-3rd-party/cpp/uriparser/src/UriCompare.c"; sourceTree = "<absolute>"; };
@@ -838,8 +838,8 @@
 				650FA4881D6141BC00535D8D /* MemoryArena.hpp */,
 				65E6F4D51C526245005F5DF2 /* MemorySize.cpp */,
 				65E6F57C1C52625E005F5DF2 /* MemorySize.hpp */,
-				650FA4841D61419800535D8D /* PassthroughSystemAllocator.cpp */,
-				650FA4891D6141BC00535D8D /* PassthroughSystemAllocator.hpp */,
+				650FA4841D61419800535D8D /* SystemAllocator.cpp */,
+				650FA4891D6141BC00535D8D /* SystemAllocator.hpp */,
 				65E6F5911C52625E005F5DF2 /* TaggedMemoryBlockAllocator.hpp */,
 			);
 			name = memory;
@@ -1269,7 +1269,7 @@
 				650FA4AF1D64288300535D8D /* UriResolve.c in Sources */,
 				650FA4B01D64288300535D8D /* UriShorten.c in Sources */,
 				650FA4851D61419800535D8D /* MemoryArena.cpp in Sources */,
-				650FA4861D61419800535D8D /* PassthroughSystemAllocator.cpp in Sources */,
+				650FA4861D61419800535D8D /* SystemAllocator.cpp in Sources */,
 				650FA38F1D5B964E00535D8D /* VirtualFileHandle.cpp in Sources */,
 				650FA3901D5B964E00535D8D /* VirtualFileOperationHandle.cpp in Sources */,
 				651288961D28E06C0041C324 /* VirtualFileSystemOperationQueue.cpp in Sources */,

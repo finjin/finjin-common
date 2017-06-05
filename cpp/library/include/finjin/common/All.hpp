@@ -110,7 +110,7 @@
 #include "OperationStatus.hpp"
 #include "PNGReader.hpp"
 #include "PNGWriter.hpp"
-#include "PassthroughSystemAllocator.hpp"
+#include "SystemAllocator.hpp"
 #include "Path.hpp"
 #include "PerformanceCounter.hpp"
 #include "ProcessID.hpp"

@@ -21,11 +21,16 @@
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    class PassthroughSystemAllocator : public Allocator
+    /**
+     * Allocator that passes calls through to the underlying system.
+     * Since it doesn't internally keep track of allocations, the values returned by 
+     * GetBytesUsed() and GetBytesFree() will be somewhat unstable from call to call.
+     */
+    class SystemAllocator : public Allocator
     {
     public:
-        PassthroughSystemAllocator();
-        ~PassthroughSystemAllocator();
+        SystemAllocator();
+        ~SystemAllocator();
 
         void* Allocate(size_t byteCount, FINJIN_CALLER_PARAMETERS_DECLARATION) override;
 

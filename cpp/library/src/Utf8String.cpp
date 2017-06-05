@@ -1008,10 +1008,8 @@ size_t Utf8String::RepairLength(size_t newLength)
     if (newLength == (size_t)-1)
         this->l = strlen(this->s);
     else
-    {
         this->l = newLength;
-        this->s[this->l] = 0;
-    }
+    this->s[this->l] = 0;
     return this->l;
 }
 

@@ -127,6 +127,7 @@ static size_t ReadCounts(DataChunkReaderInput* readerInput, bool swapBytes, Data
     return static_cast<size_t>(length);
 }
 
+
 //Implementation----------------------------------------------------------------
 BinaryDataChunkReader::BinaryDataChunkReader()
 {
@@ -602,9 +603,14 @@ void BinaryDataChunkReader::ReadCount(DataHeader& dataHeader, size_t& value, Err
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    ReadNumber(this->settings.input, this->swapBytes, dataHeader, value, "size_t", error);
+    BinaryMultiValueSize countValue;
+    ReadNumber(this->settings.input, this->swapBytes, dataHeader, countValue, "size_t", error);
     if (error)
         FINJIN_SET_ERROR_NO_MESSAGE(error);
+    else if (value > std::numeric_limits<size_t>::max())
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Count value '%1%' exceeds the native size_t format's limit of '%2%'.", countValue, std::numeric_limits<size_t>::max()));
+    else
+        value = static_cast<size_t>(countValue);
 }
 
 void BinaryDataChunkReader::ReadInt8(DataHeader& dataHeader, int8_t& value, Error& error)

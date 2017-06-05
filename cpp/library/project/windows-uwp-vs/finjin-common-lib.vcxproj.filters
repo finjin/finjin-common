@@ -382,7 +382,7 @@
     <ClCompile Include="..\..\src\VirtualFileOperationHandle.cpp">
       <Filter>Source Files\file-system</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\PassthroughSystemAllocator.cpp">
+    <ClCompile Include="..\..\src\SystemAllocator.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\MemoryArena.cpp">
@@ -1044,7 +1044,7 @@
     <ClInclude Include="..\..\include\finjin\common\DefaultAllocator.hpp">
       <Filter>Source Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\finjin\common\PassthroughSystemAllocator.hpp">
+    <ClInclude Include="..\..\include\finjin\common\SystemAllocator.hpp">
       <Filter>Source Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\MemoryArena.hpp">

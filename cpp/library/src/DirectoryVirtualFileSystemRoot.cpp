@@ -251,11 +251,11 @@ uint64_t DirectoryVirtualFileSystemRoot::Skip(VirtualFileHandle& fileHandle, uin
     #elif FINJIN_TARGET_PLATFORM_IS_LINUX || FINJIN_TARGET_PLATFORM_IS_APPLE
         auto file = static_cast<FILE*>(fileHandle.ptr);
 
-        auto offsetBefore = ftell(file);
+        auto offsetBefore = ftello(file);
         if (offsetBefore != -1)
         {
             fseek(file, byteCount, SEEK_CUR);
-            auto offsetAfter = ftell(file);
+            auto offsetAfter = ftello(file);
 
             return offsetAfter - offsetBefore;
         }

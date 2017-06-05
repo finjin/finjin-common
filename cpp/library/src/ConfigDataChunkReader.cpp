@@ -227,6 +227,11 @@ void ConfigDataChunkReader::ReadReaderHeader(DataHeader& dataHeader, Error& erro
             return;
         }
         this->readerHeader.blobTextFormat = DataChunkBlobTextFormatUtilities::Parse(blobTextFormat);
+        if (this->readerHeader.blobTextFormat == DataChunkBlobTextFormat::COUNT)
+        {
+            FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse blob text format value '%1%'.", blobTextFormat));
+            return;
+        }
     }
     else
     {

@@ -15,6 +15,7 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "finjin/common/StaticUnorderedMap.hpp"
 #include "finjin/common/Utf8String.hpp"
 #include "finjin/common/Uuid.hpp"
 
@@ -148,17 +149,46 @@ namespace Finjin { namespace Common {
         static const ChunkPropertyName BLOB_TEXT_FORMAT;
     };
 
+    
+    //Blob text format (binary data in a text file)-----------
     enum class DataChunkBlobTextFormat
     {
         BYTE_ARRAY,
-        BASE64
+        BASE64,
+        
+        COUNT
     };
 
     struct DataChunkBlobTextFormatUtilities
     {
-        static const char* ToString(DataChunkBlobTextFormat value);
+        static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(DataChunkBlobTextFormat, DataChunkBlobTextFormat::COUNT)& GetLookup()
+        {
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(DataChunkBlobTextFormat, DataChunkBlobTextFormat::COUNT) lookup
+                (
+                "byte-array", DataChunkBlobTextFormat::BYTE_ARRAY,
+                "base64", DataChunkBlobTextFormat::BASE64
+                );
+            return lookup;
+        }
+        
+        static const char* ToString(DataChunkBlobTextFormat value)
+        {
+            auto& lookup = GetLookup();
+            for (auto& item : lookup)
+            {
+                if (item.second == value)
+                    return item.first;
+            }
+            
+            return FINJIN_ENUM_UNKNOWN_STRING;
+        }
 
-        static DataChunkBlobTextFormat Parse(const Utf8String& value);
+        template <typename T>
+        static DataChunkBlobTextFormat Parse(const T& value)
+        {
+            auto& lookup = GetLookup();
+            return lookup.GetOrDefault(value, DataChunkBlobTextFormat::COUNT);
+        }
     };
 
 } }

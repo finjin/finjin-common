@@ -17,6 +17,7 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/OperationStatus.hpp"
 #include "finjin/common/Setting.hpp"
+#include "finjin/common/Utf8String.hpp"
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
     #include <ppltasks.h>
 #endif
@@ -28,7 +29,7 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API UserInformation
     {
     public:
-        UserInformation();
+        UserInformation(Allocator* allocator);
         ~UserInformation();
 
         const Setting<Utf8String>& GetName() const;

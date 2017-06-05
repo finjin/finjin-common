@@ -26,60 +26,54 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-static const Utf8String& _GetHostName()
+static ValueOrError<void> _GetHostName(Utf8String& result)
 {
-    static Utf8String result;
+    const int MAX_HOSTNAME_LENGTH = 1024;
 
-    if (result.empty())
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
+    auto hostNames = Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
+    if (hostNames->Size == 0)
     {
-        const int MAX_HOSTNAME_LENGTH = 1024;
-
-    #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP
-        auto hostNames = Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
-        if (hostNames->Size == 0)
-        {
-            //No host names. Exit early since the fallback code at the end of this function will not work
-            return result;
-        }
-
-        result = hostNames->GetAt(0)->CanonicalName->Data();
-        return result;
-    #elif defined(_WIN32_WINNT) && _WIN32_WINNT >= _WIN32_WINNT_WIN8
-        wchar_t hostNameW[MAX_HOSTNAME_LENGTH];
-        GetHostNameW(hostNameW, MAX_HOSTNAME_LENGTH);
-        result = hostNameW;
-        return result;
-    #elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
-        //Works in Win8/WinServer2012 and up. Not Win7
-        typedef int (WSAAPI *GetHostNameWProc)(PWSTR, int);
-        HMODULE ws2_32 = LoadLibraryW(L"Ws2_32.dll");
-        if (ws2_32 != nullptr)
-        {
-            auto getHostNameWProc = reinterpret_cast<GetHostNameWProc>(GetProcAddress(ws2_32, "GetHostNameW"));
-            if (getHostNameWProc != nullptr)
-            {
-                wchar_t hostNameW[MAX_HOSTNAME_LENGTH];
-                getHostNameWProc(hostNameW, MAX_HOSTNAME_LENGTH);
-                result = hostNameW;
-                return result;
-            }
-        }
-    #endif
-
-        //Works on Windows 7/Windows Server 2008/Linux/etc
-        char hostName[MAX_HOSTNAME_LENGTH];
-        gethostname(hostName, MAX_HOSTNAME_LENGTH);
-        result = hostName;
+        //No host names. Exit early since the fallback code at the end of this function will not work
+        return ValueOrError<void>::CreateError();
     }
 
-    return result;
+    return result.assign(hostNames->GetAt(0)->CanonicalName->Data());
+#elif defined(_WIN32_WINNT) && _WIN32_WINNT >= _WIN32_WINNT_WIN8
+    wchar_t hostNameW[MAX_HOSTNAME_LENGTH];
+    GetHostNameW(hostNameW, MAX_HOSTNAME_LENGTH);
+    return result.assign(hostNameW);
+#elif FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    //Works in Win8/WinServer2012 and up. Not Win7
+    typedef int (WSAAPI *GetHostNameWProc)(PWSTR, int);
+    HMODULE ws2_32 = LoadLibraryW(L"Ws2_32.dll");
+    if (ws2_32 != nullptr)
+    {
+        auto getHostNameWProc = reinterpret_cast<GetHostNameWProc>(GetProcAddress(ws2_32, "GetHostNameW"));
+        if (getHostNameWProc != nullptr)
+        {
+            wchar_t hostNameW[MAX_HOSTNAME_LENGTH];
+            getHostNameWProc(hostNameW, MAX_HOSTNAME_LENGTH);
+            return result.assign(hostNameW);
+        }
+    }
+#endif
+
+    //Works on Windows 7/Windows Server 2008/Linux/etc
+    char hostName[MAX_HOSTNAME_LENGTH];
+    gethostname(hostName, MAX_HOSTNAME_LENGTH);
+    return result.assign(hostName);
 }
 
 
 //Implementation----------------------------------------------------------------
-DomainInformation::DomainInformation()
+DomainInformation::DomainInformation(Allocator* allocator)
 {
-    this->hostName = _GetHostName();
+    this->hostName.value.SetAllocator(allocator);
+    
+    if (!_GetHostName(this->hostName).HasError())
+        this->hostName.isSet = true;
+    
     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
 }
 

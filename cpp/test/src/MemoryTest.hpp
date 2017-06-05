@@ -18,7 +18,7 @@
 #include "finjin/common/ForwardAllocator.hpp"
 #include "finjin/common/GeneralAllocator.hpp"
 #include "finjin/common/AllocatedClass.hpp"
-#include "finjin/common/PassthroughSystemAllocator.hpp"
+#include "finjin/common/SystemAllocator.hpp"
 #include <memory>
 #include <boost/thread/null_mutex.hpp>
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(MemoryTest_allocated_class)
 
     FINJIN_DECLARE_ERROR(error);
 
-    PassthroughSystemAllocator systemAllocator;
+    SystemAllocator systemAllocator;
 
     auto arena = systemAllocator.AllocateArena(10000, 0, FINJIN_CALLER_ARGUMENTS);
 
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(MemoryTest_forward)
 
     FINJIN_DECLARE_ERROR(error);
 
-    PassthroughSystemAllocator systemAllocator;
+    SystemAllocator systemAllocator;
 
     auto arena = systemAllocator.AllocateArena(10000, 0, FINJIN_CALLER_ARGUMENTS);
 
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(MemoryTest_general_allocator)
 
     FINJIN_DECLARE_ERROR(error);
 
-    PassthroughSystemAllocator systemAllocator;
+    SystemAllocator systemAllocator;
 
     auto arena = systemAllocator.AllocateArena(10000, 0, FINJIN_CALLER_ARGUMENTS);
 

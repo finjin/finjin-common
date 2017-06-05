@@ -96,7 +96,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/NamePrefix.o \
 	${OBJECTDIR}/_ext/56252444/PNGReader.o \
 	${OBJECTDIR}/_ext/56252444/PNGWriter.o \
-	${OBJECTDIR}/_ext/56252444/PassthroughSystemAllocator.o \
+	${OBJECTDIR}/_ext/56252444/SystemAllocator.o \
 	${OBJECTDIR}/_ext/56252444/Path.o \
 	${OBJECTDIR}/_ext/56252444/PerformanceCounter.o \
 	${OBJECTDIR}/_ext/56252444/ProcessRuntimeInformation.o \
@@ -524,10 +524,10 @@ ${OBJECTDIR}/_ext/56252444/PNGWriter.o: ../../src/PNGWriter.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/PNGWriter.o ../../src/PNGWriter.cpp
 
-${OBJECTDIR}/_ext/56252444/PassthroughSystemAllocator.o: ../../src/PassthroughSystemAllocator.cpp 
+${OBJECTDIR}/_ext/56252444/SystemAllocator.o: ../../src/SystemAllocator.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/PassthroughSystemAllocator.o ../../src/PassthroughSystemAllocator.cpp
+	$(COMPILE.cc) -g -D_DEBUG -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/SystemAllocator.o ../../src/SystemAllocator.cpp
 
 ${OBJECTDIR}/_ext/56252444/Path.o: ../../src/Path.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444

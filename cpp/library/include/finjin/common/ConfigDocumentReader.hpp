@@ -47,25 +47,70 @@ namespace Finjin { namespace Common {
         int GetDepth() const;
 
         //String methods
-        void GetComment(Utf8String& comment) const;
+        template <typename T>
+        void GetComment(T& comment) const
+        {
+            if (this->type == Type::COMMENT)
+                comment.assign(this->keyBegin, this->keyEnd);
+            else
+                comment.clear();
+        }
         Utf8String GetComment() const;
 
-        void GetSectionName(Utf8String& name) const;
+        template <typename T>
+        void GetSectionName(T& name) const
+        {
+            if (this->type == Type::SECTION)
+                name.assign(this->keyBegin, this->keyEnd);
+            else
+                name.clear();
+        }
         Utf8String GetSectionName() const;
 
+        template <typename T>
+        void GetKey(T& key) const
+        {
+            size_t len;
+            auto beginPointer = GetKey(len);
+            key.assign(beginPointer, len);
+        }
         Utf8String GetKey() const;
+        
+        template <typename T>
+        void GetValue(T& value) const
+        {
+            size_t len;
+            auto beginPointer = GetValue(len);
+            value.assign(beginPointer, len);
+            value.TrimTrailingWhitespace();
+        }
         Utf8String GetValue() const;
-        void GetKeyAndValue(Utf8String& key, Utf8String& value) const;
-        void GetKeyAndValue(Utf8StringView& key, Utf8StringView& value) const;
+        
+        template <typename KeyType, typename ValueType>
+        void GetKeyAndValue(KeyType& key, ValueType& value) const
+        {
+            if (this->type == Type::KEY_AND_VALUE)
+            {
+                key.assign(this->keyBegin, this->keyEnd);
+                value.assign(this->valueBegin, this->valueEnd);
+                value.TrimTrailingWhitespace();
+            }
+            else
+            {
+                key.clear();
+                value.clear();
+            }
+        }
 
-        void GetLine(Utf8String& line) const;
+        template <typename T>
+        void GetLine(T& line) const
+        {
+            if (this->type != Type::NONE)
+                line.assign(this->lineBegin, this->lineEnd);
+            else
+                line.clear();
+        }
         Utf8String GetLine() const;
-
-        Utf8StringView& GetComment(Utf8StringView& comment) const;
-        Utf8StringView& GetSectionName(Utf8StringView& name) const;
-        Utf8StringView& GetKey(Utf8StringView& key) const;
-        Utf8StringView& GetValue(Utf8StringView& value) const;
-        Utf8StringView& GetLine(Utf8StringView& line) const;
 
         //String pointer methods - The returned string is not null terminated
         const char* GetComment(size_t& length) const;

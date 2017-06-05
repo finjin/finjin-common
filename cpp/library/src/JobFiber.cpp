@@ -323,8 +323,7 @@ JobFiber::CreateResult JobFiber::Create
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);
 
     impl->name = ownerThreadName;
-    impl->name += "-";
-    impl->name += "job-fiber-";
+    impl->name += "-job-fiber-";
     impl->name += Convert::ToString(fiberIndex);
 
     impl->mainFiber = mainFiber;
