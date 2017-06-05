@@ -220,14 +220,6 @@
 #endif
 
 
-//Compiler class--------------
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-    #define FINJIN_OLD_COMPILER 0
-#else
-    #define FINJIN_OLD_COMPILER 1
-#endif
-
-
 //SSE functionality-------------
 #if !defined(FINJIN_ENABLE_SSE)
     #define FINJIN_ENABLE_SSE 1
