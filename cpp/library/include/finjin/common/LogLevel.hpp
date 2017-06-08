@@ -15,7 +15,10 @@
 
 
 //Includes----------------------------------------------------------------------
+#include "Error.hpp"
+#include "StaticUnorderedMap.hpp"
 #include "Utf8String.hpp"
+#include "Utf8StringFormatter.hpp"
 
 
 //Macros------------------------------------------------------------------------
@@ -43,10 +46,47 @@ namespace Finjin { namespace Common {
     class FINJIN_COMMON_LIBRARY_API LogLevelUtilities
     {
     public:
-        static void Parse(LogLevel& result, const Utf8String& value, Error& error);
-        static LogLevel Parse(const Utf8String& value, LogLevel defaultValue = FINJIN_DEFAULT_LOG_LEVEL);
-
-        static const char* ToString(LogLevel value);
+        static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT)& GetLookup()
+        {
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_MAP(LogLevel, LogLevel::COUNT) lookup
+                (
+                "info", LogLevel::INFO_LEVEL,
+                "warning", LogLevel::WARNING_LEVEL,
+                "error", LogLevel::ERROR_LEVEL,
+                "debug", LogLevel::DEBUG_LEVEL,
+                "trace", LogLevel::TRACE_LEVEL
+                );
+            
+            return lookup;
+        }
+        
+        template <typename T>
+        static void Parse(LogLevel& result, const T& value, Error& error)
+        {
+            FINJIN_ERROR_METHOD_START(error);
+            
+            result = Parse(value, LogLevel::COUNT);
+            if (result == LogLevel::COUNT)
+                FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse log level '%1%'.", value));
+        }
+        
+        template <typename T>
+        static LogLevel Parse(const T& value, LogLevel defaultValue)
+        {
+            return GetLookup().GetOrDefault(value, defaultValue);
+        }
+        
+        static const char* ToString(LogLevel value)
+        {
+            auto& lookup = GetLookup();
+            for (auto& item : lookup)
+            {
+                if (item.second == value)
+                    return item.first;
+            }
+            
+            return FINJIN_ENUM_UNKNOWN_STRING;
+        }
     };
 
 } }
