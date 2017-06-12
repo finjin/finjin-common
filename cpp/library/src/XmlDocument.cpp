@@ -372,7 +372,7 @@ void XmlDocument::Save(const Path& fileName, Error& error)
         return;
     }
 
-    auto file = nowide::fopen(fileName.c_str(), "w");
+    auto file = nowide::fopen(fileName.c_str(), "wb");
     if (file == nullptr)
     {
         FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("File '%1%' could not be opened/created.", fileName));

@@ -1395,12 +1395,12 @@ void Path::ReplaceAll(char find, char replace)
     }
 }
 
-void Path::ReplaceFirst(const Utf8String& find, const Utf8String& replace)
+void Path::ReplaceFirst(const Utf8StringView& find, const Utf8StringView& replace)
 {
     boost::algorithm::replace_first(*this, find, replace);
 }
 
-void Path::ReplaceAll(const Utf8String& find, const Utf8String& replace)
+void Path::ReplaceAll(const Utf8StringView& find, const Utf8StringView& replace)
 {
     boost::algorithm::replace_all(*this, find, replace);
 }

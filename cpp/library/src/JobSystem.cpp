@@ -96,7 +96,7 @@ struct JobSystem::Impl : public AllocatedClass
         }
     }
 
-    /** Worker threads, one for each logical CPU. */
+    /** Collection of job threads. One job thread each logical CPU. */
     class JobThreads
     {
     public:
@@ -299,15 +299,13 @@ void JobSystem::Settings::Finalize(const LogicalCpus& logicalCpus)
     this->jobThreadsSetup.resize(logicalCpus.size());
     for (size_t i = 0; i < this->jobThreadsSetup.size(); i++)
     {
-        this->jobThreadsSetup[i].logicalCpu = logicalCpus[i];
-
-        this->jobThreadsSetup[i].fiberCount = (i < logicalCpus.size() - 1) ? jobFiberCount.perThread : jobFiberCount.lastThread;
-
-        this->jobThreadsSetup[i].stackByteCount = this->threadStackByteCount;
-
-        this->jobThreadsSetup[i].stackReserveByteCount = this->threadStackReserveByteCount;
-
-        this->jobThreadsSetup[i].type = JobThreadType::PUBLIC;
+        auto& jobThreadSetup = this->jobThreadsSetup[i];
+        
+        jobThreadSetup.logicalCpu = logicalCpus[i];
+        jobThreadSetup.fiberCount = (i < logicalCpus.size() - 1) ? jobFiberCount.perThread : jobFiberCount.lastThread;
+        jobThreadSetup.stackByteCount = this->threadStackByteCount;
+        jobThreadSetup.stackReserveByteCount = this->threadStackReserveByteCount;
+        jobThreadSetup.type = JobThreadType::PUBLIC;
     }
 }
 
@@ -352,7 +350,7 @@ void JobSystem::Create(const Settings& settings, Error& error)
 
     if (settings.jobThreadsSetup.empty())
     {
-        FINJIN_SET_ERROR(error, "No thread setups specified. At least one is required for the work system to operate.");
+        FINJIN_SET_ERROR(error, "No thread setups specified. At least one is required for the job system to operate.");
         return;
     }
 

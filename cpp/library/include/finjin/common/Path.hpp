@@ -208,8 +208,23 @@ namespace Finjin { namespace Common {
         void ReplaceFirst(char find, char replace);
         void ReplaceAll(char find, char replace);
 
-        void ReplaceFirst(const Utf8String& find, const Utf8String& replace);
-        void ReplaceAll(const Utf8String& find, const Utf8String& replace);
+        template <typename Find, typename Replace>
+        void ReplaceFirst(const Find& find, const Replace& replace)
+        {
+            Utf8StringView findView(find);
+            Utf8StringView replaceView(replace);
+            ReplaceFirst(findView, replaceView);
+        }
+        void ReplaceFirst(const Utf8StringView& find, const Utf8StringView& replace);
+        
+        template <typename Find, typename Replace>
+        void ReplaceAll(const Find& find, const Replace& replace)
+        {
+            Utf8StringView findView(find);
+            Utf8StringView replaceView(replace);
+            ReplaceAll(findView, replaceView);
+        }
+        void ReplaceAll(const Utf8StringView& find, const Utf8StringView& replace);
 
         void RemoveAllChars(const char* chars);
         void ReplaceAllChars(const char* chars, char replacement);

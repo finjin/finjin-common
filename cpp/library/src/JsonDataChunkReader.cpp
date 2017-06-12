@@ -822,6 +822,7 @@ size_t JsonDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, size_
 
             break;
         }
+        default: break;
     }
 
     return result;

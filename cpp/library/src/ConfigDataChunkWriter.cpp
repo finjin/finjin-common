@@ -506,6 +506,7 @@ void ConfigDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, con
 
             break;
         }
+        default: break;
     }
 }
 

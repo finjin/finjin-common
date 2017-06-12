@@ -794,6 +794,7 @@ bool TextDataChunkWriter::WillSplitBlob(const ChunkPropertyName& propertyName, c
             valueLength = Base64::ToBase64Count(count);
             break;
         }
+        default: break;
     }
 
     auto nonSizeHeaderLength = SizeOfValue(propertyName) + 1 + valueLength + 1; //Trailing +1 is for newline
@@ -850,6 +851,7 @@ void TextDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const
 
             break;
         }
+        default: break;
     }
 }
 

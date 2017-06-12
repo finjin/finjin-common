@@ -373,6 +373,7 @@ size_t ConfigDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, siz
 
             break;
         }
+        default: break;
     }
 
     return result;

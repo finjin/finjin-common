@@ -20,8 +20,8 @@
 #include "finjin/common/DebugLog.hpp"
 #include "finjin/common/GeneralAllocator.hpp"
 #include "finjin/common/TaggedMemoryBlockAllocator.hpp"
-#include "finjin/common/Thread.hpp"
 #include "finjin/common/ThisThread.hpp"
+#include "finjin/common/Thread.hpp"
 
 using namespace Finjin::Common;
 
@@ -154,13 +154,13 @@ void JobThread::Impl::ThreadFunc()
 
         this->fibers.Destroy();
         this->scheduler.Clear();
-
-        //Convert main fiber back to a thread
-        this->owner->ShutdownMainFiber();
-
+        
         this->jobQueue.clear();
     }
-
+    
+    //Convert main fiber back to a thread
+    this->owner->ShutdownMainFiber();
+    
     this->runningFibers = false;
 }
 
@@ -238,7 +238,7 @@ void JobThread::Create
     }
 
     JobObjectAllocatorPool::Settings jobObjectAllocatorPoolSettings;
-    jobObjectAllocatorPoolSettings.blockCount = jobObjectHeapSize / 4096; //Job data seems to go over 2k so 4k blocks should be fine
+    jobObjectAllocatorPoolSettings.blockCount = jobObjectHeapSize / (MemorySize::KIBIBYTE * 4); //Job data rarely goes over 2k so 4k blocks should be fine
     jobObjectAllocatorPoolSettings.tagCount = maxJobCount; //One for each job
     jobObjectAllocatorPoolSettings.allocator = allocator;
     impl->jobObjectAllocatorPool.Create(jobObjectAllocatorPoolSettings, std::move(jobObjectArena), error);
@@ -248,7 +248,11 @@ void JobThread::Create
         return;
     }
 
-    impl->jobSlots.Create(maxJobCount, allocator);
+    if (!impl->jobSlots.Create(maxJobCount, allocator))
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to allocate job slots for job thread '%1%'.", threadIndex));
+        return;
+    }
     for (size_t jobTag = 0; jobTag < impl->jobSlots.size(); jobTag++)
         impl->jobSlots[jobTag].objectAllocator.Create(jobTag, &impl->jobObjectAllocatorPool);
 
@@ -287,7 +291,7 @@ void JobThread::Start(Error& error)
 
     if (impl == nullptr)
     {
-        FINJIN_SET_ERROR(error, "Job thread has not yet been initialized.");
+        FINJIN_SET_ERROR(error, "Job thread has not yet been created.");
         return;
     }
 

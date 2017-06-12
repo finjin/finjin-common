@@ -520,6 +520,7 @@ void JsonDataChunkWriter::WriteBlob(const ChunkPropertyName& propertyName, const
 
             break;
         }
+        default: break;
     }
 }
 

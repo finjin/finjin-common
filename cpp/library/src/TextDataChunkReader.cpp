@@ -517,6 +517,7 @@ size_t TextDataChunkReader::ReadBlob(DataHeader& dataHeader, void* values, size_
 
             break;
         }
+        default: break;
     }
 
     return result;
