@@ -30,12 +30,7 @@ import sys
 import struct
 
 
-#Functions---------------------------------------------------------------------
-def process_bytes(the_bytes, swap_bytes):
-    if swap_bytes:
-        the_bytes = bytearray(reversed(the_bytes))
-    return the_bytes
-
+#Values------------------------------------------------------------------------
 FINJIN_SIGNATURE_BYTES = bytes('finj', 'utf-8')
 FINJIN_SIGNATURE = struct.unpack('I', process_bytes(FINJIN_SIGNATURE_BYTES, False))[0]
 FINJIN_SIGNATURE_REVERSED = struct.unpack('I', process_bytes(FINJIN_SIGNATURE_BYTES, True))[0]
@@ -45,6 +40,13 @@ EMBEDDED_FILE_FORMAT = 0
 GENERIC_FILE_FORMAT_CLASS = 0
 IMAGE_FILE_FORMAT_CLASS = 1
 SOUND_FILE_FORMAT_CLASS = 2
+
+
+#Functions---------------------------------------------------------------------
+def process_bytes(the_bytes, swap_bytes):
+    if swap_bytes:
+        the_bytes = bytearray(reversed(the_bytes))
+    return the_bytes
 
 def is_valid_format_class(format_class):
     return format_class in [GENERIC_FILE_FORMAT_CLASS, IMAGE_FILE_FORMAT_CLASS, SOUND_FILE_FORMAT_CLASS]
