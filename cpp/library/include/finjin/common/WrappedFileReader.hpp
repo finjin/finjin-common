@@ -43,7 +43,7 @@ namespace Finjin { namespace Common {
             Header();
             
             static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10)& GetImageExtensionLookup();
-            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3)& GetSoundExtensionLookup();
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(2)& GetSoundExtensionLookup();
 
             template <typename T>
             static FileFormatClass GetFileFormatClass(const T& ext)
@@ -98,7 +98,7 @@ namespace Finjin { namespace Common {
 
         size_t GetHeaderSize() const;
 
-        static void Unwrap(const Path& inFilePath, const Path& outFilePath, Error& error);
+        static void Unwrap(const Path& inFilePath, Path& outFilePath, Error& error);
 
     private:
         Header header;

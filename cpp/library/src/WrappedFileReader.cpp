@@ -166,11 +166,10 @@ const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10)& WrappedFileReader::Header:
     return lookup;
 }
 
-const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3)& WrappedFileReader::Header::GetSoundExtensionLookup()
+const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(2)& WrappedFileReader::Header::GetSoundExtensionLookup()
 {
-    static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3) lookup
+    static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(2) lookup
         (
-        "mp3",
         "ogg",
         "wav"
         );
@@ -239,7 +238,7 @@ size_t WrappedFileReader::GetHeaderSize() const
     return this->headerSize;
 }
 
-void WrappedFileReader::Unwrap(const Path& inFilePath, const Path& outFilePath, Error& error)
+void WrappedFileReader::Unwrap(const Path& inFilePath, Path& outFilePath, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
@@ -270,13 +269,20 @@ void WrappedFileReader::Unwrap(const Path& inFilePath, const Path& outFilePath, 
     //The remainder of inFile is the embedded file
 
     //Write output file--------------------------
-    auto outFilePathWithExtension = outFilePath;
-    outFilePathWithExtension += ".";
-    outFilePathWithExtension += header.fileExtension;
-    FileAccessor outFile;
-    if (!outFile.OpenForWrite(outFilePathWithExtension))
+    if (outFilePath.append(".").HasError())
     {
-        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to open output file '%1%'.", outFilePathWithExtension));
+        FINJIN_SET_ERROR(error, "Failed to append extension dot '.' to output path.");
+        return;
+    }
+    if (outFilePath.append(header.fileExtension).HasError())
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to append extension '%1%' to output path.", header.fileExtension));
+        return;
+    }
+    FileAccessor outFile;
+    if (!outFile.OpenForWrite(outFilePath))
+    {
+        FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to open output file '%1%'.", outFilePath));
         return;
     }
 
