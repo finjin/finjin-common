@@ -50,7 +50,7 @@ void StandardPaths::Create(const Utf8String& _applicationName, void* application
     {
         if (applicationName.assign(_applicationName).HasError())
         {
-            FINJIN_SET_ERROR(error, "Failed to copy application name.");
+            FINJIN_SET_ERROR(error, "Failed to assign application name.");
             return;
         }
     }

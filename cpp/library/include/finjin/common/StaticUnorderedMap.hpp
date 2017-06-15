@@ -22,7 +22,7 @@
 /**
  * Helps to define a bucket count for static maps that are likely to be full.
  */
-#define FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count) (size_t(count) * 3 | (size_t)1)
+#define FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count) (((size_t)count * 3) | (size_t)1)
 
 /**
  * Defines a lookup table with known number of literal string keys and corresponding values.
@@ -33,7 +33,7 @@
         < \
         const char*, \
         valueType, \
-        size_t(count), \
+        (size_t)count, \
         FINJIN_OVERSIZE_FULL_STATIC_MAP_BUCKET_COUNT(count), \
         Finjin::Common::MapPairConstructNone<const char*, valueType>, \
         Finjin::Common::Utf8StringHash, \

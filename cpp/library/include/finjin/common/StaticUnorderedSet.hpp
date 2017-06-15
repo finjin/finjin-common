@@ -18,6 +18,27 @@
 #include "finjin/common/SetMapImpl.hpp"
 
 
+//Macros------------------------------------------------------------------------
+/**
+ * Helps to define a bucket count for static sets that are likely to be full.
+ */
+#define FINJIN_OVERSIZE_FULL_STATIC_SET_BUCKET_COUNT(count) (((size_t)count * 3) | (size_t)1)
+
+/**
+ * Defines a lookup table with known number of literal string values.
+ * For this to compile without error, the Utf8String.hpp header must also be included
+ */
+#define FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(count) \
+    Finjin::Common::StaticUnorderedSet \
+        < \
+        const char*, \
+        (size_t)count, \
+        FINJIN_OVERSIZE_FULL_STATIC_SET_BUCKET_COUNT(count), \
+        Finjin::Common::Utf8StringHash, \
+        Finjin::Common::Utf8StringEqual \
+        >
+
+
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
@@ -41,6 +62,10 @@ namespace Finjin { namespace Common {
         using const_iterator = typename Impl::const_iterator;
 
         StaticUnorderedSet() { }
+
+        template <typename... Args>
+        StaticUnorderedSet(Args... args) { Construct(args...); }
+
         StaticUnorderedSet(const StaticUnorderedSet& other) { operator = (other); }
         StaticUnorderedSet(StaticUnorderedSet&& other) { operator = (std::move(other)); }
 
@@ -82,6 +107,26 @@ namespace Finjin { namespace Common {
 
         size_t GetCollisionCount() const { return impl.GetCollisionCount(); }
         float GetCollisionRatio() const { return impl.GetCollisionRatio(); }
+
+    private:
+        template <typename... Args>
+        void Construct(const T& value, Args... args)
+        {
+            Construct(value);
+
+            Construct(args...);
+        }
+
+        void Construct(const T& value)
+        {
+            auto result = insert(value);
+            assert(!result.HasErrorOrValue(false));
+        }
+
+        void Construct()
+        {
+            //Do nothing
+        }
 
     private:
         Impl impl;

@@ -17,6 +17,7 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
+#include "finjin/common/StaticUnorderedSet.hpp"
 
 
 //Types-------------------------------------------------------------------------
@@ -40,22 +41,19 @@ namespace Finjin { namespace Common {
             };
 
             Header();
+            
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10)& GetImageExtensionLookup();
+            static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3)& GetSoundExtensionLookup();
 
             template <typename T>
             static FileFormatClass GetFileFormatClass(const T& ext)
             {
-                if (ext == "astc" || ext == "bmp" || ext == "dds" || ext == "jpg" || ext == "jpeg" || ext == "ktx" || ext == "pkm" || ext == "png" || ext == "pvr" || ext == "tga")
+                if (GetImageExtensionLookup().contains(ext))
                     return Header::FileFormatClass::IMAGE;
-                else if (ext == "mp3" || ext == "ogg" || ext == "wav")
+                else if (GetSoundExtensionLookup().contains(ext))
                     return Header::FileFormatClass::SOUND;
                 else
                     return Header::FileFormatClass::GENERIC;
-            }
-
-            static FileFormatClass GetFileFormatClass(const char* ext)
-            {
-                Utf8StringView extStringView(ext);
-                return GetFileFormatClass(extStringView);
             }
 
             static bool IsValidFormatClass(FileFormatClass formatClass);

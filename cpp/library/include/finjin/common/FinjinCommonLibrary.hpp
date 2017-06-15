@@ -258,7 +258,7 @@
 #define FINJIN_FOURCC(a, b, c, d) ((static_cast<uint32_t>(d) << 24) | (static_cast<uint32_t>(c) << 16) | (static_cast<uint32_t>(b) << 8) | static_cast<uint32_t>(a))
 #define FINJIN_FOURCC_BIG_ENDIAN(a, b, c, d) FINJIN_FOURCC(d, c, b, a)
 
-#define FINJIN_SIGNATURE_FOURCC FINJIN_FOURCC('f', 'i', 'n', 'j')
+#define FINJIN_SIGNATURE_FOURCC FINJIN_FOURCC('f', 'i', 'n', 'j') //Decimal: 1785620838, Hexadecimal: 0x6a6e6966, Reverse decimal: 1718185578, Reverse hexadecimal: 0x66696e6a
 
 #define FINJIN_CALLER_PARAMETERS_DECLARATION const char* fileName, const char* functionName, int line //In the signature for Error::SetError() and other methods
 #define FINJIN_CALLER_PARAMETERS fileName, functionName, line //Allows error parameters in a method to be passed to another method

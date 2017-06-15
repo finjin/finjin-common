@@ -148,6 +148,35 @@ WrappedFileReader::Header::Header()
     this->fileLength = 0;
 }
 
+const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10)& WrappedFileReader::Header::GetImageExtensionLookup()
+{
+    static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10) lookup
+        (
+        "astc",
+        "bmp",
+        "dds",
+        "jpg",
+        "jpeg",
+        "ktx",
+        "pkm",
+        "png",
+        "pvr",
+        "tga"
+        );
+    return lookup;
+}
+
+const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3)& WrappedFileReader::Header::GetSoundExtensionLookup()
+{
+    static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(3) lookup
+        (
+        "mp3",
+        "ogg",
+        "wav"
+        );
+    return lookup;
+}
+
 bool WrappedFileReader::Header::IsValidFormat(FileFormat format)
 {
     return format == Header::FileFormat::EMBEDDED;
