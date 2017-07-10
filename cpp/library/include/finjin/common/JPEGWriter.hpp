@@ -17,52 +17,48 @@
 //Includes----------------------------------------------------------------------
 #include "finjin/common/ByteBuffer.hpp"
 #include "finjin/common/Error.hpp"
+#include "finjin/common/Path.hpp"
 
 
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
-    class FINJIN_COMMON_LIBRARY_API PNGWriter
+    /**
+     * Note that unlike PNGWriter, the internal implementation may result in some temporary allocations outside of the output buffer
+     */
+    class FINJIN_COMMON_LIBRARY_API JPEGWriter
     {
     public:
-        PNGWriter();
-        ~PNGWriter();
+        JPEGWriter();
+        ~JPEGWriter();
 
         enum class WriteResult
         {
             SUCCESS,
-            FAILED_TO_START_WRITE,
+            NOT_ENOUGH_MEMORY,
             INVALID_CHANNEL_COUNT,
-            INVALID_BYTES_PER_CHANNEL,
-            NOT_ENOUGH_MEMORY
+            FAILED_TO_WRITE_IMAGE
         };
 
         uint32_t GetInputChannelCount() const; //Information about input data
         void SetInputChannelCount(uint32_t value);
 
-        uint32_t GetInputBytesPerChannel() const; //Information about input data
-        void SetInputBytesPerChannel(uint32_t value);
+        uint32_t GetOutputChannelCount() const; //Transforms output data on Write
+        void SetOutputChannelCount(uint32_t value);
 
-        bool GetInputSRGB() const; //Information about input data
-        void SetInputSRGB(bool value);
+        uint32_t GetOutputQuality() const; //Transforms output data on Write. Varies between 1 and 100
+        void SetOutputQuality(uint32_t value);
 
-        bool GetOutputReverseRGB() const; //Transforms output data on Write
-        void SetOutputReverseRGB(bool value);
-
-        bool GetOutputSwapAlpha() const; //Transforms output data on Write
-        void SetOutputSwapAlpha(bool value);
-
-        WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer);
+        WriteResult Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& jpegOutputBuffer);
         Utf8String GetWriteResultString(WriteResult result) const;
 
-        void Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& pngOutputBuffer, Error& error);
+        void Write(const void* pixels, uint32_t width, uint32_t height, uint32_t rowStride, ByteBuffer& jpegOutputBuffer, Error& error);
 
     private:
         uint32_t inputChannelCount;
-        uint32_t inputBytesPerChannel;
-        bool inputIsSRGB;
-        bool outputReverseRGB; //false = RGB, true = BGR
-        bool outputSwapAlpha;
+        uint32_t outputChannelCount;
+        uint32_t outputQuality;
+        Path invalidImageErrorMessage; //Use Path to store the message since it has a longer default length
     };
 
 } }

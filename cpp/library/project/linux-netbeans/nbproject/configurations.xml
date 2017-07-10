@@ -470,6 +470,7 @@
     <Elem>/home/build/finjin-3rd-party/cpp/lpng</Elem>
     <Elem>/home/build/finjin-3rd-party/cpp/xxHash</Elem>
     <Elem>/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm</Elem>
+    <Elem>/home/build/finjin-3rd-party/cpp/jpeg</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -489,7 +490,7 @@
             <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/cpp-netlib</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/curl/include</pElem>
-            <pElem>/home/build/finjin-3rd-party/cpp/civetweb</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/civetweb/include</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
@@ -745,6 +746,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/FileAccessor.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/FileFinder.hpp"
             ex="false"
             tool="3"
@@ -781,6 +787,16 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/IntrusiveList.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JPEGReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JPEGWriter.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -910,11 +926,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/SystemAllocator.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../include/finjin/common/Path.hpp"
             ex="false"
             tool="3"
@@ -1001,6 +1012,11 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/StringMatcher.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SystemAllocator.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1276,8 +1292,6 @@
       </item>
       <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../include/finjin/common/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/FinjinPrecompiled.cpp" ex="false" tool="1" flavor2="0">
@@ -1287,6 +1301,10 @@
       <item path="../../src/GeneralAllocator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Hash.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JPEGReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JPEGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/JobFiber.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1340,11 +1358,6 @@
       </item>
       <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/SystemAllocator.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../../src/Path.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/PerformanceCounter.cpp" ex="false" tool="1" flavor2="0">
@@ -1365,6 +1378,8 @@
       <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/StringMatcher.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/SystemAllocator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1437,6 +1452,351 @@
       <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S"
             ex="false"
             tool="4"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/cderror.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jaricom.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcapimin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcapistd.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcarith.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jccoefct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jccolor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcdctmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jchuff.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcinit.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmainct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmarker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmaster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcomapi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcparam.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcprepct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcsample.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jctrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdapimin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdapistd.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdarith.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdatadst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdatasrc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdcoefct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdcolor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdct.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jddctmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdhuff.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdinput.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmainct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmarker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmaster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmerge.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdpostct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdsample.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdtrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jerror.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jerror.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctflt.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctfst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctint.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctflt.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctfst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctint.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jinclude.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemnobs.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemsys.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmorecfg.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jpegint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jpeglib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jquant1.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jquant2.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jutils.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jversion.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdbmp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdcolmap.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdgif.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdppm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdrle.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdswitch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdtarga.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/transupp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/transupp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrbmp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrgif.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrppm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrrle.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrtarga.c"
+            ex="false"
+            tool="0"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"
@@ -2117,7 +2477,7 @@
             <pElem>/home/build/finjin-3rd-party/cpp/</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/cpp-netlib</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/curl/include</pElem>
-            <pElem>/home/build/finjin-3rd-party/cpp/civetweb</pElem>
+            <pElem>/home/build/finjin-3rd-party/cpp/civetweb/include</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/nowide_standalone</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/boost</pElem>
             <pElem>/home/build/finjin-3rd-party/cpp/zziplib</pElem>
@@ -2377,6 +2737,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../../include/finjin/common/FileAccessor.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../../include/finjin/common/FileFinder.hpp"
             ex="false"
             tool="3"
@@ -2413,6 +2778,16 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/IntrusiveList.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JPEGReader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/JPEGWriter.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2542,11 +2917,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../../include/finjin/common/SystemAllocator.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../../include/finjin/common/Path.hpp"
             ex="false"
             tool="3"
@@ -2633,6 +3003,11 @@
             flavor2="0">
       </item>
       <item path="../../include/finjin/common/StringMatcher.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../include/finjin/common/SystemAllocator.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -2908,8 +3283,6 @@
       </item>
       <item path="../../src/FileAccessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../include/finjin/common/FileAccessor.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="../../src/FileSystemEntry.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/FinjinPrecompiled.cpp" ex="false" tool="1" flavor2="0">
@@ -2919,6 +3292,10 @@
       <item path="../../src/GeneralAllocator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/Hash.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JPEGReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/JPEGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/JobFiber.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -2972,11 +3349,6 @@
       </item>
       <item path="../../src/PNGWriter.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../../src/SystemAllocator.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../../src/Path.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/PerformanceCounter.cpp" ex="false" tool="1" flavor2="0">
@@ -2997,6 +3369,8 @@
       <item path="../../src/StreamingFileFormat.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/StringMatcher.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../../src/SystemAllocator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../../src/TextDataChunkReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -3069,6 +3443,351 @@
       <item path="/home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S"
             ex="false"
             tool="4"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/cderror.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jaricom.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcapimin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcapistd.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcarith.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jccoefct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jccolor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcdctmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jchuff.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcinit.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmainct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmarker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcmaster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcomapi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcparam.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcprepct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jcsample.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jctrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdapimin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdapistd.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdarith.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdatadst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdatasrc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdcoefct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdcolor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdct.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jddctmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdhuff.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdinput.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmainct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmarker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmaster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdmerge.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdpostct.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdsample.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jdtrans.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jerror.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jerror.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctflt.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctfst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jfdctint.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctflt.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctfst.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jidctint.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jinclude.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemmgr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemnobs.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmemsys.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jmorecfg.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jpegint.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jpeglib.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jquant1.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jquant2.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jutils.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/jversion.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdbmp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdcolmap.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdgif.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdppm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdrle.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdswitch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/rdtarga.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/transupp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/transupp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrbmp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrgif.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrppm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrrle.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="/home/build/finjin-3rd-party/cpp/jpeg/wrtarga.c"
+            ex="false"
+            tool="0"
             flavor2="0">
       </item>
       <item path="/home/build/finjin-3rd-party/cpp/lpng/png.c"

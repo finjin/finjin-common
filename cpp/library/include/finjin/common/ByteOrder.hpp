@@ -23,7 +23,7 @@ namespace Finjin { namespace Common {
         BIG
     };
 
-    //These are used in scenarios where a binary file is being read and values are in a known order, 
+    //These are used in scenarios where a binary file is being read and values are in a known order,
     //regardless of the system byte ordering
 
     typedef int16_t Int16BigEndian;

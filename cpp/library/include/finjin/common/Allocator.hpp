@@ -20,6 +20,10 @@
 #include "finjin/common/Utf8String.hpp"
 
 
+//Macros------------------------------------------------------------------------
+#define FINJIN_ALLOCATOR_NULL (Finjin::Common::Allocator*)0 //For readability/search-ability, prefer passing this into methods as a null pointer instead of 'nullptr'
+
+
 //Types-------------------------------------------------------------------------
 namespace Finjin { namespace Common {
 
@@ -32,7 +36,11 @@ namespace Finjin { namespace Common {
         virtual ~Allocator() {}
 
         const Utf8String& GetName() const;
-        ValueOrError<void> SetName(const Utf8String& name);
+        template <typename T>
+        ValueOrError<void> SetName(const T& name)
+        {
+            return this->name.assign(name);
+        }
 
         ByteMemoryArena AllocateArena(const MemoryArenaSettings& settings, FINJIN_CALLER_PARAMETERS_DECLARATION)
         {
@@ -308,7 +316,3 @@ namespace Finjin { namespace Common {
     }
 
 } }
-
-
-//Macros------------------------------------------------------------------------
-#define FINJIN_ALLOCATOR_NULL (Finjin::Common::Allocator*)0 //For readability/search-ability, prefer passing this into methods as a null pointer instead of 'nullptr'

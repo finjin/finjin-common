@@ -50,7 +50,7 @@ FileAccessor::FileAccessor(FileAccessor&& other)
 FileAccessor& FileAccessor::operator = (FileAccessor&& other)
 {
     Close();
-    
+
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     this->fileHandle = other.fileHandle;
     other.fileHandle = INVALID_HANDLE_VALUE;
@@ -58,7 +58,7 @@ FileAccessor& FileAccessor::operator = (FileAccessor&& other)
     this->file = other.file;
     other.file = nullptr;
 #endif
-    
+
     return *this;
 }
 
@@ -159,7 +159,7 @@ size_t FileAccessor::Read(void* bytes, size_t byteCount)
 {
     if (!IsOpen())
         return 0;
-    
+
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     DWORD bytesRead = 0;
     ReadFile(this->fileHandle, bytes, static_cast<DWORD>(byteCount), &bytesRead, nullptr);
@@ -175,7 +175,7 @@ size_t FileAccessor::Write(const void* bytes, size_t byteCount)
 {
     if (!IsOpen())
         return 0;
-    
+
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     DWORD bytesWritten = 0;
     WriteFile(this->fileHandle, bytes, static_cast<DWORD>(byteCount), &bytesWritten, nullptr);
@@ -191,7 +191,7 @@ void FileAccessor::WriteRemaining(FileAccessor& inFile)
 {
     if (!IsOpen())
         return;
-    
+
     uint8_t tempBuffer[CommonConstants::FILE_TEMP_BUFFER_SIZE];
     size_t readCount = 0;
     while ((readCount = inFile.Read(tempBuffer, sizeof(tempBuffer))) > 0)
@@ -202,7 +202,7 @@ uint64_t FileAccessor::GetOffset()
 {
     if (!IsOpen())
         return 0;
-    
+
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     LARGE_INTEGER zeroOffset = {0};
     LARGE_INTEGER result;
@@ -217,7 +217,7 @@ void FileAccessor::SetOffset(uint64_t offsetFromStart)
 {
     if (!IsOpen())
         return;
-    
+
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     LARGE_INTEGER offsetFromStartLI;
     offsetFromStartLI.QuadPart = offsetFromStart;

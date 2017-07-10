@@ -24,7 +24,7 @@ namespace Finjin { namespace Common {
 
     class Allocator;
     class Utf8String;
-    
+
     /**
      * Manages a pointer to UTF8 string characters.
      * The user must take care to ensure that the pointers outlive instances of Utf8StringView
@@ -33,10 +33,10 @@ namespace Finjin { namespace Common {
     {
         friend class ConfigDocumentLine;
         friend class Path;
-        
+
     public:
         static const Utf8StringView& GetEmpty();
-        
+
         using traits_type = std::char_traits<char>;
         using value_type = char;
         using size_type = size_t;
@@ -45,87 +45,87 @@ namespace Finjin { namespace Common {
         using const_pointer = const Utf8StringView*;
         using reference = Utf8StringView&;
         using const_reference = const Utf8StringView&;
-        
+
         using iterator = char*;
         using const_iterator = const char*;
-        
+
         using reverse_iterator = char*;
         using const_reverse_iterator = const char*;
-        
+
         static const size_t npos = (size_t)-1;
-        
+
         Utf8StringView();
         Utf8StringView(const char* first);
         Utf8StringView(const char* first, size_t len);
         Utf8StringView(const Utf8StringView& s);
         explicit Utf8StringView(const Utf8String& s);
-        
+
         ValueOrError<void> assign(const char* first);
         ValueOrError<void> assign(const char* first, size_t len);
         ValueOrError<void> assign(const char* first, const char* last);
         ValueOrError<void> assign(const uint8_t* first, const uint8_t* last);
         ValueOrError<void> assign(const uint8_t* first, size_t len);
-        
+
         void clear();
-        
+
         bool empty() const; //Returns true if empty
-        
+
         bool operator == (const char* other) const;
         bool operator != (const char* other) const;
         bool operator == (const Utf8String& other) const;
         bool operator != (const Utf8String& other) const;
         bool operator == (const Utf8StringView& other) const;
         bool operator != (const Utf8StringView& other) const;
-        
+
         const char* begin() const;
         const char* end() const;
-        
+
         size_t size() const;
         size_t length() const;
-        
+
         void pop_back();
         void pop_back(size_t count);
         void pop_back(const char* other);
-        
+
         size_t find(char c, size_t pos = 0) const;
         size_t find(const char* other, size_t pos = 0) const;
-        
+
         template <typename T>
         ValueOrError<void> substr(T& result, size_t pos, size_t len = npos) const
         {
             result.clear();
-            
+
             if (!empty() && pos < this->l)
                 return result.assign(this->s + pos, std::min(len, this->l - pos));
-            
+
             return ValueOrError<void>();
         }
-        
+
         Utf8StringView substr(size_t pos, size_t len = npos) const;
-        
+
         const char& operator [] (size_t i) const;
-        
+
         bool IsDigits() const;
-        
+
         int CompareNoCaseAscii(const char* other) const;
-        
+
         bool EqualsNoCaseAscii(const char* other) const;
-        
+
         bool StartsWith(const char* other) const;
         bool StartsWith(const char* other, size_t otherLength) const;
-        
+
         bool EndsWith(const char* other) const;
         bool EndsWith(const char* other, size_t otherLength) const;
-        
+
         void TrimTrailingWhitespace();
-        
+
         bool IsWhitespace() const;
-        
+
         size_t GetHash() const;
-        
+
         Utf8String ToString() const;
         ValueOrError<void> ToString(Utf8String& result) const;
-        
+
     private:
         const char* s;
         size_t l;
@@ -333,7 +333,7 @@ namespace Finjin { namespace Common {
             ReplaceFirst(findView, replaceView);
         }
         void ReplaceFirst(const Utf8StringView& find, const Utf8StringView& replace);
-        
+
         template <typename Find, typename Replace>
         void ReplaceAll(const Find& find, const Replace& replace)
         {

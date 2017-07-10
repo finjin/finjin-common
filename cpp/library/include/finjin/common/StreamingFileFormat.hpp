@@ -37,7 +37,7 @@ namespace Finjin { namespace Common {
         static bool IsValid(StreamingFileFormat format);
 
         static const char* ToString(StreamingFileFormat format);
-        
+
         template <typename T>
         static StreamingFileFormat ParseFromExtension(const T& format, StreamingFileFormat defaultValue)
         {
@@ -57,7 +57,7 @@ namespace Finjin { namespace Common {
         static void ParseFromExtension(StreamingFileFormat& format, const T& s, Error& error)
         {
             FINJIN_ERROR_METHOD_START(error);
-            
+
             format = ParseFromExtension(s, StreamingFileFormat::COUNT);
             if (format == StreamingFileFormat::COUNT)
                 FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse streaming file format. Invalid value in '%1%'.", s));

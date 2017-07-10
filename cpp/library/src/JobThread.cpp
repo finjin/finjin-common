@@ -154,13 +154,13 @@ void JobThread::Impl::ThreadFunc()
 
         this->fibers.Destroy();
         this->scheduler.Clear();
-        
+
         this->jobQueue.clear();
     }
-    
+
     //Convert main fiber back to a thread
     this->owner->ShutdownMainFiber();
-    
+
     this->runningFibers = false;
 }
 

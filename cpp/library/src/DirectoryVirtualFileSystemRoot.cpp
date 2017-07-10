@@ -27,7 +27,7 @@ using namespace Finjin::Common;
 
 
 //Local functions---------------------------------------------------------------
-static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEntries& items, FileSystemEntryType findTypes)
+static bool Enumerate(size_t depth, const Path& rootDirectory, const Path& path, FileSystemEntries& items, FileSystemEntryType findTypes, size_t maxDepth)
 {
     FileFinder finder;
     if (finder.Start(path, findTypes).HasValue(true))
@@ -52,9 +52,9 @@ static bool Enumerate(const Path& rootDirectory, const Path& path, FileSystemEnt
 
             fileSystemEntry->type = finder.GetCurrentType();
 
-            if (fileSystemEntry->type == FileSystemEntryType::DIRECTORY)
+            if (fileSystemEntry->type == FileSystemEntryType::DIRECTORY && depth < maxDepth)
             {
-                if (!Enumerate(rootDirectory, workingFilePath, items, findTypes))
+                if (!Enumerate(depth + 1, rootDirectory, workingFilePath, items, findTypes, maxDepth))
                     return false;
             }
         } while (finder.Next().HasValue(true));
@@ -102,11 +102,11 @@ void DirectoryVirtualFileSystemRoot::OpenRoot(const Path& directory, Error& erro
     }
 }
 
-VirtualFileSystemRoot::EnumerationResult DirectoryVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, FileSystemEntryType findTypes, Error& error)
+VirtualFileSystemRoot::EnumerationResult DirectoryVirtualFileSystemRoot::Enumerate(FileSystemEntries& items, FileSystemEntryType findTypes, size_t maxDepth, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
 
-    if (!::Enumerate(this->directory, this->directory, items, findTypes))
+    if (!::Enumerate(0, this->directory, this->directory, items, findTypes, maxDepth))
         FINJIN_SET_ERROR(error, "Failed to enumerate items.");
 
     return EnumerationResult::COMPLETE;

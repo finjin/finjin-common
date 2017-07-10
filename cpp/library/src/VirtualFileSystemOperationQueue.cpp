@@ -44,6 +44,79 @@ void VirtualFileOperationRequest::Destroy()
     Reset();
 }
 
+VirtualFileOperationRequest& VirtualFileOperationRequest::ReadRequest(PostReadCallback postReadCallback)
+{
+    Reset();
+    this->mode = FileOpenMode::READ;
+    this->postReadCallback = postReadCallback;
+    return *this;
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::ReadRequest(ReadCallback readCallback, PostReadCallback postReadCallback)
+{
+    Reset();
+    this->mode = FileOpenMode::READ;
+    this->readCallback = readCallback;
+    this->postReadCallback = postReadCallback;
+    return *this;
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::SetReadUri(const SimpleUri& relativeFileUri, VirtualFileSystem& fileSystem)
+{
+    this->fileUri = relativeFileUri;
+    this->fileSystem = &fileSystem;
+    return *this;
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::WriteRequest(const void* writeBuffer, size_t writeBufferByteCount, PostWriteCallback postWriteCallback)
+{
+    Reset();
+    this->mode = FileOpenMode::WRITE;
+    this->writeBuffer = static_cast<const uint8_t*>(writeBuffer);
+    this->writeBufferByteCount = writeBufferByteCount;
+    this->postWriteCallback = postWriteCallback;
+    return *this;
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::WriteRequest(WriteCallback writeCallback, PostWriteCallback postWriteCallback)
+{
+    Reset();
+    this->mode = FileOpenMode::WRITE;
+    this->writeCallback = writeCallback;
+    this->postWriteCallback = postWriteCallback;
+    return *this;
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::SetWritePath(const Path& relativeFilePath, VirtualFileSystem& fileSystem)
+{
+    SimpleUri relativeFileUri;
+    relativeFileUri.SetPath(relativeFilePath);
+    return SetWriteUri(relativeFileUri, fileSystem);
+}
+
+VirtualFileOperationRequest& VirtualFileOperationRequest::SetWriteUri(const SimpleUri& relativeFileUri, VirtualFileSystem& fileSystem)
+{
+    this->fileUri = relativeFileUri;
+    this->fileSystem = &fileSystem;
+    return *this;
+}
+
+void VirtualFileOperationRequest::Reset()
+{
+    this->fileSystem = nullptr;
+    this->mode = FileOpenMode::READ;
+    this->writeBuffer = nullptr;
+    this->writeBufferByteCount = 0;
+    this->estimatedFileSize = 0;
+    this->fileUri.clear();
+
+    this->readCallback = nullptr;
+    this->postReadCallback = nullptr;
+    this->writeCallback = nullptr;
+    this->postWriteCallback = nullptr;
+    this->cancelCallback = nullptr;
+}
+
 //VirtualFileSystemOperationQueue::Settings
 VirtualFileSystemOperationQueue::Settings::Settings()
 {

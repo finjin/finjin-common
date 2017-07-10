@@ -41,7 +41,7 @@ namespace Finjin { namespace Common {
             };
 
             Header();
-            
+
             static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(10)& GetImageExtensionLookup();
             static const FINJIN_LITERAL_STRING_STATIC_UNORDERED_SET(2)& GetSoundExtensionLookup();
 

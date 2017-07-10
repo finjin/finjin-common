@@ -7,6 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650F8D3E1F12254B005ADC2E /* JPEGReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D3C1F12254B005ADC2E /* JPEGReader.cpp */; };
+		650F8D3F1F12254B005ADC2E /* JPEGWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D3D1F12254B005ADC2E /* JPEGWriter.cpp */; };
+		650F8D8A1F1225FC005ADC2E /* jaricom.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D451F1225FB005ADC2E /* jaricom.c */; };
+		650F8D8B1F1225FC005ADC2E /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D461F1225FB005ADC2E /* jcapimin.c */; };
+		650F8D8C1F1225FC005ADC2E /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D471F1225FB005ADC2E /* jcapistd.c */; };
+		650F8D8D1F1225FC005ADC2E /* jcarith.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D481F1225FB005ADC2E /* jcarith.c */; };
+		650F8D8E1F1225FC005ADC2E /* jccoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D491F1225FB005ADC2E /* jccoefct.c */; };
+		650F8D8F1F1225FC005ADC2E /* jccolor.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4A1F1225FB005ADC2E /* jccolor.c */; };
+		650F8D901F1225FC005ADC2E /* jcdctmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4B1F1225FB005ADC2E /* jcdctmgr.c */; };
+		650F8D911F1225FC005ADC2E /* jchuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4C1F1225FB005ADC2E /* jchuff.c */; };
+		650F8D921F1225FC005ADC2E /* jcinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4D1F1225FB005ADC2E /* jcinit.c */; };
+		650F8D931F1225FC005ADC2E /* jcmainct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4E1F1225FB005ADC2E /* jcmainct.c */; };
+		650F8D941F1225FC005ADC2E /* jcmarker.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D4F1F1225FB005ADC2E /* jcmarker.c */; };
+		650F8D951F1225FC005ADC2E /* jcmaster.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D501F1225FB005ADC2E /* jcmaster.c */; };
+		650F8D961F1225FC005ADC2E /* jcomapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D511F1225FB005ADC2E /* jcomapi.c */; };
+		650F8D971F1225FC005ADC2E /* jcparam.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D521F1225FB005ADC2E /* jcparam.c */; };
+		650F8D981F1225FC005ADC2E /* jcprepct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D531F1225FB005ADC2E /* jcprepct.c */; };
+		650F8D991F1225FC005ADC2E /* jcsample.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D541F1225FB005ADC2E /* jcsample.c */; };
+		650F8D9A1F1225FC005ADC2E /* jctrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D551F1225FB005ADC2E /* jctrans.c */; };
+		650F8D9B1F1225FC005ADC2E /* jdapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D561F1225FB005ADC2E /* jdapimin.c */; };
+		650F8D9C1F1225FC005ADC2E /* jdapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D571F1225FB005ADC2E /* jdapistd.c */; };
+		650F8D9D1F1225FC005ADC2E /* jdarith.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D581F1225FB005ADC2E /* jdarith.c */; };
+		650F8D9E1F1225FC005ADC2E /* jdatadst.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D591F1225FB005ADC2E /* jdatadst.c */; };
+		650F8D9F1F1225FC005ADC2E /* jdatasrc.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D5A1F1225FB005ADC2E /* jdatasrc.c */; };
+		650F8DA01F1225FC005ADC2E /* jdcoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D5B1F1225FB005ADC2E /* jdcoefct.c */; };
+		650F8DA11F1225FC005ADC2E /* jdcolor.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D5C1F1225FB005ADC2E /* jdcolor.c */; };
+		650F8DA31F1225FC005ADC2E /* jddctmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D5E1F1225FB005ADC2E /* jddctmgr.c */; };
+		650F8DA41F1225FC005ADC2E /* jdhuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D5F1F1225FB005ADC2E /* jdhuff.c */; };
+		650F8DA51F1225FC005ADC2E /* jdinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D601F1225FB005ADC2E /* jdinput.c */; };
+		650F8DA61F1225FC005ADC2E /* jdmainct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D611F1225FB005ADC2E /* jdmainct.c */; };
+		650F8DA71F1225FC005ADC2E /* jdmarker.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D621F1225FB005ADC2E /* jdmarker.c */; };
+		650F8DA81F1225FC005ADC2E /* jdmaster.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D631F1225FB005ADC2E /* jdmaster.c */; };
+		650F8DA91F1225FC005ADC2E /* jdmerge.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D641F1225FB005ADC2E /* jdmerge.c */; };
+		650F8DAA1F1225FC005ADC2E /* jdpostct.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D651F1225FB005ADC2E /* jdpostct.c */; };
+		650F8DAB1F1225FC005ADC2E /* jdsample.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D661F1225FB005ADC2E /* jdsample.c */; };
+		650F8DAC1F1225FC005ADC2E /* jdtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D671F1225FB005ADC2E /* jdtrans.c */; };
+		650F8DAD1F1225FC005ADC2E /* jerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D681F1225FB005ADC2E /* jerror.c */; };
+		650F8DAF1F1225FC005ADC2E /* jfdctflt.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6A1F1225FB005ADC2E /* jfdctflt.c */; };
+		650F8DB01F1225FC005ADC2E /* jfdctfst.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6B1F1225FB005ADC2E /* jfdctfst.c */; };
+		650F8DB11F1225FC005ADC2E /* jfdctint.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6C1F1225FB005ADC2E /* jfdctint.c */; };
+		650F8DB21F1225FC005ADC2E /* jidctflt.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6D1F1225FB005ADC2E /* jidctflt.c */; };
+		650F8DB31F1225FC005ADC2E /* jidctfst.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6E1F1225FB005ADC2E /* jidctfst.c */; };
+		650F8DB41F1225FC005ADC2E /* jidctint.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D6F1F1225FB005ADC2E /* jidctint.c */; };
+		650F8DB61F1225FC005ADC2E /* jmemmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D711F1225FB005ADC2E /* jmemmgr.c */; };
+		650F8DB71F1225FC005ADC2E /* jmemnobs.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D721F1225FB005ADC2E /* jmemnobs.c */; };
+		650F8DBC1F1225FC005ADC2E /* jquant1.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D771F1225FB005ADC2E /* jquant1.c */; };
+		650F8DBD1F1225FC005ADC2E /* jquant2.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D781F1225FB005ADC2E /* jquant2.c */; };
+		650F8DBE1F1225FC005ADC2E /* jutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D791F1225FB005ADC2E /* jutils.c */; };
+		650F8DC01F1225FC005ADC2E /* rdbmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D7B1F1225FC005ADC2E /* rdbmp.c */; };
+		650F8DC11F1225FC005ADC2E /* rdcolmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D7C1F1225FC005ADC2E /* rdcolmap.c */; };
+		650F8DC21F1225FC005ADC2E /* rdgif.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D7D1F1225FC005ADC2E /* rdgif.c */; };
+		650F8DC31F1225FC005ADC2E /* rdppm.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D7E1F1225FC005ADC2E /* rdppm.c */; };
+		650F8DC41F1225FC005ADC2E /* rdrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D7F1F1225FC005ADC2E /* rdrle.c */; };
+		650F8DC51F1225FC005ADC2E /* rdswitch.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D801F1225FC005ADC2E /* rdswitch.c */; };
+		650F8DC61F1225FC005ADC2E /* rdtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D811F1225FC005ADC2E /* rdtarga.c */; };
+		650F8DC71F1225FC005ADC2E /* transupp.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D821F1225FC005ADC2E /* transupp.c */; };
+		650F8DC91F1225FC005ADC2E /* wrbmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D841F1225FC005ADC2E /* wrbmp.c */; };
+		650F8DCA1F1225FC005ADC2E /* wrgif.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D851F1225FC005ADC2E /* wrgif.c */; };
+		650F8DCB1F1225FC005ADC2E /* wrppm.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D861F1225FC005ADC2E /* wrppm.c */; };
+		650F8DCC1F1225FC005ADC2E /* wrrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D871F1225FC005ADC2E /* wrrle.c */; };
+		650F8DCD1F1225FC005ADC2E /* wrtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 650F8D881F1225FC005ADC2E /* wrtarga.c */; };
 		650FA3AE1D5B98CD00535D8D /* VirtualFileOperationHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA3AC1D5B98CD00535D8D /* VirtualFileOperationHandle.cpp */; };
 		650FA3B01D5B992400535D8D /* VirtualFileHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA3AF1D5B992400535D8D /* VirtualFileHandle.cpp */; };
 		650FA4701D613FBF00535D8D /* MemoryArena.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 650FA46E1D613FBF00535D8D /* MemoryArena.cpp */; };
@@ -187,6 +248,79 @@
 		6508AFCA1E357FE200EB826E /* StaticUnorderedMap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedMap.hpp; path = ../../include/finjin/common/StaticUnorderedMap.hpp; sourceTree = SOURCE_ROOT; };
 		6508AFCB1E357FE200EB826E /* StaticUnorderedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = StaticUnorderedSet.hpp; path = ../../include/finjin/common/StaticUnorderedSet.hpp; sourceTree = SOURCE_ROOT; };
 		6508AFCC1E357FE200EB826E /* ValueOrError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ValueOrError.hpp; path = ../../include/finjin/common/ValueOrError.hpp; sourceTree = SOURCE_ROOT; };
+		650F8D3C1F12254B005ADC2E /* JPEGReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JPEGReader.cpp; path = ../../src/JPEGReader.cpp; sourceTree = SOURCE_ROOT; };
+		650F8D3D1F12254B005ADC2E /* JPEGWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JPEGWriter.cpp; path = ../../src/JPEGWriter.cpp; sourceTree = SOURCE_ROOT; };
+		650F8D401F122561005ADC2E /* JPEGReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JPEGReader.hpp; path = ../../include/finjin/common/JPEGReader.hpp; sourceTree = SOURCE_ROOT; };
+		650F8D411F122561005ADC2E /* JPEGWriter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = JPEGWriter.hpp; path = ../../include/finjin/common/JPEGWriter.hpp; sourceTree = SOURCE_ROOT; };
+		650F8D441F1225FB005ADC2E /* cderror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cderror.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/cderror.h"; sourceTree = "<absolute>"; };
+		650F8D451F1225FB005ADC2E /* jaricom.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jaricom.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jaricom.c"; sourceTree = "<absolute>"; };
+		650F8D461F1225FB005ADC2E /* jcapimin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcapimin.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcapimin.c"; sourceTree = "<absolute>"; };
+		650F8D471F1225FB005ADC2E /* jcapistd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcapistd.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcapistd.c"; sourceTree = "<absolute>"; };
+		650F8D481F1225FB005ADC2E /* jcarith.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcarith.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcarith.c"; sourceTree = "<absolute>"; };
+		650F8D491F1225FB005ADC2E /* jccoefct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jccoefct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jccoefct.c"; sourceTree = "<absolute>"; };
+		650F8D4A1F1225FB005ADC2E /* jccolor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jccolor.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jccolor.c"; sourceTree = "<absolute>"; };
+		650F8D4B1F1225FB005ADC2E /* jcdctmgr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcdctmgr.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcdctmgr.c"; sourceTree = "<absolute>"; };
+		650F8D4C1F1225FB005ADC2E /* jchuff.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jchuff.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jchuff.c"; sourceTree = "<absolute>"; };
+		650F8D4D1F1225FB005ADC2E /* jcinit.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcinit.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcinit.c"; sourceTree = "<absolute>"; };
+		650F8D4E1F1225FB005ADC2E /* jcmainct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcmainct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcmainct.c"; sourceTree = "<absolute>"; };
+		650F8D4F1F1225FB005ADC2E /* jcmarker.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcmarker.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcmarker.c"; sourceTree = "<absolute>"; };
+		650F8D501F1225FB005ADC2E /* jcmaster.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcmaster.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcmaster.c"; sourceTree = "<absolute>"; };
+		650F8D511F1225FB005ADC2E /* jcomapi.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcomapi.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcomapi.c"; sourceTree = "<absolute>"; };
+		650F8D521F1225FB005ADC2E /* jcparam.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcparam.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcparam.c"; sourceTree = "<absolute>"; };
+		650F8D531F1225FB005ADC2E /* jcprepct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcprepct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcprepct.c"; sourceTree = "<absolute>"; };
+		650F8D541F1225FB005ADC2E /* jcsample.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jcsample.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jcsample.c"; sourceTree = "<absolute>"; };
+		650F8D551F1225FB005ADC2E /* jctrans.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jctrans.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jctrans.c"; sourceTree = "<absolute>"; };
+		650F8D561F1225FB005ADC2E /* jdapimin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdapimin.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdapimin.c"; sourceTree = "<absolute>"; };
+		650F8D571F1225FB005ADC2E /* jdapistd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdapistd.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdapistd.c"; sourceTree = "<absolute>"; };
+		650F8D581F1225FB005ADC2E /* jdarith.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdarith.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdarith.c"; sourceTree = "<absolute>"; };
+		650F8D591F1225FB005ADC2E /* jdatadst.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdatadst.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdatadst.c"; sourceTree = "<absolute>"; };
+		650F8D5A1F1225FB005ADC2E /* jdatasrc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdatasrc.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdatasrc.c"; sourceTree = "<absolute>"; };
+		650F8D5B1F1225FB005ADC2E /* jdcoefct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdcoefct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdcoefct.c"; sourceTree = "<absolute>"; };
+		650F8D5C1F1225FB005ADC2E /* jdcolor.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdcolor.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdcolor.c"; sourceTree = "<absolute>"; };
+		650F8D5D1F1225FB005ADC2E /* jdct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jdct.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdct.h"; sourceTree = "<absolute>"; };
+		650F8D5E1F1225FB005ADC2E /* jddctmgr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jddctmgr.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jddctmgr.c"; sourceTree = "<absolute>"; };
+		650F8D5F1F1225FB005ADC2E /* jdhuff.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdhuff.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdhuff.c"; sourceTree = "<absolute>"; };
+		650F8D601F1225FB005ADC2E /* jdinput.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdinput.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdinput.c"; sourceTree = "<absolute>"; };
+		650F8D611F1225FB005ADC2E /* jdmainct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdmainct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdmainct.c"; sourceTree = "<absolute>"; };
+		650F8D621F1225FB005ADC2E /* jdmarker.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdmarker.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdmarker.c"; sourceTree = "<absolute>"; };
+		650F8D631F1225FB005ADC2E /* jdmaster.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdmaster.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdmaster.c"; sourceTree = "<absolute>"; };
+		650F8D641F1225FB005ADC2E /* jdmerge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdmerge.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdmerge.c"; sourceTree = "<absolute>"; };
+		650F8D651F1225FB005ADC2E /* jdpostct.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdpostct.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdpostct.c"; sourceTree = "<absolute>"; };
+		650F8D661F1225FB005ADC2E /* jdsample.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdsample.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdsample.c"; sourceTree = "<absolute>"; };
+		650F8D671F1225FB005ADC2E /* jdtrans.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdtrans.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jdtrans.c"; sourceTree = "<absolute>"; };
+		650F8D681F1225FB005ADC2E /* jerror.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jerror.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jerror.c"; sourceTree = "<absolute>"; };
+		650F8D691F1225FB005ADC2E /* jerror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jerror.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jerror.h"; sourceTree = "<absolute>"; };
+		650F8D6A1F1225FB005ADC2E /* jfdctflt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jfdctflt.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jfdctflt.c"; sourceTree = "<absolute>"; };
+		650F8D6B1F1225FB005ADC2E /* jfdctfst.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jfdctfst.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jfdctfst.c"; sourceTree = "<absolute>"; };
+		650F8D6C1F1225FB005ADC2E /* jfdctint.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jfdctint.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jfdctint.c"; sourceTree = "<absolute>"; };
+		650F8D6D1F1225FB005ADC2E /* jidctflt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jidctflt.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jidctflt.c"; sourceTree = "<absolute>"; };
+		650F8D6E1F1225FB005ADC2E /* jidctfst.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jidctfst.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jidctfst.c"; sourceTree = "<absolute>"; };
+		650F8D6F1F1225FB005ADC2E /* jidctint.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jidctint.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jidctint.c"; sourceTree = "<absolute>"; };
+		650F8D701F1225FB005ADC2E /* jinclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jinclude.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jinclude.h"; sourceTree = "<absolute>"; };
+		650F8D711F1225FB005ADC2E /* jmemmgr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jmemmgr.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jmemmgr.c"; sourceTree = "<absolute>"; };
+		650F8D721F1225FB005ADC2E /* jmemnobs.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jmemnobs.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jmemnobs.c"; sourceTree = "<absolute>"; };
+		650F8D731F1225FB005ADC2E /* jmemsys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jmemsys.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jmemsys.h"; sourceTree = "<absolute>"; };
+		650F8D741F1225FB005ADC2E /* jmorecfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jmorecfg.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jmorecfg.h"; sourceTree = "<absolute>"; };
+		650F8D751F1225FB005ADC2E /* jpegint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jpegint.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jpegint.h"; sourceTree = "<absolute>"; };
+		650F8D761F1225FB005ADC2E /* jpeglib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jpeglib.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jpeglib.h"; sourceTree = "<absolute>"; };
+		650F8D771F1225FB005ADC2E /* jquant1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jquant1.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jquant1.c"; sourceTree = "<absolute>"; };
+		650F8D781F1225FB005ADC2E /* jquant2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jquant2.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jquant2.c"; sourceTree = "<absolute>"; };
+		650F8D791F1225FB005ADC2E /* jutils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jutils.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jutils.c"; sourceTree = "<absolute>"; };
+		650F8D7A1F1225FB005ADC2E /* jversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jversion.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/jversion.h"; sourceTree = "<absolute>"; };
+		650F8D7B1F1225FC005ADC2E /* rdbmp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdbmp.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdbmp.c"; sourceTree = "<absolute>"; };
+		650F8D7C1F1225FC005ADC2E /* rdcolmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdcolmap.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdcolmap.c"; sourceTree = "<absolute>"; };
+		650F8D7D1F1225FC005ADC2E /* rdgif.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdgif.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdgif.c"; sourceTree = "<absolute>"; };
+		650F8D7E1F1225FC005ADC2E /* rdppm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdppm.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdppm.c"; sourceTree = "<absolute>"; };
+		650F8D7F1F1225FC005ADC2E /* rdrle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdrle.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdrle.c"; sourceTree = "<absolute>"; };
+		650F8D801F1225FC005ADC2E /* rdswitch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdswitch.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdswitch.c"; sourceTree = "<absolute>"; };
+		650F8D811F1225FC005ADC2E /* rdtarga.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdtarga.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/rdtarga.c"; sourceTree = "<absolute>"; };
+		650F8D821F1225FC005ADC2E /* transupp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = transupp.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/transupp.c"; sourceTree = "<absolute>"; };
+		650F8D831F1225FC005ADC2E /* transupp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = transupp.h; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/transupp.h"; sourceTree = "<absolute>"; };
+		650F8D841F1225FC005ADC2E /* wrbmp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wrbmp.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/wrbmp.c"; sourceTree = "<absolute>"; };
+		650F8D851F1225FC005ADC2E /* wrgif.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wrgif.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/wrgif.c"; sourceTree = "<absolute>"; };
+		650F8D861F1225FC005ADC2E /* wrppm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wrppm.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/wrppm.c"; sourceTree = "<absolute>"; };
+		650F8D871F1225FC005ADC2E /* wrrle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wrrle.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/wrrle.c"; sourceTree = "<absolute>"; };
+		650F8D881F1225FC005ADC2E /* wrtarga.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wrtarga.c; path = "/Users/derek/git/nedelman/finjin-common/cpp/library/project/ios-xcode/../../../../../../../finjin-3rd-party/cpp/jpeg/wrtarga.c"; sourceTree = "<absolute>"; };
 		650FA3371D32178000535D8D /* ByteOrder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ByteOrder.hpp; path = ../../include/finjin/common/ByteOrder.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3381D32178000535D8D /* LayoutDirection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LayoutDirection.hpp; path = ../../include/finjin/common/LayoutDirection.hpp; sourceTree = SOURCE_ROOT; };
 		650FA3A31D5B988D00535D8D /* DataChunkReaderInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DataChunkReaderInput.hpp; path = ../../include/finjin/common/DataChunkReaderInput.hpp; sourceTree = SOURCE_ROOT; };
@@ -553,6 +687,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650F8D331F12244D005ADC2E /* jpeg */ = {
+			isa = PBXGroup;
+			children = (
+				650F8D441F1225FB005ADC2E /* cderror.h */,
+				650F8D451F1225FB005ADC2E /* jaricom.c */,
+				650F8D461F1225FB005ADC2E /* jcapimin.c */,
+				650F8D471F1225FB005ADC2E /* jcapistd.c */,
+				650F8D481F1225FB005ADC2E /* jcarith.c */,
+				650F8D491F1225FB005ADC2E /* jccoefct.c */,
+				650F8D4A1F1225FB005ADC2E /* jccolor.c */,
+				650F8D4B1F1225FB005ADC2E /* jcdctmgr.c */,
+				650F8D4C1F1225FB005ADC2E /* jchuff.c */,
+				650F8D4D1F1225FB005ADC2E /* jcinit.c */,
+				650F8D4E1F1225FB005ADC2E /* jcmainct.c */,
+				650F8D4F1F1225FB005ADC2E /* jcmarker.c */,
+				650F8D501F1225FB005ADC2E /* jcmaster.c */,
+				650F8D511F1225FB005ADC2E /* jcomapi.c */,
+				650F8D521F1225FB005ADC2E /* jcparam.c */,
+				650F8D531F1225FB005ADC2E /* jcprepct.c */,
+				650F8D541F1225FB005ADC2E /* jcsample.c */,
+				650F8D551F1225FB005ADC2E /* jctrans.c */,
+				650F8D561F1225FB005ADC2E /* jdapimin.c */,
+				650F8D571F1225FB005ADC2E /* jdapistd.c */,
+				650F8D581F1225FB005ADC2E /* jdarith.c */,
+				650F8D591F1225FB005ADC2E /* jdatadst.c */,
+				650F8D5A1F1225FB005ADC2E /* jdatasrc.c */,
+				650F8D5B1F1225FB005ADC2E /* jdcoefct.c */,
+				650F8D5C1F1225FB005ADC2E /* jdcolor.c */,
+				650F8D5D1F1225FB005ADC2E /* jdct.h */,
+				650F8D5E1F1225FB005ADC2E /* jddctmgr.c */,
+				650F8D5F1F1225FB005ADC2E /* jdhuff.c */,
+				650F8D601F1225FB005ADC2E /* jdinput.c */,
+				650F8D611F1225FB005ADC2E /* jdmainct.c */,
+				650F8D621F1225FB005ADC2E /* jdmarker.c */,
+				650F8D631F1225FB005ADC2E /* jdmaster.c */,
+				650F8D641F1225FB005ADC2E /* jdmerge.c */,
+				650F8D651F1225FB005ADC2E /* jdpostct.c */,
+				650F8D661F1225FB005ADC2E /* jdsample.c */,
+				650F8D671F1225FB005ADC2E /* jdtrans.c */,
+				650F8D681F1225FB005ADC2E /* jerror.c */,
+				650F8D691F1225FB005ADC2E /* jerror.h */,
+				650F8D6A1F1225FB005ADC2E /* jfdctflt.c */,
+				650F8D6B1F1225FB005ADC2E /* jfdctfst.c */,
+				650F8D6C1F1225FB005ADC2E /* jfdctint.c */,
+				650F8D6D1F1225FB005ADC2E /* jidctflt.c */,
+				650F8D6E1F1225FB005ADC2E /* jidctfst.c */,
+				650F8D6F1F1225FB005ADC2E /* jidctint.c */,
+				650F8D701F1225FB005ADC2E /* jinclude.h */,
+				650F8D711F1225FB005ADC2E /* jmemmgr.c */,
+				650F8D721F1225FB005ADC2E /* jmemnobs.c */,
+				650F8D731F1225FB005ADC2E /* jmemsys.h */,
+				650F8D741F1225FB005ADC2E /* jmorecfg.h */,
+				650F8D751F1225FB005ADC2E /* jpegint.h */,
+				650F8D761F1225FB005ADC2E /* jpeglib.h */,
+				650F8D771F1225FB005ADC2E /* jquant1.c */,
+				650F8D781F1225FB005ADC2E /* jquant2.c */,
+				650F8D791F1225FB005ADC2E /* jutils.c */,
+				650F8D7A1F1225FB005ADC2E /* jversion.h */,
+				650F8D7B1F1225FC005ADC2E /* rdbmp.c */,
+				650F8D7C1F1225FC005ADC2E /* rdcolmap.c */,
+				650F8D7D1F1225FC005ADC2E /* rdgif.c */,
+				650F8D7E1F1225FC005ADC2E /* rdppm.c */,
+				650F8D7F1F1225FC005ADC2E /* rdrle.c */,
+				650F8D801F1225FC005ADC2E /* rdswitch.c */,
+				650F8D811F1225FC005ADC2E /* rdtarga.c */,
+				650F8D821F1225FC005ADC2E /* transupp.c */,
+				650F8D831F1225FC005ADC2E /* transupp.h */,
+				650F8D841F1225FC005ADC2E /* wrbmp.c */,
+				650F8D851F1225FC005ADC2E /* wrgif.c */,
+				650F8D861F1225FC005ADC2E /* wrppm.c */,
+				650F8D871F1225FC005ADC2E /* wrrle.c */,
+				650F8D881F1225FC005ADC2E /* wrtarga.c */,
+			);
+			name = jpeg;
+			sourceTree = "<group>";
+		};
 		65127B901CB0DA790041C324 /* zziplib */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +942,10 @@
 		657AA0C81E3D9461004ADA22 /* external-file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				650F8D3C1F12254B005ADC2E /* JPEGReader.cpp */,
+				650F8D401F122561005ADC2E /* JPEGReader.hpp */,
+				650F8D3D1F12254B005ADC2E /* JPEGWriter.cpp */,
+				650F8D411F122561005ADC2E /* JPEGWriter.hpp */,
 				657AA1521E3D97FF004ADA22 /* PNGReader.cpp */,
 				657AA1541E3D9812004ADA22 /* PNGReader.hpp */,
 				65F7C17D1EADD9CD0084EC43 /* PNGWriter.cpp */,
@@ -814,6 +1028,7 @@
 		65E477801C4F712A00A1501F /* 3rd-party */ = {
 			isa = PBXGroup;
 			children = (
+				650F8D331F12244D005ADC2E /* jpeg */,
 				657AA1271E3D97B0004ADA22 /* lpng */,
 				65E47A2D1C4F9A1200A1501F /* nowide */,
 				65E47A2E1C4F9A1A00A1501F /* rapidjson */,
@@ -1227,6 +1442,67 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650F8D8A1F1225FC005ADC2E /* jaricom.c in Sources */,
+				650F8D8B1F1225FC005ADC2E /* jcapimin.c in Sources */,
+				650F8D8C1F1225FC005ADC2E /* jcapistd.c in Sources */,
+				650F8D8D1F1225FC005ADC2E /* jcarith.c in Sources */,
+				650F8D8E1F1225FC005ADC2E /* jccoefct.c in Sources */,
+				650F8D8F1F1225FC005ADC2E /* jccolor.c in Sources */,
+				650F8D901F1225FC005ADC2E /* jcdctmgr.c in Sources */,
+				650F8D911F1225FC005ADC2E /* jchuff.c in Sources */,
+				650F8D921F1225FC005ADC2E /* jcinit.c in Sources */,
+				650F8D931F1225FC005ADC2E /* jcmainct.c in Sources */,
+				650F8D941F1225FC005ADC2E /* jcmarker.c in Sources */,
+				650F8D951F1225FC005ADC2E /* jcmaster.c in Sources */,
+				650F8D961F1225FC005ADC2E /* jcomapi.c in Sources */,
+				650F8D971F1225FC005ADC2E /* jcparam.c in Sources */,
+				650F8D981F1225FC005ADC2E /* jcprepct.c in Sources */,
+				650F8D991F1225FC005ADC2E /* jcsample.c in Sources */,
+				650F8D9A1F1225FC005ADC2E /* jctrans.c in Sources */,
+				650F8D9B1F1225FC005ADC2E /* jdapimin.c in Sources */,
+				650F8D9C1F1225FC005ADC2E /* jdapistd.c in Sources */,
+				650F8D9D1F1225FC005ADC2E /* jdarith.c in Sources */,
+				650F8D9E1F1225FC005ADC2E /* jdatadst.c in Sources */,
+				650F8D9F1F1225FC005ADC2E /* jdatasrc.c in Sources */,
+				650F8DA01F1225FC005ADC2E /* jdcoefct.c in Sources */,
+				650F8DA11F1225FC005ADC2E /* jdcolor.c in Sources */,
+				650F8DA31F1225FC005ADC2E /* jddctmgr.c in Sources */,
+				650F8DA41F1225FC005ADC2E /* jdhuff.c in Sources */,
+				650F8DA51F1225FC005ADC2E /* jdinput.c in Sources */,
+				650F8DA61F1225FC005ADC2E /* jdmainct.c in Sources */,
+				650F8DA71F1225FC005ADC2E /* jdmarker.c in Sources */,
+				650F8DA81F1225FC005ADC2E /* jdmaster.c in Sources */,
+				650F8DA91F1225FC005ADC2E /* jdmerge.c in Sources */,
+				650F8DAA1F1225FC005ADC2E /* jdpostct.c in Sources */,
+				650F8DAB1F1225FC005ADC2E /* jdsample.c in Sources */,
+				650F8DAC1F1225FC005ADC2E /* jdtrans.c in Sources */,
+				650F8DAD1F1225FC005ADC2E /* jerror.c in Sources */,
+				650F8DAF1F1225FC005ADC2E /* jfdctflt.c in Sources */,
+				650F8DB01F1225FC005ADC2E /* jfdctfst.c in Sources */,
+				650F8DB11F1225FC005ADC2E /* jfdctint.c in Sources */,
+				650F8DB21F1225FC005ADC2E /* jidctflt.c in Sources */,
+				650F8DB31F1225FC005ADC2E /* jidctfst.c in Sources */,
+				650F8DB41F1225FC005ADC2E /* jidctint.c in Sources */,
+				650F8DB61F1225FC005ADC2E /* jmemmgr.c in Sources */,
+				650F8DB71F1225FC005ADC2E /* jmemnobs.c in Sources */,
+				650F8DBC1F1225FC005ADC2E /* jquant1.c in Sources */,
+				650F8DBD1F1225FC005ADC2E /* jquant2.c in Sources */,
+				650F8DBE1F1225FC005ADC2E /* jutils.c in Sources */,
+				650F8DC01F1225FC005ADC2E /* rdbmp.c in Sources */,
+				650F8DC11F1225FC005ADC2E /* rdcolmap.c in Sources */,
+				650F8DC21F1225FC005ADC2E /* rdgif.c in Sources */,
+				650F8DC31F1225FC005ADC2E /* rdppm.c in Sources */,
+				650F8DC41F1225FC005ADC2E /* rdrle.c in Sources */,
+				650F8DC51F1225FC005ADC2E /* rdswitch.c in Sources */,
+				650F8DC61F1225FC005ADC2E /* rdtarga.c in Sources */,
+				650F8DC71F1225FC005ADC2E /* transupp.c in Sources */,
+				650F8DC91F1225FC005ADC2E /* wrbmp.c in Sources */,
+				650F8DCA1F1225FC005ADC2E /* wrgif.c in Sources */,
+				650F8DCB1F1225FC005ADC2E /* wrppm.c in Sources */,
+				650F8DCC1F1225FC005ADC2E /* wrrle.c in Sources */,
+				650F8DCD1F1225FC005ADC2E /* wrtarga.c in Sources */,
+				650F8D3E1F12254B005ADC2E /* JPEGReader.cpp in Sources */,
+				650F8D3F1F12254B005ADC2E /* JPEGWriter.cpp in Sources */,
 				657359C01ED109FA009FA3E6 /* StandardPaths.cpp in Sources */,
 				6573597C1ECF4277009FA3E6 /* Luid.cpp in Sources */,
 				657359721ECED5C3009FA3E6 /* JobFiber.mm in Sources */,
@@ -1509,6 +1785,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/zziplib",
 					"/Users/derek/finjin-3rd-party/cpp/zlib",
 					"/Users/derek/finjin-3rd-party/cpp/lpng",
+					"/Users/derek/finjin-3rd-party/cpp/jpeg",
 					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1537,6 +1814,7 @@
 					"/Users/derek/finjin-3rd-party/cpp/zziplib",
 					"/Users/derek/finjin-3rd-party/cpp/zlib",
 					"/Users/derek/finjin-3rd-party/cpp/lpng",
+					"/Users/derek/finjin-3rd-party/cpp/jpeg",
 					"/Users/derek/finjin-3rd-party/cpp/uriparser/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;

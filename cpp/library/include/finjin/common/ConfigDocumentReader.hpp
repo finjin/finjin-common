@@ -75,7 +75,7 @@ namespace Finjin { namespace Common {
             key.assign(beginPointer, len);
         }
         Utf8String GetKey() const;
-        
+
         template <typename T>
         void GetValue(T& value) const
         {
@@ -85,7 +85,7 @@ namespace Finjin { namespace Common {
             value.TrimTrailingWhitespace();
         }
         Utf8String GetValue() const;
-        
+
         template <typename KeyType, typename ValueType>
         void GetKeyAndValue(KeyType& key, ValueType& value) const
         {

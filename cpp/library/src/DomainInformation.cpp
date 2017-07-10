@@ -70,10 +70,10 @@ static ValueOrError<void> _GetHostName(Utf8String& result)
 DomainInformation::DomainInformation(Allocator* allocator)
 {
     this->hostName.value.SetAllocator(allocator);
-    
+
     if (!_GetHostName(this->hostName).HasError())
         this->hostName.isSet = true;
-    
+
     this->initializationStatus.SetStatus(OperationStatus::SUCCESS);
 }
 

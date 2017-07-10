@@ -75,6 +75,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/FinjinPrecompiled.o \
 	${OBJECTDIR}/_ext/56252444/GeneralAllocator.o \
 	${OBJECTDIR}/_ext/56252444/Hash.o \
+	${OBJECTDIR}/_ext/56252444/JPEGReader.o \
+	${OBJECTDIR}/_ext/56252444/JPEGWriter.o \
 	${OBJECTDIR}/_ext/56252444/JobFiber.o \
 	${OBJECTDIR}/_ext/56252444/JobFuture.o \
 	${OBJECTDIR}/_ext/56252444/JobSystem.o \
@@ -96,7 +98,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/NamePrefix.o \
 	${OBJECTDIR}/_ext/56252444/PNGReader.o \
 	${OBJECTDIR}/_ext/56252444/PNGWriter.o \
-	${OBJECTDIR}/_ext/56252444/SystemAllocator.o \
 	${OBJECTDIR}/_ext/56252444/Path.o \
 	${OBJECTDIR}/_ext/56252444/PerformanceCounter.o \
 	${OBJECTDIR}/_ext/56252444/ProcessRuntimeInformation.o \
@@ -106,6 +107,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/StandardPaths_Linux.o \
 	${OBJECTDIR}/_ext/56252444/StreamingFileFormat.o \
 	${OBJECTDIR}/_ext/56252444/StringMatcher.o \
+	${OBJECTDIR}/_ext/56252444/SystemAllocator.o \
 	${OBJECTDIR}/_ext/56252444/TextDataChunkReader.o \
 	${OBJECTDIR}/_ext/56252444/TextDataChunkWriter.o \
 	${OBJECTDIR}/_ext/56252444/ThisThread.o \
@@ -132,6 +134,65 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/56252444/ZipArchiveVirtualFileSystemRoot.o \
 	${OBJECTDIR}/_ext/b0297d5f/jump_x86_64_sysv_elf_gas.o \
 	${OBJECTDIR}/_ext/b0297d5f/make_x86_64_sysv_elf_gas.o \
+	${OBJECTDIR}/_ext/f9f80fec/jaricom.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcapimin.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcapistd.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcarith.o \
+	${OBJECTDIR}/_ext/f9f80fec/jccoefct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jccolor.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcdctmgr.o \
+	${OBJECTDIR}/_ext/f9f80fec/jchuff.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcinit.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcmainct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcmarker.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcmaster.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcomapi.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcparam.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcprepct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jcsample.o \
+	${OBJECTDIR}/_ext/f9f80fec/jctrans.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdapimin.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdapistd.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdarith.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdatadst.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdatasrc.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdcoefct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdcolor.o \
+	${OBJECTDIR}/_ext/f9f80fec/jddctmgr.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdhuff.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdinput.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdmainct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdmarker.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdmaster.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdmerge.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdpostct.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdsample.o \
+	${OBJECTDIR}/_ext/f9f80fec/jdtrans.o \
+	${OBJECTDIR}/_ext/f9f80fec/jerror.o \
+	${OBJECTDIR}/_ext/f9f80fec/jfdctflt.o \
+	${OBJECTDIR}/_ext/f9f80fec/jfdctfst.o \
+	${OBJECTDIR}/_ext/f9f80fec/jfdctint.o \
+	${OBJECTDIR}/_ext/f9f80fec/jidctflt.o \
+	${OBJECTDIR}/_ext/f9f80fec/jidctfst.o \
+	${OBJECTDIR}/_ext/f9f80fec/jidctint.o \
+	${OBJECTDIR}/_ext/f9f80fec/jmemmgr.o \
+	${OBJECTDIR}/_ext/f9f80fec/jmemnobs.o \
+	${OBJECTDIR}/_ext/f9f80fec/jquant1.o \
+	${OBJECTDIR}/_ext/f9f80fec/jquant2.o \
+	${OBJECTDIR}/_ext/f9f80fec/jutils.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdbmp.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdcolmap.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdgif.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdppm.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdrle.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdswitch.o \
+	${OBJECTDIR}/_ext/f9f80fec/rdtarga.o \
+	${OBJECTDIR}/_ext/f9f80fec/transupp.o \
+	${OBJECTDIR}/_ext/f9f80fec/wrbmp.o \
+	${OBJECTDIR}/_ext/f9f80fec/wrgif.o \
+	${OBJECTDIR}/_ext/f9f80fec/wrppm.o \
+	${OBJECTDIR}/_ext/f9f80fec/wrrle.o \
+	${OBJECTDIR}/_ext/f9f80fec/wrtarga.o \
 	${OBJECTDIR}/_ext/f9f8f9c1/png.o \
 	${OBJECTDIR}/_ext/f9f8f9c1/pngerror.o \
 	${OBJECTDIR}/_ext/f9f8f9c1/pngget.o \
@@ -419,6 +480,16 @@ ${OBJECTDIR}/_ext/56252444/Hash.o: ../../src/Hash.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/Hash.o ../../src/Hash.cpp
 
+${OBJECTDIR}/_ext/56252444/JPEGReader.o: ../../src/JPEGReader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/JPEGReader.o ../../src/JPEGReader.cpp
+
+${OBJECTDIR}/_ext/56252444/JPEGWriter.o: ../../src/JPEGWriter.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/JPEGWriter.o ../../src/JPEGWriter.cpp
+
 ${OBJECTDIR}/_ext/56252444/JobFiber.o: ../../src/JobFiber.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
@@ -524,11 +595,6 @@ ${OBJECTDIR}/_ext/56252444/PNGWriter.o: ../../src/PNGWriter.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/PNGWriter.o ../../src/PNGWriter.cpp
 
-${OBJECTDIR}/_ext/56252444/SystemAllocator.o: ../../src/SystemAllocator.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/SystemAllocator.o ../../src/SystemAllocator.cpp
-
 ${OBJECTDIR}/_ext/56252444/Path.o: ../../src/Path.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
@@ -573,6 +639,11 @@ ${OBJECTDIR}/_ext/56252444/StringMatcher.o: ../../src/StringMatcher.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/StringMatcher.o ../../src/StringMatcher.cpp
+
+${OBJECTDIR}/_ext/56252444/SystemAllocator.o: ../../src/SystemAllocator.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/eigen -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/56252444/SystemAllocator.o ../../src/SystemAllocator.cpp
 
 ${OBJECTDIR}/_ext/56252444/TextDataChunkReader.o: ../../src/TextDataChunkReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/56252444
@@ -702,80 +773,375 @@ ${OBJECTDIR}/_ext/b0297d5f/make_x86_64_sysv_elf_gas.o: /home/build/finjin-3rd-pa
 	${MKDIR} -p ${OBJECTDIR}/_ext/b0297d5f
 	$(AS) $(ASFLAGS) -o ${OBJECTDIR}/_ext/b0297d5f/make_x86_64_sysv_elf_gas.o /home/build/finjin-3rd-party/cpp/boost/libs/context/src/asm/make_x86_64_sysv_elf_gas.S
 
+${OBJECTDIR}/_ext/f9f80fec/jaricom.o: /home/build/finjin-3rd-party/cpp/jpeg/jaricom.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jaricom.o /home/build/finjin-3rd-party/cpp/jpeg/jaricom.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcapimin.o: /home/build/finjin-3rd-party/cpp/jpeg/jcapimin.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcapimin.o /home/build/finjin-3rd-party/cpp/jpeg/jcapimin.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcapistd.o: /home/build/finjin-3rd-party/cpp/jpeg/jcapistd.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcapistd.o /home/build/finjin-3rd-party/cpp/jpeg/jcapistd.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcarith.o: /home/build/finjin-3rd-party/cpp/jpeg/jcarith.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcarith.o /home/build/finjin-3rd-party/cpp/jpeg/jcarith.c
+
+${OBJECTDIR}/_ext/f9f80fec/jccoefct.o: /home/build/finjin-3rd-party/cpp/jpeg/jccoefct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jccoefct.o /home/build/finjin-3rd-party/cpp/jpeg/jccoefct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jccolor.o: /home/build/finjin-3rd-party/cpp/jpeg/jccolor.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jccolor.o /home/build/finjin-3rd-party/cpp/jpeg/jccolor.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcdctmgr.o: /home/build/finjin-3rd-party/cpp/jpeg/jcdctmgr.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcdctmgr.o /home/build/finjin-3rd-party/cpp/jpeg/jcdctmgr.c
+
+${OBJECTDIR}/_ext/f9f80fec/jchuff.o: /home/build/finjin-3rd-party/cpp/jpeg/jchuff.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jchuff.o /home/build/finjin-3rd-party/cpp/jpeg/jchuff.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcinit.o: /home/build/finjin-3rd-party/cpp/jpeg/jcinit.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcinit.o /home/build/finjin-3rd-party/cpp/jpeg/jcinit.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcmainct.o: /home/build/finjin-3rd-party/cpp/jpeg/jcmainct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcmainct.o /home/build/finjin-3rd-party/cpp/jpeg/jcmainct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcmarker.o: /home/build/finjin-3rd-party/cpp/jpeg/jcmarker.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcmarker.o /home/build/finjin-3rd-party/cpp/jpeg/jcmarker.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcmaster.o: /home/build/finjin-3rd-party/cpp/jpeg/jcmaster.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcmaster.o /home/build/finjin-3rd-party/cpp/jpeg/jcmaster.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcomapi.o: /home/build/finjin-3rd-party/cpp/jpeg/jcomapi.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcomapi.o /home/build/finjin-3rd-party/cpp/jpeg/jcomapi.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcparam.o: /home/build/finjin-3rd-party/cpp/jpeg/jcparam.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcparam.o /home/build/finjin-3rd-party/cpp/jpeg/jcparam.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcprepct.o: /home/build/finjin-3rd-party/cpp/jpeg/jcprepct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcprepct.o /home/build/finjin-3rd-party/cpp/jpeg/jcprepct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jcsample.o: /home/build/finjin-3rd-party/cpp/jpeg/jcsample.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jcsample.o /home/build/finjin-3rd-party/cpp/jpeg/jcsample.c
+
+${OBJECTDIR}/_ext/f9f80fec/jctrans.o: /home/build/finjin-3rd-party/cpp/jpeg/jctrans.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jctrans.o /home/build/finjin-3rd-party/cpp/jpeg/jctrans.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdapimin.o: /home/build/finjin-3rd-party/cpp/jpeg/jdapimin.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdapimin.o /home/build/finjin-3rd-party/cpp/jpeg/jdapimin.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdapistd.o: /home/build/finjin-3rd-party/cpp/jpeg/jdapistd.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdapistd.o /home/build/finjin-3rd-party/cpp/jpeg/jdapistd.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdarith.o: /home/build/finjin-3rd-party/cpp/jpeg/jdarith.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdarith.o /home/build/finjin-3rd-party/cpp/jpeg/jdarith.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdatadst.o: /home/build/finjin-3rd-party/cpp/jpeg/jdatadst.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdatadst.o /home/build/finjin-3rd-party/cpp/jpeg/jdatadst.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdatasrc.o: /home/build/finjin-3rd-party/cpp/jpeg/jdatasrc.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdatasrc.o /home/build/finjin-3rd-party/cpp/jpeg/jdatasrc.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdcoefct.o: /home/build/finjin-3rd-party/cpp/jpeg/jdcoefct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdcoefct.o /home/build/finjin-3rd-party/cpp/jpeg/jdcoefct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdcolor.o: /home/build/finjin-3rd-party/cpp/jpeg/jdcolor.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdcolor.o /home/build/finjin-3rd-party/cpp/jpeg/jdcolor.c
+
+${OBJECTDIR}/_ext/f9f80fec/jddctmgr.o: /home/build/finjin-3rd-party/cpp/jpeg/jddctmgr.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jddctmgr.o /home/build/finjin-3rd-party/cpp/jpeg/jddctmgr.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdhuff.o: /home/build/finjin-3rd-party/cpp/jpeg/jdhuff.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdhuff.o /home/build/finjin-3rd-party/cpp/jpeg/jdhuff.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdinput.o: /home/build/finjin-3rd-party/cpp/jpeg/jdinput.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdinput.o /home/build/finjin-3rd-party/cpp/jpeg/jdinput.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdmainct.o: /home/build/finjin-3rd-party/cpp/jpeg/jdmainct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdmainct.o /home/build/finjin-3rd-party/cpp/jpeg/jdmainct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdmarker.o: /home/build/finjin-3rd-party/cpp/jpeg/jdmarker.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdmarker.o /home/build/finjin-3rd-party/cpp/jpeg/jdmarker.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdmaster.o: /home/build/finjin-3rd-party/cpp/jpeg/jdmaster.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdmaster.o /home/build/finjin-3rd-party/cpp/jpeg/jdmaster.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdmerge.o: /home/build/finjin-3rd-party/cpp/jpeg/jdmerge.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdmerge.o /home/build/finjin-3rd-party/cpp/jpeg/jdmerge.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdpostct.o: /home/build/finjin-3rd-party/cpp/jpeg/jdpostct.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdpostct.o /home/build/finjin-3rd-party/cpp/jpeg/jdpostct.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdsample.o: /home/build/finjin-3rd-party/cpp/jpeg/jdsample.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdsample.o /home/build/finjin-3rd-party/cpp/jpeg/jdsample.c
+
+${OBJECTDIR}/_ext/f9f80fec/jdtrans.o: /home/build/finjin-3rd-party/cpp/jpeg/jdtrans.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jdtrans.o /home/build/finjin-3rd-party/cpp/jpeg/jdtrans.c
+
+${OBJECTDIR}/_ext/f9f80fec/jerror.o: /home/build/finjin-3rd-party/cpp/jpeg/jerror.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jerror.o /home/build/finjin-3rd-party/cpp/jpeg/jerror.c
+
+${OBJECTDIR}/_ext/f9f80fec/jfdctflt.o: /home/build/finjin-3rd-party/cpp/jpeg/jfdctflt.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jfdctflt.o /home/build/finjin-3rd-party/cpp/jpeg/jfdctflt.c
+
+${OBJECTDIR}/_ext/f9f80fec/jfdctfst.o: /home/build/finjin-3rd-party/cpp/jpeg/jfdctfst.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jfdctfst.o /home/build/finjin-3rd-party/cpp/jpeg/jfdctfst.c
+
+${OBJECTDIR}/_ext/f9f80fec/jfdctint.o: /home/build/finjin-3rd-party/cpp/jpeg/jfdctint.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jfdctint.o /home/build/finjin-3rd-party/cpp/jpeg/jfdctint.c
+
+${OBJECTDIR}/_ext/f9f80fec/jidctflt.o: /home/build/finjin-3rd-party/cpp/jpeg/jidctflt.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jidctflt.o /home/build/finjin-3rd-party/cpp/jpeg/jidctflt.c
+
+${OBJECTDIR}/_ext/f9f80fec/jidctfst.o: /home/build/finjin-3rd-party/cpp/jpeg/jidctfst.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jidctfst.o /home/build/finjin-3rd-party/cpp/jpeg/jidctfst.c
+
+${OBJECTDIR}/_ext/f9f80fec/jidctint.o: /home/build/finjin-3rd-party/cpp/jpeg/jidctint.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jidctint.o /home/build/finjin-3rd-party/cpp/jpeg/jidctint.c
+
+${OBJECTDIR}/_ext/f9f80fec/jmemmgr.o: /home/build/finjin-3rd-party/cpp/jpeg/jmemmgr.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jmemmgr.o /home/build/finjin-3rd-party/cpp/jpeg/jmemmgr.c
+
+${OBJECTDIR}/_ext/f9f80fec/jmemnobs.o: /home/build/finjin-3rd-party/cpp/jpeg/jmemnobs.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jmemnobs.o /home/build/finjin-3rd-party/cpp/jpeg/jmemnobs.c
+
+${OBJECTDIR}/_ext/f9f80fec/jquant1.o: /home/build/finjin-3rd-party/cpp/jpeg/jquant1.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jquant1.o /home/build/finjin-3rd-party/cpp/jpeg/jquant1.c
+
+${OBJECTDIR}/_ext/f9f80fec/jquant2.o: /home/build/finjin-3rd-party/cpp/jpeg/jquant2.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jquant2.o /home/build/finjin-3rd-party/cpp/jpeg/jquant2.c
+
+${OBJECTDIR}/_ext/f9f80fec/jutils.o: /home/build/finjin-3rd-party/cpp/jpeg/jutils.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/jutils.o /home/build/finjin-3rd-party/cpp/jpeg/jutils.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdbmp.o: /home/build/finjin-3rd-party/cpp/jpeg/rdbmp.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdbmp.o /home/build/finjin-3rd-party/cpp/jpeg/rdbmp.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdcolmap.o: /home/build/finjin-3rd-party/cpp/jpeg/rdcolmap.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdcolmap.o /home/build/finjin-3rd-party/cpp/jpeg/rdcolmap.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdgif.o: /home/build/finjin-3rd-party/cpp/jpeg/rdgif.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdgif.o /home/build/finjin-3rd-party/cpp/jpeg/rdgif.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdppm.o: /home/build/finjin-3rd-party/cpp/jpeg/rdppm.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdppm.o /home/build/finjin-3rd-party/cpp/jpeg/rdppm.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdrle.o: /home/build/finjin-3rd-party/cpp/jpeg/rdrle.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdrle.o /home/build/finjin-3rd-party/cpp/jpeg/rdrle.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdswitch.o: /home/build/finjin-3rd-party/cpp/jpeg/rdswitch.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdswitch.o /home/build/finjin-3rd-party/cpp/jpeg/rdswitch.c
+
+${OBJECTDIR}/_ext/f9f80fec/rdtarga.o: /home/build/finjin-3rd-party/cpp/jpeg/rdtarga.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/rdtarga.o /home/build/finjin-3rd-party/cpp/jpeg/rdtarga.c
+
+${OBJECTDIR}/_ext/f9f80fec/transupp.o: /home/build/finjin-3rd-party/cpp/jpeg/transupp.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/transupp.o /home/build/finjin-3rd-party/cpp/jpeg/transupp.c
+
+${OBJECTDIR}/_ext/f9f80fec/wrbmp.o: /home/build/finjin-3rd-party/cpp/jpeg/wrbmp.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/wrbmp.o /home/build/finjin-3rd-party/cpp/jpeg/wrbmp.c
+
+${OBJECTDIR}/_ext/f9f80fec/wrgif.o: /home/build/finjin-3rd-party/cpp/jpeg/wrgif.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/wrgif.o /home/build/finjin-3rd-party/cpp/jpeg/wrgif.c
+
+${OBJECTDIR}/_ext/f9f80fec/wrppm.o: /home/build/finjin-3rd-party/cpp/jpeg/wrppm.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/wrppm.o /home/build/finjin-3rd-party/cpp/jpeg/wrppm.c
+
+${OBJECTDIR}/_ext/f9f80fec/wrrle.o: /home/build/finjin-3rd-party/cpp/jpeg/wrrle.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/wrrle.o /home/build/finjin-3rd-party/cpp/jpeg/wrrle.c
+
+${OBJECTDIR}/_ext/f9f80fec/wrtarga.o: /home/build/finjin-3rd-party/cpp/jpeg/wrtarga.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/f9f80fec
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f80fec/wrtarga.o /home/build/finjin-3rd-party/cpp/jpeg/wrtarga.c
+
 ${OBJECTDIR}/_ext/f9f8f9c1/png.o: /home/build/finjin-3rd-party/cpp/lpng/png.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/png.o /home/build/finjin-3rd-party/cpp/lpng/png.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/png.o /home/build/finjin-3rd-party/cpp/lpng/png.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngerror.o: /home/build/finjin-3rd-party/cpp/lpng/pngerror.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngerror.o /home/build/finjin-3rd-party/cpp/lpng/pngerror.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngerror.o /home/build/finjin-3rd-party/cpp/lpng/pngerror.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngget.o: /home/build/finjin-3rd-party/cpp/lpng/pngget.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngget.o /home/build/finjin-3rd-party/cpp/lpng/pngget.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngget.o /home/build/finjin-3rd-party/cpp/lpng/pngget.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngmem.o: /home/build/finjin-3rd-party/cpp/lpng/pngmem.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngmem.o /home/build/finjin-3rd-party/cpp/lpng/pngmem.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngmem.o /home/build/finjin-3rd-party/cpp/lpng/pngmem.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngpread.o: /home/build/finjin-3rd-party/cpp/lpng/pngpread.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngpread.o /home/build/finjin-3rd-party/cpp/lpng/pngpread.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngpread.o /home/build/finjin-3rd-party/cpp/lpng/pngpread.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngread.o: /home/build/finjin-3rd-party/cpp/lpng/pngread.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngread.o /home/build/finjin-3rd-party/cpp/lpng/pngread.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngread.o /home/build/finjin-3rd-party/cpp/lpng/pngread.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngrio.o: /home/build/finjin-3rd-party/cpp/lpng/pngrio.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrio.o /home/build/finjin-3rd-party/cpp/lpng/pngrio.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrio.o /home/build/finjin-3rd-party/cpp/lpng/pngrio.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngrtran.o: /home/build/finjin-3rd-party/cpp/lpng/pngrtran.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrtran.o /home/build/finjin-3rd-party/cpp/lpng/pngrtran.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrtran.o /home/build/finjin-3rd-party/cpp/lpng/pngrtran.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngrutil.o: /home/build/finjin-3rd-party/cpp/lpng/pngrutil.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrutil.o /home/build/finjin-3rd-party/cpp/lpng/pngrutil.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngrutil.o /home/build/finjin-3rd-party/cpp/lpng/pngrutil.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngset.o: /home/build/finjin-3rd-party/cpp/lpng/pngset.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngset.o /home/build/finjin-3rd-party/cpp/lpng/pngset.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngset.o /home/build/finjin-3rd-party/cpp/lpng/pngset.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngtrans.o: /home/build/finjin-3rd-party/cpp/lpng/pngtrans.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngtrans.o /home/build/finjin-3rd-party/cpp/lpng/pngtrans.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngtrans.o /home/build/finjin-3rd-party/cpp/lpng/pngtrans.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngwio.o: /home/build/finjin-3rd-party/cpp/lpng/pngwio.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwio.o /home/build/finjin-3rd-party/cpp/lpng/pngwio.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwio.o /home/build/finjin-3rd-party/cpp/lpng/pngwio.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngwrite.o: /home/build/finjin-3rd-party/cpp/lpng/pngwrite.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwrite.o /home/build/finjin-3rd-party/cpp/lpng/pngwrite.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwrite.o /home/build/finjin-3rd-party/cpp/lpng/pngwrite.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngwtran.o: /home/build/finjin-3rd-party/cpp/lpng/pngwtran.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwtran.o /home/build/finjin-3rd-party/cpp/lpng/pngwtran.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwtran.o /home/build/finjin-3rd-party/cpp/lpng/pngwtran.c
 
 ${OBJECTDIR}/_ext/f9f8f9c1/pngwutil.o: /home/build/finjin-3rd-party/cpp/lpng/pngwutil.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9f8f9c1
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwutil.o /home/build/finjin-3rd-party/cpp/lpng/pngwutil.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9f8f9c1/pngwutil.o /home/build/finjin-3rd-party/cpp/lpng/pngwutil.c
 
 ${OBJECTDIR}/_ext/a859e9a1/iostream.o: /home/build/finjin-3rd-party/cpp/nowide_standalone/src/iostream.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/a859e9a1
@@ -790,212 +1156,212 @@ ${OBJECTDIR}/_ext/2fda0f13/tinyxml2.o: /home/build/finjin-3rd-party/cpp/tinyxml/
 ${OBJECTDIR}/_ext/5de1235c/UriCommon.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriCommon.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriCommon.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriCommon.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriCompare.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriCompare.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriCompare.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriCompare.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriEscape.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriEscape.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriEscape.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriEscape.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriFile.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriFile.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriFile.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriFile.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriIp4.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriIp4.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriIp4.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriIp4Base.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriIp4Base.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriIp4Base.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriIp4Base.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriNormalize.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriNormalize.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriNormalize.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalize.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriNormalizeBase.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriNormalizeBase.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriNormalizeBase.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriNormalizeBase.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriParse.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriParse.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriParse.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriParse.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriParseBase.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriParseBase.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriParseBase.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriParseBase.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriQuery.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriQuery.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriQuery.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriQuery.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriRecompose.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriRecompose.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriRecompose.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriRecompose.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriResolve.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriResolve.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriResolve.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriResolve.c
 
 ${OBJECTDIR}/_ext/5de1235c/UriShorten.o: /home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/5de1235c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriShorten.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5de1235c/UriShorten.o /home/build/finjin-3rd-party/cpp/uriparser/src/UriShorten.c
 
 ${OBJECTDIR}/_ext/747b22b2/xxhash.o: /home/build/finjin-3rd-party/cpp/xxHash/xxhash.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/747b22b2
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/747b22b2/xxhash.o /home/build/finjin-3rd-party/cpp/xxHash/xxhash.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/747b22b2/xxhash.o /home/build/finjin-3rd-party/cpp/xxHash/xxhash.c
 
 ${OBJECTDIR}/_ext/f9ff474f/adler32.o: /home/build/finjin-3rd-party/cpp/zlib/adler32.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/adler32.o /home/build/finjin-3rd-party/cpp/zlib/adler32.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/adler32.o /home/build/finjin-3rd-party/cpp/zlib/adler32.c
 
 ${OBJECTDIR}/_ext/f9ff474f/compress.o: /home/build/finjin-3rd-party/cpp/zlib/compress.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/compress.o /home/build/finjin-3rd-party/cpp/zlib/compress.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/compress.o /home/build/finjin-3rd-party/cpp/zlib/compress.c
 
 ${OBJECTDIR}/_ext/f9ff474f/crc32.o: /home/build/finjin-3rd-party/cpp/zlib/crc32.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/crc32.o /home/build/finjin-3rd-party/cpp/zlib/crc32.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/crc32.o /home/build/finjin-3rd-party/cpp/zlib/crc32.c
 
 ${OBJECTDIR}/_ext/f9ff474f/deflate.o: /home/build/finjin-3rd-party/cpp/zlib/deflate.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/deflate.o /home/build/finjin-3rd-party/cpp/zlib/deflate.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/deflate.o /home/build/finjin-3rd-party/cpp/zlib/deflate.c
 
 ${OBJECTDIR}/_ext/f9ff474f/gzclose.o: /home/build/finjin-3rd-party/cpp/zlib/gzclose.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzclose.o /home/build/finjin-3rd-party/cpp/zlib/gzclose.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzclose.o /home/build/finjin-3rd-party/cpp/zlib/gzclose.c
 
 ${OBJECTDIR}/_ext/f9ff474f/gzlib.o: /home/build/finjin-3rd-party/cpp/zlib/gzlib.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzlib.o /home/build/finjin-3rd-party/cpp/zlib/gzlib.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzlib.o /home/build/finjin-3rd-party/cpp/zlib/gzlib.c
 
 ${OBJECTDIR}/_ext/f9ff474f/gzread.o: /home/build/finjin-3rd-party/cpp/zlib/gzread.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzread.o /home/build/finjin-3rd-party/cpp/zlib/gzread.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzread.o /home/build/finjin-3rd-party/cpp/zlib/gzread.c
 
 ${OBJECTDIR}/_ext/f9ff474f/gzwrite.o: /home/build/finjin-3rd-party/cpp/zlib/gzwrite.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzwrite.o /home/build/finjin-3rd-party/cpp/zlib/gzwrite.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/gzwrite.o /home/build/finjin-3rd-party/cpp/zlib/gzwrite.c
 
 ${OBJECTDIR}/_ext/f9ff474f/infback.o: /home/build/finjin-3rd-party/cpp/zlib/infback.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/infback.o /home/build/finjin-3rd-party/cpp/zlib/infback.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/infback.o /home/build/finjin-3rd-party/cpp/zlib/infback.c
 
 ${OBJECTDIR}/_ext/f9ff474f/inffast.o: /home/build/finjin-3rd-party/cpp/zlib/inffast.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inffast.o /home/build/finjin-3rd-party/cpp/zlib/inffast.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inffast.o /home/build/finjin-3rd-party/cpp/zlib/inffast.c
 
 ${OBJECTDIR}/_ext/f9ff474f/inflate.o: /home/build/finjin-3rd-party/cpp/zlib/inflate.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inflate.o /home/build/finjin-3rd-party/cpp/zlib/inflate.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inflate.o /home/build/finjin-3rd-party/cpp/zlib/inflate.c
 
 ${OBJECTDIR}/_ext/f9ff474f/inftrees.o: /home/build/finjin-3rd-party/cpp/zlib/inftrees.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inftrees.o /home/build/finjin-3rd-party/cpp/zlib/inftrees.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/inftrees.o /home/build/finjin-3rd-party/cpp/zlib/inftrees.c
 
 ${OBJECTDIR}/_ext/f9ff474f/trees.o: /home/build/finjin-3rd-party/cpp/zlib/trees.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/trees.o /home/build/finjin-3rd-party/cpp/zlib/trees.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/trees.o /home/build/finjin-3rd-party/cpp/zlib/trees.c
 
 ${OBJECTDIR}/_ext/f9ff474f/uncompr.o: /home/build/finjin-3rd-party/cpp/zlib/uncompr.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/uncompr.o /home/build/finjin-3rd-party/cpp/zlib/uncompr.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/uncompr.o /home/build/finjin-3rd-party/cpp/zlib/uncompr.c
 
 ${OBJECTDIR}/_ext/f9ff474f/zutil.o: /home/build/finjin-3rd-party/cpp/zlib/zutil.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/f9ff474f
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/zutil.o /home/build/finjin-3rd-party/cpp/zlib/zutil.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f9ff474f/zutil.o /home/build/finjin-3rd-party/cpp/zlib/zutil.c
 
 ${OBJECTDIR}/_ext/b69e269c/dir.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/dir.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/dir.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/dir.c
 
 ${OBJECTDIR}/_ext/b69e269c/err.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/err.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/err.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/err.c
 
 ${OBJECTDIR}/_ext/b69e269c/fetch.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/fetch.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/fetch.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/fetch.c
 
 ${OBJECTDIR}/_ext/b69e269c/file.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/file.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/file.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/file.c
 
 ${OBJECTDIR}/_ext/b69e269c/fseeko.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/fseeko.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/fseeko.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/fseeko.c
 
 ${OBJECTDIR}/_ext/b69e269c/info.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/info.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/info.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/info.c
 
 ${OBJECTDIR}/_ext/b69e269c/memdisk.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/memdisk.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/memdisk.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/memdisk.c
 
 ${OBJECTDIR}/_ext/b69e269c/mmapped.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/mmapped.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/mmapped.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/mmapped.c
 
 ${OBJECTDIR}/_ext/b69e269c/plugin.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/plugin.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/plugin.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/plugin.c
 
 ${OBJECTDIR}/_ext/b69e269c/stat.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/stat.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/stat.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/stat.c
 
 ${OBJECTDIR}/_ext/b69e269c/write.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/write.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/write.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/write.c
 
 ${OBJECTDIR}/_ext/b69e269c/zip.o: /home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c 
 	${MKDIR} -p ${OBJECTDIR}/_ext/b69e269c
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/zip.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c
+	$(COMPILE.c) -O2 -D_ZZIP_NO_INLINE -D_zzip_inline -I. -I../../include -I../../src -I/home/build/finjin-3rd-party/cpp/ -I/home/build/finjin-3rd-party/cpp/cpp-netlib -I/home/build/finjin-3rd-party/cpp/curl/include -I/home/build/finjin-3rd-party/cpp/civetweb/include -I/home/build/finjin-3rd-party/cpp/nowide_standalone -I/home/build/finjin-3rd-party/cpp/boost -I/home/build/finjin-3rd-party/cpp/zziplib -I/home/build/finjin-3rd-party/cpp/zlib -I/home/build/finjin-3rd-party/cpp/lpng -I/home/build/finjin-3rd-party/cpp/uriparser/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b69e269c/zip.o /home/build/finjin-3rd-party/cpp/zziplib/zzip/zip.c
 
 # Subprojects
 .build-subprojects:

@@ -56,6 +56,22 @@ namespace Finjin { namespace Common {
                 this->decompressedSize = 0;
             }
 
+            size_t GetDepth() const
+            {
+                size_t depth = 0;
+
+                if (!this->path.empty())
+                {
+                    for (size_t i = 0; i < this->path.length() - 1; i++)
+                    {
+                        if (path[i] == '/')
+                            depth++;
+                    }
+                }
+
+                return depth;
+            }
+
             bool IsDirectory() const { return this->type == FileSystemEntryType::DIRECTORY; }
             bool IsFile() const { return this->type == FileSystemEntryType::FILE; }
             FileSystemEntryType GetType() const { return this->type; }

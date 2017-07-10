@@ -23,7 +23,7 @@ namespace Finjin { namespace Common {
 
     /**
      * Allocator that passes calls through to the underlying system.
-     * Since it doesn't internally keep track of allocations, the values returned by 
+     * Since it doesn't internally keep track of allocations, the values returned by
      * GetBytesUsed() and GetBytesFree() will be somewhat unstable from call to call.
      */
     class SystemAllocator : public Allocator

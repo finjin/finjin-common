@@ -33,11 +33,11 @@ BOOST_AUTO_TEST_CASE(PNGTest_write_and_read)
         writePixels[i] = pixelColor;
 
     //Write the PNG to memory
-    ByteBuffer pngBuffer;
-    pngBuffer.Create(MemorySize::MEBIBYTE * 10, FINJIN_ALLOCATOR_NULL);
+    ByteBuffer imageFileBuffer;
+    imageFileBuffer.Create(MemorySize::MEBIBYTE * 10, FINJIN_ALLOCATOR_NULL);
 
     PNGWriter writer;
-    writer.Write(writePixels.data(), width, height, 0, pngBuffer, error);
+    writer.Write(writePixels.data(), width, height, 0, imageFileBuffer, error);
     BOOST_CHECK(!error);
     if (!error)
     {
@@ -45,9 +45,9 @@ BOOST_AUTO_TEST_CASE(PNGTest_write_and_read)
         ByteBuffer readPixelsBytes;
         readPixelsBytes.Create(MemorySize::MEBIBYTE * 10, FINJIN_ALLOCATOR_NULL);
 
-        PNGReader pngReader;
-        ByteBufferReader pngBufferByteReader(pngBuffer);
-        pngReader.ReadImage(pngBufferByteReader, readPixelsBytes, error);
+        PNGReader imageReader;
+        ByteBufferReader imageFileBufferByteReader(imageFileBuffer);
+        imageReader.ReadImage(imageFileBufferByteReader, readPixelsBytes, error);
         BOOST_CHECK(!error);
         if (!error)
         {

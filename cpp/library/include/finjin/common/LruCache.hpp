@@ -49,7 +49,11 @@ namespace Finjin { namespace Common {
         struct Item : public AllocatedClass
         {
             using TypedItem = Item;
-            using Heap = boost::heap::fibonacci_heap<TypedItem*, boost::heap::compare<ItemCompare<TypedItem*> > >;
+            using Heap = boost::heap::fibonacci_heap
+                <
+                TypedItem*,
+                boost::heap::compare<ItemCompare<TypedItem*> >
+                >;
             using HeapItemHandle = typename Heap::handle_type;
 
             ValueType value; //The value
@@ -74,7 +78,11 @@ namespace Finjin { namespace Common {
         };
 
         using TypedItem = Item;
-        using Heap = boost::heap::fibonacci_heap<TypedItem*, boost::heap::compare<ItemCompare<TypedItem*> > >;
+        using Heap = boost::heap::fibonacci_heap
+            <
+            TypedItem*,
+            boost::heap::compare<ItemCompare<TypedItem*> >
+            >;
 
     public:
         struct Settings

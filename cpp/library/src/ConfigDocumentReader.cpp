@@ -336,40 +336,53 @@ ConfigDocumentLine* ConfigDocumentReader::ProcessLine()
 
             return &this->line;
         }
-        else if (*i == '#')
+        else
         {
-            if (hash == nullptr)
-                hash = i;
-        }
-        else if (*i == '^')
-        {
-            if (carat == nullptr)
-                carat = i;
-        }
-        else if (*i == '=')
-        {
-            if (equal == nullptr)
-                equal = i;
-        }
-        else if (*i == '[')
-        {
-            if (sectionStartBracket == nullptr)
-                sectionStartBracket = i;
-        }
-        else if (*i == ']')
-        {
-            if (sectionStartBracket != nullptr && sectionEndBracket == nullptr)
-                sectionEndBracket = i;
-        }
-        else if (*i == '{')
-        {
-            if (scopeStartBracket == nullptr)
-                scopeStartBracket = i;
-        }
-        else if (*i == '}')
-        {
-            if (scopeEndBracket == nullptr)
-                scopeEndBracket = i;
+            switch (*i)
+            {
+                case '#':
+                {
+                    if (hash == nullptr)
+                        hash = i;
+                    break;
+                }
+                case '^':
+                {
+                    if (carat == nullptr)
+                        carat = i;
+                    break;
+                }
+                case '=':
+                {
+                    if (equal == nullptr)
+                        equal = i;
+                    break;
+                }
+                case '[':
+                {
+                    if (sectionStartBracket == nullptr)
+                        sectionStartBracket = i;
+                    break;
+                }
+                case ']':
+                {
+                    if (sectionStartBracket != nullptr && sectionEndBracket == nullptr)
+                        sectionEndBracket = i;
+                    break;
+                }
+                case '{':
+                {
+                    if (scopeStartBracket == nullptr)
+                        scopeStartBracket = i;
+                    break;
+                }
+                case '}':
+                {
+                    if (scopeEndBracket == nullptr)
+                        scopeEndBracket = i;
+                    break;
+                }
+            }
         }
     }
 

@@ -40,7 +40,7 @@ namespace Finjin { namespace Common {
 
     #if FINJIN_APPLE_OBJCPP_UTILITIES
         static ValueOrError<void> GetSystemDirectory(Path& path, bool& isSystemCreated, NSSearchPathDirectory which, bool tryCreateIfNotPresent = true);
-        
+
         #if FINJIN_TARGET_PLATFORM == FINJIN_TARGET_PLATFORM_MACOS
             static void CenterDefaultsInParent(NSRect& windowRect, const NSRect& parentRect, CGFloat defaultCoordinate);
         #endif

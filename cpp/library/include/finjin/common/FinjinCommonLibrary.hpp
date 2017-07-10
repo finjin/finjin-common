@@ -241,8 +241,10 @@
 //Overloaded "new" throw spec-------------
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS
     #define FINJIN_GLOBAL_NEW_THROW throw()
+    #define FINJIN_GLOBAL_NEW_CHECK_ALLOCATION(mem)
 #else
     #define FINJIN_GLOBAL_NEW_THROW throw(std::bad_alloc)
+    #define FINJIN_GLOBAL_NEW_CHECK_ALLOCATION(mem) if (mem == nullptr) throw std::bad_alloc()
 #endif
 
 

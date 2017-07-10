@@ -28,11 +28,6 @@ const Utf8String& Allocator::GetName() const
     return this->name;
 }
 
-ValueOrError<void> Allocator::SetName(const Utf8String& name)
-{
-    return this->name = name;
-}
-
 size_t Allocator::GetEnvironmentAlignment()
 {
     struct AlignmentStruct { char c; double d; };

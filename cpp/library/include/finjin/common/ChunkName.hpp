@@ -149,13 +149,13 @@ namespace Finjin { namespace Common {
         static const ChunkPropertyName BLOB_TEXT_FORMAT;
     };
 
-    
+
     //Blob text format (binary data in a text file)-----------
     enum class DataChunkBlobTextFormat
     {
         BYTE_ARRAY,
         BASE64,
-        
+
         COUNT
     };
 
@@ -170,7 +170,7 @@ namespace Finjin { namespace Common {
                 );
             return lookup;
         }
-        
+
         static const char* ToString(DataChunkBlobTextFormat value)
         {
             auto& lookup = GetLookup();
@@ -179,7 +179,7 @@ namespace Finjin { namespace Common {
                 if (item.second == value)
                     return item.first;
             }
-            
+
             return FINJIN_ENUM_UNKNOWN_STRING;
         }
 

@@ -175,7 +175,7 @@ void VirtualFileSystem::RebuildDatabase(Error& error)
         this->completeDatabaseTypes = this->settings.searchEntryTypes; //Assume the database is complete
         for (auto& root : this->roots)
         {
-            auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, error);
+            auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, this->settings.maxSearchDepth, error);
             if (error)
             {
                 this->database.CancelRebuild();
@@ -210,7 +210,7 @@ void VirtualFileSystem::UpdateDatabase(Error& error)
         {
             if (root.status == RootEntry::Status::NEW)
             {
-                auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, error);
+                auto result = root.fileSystemRoot->Enumerate(this->database, this->settings.searchEntryTypes, this->settings.maxSearchDepth, error);
                 if (error)
                 {
                     this->database.CancelUpdate();

@@ -56,26 +56,25 @@ namespace Finjin { namespace Common {
                 "debug", LogLevel::DEBUG_LEVEL,
                 "trace", LogLevel::TRACE_LEVEL
                 );
-            
             return lookup;
         }
-        
+
         template <typename T>
         static void Parse(LogLevel& result, const T& value, Error& error)
         {
             FINJIN_ERROR_METHOD_START(error);
-            
+
             result = Parse(value, LogLevel::COUNT);
             if (result == LogLevel::COUNT)
                 FINJIN_SET_ERROR(error, FINJIN_FORMAT_ERROR_MESSAGE("Failed to parse log level '%1%'.", value));
         }
-        
+
         template <typename T>
         static LogLevel Parse(const T& value, LogLevel defaultValue)
         {
             return GetLookup().GetOrDefault(value, defaultValue);
         }
-        
+
         static const char* ToString(LogLevel value)
         {
             auto& lookup = GetLookup();
@@ -84,7 +83,7 @@ namespace Finjin { namespace Common {
                 if (item.second == value)
                     return item.first;
             }
-            
+
             return FINJIN_ENUM_UNKNOWN_STRING;
         }
     };

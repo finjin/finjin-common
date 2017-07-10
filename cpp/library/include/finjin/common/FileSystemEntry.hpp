@@ -69,12 +69,10 @@ namespace Finjin { namespace Common {
             Settings()
             {
                 this->allocator = nullptr;
-                this->searchEntryTypes = FileSystemEntryType::DIRECTORY;
                 this->maxEntries = 100;
             }
 
             Allocator* allocator;
-            FileSystemEntryType searchEntryTypes;
             size_t maxEntries;
         };
 

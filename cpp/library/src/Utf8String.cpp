@@ -175,10 +175,10 @@ bool Utf8StringView::operator == (const char* other) const
 {
     auto s = Utf8String::GetNonNull(this->s);
     auto otherS = Utf8String::GetNonNull(other);
-    
+
     if (this->l != strlen(otherS))
         return false;
-    
+
     return s == otherS || strncmp(s, otherS, this->l) == 0;
 }
 
@@ -191,9 +191,9 @@ bool Utf8StringView::operator == (const Utf8String& other) const
 {
     if (this->l != other.length())
         return false;
-    
+
     auto s = Utf8String::GetNonNull(this->s);
-    
+
     return strncmp(s, other.c_str(), this->l) == 0;
 }
 
@@ -206,10 +206,10 @@ bool Utf8StringView::operator == (const Utf8StringView& other) const
 {
     if (this->l != other.l)
         return false;
-    
+
     auto s = Utf8String::GetNonNull(this->s);
     auto otherS = Utf8String::GetNonNull(other.s);
-    
+
     return s == otherS || strncmp(s, otherS, this->l) == 0;
 }
 
@@ -271,10 +271,10 @@ size_t Utf8StringView::find(char c, size_t pos) const
 size_t Utf8StringView::find(const char* other, size_t pos) const
 {
     auto range = boost::make_iterator_range(this->s + pos, this->s + this->l);
-    
+
     auto safeOther = Utf8String::GetNonNull(other);
     auto otherRange = boost::make_iterator_range(safeOther, safeOther + strlen(safeOther));
-    
+
     auto foundAt = boost::algorithm::find_first(range, otherRange);
     if (foundAt)
         return foundAt.begin() - s;
@@ -286,10 +286,10 @@ Utf8StringView Utf8StringView::substr(size_t pos, size_t len) const
 {
     if (empty())
         return *this;
-    
+
     if (pos == 0 && len >= this->l)
         return *this;
-    
+
     Utf8StringView result;
     if (pos < this->l)
         result.assign(this->s + pos, std::min(len, this->l - pos));
@@ -310,7 +310,7 @@ int Utf8StringView::CompareNoCaseAscii(const char* other) const
 {
     auto nonNullOther = Utf8String::GetNonNull(other);
     auto nonNullOtherLength = strlen(nonNullOther);
-    
+
     auto minLength = std::min(this->l, nonNullOtherLength);
     for (size_t i = 0; i < minLength; i++)
     {
@@ -318,7 +318,7 @@ int Utf8StringView::CompareNoCaseAscii(const char* other) const
         if (diff != 0)
             return diff;
     }
-    
+
     return static_cast<int>(this->l) - static_cast<int>(nonNullOtherLength);
 }
 
@@ -326,17 +326,17 @@ bool Utf8StringView::EqualsNoCaseAscii(const char* other) const
 {
     auto nonNullOther = Utf8String::GetNonNull(other);
     auto nonNullOtherLength = strlen(nonNullOther);
-    
+
     if (this->l != nonNullOtherLength)
         return false;
-    
+
     for (size_t i = 0; i < this->l; i++)
     {
         auto diff = toupper(this->s[i]) - toupper(other[i]);
         if (diff != 0)
             return false;
     }
-    
+
     return true;
 }
 
@@ -352,7 +352,7 @@ bool Utf8StringView::StartsWith(const char* other, size_t otherLength) const
 {
     if (otherLength > this->l)
         return false;
-    
+
     return strncmp(this->s, other, otherLength) == 0;
 }
 
@@ -368,7 +368,7 @@ bool Utf8StringView::EndsWith(const char* other, size_t otherLength) const
 {
     if (otherLength > this->l)
         return false;
-    
+
     return strncmp(this->s + this->l - otherLength, other, otherLength) == 0;
 }
 

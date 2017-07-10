@@ -53,8 +53,8 @@ namespace Finjin { namespace Common {
                 case FutureErrorCode::FUTURE_ALREADY_RETRIEVED: return std::string("The future has already been retrieved from the promise or packaged_task.");
                 case FutureErrorCode::PROMISE_ALREADY_SATISFIED: return std::string("The state of the promise has already been set.");
                 case FutureErrorCode::NO_STATE: return std::string("Operation not permitted on an object without an associated state.");
+                default: return std::string("Unknown FutureErrorCode value.");
             }
-            return std::string("unspecified FutureErrorCode value\n");
         }
     };
 

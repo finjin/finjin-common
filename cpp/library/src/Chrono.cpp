@@ -511,19 +511,55 @@ bool HighResolutionTimeStamp::IsZero() const
     return this->timepoint == 0;
 }
 
+TimeDuration HighResolutionTimeStamp::ToNanoseconds() const
+{
+#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
+    return TimeDuration::Nanoseconds(this->timepoint * 1000000000ull / this->highPerformanceFrequency.QuadPart);
+#elif FINJIN_TARGET_PLATFORM_IS_APPLE
+    return TimeDuration::Nanoseconds(this->timepoint * this->timebaseInfo.numer / this->timebaseInfo.denom);
+#elif FINJIN_TARGET_PLATFORM_IS_LINUX
+    return TimeDuration::Nanoseconds(this->timepoint);
+#endif
+}
+
+Utf8String HighResolutionTimeStamp::ToString() const
+{
+    return ToNanoseconds().ToString();
+}
+
+bool HighResolutionTimeStamp::operator == (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint == other.timepoint;
+}
+
+bool HighResolutionTimeStamp::operator != (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint != other.timepoint;
+}
+
+bool HighResolutionTimeStamp::operator < (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint < other.timepoint;
+}
+
+bool HighResolutionTimeStamp::operator <= (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint <= other.timepoint;
+}
+
+bool HighResolutionTimeStamp::operator > (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint > other.timepoint;
+}
+
+bool HighResolutionTimeStamp::operator >= (const HighResolutionTimeStamp& other) const
+{
+    return this->timepoint >= other.timepoint;
+}
+
 TimeDuration HighResolutionTimeStamp::operator - (const HighResolutionTimeStamp& other) const
 {
-    //This implementation assumes both time stamps were taken from the same clock
-
-    auto elapsedTimeDuration = this->timepoint - other.timepoint;
-
-#if FINJIN_TARGET_PLATFORM_IS_WINDOWS
-    return TimeDuration::Nanoseconds(elapsedTimeDuration * 1000000000ull / this->highPerformanceFrequency.QuadPart);
-#elif FINJIN_TARGET_PLATFORM_IS_APPLE
-    return TimeDuration::Nanoseconds(elapsedTimeDuration * this->timebaseInfo.numer / this->timebaseInfo.denom);
-#elif FINJIN_TARGET_PLATFORM_IS_LINUX
-    return TimeDuration::Nanoseconds(elapsedTimeDuration);
-#endif
+    return ToNanoseconds() - other.ToNanoseconds();
 }
 
 //HighResolutionClock

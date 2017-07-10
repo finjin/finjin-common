@@ -98,6 +98,9 @@
     <Filter Include="Source Files\string">
       <UniqueIdentifier>{833b39f0-f812-4414-914d-3e3f43958552}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\3rd-party\jpeg">
+      <UniqueIdentifier>{a495c7d1-079a-4ea7-af61-e72e96f2402c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\finjin-3rd-party\cpp\tinyxml\tinyxml2.cpp">
@@ -555,6 +558,189 @@
     </ClCompile>
     <ClCompile Include="..\..\src\StandardPaths.cpp">
       <Filter>Source Files\file-system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JPEGReader.cpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\JPEGWriter.cpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcprepct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcparam.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcomapi.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcmaster.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcmarker.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcmainct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcinit.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jchuff.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcdctmgr.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jccolor.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jccoefct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcarith.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcapistd.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcapimin.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jaricom.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\wrtarga.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\wrrle.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\wrppm.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\wrgif.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\wrbmp.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\transupp.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdtarga.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdswitch.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdrle.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdppm.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdgif.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdcolmap.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\rdbmp.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jutils.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jquant2.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jquant1.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jmemnobs.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jmemmgr.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jidctint.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jidctfst.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jidctflt.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jfdctint.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jfdctfst.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jfdctflt.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jerror.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdtrans.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdsample.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdpostct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdmerge.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdmaster.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdmarker.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdmainct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdinput.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdhuff.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jddctmgr.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdcolor.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdcoefct.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdatasrc.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdatadst.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdarith.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdapistd.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jdapimin.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jctrans.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\finjin-3rd-party\cpp\jpeg\jcsample.c">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1220,6 +1406,42 @@
     </ClInclude>
     <ClInclude Include="..\..\include\finjin\common\Luid.hpp">
       <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JPEGReader.hpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\finjin\common\JPEGWriter.hpp">
+      <Filter>Source Files\external-file-formats</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\transupp.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jversion.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jpeglib.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jpegint.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jmorecfg.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jmemsys.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jinclude.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jerror.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\jdct.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\finjin-3rd-party\cpp\jpeg\cderror.h">
+      <Filter>Source Files\3rd-party\jpeg</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

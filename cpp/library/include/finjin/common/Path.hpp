@@ -216,7 +216,7 @@ namespace Finjin { namespace Common {
             ReplaceFirst(findView, replaceView);
         }
         void ReplaceFirst(const Utf8StringView& find, const Utf8StringView& replace);
-        
+
         template <typename Find, typename Replace>
         void ReplaceAll(const Find& find, const Replace& replace)
         {

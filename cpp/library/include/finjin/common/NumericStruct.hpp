@@ -32,20 +32,25 @@ namespace Finjin { namespace Common {
     enum class NumericStructElementType
     {
         NONE,
+
         INT1, //32-bit int
         INT2,
         INT3,
         INT4,
+
         UINT1, //32-bit unsigned int
         UINT2,
         UINT3,
         UINT4,
+
         FLOAT1, //32-bit single precision floating point
         FLOAT2,
         FLOAT3,
         FLOAT4,
-        FLOAT3x3,
+
+        FLOAT3x3, //32-bit single precision floating point matrix
         FLOAT4x4,
+
         NESTED_STRUCT //Pointer to another numeric struct
     };
 

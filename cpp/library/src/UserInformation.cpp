@@ -38,7 +38,7 @@ using namespace Finjin::Common;
 UserInformation::UserInformation(Allocator* allocator)
 {
     this->name.value.SetAllocator(allocator);
-    
+
     this->initializationStatus.SetStatus(OperationStatus::STARTED);
 
 #if FINJIN_TARGET_PLATFORM_IS_WINDOWS_UWP

@@ -31,7 +31,17 @@ namespace Finjin { namespace Common {
     public:
         VirtualFileSystem();
 
-        using Settings = FileSystemEntries::Settings;
+        struct Settings : FileSystemEntries::Settings
+        {
+            Settings()
+            {
+                this->searchEntryTypes = FileSystemEntryType::DIRECTORY;
+                this->maxSearchDepth = 1;
+            }
+
+            FileSystemEntryType searchEntryTypes;
+            size_t maxSearchDepth; //Example: 'app' depth = 0, 'app/scenes' depth = 1
+        };
 
         void Create(const Settings& settings, Error& error);
 

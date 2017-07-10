@@ -155,7 +155,7 @@ Thread::~Thread()
 void Thread::Create(Allocator* allocator, const char* name, size_t index, const LogicalCpu* logicalCpu, std::function<void()> threadProc, Error& error)
 {
     FINJIN_ERROR_METHOD_START(error);
-    
+
     if (impl == nullptr)
     {
         impl = AllocatedClass::New<Impl>(allocator, FINJIN_CALLER_ARGUMENTS);

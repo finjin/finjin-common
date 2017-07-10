@@ -300,7 +300,7 @@ void JobSystem::Settings::Finalize(const LogicalCpus& logicalCpus)
     for (size_t i = 0; i < this->jobThreadsSetup.size(); i++)
     {
         auto& jobThreadSetup = this->jobThreadsSetup[i];
-        
+
         jobThreadSetup.logicalCpu = logicalCpus[i];
         jobThreadSetup.fiberCount = (i < logicalCpus.size() - 1) ? jobFiberCount.perThread : jobFiberCount.lastThread;
         jobThreadSetup.stackByteCount = this->threadStackByteCount;

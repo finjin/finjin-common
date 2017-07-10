@@ -42,7 +42,7 @@ namespace Finjin { namespace Common {
             COMPLETE,
             INCOMPLETE
         };
-        virtual EnumerationResult Enumerate(FileSystemEntries& items, FileSystemEntryType findTypes, Error& error) = 0;
+        virtual EnumerationResult Enumerate(FileSystemEntries& items, FileSystemEntryType findTypes, size_t maxDepth, Error& error) = 0;
 
         virtual const Utf8String& GetInternalVolumeID() const = 0;
         virtual const Path& GetFileSystemPath() const = 0;

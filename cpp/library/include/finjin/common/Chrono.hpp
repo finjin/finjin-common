@@ -164,6 +164,19 @@ namespace Finjin { namespace Common {
 
         bool IsZero() const;
 
+        TimeDuration ToNanoseconds() const;
+
+        Utf8String ToString() const;
+
+        bool operator == (const HighResolutionTimeStamp& other) const;
+        bool operator != (const HighResolutionTimeStamp& other) const;
+
+        bool operator < (const HighResolutionTimeStamp& other) const;
+        bool operator <= (const HighResolutionTimeStamp& other) const;
+
+        bool operator > (const HighResolutionTimeStamp& other) const;
+        bool operator >= (const HighResolutionTimeStamp& other) const;
+
         TimeDuration operator - (const HighResolutionTimeStamp& other) const;
 
     private:
@@ -201,6 +214,12 @@ namespace std
     inline ostream& operator << (ostream& os, const Finjin::Common::DateTime& v)
     {
         os << v.ToIso8601();
+        return os;
+    }
+
+    inline ostream& operator << (ostream& os, const Finjin::Common::HighResolutionTimeStamp& v)
+    {
+        os << v.ToString();
         return os;
     }
 }
